@@ -41,10 +41,12 @@ export default function Navbar() {
       <div style={{ display: 'flex', gap: 24, alignItems: 'center', fontSize: 14, fontWeight: 600 }}>
         <Link href="/annuaire" style={{ color: '#444' }}>Annuaire</Link>
         <Link href="/teams" style={{ color: '#444' }}>Teams</Link>
+        <Link href="/trades" style={{ color: '#444' }}>Trades</Link>
         <Link href="/tuto" style={{ color: '#444' }}>Tutoriel</Link>
         {user ? (
           <>
             <Link href={`/galerie/${user.id}`} style={{ color: '#444' }}>Ma galerie</Link>
+            <Link href="/messages" style={{ color: '#444' }}>Messages</Link>
             <Link href="/profil" style={{ color: '#444' }}>Profil</Link>
             <button onClick={handleLogout} className="btn-main btn-secondary" style={{ padding: '8px 20px', fontSize: 13 }}>
               Déconnexion
