@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState, useRef, use } from 'react'
 import { supabase } from '@/lib/supabase'
-import Script from 'next/script'
+import Viewer3D from '@/components/Viewer3D'
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string
@@ -24,7 +24,6 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const [years, setYears] = useState<string[]>([])
   const [popup, setPopup] = useState<Card | null>(null)
   const [loaded, setLoaded] = useState(false)
-  const curX = useRef(0), curY = useRef(0), curScale = useRef(1)
 
   useEffect(() => {
     supabase.from('profiles').select('*').eq('id', userId).single().then(({ data }) => {
@@ -83,29 +82,10 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     </div>
   )
 
-  const updateTransform = () => {
-    const canv = document.getElementById('canv3D') as HTMLElement
-    const wrap = document.getElementById('zoomWrapper') as HTMLElement
-    if (canv) canv.style.transform = `scale(0.5) rotateX(${curY.current}deg) rotateY(${curX.current}deg)`
-    if (wrap) wrap.style.transform = `scale(${curScale.current})`
-  }
-
   const accent = profile?.couleur_bordure || '#003DA6'
 
   return (
     <>
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js" onLoad={() => {
-        const area = document.getElementById('dragZone')
-        if (!area || !(window as any).Hammer) return
-        const mc = new (window as any).Hammer.Manager(area)
-        mc.add(new (window as any).Hammer.Pan({ threshold: 0, pointers: 0 }))
-        mc.add(new (window as any).Hammer.Pinch({ enable: true }))
-        let sX = 0, sY = 0, sS = 1
-        mc.on('panstart', () => { sX = curX.current; sY = curY.current })
-        mc.on('panmove', (e: any) => { curX.current = sX + e.deltaX * 0.6; curY.current = sY + e.deltaY * -0.6; updateTransform() })
-        mc.on('pinchstart', () => { sS = curScale.current })
-        mc.on('pinchmove', (e: any) => { curScale.current = Math.min(Math.max(sS * e.scale, 0.5), 3); updateTransform() })
-      }} />
 
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
         <h1 style={{ textAlign: 'center', fontSize: 28, fontWeight: 900, margin: '20px 0', textTransform: 'uppercase' }}>
@@ -173,43 +153,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
       </div>
 
       {popup && (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: '#fff', zIndex: 9999999, display: 'flex', flexDirection: 'column' }}>
-          <button onClick={() => setPopup(null)} style={{
-            position: 'absolute', top: 20, right: 20, fontSize: 28, cursor: 'pointer',
-            background: '#fff', width: 40, height: 40, borderRadius: '50%',
-            border: '1px solid #eee', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10001
-          }}>×</button>
-          <div style={{ display: 'flex', width: '100%', height: '100%' }}>
-            <div id="dragZone" style={{ flex: 1.2, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8f8f8', perspective: 2000, touchAction: 'none' }}
-              onWheel={e => { e.preventDefault(); curScale.current = Math.min(Math.max(0.5, curScale.current + e.deltaY * -0.001), 4); updateTransform() }}
-              onMouseMove={e => { if (e.buttons !== 1) return; curX.current += e.movementX * 0.5; curY.current -= e.movementY * 0.5; updateTransform() }}>
-              <div id="zoomWrapper" style={{ transformStyle: 'preserve-3d', transition: 'transform 0.1s ease-out', willChange: 'transform' }}>
-                <div id="canv3D" style={{ width: 520, height: 728, position: 'relative', transformStyle: 'preserve-3d' }}>
-                  <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
-                    <img src={popup.f} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={popup.n} />
-                  </div>
-                  <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', transform: 'rotateY(180deg)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
-                    <img src={popup.b} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={popup.n} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style={{ flex: 0.8, padding: 30, display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'white', overflowY: 'auto' }}>
-              <div style={{ color: accent, fontWeight: 900, fontSize: 11, textTransform: 'uppercase' }}>{popup.t}</div>
-              <h2 style={{ fontSize: '1.8rem', fontWeight: 900, margin: '5px 0' }}>{popup.n}</h2>
-              <div style={{ fontSize: '1.1rem', color: accent, fontWeight: 700, marginBottom: 10, fontStyle: 'italic' }}>{popup.v}</div>
-              {getTags(popup)}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 15, borderTop: '1px solid #eee', marginTop: 15, paddingTop: 15 }}>
-                {[['Année', popup.y], ['Numérotation', popup.num || 'N/A'], ['Grade', popup.g], ['Collection', `${popup.br} ${popup.s}`]].map(([l, v]) => (
-                  <div key={l}>
-                    <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: '#999', textTransform: 'uppercase' }}>{l}</label>
-                    <span style={{ fontSize: 13, fontWeight: 700 }}>{v}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        <Viewer3D popup={popup} accent={accent} onClose={() => setPopup(null)} getTags={getTags} />
       )}
     </>
   )
