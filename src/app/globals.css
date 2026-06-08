@@ -144,3 +144,53 @@ nav {
   color: var(--text);
 }
 .section-title::after { content: ""; flex: 1; height: 2px; background: var(--border); }
+
+/* ===== RESPONSIVE MOBILE ===== */
+@media (max-width: 768px) {
+  main { padding: 12px !important; }
+
+  /* Grille galerie : 2 colonnes sur mobile */
+  .card-grid { gap: 8px !important; }
+  .card-item { flex: 0 0 calc(50% - 5px) !important; max-width: calc(50% - 5px) !important; }
+
+  /* Hero accueil */
+  h1[style*="3.5rem"] { font-size: 2rem !important; }
+
+  /* Grille tutoriel / stats */
+  section[style*="repeat(auto-fit"] { grid-template-columns: 1fr !important; }
+
+  /* Annuaire : scroll horizontal sur le tableau */
+  .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Profil : champs full width */
+  div[style*="gridTemplateColumns: '1fr 1fr 1fr'"] { grid-template-columns: 1fr !important; }
+  div[style*="grid-template-columns: 1fr 1fr 1fr"] { grid-template-columns: 1fr !important; }
+
+  /* Header galerie */
+  div[style*="display: 'flex'"][style*="gap: 24"] { flex-direction: column !important; text-align: center !important; }
+
+  /* Trades grille */
+  div[style*="minmax(300px"] { grid-template-columns: 1fr !important; }
+  div[style*="minmax(260px"] { grid-template-columns: 1fr !important; }
+
+  /* Popup trade : colonne unique */
+  div[style*="maxWidth: 800"] { flex-direction: column !important; max-height: 95vh !important; }
+  div[style*="maxWidth: 380"] { max-width: 100% !important; }
+
+  /* Popup viewer 3D */
+  div[style*="flex: 1.2"] { flex: 0 0 50vh !important; }
+  div[style*="flex: 0.8"] { flex: 1 !important; }
+
+  /* Boutons */
+  .btn-main { padding: 12px 20px !important; font-size: 13px !important; }
+
+  /* Filtres trades */
+  div[style*="gap: 8"][style*="flex"] button { padding: 6px 10px !important; font-size: 11px !important; }
+}
+
+@media (max-width: 480px) {
+  /* Galerie viewer 3D : full vertical */
+  div[style*="flex: 1.2"],
+  div[style*="flex: 0.8"] { flex: none !important; width: 100% !important; }
+  div[style*="width: 260"][style*="height: 364"] { width: 200px !important; height: 280px !important; }
+}
