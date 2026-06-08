@@ -155,23 +155,40 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
   return (
     <div style={{
       position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
-      background: '#fff', zIndex: 9999999, display: 'flex',
+      background: '#fff', zIndex: 9999999, display: 'flex', flexDirection: 'column',
     }}>
+      <style>{`
+        @media (min-width: 600px) {
+          .viewer3d-inner { flex-direction: row !important; }
+          .viewer3d-zone { flex: 1.2 !important; height: 100% !important; }
+          .viewer3d-info { flex: 0.8 !important; height: 100% !important; }
+        }
+        @media (max-width: 599px) {
+          .viewer3d-zone { flex: 0 0 55vh !important; }
+          .viewer3d-info { flex: 1 !important; overflow-y: auto !important; }
+          .msg-back { display: block !important; }
+        }
+        .msg-back { display: none; }
+        @media (max-width: 768px) { .msg-back { display: block !important; } }
+      `}</style>
       <button onClick={onClose} style={{
-        position: 'absolute', top: 20, right: 20, fontSize: 24, cursor: 'pointer',
-        background: '#fff', width: 40, height: 40, borderRadius: '50%',
+        position: 'absolute', top: 12, right: 12, fontSize: 20, cursor: 'pointer',
+        background: 'rgba(255,255,255,0.9)', width: 36, height: 36, borderRadius: '50%',
         border: '1px solid #eee', display: 'flex', alignItems: 'center',
-        justifyContent: 'center', zIndex: 10001, lineHeight: 1,
+        justifyContent: 'center', zIndex: 10001,
       }}>×</button>
+
+      <div className="viewer3d-inner" style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
 
       {/* Zone 3D */}
       <div
+        className="viewer3d-zone"
         style={{
-          flex: 1.2, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
           background: '#f8f8f8', perspective: 2000,
           cursor: isDragging.current ? 'grabbing' : 'grab',
           userSelect: 'none', WebkitUserSelect: 'none',
-          touchAction: 'none', overflow: 'hidden',
+          touchAction: 'none', overflow: 'hidden', position: 'relative',
         }}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
@@ -244,7 +261,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
       </div>
 
       {/* Infos */}
-      <div style={{ flex: 0.8, padding: 30, display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'white', overflowY: 'auto' }}>
+      <div className="viewer3d-info" style={{ padding: 24, display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'white', overflowY: 'auto' }}>
         <div style={{ color: accent, fontWeight: 900, fontSize: 11, textTransform: 'uppercase' }}>{popup.t}</div>
         <h2 style={{ fontSize: '1.8rem', fontWeight: 900, margin: '5px 0' }}>{popup.n}</h2>
         <div style={{ fontSize: '1.1rem', color: accent, fontWeight: 700, marginBottom: 10, fontStyle: 'italic' }}>{popup.v}</div>
@@ -257,6 +274,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </div>
   )

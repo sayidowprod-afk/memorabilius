@@ -206,27 +206,34 @@ export default function Trades() {
           <div onClick={e => e.stopPropagation()} style={{
             background: 'white', borderRadius: 20, overflow: 'hidden',
             maxWidth: 800, width: '100%', maxHeight: '90vh',
-            display: 'flex', boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+            display: 'flex', flexDirection: 'column',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
           }}>
-            {/* Gauche : image */}
-            <div style={{ flex: 1, background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 400, position: 'relative', overflow: 'hidden' }}>
+            <style>{`
+              @media (min-width: 600px) {
+                .trade-popup-inner { flex-direction: row !important; }
+                .trade-popup-img { flex: 1 !important; min-height: 400px !important; }
+                .trade-popup-info { flex: 0 0 360px !important; max-width: 360px !important; }
+              }
+              @media (max-width: 599px) {
+                .trade-popup-img { height: 250px !important; min-height: unset !important; }
+              }
+            `}</style>
+            <div className="trade-popup-inner" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', flex: 1, minHeight: 0 }}>
+            {/* Image */}
+            <div className="trade-popup-img" style={{ background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', flexShrink: 0 }}>
               {popup.image_url ? (
                 <ImageZoom src={popup.image_url} alt={popup.titre} />
               ) : (
                 <span style={{ fontSize: 80 }}>🃏</span>
               )}
-              {/* Badge type */}
-              <div style={{
-                position: 'absolute', top: 12, left: 12,
-                background: popup.type === 'offre' ? '#2e7d32' : '#1976d2',
-                color: 'white', padding: '4px 12px', borderRadius: 20, fontSize: 12, fontWeight: 900,
-              }}>
+              <div style={{ position: 'absolute', top: 12, left: 12, background: popup.type === 'offre' ? '#2e7d32' : '#1976d2', color: 'white', padding: '4px 12px', borderRadius: 20, fontSize: 12, fontWeight: 900 }}>
                 {popup.type === 'offre' ? '📤 Offre' : '📥 Recherche'}
               </div>
             </div>
 
-            {/* Droite : infos */}
-            <div style={{ flex: 1, padding: 30, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 380 }}>
+            {/* Infos */}
+            <div className="trade-popup-info" style={{ padding: 24, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
               {/* Fermer */}
               <button onClick={() => setPopup(null)} style={{
                 alignSelf: 'flex-end', background: '#f0f0f0', border: 'none', width: 32, height: 32,
@@ -285,6 +292,7 @@ export default function Trades() {
                   Publié le {new Date(popup.created_at).toLocaleDateString('fr-FR')}
                 </p>
               </div>
+            </div>
             </div>
           </div>
         </div>

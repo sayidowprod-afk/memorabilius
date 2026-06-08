@@ -108,9 +108,17 @@ function MessagesContent() {
 
   return (
     <div style={{ maxWidth: 1000, margin: '20px auto', fontFamily: 'Inter, sans-serif', height: 'calc(100vh - 120px)', display: 'flex', gap: 20 }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .msg-layout { flex-direction: column !important; height: calc(100vh - 80px) !important; gap: 0 !important; }
+          .msg-list { width: 100% !important; display: ${activeConv ? 'none' : 'flex'} !important; border-radius: 12px 12px 0 0 !important; }
+          .msg-chat { display: ${activeConv ? 'flex' : 'none'} !important; border-radius: 0 0 12px 12px !important; }
+        }
+      `}</style>
 
+      <div className="msg-layout" style={{ maxWidth: 1000, width: '100%', margin: '0 auto', height: 'calc(100vh - 120px)', display: 'flex', gap: 20 }}>
       {/* Liste conversations */}
-      <div style={{ width: 280, background: 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+      <div className="msg-list" style={{ width: 280, background: 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
         <div style={{ padding: '20px 16px', borderBottom: '1px solid #f0f0f0' }}>
           <h2 style={{ fontWeight: 900, fontSize: 18, margin: 0 }}>Messages</h2>
         </div>
@@ -139,15 +147,16 @@ function MessagesContent() {
       </div>
 
       {/* Zone messages */}
-      <div style={{ flex: 1, background: 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div className="msg-chat" style={{ flex: 1, background: 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         {!activeConv ? (
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#bbb' }}>
             <p>Sélectionnez une conversation</p>
           </div>
         ) : (
           <>
-            {/* Header */}
-            <div style={{ padding: '16px 20px', borderBottom: '1px solid #f0f0f0', display: 'flex', alignItems: 'center', gap: 12 }}>
+            {/* Header avec bouton retour mobile */}
+            <div style={{ padding: '12px 16px', borderBottom: '1px solid #f0f0f0', display: 'flex', alignItems: 'center', gap: 10 }}>
+              <button onClick={() => setActiveConv(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 20, color: '#003DA6', padding: '0 8px 0 0', fontWeight: 700 }} className="msg-back">←</button>
               <img src={profiles[activeConv]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[activeConv]?.display_name || 'U')}&background=003DA6&color=fff`}
                 style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }} alt="" />
               <div>
