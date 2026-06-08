@@ -15,7 +15,7 @@ export default function Tuto() {
         </div>
         <p style={{ color: '#555', lineHeight: 1.7, marginBottom: 16 }}>Inscrivez-vous gratuitement avec votre email et choisissez un pseudo.</p>
         <div style={{ borderRadius: 12, overflow: 'hidden', marginBottom: 16, border: '1px solid #eee' }}>
-          <img src="/tuto/tuto5.png" alt="Formulaire d'inscription" style={{ width: '100%', height: 'auto', display: 'block' }} />
+          <img src="/tuto/tuto1.png" alt="Formulaire d'inscription" style={{ width: '100%', height: 'auto', display: 'block' }} />
         </div>
         <Link href="/sinscrire" style={{ display: 'inline-block', background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 14 }}>
           👉 Créer mon compte →
@@ -70,7 +70,7 @@ export default function Tuto() {
         </div>
         <p style={{ color: '#555', lineHeight: 1.7, marginBottom: 16 }}>Rendez-vous dans votre profil Memorabilius, collez le lien CSV. Votre galerie est générée instantanément !</p>
         <div style={{ borderRadius: 12, overflow: 'hidden', marginBottom: 16, border: '1px solid #eee' }}>
-          <img src="/tuto/tuto1.png" alt="Coller le lien" style={{ width: '100%', height: 'auto', display: 'block' }} />
+          <img src="/tuto/tuto5.png" alt="Coller le lien" style={{ width: '100%', height: 'auto', display: 'block' }} />
         </div>
         <Link href="/profil" style={{ display: 'inline-block', background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 14 }}>
           👉 Aller dans mon profil →
