@@ -25,7 +25,10 @@ export default function Profil() {
           display_name: p.display_name || '',
           lien_csv: p.lien_csv || '',
           couleur_bordure: p.couleur_bordure || '#003DA6',
-          lien_logo: p.lien_logo || ''
+          lien_logo: p.lien_logo || '',
+          instagram: p.instagram || '',
+          twitter: p.twitter || '',
+          discord: p.discord || '',
         })
         setCsvLinked(!!p.lien_csv)
         setAvatarUrl(p.avatar_url || null)
