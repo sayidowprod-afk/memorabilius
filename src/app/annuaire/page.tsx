@@ -20,29 +20,24 @@ export default function Annuaire() {
   }, [])
 
   const loadData = async () => {
-    const { data: profiles } = await supabase.from('profiles').select('id, display_name, avatar_url, lien_csv').not('lien_csv', 'is', null).neq('lien_csv', '')
+    const { data: profiles } = await supabase
+      .from('profiles')
+      .select('id, display_name, avatar_url, lien_csv')
+      .not('lien_csv', 'is', null)
+      .neq('lien_csv', '')
     if (!profiles) { setLoading(false); return }
-
-    const withStats = await Promise.all(profiles.map(async p => {
-      try {
-        const r = await fetch(p.lien_csv + '&t=' + Date.now())
-        const t = await r.text()
-        const lines = t.split(/\r?\n/).slice(1)
-        let stats: Stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
-        lines.forEach(line => {
-          const c = line.split(',')
-          if (!c[0] || c[0].length < 10) return
-          stats.total++
-          if (c[10]?.toLowerCase().includes('oui')) stats.rc++
-          if (c[9]?.toLowerCase().includes('oui')) stats.auto++
-          if (c[11]?.toLowerCase().includes('oui')) stats.patch++
-          if (c[8]?.trim()) stats.num++
-        })
-        return { ...p, stats }
-      } catch { return { ...p, stats: { total: 0, rc: 0, auto: 0, num: 0, patch: 0 } } }
-    }))
-    setCollectors(withStats)
+    setCollectors(profiles.map(p => ({ ...p, stats: undefined })))
     setLoading(false)
+
+    // Charger les stats en arrière-plan via un proxy
+    profiles.forEach(async p => {
+      try {
+        const r = await fetch(`/api/csv-stats?url=${encodeURIComponent(p.lien_csv)}`)
+        if (!r.ok) return
+        const stats = await r.json()
+        setCollectors(prev => prev.map(c => c.id === p.id ? { ...c, stats } : c))
+      } catch { }
+    })
   }
 
   const sorted = [...collectors].sort((a, b) => {
