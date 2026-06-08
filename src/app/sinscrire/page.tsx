@@ -14,13 +14,13 @@ export default function Inscription() {
     e.preventDefault()
     setLoading(true)
     setError('')
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
       options: { data: { display_name: form.display_name } }
     })
     if (error) { setError(error.message); setLoading(false); return }
-    router.push('/confirm')
+    window.location.href = '/confirm'
   }
 
   return (
