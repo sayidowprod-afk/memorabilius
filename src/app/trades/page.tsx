@@ -11,6 +11,7 @@ export default function Trades() {
   const [userId, setUserId] = useState<string | null>(null)
   const [filter, setFilter] = useState<'tous' | 'offre' | 'recherche'>('tous')
   const [search, setSearch] = useState('')
+  const [popup, setPopup] = useState<any | null>(null)
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -18,6 +19,13 @@ export default function Trades() {
       setUserId(data.user.id)
       loadTrades()
     })
+  }, [])
+
+  // Fermer avec Échap
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setPopup(null) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
   }, [])
 
   const loadTrades = async () => {
@@ -39,7 +47,30 @@ export default function Trades() {
   const closeTrade = async (id: number) => {
     await supabase.from('trades').update({ statut: 'clos' }).eq('id', id)
     setTrades(prev => prev.filter(t => t.id !== id))
+    setPopup(null)
   }
+
+  const SocialBadges = ({ profile }: { profile: any }) => (
+    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+      {profile?.instagram && (
+        <a href={`https://instagram.com/${profile.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
+          style={{ fontSize: 12, fontWeight: 700, color: '#E1306C', background: '#fce4ec', padding: '4px 10px', borderRadius: 20, textDecoration: 'none' }}>
+          📸 {profile.instagram.startsWith('@') ? profile.instagram : `@${profile.instagram}`}
+        </a>
+      )}
+      {profile?.twitter && (
+        <a href={`https://x.com/${profile.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
+          style={{ fontSize: 12, fontWeight: 700, color: '#121212', background: '#f0f0f0', padding: '4px 10px', borderRadius: 20, textDecoration: 'none' }}>
+          𝕏 {profile.twitter.startsWith('@') ? profile.twitter : `@${profile.twitter}`}
+        </a>
+      )}
+      {profile?.discord && (
+        <span style={{ fontSize: 12, fontWeight: 700, color: '#5865F2', background: '#eef0ff', padding: '4px 10px', borderRadius: 20 }}>
+          🎮 {profile.discord}
+        </span>
+      )}
+    </div>
+  )
 
   return (
     <div style={{ maxWidth: 1200, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
@@ -72,83 +103,140 @@ export default function Trades() {
             <Link href="/trades/nouveau" className="btn-main btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>Être le premier à poster</Link>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
             {filtered.map(trade => (
-              <div key={trade.id} style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)', border: '1px solid #eee', display: 'flex', flexDirection: 'column' }}>
-                {/* Badge type */}
-                <div style={{ padding: '8px 16px', background: trade.type === 'offre' ? '#e8f5e9' : '#e3f2fd', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: 12, fontWeight: 900, color: trade.type === 'offre' ? '#2e7d32' : '#1976d2', textTransform: 'uppercase' }}>
+              <div key={trade.id} onClick={() => setPopup(trade)} style={{
+                background: 'white', borderRadius: 16, overflow: 'hidden',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.06)', border: '1px solid #eee',
+                cursor: 'pointer', transition: '0.2s',
+              }}
+                onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px)')}
+                onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+              >
+                {/* Badge */}
+                <div style={{ padding: '8px 16px', background: trade.type === 'offre' ? '#e8f5e9' : '#e3f2fd', display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: 12, fontWeight: 900, color: trade.type === 'offre' ? '#2e7d32' : '#1976d2' }}>
                     {trade.type === 'offre' ? '📤 Offre' : '📥 Recherche'}
                   </span>
                   <span style={{ fontSize: 11, color: '#999' }}>{new Date(trade.created_at).toLocaleDateString('fr-FR')}</span>
                 </div>
-
                 {/* Image */}
-                {trade.image_url && (
-                  <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', maxHeight: 200 }}>
+                {trade.image_url ? (
+                  <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', maxHeight: 180 }}>
                     <img src={trade.image_url} alt={trade.titre} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
+                ) : (
+                  <div style={{ height: 80, background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32 }}>
+                    🃏
+                  </div>
                 )}
-
-                {/* Contenu */}
-                <div style={{ padding: 20, flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <h3 style={{ fontWeight: 900, fontSize: 16, margin: 0 }}>{trade.titre}</h3>
-                  {trade.joueur && <p style={{ fontSize: 12, color: '#003DA6', fontWeight: 700, margin: 0 }}>🏀 {trade.joueur} {trade.annee && `· ${trade.annee}`} {trade.marque && `· ${trade.marque}`}</p>}
-                  {trade.description && <p style={{ fontSize: 13, color: '#666', margin: 0, lineHeight: 1.5 }}>{trade.description}</p>}
-
-                  {/* Profil */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 8, paddingTop: 12, borderTop: '1px solid #f0f0f0' }}>
+                {/* Info */}
+                <div style={{ padding: '14px 16px' }}>
+                  <h3 style={{ fontWeight: 900, fontSize: 15, margin: '0 0 6px' }}>{trade.titre}</h3>
+                  {trade.joueur && <p style={{ fontSize: 12, color: '#003DA6', fontWeight: 700, margin: '0 0 8px' }}>🏀 {trade.joueur}</p>}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid #f0f0f0' }}>
                     <img src={trade.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(trade.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
-                      style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover' }} alt="" />
-                    <Link href={`/galerie/${trade.profiles?.id}`} style={{ fontSize: 13, fontWeight: 700, color: '#121212' }}>
-                      {trade.profiles?.display_name}
-                    </Link>
-                  </div>
-                  {/* Réseaux sociaux */}
-                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
-                    {trade.profiles?.instagram && (
-                      <a href={`https://instagram.com/${trade.profiles.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
-                        style={{ fontSize: 11, fontWeight: 700, color: '#E1306C', background: '#fce4ec', padding: '3px 8px', borderRadius: 20, textDecoration: 'none' }}>
-                        📸 {trade.profiles.instagram.startsWith('@') ? trade.profiles.instagram : `@${trade.profiles.instagram}`}
-                      </a>
-                    )}
-                    {trade.profiles?.twitter && (
-                      <a href={`https://x.com/${trade.profiles.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
-                        style={{ fontSize: 11, fontWeight: 700, color: '#121212', background: '#f0f0f0', padding: '3px 8px', borderRadius: 20, textDecoration: 'none' }}>
-                        𝕏 {trade.profiles.twitter.startsWith('@') ? trade.profiles.twitter : `@${trade.profiles.twitter}`}
-                      </a>
-                    )}
-                    {trade.profiles?.discord && (
-                      <span style={{ fontSize: 11, fontWeight: 700, color: '#5865F2', background: '#eef0ff', padding: '3px 8px', borderRadius: 20 }}>
-                        🎮 {trade.profiles.discord}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Actions */}
-                  <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-                    {userId && userId !== trade.user_id && (
-                      <Link href={`/messages?to=${trade.profiles?.id}&trade=${trade.id}`} style={{
-                        flex: 1, background: '#003DA6', color: 'white', padding: '8px 12px',
-                        borderRadius: 8, fontWeight: 700, fontSize: 12, textAlign: 'center', textDecoration: 'none'
-                      }}>
-                        💬 Contacter
-                      </Link>
-                    )}
-                    {userId === trade.user_id && (
-                      <button onClick={() => closeTrade(trade.id)} style={{
-                        flex: 1, background: '#f0f0f0', color: '#666', padding: '8px 12px',
-                        border: 'none', borderRadius: 8, fontWeight: 700, fontSize: 12, cursor: 'pointer'
-                      }}>
-                        ✓ Marquer comme conclu
-                      </button>
-                    )}
+                      style={{ width: 26, height: 26, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                    <span style={{ fontSize: 12, fontWeight: 700, color: '#444' }}>{trade.profiles?.display_name}</span>
                   </div>
                 </div>
               </div>
             ))}
           </div>
         )
+      )}
+
+      {/* Popup */}
+      {popup && (
+        <div onClick={() => setPopup(null)} style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)',
+          zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
+        }}>
+          <div onClick={e => e.stopPropagation()} style={{
+            background: 'white', borderRadius: 20, overflow: 'hidden',
+            maxWidth: 800, width: '100%', maxHeight: '90vh',
+            display: 'flex', boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+          }}>
+            {/* Gauche : image */}
+            <div style={{ flex: 1, background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 400, position: 'relative' }}>
+              {popup.image_url ? (
+                <img src={popup.image_url} alt={popup.titre} style={{ width: '100%', height: '100%', objectFit: 'contain', maxHeight: '90vh' }} />
+              ) : (
+                <span style={{ fontSize: 80 }}>🃏</span>
+              )}
+              {/* Badge type */}
+              <div style={{
+                position: 'absolute', top: 12, left: 12,
+                background: popup.type === 'offre' ? '#2e7d32' : '#1976d2',
+                color: 'white', padding: '4px 12px', borderRadius: 20, fontSize: 12, fontWeight: 900,
+              }}>
+                {popup.type === 'offre' ? '📤 Offre' : '📥 Recherche'}
+              </div>
+            </div>
+
+            {/* Droite : infos */}
+            <div style={{ flex: 1, padding: 30, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 380 }}>
+              {/* Fermer */}
+              <button onClick={() => setPopup(null)} style={{
+                alignSelf: 'flex-end', background: '#f0f0f0', border: 'none', width: 32, height: 32,
+                borderRadius: '50%', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>×</button>
+
+              {/* Titre */}
+              <h2 style={{ fontWeight: 900, fontSize: 22, margin: 0 }}>{popup.titre}</h2>
+
+              {/* Détails carte */}
+              {(popup.joueur || popup.annee || popup.marque) && (
+                <div style={{ background: '#f8f8f8', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  {popup.joueur && <p style={{ margin: 0, fontSize: 14, fontWeight: 700 }}>🏀 {popup.joueur}</p>}
+                  {popup.annee && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>📅 {popup.annee}</p>}
+                  {popup.marque && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>🏷️ {popup.marque}</p>}
+                </div>
+              )}
+
+              {/* Description */}
+              {popup.description && (
+                <p style={{ fontSize: 14, color: '#555', lineHeight: 1.6, margin: 0 }}>{popup.description}</p>
+              )}
+
+              {/* Profil */}
+              <div style={{ borderTop: '1px solid #eee', paddingTop: 16 }}>
+                <p style={{ fontSize: 11, fontWeight: 700, color: '#999', textTransform: 'uppercase', margin: '0 0 10px' }}>Proposé par</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                  <img src={popup.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(popup.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
+                    style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover', border: '2px solid #eee' }} alt="" />
+                  <Link href={`/galerie/${popup.profiles?.id}`} onClick={() => setPopup(null)} style={{ fontWeight: 800, fontSize: 15, color: '#121212', textDecoration: 'none' }}>
+                    {popup.profiles?.display_name}
+                  </Link>
+                </div>
+                <SocialBadges profile={popup.profiles} />
+              </div>
+
+              {/* Actions */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 'auto' }}>
+                {userId && userId !== popup.user_id && (
+                  <Link href={`/messages?to=${popup.profiles?.id}&trade=${popup.id}`} onClick={() => setPopup(null)} style={{
+                    background: '#003DA6', color: 'white', padding: '12px',
+                    borderRadius: 10, fontWeight: 700, fontSize: 14, textAlign: 'center', textDecoration: 'none',
+                  }}>
+                    💬 Envoyer un message
+                  </Link>
+                )}
+                {userId === popup.user_id && (
+                  <button onClick={() => closeTrade(popup.id)} style={{
+                    background: '#f0f0f0', color: '#666', padding: '12px',
+                    border: 'none', borderRadius: 10, fontWeight: 700, fontSize: 14, cursor: 'pointer',
+                  }}>
+                    ✓ Marquer comme conclu
+                  </button>
+                )}
+                <p style={{ fontSize: 11, color: '#bbb', textAlign: 'center', margin: 0 }}>
+                  Publié le {new Date(popup.created_at).toLocaleDateString('fr-FR')}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   )
