@@ -7,7 +7,7 @@ import { supabase } from '@/lib/supabase'
 export default function Profil() {
   const router = useRouter()
   const [userId, setUserId] = useState<string | null>(null)
-  const [form, setForm] = useState({ display_name: '', lien_csv: '', couleur_bordure: '#003DA6', lien_logo: '' })
+  const [form, setForm] = useState({ display_name: '', lien_csv: '', couleur_bordure: '#003DA6', lien_logo: '', instagram: '', twitter: '', discord: '' })
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
   const [csvLinked, setCsvLinked] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -71,6 +71,9 @@ export default function Profil() {
       lien_csv: form.lien_csv,
       couleur_bordure: form.couleur_bordure,
       lien_logo: form.lien_logo,
+      instagram: form.instagram,
+      twitter: form.twitter,
+      discord: form.discord,
     }).eq('id', userId)
 
     if (!error) {
@@ -145,6 +148,20 @@ export default function Profil() {
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>URL de votre logo (galerie)</label>
             <input value={form.lien_logo} onChange={e => setForm({ ...form, lien_logo: e.target.value })} placeholder="https://..." />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
+            <div>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Instagram</label>
+              <input value={form.instagram} onChange={e => setForm({ ...form, instagram: e.target.value })} placeholder="@pseudo" />
+            </div>
+            <div>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Twitter / X</label>
+              <input value={form.twitter} onChange={e => setForm({ ...form, twitter: e.target.value })} placeholder="@pseudo" />
+            </div>
+            <div>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Discord</label>
+              <input value={form.discord} onChange={e => setForm({ ...form, discord: e.target.value })} placeholder="pseudo#0000" />
+            </div>
           </div>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Couleur des bordures</label>
