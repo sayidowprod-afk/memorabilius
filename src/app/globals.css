@@ -1,7 +1,64 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', sans-serif; background: #f8f9fa; color: #121212; }
+
+:root {
+  --bg: #f8f9fa;
+  --bg2: #ffffff;
+  --text: #121212;
+  --text2: #666;
+  --border: #eee;
+  --input-bg: #ffffff;
+  --card-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --bg2: #1a1a1a;
+  --text: #f0f0f0;
+  --text2: #aaa;
+  --border: #2a2a2a;
+  --input-bg: #222;
+  --card-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
 a { color: inherit; text-decoration: none; }
 
+/* Navbar */
+nav {
+  background: var(--bg2) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Cards et panels */
+div[style*="background: white"],
+div[style*="background: #fff"],
+div[style*="background: #fdfdfd"] {
+  background: var(--bg2) !important;
+  color: var(--text) !important;
+}
+
+/* Inputs */
+input, select, textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: 0.2s;
+  width: 100%;
+  background: var(--input-bg);
+  color: var(--text);
+}
+input:focus, select:focus, textarea:focus { border-color: #003DA6; }
+
+/* Boutons */
 .btn-main {
   padding: 15px 35px;
   border-radius: 50px;
@@ -27,17 +84,6 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 10px;
   margin-top: 40px;
+  color: var(--text);
 }
-.section-title::after { content: ""; flex: 1; height: 2px; background: #eee; }
-
-input, select {
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
-  font-family: 'Inter', sans-serif;
-  outline: none;
-  transition: 0.2s;
-  width: 100%;
-}
-input:focus, select:focus { border-color: #003DA6; }
+.section-title::after { content: ""; flex: 1; height: 2px; background: var(--border); }

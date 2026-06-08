@@ -42,6 +42,9 @@ export default function Connexion() {
         <p style={{ textAlign: 'center', marginTop: 20, fontSize: 14, color: '#666' }}>
           Pas encore de compte ? <Link href="/sinscrire" style={{ color: '#003DA6', fontWeight: 700 }}>S'inscrire</Link>
         </p>
+        <p style={{ textAlign: 'center', marginTop: 10, fontSize: 13 }}>
+          <Link href="/mot-de-passe-oublie" style={{ color: '#999' }}>Mot de passe oublié ?</Link>
+        </p>
       </div>
     </div>
   )

@@ -20,7 +20,7 @@ export default function Inscription() {
       options: { data: { display_name: form.display_name } }
     })
     if (error) { setError(error.message); setLoading(false); return }
-    router.push('/profil')
+    router.push('/confirm')
   }
 
   return (
