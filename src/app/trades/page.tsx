@@ -1,8 +1,59 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+
+function ImageZoom({ src, alt }: { src: string; alt: string }) {
+  const [zoomed, setZoomed] = useState(false)
+  const [pos, setPos] = useState({ x: 50, y: 50 })
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!zoomed) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    setPos({ x, y })
+  }
+
+  return (
+    <div
+      onClick={() => setZoomed(!zoomed)}
+      onMouseMove={handleMove}
+      onMouseLeave={() => setZoomed(false)}
+      style={{
+        width: '100%', height: '100%', minHeight: 400,
+        cursor: zoomed ? 'zoom-out' : 'zoom-in',
+        overflow: 'hidden', position: 'relative',
+      }}
+      title={zoomed ? 'Cliquer pour dézoomer' : 'Cliquer pour zoomer'}
+    >
+      <img
+        src={src}
+        alt={alt}
+        draggable={false}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          display: 'block',
+          transition: zoomed ? 'none' : 'transform 0.3s ease',
+          transform: zoomed ? `scale(2.5)` : 'scale(1)',
+          transformOrigin: zoomed ? `${pos.x}% ${pos.y}%` : 'center center',
+          userSelect: 'none',
+        }}
+      />
+      {!zoomed && (
+        <div style={{
+          position: 'absolute', bottom: 10, right: 10,
+          background: 'rgba(0,0,0,0.5)', color: 'white',
+          fontSize: 11, padding: '4px 8px', borderRadius: 6, fontWeight: 700,
+          pointerEvents: 'none',
+        }}>🔍 Zoom</div>
+      )}
+    </div>
+  )
+}
 
 export default function Trades() {
   const router = useRouter()
@@ -122,8 +173,8 @@ export default function Trades() {
                 </div>
                 {/* Image */}
                 {trade.image_url ? (
-                  <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', maxHeight: 180 }}>
-                    <img src={trade.image_url} alt={trade.titre} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <div style={{ height: 200, overflow: 'hidden' }}>
+                    <img src={trade.image_url} alt={trade.titre} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                   </div>
                 ) : (
                   <div style={{ height: 80, background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32 }}>
@@ -158,9 +209,9 @@ export default function Trades() {
             display: 'flex', boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
           }}>
             {/* Gauche : image */}
-            <div style={{ flex: 1, background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 400, position: 'relative' }}>
+            <div style={{ flex: 1, background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 400, position: 'relative', overflow: 'hidden' }}>
               {popup.image_url ? (
-                <img src={popup.image_url} alt={popup.titre} style={{ width: '100%', height: '100%', objectFit: 'contain', maxHeight: '90vh' }} />
+                <ImageZoom src={popup.image_url} alt={popup.titre} />
               ) : (
                 <span style={{ fontSize: 80 }}>🃏</span>
               )}
