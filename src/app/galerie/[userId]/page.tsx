@@ -88,15 +88,59 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     <>
 
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
-        <h1 style={{ textAlign: 'center', fontSize: 28, fontWeight: 900, margin: '20px 0', textTransform: 'uppercase' }}>
-          Galerie de {profile?.display_name || 'Collectionneur'}
-        </h1>
 
-        {profile?.lien_logo && (
-          <div style={{ textAlign: 'center', marginBottom: 15 }}>
-            <img src={profile.lien_logo} style={{ maxHeight: 60, objectFit: 'contain' }} alt="logo" />
+        {/* Header profil */}
+        <div style={{ background: 'white', borderRadius: 16, padding: '24px 30px', marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
+          {/* Avatar */}
+          <img
+            src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
+            style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, flexShrink: 0 }}
+            alt={profile?.display_name}
+          />
+          {/* Infos */}
+          <div style={{ flex: 1, minWidth: 200 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 6 }}>
+              <h1 style={{ fontSize: 24, fontWeight: 900, margin: 0 }}>{profile?.display_name || 'Collectionneur'}</h1>
+              {profile?.lien_logo && <img src={profile.lien_logo} style={{ maxHeight: 32, objectFit: 'contain' }} alt="logo" />}
+            </div>
+            {/* Réseaux sociaux */}
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              {profile?.instagram && (
+                <a href={`https://instagram.com/${profile.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
+                  style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, fontWeight: 700, color: '#E1306C', textDecoration: 'none', background: '#fce4ec', padding: '4px 10px', borderRadius: 20 }}>
+                  <span>📸</span> {profile.instagram.startsWith('@') ? profile.instagram : `@${profile.instagram}`}
+                </a>
+              )}
+              {profile?.twitter && (
+                <a href={`https://x.com/${profile.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
+                  style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, fontWeight: 700, color: '#121212', textDecoration: 'none', background: '#f0f0f0', padding: '4px 10px', borderRadius: 20 }}>
+                  <span>𝕏</span> {profile.twitter.startsWith('@') ? profile.twitter : `@${profile.twitter}`}
+                </a>
+              )}
+              {profile?.discord && (
+                <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, fontWeight: 700, color: '#5865F2', background: '#eef0ff', padding: '4px 10px', borderRadius: 20 }}>
+                  <span>🎮</span> {profile.discord}
+                </span>
+              )}
+            </div>
           </div>
-        )}
+          {/* Stats rapides */}
+          {loaded && (
+            <div style={{ display: 'flex', gap: 16, flexShrink: 0 }}>
+              {[
+                { val: filtered.length, label: 'Cartes' },
+                { val: filtered.filter(c => c.rc).length, label: 'RC', color: '#e67e22' },
+                { val: filtered.filter(c => c.auto).length, label: 'Auto', color: '#2e7d32' },
+                { val: filtered.filter(c => c.patch).length, label: 'Patch', color: '#1976d2' },
+              ].map(s => (
+                <div key={s.label} style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: 22, fontWeight: 900, color: s.color || accent }}>{s.val}</div>
+                  <div style={{ fontSize: 10, fontWeight: 700, color: '#999', textTransform: 'uppercase' }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
         <div style={{ background: '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: '1px solid #eee' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
