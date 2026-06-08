@@ -216,7 +216,7 @@ export default function Trades() {
                 .trade-popup-info { flex: 0 0 360px !important; max-width: 360px !important; }
               }
               @media (max-width: 599px) {
-                .trade-popup-img { height: 250px !important; min-height: unset !important; }
+                .trade-popup-img { height: 320px !important; min-height: unset !important; }
               }
             `}</style>
             <div className="trade-popup-inner" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', flex: 1, minHeight: 0 }}>
