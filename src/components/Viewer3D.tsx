@@ -7,6 +7,8 @@ interface Card {
   auto: boolean; rc: boolean; patch: boolean; g: string
 }
 
+const BASE_SCALE = 1.4 // zoom de base légèrement plus grand
+
 export default function Viewer3D({ popup, accent, onClose, getTags }: {
   popup: Card
   accent: string
@@ -15,18 +17,19 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
 }) {
   const rotX = useRef(0)
   const rotY = useRef(0)
-  const scale = useRef(1)
+  const scale = useRef(BASE_SCALE)
   const isDragging = useRef(false)
   const lastX = useRef(0)
   const lastY = useRef(0)
   const lastTap = useRef(0)
+  const isZoomed = useRef(false)
   const cardRef = useRef<HTMLDivElement>(null)
   const wrapRef = useRef<HTMLDivElement>(null)
   const rafRef = useRef<number>(0)
 
   const applyTransform = useCallback(() => {
     if (cardRef.current) {
-      cardRef.current.style.transform = `scale(0.5) rotateX(${rotX.current}deg) rotateY(${rotY.current}deg)`
+      cardRef.current.style.transform = `rotateX(${rotX.current}deg) rotateY(${rotY.current}deg)`
     }
     if (wrapRef.current) {
       wrapRef.current.style.transform = `scale(${scale.current})`
@@ -36,7 +39,24 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
   const reset = useCallback(() => {
     rotX.current = 0
     rotY.current = 0
-    scale.current = 1
+    scale.current = BASE_SCALE
+    isZoomed.current = false
+    applyTransform()
+  }, [applyTransform])
+
+  // Double clic = toggle zoom / position de base
+  const onDoubleClick = useCallback(() => {
+    if (isZoomed.current) {
+      // Dézoom
+      scale.current = BASE_SCALE
+      rotX.current = 0
+      rotY.current = 0
+      isZoomed.current = false
+    } else {
+      // Zoom
+      scale.current = BASE_SCALE * 1.8
+      isZoomed.current = true
+    }
     applyTransform()
   }, [applyTransform])
 
@@ -55,8 +75,8 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
     const dy = e.clientY - lastY.current
     lastX.current = e.clientX
     lastY.current = e.clientY
-    rotY.current += dx * 0.4
-    rotX.current -= dy * 0.4
+    rotY.current += dx * 0.35
+    rotX.current -= dy * 0.35
     cancelAnimationFrame(rafRef.current)
     rafRef.current = requestAnimationFrame(applyTransform)
   }, [applyTransform])
@@ -65,31 +85,24 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
     isDragging.current = false
   }, [])
 
-  // Double clic pour reset
-  const onDoubleClick = useCallback(() => {
-    reset()
-  }, [reset])
-
-  // Molette pour zoom
+  // Molette
   const onWheel = useCallback((e: React.WheelEvent) => {
     e.preventDefault()
-    scale.current = Math.min(Math.max(0.5, scale.current - e.deltaY * 0.001), 4)
+    scale.current = Math.min(Math.max(0.5, scale.current - e.deltaY * 0.001))
     cancelAnimationFrame(rafRef.current)
     rafRef.current = requestAnimationFrame(applyTransform)
   }, [applyTransform])
 
   // Touch
   const touch1 = useRef({ x: 0, y: 0 })
-  const touch2 = useRef({ x: 0, y: 0 })
   const lastDist = useRef(0)
 
   const onTouchStart = useCallback((e: React.TouchEvent) => {
     e.preventDefault()
     if (e.touches.length === 1) {
       touch1.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
-      // Double tap pour reset
       const now = Date.now()
-      if (now - lastTap.current < 300) reset()
+      if (now - lastTap.current < 300) onDoubleClick()
       lastTap.current = now
     } else if (e.touches.length === 2) {
       lastDist.current = Math.hypot(
@@ -97,7 +110,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
         e.touches[0].clientY - e.touches[1].clientY
       )
     }
-  }, [reset])
+  }, [onDoubleClick])
 
   const onTouchMove = useCallback((e: React.TouchEvent) => {
     e.preventDefault()
@@ -105,8 +118,8 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
       const dx = e.touches[0].clientX - touch1.current.x
       const dy = e.touches[0].clientY - touch1.current.y
       touch1.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
-      rotY.current += dx * 0.4
-      rotX.current -= dy * 0.4
+      rotY.current += dx * 0.35
+      rotX.current -= dy * 0.35
       cancelAnimationFrame(rafRef.current)
       rafRef.current = requestAnimationFrame(applyTransform)
     } else if (e.touches.length === 2) {
@@ -114,15 +127,16 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
       )
-      scale.current = Math.min(Math.max(0.5, scale.current * (dist / lastDist.current)), 4)
+      scale.current = Math.min(Math.max(0.3, scale.current * (dist / lastDist.current)), 5)
       lastDist.current = dist
       cancelAnimationFrame(rafRef.current)
       rafRef.current = requestAnimationFrame(applyTransform)
     }
   }, [applyTransform])
 
-  // Empêcher la sélection de texte pendant le drag
   useEffect(() => {
+    // Position initiale
+    applyTransform()
     const prevent = (e: Event) => { if (isDragging.current) e.preventDefault() }
     document.addEventListener('selectstart', prevent)
     document.addEventListener('mouseup', () => { isDragging.current = false })
@@ -130,9 +144,8 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
       document.removeEventListener('selectstart', prevent)
       cancelAnimationFrame(rafRef.current)
     }
-  }, [])
+  }, [applyTransform])
 
-  // Fermer avec Échap
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', onKey)
@@ -144,7 +157,6 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
       position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
       background: '#fff', zIndex: 9999999, display: 'flex',
     }}>
-      {/* Bouton fermer */}
       <button onClick={onClose} style={{
         position: 'absolute', top: 20, right: 20, fontSize: 24, cursor: 'pointer',
         background: '#fff', width: 40, height: 40, borderRadius: '50%',
@@ -159,7 +171,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
           background: '#f8f8f8', perspective: 2000,
           cursor: isDragging.current ? 'grabbing' : 'grab',
           userSelect: 'none', WebkitUserSelect: 'none',
-          touchAction: 'none',
+          touchAction: 'none', overflow: 'hidden',
         }}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
@@ -183,11 +195,20 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
               position: 'absolute', inset: 0,
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
-              borderRadius: 8,
-              boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+              borderRadius: 0,
+              boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
               overflow: 'hidden',
             }}>
-              <img src={popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+              <img
+                src={popup.f}
+                draggable={false}
+                style={{
+                  width: '100%', height: '100%',
+                  objectFit: 'cover', display: 'block',
+                  imageRendering: 'auto',
+                }}
+                alt={popup.n}
+              />
             </div>
             {/* Face arrière */}
             <div style={{
@@ -195,16 +216,30 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
               transform: 'rotateY(180deg)',
-              borderRadius: 8,
-              boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+              borderRadius: 0,
+              boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
               overflow: 'hidden',
             }}>
-              <img src={popup.b} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+              <img
+                src={popup.b}
+                draggable={false}
+                style={{
+                  width: '100%', height: '100%',
+                  objectFit: 'cover', display: 'block',
+                  imageRendering: 'auto',
+                }}
+                alt={popup.n}
+              />
             </div>
           </div>
         </div>
-        <p style={{ position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)', fontSize: 11, color: '#bbb', whiteSpace: 'nowrap' }}>
-          Glisser pour tourner · Scroll pour zoomer · Double-clic pour reset
+        <p style={{
+          position: 'absolute', bottom: 16,
+          left: '50%', transform: 'translateX(-50%)',
+          fontSize: 11, color: '#bbb', whiteSpace: 'nowrap',
+          pointerEvents: 'none',
+        }}>
+          Glisser · Scroll pour zoomer · Double-clic pour zoom/reset
         </p>
       </div>
 
