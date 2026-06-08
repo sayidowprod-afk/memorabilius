@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -8,6 +8,14 @@ interface Stats { total: number; rc: number; auto: number; num: number; patch: n
 interface Collector { id: string; display_name: string; avatar_url: string; lien_csv: string; stats?: Stats }
 
 export default function Annuaire() {
+  return (
+    <Suspense fallback={<p style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>Chargement...</p>}>
+      <AnnuaireContent />
+    </Suspense>
+  )
+}
+
+function AnnuaireContent() {
   const searchParams = useSearchParams()
   const teamIdFromUrl = searchParams.get('team_id') || ''
 
