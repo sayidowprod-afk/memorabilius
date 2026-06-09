@@ -16,6 +16,9 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const [currentUserProfile, setCurrentUserProfile] = useState<any>(null)
   const [isMember, setIsMember] = useState(false)
   const [isChef, setIsChef] = useState(false)
+  const [isChef, setIsChef] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false) // <- AJOUTE CETTE LIGNE
+  const [hasCandidature, setHasCandidature] = useState(false)
   const [hasCandidature, setHasCandidature] = useState(false)
   const [newMsg, setNewMsg] = useState('')
   const [activeTab, setActiveTab] = useState<'membres' | 'chat' | 'candidatures'>('membres')
@@ -40,12 +43,17 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     setTeam(t)
     setIsChef(user?.id === t.created_by)
 
-    // Charger les membres
+ // Charger les membres
     const { data: m } = await supabase.from('team_members')
       .select('*, profiles(id, display_name, avatar_url, lien_csv, couleur_bordure)')
       .eq('team_id', parseInt(teamId))
     setMembers(m || [])
     setIsMember(m?.some((x: any) => x.user_id === user?.id) || false)
+    
+    // Détection du rôle Admin / Chef
+    const currentUserMemberObj = m?.find((x: any) => x.user_id === user?.id)
+    const userIsAdmin = currentUserMemberObj?.role === 'admin'
+    setIsAdmin(userIsAdmin) // On l'enregistre dans le state global
 
     // Charger le profil utilisateur
     if (user) {
@@ -60,8 +68,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       .order('created_at', { ascending: true })
     setMessages(msgs || [])
 
-    // Candidatures (chef seulement)
-    if (user?.id === t.created_by) {
+    // Candidatures (chef OU admin)
+    if (user?.id === t.created_by || userIsAdmin) {
       const { data: cands } = await supabase.from('team_candidatures')
         .select('*, profiles(id, display_name, avatar_url, lien_csv)')
         .eq('team_id', parseInt(teamId))
@@ -219,11 +227,11 @@ if (user) {
 
       {/* Onglets */}
       <div style={{ display: 'flex', gap: 4, marginBottom: 20 }}>
-        {[
-          { key: 'membres', label: `👥 Membres (${members.length})` },
-          { key: 'chat', label: '💬 Chat', show: isMember },
-          { key: 'candidatures', label: `📋 Candidatures (${candidatures.length})`, show: isChef },
-        ].filter(t => t.show !== false).map(t => (
+       {[
+  { key: 'membres', label: `👥 Membres (${members.length})` },
+  { key: 'chat', label: '💬 Chat', show: isMember },
+  { key: 'candidatures', label: `📋 Candidatures (${candidatures.length})`, show: isChef || isAdmin }, // <- MODIFIÉ ICI
+].filter(t => t.show !== false).map(t => (
           <button key={t.key} onClick={() => setActiveTab(t.key as any)} style={{
             padding: '10px 20px', border: 'none', borderRadius: 8, cursor: 'pointer',
             fontWeight: 700, fontSize: 14,
@@ -340,7 +348,7 @@ if (user) {
         </div>
       )}
 
-      {activeTab === 'candidatures' && isChef && (
+      {activeTab === 'candidatures' && (isChef || isAdmin) && ( // <- MODIFIÉ ICI
         <div style={{ background: 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', overflow: 'hidden' }}>
           <div style={{ padding: '16px 20px', borderBottom: '1px solid #f0f0f0', fontWeight: 800 }}>📋 Candidatures en attente</div>
           {candidatures.length === 0 ? (
