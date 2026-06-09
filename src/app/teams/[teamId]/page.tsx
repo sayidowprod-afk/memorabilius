@@ -16,9 +16,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const [currentUserProfile, setCurrentUserProfile] = useState<any>(null)
   const [isMember, setIsMember] = useState(false)
   const [isChef, setIsChef] = useState(false)
-  const [isChef, setIsChef] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false) // <- AJOUTE CETTE LIGNE
-  const [hasCandidature, setHasCandidature] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [hasCandidature, setHasCandidature] = useState(false)
   const [newMsg, setNewMsg] = useState('')
   const [activeTab, setActiveTab] = useState<'membres' | 'chat' | 'candidatures'>('membres')
