@@ -211,30 +211,56 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         <div style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead><tr>
-              {['#', 'Collectionneur', 'Total', 'RC', 'Auto', 'Patch'].map(h => (
+              {['#', 'Collectionneur', 'Rôle', 'Total', 'RC', 'Auto', 'Patch', ...(isChef ? ['Action'] : [])].map(h => (
                 <th key={h} style={{ padding: '16px', textAlign: 'left', fontSize: 11, textTransform: 'uppercase', color: '#999', borderBottom: '2px solid #f0f0f0', background: '#fdfdfd' }}>{h}</th>
               ))}
             </tr></thead>
             <tbody>
-              {membersStats.map((m, i) => (
-                <tr key={m.id}>
-                  <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5', fontWeight: 900, color: i === 0 ? '#f39c12' : i === 1 ? '#95a5a6' : i === 2 ? '#cd7f32' : '#999', fontSize: 16 }}>
-                    {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : i + 1}
-                  </td>
-                  <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                      <img src={m.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.display_name || 'U')}&background=003DA6&color=fff`}
-                        style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${m.couleur_bordure || accent}` }} alt="" />
-                      <Link href={`/galerie/${m.id}`} style={{ fontWeight: 800, color: '#121212' }}>{m.display_name}</Link>
-                      {m.id === team.created_by && <span style={{ fontSize: 10, background: accent, color: 'white', padding: '2px 6px', borderRadius: 4, fontWeight: 700 }}>Chef</span>}
-                    </div>
-                  </td>
-                  <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#f0f0f0', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.total || 0}</span></td>
-                  <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#fff3e0', color: '#e67e22', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.rc || 0}</span></td>
-                  <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#e8f5e9', color: '#2e7d32', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.auto || 0}</span></td>
-                  <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#e3f2fd', color: '#1976d2', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.patch || 0}</span></td>
-                </tr>
-              ))}
+              {membersStats.map((m, i) => {
+                const memberData = members.find((x: any) => x.user_id === m.id)
+                const role = m.id === team.created_by ? 'chef' : (memberData?.role || 'member')
+                return (
+                  <tr key={m.id}>
+                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5', fontWeight: 900, color: i === 0 ? '#f39c12' : i === 1 ? '#95a5a6' : i === 2 ? '#cd7f32' : '#999', fontSize: 16 }}>
+                      {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : i + 1}
+                    </td>
+                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                        <img src={m.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.display_name || 'U')}&background=003DA6&color=fff`}
+                          style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${m.couleur_bordure || accent}` }} alt="" />
+                        <Link href={`/galerie/${m.id}`} style={{ fontWeight: 800, color: '#121212' }}>{m.display_name}</Link>
+                      </div>
+                    </td>
+                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}>
+                      {role === 'chef' && <span style={{ fontSize: 11, background: accent, color: 'white', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>👑 Chef</span>}
+                      {role === 'admin' && <span style={{ fontSize: 11, background: '#e8f5e9', color: '#2e7d32', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>⭐ Admin</span>}
+                      {role === 'member' && <span style={{ fontSize: 11, background: '#f0f0f0', color: '#666', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>Membre</span>}
+                    </td>
+                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#f0f0f0', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.total || 0}</span></td>
+                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#fff3e0', color: '#e67e22', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.rc || 0}</span></td>
+                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#e8f5e9', color: '#2e7d32', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.auto || 0}</span></td>
+                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#e3f2fd', color: '#1976d2', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.patch || 0}</span></td>
+                    {isChef && (
+                      <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}>
+                        {role !== 'chef' && (
+                          <button onClick={async () => {
+                            const newRole = role === 'admin' ? 'member' : 'admin'
+                            await supabase.from('team_members').update({ role: newRole }).eq('team_id', parseInt(teamId)).eq('user_id', m.id)
+                            init()
+                          }} style={{
+                            background: role === 'admin' ? '#fff5f5' : '#e8f5e9',
+                            color: role === 'admin' ? '#e74c3c' : '#2e7d32',
+                            border: 'none', borderRadius: 6, padding: '5px 10px',
+                            fontWeight: 700, fontSize: 11, cursor: 'pointer'
+                          }}>
+                            {role === 'admin' ? '↓ Rétrograder' : '↑ Promouvoir admin'}
+                          </button>
+                        )}
+                      </td>
+                    )}
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>
