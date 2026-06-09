@@ -186,6 +186,15 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               </span>
             )}
             {isMember && <span style={{ color: accent, fontWeight: 700, fontSize: 14 }}>✓ Membre</span>}
+            {isMember && !isChef && (
+              <button onClick={async () => {
+                if (!confirm('Quitter la team ?')) return
+                await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser)
+                router.push('/teams')
+              }} style={{ background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 8, padding: '8px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+                Quitter la team
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -242,6 +251,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                     <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#e3f2fd', color: '#1976d2', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.patch || 0}</span></td>
                     {isChef && (
                       <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}>
+                        <div style={{ display: 'flex', gap: 6 }}>
                         {role !== 'chef' && (
                           <button onClick={async () => {
                             const newRole = role === 'admin' ? 'member' : 'admin'
@@ -253,9 +263,23 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                             border: 'none', borderRadius: 6, padding: '5px 10px',
                             fontWeight: 700, fontSize: 11, cursor: 'pointer'
                           }}>
-                            {role === 'admin' ? '↓ Rétrograder' : '↑ Promouvoir admin'}
+                            {role === 'admin' ? '↓ Rétrograder' : '↑ Promouvoir'}
                           </button>
                         )}
+                        {role !== 'chef' && (
+                          <button onClick={async () => {
+                            if (!confirm(`Exclure ${m.display_name} de la team ?`)) return
+                            await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', m.id)
+                            init()
+                          }} style={{
+                            background: '#fff5f5', color: '#e74c3c',
+                            border: 'none', borderRadius: 6, padding: '5px 10px',
+                            fontWeight: 700, fontSize: 11, cursor: 'pointer'
+                          }}>
+                            🚫 Kick
+                          </button>
+                        )}
+                        </div>
                       </td>
                     )}
                   </tr>
