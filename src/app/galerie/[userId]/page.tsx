@@ -24,12 +24,38 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const [years, setYears] = useState<string[]>([])
   const [popup, setPopup] = useState<Card | null>(null)
   const [loaded, setLoaded] = useState(false)
+  const [currentUser, setCurrentUser] = useState<string | null>(null)
+  const [privateCards, setPrivateCards] = useState<Set<string>>(new Set())
+  const [editMode, setEditMode] = useState(false)
+
+  const isOwner = currentUser === userId
 
   useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => setCurrentUser(data.user?.id || null))
     supabase.from('profiles').select('*').eq('id', userId).single().then(({ data }) => {
       if (data) { setProfile(data); if (data.lien_csv) loadCSV(data.lien_csv) }
     })
   }, [userId])
+
+  // Charger les cartes privées si c'est le propriétaire
+  useEffect(() => {
+    if (!currentUser || currentUser !== userId) return
+    supabase.from('cartes_privees').select('card_key').eq('user_id', userId)
+      .then(({ data }) => {
+        if (data) setPrivateCards(new Set(data.map((d: any) => d.card_key)))
+      })
+  }, [currentUser, userId])
+
+  const togglePrivate = async (cardKey: string) => {
+    if (!currentUser || currentUser !== userId) return
+    if (privateCards.has(cardKey)) {
+      await supabase.from('cartes_privees').delete().eq('user_id', userId).eq('card_key', cardKey)
+      setPrivateCards(prev => { const s = new Set(prev); s.delete(cardKey); return s })
+    } else {
+      await supabase.from('cartes_privees').insert({ user_id: userId, card_key: cardKey })
+      setPrivateCards(prev => new Set([...prev, cardKey]))
+    }
+  }
 
   const loadCSV = async (url: string) => {
     try {
@@ -58,18 +84,22 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   }
 
   useEffect(() => {
-    const f = cards.filter(d =>
-      d.n.toLowerCase().includes(search.toLowerCase()) &&
-      (!fTeam || d.t === fTeam) &&
-      (!fBrand || d.s === fBrand) &&
-      (!fYear || d.y === fYear) &&
-      (!activeFilters.rc || d.rc) &&
-      (!activeFilters.auto || d.auto) &&
-      (!activeFilters.patch || d.patch) &&
-      (!activeFilters.num || d.num !== '')
-    )
+    const f = cards.filter(d => {
+      // Masquer les cartes privées pour les non-propriétaires
+      if (!isOwner && privateCards.has(d.f)) return false
+      return (
+        d.n.toLowerCase().includes(search.toLowerCase()) &&
+        (!fTeam || d.t === fTeam) &&
+        (!fBrand || d.s === fBrand) &&
+        (!fYear || d.y === fYear) &&
+        (!activeFilters.rc || d.rc) &&
+        (!activeFilters.auto || d.auto) &&
+        (!activeFilters.patch || d.patch) &&
+        (!activeFilters.num || d.num !== '')
+      )
+    })
     setFiltered(f)
-  }, [cards, search, fTeam, fBrand, fYear, activeFilters])
+  }, [cards, search, fTeam, fBrand, fYear, activeFilters, privateCards, isOwner])
 
   const toggleFilter = (k: keyof typeof activeFilters) => setActiveFilters(p => ({ ...p, [k]: !p[k] }))
 
@@ -126,7 +156,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
           </div>
           {/* Stats rapides */}
           {loaded && (
-            <div style={{ display: 'flex', gap: 16, flexShrink: 0 }}>
+            <div style={{ display: 'flex', gap: 16, flexShrink: 0, alignItems: 'center' }}>
               {[
                 { val: filtered.length, label: 'Cartes' },
                 { val: filtered.filter(c => c.rc).length, label: 'RC', color: '#e67e22' },
@@ -138,6 +168,17 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                   <div style={{ fontSize: 10, fontWeight: 700, color: '#999', textTransform: 'uppercase' }}>{s.label}</div>
                 </div>
               ))}
+              {isOwner && (
+                <button onClick={() => setEditMode(!editMode)} style={{
+                  background: editMode ? '#e74c3c' : '#f0f0f0',
+                  color: editMode ? 'white' : '#333',
+                  border: 'none', borderRadius: 8, padding: '8px 14px',
+                  fontWeight: 700, fontSize: 12, cursor: 'pointer',
+                  marginLeft: 8,
+                }}>
+                  {editMode ? '✓ Terminer' : '🔒 Gérer la confidentialité'}
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -180,10 +221,31 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
         `}</style>
         <div className="card-grid">
           {filtered.map((d, i) => (
-            <div key={i} className="card-item" onClick={() => setPopup(d)} style={{
-              border: `2px solid ${accent}`, borderRadius: 8, padding: 8,
-              background: 'white', cursor: 'pointer', boxSizing: 'border-box',
+            <div key={i} className="card-item" onClick={() => !editMode && setPopup(d)} style={{
+              border: `2px solid ${privateCards.has(d.f) && isOwner ? '#e74c3c' : accent}`,
+              borderRadius: 8, padding: 8,
+              background: 'white', cursor: editMode ? 'default' : 'pointer',
+              boxSizing: 'border-box',
+              opacity: privateCards.has(d.f) && isOwner ? 0.7 : 1,
+              position: 'relative',
             }}>
+              {/* Badge privé pour le propriétaire */}
+              {isOwner && privateCards.has(d.f) && (
+                <div style={{ position: 'absolute', top: 6, left: 6, background: '#e74c3c', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2 }}>
+                  🔒 PRIVÉ
+                </div>
+              )}
+              {/* Bouton toggle privé en mode édition */}
+              {editMode && isOwner && (
+                <button onClick={e => { e.stopPropagation(); togglePrivate(d.f) }} style={{
+                  position: 'absolute', top: 6, right: 6, zIndex: 2,
+                  background: privateCards.has(d.f) ? '#e74c3c' : '#003DA6',
+                  color: 'white', border: 'none', borderRadius: 6,
+                  padding: '4px 8px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
+                }}>
+                  {privateCards.has(d.f) ? '🔓 Rendre public' : '🔒 Rendre privé'}
+                </button>
+              )}
               <div style={{ width: '100%', aspectRatio: '2.5/3.5', marginBottom: 8, overflow: 'hidden' }}>
                 <img src={d.f} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={d.n} />
               </div>
