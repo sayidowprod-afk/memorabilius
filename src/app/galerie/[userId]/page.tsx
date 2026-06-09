@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, useRef, use, useCallback } from 'react'
+import { useEffect, useState, useRef, use } from 'react'
 import { supabase } from '@/lib/supabase'
 import Viewer3D from '@/components/Viewer3D'
 
@@ -36,13 +36,31 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const isOwner = currentUser === userId
 
   useEffect(() => {
+    // 1. Récupérer l'utilisateur connecté
     supabase.auth.getUser().then(({ data }) => setCurrentUser(data.user?.id || null))
+    
+    // 2. Récupérer les infos du profil
     supabase.from('profiles').select('*').eq('id', userId).single().then(({ data }) => {
-      if (data) { setProfile(data); if (data.lien_csv) loadCSV(data.lien_csv) }
+      if (data) setProfile(data)
     })
+
+    // 3. Charger les cartes filtrées et sécurisées depuis l'API Route côté serveur
+    fetch(`/api/galerie/${userId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.cards) {
+          const parsed = data.cards
+          setCards(parsed)
+          setTeams([...new Set(parsed.map((d: Card) => d.t).filter(Boolean))].sort() as string[])
+          setBrands([...new Set(parsed.map((d: Card) => d.s).filter(Boolean))].sort() as string[])
+          setYears([...new Set(parsed.map((d: Card) => d.y).filter(Boolean))].sort() as string[])
+          setLoaded(true)
+        }
+      })
+      .catch((e) => console.error('Erreur API Galerie', e))
   }, [userId])
 
-  // Charger les cartes privées si c'est le propriétaire
+  // Conserver le chargement des clés privées uniquement pour le propriétaire (utile pour le badge rouge en mode édition)
   useEffect(() => {
     if (!currentUser || currentUser !== userId) return
     supabase.from('cartes_privees').select('card_key').eq('user_id', userId)
@@ -62,35 +80,9 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     }
   }
 
-  const loadCSV = async (url: string) => {
-    try {
-      const r = await fetch(url + '&t=' + Date.now())
-      const t = await r.text()
-      const rows = t.split(/\r?\n/).slice(4)
-      const parsed: Card[] = rows.map(row => {
-        const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
-        if (!c[0] || !c[0].includes('http')) return null
-        return {
-          f: c[0]?.trim(), b: c[1]?.trim() || c[0]?.trim(),
-          n: c[2] || '', t: c[3] || '', y: c[4] || '',
-          br: c[5] || '', s: c[6] || '', v: c[7] || '',
-          num: c[8] || '', auto: c[9]?.toLowerCase().includes('oui') || false,
-          rc: c[10]?.toLowerCase().includes('oui') || false,
-          patch: c[11]?.toLowerCase().includes('oui') || false,
-          g: c[12] || 'Raw'
-        }
-      }).filter(Boolean) as Card[]
-      setCards(parsed)
-      setTeams([...new Set(parsed.map(d => d.t).filter(Boolean))].sort())
-      setBrands([...new Set(parsed.map(d => d.s).filter(Boolean))].sort())
-      setYears([...new Set(parsed.map(d => d.y).filter(Boolean))].sort())
-      setLoaded(true)
-    } catch (e) { console.error('CSV error', e) }
-  }
-
+  // Filtrage local (recherche, menus déroulants et boutons filtres)
   useEffect(() => {
     const f = cards.filter(d => {
-      if (!isOwner && privateCards.has(d.f)) return false
       return (
         d.n.toLowerCase().includes(search.toLowerCase()) &&
         (!fTeam || d.t === fTeam) &&
@@ -105,7 +97,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     setFiltered(f)
     setPage(1)
     setDisplayed(f.slice(0, PAGE_SIZE))
-  }, [cards, search, fTeam, fBrand, fYear, activeFilters, privateCards, isOwner])
+  }, [cards, search, fTeam, fBrand, fYear, activeFilters])
 
   // Charger plus au scroll
   useEffect(() => {
@@ -137,7 +129,6 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
 
   return (
     <>
-
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
 
         {/* Header profil */}
