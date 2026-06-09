@@ -67,11 +67,11 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     setMessages(msgs || [])
 
     // 2. CONDITION MODIFIÉE : CHEF OU ADMIN VOIENT LES CANDIDATURES
-    if (user?.id === t.created_by || userIsAdmin) {
+    if (user?.id === t.created_by || isAdmin) {
       const { data: cands } = await supabase.from('team_candidatures')
         .select('*, profiles(id, display_name, avatar_url, lien_csv)')
         .eq('team_id', parseInt(teamId))
-        .eq('statut', 'en_attente')
+        .eq('statut', 'en_attente') // <-- AJOUTE CETTE LIGNE ICI
       setCandidatures(cands || [])
     }
 
