@@ -12,10 +12,15 @@ export default function NouveauTrade() {
     type: 'offre' as 'offre' | 'recherche',
     titre: '',
     joueur: '',
+    equipe: '',
     annee: '',
     marque: '',
     description: '',
     image_url: '',
+    rc: false,
+    auto: false,
+    num: false,
+    patch: false,
   })
 
   useEffect(() => {
@@ -70,20 +75,46 @@ export default function NouveauTrade() {
               placeholder={form.type === 'offre' ? 'Ex: LeBron James Prizm RC /99' : 'Ex: Recherche Giannis Auto /25'} />
           </div>
 
-          {/* Joueur / Année / Marque */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Joueur</label>
               <input value={form.joueur} onChange={e => setForm({ ...form, joueur: e.target.value })} placeholder="LeBron James" />
             </div>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Année</label>
-              <input value={form.annee} onChange={e => setForm({ ...form, annee: e.target.value })} placeholder="2023-24" />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Équipe</label>
+              <input value={form.annee} onChange={e => setForm({ ...form, annee: e.target.value })} placeholder="Lakers, Warriors..." />
             </div>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Marque</label>
-              <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder="Panini" />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Année</label>
+              <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder="2023-24" />
             </div>
+          </div>
+
+          {/* Tags RC / Auto / Num / Patch */}
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>Caractéristiques</label>
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+              {[
+                { key: 'rc', label: 'RC', bg: '#fff3e0', color: '#e67e22', activeBg: '#e67e22' },
+                { key: 'auto', label: 'AUTO', bg: '#e8f5e9', color: '#2e7d32', activeBg: '#2e7d32' },
+                { key: 'num', label: '# NUM', bg: '#f5f5f5', color: '#444', activeBg: '#444' },
+                { key: 'patch', label: 'PATCH', bg: '#e3f2fd', color: '#1976d2', activeBg: '#1976d2' },
+              ].map(tag => (
+                <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })} style={{
+                  padding: '8px 16px', border: 'none', borderRadius: 20, cursor: 'pointer',
+                  fontWeight: 900, fontSize: 13, transition: '0.2s',
+                  background: (form as any)[tag.key] ? tag.activeBg : tag.bg,
+                  color: (form as any)[tag.key] ? 'white' : tag.color,
+                }}>
+                  {tag.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Marque</label>
+            <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder="Panini, Topps..." />
           </div>
 
           {/* URL image */}

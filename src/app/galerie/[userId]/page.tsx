@@ -33,23 +33,16 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const [editMode, setEditMode] = useState(false)
   const loaderRef = useRef<HTMLDivElement>(null)
 
-  // Vérification stricte du propriétaire
   const isOwner = currentUser === userId
 
   useEffect(() => {
-    // Récupérer l'utilisateur connecté de manière fiable
     supabase.auth.getUser().then(({ data }) => setCurrentUser(data.user?.id || null))
-    
-    // Charger le profil et le CSV
     supabase.from('profiles').select('*').eq('id', userId).single().then(({ data }) => {
-      if (data) { 
-        setProfile(data); 
-        if (data.lien_csv) loadCSV(data.lien_csv) 
-      }
+      if (data) { setProfile(data); if (data.lien_csv) loadCSV(data.lien_csv) }
     })
   }, [userId])
 
-  // Charger la liste des cartes privées depuis la base de données
+  // Charger les cartes privées — toujours, pas seulement pour le propriétaire
   useEffect(() => {
     supabase.from('cartes_privees').select('card_key').eq('user_id', userId)
       .then(({ data }) => {
@@ -94,14 +87,9 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     } catch (e) { console.error('CSV error', e) }
   }
 
-  // SÉCURITÉ : Filtrage en temps réel des cartes affichées
   useEffect(() => {
     const f = cards.filter(d => {
-      // BARRIÈRE : Si la carte est privée ET que la personne connectée n'est pas le propriétaire -> On l'efface immédiatement
-      if (privateCards.has(d.f) && !isOwner) {
-        return false
-      }
-
+      if (!isOwner && privateCards.has(d.f)) return false
       return (
         d.n.toLowerCase().includes(search.toLowerCase()) &&
         (!fTeam || d.t === fTeam) &&
@@ -148,20 +136,24 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
 
   return (
     <>
+
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
 
         {/* Header profil */}
         <div style={{ background: 'white', borderRadius: 16, padding: '24px 30px', marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
+          {/* Avatar */}
           <img
             src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
             style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, flexShrink: 0 }}
             alt={profile?.display_name}
           />
+          {/* Infos */}
           <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 6 }}>
               <h1 style={{ fontSize: 24, fontWeight: 900, margin: 0 }}>{profile?.display_name || 'Collectionneur'}</h1>
               {profile?.lien_logo && <img src={profile.lien_logo} style={{ maxHeight: 32, objectFit: 'contain' }} alt="logo" />}
             </div>
+            {/* Réseaux sociaux */}
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               {profile?.instagram && (
                 <a href={`https://instagram.com/${profile.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
@@ -180,8 +172,18 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                   <span>🎮</span> {profile.discord}
                 </span>
               )}
+              {/* Bouton message */}
+              {currentUser && currentUser !== userId && (
+                <a href={`/messages?to=${userId}`} style={{
+                  display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, fontWeight: 700,
+                  color: 'white', background: accent, padding: '6px 14px', borderRadius: 20, textDecoration: 'none'
+                }}>
+                  💬 Envoyer un message
+                </a>
+              )}
             </div>
           </div>
+          {/* Stats rapides */}
           {loaded && (
             <div style={{ display: 'flex', gap: 16, flexShrink: 0, alignItems: 'center' }}>
               {[
@@ -256,11 +258,13 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
               opacity: privateCards.has(d.f) && isOwner ? 0.7 : 1,
               position: 'relative',
             }}>
+              {/* Badge privé pour le propriétaire */}
               {isOwner && privateCards.has(d.f) && (
                 <div style={{ position: 'absolute', top: 6, left: 6, background: '#e74c3c', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2 }}>
                   🔒 PRIVÉ
                 </div>
               )}
+              {/* Bouton toggle privé en mode édition */}
               {editMode && isOwner && (
                 <button onClick={e => { e.stopPropagation(); togglePrivate(d.f) }} style={{
                   position: 'absolute', top: 6, right: 6, zIndex: 2,
@@ -282,6 +286,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
           ))}
         </div>
 
+        {/* Scroll infini */}
         {loaded && (
           <div style={{ textAlign: 'center', padding: '20px 0', color: '#999', fontSize: 13 }}>
             {displayed.length < filtered.length ? (
@@ -302,4 +307,3 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     </>
   )
 }
-//test

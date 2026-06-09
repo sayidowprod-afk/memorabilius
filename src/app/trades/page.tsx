@@ -184,7 +184,14 @@ export default function Trades() {
                 {/* Info */}
                 <div style={{ padding: '14px 16px' }}>
                   <h3 style={{ fontWeight: 900, fontSize: 15, margin: '0 0 6px' }}>{trade.titre}</h3>
-                  {trade.joueur && <p style={{ fontSize: 12, color: '#003DA6', fontWeight: 700, margin: '0 0 8px' }}>🏀 {trade.joueur}</p>}
+                  {trade.joueur && <p style={{ fontSize: 12, color: '#003DA6', fontWeight: 700, margin: '0 0 8px' }}>🏀 {trade.joueur}{trade.equipe ? ` · ${trade.equipe}` : ''}</p>}
+                  {/* Tags */}
+                  <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
+                    {trade.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 2, background: '#fff3e0', color: '#e67e22' }}>RC</span>}
+                    {trade.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 2, background: '#e8f5e9', color: '#2e7d32' }}>AUTO</span>}
+                    {trade.num && <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 2, background: '#f5f5f5', color: '#444' }}># NUM</span>}
+                    {trade.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 2, background: '#e3f2fd', color: '#1976d2' }}>PATCH</span>}
+                  </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 10, borderTop: '1px solid #f0f0f0' }}>
                     <img src={trade.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(trade.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
                       style={{ width: 26, height: 26, borderRadius: '50%', objectFit: 'cover' }} alt="" />
@@ -244,11 +251,19 @@ export default function Trades() {
               <h2 style={{ fontWeight: 900, fontSize: 22, margin: 0 }}>{popup.titre}</h2>
 
               {/* Détails carte */}
-              {(popup.joueur || popup.annee || popup.marque) && (
+              {(popup.joueur || popup.annee || popup.marque || popup.equipe) && (
                 <div style={{ background: '#f8f8f8', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
                   {popup.joueur && <p style={{ margin: 0, fontSize: 14, fontWeight: 700 }}>🏀 {popup.joueur}</p>}
+                  {popup.equipe && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>🏟️ {popup.equipe}</p>}
                   {popup.annee && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>📅 {popup.annee}</p>}
                   {popup.marque && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>🏷️ {popup.marque}</p>}
+                  {/* Tags */}
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 4 }}>
+                    {popup.rc && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#fff3e0', color: '#e67e22' }}>RC</span>}
+                    {popup.auto && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#e8f5e9', color: '#2e7d32' }}>AUTO</span>}
+                    {popup.num && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#f5f5f5', color: '#444' }}># NUM</span>}
+                    {popup.patch && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#e3f2fd', color: '#1976d2' }}>PATCH</span>}
+                  </div>
                 </div>
               )}
 
