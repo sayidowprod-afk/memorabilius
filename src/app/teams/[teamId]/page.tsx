@@ -71,7 +71,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
     // Vérifier si candidature existante
     if (user) {
-      const { data: cand } = await supabase.from('team_candidatures')
+   const { data: cand } = await supabase.from('team_candidatures')
   .select('id')
   .eq('team_id', parseInt(teamId))
   .eq('user_id', user.id)
