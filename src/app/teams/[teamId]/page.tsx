@@ -75,7 +75,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   .select('id')
   .eq('team_id', parseInt(teamId))
   .eq('user_id', user.id)
-  .limit(1)
+  .limit(1) as { data: any[] | null }
 
 setHasCandidature(cand && cand.length > 0)
     }
