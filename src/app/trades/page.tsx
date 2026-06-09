@@ -335,12 +335,31 @@ export default function Trades() {
                   </Link>
                 )}
                 {userId === popup.user_id && (
-                  <button onClick={() => closeTrade(popup.id)} style={{
-                    background: '#f0f0f0', color: '#666', padding: '12px',
-                    border: 'none', borderRadius: 10, fontWeight: 700, fontSize: 14, cursor: 'pointer',
-                  }}>
-                    ✓ Marquer comme conclu
-                  </button>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <Link href={`/trades/${popup.id}`} onClick={() => setPopup(null)} style={{
+                      background: '#f0f0f0', color: '#333', padding: '12px',
+                      borderRadius: 10, fontWeight: 700, fontSize: 14, textAlign: 'center', textDecoration: 'none',
+                    }}>
+                      ✏️ Modifier l'annonce
+                    </Link>
+                    <button onClick={() => closeTrade(popup.id)} style={{
+                      background: '#fff5f5', color: '#e67e22', padding: '12px',
+                      border: 'none', borderRadius: 10, fontWeight: 700, fontSize: 14, cursor: 'pointer',
+                    }}>
+                      ✓ Marquer comme conclu
+                    </button>
+                    <button onClick={async () => {
+                      if (!confirm('Supprimer définitivement cette annonce ?')) return
+                      await supabase.from('trades').delete().eq('id', popup.id)
+                      setTrades(prev => prev.filter(t => t.id !== popup.id))
+                      setPopup(null)
+                    }} style={{
+                      background: '#fff5f5', color: '#e74c3c', padding: '12px',
+                      border: 'none', borderRadius: 10, fontWeight: 700, fontSize: 14, cursor: 'pointer',
+                    }}>
+                      🗑️ Supprimer l'annonce
+                    </button>
+                  </div>
                 )}
                 <p style={{ fontSize: 11, color: '#bbb', textAlign: 'center', margin: 0 }}>
                   Publié le {new Date(popup.created_at).toLocaleDateString('fr-FR')}
