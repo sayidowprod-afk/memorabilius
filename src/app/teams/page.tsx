@@ -135,9 +135,13 @@ export default function Teams() {
                   </td>
                   <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                      <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#003DA6', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 900, fontSize: 14, flexShrink: 0 }}>
-                        {team.name.charAt(0).toUpperCase()}
-                      </div>
+                      {team.avatar_url ? (
+                        <img src={team.avatar_url} style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt={team.name} />
+                      ) : (
+                        <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#003DA6', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 900, fontSize: 14, flexShrink: 0 }}>
+                          {team.name.charAt(0).toUpperCase()}
+                        </div>
+                      )}
                       <div>
                         <Link href={`/teams/${team.id}`} style={{ fontWeight: 800, color: '#121212', display: 'block' }}>{team.name}</Link>
                         {team.description && <p style={{ fontSize: 11, color: '#999', margin: 0 }}>{team.description}</p>}

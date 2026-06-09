@@ -138,12 +138,25 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       {/* Header team */}
       <div style={{ background: 'white', borderRadius: 16, padding: 30, marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-          <div style={{ width: 70, height: 70, borderRadius: '50%', background: accent, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: 'white', flexShrink: 0 }}>
-            {team.name.charAt(0).toUpperCase()}
-          </div>
+          {/* Avatar team */}
+          {team.avatar_url ? (
+            <img src={team.avatar_url} style={{ width: 70, height: 70, borderRadius: '50%', objectFit: 'cover', border: '3px solid #003DA6', flexShrink: 0 }} alt={team.name} />
+          ) : (
+            <div style={{ width: 70, height: 70, borderRadius: '50%', background: accent, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 900, color: 'white', flexShrink: 0 }}>
+              {team.name.charAt(0).toUpperCase()}
+            </div>
+          )}
           <div style={{ flex: 1 }}>
-            <h1 style={{ fontWeight: 900, fontSize: 26, margin: '0 0 4px' }}>{team.name}</h1>
-            {team.description && <p style={{ color: '#666', fontSize: 14, margin: 0 }}>{team.description}</p>}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+              <h1 style={{ fontWeight: 900, fontSize: 26, margin: '0 0 4px' }}>{team.name}</h1>
+              {isChef && (
+                <Link href={`/teams/${teamId}/editer`} style={{ background: '#f0f0f0', color: '#444', padding: '4px 12px', borderRadius: 6, fontWeight: 700, fontSize: 12 }}>
+                  ✏️ Modifier
+                </Link>
+              )}
+            </div>
+            {team.description && <p style={{ color: '#666', fontSize: 14, margin: '0 0 4px' }}>{team.description}</p>}
+            {team.bio && <p style={{ color: '#888', fontSize: 13, margin: 0, lineHeight: 1.5 }}>{team.bio}</p>}
             <p style={{ color: '#999', fontSize: 12, margin: '4px 0 0' }}>{members.length} membre{members.length > 1 ? 's' : ''}</p>
           </div>
           {/* Stats cumulées */}
