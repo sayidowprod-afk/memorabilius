@@ -13,23 +13,20 @@ export default function Profil() {
   const [saved, setSaved] = useState(false)
   const [loading, setLoading] = useState(true)
   const [uploading, setUploading] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
+  const [deleteConfirm, setDeleteConfirm] = useState('')
+  const [deleting, setDeleting] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     supabase.auth.getUser().then(async ({ data }) => {
       if (!data.user) { router.push('/connexion'); return }
       setUserId(data.user.id)
+      // Mettre à jour last_seen
+      await supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', data.user.id)
       const { data: p } = await supabase.from('profiles').select('*').eq('id', data.user.id).single()
       if (p) {
-        setForm({
-          display_name: p.display_name || '',
-          lien_csv: p.lien_csv || '',
-          couleur_bordure: p.couleur_bordure || '#003DA6',
-          lien_logo: p.lien_logo || '',
-          instagram: p.instagram || '',
-          twitter: p.twitter || '',
-          discord: p.discord || '',
-        })
+        setForm({ display_name: p.display_name || '', lien_csv: p.lien_csv || '', couleur_bordure: p.couleur_bordure || '#003DA6', lien_logo: p.lien_logo || '', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '' })
         setCsvLinked(!!p.lien_csv)
         setAvatarUrl(p.avatar_url || null)
       }
@@ -40,27 +37,14 @@ export default function Profil() {
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file || !userId) return
-
-    // Vérifications
     if (file.size > 2 * 1024 * 1024) { alert('Image trop lourde (max 2 Mo)'); return }
-    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) { alert('Format accepté : JPG, PNG, WEBP'); return }
-
     setUploading(true)
     const ext = file.name.split('.').pop()
     const path = `${userId}/avatar.${ext}`
-
-    // Upload dans Supabase Storage
-    const { error: upErr } = await supabase.storage
-      .from('avatars')
-      .upload(path, file, { upsert: true })
-
+    const { error: upErr } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
     if (upErr) { alert('Erreur upload : ' + upErr.message); setUploading(false); return }
-
-    // Récupérer l'URL publique
     const { data: urlData } = supabase.storage.from('avatars').getPublicUrl(path)
     const publicUrl = urlData.publicUrl + '?t=' + Date.now()
-
-    // Sauvegarder dans le profil
     await supabase.from('profiles').update({ avatar_url: publicUrl }).eq('id', userId)
     setAvatarUrl(publicUrl)
     setUploading(false)
@@ -69,31 +53,23 @@ export default function Profil() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!userId) return
-    const { error } = await supabase.from('profiles').update({
-      display_name: form.display_name,
-      lien_csv: form.lien_csv,
-      couleur_bordure: form.couleur_bordure,
-      lien_logo: form.lien_logo,
-      instagram: form.instagram,
-      twitter: form.twitter,
-      discord: form.discord,
-    }).eq('id', userId)
-
+    const { error } = await supabase.from('profiles').update({ display_name: form.display_name, lien_csv: form.lien_csv, couleur_bordure: form.couleur_bordure, lien_logo: form.lien_logo, instagram: form.instagram, twitter: form.twitter, discord: form.discord }).eq('id', userId)
     if (!error) {
       setCsvLinked(!!form.lien_csv)
-      // Recalculer les stats en arrière-plan
-      if (form.lien_csv) {
-        fetch('/api/update-stats', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userId, csvUrl: form.lien_csv }),
-        })
-      }
+      if (form.lien_csv) fetch('/api/update-stats', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId, csvUrl: form.lien_csv }) })
       setSaved(true)
       setTimeout(() => setSaved(false), 3000)
-    } else {
-      alert('Erreur : ' + error.message)
-    }
+    } else { alert('Erreur : ' + error.message) }
+  }
+
+  const handleDeleteAccount = async () => {
+    if (deleteConfirm !== 'SUPPRIMER' || !userId) return
+    setDeleting(true)
+    try {
+      const r = await fetch('/api/delete-account', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId }) })
+      if (r.ok) { await supabase.auth.signOut(); window.location.href = '/' }
+      else { alert('Erreur lors de la suppression'); setDeleting(false) }
+    } catch { alert('Erreur'); setDeleting(false) }
   }
 
   if (loading) return <p style={{ textAlign: 'center', padding: 60 }}>Chargement...</p>
@@ -115,27 +91,16 @@ export default function Profil() {
       )}
 
       {/* Avatar */}
-      <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 10px 40px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+      <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 16 }}>Photo de profil</label>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <div style={{ position: 'relative' }}>
-            <img
-              src={avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(form.display_name || 'U')}&background=003DA6&color=fff&size=128`}
-              style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: '3px solid #eee' }}
-              alt="Avatar"
-            />
-            {uploading && (
-              <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ color: 'white', fontSize: 11 }}>...</span>
-              </div>
-            )}
+            <img src={avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(form.display_name || 'U')}&background=003DA6&color=fff&size=128`}
+              style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: '3px solid #eee' }} alt="Avatar" />
+            {uploading && <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ color: 'white', fontSize: 11 }}>...</span></div>}
           </div>
           <div>
-            <button
-              onClick={() => fileRef.current?.click()}
-              disabled={uploading}
-              style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer', display: 'block', marginBottom: 6 }}
-            >
+            <button onClick={() => fileRef.current?.click()} disabled={uploading} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer', display: 'block', marginBottom: 6 }}>
               {uploading ? 'Upload en cours...' : '📷 Changer ma photo'}
             </button>
             <p style={{ fontSize: 11, color: '#999', margin: 0 }}>JPG, PNG ou WEBP · Max 2 Mo</p>
@@ -145,7 +110,7 @@ export default function Profil() {
       </div>
 
       {/* Formulaire */}
-      <div style={{ background: 'white', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)' }}>
+      <div style={{ background: 'white', borderRadius: 16, padding: 40, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Pseudo</label>
@@ -185,6 +150,34 @@ export default function Profil() {
             {saved ? '✓ Sauvegardé !' : 'Sauvegarder'}
           </button>
         </form>
+      </div>
+
+      {/* Zone danger */}
+      <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #ffebee' }}>
+        <h3 style={{ fontWeight: 800, color: '#e74c3c', marginBottom: 8 }}>⚠️ Zone de danger</h3>
+        <p style={{ fontSize: 13, color: '#666', marginBottom: 16, lineHeight: 1.5 }}>La suppression de votre compte est irréversible. Toutes vos données seront perdues.</p>
+        {!showDelete ? (
+          <button onClick={() => setShowDelete(true)} style={{ background: '#fff5f5', color: '#e74c3c', border: '1px solid #ffcdd2', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+            Supprimer mon compte
+          </button>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <p style={{ fontSize: 13, color: '#e74c3c', fontWeight: 700 }}>Tapez <strong>SUPPRIMER</strong> pour confirmer :</p>
+            <input value={deleteConfirm} onChange={e => setDeleteConfirm(e.target.value)} placeholder="SUPPRIMER" style={{ border: '2px solid #e74c3c' }} />
+            <div style={{ display: 'flex', gap: 10 }}>
+              <button onClick={handleDeleteAccount} disabled={deleteConfirm !== 'SUPPRIMER' || deleting} style={{
+                background: deleteConfirm === 'SUPPRIMER' ? '#e74c3c' : '#f0f0f0',
+                color: deleteConfirm === 'SUPPRIMER' ? 'white' : '#999',
+                border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13
+              }}>
+                {deleting ? 'Suppression...' : 'Supprimer définitivement'}
+              </button>
+              <button onClick={() => { setShowDelete(false); setDeleteConfirm('') }} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+                Annuler
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

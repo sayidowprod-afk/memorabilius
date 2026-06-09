@@ -2,6 +2,8 @@
 import { useEffect, useState, useRef, use, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import Viewer3D from '@/components/Viewer3D'
+import ShareButton from '@/components/ShareButton'
+import OnlineIndicator from '@/components/OnlineIndicator'
 
 const PAGE_SIZE = 48
 
@@ -151,7 +153,9 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
           <div style={{ flex: 1, minWidth: 200 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 6 }}>
               <h1 style={{ fontSize: 24, fontWeight: 900, margin: 0 }}>{profile?.display_name || 'Collectionneur'}</h1>
+              <OnlineIndicator lastSeen={profile?.last_seen} size={12} />
               {profile?.lien_logo && <img src={profile.lien_logo} style={{ maxHeight: 32, objectFit: 'contain' }} alt="logo" />}
+              <ShareButton url={`/galerie/${userId}`} title={`Galerie de ${profile?.display_name || 'Collectionneur'} sur Memorabilius`} />
             </div>
             {/* Réseaux sociaux */}
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
