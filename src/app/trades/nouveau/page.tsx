@@ -82,11 +82,11 @@ export default function NouveauTrade() {
             </div>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Équipe</label>
-              <input value={form.annee} onChange={e => setForm({ ...form, annee: e.target.value })} placeholder="Lakers, Warriors..." />
+              <input value={form.equipe} onChange={e => setForm({ ...form, equipe: e.target.value })} placeholder="Lakers, Warriors..." />
             </div>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Année</label>
-              <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder="2023-24" />
+              <input value={form.annee} onChange={e => setForm({ ...form, annee: e.target.value })} placeholder="2023-24" />
             </div>
           </div>
 
