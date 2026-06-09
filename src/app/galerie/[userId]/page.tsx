@@ -1,7 +1,9 @@
 'use client'
-import { useEffect, useState, useRef, use } from 'react'
+import { useEffect, useState, useRef, use, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import Viewer3D from '@/components/Viewer3D'
+
+const PAGE_SIZE = 48
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string
@@ -14,6 +16,8 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const [profile, setProfile] = useState<any>(null)
   const [cards, setCards] = useState<Card[]>([])
   const [filtered, setFiltered] = useState<Card[]>([])
+  const [displayed, setDisplayed] = useState<Card[]>([])
+  const [page, setPage] = useState(1)
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
   const [search, setSearch] = useState('')
   const [fTeam, setFTeam] = useState('')
@@ -27,6 +31,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const [currentUser, setCurrentUser] = useState<string | null>(null)
   const [privateCards, setPrivateCards] = useState<Set<string>>(new Set())
   const [editMode, setEditMode] = useState(false)
+  const loaderRef = useRef<HTMLDivElement>(null)
 
   const isOwner = currentUser === userId
 
@@ -85,7 +90,6 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
 
   useEffect(() => {
     const f = cards.filter(d => {
-      // Masquer les cartes privées pour les non-propriétaires
       if (!isOwner && privateCards.has(d.f)) return false
       return (
         d.n.toLowerCase().includes(search.toLowerCase()) &&
@@ -99,7 +103,24 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
       )
     })
     setFiltered(f)
+    setPage(1)
+    setDisplayed(f.slice(0, PAGE_SIZE))
   }, [cards, search, fTeam, fBrand, fYear, activeFilters, privateCards, isOwner])
+
+  // Charger plus au scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && displayed.length < filtered.length) {
+        setPage(p => p + 1)
+      }
+    }, { threshold: 0.1 })
+    if (loaderRef.current) observer.observe(loaderRef.current)
+    return () => observer.disconnect()
+  }, [displayed, filtered])
+
+  useEffect(() => {
+    setDisplayed(filtered.slice(0, page * PAGE_SIZE))
+  }, [page, filtered])
 
   const toggleFilter = (k: keyof typeof activeFilters) => setActiveFilters(p => ({ ...p, [k]: !p[k] }))
 
@@ -220,7 +241,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
           @media (min-width: 900px) { .card-item { flex: 0 0 calc(20% - 10px); max-width: calc(20% - 10px); } }
         `}</style>
         <div className="card-grid">
-          {filtered.map((d, i) => (
+          {displayed.map((d, i) => (
             <div key={i} className="card-item" onClick={() => !editMode && setPopup(d)} style={{
               border: `2px solid ${privateCards.has(d.f) && isOwner ? '#e74c3c' : accent}`,
               borderRadius: 8, padding: 8,
@@ -256,6 +277,20 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
             </div>
           ))}
         </div>
+
+        {/* Scroll infini */}
+        {loaded && (
+          <div style={{ textAlign: 'center', padding: '20px 0', color: '#999', fontSize: 13 }}>
+            {displayed.length < filtered.length ? (
+              <div ref={loaderRef} style={{ padding: 20 }}>
+                <div style={{ display: 'inline-block', width: 24, height: 24, border: '3px solid #eee', borderTopColor: '#003DA6', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+                <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
+              </div>
+            ) : filtered.length > 0 ? (
+              <p style={{ color: '#bbb', fontSize: 12 }}>{filtered.length} carte{filtered.length > 1 ? 's' : ''} au total</p>
+            ) : null}
+          </div>
+        )}
       </div>
 
       {popup && (
