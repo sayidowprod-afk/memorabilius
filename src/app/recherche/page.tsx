@@ -7,13 +7,13 @@ export default function Recherche() {
   const [results, setResults] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
   const [searched, setSearched] = useState(false)
-  const debounceRef = useRef<NodeJS.Timeout>()
+  const debounceRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     if (query.length < 2) { setResults([]); setSearched(false); return }
-    clearTimeout(debounceRef.current)
+    if (debounceRef.current) clearTimeout(debounceRef.current)
     debounceRef.current = setTimeout(() => search(query), 600)
-    return () => clearTimeout(debounceRef.current)
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current) }
   }, [query])
 
   const search = async (q: string) => {
