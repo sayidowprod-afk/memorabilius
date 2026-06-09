@@ -21,6 +21,7 @@ export default function NouveauTrade() {
     auto: false,
     num: false,
     patch: false,
+    sport: 'basket',
   })
 
   useEffect(() => {
@@ -61,6 +62,31 @@ export default function NouveauTrade() {
                   color: form.type === t ? 'white' : '#333', fontWeight: 800, fontSize: 14, cursor: 'pointer',
                 }}>
                   {t === 'offre' ? '📤 Je propose' : '📥 Je recherche'}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Sport */}
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>Sport</label>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              {[
+                { key: 'basket', label: '🏀 Basket' },
+                { key: 'foot', label: '⚽ Foot' },
+                { key: 'football_us', label: '🏈 Football US' },
+                { key: 'baseball', label: '⚾ Baseball' },
+                { key: 'hockey', label: '🏒 Hockey' },
+                { key: 'pokemon', label: '🟡 Pokémon' },
+                { key: 'tcg', label: '🃏 TCG' },
+              ].map(s => (
+                <button key={s.key} type="button" onClick={() => setForm({ ...form, sport: s.key })} style={{
+                  padding: '8px 14px', border: `2px solid ${form.sport === s.key ? '#003DA6' : '#eee'}`,
+                  borderRadius: 20, cursor: 'pointer', fontWeight: 700, fontSize: 13,
+                  background: form.sport === s.key ? '#003DA6' : 'white',
+                  color: form.sport === s.key ? 'white' : '#333',
+                }}>
+                  {s.label}
                 </button>
               ))}
             </div>

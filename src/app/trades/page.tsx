@@ -62,6 +62,9 @@ export default function Trades() {
   const [userId, setUserId] = useState<string | null>(null)
   const [filter, setFilter] = useState<'tous' | 'offre' | 'recherche'>('tous')
   const [search, setSearch] = useState('')
+  const [fEquipe, setFEquipe] = useState('')
+  const [fSport, setFSport] = useState('')
+  const [fTags, setFTags] = useState({ rc: false, auto: false, num: false, patch: false })
   const [popup, setPopup] = useState<any | null>(null)
 
   useEffect(() => {
@@ -89,9 +92,17 @@ export default function Trades() {
     setLoading(false)
   }
 
+  const SPORTS: Record<string, string> = { basket: '🏀', foot: '⚽', football_us: '🏈', baseball: '⚾', hockey: '🏒', pokemon: '🟡', tcg: '🃏' }
+
   const filtered = trades.filter(t => {
     if (filter !== 'tous' && t.type !== filter) return false
     if (search && !t.titre.toLowerCase().includes(search.toLowerCase()) && !t.joueur?.toLowerCase().includes(search.toLowerCase())) return false
+    if (fEquipe && !t.equipe?.toLowerCase().includes(fEquipe.toLowerCase())) return false
+    if (fSport && t.sport !== fSport) return false
+    if (fTags.rc && !t.rc) return false
+    if (fTags.auto && !t.auto) return false
+    if (fTags.num && !t.num) return false
+    if (fTags.patch && !t.patch) return false
     return true
   })
 
@@ -133,16 +144,41 @@ export default function Trades() {
       </div>
 
       {/* Filtres */}
-      <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
-        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher un joueur, une carte..." style={{ flex: 1, minWidth: 200 }} />
-        <div style={{ display: 'flex', gap: 8 }}>
-          {(['tous', 'offre', 'recherche'] as const).map(f => (
-            <button key={f} onClick={() => setFilter(f)} style={{
-              padding: '8px 18px', border: 'none', borderRadius: 8, cursor: 'pointer',
-              fontWeight: 700, fontSize: 13, textTransform: 'capitalize',
-              background: filter === f ? '#003DA6' : '#f0f0f0',
-              color: filter === f ? 'white' : '#333',
-            }}>{f === 'tous' ? 'Tous' : f === 'offre' ? '📤 Offres' : '📥 Recherches'}</button>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 20 }}>
+        {/* Ligne 1 : recherche + type */}
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher un joueur, une carte..." style={{ flex: 1, minWidth: 200 }} />
+          <input value={fEquipe} onChange={e => setFEquipe(e.target.value)} placeholder="Filtrer par équipe..." style={{ width: 180 }} />
+          <div style={{ display: 'flex', gap: 8 }}>
+            {(['tous', 'offre', 'recherche'] as const).map(f => (
+              <button key={f} onClick={() => setFilter(f)} style={{
+                padding: '8px 18px', border: 'none', borderRadius: 8, cursor: 'pointer',
+                fontWeight: 700, fontSize: 13,
+                background: filter === f ? '#003DA6' : '#f0f0f0',
+                color: filter === f ? 'white' : '#333',
+              }}>{f === 'tous' ? 'Tous' : f === 'offre' ? '📤 Offres' : '📥 Recherches'}</button>
+            ))}
+          </div>
+        </div>
+        {/* Ligne 2 : sports + tags */}
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+          <span style={{ fontSize: 12, fontWeight: 700, color: '#888' }}>Sport :</span>
+          {Object.entries(SPORTS).map(([key, emoji]) => (
+            <button key={key} onClick={() => setFSport(fSport === key ? '' : key)} style={{
+              padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer',
+              fontWeight: 700, fontSize: 13,
+              background: fSport === key ? '#003DA6' : '#f0f0f0',
+              color: fSport === key ? 'white' : '#333',
+            }}>{emoji}</button>
+          ))}
+          <span style={{ fontSize: 12, fontWeight: 700, color: '#888', marginLeft: 8 }}>Tags :</span>
+          {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
+            <button key={k} onClick={() => setFTags(prev => ({ ...prev, [k]: !prev[k] }))} style={{
+              padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer',
+              fontWeight: 900, fontSize: 12, textTransform: 'uppercase',
+              background: fTags[k] ? '#003DA6' : '#f0f0f0',
+              color: fTags[k] ? 'white' : '#333',
+            }}>{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
           ))}
         </div>
       </div>
@@ -184,7 +220,7 @@ export default function Trades() {
                 {/* Info */}
                 <div style={{ padding: '14px 16px' }}>
                   <h3 style={{ fontWeight: 900, fontSize: 15, margin: '0 0 6px' }}>{trade.titre}</h3>
-                  {trade.joueur && <p style={{ fontSize: 12, color: '#003DA6', fontWeight: 700, margin: '0 0 8px' }}>🏀 {trade.joueur}{trade.equipe ? ` · ${trade.equipe}` : ''}</p>}
+                  {trade.joueur && <p style={{ fontSize: 12, color: '#003DA6', fontWeight: 700, margin: '0 0 8px' }}>{SPORTS[trade.sport] || '🏀'} {trade.joueur}{trade.equipe ? ` · ${trade.equipe}` : ''}</p>}
                   {/* Tags */}
                   <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
                     {trade.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 2, background: '#fff3e0', color: '#e67e22' }}>RC</span>}
@@ -253,7 +289,7 @@ export default function Trades() {
               {/* Détails carte */}
               {(popup.joueur || popup.annee || popup.marque || popup.equipe) && (
                 <div style={{ background: '#f8f8f8', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  {popup.joueur && <p style={{ margin: 0, fontSize: 14, fontWeight: 700 }}>🏀 {popup.joueur}</p>}
+                  {popup.joueur && <p style={{ margin: 0, fontSize: 14, fontWeight: 700 }}>{SPORTS[popup.sport] || '🏀'} {popup.joueur}</p>}
                   {popup.equipe && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>🏟️ {popup.equipe}</p>}
                   {popup.annee && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>📅 {popup.annee}</p>}
                   {popup.marque && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>🏷️ {popup.marque}</p>}
