@@ -54,6 +54,7 @@ export default function Navbar() {
           <Link href="/annuaire" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>Annuaire</Link>
           <Link href="/teams" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>Teams</Link>
           <Link href="/trades" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>Trades</Link>
+          <Link href="/recherche" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>🔍 Recherche</Link>
           <Link href="/tuto" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>Tutoriel</Link>
           {user ? (
             <>
@@ -88,6 +89,7 @@ export default function Navbar() {
           <Link href="/annuaire" style={ls} onClick={() => setMenuOpen(false)}>Annuaire</Link>
           <Link href="/teams" style={ls} onClick={() => setMenuOpen(false)}>Teams</Link>
           <Link href="/trades" style={ls} onClick={() => setMenuOpen(false)}>Trades</Link>
+          <Link href="/recherche" style={ls} onClick={() => setMenuOpen(false)}>🔍 Recherche</Link>
           <Link href="/tuto" style={ls} onClick={() => setMenuOpen(false)}>Tutoriel</Link>
           {user ? (
             <>

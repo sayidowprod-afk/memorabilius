@@ -1,0 +1,121 @@
+'use client'
+import { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
+
+export default function Recherche() {
+  const [query, setQuery] = useState('')
+  const [results, setResults] = useState<any[]>([])
+  const [loading, setLoading] = useState(false)
+  const [searched, setSearched] = useState(false)
+  const debounceRef = useRef<NodeJS.Timeout>()
+
+  useEffect(() => {
+    if (query.length < 2) { setResults([]); setSearched(false); return }
+    clearTimeout(debounceRef.current)
+    debounceRef.current = setTimeout(() => search(query), 600)
+    return () => clearTimeout(debounceRef.current)
+  }, [query])
+
+  const search = async (q: string) => {
+    setLoading(true)
+    setSearched(true)
+    try {
+      const r = await fetch(`/api/recherche?q=${encodeURIComponent(q)}`)
+      const data = await r.json()
+      setResults(data)
+    } catch { setResults([]) }
+    setLoading(false)
+  }
+
+  const getTags = (card: any) => (
+    <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+      {card.rc && <span style={{ fontSize: 8, fontWeight: 900, padding: '2px 5px', borderRadius: 2, background: '#fff3e0', color: '#e67e22' }}>RC</span>}
+      {card.auto && <span style={{ fontSize: 8, fontWeight: 900, padding: '2px 5px', borderRadius: 2, background: '#e8f5e9', color: '#2e7d32' }}>AUTO</span>}
+      {card.num && <span style={{ fontSize: 8, fontWeight: 900, padding: '2px 5px', borderRadius: 2, background: '#f5f5f5', color: '#444' }}>#{card.num}</span>}
+      {card.patch && <span style={{ fontSize: 8, fontWeight: 900, padding: '2px 5px', borderRadius: 2, background: '#e3f2fd', color: '#1976d2' }}>PATCH</span>}
+    </div>
+  )
+
+  return (
+    <div style={{ maxWidth: 1200, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+      {/* Header */}
+      <div style={{ textAlign: 'center', padding: '40px 20px 30px' }}>
+        <h1 style={{ fontWeight: 900, fontSize: 32, marginBottom: 8 }}>🔍 Recherche globale</h1>
+        <p style={{ color: '#666', fontSize: 16, marginBottom: 30 }}>
+          Cherchez une carte dans toutes les collections de la communauté
+        </p>
+        <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative' }}>
+          <input
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="Nom du joueur, équipe, variation..."
+            autoFocus
+            style={{
+              fontSize: 18, padding: '16px 20px 16px 50px',
+              borderRadius: 50, border: '2px solid #003DA6',
+              boxShadow: '0 4px 20px rgba(0,61,166,0.15)',
+            }}
+          />
+          <span style={{ position: 'absolute', left: 18, top: '50%', transform: 'translateY(-50%)', fontSize: 20 }}>🔍</span>
+          {loading && <span style={{ position: 'absolute', right: 18, top: '50%', transform: 'translateY(-50%)', fontSize: 14, color: '#999' }}>...</span>}
+        </div>
+        {query.length > 0 && query.length < 2 && (
+          <p style={{ color: '#999', fontSize: 13, marginTop: 8 }}>Tapez au moins 2 caractères</p>
+        )}
+      </div>
+
+      {/* Résultats */}
+      {searched && !loading && results.length === 0 && (
+        <div style={{ textAlign: 'center', padding: '60px 20px', color: '#bbb' }}>
+          <div style={{ fontSize: 48, marginBottom: 16 }}>🃏</div>
+          <p style={{ fontSize: 18, fontWeight: 700 }}>Aucune carte trouvée pour "{query}"</p>
+          <p style={{ fontSize: 14, marginTop: 8 }}>Essayez avec un nom différent ou vérifiez l'orthographe</p>
+        </div>
+      )}
+
+      {results.length > 0 && (
+        <>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, padding: '0 4px' }}>
+            <p style={{ fontWeight: 700, color: '#666', fontSize: 14 }}>
+              {results.length} carte{results.length > 1 ? 's' : ''} trouvée{results.length > 1 ? 's' : ''} pour "<strong>{query}</strong>"
+            </p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 16 }}>
+            {results.map((card, i) => (
+              <Link key={i} href={`/galerie/${card.collectorId}`} style={{ textDecoration: 'none', display: 'block' }}>
+                <div style={{
+                  background: 'white', borderRadius: 12, overflow: 'hidden',
+                  border: `2px solid ${card.accent}`,
+                  transition: '0.2s', cursor: 'pointer',
+                }}
+                  onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px)')}
+                  onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                >
+                  <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
+                    <img src={card.img} alt={card.name} loading="lazy"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  </div>
+                  <div style={{ padding: '10px 10px 12px' }}>
+                    {getTags(card)}
+                    <p style={{ fontWeight: 800, fontSize: 12, margin: '5px 0 2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: '#121212' }}>{card.name}</p>
+                    {card.variant && <p style={{ fontSize: 10, color: card.accent, fontWeight: 700, margin: '0 0 2px', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.variant}</p>}
+                    <p style={{ fontSize: 10, color: '#999', margin: 0 }}>{card.year} {card.brand}</p>
+                    {/* Collectionneur */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 8, paddingTop: 8, borderTop: '1px solid #f0f0f0' }}>
+                      <img
+                        src={card.collectorAvatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(card.collector || 'U')}&background=003DA6&color=fff&size=32`}
+                        style={{ width: 20, height: 20, borderRadius: '50%', objectFit: 'cover' }}
+                        alt={card.collector}
+                      />
+                      <span style={{ fontSize: 10, fontWeight: 700, color: '#555', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.collector}</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
