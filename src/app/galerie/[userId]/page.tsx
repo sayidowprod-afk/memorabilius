@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, useRef, use } from 'react'
+import { useEffect, useState, useRef, use, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import Viewer3D from '@/components/Viewer3D'
 
@@ -44,7 +44,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
       if (data) setProfile(data)
     })
 
-    // 3. Charger les cartes filtrées et sécurisées depuis l'API Route côté serveur
+    // 3. CHARGEMENT SÉCURISÉ : On appelle l'API au lieu de charger le CSV en direct
     fetch(`/api/galerie/${userId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -60,7 +60,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
       .catch((e) => console.error('Erreur API Galerie', e))
   }, [userId])
 
-  // Conserver le chargement des clés privées uniquement pour le propriétaire (utile pour le badge rouge en mode édition)
+  // Charger les cartes privées si c'est le propriétaire (pour l'affichage en mode édition)
   useEffect(() => {
     if (!currentUser || currentUser !== userId) return
     supabase.from('cartes_privees').select('card_key').eq('user_id', userId)
@@ -80,7 +80,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     }
   }
 
-  // Filtrage local (recherche, menus déroulants et boutons filtres)
+  // Filtrage local (le serveur a déjà retiré les cartes privées pour les invités)
   useEffect(() => {
     const f = cards.filter(d => {
       return (
