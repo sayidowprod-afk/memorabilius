@@ -10,18 +10,21 @@ interface Card {
 
 export async function GET(
   request: Request,
-  { params }: { params: { userId: string } }
+  context: { params: Promise<{ userId: string }> | { userId: string } }
 ) {
-  const userId = params.userId
+  // Gestion de la compatibilité Next.js (params peut être une Promise ou un objet direct)
+  const resolvedParams = 'then' in context.params ? await context.params : context.params
+  const userId = resolvedParams.userId
+
   const cookieStore = cookies()
   const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
 
-  // 1. Récupérer l'utilisateur actuellement connecté (celui qui regarde la page)
-  const { data: { session } } = await supabase.auth.getSession()
-  const currentUserId = session?.user?.id || null
-  const isOwner = currentUserId === userId
-
   try {
+    // 1. Récupérer l'utilisateur actuellement connecté (celui qui regarde la page)
+    const { data: { session } } = await supabase.auth.getSession()
+    const currentUserId = session?.user?.id || null
+    const isOwner = currentUserId === userId
+
     // 2. Récupérer le profil pour avoir le lien CSV
     const { data: profile } = await supabase
       .from('profiles')
@@ -41,7 +44,7 @@ export async function GET(
 
     const privateKeys = new Set(privateData?.map((d) => d.card_key) || [])
 
-    // 4. Charger et parser le CSV (côté serveur !)
+    // 4. Charger et parser le CSV
     const r = await fetch(profile.lien_csv + '&t=' + Date.now())
     const t = await r.text()
     const rows = t.split(/\r?\n/).slice(4)
@@ -62,11 +65,10 @@ export async function GET(
       })
       .filter(Boolean) as Card[]
 
-    // 5. LE FILTRAGE DE SÉCURITÉ
-    // Si ce n'est pas le propriétaire, on supprime STRICTEMENT les cartes privées du tableau
+    // 5. Filtrage de sécurité
     const filteredCards = parsed.filter((card) => {
       if (!isOwner && privateKeys.has(card.f)) {
-        return false // La carte est privée et le visiteur n'est pas le propriétaire -> Poubelle
+        return false 
       }
       return true
     })
