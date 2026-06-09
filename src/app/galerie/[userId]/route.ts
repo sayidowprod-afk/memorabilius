@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 
+// Cette ligne indique à Vercel de NE PAS compiler cette route au build
+export const dynamic = 'force-dynamic'
+
 interface Card {
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string
@@ -11,9 +14,13 @@ export async function GET(
   request: Request,
   context: { params: Promise<{ userId: string }> | { userId: string } }
 ) {
-  // Résolution propre des paramètres dynamiques pour éviter les erreurs de build Next.js
+  // Résolution sécurisée des paramètres pour éviter les blocages TypeScript au build
   const resolvedParams = 'then' in context.params ? await context.params : context.params
-  const userId = resolvedParams.userId
+  const userId = resolvedParams?.userId
+
+  if (!userId) {
+    return NextResponse.json({ error: 'User ID manquant' }, { status: 400 })
+  }
 
   try {
     // 1. Récupérer l'utilisateur connecté via le client Supabase standard
