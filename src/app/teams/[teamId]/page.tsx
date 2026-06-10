@@ -16,7 +16,6 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const [currentUserProfile, setCurrentUserProfile] = useState<any>(null)
   const [isMember, setIsMember] = useState(false)
   const [isChef, setIsChef] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
   const [hasCandidature, setHasCandidature] = useState(false)
   const [newMsg, setNewMsg] = useState('')
   const [activeTab, setActiveTab] = useState<'membres' | 'chat' | 'candidatures'>('membres')
@@ -47,11 +46,6 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       .eq('team_id', parseInt(teamId))
     setMembers(m || [])
     setIsMember(m?.some((x: any) => x.user_id === user?.id) || false)
-    
-    // 1. ON CALCULE LE RÔLE ADMIN ICI
-    const currentUserMemberObj = m?.find((x: any) => x.user_id === user?.id)
-    const userIsAdmin = currentUserMemberObj?.role === 'admin'
-    setIsAdmin(userIsAdmin) // Met à jour le state global pour l'onglet
 
     // Charger le profil utilisateur
     if (user) {
@@ -66,29 +60,20 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       .order('created_at', { ascending: true })
     setMessages(msgs || [])
 
-    // 2. CONDITION MODIFIÉE : CHEF OU ADMIN VOIENT LES CANDIDATURES
-    if (user?.id === t.created_by || isAdmin) {
+    // Candidatures (chef seulement)
+    if (user?.id === t.created_by) {
       const { data: cands } = await supabase.from('team_candidatures')
         .select('*, profiles(id, display_name, avatar_url, lien_csv)')
         .eq('team_id', parseInt(teamId))
-        .eq('statut', 'en_attente') // <-- AJOUTE CETTE LIGNE ICI
+        .eq('statut', 'en_attente')
       setCandidatures(cands || [])
     }
 
     // Vérifier si candidature existante
     if (user) {
-      const { data: cand, error: candError } = await supabase.from('team_candidatures')
-        .select('id')
-        .eq('team_id', parseInt(teamId))
-        .eq('user_id', user.id)
-        .limit(1)
-
-      if (candError) {
-        console.error("Erreur de récupération :", candError)
-        setHasCandidature(false)
-      } else {
-        setHasCandidature(Array.isArray(cand) && cand.length > 0)
-      }
+      const { data: cand } = await supabase.from('team_candidatures')
+        .select('id').eq('team_id', parseInt(teamId)).eq('user_id', user.id).single()
+      setHasCandidature(!!cand)
     }
 
     // Charger stats membres
@@ -99,12 +84,10 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const loadMembersStats = async (membersList: any[]) => {
     const stats = await Promise.all(membersList.map(async (m: any) => {
       const profile = m.profiles
-      if (!profile?.lien_csv) return { ...profile, stats: { total: 0, rc: 0, auto: 0, patch: 0 } }
-      try {
-        const r = await fetch(`/api/csv-stats?url=${encodeURIComponent(profile.lien_csv)}`)
-        const s = await r.json()
-        return { ...profile, stats: s }
-      } catch { return { ...profile, stats: { total: 0, rc: 0, auto: 0, patch: 0 } } }
+      if (!profile) return { ...profile, stats: { total: 0, rc: 0, auto: 0, num: 0, patch: 0 } }
+      // Utiliser les stats en cache depuis profiles
+      const { data: p } = await supabase.from('profiles').select('stats_total, stats_rc, stats_auto, stats_num, stats_patch').eq('id', profile.id).single()
+      return { ...profile, stats: { total: p?.stats_total || 0, rc: p?.stats_rc || 0, auto: p?.stats_auto || 0, num: p?.stats_num || 0, patch: p?.stats_patch || 0 } }
     }))
     setMembersStats(stats.sort((a, b) => (b.stats?.total || 0) - (a.stats?.total || 0)))
   }
@@ -118,34 +101,18 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     setNewMsg('')
   }
 
- const postuler = async () => {
-  if (!currentUser) { router.push('/connexion'); return }
-  
-  // Utilise upsert en précisant qu'on repasse le statut en_attente
-  await supabase.from('team_candidatures').upsert({ 
-    team_id: parseInt(teamId), 
-    user_id: currentUser,
-    statut: 'en_attente',
-    created_at: new Date().toISOString() // Optionnel : pour mettre à jour la date
-  }, { onConflict: 'team_id,user_id' }) // À adapter selon tes clés uniques en BDD
-
-  setHasCandidature(true)
-}
+  const postuler = async () => {
+    if (!currentUser) { router.push('/connexion'); return }
+    await supabase.from('team_candidatures').insert({ team_id: parseInt(teamId), user_id: currentUser })
+    setHasCandidature(true)
+  }
 
   const accepterCandidature = async (cand: any) => {
-    try {
-      // 1. Accepter et ajouter comme membre
-      await supabase.from('team_candidatures').update({ statut: 'accepte' }).eq('id', cand.id)
-      await supabase.from('team_members').insert({ team_id: parseInt(teamId), user_id: cand.user_id })
-      
-      // 2. Filtrer immédiatement l'interface locale
-      setCandidatures(prev => prev.filter(c => c.id !== cand.id))
-      
-      // 3. Recharger les listes globales
-      init()
-    } catch (error) {
-      console.error("Erreur lors de l'acceptation :", error)
-    }
+    // Accepter et ajouter comme membre
+    await supabase.from('team_candidatures').update({ statut: 'accepte' }).eq('id', cand.id)
+    await supabase.from('team_members').insert({ team_id: parseInt(teamId), user_id: cand.user_id })
+    setCandidatures(prev => prev.filter(c => c.id !== cand.id))
+    init()
   }
 
   const refuserCandidature = async (cand: any) => {
@@ -157,8 +124,9 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     total: acc.total + (m.stats?.total || 0),
     rc: acc.rc + (m.stats?.rc || 0),
     auto: acc.auto + (m.stats?.auto || 0),
+    num: acc.num + (m.stats?.num || 0),
     patch: acc.patch + (m.stats?.patch || 0),
-  }), { total: 0, rc: 0, auto: 0, patch: 0 })
+  }), { total: 0, rc: 0, auto: 0, num: 0, patch: 0 })
 
   const accent = '#003DA6'
 
@@ -196,6 +164,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               { val: totalStats.total, label: 'Cartes', color: accent },
               { val: totalStats.rc, label: 'RC', color: '#e67e22' },
               { val: totalStats.auto, label: 'Auto', color: '#2e7d32' },
+              { val: totalStats.num, label: 'Num', color: '#7b1fa2' },
               { val: totalStats.patch, label: 'Patch', color: '#1976d2' },
             ].map(s => (
               <div key={s.label} style={{ textAlign: 'center' }}>
@@ -217,14 +186,10 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               </span>
             )}
             {isMember && <span style={{ color: accent, fontWeight: 700, fontSize: 14 }}>✓ Membre</span>}
-           {isMember && !isChef && (
+            {isMember && !isChef && (
               <button onClick={async () => {
                 if (!confirm('Quitter la team ?')) return
-                // 1. On retire le membre
                 await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser)
-                // 2. On supprime son ancienne candidature pour libérer le bouton s'il revient
-                await supabase.from('team_candidatures').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser)
-                
                 router.push('/teams')
               }} style={{ background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 8, padding: '8px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
                 Quitter la team
@@ -236,11 +201,11 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
       {/* Onglets */}
       <div style={{ display: 'flex', gap: 4, marginBottom: 20 }}>
-       {[
-  { key: 'membres', label: `👥 Membres (${members.length})` },
-  { key: 'chat', label: '💬 Chat', show: isMember },
-  { key: 'candidatures', label: `📋 Candidatures (${candidatures.length})`, show: isChef || isAdmin }, // <- MODIFIÉ ICI
-].filter(t => t.show !== false).map(t => (
+        {[
+          { key: 'membres', label: `👥 Membres (${members.length})` },
+          { key: 'chat', label: '💬 Chat', show: isMember },
+          { key: 'candidatures', label: `📋 Candidatures (${candidatures.length})`, show: isChef },
+        ].filter(t => t.show !== false).map(t => (
           <button key={t.key} onClick={() => setActiveTab(t.key as any)} style={{
             padding: '10px 20px', border: 'none', borderRadius: 8, cursor: 'pointer',
             fontWeight: 700, fontSize: 14,
@@ -255,7 +220,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         <div style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead><tr>
-              {['#', 'Collectionneur', 'Rôle', 'Total', 'RC', 'Auto', 'Patch', ...(isChef ? ['Action'] : [])].map(h => (
+              {['#', 'Collectionneur', 'Rôle', 'Total', 'RC', 'Auto', 'Num', 'Patch', ...(isChef ? ['Action'] : [])].map(h => (
                 <th key={h} style={{ padding: '16px', textAlign: 'left', fontSize: 11, textTransform: 'uppercase', color: '#999', borderBottom: '2px solid #f0f0f0', background: '#fdfdfd' }}>{h}</th>
               ))}
             </tr></thead>
@@ -281,9 +246,10 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                       {role === 'member' && <span style={{ fontSize: 11, background: '#f0f0f0', color: '#666', padding: '3px 8px', borderRadius: 4, fontWeight: 700 }}>Membre</span>}
                     </td>
                     <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#f0f0f0', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.total || 0}</span></td>
-                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#fff3e0', color: '#e67e22', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.rc || 0}</span></td>
-                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#e8f5e9', color: '#2e7d32', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.auto || 0}</span></td>
-                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#e3f2fd', color: '#1976d2', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.patch || 0}</span></td>
+                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#e67e22', color: 'white', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.rc || 0}</span></td>
+                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#2e7d32', color: 'white', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.auto || 0}</span></td>
+                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#7b1fa2', color: 'white', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.num || 0}</span></td>
+                    <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}><span style={{ background: '#1976d2', color: 'white', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{m.stats?.patch || 0}</span></td>
                     {isChef && (
                       <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}>
                         <div style={{ display: 'flex', gap: 6 }}>
@@ -301,14 +267,10 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                             {role === 'admin' ? '↓ Rétrograder' : '↑ Promouvoir'}
                           </button>
                         )}
-                       {role !== 'chef' && (
+                        {role !== 'chef' && (
                           <button onClick={async () => {
                             if (!confirm(`Exclure ${m.display_name} de la team ?`)) return
-                            // 1. Supprime le membre
                             await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', m.id)
-                            // 2. Nettoie sa candidature pour lui permettre de re-postuler un jour
-                            await supabase.from('team_candidatures').delete().eq('team_id', parseInt(teamId)).eq('user_id', m.id)
-                            
                             init()
                           }} style={{
                             background: '#fff5f5', color: '#e74c3c',
@@ -361,7 +323,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         </div>
       )}
 
-      {activeTab === 'candidatures' && (isChef || isAdmin) && ( // <- MODIFIÉ ICI
+      {activeTab === 'candidatures' && isChef && (
         <div style={{ background: 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', overflow: 'hidden' }}>
           <div style={{ padding: '16px 20px', borderBottom: '1px solid #f0f0f0', fontWeight: 800 }}>📋 Candidatures en attente</div>
           {candidatures.length === 0 ? (
@@ -390,4 +352,3 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     </div>
   )
 }
-//test

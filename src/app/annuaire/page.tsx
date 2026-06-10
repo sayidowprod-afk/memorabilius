@@ -180,10 +180,10 @@ function AnnuaireContent() {
                     </div>
                   </td>
                   <td style={{ padding: 15, borderBottom: '1px solid #f5f5f5' }}>{badge(c.stats?.total ?? 0, '#f0f0f0', '#333')}</td>
-                  <td style={{ padding: 15, borderBottom: '1px solid #f5f5f5' }}>{badge(c.stats?.rc ?? 0, '#fff3e0', '#e67e22')}</td>
-                  <td style={{ padding: 15, borderBottom: '1px solid #f5f5f5' }}>{badge(c.stats?.auto ?? 0, '#e8f5e9', '#2e7d32')}</td>
-                  <td style={{ padding: 15, borderBottom: '1px solid #f5f5f5' }}>{badge(c.stats?.num ?? 0, '#f5f5f5', '#444')}</td>
-                  <td style={{ padding: 15, borderBottom: '1px solid #f5f5f5' }}>{badge(c.stats?.patch ?? 0, '#e3f2fd', '#1976d2')}</td>
+                  <td style={{ padding: 15, borderBottom: '1px solid #f5f5f5' }}>{badge(c.stats?.rc ?? 0, '#e67e22', 'white')}</td>
+                  <td style={{ padding: 15, borderBottom: '1px solid #f5f5f5' }}>{badge(c.stats?.auto ?? 0, '#2e7d32', 'white')}</td>
+                  <td style={{ padding: 15, borderBottom: '1px solid #f5f5f5' }}>{badge(c.stats?.num ?? 0, '#7b1fa2', 'white')}</td>
+                  <td style={{ padding: 15, borderBottom: '1px solid #f5f5f5' }}>{badge(c.stats?.patch ?? 0, '#1976d2', 'white')}</td>
                 </tr>
               ))}
             </tbody>
