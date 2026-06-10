@@ -129,7 +129,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', minHeight: 18 }}>
       {d.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#e67e22', color: 'white' }}>RC</span>}
       {d.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#2e7d32', color: 'white' }}>AUTO</span>}
-      {d.num && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#7b1fa2', color: 'white' }}>/{d.num}</span>}
+      {d.num && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#7b1fa2', color: 'white' }}>{d.num}</span>}
       {d.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#1976d2', color: 'white' }}>PATCH</span>}
     </div>
   )
