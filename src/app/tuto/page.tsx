@@ -4,6 +4,19 @@ import Image from 'next/image'
 export default function Tuto() {
   return (
     <div style={{ maxWidth: 800, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+
+      {/* Tutoriel Vidéo */}
+      <h2 style={{ fontWeight: 900, fontSize: 28, marginBottom: 16 }}>🎬 Tutoriel Vidéo</h2>
+      <div style={{ borderRadius: 16, overflow: 'hidden', marginBottom: 48, boxShadow: '0 4px 20px rgba(0,0,0,0.1)', aspectRatio: '16/9', position: 'relative' }}>
+        <iframe
+          src="https://www.youtube.com/embed/bMnV8jGQbGU"
+          title="Tutoriel Memorabilius"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+        />
+      </div>
+
       <h1 style={{ fontWeight: 900, fontSize: 32, marginBottom: 8 }}>Comment créer votre galerie</h1>
       <p style={{ color: '#666', marginBottom: 40, fontSize: 16 }}>Suivez ces 4 étapes simples pour lier votre collection Google Sheets à Memorabilius.</p>
 
@@ -15,7 +28,7 @@ export default function Tuto() {
         </div>
         <p style={{ color: '#555', lineHeight: 1.7, marginBottom: 16 }}>Inscrivez-vous gratuitement avec votre email et choisissez un pseudo.</p>
         <div style={{ borderRadius: 12, overflow: 'hidden', marginBottom: 16, border: '1px solid #eee' }}>
-          <img src="/tuto/tuto1.png" alt="Formulaire d'inscription" style={{ width: '100%', height: 'auto', display: 'block' }} />
+          <img src="/tuto/tuto5.png" alt="Formulaire d'inscription" style={{ width: '100%', height: 'auto', display: 'block' }} />
         </div>
         <Link href="/sinscrire" style={{ display: 'inline-block', background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 14 }}>
           👉 Créer mon compte →
@@ -39,7 +52,7 @@ export default function Tuto() {
           👉 Obtenir la feuille Google Sheets
         </a>
         <div>
-          <a href="https://drive.google.com/uc?export=download&id=1bJklGgu2n-seeWdWixOy-FaGmSPwRx1W" style={{ display: 'inline-block', background: '#f0f0f0', color: '#333', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13 }}>
+          <a href="https://memorabilius.fr/wp-content/uploads/2026/05/Memorabilius-WinMac_.zip" style={{ display: 'inline-block', background: '#f0f0f0', color: '#333', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13 }}>
             💾 Télécharger le programme d'automatisation d'importation des scans
           </a>
         </div>
@@ -70,7 +83,7 @@ export default function Tuto() {
         </div>
         <p style={{ color: '#555', lineHeight: 1.7, marginBottom: 16 }}>Rendez-vous dans votre profil Memorabilius, collez le lien CSV. Votre galerie est générée instantanément !</p>
         <div style={{ borderRadius: 12, overflow: 'hidden', marginBottom: 16, border: '1px solid #eee' }}>
-          <img src="/tuto/tuto5.png" alt="Coller le lien" style={{ width: '100%', height: 'auto', display: 'block' }} />
+          <img src="/tuto/tuto1.png" alt="Coller le lien" style={{ width: '100%', height: 'auto', display: 'block' }} />
         </div>
         <Link href="/profil" style={{ display: 'inline-block', background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 14 }}>
           👉 Aller dans mon profil →
