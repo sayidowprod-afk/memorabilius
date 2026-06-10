@@ -16,6 +16,7 @@ interface Card {
 export default function Galerie({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = use(params)
   const [profile, setProfile] = useState<any>(null)
+  const [resolvedUserId, setResolvedUserId] = useState<string | null>(null)
   const [cards, setCards] = useState<Card[]>([])
   const [filtered, setFiltered] = useState<Card[]>([])
   const [displayed, setDisplayed] = useState<Card[]>([])
@@ -38,10 +39,24 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const isOwner = currentUser === userId
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setCurrentUser(data.user?.id || null))
-    supabase.from('profiles').select('*').eq('id', userId).single().then(({ data }) => {
-      if (data) { setProfile(data); if (data.lien_csv) loadCSV(data.lien_csv) }
-    })
+    const init = async () => {
+      supabase.auth.getUser().then(({ data }) => setCurrentUser(data.user?.id || null))
+      
+      let resolvedId = userId
+      
+      // Si ce n'est pas un UUID, chercher par slug
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+      if (!uuidRegex.test(userId)) {
+        const { data: p } = await supabase.from('profiles').select('id').eq('slug', userId).single()
+        if (p) resolvedId = p.id
+        else return
+      }
+      
+      supabase.from('profiles').select('*').eq('id', resolvedId).single().then(({ data }) => {
+        if (data) { setProfile(data); if (data.lien_csv) loadCSV(data.lien_csv) }
+      })
+    }
+    init()
   }, [userId])
 
   // Charger les cartes privées — toujours, pas seulement pour le propriétaire
