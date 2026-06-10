@@ -129,71 +129,59 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
 
   return (
     <div style={{
-      position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
-      background: '#fff', zIndex: 9999999, display: 'flex',
-      overflow: 'hidden',
+      position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+      background: '#fff', zIndex: 9999999,
+      display: 'flex', overflow: 'hidden',
     }}>
       <style>{`
-        .viewer-layout { display: flex; flex-direction: row; width: 100%; height: 100%; overflow: hidden; }
-        .viewer-zone { flex: 1.2; display: flex; align-items: center; justify-content: center; background: #f8f8f8; perspective: 2000px; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; overflow: hidden; position: relative; }
-        .viewer-info { flex: 0.8; padding: 24px; display: flex; flex-direction: column; justify-content: center; background: white; overflow-y: auto; min-width: 0; }
+        .viewer-layout { display: flex; width: 100%; height: 100%; overflow: hidden; }
+        .viewer-zone { flex: 1.2; position: relative; overflow: hidden; background: #f8f8f8; display: flex; align-items: center; justify-content: center; perspective: 2000px; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; }
+        .viewer-info { flex: 0 0 300px; width: 300px; padding: 24px; display: flex; flex-direction: column; justify-content: center; background: white; overflow-y: auto; }
         @media (max-width: 600px) {
           .viewer-layout { flex-direction: column; }
-          .viewer-zone { flex: 0 0 62vh !important; min-height: 0; }
-          .viewer-info { flex: 1; padding: 12px 14px; justify-content: flex-start; overflow-y: auto; }
-          .viewer-info h2 { font-size: 1.1rem !important; margin: 3px 0 !important; }
-          .viewer-info .v-sub { font-size: 0.85rem !important; margin-bottom: 6px !important; }
+          .viewer-zone { flex: 0 0 65% !important; width: 100% !important; }
+          .viewer-info { flex: 1 !important; width: 100% !important; padding: 10px 14px !important; justify-content: flex-start !important; overflow-y: auto; }
+          .viewer-info h2 { font-size: 1rem !important; margin: 2px 0 !important; }
           .viewer-hint { display: none !important; }
         }
       `}</style>
       <button onClick={onClose} style={{
-        position: 'absolute', top: 12, right: 12, fontSize: 18, cursor: 'pointer',
+        position: 'absolute', top: 10, right: 10, fontSize: 18, cursor: 'pointer',
         background: 'rgba(255,255,255,0.95)', width: 32, height: 32, borderRadius: '50%',
         border: '1px solid #eee', display: 'flex', alignItems: 'center',
-        justifyContent: 'center', zIndex: 10001, lineHeight: 1, flexShrink: 0,
+        justifyContent: 'center', zIndex: 10001,
       }}>×</button>
 
       <div className="viewer-layout">
-        {/* Zone 3D */}
-        <div
-          className="viewer-zone"
-          onMouseDown={onMouseDown}
-          onMouseMove={onMouseMove}
-          onMouseUp={onMouseUp}
-          onMouseLeave={onMouseUp}
-          onDoubleClick={onDoubleClick}
-          onWheel={onWheel}
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
+        <div className="viewer-zone"
+          onMouseDown={onMouseDown} onMouseMove={onMouseMove}
+          onMouseUp={onMouseUp} onMouseLeave={onMouseUp}
+          onDoubleClick={onDoubleClick} onWheel={onWheel}
+          onTouchStart={onTouchStart} onTouchMove={onTouchMove}
           onTouchEnd={() => { isDragging.current = false }}
         >
           <div ref={wrapRef} style={{ willChange: 'transform' }}>
-            <div style={{ transform: 'scale(0.35)', transformOrigin: 'center center' }}>
             <div ref={cardRef} style={{
-              width: 1000, height: 1400,
-              position: 'relative',
-              transformStyle: 'preserve-3d',
-              willChange: 'transform',
+              width: 260, height: 364,
+              position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform',
             }}>
               <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
-                <img src={popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} alt={popup.n} />
+                <img src={popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
               </div>
               <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
-                <img src={popup.b} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} alt={popup.n} />
+                <img src={popup.b} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
               </div>
             </div>
-            </div>
           </div>
-          <p className="viewer-hint" style={{ position: 'absolute', bottom: 10, left: '50%', transform: 'translateX(-50%)', fontSize: 10, color: '#bbb', whiteSpace: 'nowrap', pointerEvents: 'none' }}>
+          <p className="viewer-hint" style={{ position: 'absolute', bottom: 8, left: '50%', transform: 'translateX(-50%)', fontSize: 10, color: '#bbb', whiteSpace: 'nowrap', pointerEvents: 'none' }}>
             Glisser · Scroll pour zoomer · Double-clic pour reset
           </p>
         </div>
 
-        {/* Infos */}
         <div className="viewer-info">
           <div style={{ color: accent, fontWeight: 900, fontSize: 10, textTransform: 'uppercase', marginBottom: 2 }}>{popup.t}</div>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 900, margin: '4px 0' }}>{popup.n}</h2>
-          <div className="v-sub" style={{ fontSize: '0.95rem', color: accent, fontWeight: 700, marginBottom: 8, fontStyle: 'italic' }}>{popup.v}</div>
+          <h2 style={{ fontSize: '1.4rem', fontWeight: 900, margin: '3px 0' }}>{popup.n}</h2>
+          <div style={{ fontSize: '0.9rem', color: accent, fontWeight: 700, marginBottom: 8, fontStyle: 'italic' }}>{popup.v}</div>
           {getTags(popup)}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, borderTop: '1px solid #eee', marginTop: 10, paddingTop: 10 }}>
             {[['Année', popup.y], ['Numérotation', popup.num || 'N/A'], ['Grade', popup.g], ['Collection', `${popup.br} ${popup.s}`]].map(([l, v]) => (
