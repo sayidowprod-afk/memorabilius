@@ -144,16 +144,10 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     const isRPA = d.rc && d.auto && d.patch
     return (
       <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', minHeight: 18 }}>
-        {isRPA ? (
-          <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: 'linear-gradient(135deg, #e67e22, #2e7d32, #1976d2)', color: 'white', letterSpacing: 1 }}>RPA</span>
-        ) : (
-          <>
-            {d.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
-            {d.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
-            {d.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#1976d2', color: 'white' }}>PATCH</span>}
-          </>
-        )}
+        {d.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
+        {d.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
         {d.num && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>/{d.num}</span>}
+        {d.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#1976d2', color: 'white' }}>PATCH</span>}
       </div>
     )
   }
@@ -287,6 +281,15 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
               opacity: privateCards.has(d.f) && isOwner ? 0.7 : 1,
               position: 'relative',
             }}>
+              {/* Badge RPA image */}
+              {d.rc && d.auto && d.patch && (
+                <img src="/rpa-badge.png" alt="RPA" style={{
+                  position: 'absolute', bottom: 6, right: 6,
+                  width: 36, height: 36, objectFit: 'contain',
+                  filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))',
+                  zIndex: 3, pointerEvents: 'none',
+                }} />
+              )}
               {/* Badge privé pour le propriétaire */}
               {isOwner && privateCards.has(d.f) && (
                 <div style={{ position: 'absolute', top: 6, left: 6, background: '#e74c3c', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2 }}>
