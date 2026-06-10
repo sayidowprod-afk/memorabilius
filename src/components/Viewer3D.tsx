@@ -160,7 +160,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
       >
         <div ref={wrapRef} style={{ willChange: 'transform' }}>
           <div ref={cardRef} style={{
-            width: 260, height: 364,
+            width: 400, height: 560,
             position: 'relative',
             transformStyle: 'preserve-3d',
             willChange: 'transform',
@@ -170,11 +170,11 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
               position: 'absolute', inset: 0,
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
-              borderRadius: 8,
+              borderRadius: 0,
               boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
               overflow: 'hidden',
             }}>
-              <img src={popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+              <img src={popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} alt={popup.n} />
             </div>
             {/* Face arrière */}
             <div style={{
@@ -182,11 +182,11 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
               transform: 'rotateY(180deg)',
-              borderRadius: 8,
+              borderRadius: 0,
               boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
               overflow: 'hidden',
             }}>
-              <img src={popup.b} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+              <img src={popup.b} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} alt={popup.n} />
             </div>
           </div>
         </div>
