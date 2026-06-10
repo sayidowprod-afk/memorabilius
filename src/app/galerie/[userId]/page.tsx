@@ -126,11 +126,11 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const toggleFilter = (k: keyof typeof activeFilters) => setActiveFilters(p => ({ ...p, [k]: !p[k] }))
 
   const getTags = (d: Card) => (
-    <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', minHeight: 14 }}>
-      {d.rc && <span style={{ fontSize: 8, fontWeight: 900, padding: '2px 5px', borderRadius: 2, textTransform: 'uppercase', background: '#fff3e0', color: '#e67e22' }}>RC</span>}
-      {d.auto && <span style={{ fontSize: 8, fontWeight: 900, padding: '2px 5px', borderRadius: 2, textTransform: 'uppercase', background: '#e8f5e9', color: '#2e7d32' }}>AUTO</span>}
-      {d.num && <span style={{ fontSize: 8, fontWeight: 900, padding: '2px 5px', borderRadius: 2, textTransform: 'uppercase', background: '#f5f5f5', color: '#444' }}>#{d.num}</span>}
-      {d.patch && <span style={{ fontSize: 8, fontWeight: 900, padding: '2px 5px', borderRadius: 2, textTransform: 'uppercase', background: '#e3f2fd', color: '#1976d2' }}>PATCH</span>}
+    <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', minHeight: 18 }}>
+      {d.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#e67e22', color: 'white' }}>RC</span>}
+      {d.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#2e7d32', color: 'white' }}>AUTO</span>}
+      {d.num && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#555', color: 'white' }}>#{d.num}</span>}
+      {d.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#1976d2', color: 'white' }}>PATCH</span>}
     </div>
   )
 

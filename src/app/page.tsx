@@ -8,6 +8,10 @@ export default async function Home() {
   const { count } = await supabase.from('profiles').select('*', { count: 'exact', head: true })
   const total = count ?? 0
 
+  // Total de cartes depuis les stats en cache
+  const { data: statsData } = await supabase.from('profiles').select('stats_total').not('stats_total', 'is', null)
+  const totalCartes = statsData?.reduce((acc, p) => acc + (p.stats_total || 0), 0) ?? 0
+
   const { data: profiles } = await supabase
     .from('profiles')
     .select('id, display_name, lien_csv')
@@ -55,7 +59,7 @@ export default async function Home() {
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 20, marginBottom: 50 }}>
         {[
           { val: total, label: 'Collectionneurs' },
-          { val: '+300', label: 'Cartes répertoriées' },
+          { val: totalCartes.toLocaleString('fr-FR'), label: 'Cartes répertoriées' },
           { val: '100%', label: 'Interactif & 3D' },
         ].map(s => (
           <div key={s.label} style={{ background: 'white', padding: 30, borderRadius: 15, textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
