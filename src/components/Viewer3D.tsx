@@ -159,8 +159,9 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
         onTouchEnd={() => { isDragging.current = false }}
       >
         <div ref={wrapRef} style={{ willChange: 'transform' }}>
+          <div style={{ transform: 'scale(0.4)', transformOrigin: 'center center' }}>
           <div ref={cardRef} style={{
-            width: 400, height: 560,
+            width: 1000, height: 1400,
             position: 'relative',
             transformStyle: 'preserve-3d',
             willChange: 'transform',
@@ -188,6 +189,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
             }}>
               <img src={popup.b} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} alt={popup.n} />
             </div>
+          </div>
           </div>
         </div>
         <p style={{ position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)', fontSize: 11, color: '#bbb', whiteSpace: 'nowrap' }}>
