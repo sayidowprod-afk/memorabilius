@@ -280,13 +280,14 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
               boxSizing: 'border-box',
               opacity: privateCards.has(d.f) && isOwner ? 0.7 : 1,
               position: 'relative',
+              overflow: 'visible',
             }}>
-              {/* Badge RPA image */}
+              {/* Badge RPA image - à cheval entre photo et infos */}
               {d.rc && d.auto && d.patch && (
                 <img src="/rpa-badge.png" alt="RPA" style={{
-                  position: 'absolute', bottom: 6, right: 6,
-                  width: 36, height: 36, objectFit: 'contain',
-                  filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.5))',
+                  position: 'absolute', bottom: -18, right: 6,
+                  width: 52, height: 52, objectFit: 'contain',
+                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))',
                   zIndex: 3, pointerEvents: 'none',
                 }} />
               )}
