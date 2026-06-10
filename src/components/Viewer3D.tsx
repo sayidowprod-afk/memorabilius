@@ -180,84 +180,27 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
 
       <div className="viewer3d-inner" style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
 
-      {/* Zone 3D */}
+      {/* Zone image - résolution native */}
       <div
         className="viewer3d-zone"
         style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          background: '#f8f8f8', perspective: 2000,
-          cursor: isDragging.current ? 'grabbing' : 'grab',
-          userSelect: 'none', WebkitUserSelect: 'none',
-          touchAction: 'none', overflow: 'hidden', position: 'relative',
+          background: '#111', overflow: 'auto', position: 'relative',
         }}
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onMouseUp}
-        onMouseLeave={onMouseUp}
-        onDoubleClick={onDoubleClick}
-        onWheel={onWheel}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={() => { isDragging.current = false }}
       >
-        <div ref={wrapRef} style={{ willChange: 'transform' }}>
-          <div ref={cardRef} style={{
-            width: 340, height: 476,
-            position: 'relative',
-            transformStyle: 'preserve-3d',
-            willChange: 'transform',
-          }}>
-            {/* Face avant */}
-            <div style={{
-              position: 'absolute', inset: 0,
-              backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden',
-              borderRadius: 0,
-              boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
-              overflow: 'hidden',
-            }}>
-              <img
-                src={popup.f}
-                draggable={false}
-                style={{
-                  width: '100%', height: '100%',
-                  objectFit: 'cover', display: 'block',
-                  imageRendering: 'auto',
-                } as React.CSSProperties}
-                alt={popup.n}
-              />
-            </div>
-            {/* Face arrière */}
-            <div style={{
-              position: 'absolute', inset: 0,
-              backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden',
-              transform: 'rotateY(180deg)',
-              borderRadius: 0,
-              boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
-              overflow: 'hidden',
-            }}>
-              <img
-                src={popup.b}
-                draggable={false}
-                style={{
-                  width: '100%', height: '100%',
-                  objectFit: 'cover', display: 'block',
-                  imageRendering: 'auto',
-                } as React.CSSProperties}
-                alt={popup.n}
-              />
-            </div>
-          </div>
-        </div>
-        <p style={{
-          position: 'absolute', bottom: 16,
-          left: '50%', transform: 'translateX(-50%)',
-          fontSize: 11, color: '#bbb', whiteSpace: 'nowrap',
-          pointerEvents: 'none',
-        }}>
-          Glisser · Scroll pour zoomer · Double-clic pour zoom/reset
-        </p>
+        <img
+          src={popup.f}
+          alt={popup.n}
+          style={{
+            maxWidth: '100%',
+            maxHeight: '100%',
+            objectFit: 'contain',
+            display: 'block',
+            userSelect: 'none',
+            boxShadow: '0 8px 40px rgba(0,0,0,0.5)',
+          }}
+          draggable={false}
+        />
       </div>
 
       {/* Infos */}
