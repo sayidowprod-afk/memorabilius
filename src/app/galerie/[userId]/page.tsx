@@ -298,16 +298,8 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                   {privateCards.has(d.f) ? '🔓 Rendre public' : '🔒 Rendre privé'}
                 </button>
               )}
-              <div style={{ width: '100%', aspectRatio: '2.5/3.5', marginBottom: 8, overflow: 'visible', position: 'relative' }}>
+              <div style={{ width: '100%', aspectRatio: '2.5/3.5', marginBottom: 8, overflow: 'hidden', position: 'relative' }}>
                 <img src={d.f} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={d.n} />
-                {/* Badge RPA à cheval entre image et infos */}
-                {d.rc && d.auto && d.patch && (
-                  <img src="/rpa-badge.png" alt="RPA" style={{
-                    position: 'absolute', bottom: -28, right: 4,
-                    width: 64, height: 64, objectFit: 'contain',
-                    zIndex: 4, pointerEvents: 'none',
-                  }} />
-                )}
               </div>
               {getTags(d)}
               <p style={{ fontWeight: 800, fontSize: 13, margin: '4px 0 0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.n}</p>

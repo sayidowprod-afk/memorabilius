@@ -198,3 +198,32 @@ nav {
 @media (max-width: 480px) {
   div[style*="width: 260"][style*="height: 364"] { width: 200px !important; height: 280px !important; }
 }
+
+/* ===== PERFORMANCE MOBILE ===== */
+/* Éviter les repaints inutiles */
+img {
+  content-visibility: auto;
+}
+
+/* Améliorer le rendu des polices */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* Réduire les animations sur mobile */
+@media (max-width: 768px) {
+  * {
+    animation-duration: 0.1s !important;
+    transition-duration: 0.1s !important;
+  }
+  .btn-main:hover {
+    transform: none !important;
+  }
+}
+
+/* Lazy loading natif */
+img[loading="lazy"] {
+  content-visibility: auto;
+}
