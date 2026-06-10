@@ -303,9 +303,8 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                 {/* Badge RPA à cheval entre image et infos */}
                 {d.rc && d.auto && d.patch && (
                   <img src="/rpa-badge.png" alt="RPA" style={{
-                    position: 'absolute', bottom: -22, right: 4,
-                    width: 48, height: 48, objectFit: 'contain',
-                    filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.6))',
+                    position: 'absolute', bottom: -28, right: 4,
+                    width: 64, height: 64, objectFit: 'contain',
                     zIndex: 4, pointerEvents: 'none',
                   }} />
                 )}
