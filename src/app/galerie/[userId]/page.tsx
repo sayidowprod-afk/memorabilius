@@ -129,7 +129,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', minHeight: 18 }}>
       {d.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#e67e22', color: 'white' }}>RC</span>}
       {d.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#2e7d32', color: 'white' }}>AUTO</span>}
-      {d.num && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#555', color: 'white' }}>#{d.num}</span>}
+      {d.num && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#7b1fa2', color: 'white' }}>/{d.num}</span>}
       {d.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, textTransform: 'uppercase', background: '#1976d2', color: 'white' }}>PATCH</span>}
     </div>
   )
@@ -194,6 +194,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                 { val: filtered.length, label: 'Cartes' },
                 { val: filtered.filter(c => c.rc).length, label: 'RC', color: '#e67e22' },
                 { val: filtered.filter(c => c.auto).length, label: 'Auto', color: '#2e7d32' },
+                { val: filtered.filter(c => c.num).length, label: 'Num', color: '#7b1fa2' },
                 { val: filtered.filter(c => c.patch).length, label: 'Patch', color: '#1976d2' },
               ].map(s => (
                 <div key={s.label} style={{ textAlign: 'center' }}>
@@ -212,6 +213,8 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                   {editMode ? '✓ Terminer' : '🔒 Gérer la confidentialité'}
                 </button>
               )}
+            </div>
+          )}
             </div>
           )}
         </div>

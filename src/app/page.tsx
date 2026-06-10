@@ -9,7 +9,11 @@ export default async function Home() {
   const total = count ?? 0
 
   // Total de cartes depuis les stats en cache
-  const { data: statsData } = await supabase.from('profiles').select('stats_total').not('stats_total', 'is', null)
+  const { data: statsData } = await supabase
+    .from('profiles')
+    .select('stats_total')
+    .not('lien_csv', 'is', null)
+    .neq('lien_csv', '')
   const totalCartes = statsData?.reduce((acc, p) => acc + (p.stats_total || 0), 0) ?? 0
 
   const { data: profiles } = await supabase
