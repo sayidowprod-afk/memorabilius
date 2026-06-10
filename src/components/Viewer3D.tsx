@@ -7,7 +7,7 @@ interface Card {
   auto: boolean; rc: boolean; patch: boolean; g: string
 }
 
-const BASE_SCALE = 1.4 // zoom de base légèrement plus grand
+const BASE_SCALE = 1.0 // pas de zoom artificiel qui dégrade la qualité
 
 export default function Viewer3D({ popup, accent, onClose, getTags }: {
   popup: Card
@@ -202,7 +202,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
       >
         <div ref={wrapRef} style={{ willChange: 'transform' }}>
           <div ref={cardRef} style={{
-            width: 260, height: 364,
+            width: 340, height: 476,
             position: 'relative',
             transformStyle: 'preserve-3d',
             willChange: 'transform',
@@ -222,8 +222,9 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
                 style={{
                   width: '100%', height: '100%',
                   objectFit: 'cover', display: 'block',
-                  imageRendering: 'auto',
-                }}
+                  imageRendering: 'high-quality',
+                  WebkitImageRendering: '-webkit-optimize-contrast',
+                } as React.CSSProperties}
                 alt={popup.n}
               />
             </div>
@@ -243,8 +244,9 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
                 style={{
                   width: '100%', height: '100%',
                   objectFit: 'cover', display: 'block',
-                  imageRendering: 'auto',
-                }}
+                  imageRendering: 'high-quality',
+                  WebkitImageRendering: '-webkit-optimize-contrast',
+                } as React.CSSProperties}
                 alt={popup.n}
               />
             </div>
