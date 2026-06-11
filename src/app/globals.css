@@ -227,3 +227,24 @@ body {
 img[loading="lazy"] {
   content-visibility: auto;
 }
+
+/* Éviter le layout shift */
+img { aspect-ratio: attr(width) / attr(height); }
+.card-grid img { aspect-ratio: 2.5/3.5; }
+
+/* Forcer le rendu immédiat du contenu above-the-fold */
+nav, main > *:first-child { contain: layout style; }
+
+/* ===== LCP / FCP OPTIMISATIONS ===== */
+/* Réduire le layout shift */
+.card-item { contain: layout style; }
+.card-grid { contain: layout; }
+
+/* Précharger le contenu visible */
+section { contain: layout style; }
+
+/* Éviter le FOUC sur les images */
+img { 
+  aspect-ratio: attr(width) / attr(height);
+  background: #f0f0f0;
+}

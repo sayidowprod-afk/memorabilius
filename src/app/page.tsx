@@ -2,13 +2,12 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import PepitesSection from '@/components/PepitesSection'
 
-export const revalidate = 0
+export const revalidate = 300
 
 export default async function Home() {
   const { count } = await supabase.from('profiles').select('*', { count: 'exact', head: true })
   const total = count ?? 0
 
-  // Total de cartes depuis les stats en cache
   const { data: statsData } = await supabase
     .from('profiles')
     .select('stats_total')
@@ -28,11 +27,13 @@ export default async function Home() {
   return (
     <div>
       <section style={{
-        textAlign: 'center', padding: '80px 20px',
+        textAlign: 'center', padding: '60px 20px',
         background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
         borderRadius: 20, marginBottom: 40,
+        contain: 'layout style',
       }}>
-        <h1 style={{ fontSize: '3.5rem', fontWeight: 900, color: '#121212', marginBottom: 20, lineHeight: 1 }}>
+        {/* LCP element — texte principal rendu immédiatement */}
+        <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, color: '#121212', marginBottom: 20, lineHeight: 1 }}>
           Exposez votre passion en 3D.
         </h1>
         <p style={{ fontSize: '1.2rem', color: '#666', maxWidth: 600, margin: '0 auto 30px' }}>

@@ -146,7 +146,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
       <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', minHeight: 18 }}>
         {d.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
         {d.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
-        {d.num && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>{d.num}</span>}
+        {d.num && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>/{d.num}</span>}
         {d.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#1976d2', color: 'white' }}>PATCH</span>}
       </div>
     )
@@ -262,9 +262,23 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
           </div>
         </div>
 
-        {!loaded && <p style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>
-          {profile?.lien_csv ? 'Chargement des cartes...' : 'Ce collectionneur n\'a pas encore lié sa galerie.'}
-        </p>}
+        {!loaded && profile?.lien_csv && (
+          <div className="card-grid">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <div key={i} className="card-item" style={{ borderRadius: 8, overflow: 'hidden', background: '#f0f0f0' }}>
+                <div style={{ width: '100%', aspectRatio: '2.5/3.5', background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)', backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite' }} />
+                <div style={{ padding: 8 }}>
+                  <div style={{ height: 10, background: '#e0e0e0', borderRadius: 4, marginBottom: 6, width: '80%' }} />
+                  <div style={{ height: 8, background: '#e8e8e8', borderRadius: 4, width: '60%' }} />
+                </div>
+              </div>
+            ))}
+            <style>{`@keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }`}</style>
+          </div>
+        )}
+        {!loaded && !profile?.lien_csv && (
+          <p style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>Ce collectionneur n'a pas encore lié sa galerie.</p>
+        )}
 
         <style>{`
           .card-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }

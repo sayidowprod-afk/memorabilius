@@ -5,7 +5,12 @@ import Navbar from '@/components/Navbar'
 import { ThemeProvider } from '@/lib/ThemeContext'
 import PWAInstall from '@/components/PWAInstall'
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' })
+const inter = Inter({ 
+  subsets: ['latin'], 
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial'],
+})
 
 export const viewport: Viewport = {
   width: 'device-width',
