@@ -137,11 +137,14 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
         .viewer-layout { display: flex; width: 100%; height: 100%; overflow: hidden; }
         .viewer-zone { flex: 1.2; position: relative; overflow: hidden; background: #f8f8f8; display: flex; align-items: center; justify-content: center; perspective: 2000px; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; }
         .viewer-info { flex: 0.8; padding: 30px; display: flex; flex-direction: column; justify-content: center; background: white; overflow-y: auto; }
+        .viewer-card { width: 560px; height: 784px; }
+        @media (max-width: 1200px) { .viewer-card { width: 420px; height: 588px; } }
         @media (max-width: 600px) {
           .viewer-layout { flex-direction: column; }
           .viewer-zone { flex: 0 0 65% !important; width: 100% !important; }
           .viewer-info { flex: 1 !important; width: 100% !important; padding: 10px 14px !important; justify-content: flex-start !important; }
           .viewer-info h2 { font-size: 1rem !important; margin: 2px 0 !important; }
+          .viewer-card { width: 240px !important; height: 336px !important; }
           .viewer-hint { display: none !important; }
         }
       `}</style>
@@ -161,8 +164,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
           onTouchEnd={() => { isDragging.current = false }}
         >
           <div ref={wrapRef} style={{ willChange: 'transform' }}>
-            <div ref={cardRef} style={{
-              width: 420, height: 588,
+            <div ref={cardRef} className="viewer-card" style={{
               position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform',
             }}>
               <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
