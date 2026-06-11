@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import { ThemeProvider } from '@/lib/ThemeContext'
+import { LangProvider } from '@/lib/LangContext'
 import PWAInstall from '@/components/PWAInstall'
 
 const inter = Inter({ 
@@ -66,11 +67,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr">
       <body className={inter.className}>
         <ThemeProvider>
-          <Navbar />
-          <main style={{ maxWidth: 1400, margin: '0 auto', padding: '20px 16px' }}>
-            {children}
-          </main>
-          <PWAInstall />
+          <LangProvider>
+            <Navbar />
+            <main style={{ maxWidth: 1400, margin: '0 auto', padding: '20px 16px' }}>
+              {children}
+            </main>
+            <PWAInstall />
+          </LangProvider>
         </ThemeProvider>
       </body>
     </html>
