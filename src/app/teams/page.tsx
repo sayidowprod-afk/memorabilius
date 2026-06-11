@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { useLang } from '@/lib/LangContext'
 
 export default function Teams() {
   const router = useRouter()
+  const { t, lang } = useLang()
   const [teams, setTeams] = useState<any[]>([])
   const [teamsStats, setTeamsStats] = useState<any[]>([])
   const [search, setSearch] = useState('')
@@ -86,10 +88,10 @@ export default function Teams() {
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
-        <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>Annuaire des Teams</h1>
+        <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}{t('teams_title')}</h1>
         {userId && !userTeamId && (
           <button onClick={() => setShowCreate(!showCreate)} className="btn-main btn-primary" style={{ padding: '10px 20px', fontSize: 13 }}>
-            + Créer ma Team
+            + {t('teams_create')}
           </button>
         )}
         {userId && userTeamId && (
@@ -100,7 +102,7 @@ export default function Teams() {
       </div>
 
       <div style={{ marginBottom: 16 }}>
-        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher une team..." style={{ maxWidth: 400 }} />
+        <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('teams_search')} style={{ maxWidth: 400 }} />
       </div>
 
       {showCreate && (
@@ -158,7 +160,7 @@ export default function Teams() {
                   </td>
                   <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}>
                     {isMyTeam ? (
-                      <Link href={`/teams/${team.id}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13 }}>Ma Team ✓</Link>
+                      <Link href={`/teams/${team.id}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13 }}>{t('teams_my_team')}</Link>
                     ) : pending ? (
                       <span style={{ color: '#e67e22', fontWeight: 700, fontSize: 13 }}>⏳ En attente</span>
                     ) : userId && !userTeamId ? (

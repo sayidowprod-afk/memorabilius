@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabase'
 import Viewer3D from '@/components/Viewer3D'
 import ShareButton from '@/components/ShareButton'
 import OnlineIndicator from '@/components/OnlineIndicator'
+import { useLang } from '@/lib/LangContext'
 
 const PAGE_SIZE = 48
 
@@ -37,6 +38,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const loaderRef = useRef<HTMLDivElement>(null)
 
   const isOwner = currentUser === userId
+  const { t, lang } = useLang()
 
   useEffect(() => {
     const init = async () => {
@@ -200,7 +202,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                   display: 'flex', alignItems: 'center', gap: 5, fontSize: 13, fontWeight: 700,
                   color: 'white', background: accent, padding: '6px 14px', borderRadius: 20, textDecoration: 'none'
                 }}>
-                  💬 Envoyer un message
+                  {t('gallery_message')}
                 </a>
               )}
             </div>
@@ -228,7 +230,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                   fontWeight: 700, fontSize: 12, cursor: 'pointer',
                   marginLeft: 8,
                 }}>
-                  {editMode ? '✓ Terminer' : '🔒 Gérer la confidentialité'}
+                  {editMode ? t('gallery_done') : t('gallery_privacy')}
                 </button>
               )}
             </div>
@@ -238,18 +240,18 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
         <div style={{ background: '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: '1px solid #eee' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>Recherche</label>
-              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Joueur..." /></div>
+              <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('gallery_search')} /></div>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>Équipe</label>
               <select value={fTeam} onChange={e => setFTeam(e.target.value)}>
-                <option value="">Toutes</option>{teams.map(t => <option key={t}>{t}</option>)}
+                <option value=""{t('gallery_all')}</option>{teams.map(t => <option key={t}>{t}</option>)}
               </select></div>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>Collection</label>
               <select value={fBrand} onChange={e => setFBrand(e.target.value)}>
-                <option value="">Toutes</option>{brands.map(b => <option key={b}>{b}</option>)}
+                <option value=""{t('gallery_all')}</option>{brands.map(b => <option key={b}>{b}</option>)}
               </select></div>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>Année</label>
               <select value={fYear} onChange={e => setFYear(e.target.value)}>
-                <option value="">Toutes</option>{years.map(y => <option key={y}>{y}</option>)}
+                <option value=""{t('gallery_all')}</option>{years.map(y => <option key={y}>{y}</option>)}
               </select></div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5 }}>
@@ -298,7 +300,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
             }}>
               {isOwner && privateCards.has(d.f) && (
                 <div style={{ position: 'absolute', top: 6, left: 6, background: '#e74c3c', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2 }}>
-                  🔒 PRIVÉ
+                  {t('gallery_private')}
                 </div>
               )}
               {/* Bouton toggle privé en mode édition */}
@@ -309,7 +311,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                   color: 'white', border: 'none', borderRadius: 6,
                   padding: '4px 8px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
                 }}>
-                  {privateCards.has(d.f) ? '🔓 Rendre public' : '🔒 Rendre privé'}
+                  {privateCards.has(d.f) ? t('gallery_make_public') : t('gallery_make_private')}
                 </button>
               )}
               <div style={{ width: '100%', aspectRatio: '2.5/3.5', marginBottom: 8, overflow: 'hidden', position: 'relative' }}>
@@ -332,7 +334,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                 <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
               </div>
             ) : filtered.length > 0 ? (
-              <p style={{ color: '#bbb', fontSize: 12 }}>{filtered.length} carte{filtered.length > 1 ? 's' : ''} au total</p>
+              <p style={{ color: '#bbb', fontSize: 12 }}>{filtered.length} {t('gallery_total')}</p>
             ) : null}
           </div>
         )}

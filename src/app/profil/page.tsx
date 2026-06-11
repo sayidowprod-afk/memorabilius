@@ -3,9 +3,11 @@ import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { useLang } from '@/lib/LangContext'
 
 export default function Profil() {
   const router = useRouter()
+  const { t, lang } = useLang()
   const [userId, setUserId] = useState<string | null>(null)
   const [form, setForm] = useState({ display_name: '', lien_csv: '', couleur_bordure: '#003DA6', lien_logo: '', instagram: '', twitter: '', discord: '' })
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
@@ -53,7 +55,22 @@ export default function Profil() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!userId) return
-    const { error } = await supabase.from('profiles').update({ display_name: form.display_name, lien_csv: form.lien_csv, couleur_bordure: form.couleur_bordure, lien_logo: form.lien_logo, instagram: form.instagram, twitter: form.twitter, discord: form.discord }).eq('id', userId)
+    const slug = form.display_name
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '') + '-' + userId.substring(0, 4)
+
+    const { error } = await supabase.from('profiles').update({
+      display_name: form.display_name,
+      lien_csv: form.lien_csv,
+      couleur_bordure: form.couleur_bordure,
+      lien_logo: form.lien_logo,
+      instagram: form.instagram,
+      twitter: form.twitter,
+      discord: form.discord,
+      slug,
+    }).eq('id', userId)
     if (!error) {
       setCsvLinked(!!form.lien_csv)
       if (form.lien_csv) fetch('/api/update-stats', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId, csvUrl: form.lien_csv }) })
@@ -76,7 +93,7 @@ export default function Profil() {
 
   return (
     <div style={{ maxWidth: 600, margin: '40px auto' }}>
-      <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 30 }}>Mon profil</h1>
+      <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 30 }}{t('profile_title')}</h1>
 
       {csvLinked ? (
         <div style={{ background: '#eef2f7', borderLeft: '4px solid #2ecc71', padding: 15, borderRadius: 8, marginBottom: 24 }}>
@@ -92,7 +109,7 @@ export default function Profil() {
 
       {/* Avatar */}
       <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
-        <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 16 }}>Photo de profil</label>
+        <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 16 }}{t('profile_photo')}</label>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <div style={{ position: 'relative' }}>
             <img src={avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(form.display_name || 'U')}&background=003DA6&color=fff&size=128`}
@@ -101,7 +118,7 @@ export default function Profil() {
           </div>
           <div>
             <button onClick={() => fileRef.current?.click()} disabled={uploading} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer', display: 'block', marginBottom: 6 }}>
-              {uploading ? 'Upload en cours...' : '📷 Changer ma photo'}
+              {uploading ? 'Upload en cours...' : '{t('profile_change_photo')}'}
             </button>
             <p style={{ fontSize: 11, color: '#999', margin: 0 }}>JPG, PNG ou WEBP · Max 2 Mo</p>
           </div>
@@ -113,7 +130,7 @@ export default function Profil() {
       <div style={{ background: 'white', borderRadius: 16, padding: 40, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Pseudo</label>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}{t('profile_pseudo')}</label>
             <input value={form.display_name} onChange={e => setForm({ ...form, display_name: e.target.value })} placeholder="Votre pseudo" />
           </div>
           <div>
@@ -140,25 +157,25 @@ export default function Profil() {
             </div>
           </div>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Couleur des bordures</label>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}{t('profile_border')}</label>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <input type="color" value={form.couleur_bordure} onChange={e => setForm({ ...form, couleur_bordure: e.target.value })} style={{ width: 50, height: 40, padding: 2, cursor: 'pointer' }} />
               <span style={{ fontSize: 13, color: '#666' }}>{form.couleur_bordure}</span>
             </div>
           </div>
           <button type="submit" className="btn-main btn-primary" style={{ background: saved ? '#2ecc71' : undefined, borderColor: saved ? '#2ecc71' : undefined }}>
-            {saved ? '✓ Sauvegardé !' : 'Sauvegarder'}
+            {saved ? t('profile_saved') : t('profile_save')}
           </button>
         </form>
       </div>
 
       {/* Zone danger */}
       <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #ffebee' }}>
-        <h3 style={{ fontWeight: 800, color: '#e74c3c', marginBottom: 8 }}>⚠️ Zone de danger</h3>
+        <h3 style={{ fontWeight: 800, color: '#e74c3c', marginBottom: 8 }}{t('profile_danger')}</h3>
         <p style={{ fontSize: 13, color: '#666', marginBottom: 16, lineHeight: 1.5 }}>La suppression de votre compte est irréversible. Toutes vos données seront perdues.</p>
         {!showDelete ? (
           <button onClick={() => setShowDelete(true)} style={{ background: '#fff5f5', color: '#e74c3c', border: '1px solid #ffcdd2', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-            Supprimer mon compte
+            {t('profile_delete')}
           </button>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -170,7 +187,7 @@ export default function Profil() {
                 color: deleteConfirm === 'SUPPRIMER' ? 'white' : '#999',
                 border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13
               }}>
-                {deleting ? 'Suppression...' : 'Supprimer définitivement'}
+                {deleting ? 'Suppression...' : '{t('profile_delete_btn')}'}
               </button>
               <button onClick={() => { setShowDelete(false); setDeleteConfirm('') }} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
                 Annuler

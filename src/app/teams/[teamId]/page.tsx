@@ -3,10 +3,12 @@ import { useEffect, useState, useRef, use } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { useLang } from '@/lib/LangContext'
 
 export default function TeamPage({ params }: { params: Promise<{ teamId: string }> }) {
   const { teamId } = use(params)
   const router = useRouter()
+  const { t, lang } = useLang()
   const [team, setTeam] = useState<any>(null)
   const [members, setMembers] = useState<any[]>([])
   const [membersStats, setMembersStats] = useState<any[]>([])
@@ -150,7 +152,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               <h1 style={{ fontWeight: 900, fontSize: 26, margin: '0 0 4px' }}>{team.name}</h1>
               {isChef && (
                 <Link href={`/teams/${teamId}/editer`} style={{ background: '#f0f0f0', color: '#444', padding: '4px 12px', borderRadius: 6, fontWeight: 700, fontSize: 12 }}>
-                  ✏️ Modifier
+                  {t('teams_modify')}
                 </Link>
               )}
             </div>
@@ -177,7 +179,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           <div style={{ display: 'flex', gap: 10 }}>
             {!isMember && !hasCandidature && currentUser && (
               <button onClick={postuler} style={{ background: accent, color: 'white', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
-                Rejoindre la team
+                {t('teams_join')}
               </button>
             )}
             {hasCandidature && !isMember && (
@@ -188,11 +190,11 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             {isMember && <span style={{ color: accent, fontWeight: 700, fontSize: 14 }}>✓ Membre</span>}
             {isMember && !isChef && (
               <button onClick={async () => {
-                if (!confirm('Quitter la team ?')) return
+                if (!confirm('{t('teams_leave')} ?')) return
                 await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser)
                 router.push('/teams')
               }} style={{ background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 8, padding: '8px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-                Quitter la team
+                {t('teams_leave')}
               </button>
             )}
           </div>
@@ -202,9 +204,9 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       {/* Onglets */}
       <div style={{ display: 'flex', gap: 4, marginBottom: 20 }}>
         {[
-          { key: 'membres', label: `👥 Membres (${members.length})` },
-          { key: 'chat', label: '💬 Chat', show: isMember },
-          { key: 'candidatures', label: `📋 Candidatures (${candidatures.length})`, show: isChef },
+          { key: 'membres', label: `👥 ${t('teams_members')} (${members.length})` },
+          { key: 'chat', label: t('teams_chat'), show: isMember },
+          { key: 'candidatures', label: `📋 ${lang === 'fr' ? 'Candidatures' : 'Applications'} (${candidatures.length})`, show: isChef },
         ].filter(t => t.show !== false).map(t => (
           <button key={t.key} onClick={() => setActiveTab(t.key as any)} style={{
             padding: '10px 20px', border: 'none', borderRadius: 8, cursor: 'pointer',
@@ -264,7 +266,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                             border: 'none', borderRadius: 6, padding: '5px 10px',
                             fontWeight: 700, fontSize: 11, cursor: 'pointer'
                           }}>
-                            {role === 'admin' ? '↓ Rétrograder' : '↑ Promouvoir'}
+                            {role === 'admin' ? '{t('teams_demote')}' : '{t('teams_promote')}'}
                           </button>
                         )}
                         {role !== 'chef' && (
@@ -295,7 +297,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         <div style={{ background: 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', height: 500 }}>
           <div style={{ padding: '16px 20px', borderBottom: '1px solid #f0f0f0', fontWeight: 800 }}>💬 Chat de la team</div>
           <div style={{ flex: 1, overflowY: 'auto', padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {messages.length === 0 && <p style={{ textAlign: 'center', color: '#bbb', marginTop: 40 }}>Aucun message — soyez le premier à écrire !</p>}
+            {messages.length === 0 && <p style={{ textAlign: 'center', color: '#bbb', marginTop: 40 }}>{t('teams_no_message')}</p>}
             {messages.map(msg => {
               const isMe = msg.user_id === currentUser
               return (
@@ -318,7 +320,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           </div>
           <div style={{ padding: '12px 16px', borderTop: '1px solid #f0f0f0', display: 'flex', gap: 10 }}>
             <input value={newMsg} onChange={e => setNewMsg(e.target.value)} onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()} placeholder="Votre message..." style={{ flex: 1 }} />
-            <button onClick={sendMessage} style={{ background: accent, color: 'white', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer' }}>Envoyer</button>
+            <button onClick={sendMessage} style={{ background: accent, color: 'white', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer' }}{t('teams_send')}</button>
           </div>
         </div>
       )}
@@ -327,7 +329,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         <div style={{ background: 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', overflow: 'hidden' }}>
           <div style={{ padding: '16px 20px', borderBottom: '1px solid #f0f0f0', fontWeight: 800 }}>📋 Candidatures en attente</div>
           {candidatures.length === 0 ? (
-            <p style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>Aucune candidature en attente</p>
+            <p style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>{t('teams_no_candidatures')}</p>
           ) : (
             candidatures.map(cand => (
               <div key={cand.id} style={{ padding: '16px 20px', borderBottom: '1px solid #f5f5f5', display: 'flex', alignItems: 'center', gap: 16 }}>

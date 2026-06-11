@@ -2,8 +2,10 @@
 import { useEffect, useState, useRef, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { useLang } from '@/lib/LangContext'
 
 function MessagesContent() {
+  const { t } = useLang()
   const router = useRouter()
   const searchParams = useSearchParams()
   const toParam = searchParams.get('to')
@@ -120,11 +122,11 @@ function MessagesContent() {
       {/* Liste conversations */}
       <div className="msg-list" style={{ width: 280, background: 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
         <div style={{ padding: '20px 16px', borderBottom: '1px solid #f0f0f0' }}>
-          <h2 style={{ fontWeight: 900, fontSize: 18, margin: 0 }}>Messages</h2>
+          <h2 style={{ fontWeight: 900, fontSize: 18, margin: 0 }}>{t('messages_title')}</h2>
         </div>
         <div style={{ overflowY: 'auto', flex: 1 }}>
           {conversations.length === 0 && (
-            <p style={{ padding: 20, color: '#bbb', fontSize: 13, textAlign: 'center' }}>Aucune conversation</p>
+            <p style={{ padding: 20, color: '#bbb', fontSize: 13, textAlign: 'center' }}{t('messages_none')}</p>
           )}
           {conversations.map(conv => (
             <div key={conv.id} onClick={() => selectConv(conv.id)} style={{
@@ -150,7 +152,7 @@ function MessagesContent() {
       <div className="msg-chat" style={{ flex: 1, background: 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         {!activeConv ? (
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#bbb' }}>
-            <p>Sélectionnez une conversation</p>
+            <p{t('messages_select')}</p>
           </div>
         ) : (
           <>
@@ -194,13 +196,13 @@ function MessagesContent() {
                 value={newMsg}
                 onChange={e => setNewMsg(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()}
-                placeholder="Votre message..."
+                placeholder={t('messages_placeholder')}
                 style={{ flex: 1 }}
               />
               <button onClick={sendMessage} style={{
                 background: '#003DA6', color: 'white', border: 'none',
                 padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 14, cursor: 'pointer'
-              }}>Envoyer</button>
+              }}{t('messages_send')}</button>
             </div>
           </>
         )}

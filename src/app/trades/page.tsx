@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { useLang } from '@/lib/LangContext'
 
 function ImageZoom({ src, alt }: { src: string; alt: string }) {
   const [zoomed, setZoomed] = useState(false)
@@ -57,6 +58,7 @@ function ImageZoom({ src, alt }: { src: string; alt: string }) {
 
 export default function Trades() {
   const router = useRouter()
+  const { t, lang } = useLang()
   const [trades, setTrades] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
@@ -137,18 +139,17 @@ export default function Trades() {
   return (
     <div style={{ maxWidth: 1200, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
-        <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>Trades</h1>
+        <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>{t('trades_title')}</h1>
         <Link href="/trades/nouveau" className="btn-main btn-primary" style={{ padding: '10px 24px', fontSize: 14 }}>
-          + Poster une annonce
+          {t('trades_post')}
         </Link>
       </div>
 
       {/* Filtres */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 20 }}>
-        {/* Ligne 1 : recherche + type */}
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher un joueur, une carte..." style={{ flex: 1, minWidth: 200 }} />
-          <input value={fEquipe} onChange={e => setFEquipe(e.target.value)} placeholder="Filtrer par équipe..." style={{ width: 180 }} />
+          <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('trades_search')} style={{ flex: 1, minWidth: 200 }} />
+          <input value={fEquipe} onChange={e => setFEquipe(e.target.value)} placeholder={lang === 'fr' ? 'Filtrer par équipe...' : 'Filter by team...'} style={{ width: 180 }} />
           <div style={{ display: 'flex', gap: 8 }}>
             {(['tous', 'offre', 'recherche'] as const).map(f => (
               <button key={f} onClick={() => setFilter(f)} style={{
@@ -156,7 +157,7 @@ export default function Trades() {
                 fontWeight: 700, fontSize: 13,
                 background: filter === f ? '#003DA6' : '#f0f0f0',
                 color: filter === f ? 'white' : '#333',
-              }}>{f === 'tous' ? 'Tous' : f === 'offre' ? '📤 Offres' : '📥 Recherches'}</button>
+              }}>{f === 'tous' ? t('trades_all') : f === 'offre' ? t('trades_offers') : t('trades_searches')}</button>
             ))}
           </div>
         </div>

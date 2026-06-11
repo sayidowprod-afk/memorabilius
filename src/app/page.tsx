@@ -1,6 +1,6 @@
 import { supabase } from '@/lib/supabase'
 import PepitesSection from '@/components/PepitesSection'
-import HomeHero from '@/components/HomeHero'
+import HomeClient from '@/components/HomeClient'
 
 export const revalidate = 300
 
@@ -26,7 +26,7 @@ export default async function Home() {
 
   return (
     <div>
-      <HomeHero total={total} totalCartes={totalCartes} />
+      <HomeClient total={total} totalCartes={totalCartes} />
       <PepitesSection profiles={profiles || []} />
     </div>
   )
