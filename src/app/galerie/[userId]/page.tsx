@@ -8,9 +8,11 @@ import { useLang } from '@/lib/LangContext'
 const PAGE_SIZE = 48
 
 interface Card {
+  id_manuelle?: string; // Identifiant unique pour la suppression en BDD
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string
   auto: boolean; rc: boolean; patch: boolean; g: string
+  isManuelle?: boolean; // Permet de distinguer l'origine de la carte
 }
 
 export default function Galerie({ params }: { params: Promise<{ userId: string }> }) {
@@ -75,6 +77,28 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     }
   }
 
+  // Nouvelle fonction pour supprimer définitivement une carte ajoutée à la main
+  const handleDeleteCard = async (idManuelle: string, cardKey: string) => {
+    if (!currentUser || currentUser !== userId) return
+    const confirmation = window.confirm(lang === 'fr' ? 'Supprimer définitivement cette carte de votre galerie ?' : 'Permanently delete this card from your gallery?')
+    if (!confirmation) return
+
+    try {
+      // 1. Suppression de la table des cartes manuelles
+      const { error } = await supabase.from('cartes_manuelles').delete().eq('id', idManuelle).eq('user_id', userId)
+      if (error) throw error
+
+      // 2. Nettoyage de sa visibilité si elle était en mode privé
+      await supabase.from('cartes_privees').delete().eq('user_id', userId).eq('card_key', cardKey)
+      
+      // 3. Mise à jour de l'état local pour faire disparaître l'élément instantanément
+      setCards(prev => prev.filter(c => c.id_manuelle !== idManuelle))
+      setPrivateCards(prev => { const s = new Set(prev); s.delete(cardKey); return s })
+    } catch (e: any) {
+      alert('Erreur lors de la suppression : ' + e.message)
+    }
+  }
+
   const loadCSV = async (url: string) => {
     try {
       const r = await fetch(url + '&t=' + Date.now())
@@ -90,18 +114,19 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
           num: c[8] || '', auto: c[9]?.toLowerCase().includes('oui') || false,
           rc: c[10]?.toLowerCase().includes('oui') || false,
           patch: c[11]?.toLowerCase().includes('oui') || false,
-          g: c[12] || 'Raw'
+          g: c[12] || 'Raw', isManuelle: false
         }
       }).filter(Boolean) as Card[]
 
       const { data: manuelles } = await supabase.from('cartes_manuelles').select('*').eq('user_id', userId)
       const cartesM: Card[] = (manuelles || []).map((m: any) => ({
+        id_manuelle: m.id, // ID unique en BDD
         f: m.image_recto || 'https://placehold.co/300x420?text=No+Image',
         b: m.image_verso || m.image_recto || 'https://placehold.co/300x420?text=No+Image',
         n: m.nom || '', t: m.equipe || '', y: m.annee || '',
         br: m.collection || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', auto: m.auto || false, rc: m.rc || false,
-        patch: m.patch || false, g: m.grade || 'Raw',
+        patch: m.patch || false, g: m.grade || 'Raw', isManuelle: true
       }))
 
       const allCards = [...parsed, ...cartesM]
@@ -165,10 +190,9 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     <>
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px' }}>
 
-        {/* Header profil Restructuré */}
+        {/* Header profil */}
         <div style={{ background: 'white', borderRadius: 16, padding: '24px 30px', marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
           
-          {/* Bloc de Gauche : Avatar + Infos */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', flex: '1 1 300px' }}>
             <img
               src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
@@ -182,7 +206,6 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                 {profile?.lien_logo && <img src={profile.lien_logo} style={{ maxHeight: 32, objectFit: 'contain' }} alt="logo" />}
               </div>
               
-              {/* Réseaux sociaux */}
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {profile?.instagram && (
                   <a href={`https://instagram.com/${profile.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
@@ -213,10 +236,8 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
             </div>
           </div>
 
-          {/* Bloc de Droite : Stats en haut, boutons empilés proprement dessous */}
           {loaded && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-end', flexShrink: 0, minWidth: 260, marginLeft: 'auto' }} className="header-stats-block">
-              {/* Les stats à droite (comme demandé) */}
               <div style={{ display: 'flex', gap: 16, justifyContent: 'flex-end', width: '100%' }}>
                 {[
                   { val: filtered.length, label: t('gallery_cards') },
@@ -232,7 +253,6 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                 ))}
               </div>
 
-              {/* Les boutons d'action s'alignent parfaitement en dessous */}
               {isOwner && (
                 <div style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
                   <button onClick={() => setEditMode(!editMode)} style={{
@@ -331,15 +351,28 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                   {t('gallery_private')}
                 </div>
               )}
+              
+              {/* Actions du mode édition (Confidentialité + Option de Suppression) */}
               {editMode && isOwner && (
-                <button onClick={e => { e.stopPropagation(); togglePrivate(d.f) }} style={{
-                  position: 'absolute', top: 6, right: 6, zIndex: 2,
-                  background: privateCards.has(d.f) ? '#e74c3c' : '#003DA6',
-                  color: 'white', border: 'none', borderRadius: 6,
-                  padding: '4px 8px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
-                }}>
-                  {privateCards.has(d.f) ? t('gallery_make_public') : t('gallery_make_private')}
-                </button>
+                <div style={{ position: 'absolute', top: 6, right: 6, zIndex: 2, display: 'flex', gap: 4 }}>
+                  <button onClick={e => { e.stopPropagation(); togglePrivate(d.f) }} style={{
+                    background: privateCards.has(d.f) ? '#e74c3c' : '#003DA6',
+                    color: 'white', border: 'none', borderRadius: 6,
+                    padding: '4px 8px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
+                  }}>
+                    {privateCards.has(d.f) ? t('gallery_make_public') : t('gallery_make_private')}
+                  </button>
+                  
+                  {/* Bouton Poubelle visible exclusivement pour vos cartes importées manuellement */}
+                  {d.isManuelle && d.id_manuelle && (
+                    <button onClick={e => { e.stopPropagation(); handleDeleteCard(d.id_manuelle!, d.f) }} style={{
+                      background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6,
+                      padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
+                    }} title={lang === 'fr' ? 'Supprimer la carte' : 'Delete card'}>
+                      🗑️
+                    </button>
+                  )}
+                </div>
               )}
               <div style={{ width: '100%', aspectRatio: '2.5/3.5', marginBottom: 8, overflow: 'hidden', position: 'relative' }}>
                 <img src={d.f} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={d.n} />
