@@ -20,13 +20,11 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     image_recto: '', image_verso: '',
   })
 
-  // États pour la modale de recadrage interactif
   const [cropModal, setCropModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
-  const [rotation, setRotation] = useState(0) // Angle en degrés
+  const [rotation, setRotation] = useState(0)
   
-  // Réf et gestion du cadre de sélection (Souris / Tactile)
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const [cropBox, setCropBox] = useState({ x: 50, y: 50, width: 150, height: 210 }) // Ratio initial 2.5 / 3.5
+  const [cropBox, setCropBox] = useState({ x: 50, y: 50, width: 150, height: 210 })
   const isDragging = useRef(false)
   const isResizing = useRef(false)
   const dragStart = useRef({ x: 0, y: 0 })
@@ -39,15 +37,14 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     reader.onload = () => {
       if (reader.result) {
         setCropModal({ side, src: reader.result as string })
-        setRotation(0) // Reset rotation
-        setCropBox({ x: 50, y: 50, width: 160, height: 224 }) // Taille initiale par défaut
+        setRotation(0)
+        setCropBox({ x: 50, y: 50, width: 160, height: 224 })
       }
     }
     reader.readAsDataURL(file)
     e.target.value = ''
   }
 
-  // Événements Souris & Tactile pour ajuster le cadre
   const getEventCoords = (e: any) => {
     if (e.touches && e.touches.length > 0) {
       return { x: e.touches[0].clientX, y: e.touches[0].clientY }
@@ -56,7 +53,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   }
 
   const handlePointerDown = (e: React.MouseEvent | React.TouchEvent, type: 'drag' | 'resize') => {
-    e.preventDefault()
+    // Bloque le déclenchement des gestes par défaut du navigateur
+    if (e.cancelable) e.preventDefault()
+    
     const coords = getEventCoords(e)
     if (type === 'drag') isDragging.current = true
     if (type === 'resize') isResizing.current = true
@@ -68,6 +67,10 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   useEffect(() => {
     const handlePointerMove = (e: MouseEvent | TouchEvent) => {
       if (!isDragging.current && !isResizing.current) return
+      
+      // CRUCIAL POUR MOBILE : Annule le défilement et le rebond de la page entière
+      if (e.cancelable) e.preventDefault()
+
       if (!containerRef.current) return
 
       const coords = getEventCoords(e)
@@ -80,20 +83,14 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       if (isDragging.current) {
         let newX = boxStart.current.x + dx
         let newY = boxStart.current.y + dy
-
-        // Limites du conteneur
         newX = Math.max(0, Math.min(container.width - cropBox.width, newX))
         newY = Math.max(0, Math.min(container.height - cropBox.height, newY))
-
         setCropBox(prev => ({ ...prev, x: newX, y: newY }))
       }
 
       if (isResizing.current) {
         let newWidth = boxStart.current.width + dx
-        // Forcer le respect strict du ratio 2.5 / 3.5
         let newHeight = newWidth / targetRatio
-
-        // Sécurités dimensions minimales et limites droites/basses
         if (newWidth > 40 && (boxStart.current.x + newWidth) <= container.width && (boxStart.current.y + newHeight) <= container.height) {
           setCropBox(prev => ({ ...prev, width: newWidth, height: newHeight }))
         }
@@ -105,7 +102,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       isResizing.current = false
     }
 
-    window.addEventListener('mousemove', handlePointerMove)
+    // Ajout des écouteurs globaux avec passive: false pour forcer la priorité sur le scroll natif
+    window.addEventListener('mousemove', handlePointerMove, { passive: false })
     window.addEventListener('mouseup', handlePointerUp)
     window.addEventListener('touchmove', handlePointerMove, { passive: false })
     window.addEventListener('touchend', handlePointerUp)
@@ -128,7 +126,6 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const imgElement = containerRef.current.querySelector('img') as HTMLImageElement
     if (!imgElement) return
 
-    // 1. Création d'un canvas intermédiaire pour appliquer la rotation à l'image source complète
     const srcCanvas = document.createElement('canvas')
     const srcCtx = srcCanvas.getContext('2d')
     if (!srcCtx) return
@@ -137,7 +134,6 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const absCos = Math.abs(Math.cos(angleRad))
     const absSin = Math.abs(Math.sin(angleRad))
     
-    // Calcul de la taille du canvas accueillant l'image pivotée sans la couper
     const rotWidth = imgElement.naturalWidth * absCos + imgElement.naturalHeight * absSin
     const rotHeight = imgElement.naturalWidth * absSin + imgElement.naturalHeight * absCos
 
@@ -148,11 +144,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     srcCtx.rotate(angleRad)
     srcCtx.drawImage(imgElement, -imgElement.naturalWidth / 2, -imgElement.naturalHeight / 2)
 
-    // 2. Calculer le ratio d'échelle entre ce qui est affiché à l'écran et la taille réelle
     const scaleX = rotWidth / imgElement.width
     const scaleY = rotHeight / imgElement.height
 
-    // 3. Découper la zone sélectionnée par l'utilisateur
     const finalCanvas = document.createElement('canvas')
     const finalCtx = finalCanvas.getContext('2d')
     if (!finalCtx) return
@@ -252,7 +246,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   )
 
   return (
-    <div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'Inter, sans-serif' }}>
+    <div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'Inter, sans-serif', padding: '0 10px' }}>
       <Link href={`/galerie/${userId}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 14, display: 'inline-block', marginBottom: 20 }}>
         ← {lang === 'fr' ? 'Retour à la galerie' : 'Back to gallery'}
       </Link>
@@ -336,17 +330,17 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         </div>
       </form>
 
-      {/* Nouvelle Modale de recadrage manuelle tactile / souris */}
+      {/* Modale de recadrage optimisée avec isolation tactile totale */}
       {cropModal && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-          <div style={{ background: '#fff', padding: 20, borderRadius: 16, maxWidth: 520, width: '100%', textAlign: 'center' }}>
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 10 }}>
+          <div style={{ background: '#fff', padding: 20, borderRadius: 16, maxWidth: 520, width: '100%', textAlign: 'center', boxSizing: 'border-box' }}>
             <h3 style={{ margin: '0 0 10px', fontWeight: 800 }}>{lang === 'fr' ? 'Ajuster et faire pivoter la carte' : 'Adjust and rotate card'}</h3>
             <p style={{ fontSize: 12, color: '#666', margin: '0 0 15px' }}>
               {lang === 'fr' ? 'Glissez pour déplacer, étirez le coin bleu pour redimensionner.' : 'Drag to move, stretch the blue corner to resize.'}
             </p>
             
-            {/* Zone interactive principale */}
-            <div ref={containerRef} style={{ position: 'relative', display: 'inline-block', maxWidth: '100%', maxHeight: '50vh', overflow: 'hidden', background: '#222', borderRadius: 8, userSelect: 'none' }}>
+            {/* Conteneur principal de l'image : touchAction: 'none' pour bloquer le scroll natif */}
+            <div ref={containerRef} style={{ position: 'relative', display: 'inline-block', maxWidth: '100%', maxHeight: '50vh', overflow: 'hidden', background: '#222', borderRadius: 8, userSelect: 'none', touchAction: 'none' }}>
               <img src={cropModal.src} alt="To crop" 
                 style={{ 
                   maxWidth: '100%', 
@@ -358,7 +352,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                 }} 
               />
               
-              {/* Cadre de sélection interactif (Souris & Tactile) */}
+              {/* Cadre de rognage interactif */}
               <div 
                 onMouseDown={e => handlePointerDown(e, 'drag')}
                 onTouchStart={e => handlePointerDown(e, 'drag')}
@@ -372,42 +366,41 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                   width: cropBox.width,
                   height: cropBox.height,
                   pointerEvents: 'auto',
+                  touchAction: 'none' // Empêche tout effet de rebond ou scroll sur le cadre
                 }}
               >
-                {/* Lignes intérieures de guidage */}
                 <div style={{ position: 'absolute', inset: 0, border: '1px dashed rgba(255,255,255,0.6)' }} />
                 
-                {/* Poignée unique de redimensionnement en bas à droite respectant le ratio */}
+                {/* Poignée agrandie pour faciliter la saisie sur écran tactile */}
                 <div 
                   onMouseDown={e => { e.stopPropagation(); handlePointerDown(e, 'resize') }}
                   onTouchStart={e => { e.stopPropagation(); handlePointerDown(e, 'resize') }}
                   style={{
                     position: 'absolute',
-                    bottom: -8,
-                    right: -8,
-                    width: 20,
-                    height: 20,
+                    bottom: -14,
+                    right: -14,
+                    width: 28,
+                    height: 28,
                     background: '#003DA6',
                     border: '3px solid white',
                     borderRadius: '50%',
                     cursor: 'se-resize',
                     pointerEvents: 'auto',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.3)'
+                    boxShadow: '0 2px 10px rgba(0,0,0,0.4)',
+                    touchAction: 'none' // Empêche le conflit avec le comportement système
                   }} 
                 />
               </div>
             </div>
 
-            {/* Curseur de rotation uniquement */}
             <div style={{ marginTop: 20, textAlign: 'left', background: '#f9f9f9', padding: '12px 16px', borderRadius: 12 }}>
-              <div style={{ display: 'flex', justifyContent: 'between', alignItems: 'center', marginBottom: 6 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
                 <span style={{ fontSize: 12, fontWeight: 700, color: '#444' }}>🔄 {lang === 'fr' ? 'Orientation / Rotation' : 'Orientation / Rotation'}</span>
                 <span style={{ fontSize: 12, fontWeight: 800, color: '#003DA6', marginLeft: 'auto' }}>{rotation}°</span>
               </div>
               <input type="range" min="-180" max="180" value={rotation} onChange={e => setRotation(Number(e.target.value))} style={{ width: '100%', accentColor: '#003DA6', cursor: 'pointer' }} />
             </div>
 
-            {/* Actions */}
             <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
               <button type="button" onClick={() => setCropModal(null)} style={{ flex: 1, padding: 12, background: '#eee', border: 'none', borderRadius: 8, fontWeight: 700, cursor: 'pointer', color: '#555' }}>
                 {lang === 'fr' ? 'Annuler' : 'Cancel'}
