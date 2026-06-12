@@ -222,7 +222,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         <div style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead><tr>
-              {['#', 'Collectionneur', 'Rôle', 'Total', 'RC', 'Auto', 'Num', 'Patch', ...(isChef ? ['Action'] : [])].map(h => (
+              {['#', t('teams_collector'), t('teams_role'), t('directory_total'), 'RC', 'Auto', 'Num', 'Patch', ...(isChef ? [t('teams_action')] : [])].map(h => (
                 <th key={h} style={{ padding: '16px', textAlign: 'left', fontSize: 11, textTransform: 'uppercase', color: '#999', borderBottom: '2px solid #f0f0f0', background: '#fdfdfd' }}>{h}</th>
               ))}
             </tr></thead>

@@ -96,7 +96,7 @@ export default function Teams() {
         )}
         {userId && userTeamId && (
           <Link href={`/teams/${userTeamId}`} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 700, fontSize: 13 }}>
-            Voir ma team →
+            {t('teams_see_my_team')}
           </Link>
         )}
       </div>
@@ -107,11 +107,11 @@ export default function Teams() {
 
       {showCreate && (
         <div style={{ background: 'white', padding: 24, borderRadius: 12, marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
-          <h3 style={{ fontWeight: 800, marginBottom: 12 }}>Créer une nouvelle team</h3>
+          <h3 style={{ fontWeight: 800, marginBottom: 12 }}>{lang === 'fr' ? 'Créer une nouvelle team' : 'Create a new team'}</h3>
           <div style={{ display: 'flex', gap: 12 }}>
-            <input value={newTeamName} onChange={e => setNewTeamName(e.target.value)} placeholder="Nom de la team" onKeyDown={e => e.key === 'Enter' && createTeam()} />
+            <input value={newTeamName} onChange={e => setNewTeamName(e.target.value)} placeholder={lang === 'fr' ? 'Nom de la team' : 'Team name'} onKeyDown={e => e.key === 'Enter' && createTeam()} />
             <button onClick={createTeam} disabled={loading} className="btn-main btn-primary" style={{ padding: '10px 20px', fontSize: 13, whiteSpace: 'nowrap' }}>
-              {loading ? '...' : 'Créer'}
+              {loading ? '...' : (lang === 'fr' ? 'Créer' : 'Create')}
             </button>
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function Teams() {
       <div style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead><tr>
-            {['#', 'Team', 'Membres', 'Total cartes', 'Action'].map(h => (
+            {['#', 'Team', t('teams_members'), t('teams_total_cards_label'), t('teams_action')].map(h => (
               <th key={h} style={{ background: '#fdfdfd', padding: '16px', textAlign: 'left', fontSize: 11, textTransform: 'uppercase', color: '#999', borderBottom: '2px solid #f0f0f0' }}>{h}</th>
             ))}
           </tr></thead>

@@ -153,7 +153,7 @@ function AnnuaireContent() {
 
       <div style={{ marginBottom: 16 }}>
         <select value={teamFilter} onChange={e => handleTeamChange(e.target.value)} style={{ width: 'auto', minWidth: 200 }}>
-          <option value="">Toutes les teams</option>
+          <option value="">{t('all_teams')}</option>
           {teams.map(t => <option key={t.id} value={String(t.id)}>{t.name}</option>)}
         </select>
       </div>

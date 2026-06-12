@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { useLang } from '@/lib/LangContext'
 
 export default function Recherche() {
   const [query, setQuery] = useState('')
@@ -8,6 +9,7 @@ export default function Recherche() {
   const [loading, setLoading] = useState(false)
   const [searched, setSearched] = useState(false)
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
+  const { t } = useLang()
 
   useEffect(() => {
     if (query.length < 2) { setResults([]); setSearched(false); return }
@@ -40,15 +42,15 @@ export default function Recherche() {
     <div style={{ maxWidth: 1200, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
       {/* Header */}
       <div style={{ textAlign: 'center', padding: '40px 20px 30px' }}>
-        <h1 style={{ fontWeight: 900, fontSize: 32, marginBottom: 8 }}>🔍 Recherche globale</h1>
+        <h1 style={{ fontWeight: 900, fontSize: 32, marginBottom: 8 }}{t('search_title')}</h1>
         <p style={{ color: '#666', fontSize: 16, marginBottom: 30 }}>
-          Cherchez une carte dans toutes les collections de la communauté
+          {t('search_sub')}
         </p>
         <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative' }}>
           <input
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder="Nom du joueur, équipe, variation..."
+            placeholder={t('search_placeholder')}
             autoFocus
             style={{
               fontSize: 18, padding: '16px 20px 16px 50px',
@@ -60,7 +62,7 @@ export default function Recherche() {
           {loading && <span style={{ position: 'absolute', right: 18, top: '50%', transform: 'translateY(-50%)', fontSize: 14, color: '#999' }}>...</span>}
         </div>
         {query.length > 0 && query.length < 2 && (
-          <p style={{ color: '#999', fontSize: 13, marginTop: 8 }}>Tapez au moins 2 caractères</p>
+          <p style={{ color: '#999', fontSize: 13, marginTop: 8 }}{t('search_min_chars')}</p>
         )}
       </div>
 
@@ -69,7 +71,7 @@ export default function Recherche() {
         <div style={{ textAlign: 'center', padding: '60px 20px', color: '#bbb' }}>
           <div style={{ fontSize: 48, marginBottom: 16 }}>🃏</div>
           <p style={{ fontSize: 18, fontWeight: 700 }}>Aucune carte trouvée pour "{query}"</p>
-          <p style={{ fontSize: 14, marginTop: 8 }}>Essayez avec un nom différent ou vérifiez l'orthographe</p>
+          <p style={{ fontSize: 14, marginTop: 8 }}{t('search_none_sub')}</p>
         </div>
       )}
 

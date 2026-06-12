@@ -78,7 +78,7 @@ export default function PepitesSection({ profiles }: { profiles: Profile[] }) {
             <p style={{ fontWeight: 800, fontSize: 13, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: '#121212' }}>{card.name}</p>
             {card.variant && <p style={{ fontSize: 10, color: '#003DA6', fontWeight: 700, margin: '2px 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.variant}</p>}
             <p style={{ fontSize: 10, color: '#999', margin: '2px 0 4px' }}>{card.year} {card.brand}</p>
-            <p style={{ fontSize: 10, color: '#bbb', margin: 0 }}>Par {card.collector}</p>
+            <p style={{ fontSize: 10, color: '#bbb', margin: 0 }}>{t('by_label')} {card.collector}</p>
           </div>
         </Link>
       ))}
