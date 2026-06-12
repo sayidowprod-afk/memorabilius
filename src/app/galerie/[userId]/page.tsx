@@ -165,21 +165,21 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     <>
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px' }}>
 
-        {/* Header profil optimisé */}
-        <div style={{ background: 'white', borderRadius: 16, padding: '24px 20px', marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', gap: 20 }}>
+        {/* Header profil Restructuré */}
+        <div style={{ background: 'white', borderRadius: 16, padding: '24px 30px', marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
           
-          {/* Ligne principale : Avatar + Infos */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
+          {/* Bloc de Gauche : Avatar + Infos */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', flex: '1 1 300px' }}>
             <img
               src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
-              style={{ width: 74, height: 74, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, flexShrink: 0 }}
+              style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, flexShrink: 0 }}
               alt={profile?.display_name}
             />
-            <div style={{ flex: 1, minWidth: 200 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 8 }}>
-                <h1 style={{ fontSize: 22, fontWeight: 900, margin: 0 }}>{profile?.display_name || 'Collectionneur'}</h1>
-                <OnlineIndicator lastSeen={profile?.last_seen} size={11} />
-                {profile?.lien_logo && <img src={profile.lien_logo} style={{ maxHeight: 28, objectFit: 'contain' }} alt="logo" />}
+            <div style={{ minWidth: 200 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 8 }}>
+                <h1 style={{ fontSize: 24, fontWeight: 900, margin: 0 }}>{profile?.display_name || 'Collectionneur'}</h1>
+                <OnlineIndicator lastSeen={profile?.last_seen} size={12} />
+                {profile?.lien_logo && <img src={profile.lien_logo} style={{ maxHeight: 32, objectFit: 'contain' }} alt="logo" />}
               </div>
               
               {/* Réseaux sociaux */}
@@ -213,11 +213,11 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
             </div>
           </div>
 
-          {/* Section Stats & Actions alignée en dessous */}
+          {/* Bloc de Droite : Stats en haut, boutons empilés proprement dessous */}
           {loaded && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, borderTop: '1px solid #f0f0f0', paddingTop: 14 }}>
-              {/* Compteurs horizontaux fluides */}
-              <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'space-between', maxWidth: 450 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'flex-end', flexShrink: 0, minWidth: 260, marginLeft: 'auto' }} className="header-stats-block">
+              {/* Les stats à droite (comme demandé) */}
+              <div style={{ display: 'flex', gap: 16, justifyContent: 'flex-end', width: '100%' }}>
                 {[
                   { val: filtered.length, label: t('gallery_cards') },
                   { val: filtered.filter(c => c.rc).length, label: 'RC', color: '#e67e22' },
@@ -225,21 +225,21 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                   { val: filtered.filter(c => c.num).length, label: 'Num', color: '#7b1fa2' },
                   { val: filtered.filter(c => c.patch).length, label: 'Patch', color: '#1976d2' },
                 ].map(s => (
-                  <div key={s.label} style={{ textAlign: 'center', flex: '1 1 auto', minWidth: 50 }}>
-                    <div style={{ fontSize: 20, fontWeight: 900, color: s.color || accent }}>{s.val}</div>
+                  <div key={s.label} style={{ textAlign: 'center', minWidth: 45 }}>
+                    <div style={{ fontSize: 22, fontWeight: 900, color: s.color || accent }}>{s.val}</div>
                     <div style={{ fontSize: 10, fontWeight: 700, color: '#999', textTransform: 'uppercase' }}>{s.label}</div>
                   </div>
                 ))}
               </div>
 
-              {/* Boutons d'action : Parfaitement visibles sous les stats sur mobile */}
+              {/* Les boutons d'action s'alignent parfaitement en dessous */}
               {isOwner && (
-                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 4 }}>
+                <div style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
                   <button onClick={() => setEditMode(!editMode)} style={{
                     background: editMode ? '#e74c3c' : '#f0f0f0',
                     color: editMode ? 'white' : '#333',
                     border: 'none', borderRadius: 8, padding: '10px 16px',
-                    fontWeight: 700, fontSize: 13, cursor: 'pointer', flex: 1, minWidth: 160, textAlign: 'center'
+                    fontWeight: 700, fontSize: 13, cursor: 'pointer', flex: '1 1 auto', textAlign: 'center', minWidth: 150
                   }}>
                     {editMode ? t('gallery_done') : t('gallery_privacy')}
                   </button>
@@ -249,7 +249,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                       background: '#003DA6', color: 'white',
                       border: 'none', borderRadius: 8, padding: '10px 16px',
                       fontWeight: 700, fontSize: 13, cursor: 'pointer',
-                      textDecoration: 'none', display: 'inline-block', flex: 1, minWidth: 120, textAlign: 'center'
+                      textDecoration: 'none', display: 'inline-block', flex: '1 1 auto', textAlign: 'center', minWidth: 100
                     }}>
                       ➕ {lang === 'fr' ? 'Ajouter' : 'Add'}
                     </a>
@@ -309,6 +309,9 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
         <style>{`
           .card-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
           .card-item { flex: 0 0 calc(50% - 5px); max-width: calc(50% - 5px); }
+          @media (max-width: 768px) {
+            .header-stats-block { width: 100% !important; align-items: center !important; }
+          }
           @media (min-width: 900px) { .card-item { flex: 0 0 calc(20% - 10px); max-width: calc(20% - 10px); } }
         `}</style>
         
