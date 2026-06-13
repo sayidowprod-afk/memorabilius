@@ -1,5 +1,7 @@
 'use client'
-import { useRef, useCallback, useEffect } from 'react'
+import { useRef, useCallback, useEffect, useState } from 'react'
+import { useLang } from '@/lib/LangContext'
+import CardVideoExport from '@/components/CardVideoExport'
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string
@@ -23,6 +25,8 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
   const cardRef = useRef<HTMLDivElement>(null)
   const wrapRef = useRef<HTMLDivElement>(null)
   const rafRef = useRef<number>(0)
+  const [showVideo, setShowVideo] = useState(false)
+  const { lang } = useLang()
 
   const applyTransform = useCallback(() => {
     if (cardRef.current) {
@@ -193,6 +197,17 @@ export default function Viewer3D({ popup, accent, onClose, getTags }: {
               </div>
             ))}
           </div>
+
+          {/* Bouton export vidéo */}
+          <button onClick={() => setShowVideo(true)} style={{
+            marginTop: 16, width: '100%', background: '#0d0d1f',
+            color: 'white', border: 'none', borderRadius: 10,
+            padding: '12px', fontWeight: 800, cursor: 'pointer', fontSize: 14,
+          }}>
+            🎬 {lang === 'fr' ? 'Exporter en vidéo' : 'Export as video'}
+          </button>
+
+          {showVideo && <CardVideoExport card={popup} accent={accent} onClose={() => setShowVideo(false)} />}
         </div>
       </div>
     </div>
