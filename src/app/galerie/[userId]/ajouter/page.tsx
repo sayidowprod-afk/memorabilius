@@ -76,6 +76,19 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     }
   }, [rotation, cropModal, resetTransform])
 
+  // Wheel zoom sans scroll de page (passive: false obligatoire)
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el || !cropModal) return
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault()
+      const delta = e.deltaY > 0 ? 0.9 : 1.1
+      setImgTransform(t => ({ ...t, scale: Math.max(0.1, Math.min(10, t.scale * delta)) }))
+    }
+    el.addEventListener('wheel', onWheel, { passive: false })
+    return () => el.removeEventListener('wheel', onWheel)
+  }, [cropModal])
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, side: 'recto' | 'verso') => {
     const file = e.target.files?.[0]
     if (!file) return
@@ -108,12 +121,6 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   }
 
   const handleMouseUp = () => { isDragging.current = false }
-
-  const handleWheel = (e: React.WheelEvent) => {
-    e.preventDefault()
-    const delta = e.deltaY > 0 ? 0.9 : 1.1
-    setImgTransform(t => ({ ...t, scale: Math.max(0.1, Math.min(10, t.scale * delta)) }))
-  }
 
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length === 1) {
@@ -384,7 +391,6 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
-            onWheel={handleWheel}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
