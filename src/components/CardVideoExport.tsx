@@ -26,6 +26,8 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
 
   const DURATION = 6000
   const FPS = 60
+  const themeRef = useRef(theme)
+  themeRef.current = theme
 
   const loadImage = (src: string): Promise<HTMLImageElement> =>
     new Promise((resolve) => {
@@ -49,7 +51,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   ) => {
     const W = ctx.canvas.width
     const H = ctx.canvas.height
-    const isDark = theme === 'dark'
+    const isDark = themeRef.current === 'dark'
 
     // Fond
     const grad = ctx.createLinearGradient(0, 0, W, H)
@@ -57,14 +59,6 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     else { grad.addColorStop(0, '#f0f4ff'); grad.addColorStop(1, '#e8ecff') }
     ctx.fillStyle = grad
     ctx.fillRect(0, 0, W, H)
-
-    // Halo
-    ctx.save()
-    ctx.globalAlpha = isDark ? 0.15 : 0.08
-    const glow = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, W * 0.6)
-    glow.addColorStop(0, accent); glow.addColorStop(1, 'transparent')
-    ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H)
-    ctx.restore()
 
     // Carte
     const angle = p * Math.PI * 2
@@ -163,15 +157,24 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       setVideoUrl(URL.createObjectURL(blob)); setDone(true); setRecording(false)
     }
     recorder.start()
-    const startTime = performance.now()
-    const animate = (now: number) => {
-      const p = Math.min((now - startTime) / DURATION, 1)
+    let frameCount = 0
+    const totalFrames = Math.ceil((DURATION / 1000) * FPS)
+    const frameDuration = DURATION / totalFrames
+
+    const renderNextFrame = () => {
+      const p = Math.min(frameCount / totalFrames, 1)
       setProgress(Math.round(p * 100))
       drawFrame(ctx, frontImg, backImg, p)
-      if (p < 1) requestAnimationFrame(animate)
-      else recorder.stop()
+
+      if (frameCount < totalFrames) {
+        frameCount++
+        setTimeout(() => requestAnimationFrame(renderNextFrame), frameDuration)
+      } else {
+        // Attendre un peu que le dernier frame soit capturé
+        setTimeout(() => recorder.stop(), 200)
+      }
     }
-    requestAnimationFrame(animate)
+    requestAnimationFrame(renderNextFrame)
   }
 
   const download = () => {
