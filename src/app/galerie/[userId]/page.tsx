@@ -270,7 +270,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
 
                 {!editMode && (
                   <GalerieExport
-                    cards={filtered}
+                    cards={cards}
                     profileName={profile?.display_name || ''}
                     avatarUrl={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
                     accent={accent}
