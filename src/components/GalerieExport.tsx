@@ -37,6 +37,7 @@ const HEADER_H = 90
 const FOOTER_H = 34
 const PAD = 22
 const GAP = 8
+const NAME_AREA = 44 // hauteur fixe réservée sous chaque carte quand texte activé
 
 const PLACEHOLDER = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="420"><rect width="300" height="420" fill="%23ddd"/><text x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%23aaa" font-size="40">?</text></svg>'
 
@@ -51,15 +52,15 @@ function loadImg(src: string): Promise<HTMLImageElement> {
 }
 
 function bestCols(n: number, availW: number, availH: number, textBelow: boolean): number {
-  let bestC = 1, bestArea = 0
+  const nameH = textBelow ? NAME_AREA : 0
+  let bestC = 1, bestCardW = 0
   for (let c = 1; c <= Math.min(n, 12); c++) {
     const r = Math.ceil(n / c)
     const cardWfromW = (availW - GAP * (c - 1)) / c
-    const nameH = textBelow ? cardWfromW * 0.28 : 0
     const cardHfromH = (availH - GAP * (r - 1) - nameH * r) / r
+    if (cardHfromH <= 0) continue // pas assez de hauteur
     const cardW = Math.min(cardWfromW, cardHfromH / CARD_RATIO)
-    const area = cardW * cardW * CARD_RATIO
-    if (area > bestArea) { bestArea = area; bestC = c }
+    if (cardW > bestCardW) { bestCardW = cardW; bestC = c }
   }
   return bestC
 }
@@ -80,12 +81,11 @@ async function generate(cards: Card[], profileName: string, avatarUrl: string, a
   const availH = h - HEADER_H - FOOTER_H - PAD * 2
   const cols = bestCols(cards.length, availW, availH, textBelow)
   const rows = Math.ceil(cards.length / cols)
+  const nameH = textBelow ? NAME_AREA : 0
   const cardWfromW = (availW - GAP * (cols - 1)) / cols
-  const nameAreaH = textBelow ? Math.round(cardWfromW * 0.28) : 0
-  const cardHfromH = (availH - GAP * (rows - 1) - nameAreaH * rows) / rows
+  const cardHfromH = (availH - GAP * (rows - 1) - nameH * rows) / rows
   const cardW = Math.floor(Math.min(cardWfromW, cardHfromH / CARD_RATIO))
   const cardH = Math.floor(cardW * CARD_RATIO)
-  const nameH = textBelow ? Math.round(cardW * 0.28) : 0
 
   const gridW = cols * cardW + GAP * (cols - 1)
   const gridH = rows * (cardH + nameH) + GAP * (rows - 1)
