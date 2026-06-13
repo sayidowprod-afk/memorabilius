@@ -34,6 +34,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const lastPointer = useRef({ x: 0, y: 0 })
   const lastDist = useRef(0)
   const isDragging = useRef(false)
+  const rotationRef = useRef(rotation)
+  useEffect(() => { rotationRef.current = rotation }, [rotation])
 
   const resetTransform = useCallback(() => {
     if (!imgRef.current || !containerRef.current) return
@@ -42,27 +44,22 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const cw = container.clientWidth
     const ch = container.clientHeight
 
-    // Frame dimensions (mirrors the CSS: min(82% cw, 90vh * CARD_RATIO))
     const frameW = Math.min(cw * 0.82, ch * 0.9 * CARD_RATIO)
     const frameH = frameW / CARD_RATIO
 
-    const angleRad = (rotation * Math.PI) / 180
+    const angleRad = (rotationRef.current * Math.PI) / 180
     const absCos = Math.abs(Math.cos(angleRad))
     const absSin = Math.abs(Math.sin(angleRad))
-    const rotW = img.naturalWidth * absCos + img.naturalHeight * absSin
-    const rotH = img.naturalWidth * absSin + img.naturalHeight * absCos
 
-    // Display size of the image before transform scale
     const displayW = img.width
     const displayH = img.height
 
-    // Scale so the rotated image fits INSIDE the frame (contain)
     const scaleW = frameW / (displayW * absCos + displayH * absSin)
     const scaleH = frameH / (displayW * absSin + displayH * absCos)
     const scale = Math.min(scaleW, scaleH)
 
     setImgTransform({ x: 0, y: 0, scale })
-  }, [rotation])
+  }, [])
 
   useEffect(() => {
     if (cropModal) {
@@ -454,17 +451,24 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
           {/* Panneau bas */}
           <div style={{ width: '100%', background: '#1a1a1a', padding: '14px 20px 20px', boxSizing: 'border-box' }}>
-            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', textAlign: 'center', margin: '0 0 12px' }}>
+            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', textAlign: 'center', margin: '0 0 10px' }}>
               {lang === 'fr'
                 ? 'Glissez pour repositionner · Pincez ou molette pour zoomer'
                 : 'Drag to reposition · Pinch or scroll to zoom'}
             </p>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-              <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', whiteSpace: 'nowrap' }}>🔄 {rotation}°</span>
+            {/* Slider zoom */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+              <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', whiteSpace: 'nowrap', width: 52 }}>
+                🔍 {Math.round(imgTransform.scale * 100)}%
+              </span>
               <input
-                type="range" min="-180" max="180" value={rotation}
-                onChange={e => setRotation(Number(e.target.value))}
+                type="range" min="-100" max="200"
+                value={Math.round(Math.log2(imgTransform.scale) * 60)}
+                onChange={e => {
+                  const scale = Math.pow(2, Number(e.target.value) / 60)
+                  setImgTransform(t => ({ ...t, scale: Math.max(0.1, Math.min(10, scale)) }))
+                }}
                 style={{ flex: 1, accentColor: '#fff', cursor: 'pointer', height: 4 }}
               />
               <button
@@ -474,6 +478,17 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               >
                 {lang === 'fr' ? 'Recadrer' : 'Fit'}
               </button>
+            </div>
+
+            {/* Slider rotation */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
+              <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', whiteSpace: 'nowrap', width: 52 }}>🔄 {rotation}°</span>
+              <input
+                type="range" min="-180" max="180" value={rotation}
+                onChange={e => setRotation(Number(e.target.value))}
+                style={{ flex: 1, accentColor: '#fff', cursor: 'pointer', height: 4 }}
+              />
+              <div style={{ width: 68 }} />
             </div>
 
             <div style={{ display: 'flex', gap: 10 }}>
