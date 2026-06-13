@@ -66,7 +66,7 @@ export default function PepitesSection({ profiles }: { profiles: Profile[] }) {
       {cards.map((card, i) => (
         <Link key={i} href={`/galerie/${card.userId}`} style={{ background: 'white', borderRadius: 12, overflow: 'hidden', border: '1px solid #eee', textDecoration: 'none', display: 'block', transition: '0.3s' }}>
           <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
-            <img src={card.img} alt={card.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+            <img src={card.img} alt={card.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading={i === 0 ? 'eager' : 'lazy'} fetchPriority={i === 0 ? 'high' : 'auto'} />
           </div>
           <div style={{ padding: '10px 12px' }}>
             <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 6 }}>
