@@ -70,8 +70,6 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     if (cardW > 2) {
       ctx.save()
       ctx.translate(W / 2, H / 2 - 80)
-      ctx.shadowColor = accent
-      ctx.shadowBlur = 50 * Math.abs(scaleX)
       ctx.drawImage(showBack ? backImg : frontImg, -cardW / 2, -CARD_H / 2, cardW, CARD_H)
       if (Math.abs(scaleX) > 0.1) {
         const glowPos = (Math.sin(angle) + 1) / 2
