@@ -1,63 +1,15 @@
 'use client'
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
 
-interface Profile { id: string; display_name: string; lien_csv: string }
 interface Card {
   img: string; name: string; variant: string; year: string
   brand: string; rc: boolean; auto: boolean; patch: boolean
   num: string; collector: string; userId: string
 }
 
-export default function PepitesSection({ profiles }: { profiles: Profile[] }) {
+export default function PepitesSection({ cards }: { cards: Card[] }) {
   const { t } = useLang()
-  const [cards, setCards] = useState<Card[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const load = async () => {
-      const all: Card[] = []
-      await Promise.all(profiles.map(async p => {
-        try {
-          const r = await fetch(p.lien_csv)
-          if (!r.ok) return
-          const text = await r.text()
-          const rows = text.split(/\r?\n/).filter(row => row.includes('http'))
-          const last = rows.slice(-4)
-          last.forEach(row => {
-            const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
-            if (!c[0]?.includes('http')) return
-            all.push({
-              img: c[0]?.trim(),
-              name: c[2] || '',
-              variant: c[7] || '',
-              year: c[4] || '',
-              brand: c[5] || '',
-              rc: c[10]?.toLowerCase().includes('oui') || false,
-              auto: c[9]?.toLowerCase().includes('oui') || false,
-              patch: c[11]?.toLowerCase().includes('oui') || false,
-              num: c[8] || '',
-              collector: p.display_name,
-              userId: p.id,
-            })
-          })
-        } catch { }
-      }))
-      // Trier par ordre inverse et prendre 6
-      setCards(all.reverse().slice(0, 6))
-      setLoading(false)
-    }
-    load()
-  }, [])
-
-  if (loading) return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 20, marginBottom: 60 }}>
-      {[...Array(6)].map((_, i) => (
-        <div key={i} style={{ background: '#f0f0f0', borderRadius: 12, aspectRatio: '2.5/3.5', animation: 'pulse 1.5s infinite' }} />
-      ))}
-    </div>
-  )
 
   if (cards.length === 0) return null
 
