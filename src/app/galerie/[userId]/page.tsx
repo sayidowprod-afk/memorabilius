@@ -3,6 +3,7 @@ import { useEffect, useState, useRef, use } from 'react'
 import { supabase } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
 import OnlineIndicator from '@/components/OnlineIndicator'
+import GalerieExport from '@/components/GalerieExport'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 import { useLang } from '@/lib/LangContext'
@@ -255,8 +256,8 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                 ))}
               </div>
 
-              {isOwner && (
-                <div style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+                {isOwner && (
                   <button onClick={() => setEditMode(!editMode)} style={{
                     background: editMode ? '#e74c3c' : '#f0f0f0',
                     color: editMode ? 'white' : '#333',
@@ -265,19 +266,29 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                   }}>
                     {editMode ? t('gallery_done') : t('gallery_privacy')}
                   </button>
-                  
-                  {!editMode && (
-                    <a href={`/galerie/${userId}/ajouter`} style={{
-                      background: '#003DA6', color: 'white',
-                      border: 'none', borderRadius: 8, padding: '10px 16px',
-                      fontWeight: 700, fontSize: 13, cursor: 'pointer',
-                      textDecoration: 'none', display: 'inline-block', flex: '1 1 auto', textAlign: 'center', minWidth: 100
-                    }}>
-                      ➕ {lang === 'fr' ? 'Ajouter' : 'Add'}
-                    </a>
-                  )}
-                </div>
-              )}
+                )}
+
+                {!editMode && (
+                  <GalerieExport
+                    cards={filtered}
+                    profileName={profile?.display_name || ''}
+                    avatarUrl={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
+                    accent={accent}
+                    lang={lang}
+                  />
+                )}
+
+                {isOwner && !editMode && (
+                  <a href={`/galerie/${userId}/ajouter`} style={{
+                    background: '#003DA6', color: 'white',
+                    border: 'none', borderRadius: 8, padding: '10px 16px',
+                    fontWeight: 700, fontSize: 13, cursor: 'pointer',
+                    textDecoration: 'none', display: 'inline-block', flex: '1 1 auto', textAlign: 'center', minWidth: 100
+                  }}>
+                    ➕ {lang === 'fr' ? 'Ajouter' : 'Add'}
+                  </a>
+                )}
+              </div>
             </div>
           )}
         </div>
