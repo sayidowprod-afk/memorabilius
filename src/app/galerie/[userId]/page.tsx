@@ -441,14 +441,20 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                     }}>
                       {privateCards.has(d.f) ? t('gallery_make_public') : t('gallery_make_private')}
                     </button>
-                    {d.isManuelle && d.id_manuelle && (
+                    {d.isManuelle && d.id_manuelle && (<>
+                      <button onClick={e => { e.stopPropagation(); window.location.href = `/galerie/${userId}/editer/${d.id_manuelle}` }} style={{
+                        background: '#f59e0b', color: 'white', border: 'none', borderRadius: 6,
+                        padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
+                      }} title={lang === 'fr' ? 'Modifier la carte' : 'Edit card'}>
+                        ✏️
+                      </button>
                       <button onClick={e => { e.stopPropagation(); handleDeleteCard(d.id_manuelle!, d.f) }} style={{
                         background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6,
                         padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
                       }} title={lang === 'fr' ? 'Supprimer la carte' : 'Delete card'}>
                         🗑️
                       </button>
-                    )}
+                    </>)}
                   </div>
                   {/* Valeur estimée (privée) */}
                   <div onClick={e => e.stopPropagation()} style={{ display: 'flex', alignItems: 'center', background: 'rgba(0,0,0,0.75)', borderRadius: 6, padding: '3px 6px', gap: 4 }}>
