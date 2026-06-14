@@ -170,6 +170,73 @@ function detectCornersHough(edges: Uint8Array, w: number, h: number): Pt[] | nul
   return orderCorners(corners)
 }
 
+// ── Méthode 1 : seuillage Otsu + plus grand blob ─────────────────────────
+// Idéale quand la carte contraste avec le fond (fond sombre ou clair uniforme)
+
+function otsuThreshold(gray: Float32Array): number {
+  const hist = new Float32Array(256)
+  for (let i = 0; i < gray.length; i++) hist[Math.round(gray[i])]++
+  const total = gray.length
+  let sum = 0
+  for (let i = 0; i < 256; i++) sum += i * hist[i]
+  let sumB = 0, wB = 0, max = 0, thresh = 128
+  for (let t = 0; t < 256; t++) {
+    wB += hist[t]; if (!wB) continue
+    const wF = total - wB; if (!wF) break
+    sumB += t * hist[t]
+    const between = wB * wF * ((sumB/wB) - ((sum-sumB)/wF)) ** 2
+    if (between > max) { max = between; thresh = t }
+  }
+  return thresh
+}
+
+function largestBlobCorners(binary: Uint8Array, w: number, h: number): Pt[] | null {
+  // BFS pour trouver le plus grand composant connexe
+  const visited = new Uint8Array(w * h)
+  let best: { tl:Pt; tr:Pt; br:Pt; bl:Pt; size:number } | null = null
+
+  for (let start = 0; start < w * h; start++) {
+    if (!binary[start] || visited[start]) continue
+    let tlV=Infinity,trV=-Infinity,brV=-Infinity,blV=Infinity
+    let tlP={x:0,y:0},trP={x:0,y:0},brP={x:0,y:0},blP={x:0,y:0}
+    const queue = [start]; visited[start] = 1; let qi = 0, size = 0
+    while (qi < queue.length) {
+      const idx = queue[qi++]; size++
+      const x = idx % w, y = Math.floor(idx / w)
+      if (x+y < tlV) { tlV=x+y; tlP={x,y} }
+      if (x-y > trV) { trV=x-y; trP={x,y} }
+      if (x+y > brV) { brV=x+y; brP={x,y} }
+      if (x-y < blV) { blV=x-y; blP={x,y} }
+      for (const [dx,dy] of [[-1,0],[1,0],[0,-1],[0,1]]) {
+        const nx=x+dx,ny=y+dy
+        if (nx<0||nx>=w||ny<0||ny>=h) continue
+        const ni=ny*w+nx
+        if (binary[ni] && !visited[ni]) { visited[ni]=1; queue.push(ni) }
+      }
+    }
+    if (!best || size > best.size) best = { tl:tlP,tr:trP,br:brP,bl:blP,size }
+  }
+  if (!best) return null
+  const corners = [best.tl, best.tr, best.br, best.bl]
+  const [tl,tr,,bl] = corners
+  const area = Math.abs((tr.x-tl.x)*(bl.y-tl.y)-(bl.x-tl.x)*(tr.y-tl.y))/2
+  if (area < w * h * 0.06) return null
+  return corners
+}
+
+function detectByThreshold(data: Uint8ClampedArray, w: number, h: number): Pt[] | null {
+  const gray  = normalize(toGray(data, w, h))
+  const thresh = otsuThreshold(gray)
+  // Essaie les deux polarités (fond sombre → carte claire, et fond clair → carte sombre)
+  for (const invert of [false, true]) {
+    const binary = new Uint8Array(w * h)
+    for (let i = 0; i < w * h; i++) binary[i] = (gray[i] > thresh) !== invert ? 1 : 0
+    const corners = largestBlobCorners(binary, w, h)
+    if (corners) return corners
+  }
+  return null
+}
+
 async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   const MAX = 400
   const scale = Math.min(MAX / img.naturalWidth, MAX / img.naturalHeight, 1)
@@ -182,13 +249,19 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   const data = c.getContext('2d')!.getImageData(0, 0, W, H).data
 
   await new Promise(r => setTimeout(r, 0))
+
+  // Méthode 1 : seuillage (rapide, fiable sur fond contrasté)
+  const corners1 = detectByThreshold(data, W, H)
+  if (corners1) return corners1.map(p => ({ x: p.x / scale, y: p.y / scale }))
+
+  // Méthode 2 : Hough (fallback pour fonds complexes)
   const gray  = normalize(toGray(data, W, H))
   const blur  = gaussBlur(gray, W, H)
   const edges = sobel(blur, W, H)
+  const corners2 = detectCornersHough(edges, W, H)
+  if (corners2) return corners2.map(p => ({ x: p.x / scale, y: p.y / scale }))
 
-  const corners = detectCornersHough(edges, W, H)
-  if (!corners) return null
-  return corners.map(p => ({ x: p.x / scale, y: p.y / scale }))
+  return null
 }
 
 // ── Perspective warp pure JS (homographie) ────────────────────────────────
