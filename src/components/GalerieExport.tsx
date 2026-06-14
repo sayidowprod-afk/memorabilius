@@ -53,11 +53,11 @@ function loadImg(src: string): Promise<HTMLImageElement> {
 }
 
 // Trouve le minimum de colonnes tel que les cartes (largeur pleine) tiennent en hauteur.
-// On remplira ensuite le vide vertical avec vGap.
+// nameH est proportionnel à la largeur de carte pour éviter qu'il écrase les petites cartes.
 function bestCols(n: number, availW: number, availH: number, textBelow: boolean): number {
-  const nameH = textBelow ? NAME_AREA : 0
   for (let c = 1; c <= n; c++) {
     const cardW = (availW - GAP * (c - 1)) / c
+    const nameH = textBelow ? Math.min(NAME_AREA, Math.round(cardW * 0.55)) : 0
     const rows = Math.ceil(n / c)
     if (rows * (cardW * CARD_RATIO + nameH) <= availH) return c
   }
@@ -103,16 +103,17 @@ async function generate(cards: Card[], profileName: string, avatarUrl: string, a
   const availH = h - HEADER_H - FOOTER_H - PAD * 2
   const cols = bestCols(cards.length, availW, availH, hasBelow)
   const rows = Math.ceil(cards.length / cols)
-  const nameH = hasBelow ? NAME_AREA : 0
   // Cartes remplissent exactement la largeur
   const cardW = Math.floor((availW - GAP * (cols - 1)) / cols)
+  const nameH = hasBelow ? Math.min(NAME_AREA, Math.round(cardW * 0.55)) : 0
   const cardH = Math.floor(cardW * CARD_RATIO)
-  // L'espacement vertical s'adapte pour remplir la hauteur
+  // vGap plafonné à GAP pour éviter les espaces indécents entre lignes
   const totalCardH = rows * (cardH + nameH)
-  const vGap = rows > 1 ? Math.max(0, (availH - totalCardH) / (rows - 1)) : 0
+  const vGap = rows > 1 ? Math.min(GAP, Math.max(0, (availH - totalCardH) / (rows - 1))) : 0
+  const gridH = totalCardH + vGap * (rows - 1)
 
   const gridX = PAD
-  const gridY = HEADER_H + PAD
+  const gridY = HEADER_H + PAD + Math.round((availH - gridH) / 2)
 
   // Fond
   ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h)
