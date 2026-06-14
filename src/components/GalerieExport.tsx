@@ -67,10 +67,10 @@ async function loadImgs(srcs: string[], limit = 20): Promise<HTMLImageElement[]>
   return out
 }
 
-// Trouve le nb de colonnes qui maximise la taille des cartes (largeur + hauteur).
-// nameH est proportionnel à la largeur estimée : évite qu'il écrase la hauteur sur A4/Carré.
+// Trouve le nb de colonnes qui maximise la taille des cartes tout en remplissant la hauteur.
+// Les solutions width-constrained (hauteur non remplie) sont pénalisées par leur taux de remplissage.
 function bestCols(n: number, availW: number, availH: number, textBelow: boolean): number {
-  let bestC = 1, bestCardW = 0
+  let bestC = 1, bestScore = 0
   for (let c = 1; c <= n; c++) {
     const r = Math.ceil(n / c)
     const cardWest = (availW - GAP * (c - 1)) / c
@@ -78,7 +78,12 @@ function bestCols(n: number, availW: number, availH: number, textBelow: boolean)
     const cardHfromH = (availH - GAP * (r - 1) - nameH * r) / r
     if (cardHfromH <= 0) continue
     const cardW = Math.min(cardWest, cardHfromH / CARD_RATIO)
-    if (cardW > bestCardW) { bestCardW = cardW; bestC = c }
+    const cardH = cardW * CARD_RATIO
+    const gridH = r * (cardH + nameH) + GAP * (r - 1)
+    // Solutions qui remplissent la hauteur scorent plein ; les autres sont pénalisées
+    const fillRatio = Math.min(1, gridH / availH)
+    const score = cardHfromH / CARD_RATIO <= cardWest ? cardW : cardW * fillRatio
+    if (score > bestScore) { bestScore = score; bestC = c }
   }
   return bestC
 }
