@@ -58,7 +58,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
       }
       
       supabase.from('profiles').select('*').eq('id', resolvedId).single().then(({ data }) => {
-        if (data) { setProfile(data); if (data.lien_csv) loadCSV(data.lien_csv) }
+        if (data) { setProfile(data); loadCSV(data.lien_csv ?? null) }
       })
     }
     init()
@@ -119,28 +119,31 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     }
   }
 
-  const loadCSV = async (url: string) => {
+  const loadCSV = async (url: string | null) => {
     try {
-      const r = await fetch(url + '&t=' + Date.now())
-      const t = await r.text()
-      const rows = t.split(/\r?\n/).slice(4)
-      const parsed: Card[] = rows.map(row => {
-        const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
-        if (!c[0] || !c[0].includes('http')) return null
-        return {
-          f: c[0]?.trim(), b: c[1]?.trim() || c[0]?.trim(),
-          n: c[2] || '', t: c[3] || '', y: c[4] || '',
-          br: c[5] || '', s: c[6] || '', v: c[7] || '',
-          num: c[8] || '', auto: c[9]?.toLowerCase().includes('oui') || false,
-          rc: c[10]?.toLowerCase().includes('oui') || false,
-          patch: c[11]?.toLowerCase().includes('oui') || false,
-          g: c[12] || 'Raw', isManuelle: false
-        }
-      }).filter(Boolean) as Card[]
+      let parsed: Card[] = []
+      if (url) {
+        const r = await fetch(url + '&t=' + Date.now())
+        const t = await r.text()
+        const rows = t.split(/\r?\n/).slice(4)
+        parsed = rows.map(row => {
+          const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+          if (!c[0] || !c[0].includes('http')) return null
+          return {
+            f: c[0]?.trim(), b: c[1]?.trim() || c[0]?.trim(),
+            n: c[2] || '', t: c[3] || '', y: c[4] || '',
+            br: c[5] || '', s: c[6] || '', v: c[7] || '',
+            num: c[8] || '', auto: c[9]?.toLowerCase().includes('oui') || false,
+            rc: c[10]?.toLowerCase().includes('oui') || false,
+            patch: c[11]?.toLowerCase().includes('oui') || false,
+            g: c[12] || 'Raw', isManuelle: false
+          }
+        }).filter(Boolean) as Card[]
+      }
 
       const { data: manuelles } = await supabase.from('cartes_manuelles').select('*').eq('user_id', userId)
       const cartesM: Card[] = (manuelles || []).map((m: any) => ({
-        id_manuelle: m.id, // ID unique en BDD
+        id_manuelle: m.id,
         f: m.image_recto || 'https://placehold.co/300x420?text=No+Image',
         b: m.image_verso || m.image_recto || 'https://placehold.co/300x420?text=No+Image',
         n: m.nom || '', t: m.equipe || '', y: m.annee || '',
@@ -386,7 +389,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
           </div>
         </div>
 
-        {!loaded && profile?.lien_csv && (
+        {!loaded && (
           <div className="card-grid">
             {Array.from({ length: 10 }).map((_, i) => (
               <div key={i} className="card-item" style={{ borderRadius: 8, overflow: 'hidden', background: '#f0f0f0' }}>
@@ -399,9 +402,6 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
             ))}
             <style>{`@keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }`}</style>
           </div>
-        )}
-        {!loaded && !profile?.lien_csv && (
-          <p style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>Ce collectionneur n'a pas encore lié sa galerie.</p>
         )}
 
         <style>{`
