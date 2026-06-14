@@ -404,14 +404,16 @@ const HANDLE_COLORS = ['#ff5252', '#ffeb3b', '#69f0ae', '#40c4ff']
 const HANDLE_R = 18
 
 export default function CardScanner({ src, onResult, onFallback, onClose }: Props) {
-  const canvasRef   = useRef<HTMLCanvasElement>(null)
-  const imgRef      = useRef<HTMLImageElement | null>(null)
-  const scaleRef    = useRef(1)
+  const canvasRef     = useRef<HTMLCanvasElement>(null)
+  const imgRef        = useRef<HTMLImageElement | null>(null)
+  const origImgRef    = useRef<HTMLImageElement | null>(null)  // toujours l'original non-tourné
+  const scaleRef      = useRef(1)
 
   const [status, setStatus]     = useState<Status>('detecting')
   const [corners, setCorners]   = useState<Pt[]>([])
   const [dragging, setDragging] = useState<number | null>(null)
   const [applying, setApplying] = useState(false)
+  const [rotation, setRotation] = useState(0)
 
   // Zoom / pan — pan en coordonnées canvas (non-zoomées)
   const [zoom, setZoom] = useState(1)
@@ -430,27 +432,60 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
   useEffect(() => {
     const img = new Image()
     img.onload = async () => {
+      origImgRef.current = img
       imgRef.current = img
-      const canvas = canvasRef.current
-      if (!canvas) return
-      const maxW = Math.min(window.innerWidth - 32, 500)
-      const maxH = Math.round(window.innerHeight * 0.50)
-      const scale = Math.min(maxW / img.naturalWidth, maxH / img.naturalHeight, 1)
-      scaleRef.current = scale
-      canvas.width  = Math.round(img.naturalWidth  * scale)
-      canvas.height = Math.round(img.naturalHeight * scale)
-      setPan({ x: canvas.width / 2, y: canvas.height / 2 })
-      canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height)
-
-      const naturalCorners = await detectCard(img)
-      const display = naturalCorners
-        ? naturalCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
-        : defaultCorners(canvas)
-      setCorners(display)
-      setStatus(naturalCorners ? 'found' : 'notfound')
+      await initCanvas(img)
     }
     img.src = src
   }, [src])
+
+  const initCanvas = async (img: HTMLImageElement) => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const maxW = Math.min(window.innerWidth - 32, 500)
+    const maxH = Math.round(window.innerHeight * 0.50)
+    const scale = Math.min(maxW / img.naturalWidth, maxH / img.naturalHeight, 1)
+    scaleRef.current = scale
+    canvas.width  = Math.round(img.naturalWidth  * scale)
+    canvas.height = Math.round(img.naturalHeight * scale)
+    setPan({ x: canvas.width / 2, y: canvas.height / 2 })
+    setZoom(1)
+    canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+    setStatus('detecting')
+    const naturalCorners = await detectCard(img)
+    const display = naturalCorners
+      ? naturalCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
+      : defaultCorners(canvas)
+    setCorners(display)
+    setStatus(naturalCorners ? 'found' : 'notfound')
+  }
+
+  // Tourne l'image depuis l'original (évite la dégradation par compressions successives)
+  const handleRotate = async () => {
+    const origImg = origImgRef.current
+    if (!origImg || applying) return
+    const newRot = (rotation + 45) % 360
+    setRotation(newRot)
+
+    const rad = newRot * Math.PI / 180
+    const W = origImg.naturalWidth, H = origImg.naturalHeight
+    const rotW = Math.ceil(Math.abs(W * Math.cos(rad)) + Math.abs(H * Math.sin(rad)))
+    const rotH = Math.ceil(Math.abs(W * Math.sin(rad)) + Math.abs(H * Math.cos(rad)))
+
+    const rotC = document.createElement('canvas')
+    rotC.width = rotW; rotC.height = rotH
+    const rotCtx = rotC.getContext('2d')!
+    rotCtx.translate(rotW / 2, rotH / 2)
+    rotCtx.rotate(rad)
+    rotCtx.drawImage(origImg, -W / 2, -H / 2)
+
+    const newImg = new Image()
+    newImg.src = rotC.toDataURL('image/jpeg', 0.95)
+    await new Promise(r => { newImg.onload = r })
+    imgRef.current = newImg
+    await initCanvas(newImg)
+  }
 
   const defaultCorners = (canvas: HTMLCanvasElement): Pt[] => {
     const p = Math.round(Math.min(canvas.width, canvas.height) * 0.07)
@@ -661,7 +696,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
         onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
       />
 
-      {/* Zoom slider */}
+      {/* Zoom slider + bouton rotation */}
       {corners.length === 4 && !applying && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 10, width: '100%', maxWidth: 420 }}>
           <span style={{ fontSize: 16 }}>🔍</span>
@@ -672,6 +707,11 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
           <button onClick={resetZoom}
             style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.5)', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px', whiteSpace: 'nowrap' }}>
             {Math.round(zoom * 100)}% ↺
+          </button>
+          <button onClick={handleRotate}
+            title="Tourner de 45°"
+            style={{ fontSize: 18, background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px', color: 'rgba(255,255,255,0.7)', lineHeight: 1 }}>
+            ↻
           </button>
         </div>
       )}
