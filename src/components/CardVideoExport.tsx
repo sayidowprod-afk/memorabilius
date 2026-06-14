@@ -233,20 +233,21 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const totalFrames = Math.ceil((DURATION / 1000) * FPS)
     const frameDur = DURATION / totalFrames
 
-    // ── Phase 1 : pré-rendu → JPEG blobs en mémoire (~5-10 Mo) ────────────
-    // Sépare le rendu lourd de l'encodage pour garantir un timing parfait
-    const blobs: Blob[] = []
+    // ── Phase 1 : pré-rendu → ImageBitmaps décodés en mémoire ─────────────
+    // Rend chaque frame + encode en JPEG + décode en ImageBitmap prêt à copier
+    // → phase 2 ne fait que ctx.drawImage, zéro travail async, timing parfait
+    const bitmaps: ImageBitmap[] = []
     for (let i = 0; i <= totalFrames; i++) {
       drawFrame(ctx, frontImg, backImg, i / totalFrames)
       const blob = await new Promise<Blob>(res =>
         canvas.toBlob(b => res(b!), 'image/jpeg', 0.88)
       )
-      blobs.push(blob)
-      setProgress(Math.round(i / totalFrames * 48))
+      bitmaps.push(await createImageBitmap(blob))
+      setProgress(Math.round(i / totalFrames * 60))
       await new Promise(r => setTimeout(r, 0)) // yield au navigateur
     }
 
-    // ── Phase 2 : replay ultra-rapide → encodage avec timing parfait ───────
+    // ── Phase 2 : copies synchrones + rAF pour timing parfait ──────────────
     const mimeType = codec === 'mp4' && MediaRecorder.isTypeSupported('video/mp4')
       ? 'video/mp4' : 'video/webm;codecs=vp9'
     const stream = canvas.captureStream(0)
@@ -255,19 +256,28 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const chunks: Blob[] = []
     recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data) }
     recorder.onstop = () => {
+      bitmaps.forEach(b => b.close())
       setVideoUrl(URL.createObjectURL(new Blob(chunks, { type: mimeType })))
       setDone(true); setRecording(false)
     }
     recorder.start()
 
-    for (let i = 0; i < blobs.length; i++) {
-      const bmp = await createImageBitmap(blobs[i])
-      ctx.drawImage(bmp, 0, 0, canvas.width, canvas.height)
-      bmp.close()
-      videoTrack.requestFrame()
-      setProgress(48 + Math.round(i / blobs.length * 52))
-      await new Promise(r => setTimeout(r, frameDur))
-    }
+    await new Promise<void>(resolve => {
+      let i = 0
+      const startAt = performance.now()
+      const tick = () => {
+        if (i >= bitmaps.length) { resolve(); return }
+        ctx.drawImage(bitmaps[i], 0, 0, canvas.width, canvas.height)
+        videoTrack.requestFrame()
+        setProgress(60 + Math.round(i / bitmaps.length * 40))
+        i++
+        const next = startAt + i * frameDur
+        const delay = next - performance.now()
+        if (delay > 4) setTimeout(() => requestAnimationFrame(tick), delay - 4)
+        else requestAnimationFrame(tick)
+      }
+      requestAnimationFrame(tick)
+    })
     setTimeout(() => recorder.stop(), 200)
   }
 
