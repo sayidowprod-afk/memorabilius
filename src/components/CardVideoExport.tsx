@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useLang } from '@/lib/LangContext'
 
 interface Card {
@@ -7,12 +7,23 @@ interface Card {
   br: string; s: string; v: string; num: string
   auto: boolean; rc: boolean; patch: boolean; g: string
 }
+interface Props { card: Card; accent: string; onClose: () => void }
 
-interface Props {
-  card: Card
-  accent: string
-  onClose: () => void
-}
+const VIDEO_FORMATS = {
+  default: { w: 900,  h: 1300, label: 'Défaut',  ratio: '9:13' },
+  reel:    { w: 1080, h: 1920, label: 'Reel',    ratio: '9:16' },
+  square:  { w: 1080, h: 1080, label: 'Carré',   ratio: '1:1'  },
+} as const
+type VideoFormat = keyof typeof VIDEO_FORMATS
+
+// Particules stables (déterministes)
+const PARTICLES = Array.from({ length: 50 }, (_, i) => ({
+  x: (i * 137.508) % 1,
+  y: (i * 97.3) % 1,
+  r: 0.8 + (i % 4) * 0.7,
+  speed: 0.05 + (i % 6) * 0.02,
+  phase: i * 0.73,
+}))
 
 export default function CardVideoExport({ card, accent, onClose }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -21,302 +32,343 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   const [done, setDone] = useState(false)
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
-  const [format, setFormat] = useState<'webm' | 'mp4'>('webm')
+  const [codec, setCodec] = useState<'webm' | 'mp4'>('webm')
+  const [vfmt, setVfmt] = useState<VideoFormat>('default')
   const { lang } = useLang()
 
   const DURATION = 6000
   const FPS = 60
   const themeRef = useRef(theme)
+  const vfmtRef = useRef(vfmt)
   themeRef.current = theme
+  vfmtRef.current = vfmt
 
-  // Particules stables (positions déterministes, pas de random par frame)
-  const PARTICLES = Array.from({ length: 45 }, (_, i) => ({
-    x: (i * 137.508) % 1,
-    y: (i * 97.3) % 1,
-    r: 1 + (i % 3) * 0.8,
-    speed: 0.06 + (i % 5) * 0.025,
-    phase: i * 0.73,
-  }))
+  // Sync canvas size to selected format
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const { w, h } = VIDEO_FORMATS[vfmt]
+    canvas.width = w; canvas.height = h
+  }, [vfmt])
 
   const loadImage = (src: string): Promise<HTMLImageElement> =>
-    new Promise((resolve) => {
+    new Promise(resolve => {
       const img = new Image()
       img.crossOrigin = 'anonymous'
       img.onload = () => resolve(img)
-      img.onerror = () => {
-        const img2 = new Image()
-        img2.onload = () => resolve(img2)
-        img2.onerror = () => resolve(img2)
-        img2.src = src
-      }
+      img.onerror = () => { const i2 = new Image(); i2.onload = () => resolve(i2); i2.onerror = () => resolve(i2); i2.src = src }
       img.src = src
     })
 
-  const drawFrame = (
-    ctx: CanvasRenderingContext2D,
-    frontImg: HTMLImageElement,
-    backImg: HTMLImageElement,
-    p: number
-  ) => {
+  const drawFrame = (ctx: CanvasRenderingContext2D, frontImg: HTMLImageElement, backImg: HTMLImageElement, p: number) => {
     const W = ctx.canvas.width
     const H = ctx.canvas.height
     const isDark = themeRef.current === 'dark'
-    const bg0 = isDark ? '#0a0a1a' : '#f0f4ff'
-    const bg1 = isDark ? '#1a1a3a' : '#e8ecff'
-    const bgSolid = isDark ? '#0d0d1f' : '#f0f4ff'
-
-    // Fond dégradé
-    const grad = ctx.createLinearGradient(0, 0, W, H)
-    grad.addColorStop(0, bg0); grad.addColorStop(1, bg1)
-    ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H)
-
-    // Particules flottantes
-    PARTICLES.forEach(({ x, y, r, speed, phase }) => {
-      const py = ((y * H - p * speed * H * 3) % H + H) % H
-      const alpha = (isDark ? 0.04 : 0.07) + 0.02 * Math.sin(p * Math.PI * 6 + phase)
-      ctx.beginPath(); ctx.arc(x * W, py, r, 0, Math.PI * 2)
-      ctx.fillStyle = isDark ? `rgba(160,160,255,${alpha})` : `rgba(80,80,200,${alpha})`
-      ctx.fill()
-    })
-
-    // Spotlight derrière la carte (accent color, pulsant légèrement)
-    const spotPulse = 1 + 0.08 * Math.sin(p * Math.PI * 4)
-    const spot = ctx.createRadialGradient(W / 2, H / 2 - 80, 0, W / 2, H / 2 - 80, 420 * spotPulse)
     const ar = parseInt(accent.slice(1, 3), 16)
     const ag = parseInt(accent.slice(3, 5), 16)
     const ab = parseInt(accent.slice(5, 7), 16)
-    spot.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.14 : 0.07})`)
+
+    const bgTop    = isDark ? '#080818' : '#eef2ff'
+    const bgBot    = isDark ? '#101028' : '#dde4ff'
+    const infoBg   = isDark ? '#0b0b20' : '#ffffff'
+    const textMain = isDark ? '#ffffff' : '#111111'
+    const textSub  = isDark ? 'rgba(255,255,255,0.52)' : 'rgba(0,0,0,0.48)'
+
+    // ── Fond ───────────────────────────────────────────────────────────────
+    const bgGrad = ctx.createLinearGradient(0, 0, 0, H)
+    bgGrad.addColorStop(0, bgTop); bgGrad.addColorStop(1, bgBot)
+    ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, W, H)
+
+    // ── Particules ─────────────────────────────────────────────────────────
+    PARTICLES.forEach(({ x, y, r, speed, phase }) => {
+      const py = ((y * H - p * speed * H * 3) % H + H) % H
+      const a = (isDark ? 0.05 : 0.08) + 0.03 * Math.sin(p * Math.PI * 5 + phase)
+      ctx.beginPath(); ctx.arc(x * W, py, r, 0, Math.PI * 2)
+      ctx.fillStyle = isDark ? `rgba(${ar},${ag},${ab + 60},${a})` : `rgba(80,80,220,${a})`
+      ctx.fill()
+    })
+
+    // ── Layout dynamique ───────────────────────────────────────────────────
+    const INFO_H  = Math.round(H * 0.26)   // 26% pour les infos
+    const CARD_ZONE_H = H - INFO_H
+    const CARD_MAX_W  = W * 0.82
+    const CARD_MAX_H  = CARD_ZONE_H * 0.88
+    const CARD_RATIO  = 3.5 / 2.5
+    const BASE_W = Math.min(CARD_MAX_W, CARD_MAX_H / CARD_RATIO)
+    const BASE_H = BASE_W * CARD_RATIO
+    const CARD_CY = CARD_ZONE_H / 2
+
+    // ── Spotlight ──────────────────────────────────────────────────────────
+    const pulse = 1 + 0.07 * Math.sin(p * Math.PI * 3)
+    const spot = ctx.createRadialGradient(W / 2, CARD_CY, 0, W / 2, CARD_CY, BASE_W * 0.9 * pulse)
+    spot.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.18 : 0.10})`)
     spot.addColorStop(1, 'rgba(0,0,0,0)')
     ctx.fillStyle = spot; ctx.fillRect(0, 0, W, H)
 
-    // Carte
-    const angle = p * Math.PI * 2
+    // ── Animation carte ────────────────────────────────────────────────────
+    const angle  = p * Math.PI * 2
     const scaleX = Math.cos(angle)
     const showBack = scaleX < 0
-    const CARD_W = 600, CARD_H = 840
-    const zoom = 1 + 0.035 * Math.sin(p * Math.PI) // zoom subtil
-    const cardW = CARD_W * Math.abs(scaleX) * zoom
-    const cardH = CARD_H * zoom
-    const cardCY = H / 2 - 80
+    const zoom   = 1 + 0.04 * Math.sin(p * Math.PI)
+    const cardW  = BASE_W * Math.abs(scaleX) * zoom
+    const cardH  = BASE_H * zoom
 
     if (cardW > 2) {
       // Reflet au sol
-      const floorY = cardCY + cardH / 2
+      const floorY = CARD_CY + BASE_H * zoom / 2
       ctx.save()
       ctx.translate(W / 2, floorY)
       ctx.transform(Math.abs(scaleX) * zoom, 0, 0, -zoom, 0, 0)
-      ctx.globalAlpha = 0.18 * Math.abs(scaleX)
-      ctx.drawImage(showBack ? backImg : frontImg, -CARD_W / 2, 0, CARD_W, CARD_H)
+      ctx.globalAlpha = 0.16 * Math.abs(scaleX)
+      ctx.drawImage(showBack ? backImg : frontImg, -BASE_W / 2, 0, BASE_W, BASE_H)
       ctx.restore()
-      // Fondu sur le reflet
-      const reflFade = ctx.createLinearGradient(0, floorY, 0, floorY + cardH * 0.45)
-      reflFade.addColorStop(0, 'rgba(0,0,0,0)')
-      reflFade.addColorStop(1, bgSolid)
-      ctx.fillStyle = reflFade; ctx.fillRect(0, floorY, W, cardH * 0.45)
+      // Fondu reflet
+      const reflFade = ctx.createLinearGradient(0, floorY, 0, floorY + BASE_H * 0.4 * zoom)
+      reflFade.addColorStop(0, 'rgba(0,0,0,0)'); reflFade.addColorStop(1, bgBot)
+      ctx.fillStyle = reflFade; ctx.fillRect(0, floorY, W, BASE_H * 0.4 * zoom)
 
       // Carte principale
       ctx.save()
-      ctx.translate(W / 2, cardCY)
+      ctx.translate(W / 2, CARD_CY)
+      // Ombre portée
+      ctx.shadowColor = `rgba(${ar},${ag},${ab},0.5)`
+      ctx.shadowBlur = 40 * zoom
+      ctx.shadowOffsetY = 12
       ctx.drawImage(showBack ? backImg : frontImg, -cardW / 2, -cardH / 2, cardW, cardH)
-      // Reflet lumineux (shine)
-      if (Math.abs(scaleX) > 0.08) {
-        const glowPos = (Math.sin(angle) + 1) / 2
-        const shine = ctx.createLinearGradient(
-          -cardW / 2 + cardW * glowPos, -cardH / 2,
-          -cardW / 2 + cardW * glowPos + 120, cardH / 2
-        )
+      ctx.shadowBlur = 0; ctx.shadowOffsetY = 0
+      // Shine
+      if (Math.abs(scaleX) > 0.06) {
+        const gp = (Math.sin(angle) + 1) / 2
+        const shine = ctx.createLinearGradient(-cardW / 2 + cardW * gp, -cardH / 2, -cardW / 2 + cardW * gp + cardW * 0.18, cardH / 2)
         shine.addColorStop(0, 'rgba(255,255,255,0)')
-        shine.addColorStop(0.5, `rgba(255,255,255,${isDark ? 0.20 : 0.28})`)
+        shine.addColorStop(0.5, `rgba(255,255,255,${isDark ? 0.22 : 0.32})`)
         shine.addColorStop(1, 'rgba(255,255,255,0)')
         ctx.fillStyle = shine; ctx.fillRect(-cardW / 2, -cardH / 2, cardW, cardH)
       }
       ctx.restore()
     }
 
-    // Zone infos — fondu progressif au lieu d'une ligne dure
-    const infoY = cardCY + cardH / 2 - 30
-    const infoH = H - infoY
-    const fadeGrad = ctx.createLinearGradient(0, infoY - 80, 0, infoY + 20)
-    fadeGrad.addColorStop(0, 'rgba(0,0,0,0)')
-    fadeGrad.addColorStop(1, bgSolid)
-    ctx.fillStyle = fadeGrad; ctx.fillRect(0, infoY - 80, W, 100)
-    ctx.fillStyle = bgSolid; ctx.fillRect(0, infoY + 20, W, infoH)
+    // ── Zone infos ─────────────────────────────────────────────────────────
+    const infoY = H - INFO_H
+    // Fondu progressif
+    const fadeGrad = ctx.createLinearGradient(0, infoY - INFO_H * 0.35, 0, infoY + 10)
+    fadeGrad.addColorStop(0, 'rgba(0,0,0,0)'); fadeGrad.addColorStop(1, infoBg)
+    ctx.fillStyle = fadeGrad; ctx.fillRect(0, infoY - INFO_H * 0.35, W, INFO_H * 0.45)
+    ctx.fillStyle = infoBg; ctx.fillRect(0, infoY + 10, W, INFO_H)
+
     // Ligne accent
-    ctx.fillStyle = accent; ctx.fillRect(0, infoY, W, 3)
+    const lineGrad = ctx.createLinearGradient(W * 0.15, 0, W * 0.85, 0)
+    lineGrad.addColorStop(0, 'rgba(0,0,0,0)')
+    lineGrad.addColorStop(0.3, accent); lineGrad.addColorStop(0.7, accent)
+    lineGrad.addColorStop(1, 'rgba(0,0,0,0)')
+    ctx.fillStyle = lineGrad; ctx.fillRect(0, infoY, W, 2)
 
-    const textBase = infoY + 50
-    ctx.textAlign = 'center'
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top'
+    const tx = W / 2
+    let ty = infoY + INFO_H * 0.11
 
-    // Nom
-    ctx.fillStyle = isDark ? 'white' : '#121212'
-    ctx.font = `bold ${Math.round(W * 0.044)}px Inter, sans-serif`
-    ctx.fillText(card.n, W / 2, textBase)
+    // Badges (en premier pour ancrer le layout)
+    const tags: { label: string; color: string }[] = []
+    if (card.rc)    tags.push({ label: 'RC',    color: '#e67e22' })
+    if (card.auto)  tags.push({ label: 'AUTO',  color: '#2e7d32' })
+    if (card.num)   tags.push({ label: `/${card.num}`, color: '#7b1fa2' })
+    if (card.patch) tags.push({ label: 'PATCH', color: '#1976d2' })
+
+    const badgeFs = Math.round(W * 0.025)
+    const badgeH  = Math.round(W * 0.038)
+    const badgePad = Math.round(W * 0.022)
+
+    if (tags.length > 0) {
+      ctx.font = `700 ${badgeFs}px Inter, sans-serif`
+      const widths = tags.map(t => ctx.measureText(t.label).width + badgePad * 2)
+      const gap = Math.round(W * 0.012)
+      const totalW = widths.reduce((a, b) => a + b, 0) + gap * (tags.length - 1)
+      let bx = tx - totalW / 2
+      tags.forEach((tag, i) => {
+        const bw = widths[i]
+        ctx.fillStyle = tag.color
+        ctx.beginPath(); ctx.roundRect(bx, ty, bw, badgeH, 5); ctx.fill()
+        ctx.fillStyle = '#ffffff'
+        ctx.fillText(tag.label, bx + bw / 2, ty + badgeH * 0.18)
+        bx += bw + gap
+      })
+      ty += badgeH + Math.round(INFO_H * 0.06)
+    }
+
+    // Nom joueur
+    const nameFs = Math.round(W * 0.052)
+    ctx.fillStyle = textMain
+    ctx.font = `800 ${nameFs}px Inter, sans-serif`
+    ctx.fillText(card.n, tx, ty)
+    ty += nameFs + Math.round(INFO_H * 0.04)
 
     // Variation
     if (card.v) {
+      const varFs = Math.round(W * 0.031)
       ctx.fillStyle = accent
-      ctx.font = `600 ${Math.round(W * 0.029)}px Inter, sans-serif`
-      ctx.fillText(card.v, W / 2, textBase + 38)
+      ctx.font = `600 ${varFs}px Inter, sans-serif`
+      ctx.fillText(card.v, tx, ty)
+      ty += varFs + Math.round(INFO_H * 0.03)
     }
 
     // Infos secondaires
-    ctx.fillStyle = isDark ? 'rgba(255,255,255,0.48)' : 'rgba(0,0,0,0.48)'
-    ctx.font = `${Math.round(W * 0.024)}px Inter, sans-serif`
-    const info2 = [card.t, card.y, `${card.br} ${card.s}`].filter(Boolean).join(' · ')
-    ctx.fillText(info2, W / 2, textBase + (card.v ? 72 : 38))
+    const infoFs = Math.round(W * 0.025)
+    ctx.fillStyle = textSub
+    ctx.font = `400 ${infoFs}px Inter, sans-serif`
+    const meta = [card.t, card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
+    if (meta) ctx.fillText(meta, tx, ty)
 
-    // Tags / badges
-    const tags: { label: string; color: string }[] = []
-    if (card.rc)   tags.push({ label: 'RC', color: '#e67e22' })
-    if (card.auto) tags.push({ label: 'AUTO', color: '#2e7d32' })
-    if (card.num)  tags.push({ label: `/${card.num}`, color: '#7b1fa2' })
-    if (card.patch) tags.push({ label: 'PATCH', color: '#1976d2' })
-    if (tags.length > 0) {
-      const tagH = 28, tagPad = 20, gap = 10
-      const tagWidths = tags.map(t => {
-        ctx.font = `bold ${Math.round(W * 0.024)}px Inter, sans-serif`
-        return ctx.measureText(t.label).width + tagPad * 2
-      })
-      const totalW = tagWidths.reduce((a, b) => a + b, 0) + gap * (tags.length - 1)
-      let tagX = W / 2 - totalW / 2
-      const tagY = textBase + (card.v ? 90 : 56)
-      tags.forEach((tag, i) => {
-        const tw = tagWidths[i]
-        ctx.fillStyle = tag.color
-        ctx.beginPath(); ctx.roundRect(tagX, tagY, tw, tagH, 6); ctx.fill()
-        ctx.fillStyle = 'white'
-        ctx.font = `bold ${Math.round(W * 0.024)}px Inter, sans-serif`
-        ctx.fillText(tag.label, tagX + tw / 2, tagY + tagH * 0.68)
-        tagX += tw + gap
-      })
-    }
-
-    // Logo
-    ctx.fillStyle = isDark ? `rgba(${ar},${ag},${ab},0.7)` : accent
-    ctx.font = `600 ${Math.round(W * 0.028)}px Inter, sans-serif`
-    ctx.textAlign = 'right'
-    ctx.fillText('memorabilius.fr', W - 22, H - 16)
+    // Logo watermark
+    ctx.textAlign = 'right'; ctx.textBaseline = 'bottom'
+    ctx.fillStyle = isDark ? `rgba(${ar},${ag},${ab},0.55)` : `rgba(${ar},${ag},${ab},0.7)`
+    ctx.font = `600 ${Math.round(W * 0.026)}px Inter, sans-serif`
+    ctx.fillText('memorabilius.fr', W - Math.round(W * 0.03), H - Math.round(H * 0.012))
   }
 
   const startRecording = async () => {
     const canvas = canvasRef.current
     if (!canvas) return
+    const { w, h } = VIDEO_FORMATS[vfmtRef.current]
+    canvas.width = w; canvas.height = h
+
     setRecording(true); setProgress(0); setDone(false); setVideoUrl(null)
     const ctx = canvas.getContext('2d')!
-    const frontImg = await loadImage(card.f)
-    const backImg = await loadImage(card.b || card.f)
-    const mimeType = format === 'mp4' && MediaRecorder.isTypeSupported('video/mp4')
+    const [frontImg, backImg] = await Promise.all([loadImage(card.f), loadImage(card.b || card.f)])
+
+    const mimeType = codec === 'mp4' && MediaRecorder.isTypeSupported('video/mp4')
       ? 'video/mp4' : 'video/webm;codecs=vp9'
     const stream = canvas.captureStream(FPS)
-    const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 8000000 })
+    const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 10_000_000 })
     const chunks: Blob[] = []
     recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data) }
     recorder.onstop = () => {
-      const blob = new Blob(chunks, { type: mimeType })
-      setVideoUrl(URL.createObjectURL(blob)); setDone(true); setRecording(false)
+      setVideoUrl(URL.createObjectURL(new Blob(chunks, { type: mimeType })))
+      setDone(true); setRecording(false)
     }
     recorder.start()
-    let frameCount = 0
-    const totalFrames = Math.ceil((DURATION / 1000) * FPS)
-    const frameDuration = DURATION / totalFrames
 
-    const renderNextFrame = () => {
-      const p = Math.min(frameCount / totalFrames, 1)
+    const totalFrames = Math.ceil((DURATION / 1000) * FPS)
+    let frame = 0
+    const frameDur = DURATION / totalFrames
+    const render = () => {
+      const p = Math.min(frame / totalFrames, 1)
       setProgress(Math.round(p * 100))
       drawFrame(ctx, frontImg, backImg, p)
-
-      if (frameCount < totalFrames) {
-        frameCount++
-        setTimeout(() => requestAnimationFrame(renderNextFrame), frameDuration)
-      } else {
-        // Attendre un peu que le dernier frame soit capturé
-        setTimeout(() => recorder.stop(), 200)
-      }
+      if (frame < totalFrames) { frame++; setTimeout(() => requestAnimationFrame(render), frameDur) }
+      else setTimeout(() => recorder.stop(), 200)
     }
-    requestAnimationFrame(renderNextFrame)
+    requestAnimationFrame(render)
   }
 
   const download = () => {
     if (!videoUrl) return
     const a = document.createElement('a')
     a.href = videoUrl
-    a.download = `${card.n.replace(/\s+/g, '_')}_memorabilius.${format}`
+    a.download = `${card.n.replace(/\s+/g, '_')}_memorabilius.${codec}`
     a.click()
   }
 
-  const btnStyle = (active: boolean) => ({
-    padding: '8px 18px', border: 'none', borderRadius: 20, cursor: 'pointer',
+  const chip = (active: boolean) => ({
+    padding: '7px 16px', border: 'none', borderRadius: 20, cursor: 'pointer',
     fontWeight: 700, fontSize: 13,
-    background: active ? accent : 'rgba(255,255,255,0.1)',
-    color: active ? 'white' : 'rgba(255,255,255,0.6)',
+    background: active ? accent : 'rgba(255,255,255,0.09)',
+    color: active ? '#fff' : 'rgba(255,255,255,0.55)',
+    transition: '0.15s',
   })
 
+  const { w, h } = VIDEO_FORMATS[vfmt]
+
   return (
-    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', zIndex: 99999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: '#0d0d1f', borderRadius: 20, padding: 30, maxWidth: 520, width: '100%', textAlign: 'center', border: `1px solid ${accent}` }}>
-        <h2 style={{ color: 'white', fontWeight: 900, marginBottom: 6 }}>
-          🎬 {lang === 'fr' ? 'Exporter en vidéo' : 'Export as video'}
-        </h2>
-        <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13, marginBottom: 20 }}>
-          {card.n}{card.v ? ` — ${card.v}` : ''}
-        </p>
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.88)', zIndex: 99999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: '#0d0d22', borderRadius: 20, padding: 28, maxWidth: 540, width: '100%', textAlign: 'center', border: `1px solid ${accent}44`, display: 'flex', gap: 24, alignItems: 'flex-start' }}>
 
-        {!recording && (
-          <div style={{ display: 'flex', gap: 20, justifyContent: 'center', marginBottom: 20, flexWrap: 'wrap' }}>
-            <div>
-              <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 11, marginBottom: 8, textTransform: 'uppercase', fontWeight: 700 }}>{lang === 'fr' ? 'Thème' : 'Theme'}</p>
-              <div style={{ display: 'flex', gap: 6 }}>
-                <button style={btnStyle(theme === 'dark')} onClick={() => setTheme('dark')}>🌙 {lang === 'fr' ? 'Sombre' : 'Dark'}</button>
-                <button style={btnStyle(theme === 'light')} onClick={() => setTheme('light')}>☀️ {lang === 'fr' ? 'Clair' : 'Light'}</button>
-              </div>
-            </div>
-            <div>
-              <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 11, marginBottom: 8, textTransform: 'uppercase', fontWeight: 700 }}>Format</p>
-              <div style={{ display: 'flex', gap: 6 }}>
-                <button style={btnStyle(format === 'webm')} onClick={() => setFormat('webm')}>WebM</button>
-                <button style={btnStyle(format === 'mp4')} onClick={() => setFormat('mp4')}>MP4</button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <canvas ref={canvasRef} width={900} height={1300} style={{ width: '100%', maxWidth: 260, borderRadius: 12, display: 'block', margin: '0 auto 20px', border: `1px solid ${accent}33` }} />
-
-        {recording && (
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: 10, height: 8, overflow: 'hidden' }}>
-              <div style={{ background: accent, height: '100%', width: `${progress}%`, transition: '0.1s', borderRadius: 10 }} />
-            </div>
-            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12, marginTop: 8 }}>{progress}%</p>
-          </div>
-        )}
-
-        <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
-          {!recording && !done && (
-            <button onClick={startRecording} style={{ background: accent, color: 'white', border: 'none', borderRadius: 10, padding: '12px 24px', fontWeight: 800, cursor: 'pointer', fontSize: 15 }}>
-              ▶ {lang === 'fr' ? 'Générer la vidéo' : 'Generate video'}
-            </button>
-          )}
-          {done && videoUrl && (
-            <>
-              <button onClick={download} style={{ background: '#2e7d32', color: 'white', border: 'none', borderRadius: 10, padding: '12px 24px', fontWeight: 800, cursor: 'pointer', fontSize: 15 }}>
-                ⬇️ {lang === 'fr' ? `Télécharger (.${format})` : `Download (.${format})`}
-              </button>
-              <button onClick={startRecording} style={{ background: 'rgba(255,255,255,0.1)', color: 'white', border: 'none', borderRadius: 10, padding: '12px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
-                🔄 {lang === 'fr' ? 'Refaire' : 'Redo'}
-              </button>
-            </>
-          )}
-          <button onClick={onClose} style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.5)', border: 'none', borderRadius: 10, padding: '12px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
-            {lang === 'fr' ? 'Fermer' : 'Close'}
-          </button>
+        {/* Prévisualisation canvas */}
+        <div style={{ flexShrink: 0 }}>
+          <canvas ref={canvasRef} width={w} height={h}
+            style={{ width: 200, height: Math.round(200 * h / w), borderRadius: 10, display: 'block', border: `1px solid ${accent}33`, background: '#080818' }} />
         </div>
 
-        {done && format === 'webm' && (
-          <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: 11, marginTop: 14, lineHeight: 1.5 }}>
-            💡 {lang === 'fr' ? 'Convertir en MP4 gratuitement sur cloudconvert.com' : 'Convert to MP4 for free on cloudconvert.com'}
+        {/* Panneau options */}
+        <div style={{ flex: 1, textAlign: 'left' }}>
+          <h2 style={{ color: '#fff', fontWeight: 900, fontSize: 17, margin: '0 0 4px' }}>
+            🎬 {lang === 'fr' ? 'Exporter en vidéo' : 'Export video'}
+          </h2>
+          <p style={{ color: 'rgba(255,255,255,0.38)', fontSize: 12, margin: '0 0 20px' }}>
+            {card.n}{card.v ? ` · ${card.v}` : ''}
           </p>
-        )}
+
+          {!recording && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {/* Format vidéo */}
+              <div>
+                <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 8px' }}>Format</p>
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                  {(Object.entries(VIDEO_FORMATS) as [VideoFormat, typeof VIDEO_FORMATS[VideoFormat]][]).map(([key, f]) => (
+                    <button key={key} style={chip(vfmt === key)} onClick={() => setVfmt(key)}>
+                      {f.label} <span style={{ opacity: 0.6, fontSize: 11 }}>{f.ratio}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Thème */}
+              <div>
+                <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 8px' }}>{lang === 'fr' ? 'Thème' : 'Theme'}</p>
+                <div style={{ display: 'flex', gap: 6 }}>
+                  <button style={chip(theme === 'dark')} onClick={() => setTheme('dark')}>🌙 {lang === 'fr' ? 'Sombre' : 'Dark'}</button>
+                  <button style={chip(theme === 'light')} onClick={() => setTheme('light')}>☀️ {lang === 'fr' ? 'Clair' : 'Light'}</button>
+                </div>
+              </div>
+
+              {/* Codec */}
+              <div>
+                <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 8px' }}>Codec</p>
+                <div style={{ display: 'flex', gap: 6 }}>
+                  <button style={chip(codec === 'webm')} onClick={() => setCodec('webm')}>WebM</button>
+                  <button style={chip(codec === 'mp4')} onClick={() => setCodec('mp4')}>MP4</button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Progress */}
+          {recording && (
+            <div style={{ margin: '8px 0 16px' }}>
+              <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: 8, height: 6, overflow: 'hidden' }}>
+                <div style={{ background: accent, height: '100%', width: `${progress}%`, transition: '0.1s', borderRadius: 8 }} />
+              </div>
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginTop: 6 }}>{progress}%</p>
+            </div>
+          )}
+
+          {/* Actions */}
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: recording ? 0 : 20 }}>
+            {!recording && !done && (
+              <button onClick={startRecording} style={{ background: accent, color: '#fff', border: 'none', borderRadius: 10, padding: '11px 22px', fontWeight: 800, cursor: 'pointer', fontSize: 14 }}>
+                ▶ {lang === 'fr' ? 'Générer' : 'Generate'}
+              </button>
+            )}
+            {done && videoUrl && (
+              <>
+                <button onClick={download} style={{ background: '#2e7d32', color: '#fff', border: 'none', borderRadius: 10, padding: '11px 20px', fontWeight: 800, cursor: 'pointer', fontSize: 14 }}>
+                  ⬇ {lang === 'fr' ? `Télécharger (.${codec})` : `Download (.${codec})`}
+                </button>
+                <button onClick={startRecording} style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)', border: 'none', borderRadius: 10, padding: '11px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+                  🔄 {lang === 'fr' ? 'Refaire' : 'Redo'}
+                </button>
+              </>
+            )}
+            <button onClick={onClose} style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.4)', border: 'none', borderRadius: 10, padding: '11px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+              {lang === 'fr' ? 'Fermer' : 'Close'}
+            </button>
+          </div>
+
+          {done && codec === 'webm' && (
+            <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: 11, marginTop: 12, lineHeight: 1.5 }}>
+              💡 {lang === 'fr' ? 'Convertir en MP4 sur cloudconvert.com' : 'Convert to MP4 at cloudconvert.com'}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   )
