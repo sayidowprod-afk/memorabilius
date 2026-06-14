@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import CardScanner from '@/components/CardScanner'
 
 const CARD_RATIO = 2.5 / 3.5
 
@@ -22,6 +23,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     image_recto: '', image_verso: '',
   })
 
+  const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
   const [cropModal, setCropModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
   const [rotation, setRotation] = useState(0)
 
@@ -92,13 +94,30 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const reader = new FileReader()
     reader.onload = () => {
       if (reader.result) {
-        setCropModal({ side, src: reader.result as string })
-        setRotation(0)
-        setImgTransform({ x: 0, y: 0, scale: 1 })
+        setScannerModal({ side, src: reader.result as string })
       }
     }
     reader.readAsDataURL(file)
     e.target.value = ''
+  }
+
+  const uploadBlob = async (blob: Blob, side: 'recto' | 'verso') => {
+    if (side === 'recto') setUploadingRecto(true)
+    else setUploadingVerso(true)
+    setScannerModal(null)
+
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const path = `cartes/${user.id}/${Date.now()}_${side}.jpg`
+    const file = new File([blob], `${Date.now()}_${side}.jpg`, { type: 'image/jpeg' })
+    const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
+    if (error) { alert('Erreur upload : ' + error.message); setUploadingRecto(false); setUploadingVerso(false); return }
+
+    const { data } = supabase.storage.from('avatars').getPublicUrl(path)
+    const url = data.publicUrl
+    if (side === 'recto') { setForm(f => ({ ...f, image_recto: url })); setPreviewRecto(url); setUploadingRecto(false) }
+    else { setForm(f => ({ ...f, image_verso: url })); setPreviewVerso(url); setUploadingVerso(false) }
   }
 
   const getDist = (touches: React.TouchList) =>
@@ -149,10 +168,6 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const applyCropAndUpload = async () => {
     if (!cropModal || !containerRef.current || !imgRef.current) return
     const side = cropModal.side
-
-    if (side === 'recto') setUploadingRecto(true)
-    else setUploadingVerso(true)
-
     const container = containerRef.current
     const cw = container.clientWidth
     const ch = container.clientHeight
@@ -216,31 +231,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
     finalCanvas.toBlob(async (blob) => {
       if (!blob) { setUploadingRecto(false); setUploadingVerso(false); return }
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
-
-      const path = `cartes/${user.id}/${Date.now()}_${side}.jpg`
-      const fileToUpload = new File([blob], `${Date.now()}_${side}.jpg`, { type: 'image/jpeg' })
-
-      const { error } = await supabase.storage.from('avatars').upload(path, fileToUpload, { upsert: true })
-      if (error) {
-        alert('Erreur upload : ' + error.message)
-        setUploadingRecto(false); setUploadingVerso(false)
-        return
-      }
-
-      const { data } = supabase.storage.from('avatars').getPublicUrl(path)
-      const url = data.publicUrl
-
-      if (side === 'recto') {
-        setForm(f => ({ ...f, image_recto: url }))
-        setPreviewRecto(url)
-        setUploadingRecto(false)
-      } else {
-        setForm(f => ({ ...f, image_verso: url }))
-        setPreviewVerso(url)
-        setUploadingVerso(false)
-      }
+      await uploadBlob(blob, side)
     }, 'image/jpeg', 0.88)
   }
 
@@ -378,6 +369,20 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           </button>
         </div>
       </form>
+
+      {scannerModal && (
+        <CardScanner
+          src={scannerModal.src}
+          onResult={blob => uploadBlob(blob, scannerModal.side)}
+          onFallback={() => {
+            setCropModal({ side: scannerModal.side, src: scannerModal.src })
+            setRotation(0)
+            setImgTransform({ x: 0, y: 0, scale: 1 })
+            setScannerModal(null)
+          }}
+          onClose={() => setScannerModal(null)}
+        />
+      )}
 
       {cropModal && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.92)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
