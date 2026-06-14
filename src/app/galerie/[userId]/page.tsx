@@ -148,7 +148,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
         f: m.image_recto || 'https://placehold.co/300x420?text=No+Image',
         b: m.image_verso || m.image_recto || 'https://placehold.co/300x420?text=No+Image',
         n: m.nom || '', t: m.equipe || '', y: m.annee || '',
-        br: m.collection || '', s: m.collection || '', v: m.variation || '',
+        br: m.marque || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', auto: m.auto || false, rc: m.rc || false,
         patch: m.patch || false, g: m.grade || 'Raw', isManuelle: true
       }))

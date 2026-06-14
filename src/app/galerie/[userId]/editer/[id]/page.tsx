@@ -19,7 +19,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const [previewRecto, setPreviewRecto] = useState<string | null>(null)
   const [previewVerso, setPreviewVerso] = useState<string | null>(null)
   const [form, setForm] = useState({
-    nom: '', equipe: '', annee: '', collection: '', variation: '',
+    nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
     grade: 'Raw', num: '', rc: false, auto: false, patch: false,
     image_recto: '', image_verso: '',
   })
@@ -41,7 +41,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       if (error || !data) { router.push(`/galerie/${userId}`); return }
       setForm({
         nom: data.nom || '', equipe: data.equipe || '', annee: data.annee || '',
-        collection: data.collection || '', variation: data.variation || '',
+        marque: data.marque || '', collection: data.collection || '', variation: data.variation || '',
         grade: data.grade || 'Raw', num: data.num || '',
         rc: data.rc || false, auto: data.auto || false, patch: data.patch || false,
         image_recto: data.image_recto || '', image_verso: data.image_verso || '',
@@ -135,6 +135,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         nom:        (fillMissingOnly && f.nom)        ? f.nom        : card.nom        || f.nom,
         equipe:     (fillMissingOnly && f.equipe)     ? f.equipe     : card.equipe     || f.equipe,
         annee:      (fillMissingOnly && f.annee)      ? f.annee      : card.annee      || f.annee,
+        marque:     (fillMissingOnly && f.marque)     ? f.marque     : card.marque     || f.marque,
         collection: (fillMissingOnly && f.collection) ? f.collection : card.collection || f.collection,
         variation:  (fillMissingOnly && f.variation)  ? f.variation  : card.variation  || f.variation,
         num:        (fillMissingOnly && f.num)        ? f.num        : card.num        || f.num,
@@ -219,7 +220,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
     const { error } = await supabase.from('cartes_manuelles').update({
       nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
-      collection: form.collection || null, variation: form.variation || null, grade: form.grade,
+      marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, grade: form.grade,
       num: form.num || null, rc: form.rc, auto: form.auto, patch: form.patch,
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
     }).eq('id', id).eq('user_id', user.id)
@@ -319,8 +320,12 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Collection / Marque' : 'Brand / Set'}</label>
-              <input value={form.collection} onChange={e => setForm({ ...form, collection: e.target.value })} placeholder="Panini Prizm" />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Marque' : 'Brand'}</label>
+              <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder="Panini, Topps…" />
+            </div>
+            <div>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Collection' : 'Set'}</label>
+              <input value={form.collection} onChange={e => setForm({ ...form, collection: e.target.value })} placeholder="Prizm, Chrome…" />
             </div>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Variation' : 'Variant'}</label>
