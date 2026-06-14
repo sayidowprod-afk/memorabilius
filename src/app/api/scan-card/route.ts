@@ -59,9 +59,12 @@ export async function POST(req: NextRequest) {
     const parts = data.candidates?.[0]?.content?.parts ?? []
     const text = parts.map((p: any) => p.text ?? '').join('')
 
+    console.log('Gemini parts:', JSON.stringify(parts.map((p: any) => ({ type: p.thought ? 'thought' : 'text', len: (p.text ?? '').length }))))
+    console.log('Gemini text:', text.slice(0, 500))
+
     // Extraire le JSON de la réponse (parfois Gemini ajoute du texte autour)
     const match = text.match(/\{[\s\S]*\}/)
-    if (!match) return NextResponse.json({ error: 'Réponse invalide' }, { status: 500 })
+    if (!match) return NextResponse.json({ error: 'Réponse invalide: ' + text.slice(0, 200) }, { status: 500 })
 
     const card = JSON.parse(match[0])
     return NextResponse.json(card)
