@@ -12,7 +12,7 @@ Réponds UNIQUEMENT avec un objet JSON valide, sans markdown, sans explication :
   "annee": "Année ou saison (ex: 2023-24 ou 2023)",
   "collection": "Marque et set (ex: Panini Prizm, Topps Chrome, Pokemon)",
   "variation": "Variante ou parallèle (ex: Silver Prizm, Refractor, Holo)",
-  "num": "Numérotation si présente (ex: 48/99, /25), vide sinon",
+  "num": "Numérotation sérielle UNIQUEMENT si format X/Y ou /Y visible (ex: 48/99, /25). Vide sinon.",
   "grade": "Raw",
   "rc": false,
   "auto": false,
@@ -24,6 +24,7 @@ Règles :
 - auto = true si tu vois une signature manuscrite ou "Autograph"
 - patch = true si tu vois un morceau de tissu/jersey encapsulé ou "Patch"
 - grade = "Raw" par défaut, sauf si tu vois un grade PSA/BGS/CGC visible
+- num : SEULEMENT si tu vois explicitement "X/Y" ou "/Y" imprimé sur la carte (tirage limité). Le numéro de carte du set (ex: #123), le numéro de maillot, ou tout autre nombre NE compte PAS
 - Si une info est absente ou illisible, mets une chaîne vide ""
 - Ne devine pas, reste factuel à ce qui est visible sur la carte`
 
