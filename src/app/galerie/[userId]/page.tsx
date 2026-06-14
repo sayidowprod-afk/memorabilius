@@ -37,6 +37,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const [loaded, setLoaded] = useState(false)
   const [currentUser, setCurrentUser] = useState<string | null>(null)
   const [privateCards, setPrivateCards] = useState<Set<string>>(new Set())
+  const [cardValues, setCardValues] = useState<Map<string, number>>(new Map())
   const [editMode, setEditMode] = useState(false)
   const loaderRef = useRef<HTMLDivElement>(null)
 
@@ -67,7 +68,22 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
       .then(({ data }) => {
         if (data) setPrivateCards(new Set(data.map((d: any) => d.card_key)))
       })
+    supabase.from('card_values').select('card_key,valeur').eq('user_id', userId)
+      .then(({ data }) => {
+        if (data) setCardValues(new Map(data.map((d: any) => [d.card_key, d.valeur])))
+      })
   }, [userId])
+
+  const updateCardValue = async (cardKey: string, val: number | null) => {
+    if (!currentUser || currentUser !== userId) return
+    if (val === null || isNaN(val)) {
+      await supabase.from('card_values').delete().eq('user_id', userId).eq('card_key', cardKey)
+      setCardValues(prev => { const m = new Map(prev); m.delete(cardKey); return m })
+    } else {
+      await supabase.from('card_values').upsert({ user_id: userId, card_key: cardKey, valeur: val }, { onConflict: 'user_id,card_key' })
+      setCardValues(prev => new Map(prev).set(cardKey, val))
+    }
+  }
 
   const togglePrivate = async (cardKey: string) => {
     if (!currentUser || currentUser !== userId) return
@@ -275,6 +291,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                     avatarUrl={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
                     accent={accent}
                     lang={lang}
+                    cardValues={cardValues}
                   />
                 )}
 
@@ -365,26 +382,37 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                 </div>
               )}
               
-              {/* Actions du mode édition (Confidentialité + Option de Suppression) */}
+              {/* Actions du mode édition (Confidentialité + Valeur + Suppression) */}
               {editMode && isOwner && (
-                <div style={{ position: 'absolute', top: 6, right: 6, zIndex: 2, display: 'flex', gap: 4 }}>
-                  <button onClick={e => { e.stopPropagation(); togglePrivate(d.f) }} style={{
-                    background: privateCards.has(d.f) ? '#e74c3c' : '#003DA6',
-                    color: 'white', border: 'none', borderRadius: 6,
-                    padding: '4px 8px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
-                  }}>
-                    {privateCards.has(d.f) ? t('gallery_make_public') : t('gallery_make_private')}
-                  </button>
-                  
-                  {/* Bouton Poubelle visible exclusivement pour vos cartes importées manuellement */}
-                  {d.isManuelle && d.id_manuelle && (
-                    <button onClick={e => { e.stopPropagation(); handleDeleteCard(d.id_manuelle!, d.f) }} style={{
-                      background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6,
-                      padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
-                    }} title={lang === 'fr' ? 'Supprimer la carte' : 'Delete card'}>
-                      🗑️
+                <div style={{ position: 'absolute', top: 4, left: 0, right: 0, zIndex: 2, display: 'flex', flexDirection: 'column', gap: 4, padding: '0 4px' }}>
+                  <div style={{ display: 'flex', gap: 4 }}>
+                    <button onClick={e => { e.stopPropagation(); togglePrivate(d.f) }} style={{
+                      flex: 1, background: privateCards.has(d.f) ? '#e74c3c' : '#003DA6',
+                      color: 'white', border: 'none', borderRadius: 6,
+                      padding: '4px 4px', fontSize: 9, fontWeight: 900, cursor: 'pointer',
+                    }}>
+                      {privateCards.has(d.f) ? t('gallery_make_public') : t('gallery_make_private')}
                     </button>
-                  )}
+                    {d.isManuelle && d.id_manuelle && (
+                      <button onClick={e => { e.stopPropagation(); handleDeleteCard(d.id_manuelle!, d.f) }} style={{
+                        background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6,
+                        padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
+                      }} title={lang === 'fr' ? 'Supprimer la carte' : 'Delete card'}>
+                        🗑️
+                      </button>
+                    )}
+                  </div>
+                  {/* Valeur estimée (privée) */}
+                  <div onClick={e => e.stopPropagation()} style={{ display: 'flex', alignItems: 'center', background: 'rgba(0,0,0,0.75)', borderRadius: 6, padding: '3px 6px', gap: 4 }}>
+                    <span style={{ color: '#ffd700', fontSize: 10, fontWeight: 800, flexShrink: 0 }}>€</span>
+                    <input
+                      type="number" min="0" step="0.01" placeholder="valeur"
+                      defaultValue={cardValues.get(d.f) ?? ''}
+                      onBlur={e => updateCardValue(d.f, e.target.value === '' ? null : parseFloat(e.target.value))}
+                      onClick={e => e.stopPropagation()}
+                      style={{ width: '100%', background: 'transparent', border: 'none', outline: 'none', color: 'white', fontSize: 11, fontWeight: 700 }}
+                    />
+                  </div>
                 </div>
               )}
               <div style={{ width: '100%', aspectRatio: '2.5/3.5', marginBottom: 8, overflow: 'hidden', position: 'relative' }}>

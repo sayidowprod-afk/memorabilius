@@ -12,6 +12,7 @@ interface Props {
   avatarUrl: string
   accent: string
   lang: string
+  cardValues?: Map<string, number>
 }
 
 const FORMATS = {
@@ -293,7 +294,7 @@ function Toggle({ on, onChange, label }: { on: boolean; onChange: (v: boolean) =
 const SL: React.CSSProperties = { fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#888', marginBottom: 8, display: 'block' }
 
 // ─── Main ──────────────────────────────────────────────────────────────────────
-export default function GalerieExport({ cards, profileName, avatarUrl, accent, lang }: Props) {
+export default function GalerieExport({ cards, profileName, avatarUrl, accent, lang, cardValues = new Map() }: Props) {
   const [open, setOpen] = useState(false)
   const [exporting, setExporting] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -329,12 +330,14 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
 
   // ── Export CSV ─────────────────────────────────────────────────────────────
   const exportCSV = () => {
-    const headers = ['Joueur','Équipe','Année','Collection','Variation','Numérotation','Grade','RC','Auto','Patch']
+    const hasValues = filtered.some(c => cardValues.has(c.f))
+    const headers = ['Joueur','Équipe','Année','Collection','Variation','Numérotation','Grade','RC','Auto','Patch', ...(hasValues ? ['Valeur (€)'] : [])]
     const rows = filtered.map(c => [
       c.n, c.t, c.y, c.s, c.v, c.num, c.g,
       c.rc ? 'Oui' : 'Non',
       c.auto ? 'Oui' : 'Non',
       c.patch ? 'Oui' : 'Non',
+      ...(hasValues ? [cardValues.has(c.f) ? String(cardValues.get(c.f)) : ''] : []),
     ])
     const csv = '﻿' + [headers, ...rows]
       .map(r => r.map(cell => `"${(cell || '').replace(/"/g, '""')}"`).join(','))
@@ -360,20 +363,26 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
       const PW = 297, PH = 210
       const ML = 10, MR = 10
 
+      const hasPdfValues = filtered.some(c => cardValues.has(c.f))
+      const totalValue = hasPdfValues
+        ? filtered.reduce((s, c) => s + (cardValues.get(c.f) ?? 0), 0)
+        : 0
+
       // Colonnes (mm) — avec ou sans photo
-      type Col = { header: string; key: keyof Card | '_badges' | '_photo'; w: number; align?: 'center' }
+      type Col = { header: string; key: keyof Card | '_badges' | '_photo' | '_valeur'; w: number; align?: 'center' | 'right' }
       const cols: Col[] = [
         ...(withPhotos ? [{ header: '', key: '_photo' as const, w: 12 }] : []),
-        { header: 'Joueur',      key: 'n',   w: 42 },
-        { header: 'Équipe',      key: 't',   w: 28 },
-        { header: 'Année',       key: 'y',   w: 16 },
-        { header: 'Collection',  key: 's',   w: 42 },
-        { header: 'Variation',   key: 'v',   w: 36 },
-        { header: 'Num.',        key: 'num', w: 18 },
-        { header: 'Grade',       key: 'g',   w: 16 },
-        { header: 'RC',          key: 'rc',  w: 9,  align: 'center' },
-        { header: 'Auto',        key: 'auto',w: 9,  align: 'center' },
-        { header: 'Patch',       key: 'patch',w: 10, align: 'center' },
+        { header: 'Joueur',      key: 'n',      w: 40 },
+        { header: 'Équipe',      key: 't',      w: 26 },
+        { header: 'Année',       key: 'y',      w: 15 },
+        { header: 'Collection',  key: 's',      w: 38 },
+        { header: 'Variation',   key: 'v',      w: 34 },
+        { header: 'Num.',        key: 'num',    w: 16 },
+        { header: 'Grade',       key: 'g',      w: 15 },
+        { header: 'RC',          key: 'rc',     w: 9,  align: 'center' },
+        { header: 'Auto',        key: 'auto',   w: 9,  align: 'center' },
+        { header: 'Patch',       key: 'patch',  w: 9,  align: 'center' },
+        ...(hasPdfValues ? [{ header: 'Valeur €', key: '_valeur' as const, w: 18, align: 'right' as const }] : []),
       ]
       // Ajuster la dernière colonne pour remplir la largeur
       const totalW = cols.reduce((s, c) => s + c.w, 0)
@@ -410,7 +419,11 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
           doc.setFont(FONT, 'bold'); doc.setFontSize(13); doc.setTextColor(20, 20, 20)
           doc.text(`${profileName} — Collection (${filtered.length} carte${filtered.length > 1 ? 's' : ''})`, ML, y + 5)
           doc.setFont(FONT, 'normal'); doc.setFontSize(7); doc.setTextColor(150)
-          doc.text(`Exporté le ${new Date().toLocaleDateString('fr-FR')} · memorabilius.fr`, ML, y + 10)
+          const subLine = [
+            `Exporté le ${new Date().toLocaleDateString('fr-FR')} · memorabilius.fr`,
+            hasPdfValues ? `Valeur totale : ${totalValue.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €` : '',
+          ].filter(Boolean).join('   ·   ')
+          doc.text(subLine, ML, y + 10)
           y += HEADER_H
         }
 
@@ -465,10 +478,16 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
               doc.text('✓', cx + col.w / 2, cellY, { align: 'center' })
               doc.setFont(FONT, 'normal'); doc.setTextColor(30, 30, 30)
             }
+          } else if (col.key === '_valeur') {
+            const v = cardValues.get(card.f)
+            if (v !== undefined) {
+              doc.setFont(FONT, 'bold')
+              doc.text(v.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €', cx + col.w - 1.5, cellY, { align: 'right' })
+              doc.setFont(FONT, 'normal')
+            }
           } else {
             const raw = card[col.key as keyof Card]
             const text = typeof raw === 'boolean' ? '' : (raw || '')
-            // Tronquer si trop long
             const truncated = doc.getTextWidth(text) > maxW
               ? doc.splitTextToSize(text, maxW)[0] + '…'
               : text
