@@ -26,6 +26,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const [displayed, setDisplayed] = useState<Card[]>([])
   const [page, setPage] = useState(1)
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
+  const [filterPrivate, setFilterPrivate] = useState(false)
   const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc'>('default')
   const [search, setSearch] = useState('')
   const [fTeam, setFTeam] = useState('')
@@ -172,7 +173,8 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
         (!activeFilters.rc || d.rc) &&
         (!activeFilters.auto || d.auto) &&
         (!activeFilters.patch || d.patch) &&
-        (!activeFilters.num || d.num !== '')
+        (!activeFilters.num || d.num !== '') &&
+        (!filterPrivate || privateCards.has(d.f))
       )
     })
 
@@ -197,7 +199,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     setFiltered(sorted)
     setPage(1)
     setDisplayed(sorted.slice(0, PAGE_SIZE))
-  }, [cards, search, fTeam, fBrand, fYear, activeFilters, privateCards, isOwner, sortBy, cardValues])
+  }, [cards, search, fTeam, fBrand, fYear, activeFilters, filterPrivate, privateCards, isOwner, sortBy, cardValues])
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -352,13 +354,19 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                 <option value="">{t('gallery_all')}</option>{years.map(year => <option key={year}>{year}</option>)}
               </select></div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5, marginBottom: 8 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(5,1fr)' : 'repeat(4,1fr)', gap: 5, marginBottom: 8 }}>
             {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
               <button key={k} onClick={() => toggleFilter(k)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
                 background: activeFilters[k] ? accent : '#f0f0f0', color: activeFilters[k] ? 'white' : '#333'
               }}>{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
             ))}
+            {isOwner && (
+              <button onClick={() => setFilterPrivate(p => !p)} style={{
+                padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
+                background: filterPrivate ? '#555' : '#f0f0f0', color: filterPrivate ? 'white' : '#333'
+              }}>🔒 Privé</button>
+            )}
           </div>
           <div>
             <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>
