@@ -224,17 +224,54 @@ function largestBlobCorners(binary: Uint8Array, w: number, h: number): Pt[] | nu
   return corners
 }
 
+// Ratio largeur/hauteur des 4 coins d'un quadrilatère
+function quadAspectRatio(corners: Pt[]): number {
+  const [tl, tr, br, bl] = corners
+  const w = (Math.hypot(tr.x-tl.x, tr.y-tl.y) + Math.hypot(br.x-bl.x, br.y-bl.y)) / 2
+  const h = (Math.hypot(bl.x-tl.x, bl.y-tl.y) + Math.hypot(br.x-tr.x, br.y-tr.y)) / 2
+  return w / (h || 1)
+}
+
 function detectByThreshold(data: Uint8ClampedArray, w: number, h: number): Pt[] | null {
-  const gray  = normalize(toGray(data, w, h))
-  const thresh = otsuThreshold(gray)
-  // Essaie les deux polarités (fond sombre → carte claire, et fond clair → carte sombre)
-  for (const invert of [false, true]) {
-    const binary = new Uint8Array(w * h)
-    for (let i = 0; i < w * h; i++) binary[i] = (gray[i] > thresh) !== invert ? 1 : 0
-    const corners = largestBlobCorners(binary, w, h)
-    if (corners) return corners
+  const rawGray  = toGray(data, w, h)
+  const normGray = normalize(rawGray)
+  // Ratio carte standard ~0.714 (2.5/3.5), ou paysage ~1.4
+  const CARD_RATIO = 2.5 / 3.5
+
+  let best: Pt[] | null = null, bestScore = Infinity
+
+  // 4 combinaisons : gris brut/normalisé × fond sombre/fond clair
+  for (const gray of [rawGray, normGray]) {
+    const thresh = otsuThreshold(gray)
+    for (const invert of [false, true]) {
+      const binary = new Uint8Array(w * h)
+      for (let i = 0; i < w * h; i++) binary[i] = (gray[i] > thresh) !== invert ? 1 : 0
+      const corners = largestBlobCorners(binary, w, h)
+      if (!corners) continue
+      const r = quadAspectRatio(corners)
+      // Score : distance au ratio carte portrait ou paysage (le plus proche gagne)
+      const score = Math.min(Math.abs(r - CARD_RATIO), Math.abs(r - 1 / CARD_RATIO))
+      if (score < bestScore) { bestScore = score; best = corners }
+    }
   }
-  return null
+
+  // Rejeter si le ratio est trop éloigné d'une carte (ex: fond qui occupe tout l'image)
+  return best && bestScore < 0.55 ? best : null
+}
+
+// Garde seulement les bords dans la zone périphérique de l'image (≈40% extérieur).
+// Élimine les motifs internes des cartes holographiques/prismatiques qui polluent Hough.
+function peripheralMask(edges: Uint8Array, w: number, h: number): Uint8Array {
+  const out = new Uint8Array(w * h)
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      if (!edges[y*w+x]) continue
+      const dx = Math.min(x, w-1-x) / (w * 0.5)  // 0=bord image, 1=centre image
+      const dy = Math.min(y, h-1-y) / (h * 0.5)
+      if (Math.min(dx, dy) < 0.40) out[y*w+x] = 255
+    }
+  }
+  return out
 }
 
 async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
@@ -247,19 +284,25 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   c.width = W; c.height = H
   c.getContext('2d')!.drawImage(img, 0, 0, W, H)
   const data = c.getContext('2d')!.getImageData(0, 0, W, H).data
-
   await new Promise(r => setTimeout(r, 0))
 
-  // Méthode 1 : seuillage (rapide, fiable sur fond contrasté)
+  // Méthode 1 : seuillage Otsu — 4 combinaisons, meilleur ratio carte
   const corners1 = detectByThreshold(data, W, H)
   if (corners1) return corners1.map(p => ({ x: p.x / scale, y: p.y / scale }))
 
-  // Méthode 2 : Hough (fallback pour fonds complexes)
+  // Calcul des bords une seule fois pour les méthodes Hough
   const gray  = normalize(toGray(data, W, H))
   const blur  = gaussBlur(gray, W, H)
   const edges = sobel(blur, W, H)
-  const corners2 = detectCornersHough(edges, W, H)
+
+  // Méthode 2 : Hough périphérique — ignore le centre de l'image (holographique/chrome)
+  const periEdges = peripheralMask(edges, W, H)
+  const corners2 = detectCornersHough(periEdges, W, H)
   if (corners2) return corners2.map(p => ({ x: p.x / scale, y: p.y / scale }))
+
+  // Méthode 3 : Hough classique (fallback)
+  const corners3 = detectCornersHough(edges, W, H)
+  if (corners3) return corners3.map(p => ({ x: p.x / scale, y: p.y / scale }))
 
   return null
 }
