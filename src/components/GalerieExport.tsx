@@ -67,17 +67,17 @@ async function loadImgs(srcs: string[], limit = 20): Promise<HTMLImageElement[]>
   return out
 }
 
-// Trouve le nb de colonnes qui maximise la taille des cartes en tenant compte
-// des deux contraintes (largeur ET hauteur). Pas de cap artificiel sur les colonnes.
+// Trouve le nb de colonnes qui maximise la taille des cartes (largeur + hauteur).
+// nameH est proportionnel à la largeur estimée : évite qu'il écrase la hauteur sur A4/Carré.
 function bestCols(n: number, availW: number, availH: number, textBelow: boolean): number {
-  const nameH = textBelow ? NAME_AREA : 0
   let bestC = 1, bestCardW = 0
   for (let c = 1; c <= n; c++) {
     const r = Math.ceil(n / c)
-    const cardWfromW = (availW - GAP * (c - 1)) / c
+    const cardWest = (availW - GAP * (c - 1)) / c
+    const nameH = textBelow ? Math.min(NAME_AREA, Math.max(20, Math.round(cardWest * 0.45))) : 0
     const cardHfromH = (availH - GAP * (r - 1) - nameH * r) / r
     if (cardHfromH <= 0) continue
-    const cardW = Math.min(cardWfromW, cardHfromH / CARD_RATIO)
+    const cardW = Math.min(cardWest, cardHfromH / CARD_RATIO)
     if (cardW > bestCardW) { bestCardW = cardW; bestC = c }
   }
   return bestC
@@ -125,9 +125,10 @@ async function generate(cards: Card[], profileName: string, avatarUrl: string, a
   const availH = h - HEADER_H - FOOTER_H - PAD * 2
   const cols = bestCols(cards.length, availW, availH, hasBelow)
   const rows = Math.ceil(cards.length / cols)
-  const nameH = hasBelow ? NAME_AREA : 0
-  // Taille des cartes : contrainte la plus restrictive entre largeur et hauteur
+  // nameH proportionnel à la largeur de carte (même formule que bestCols)
   const cardWfromW = (availW - GAP * (cols - 1)) / cols
+  const nameH = hasBelow ? Math.min(NAME_AREA, Math.max(20, Math.round(cardWfromW * 0.45))) : 0
+  // Taille des cartes : contrainte la plus restrictive entre largeur et hauteur
   const cardHfromH = (availH - GAP * (rows - 1) - nameH * rows) / rows
   const cardW = Math.floor(Math.min(cardWfromW, cardHfromH / CARD_RATIO))
   const cardH = Math.floor(cardW * CARD_RATIO)
