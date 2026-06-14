@@ -85,8 +85,19 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
     ])
   }
 
-  const runDetection = (cv: any, img: HTMLImageElement, canvas: HTMLCanvasElement, scale: number) => {
-    const mat   = cv.imread(canvas)
+  const runDetection = async (cv: any, img: HTMLImageElement, canvas: HTMLCanvasElement, scale: number) => {
+    // Downscale pour la détection : max 600px → rapide et suffisant pour trouver le contour
+    const DET_MAX = 600
+    const detScale = Math.min(DET_MAX / img.naturalWidth, DET_MAX / img.naturalHeight, 1)
+    const detW = Math.round(img.naturalWidth  * detScale)
+    const detH = Math.round(img.naturalHeight * detScale)
+    const detCanvas = document.createElement('canvas')
+    detCanvas.width = detW; detCanvas.height = detH
+    detCanvas.getContext('2d')!.drawImage(img, 0, 0, detW, detH)
+
+    await new Promise(r => setTimeout(r, 0)) // yield UI avant le traitement lourd
+
+    const mat   = cv.imread(detCanvas)
     const gray  = new cv.Mat()
     const blur  = new cv.Mat()
     const edges = new cv.Mat()
@@ -102,7 +113,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
 
     let bestApprox: any = null
     let bestArea  = 0
-    const minArea = canvas.width * canvas.height * 0.04
+    const minArea = detW * detH * 0.04
 
     for (let i = 0; i < cnts.size(); i++) {
       const cnt  = cnts.get(i)
@@ -122,9 +133,14 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
     mat.delete(); gray.delete(); blur.delete(); edges.delete(); cnts.delete(); hier.delete()
 
     if (bestApprox) {
+      // Remettre à l'échelle du canvas d'affichage
+      const toDisplay = scale / detScale
       const pts: Pt[] = []
       for (let i = 0; i < 4; i++) {
-        pts.push({ x: bestApprox.data32S[i * 2], y: bestApprox.data32S[i * 2 + 1] })
+        pts.push({
+          x: bestApprox.data32S[i * 2]     * toDisplay,
+          y: bestApprox.data32S[i * 2 + 1] * toDisplay,
+        })
       }
       bestApprox.delete()
       setCorners(orderCorners(pts))
@@ -208,20 +224,30 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
     if (!img || corners.length < 4 || applying) return
     setApplying(true)
     const s = scaleRef.current
-    // Convertir coords display → coords image naturelle
-    const nat = corners.map(c => ({ x: c.x / s, y: c.y / s }))
+
+    // Source limitée à 1500px max : évite le crash mémoire sur photos haute-res
+    const WARP_MAX = 1500
+    const warpScale = Math.min(WARP_MAX / img.naturalWidth, WARP_MAX / img.naturalHeight, 1)
+    const warpW = Math.round(img.naturalWidth  * warpScale)
+    const warpH = Math.round(img.naturalHeight * warpScale)
+
+    // Coins en coordonnées source warpée
+    const nat = corners.map(c => ({ x: c.x / s * warpScale, y: c.y / s * warpScale }))
+
     try {
       const cv = await getCV()
+      await new Promise(r => setTimeout(r, 0)) // yield avant traitement
+
+      const tmp = document.createElement('canvas')
+      tmp.width = warpW; tmp.height = warpH
+      tmp.getContext('2d')!.drawImage(img, 0, 0, warpW, warpH)
+
+      const srcMat = cv.imread(tmp)
       const srcPts = cv.matFromArray(4, 1, cv.CV_32FC2, [
         nat[0].x, nat[0].y, nat[1].x, nat[1].y,
         nat[2].x, nat[2].y, nat[3].x, nat[3].y,
       ])
       const dstPts = cv.matFromArray(4, 1, cv.CV_32FC2, [0, 0, 600, 0, 600, 840, 0, 840])
-
-      const tmp = document.createElement('canvas')
-      tmp.width = img.naturalWidth; tmp.height = img.naturalHeight
-      tmp.getContext('2d')!.drawImage(img, 0, 0)
-      const srcMat = cv.imread(tmp)
 
       const M   = cv.getPerspectiveTransform(srcPts, dstPts)
       const dst = new cv.Mat()
@@ -234,6 +260,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
 
       out.toBlob(blob => { if (blob) onResult(blob) }, 'image/jpeg', 0.88)
     } catch {
+      setApplying(false)
       onFallback()
     }
   }
