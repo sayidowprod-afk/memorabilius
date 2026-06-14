@@ -52,15 +52,20 @@ function loadImg(src: string): Promise<HTMLImageElement> {
   })
 }
 
-// Trouve le minimum de colonnes tel que les cartes (largeur pleine) tiennent en hauteur.
-// On remplira ensuite le vide vertical avec vGap.
+// Trouve le minimum de colonnes (diviseur exact de n) tel que les cartes tiennent en hauteur.
+// Garantit des lignes toujours complètes. Fallback : premier c qui rentre (dernière ligne incomplète).
 function bestCols(n: number, availW: number, availH: number, textBelow: boolean): number {
   const nameH = textBelow ? NAME_AREA : 0
-  for (let c = 1; c <= n; c++) {
+  const fits = (c: number) => {
     const cardW = (availW - GAP * (c - 1)) / c
-    const cardH = cardW * CARD_RATIO
     const rows = Math.ceil(n / c)
-    if (rows * (cardH + nameH) <= availH) return c
+    return rows * (cardW * CARD_RATIO + nameH) <= availH
+  }
+  for (let c = 1; c <= n; c++) {
+    if (n % c === 0 && fits(c)) return c
+  }
+  for (let c = 1; c <= n; c++) {
+    if (fits(c)) return c
   }
   return n
 }
