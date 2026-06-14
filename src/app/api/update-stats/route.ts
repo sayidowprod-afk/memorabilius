@@ -18,10 +18,10 @@ export async function POST(req: NextRequest) {
       const r = await fetch(csvUrl, { cache: 'no-store' })
       if (r.ok) {
         const text = await r.text()
-        const lines = text.split(/\r?\n/).slice(1)
+        const lines = text.split(/\r?\n/).slice(4)
         lines.forEach(line => {
           const c = line.split(',')
-          if (!c[0] || c[0].length < 10) return
+          if (!c[0] || !c[0].includes('http')) return
           stats.total++
           if (c[10]?.toLowerCase().includes('oui')) stats.rc++
           if (c[9]?.toLowerCase().includes('oui')) stats.auto++
