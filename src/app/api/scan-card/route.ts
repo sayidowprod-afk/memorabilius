@@ -56,7 +56,8 @@ export async function POST(req: NextRequest) {
     }
 
     const data = await res.json()
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? ''
+    const parts = data.candidates?.[0]?.content?.parts ?? []
+    const text = parts.map((p: any) => p.text ?? '').join('')
 
     // Extraire le JSON de la réponse (parfois Gemini ajoute du texte autour)
     const match = text.match(/\{[\s\S]*\}/)
