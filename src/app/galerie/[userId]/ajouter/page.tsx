@@ -102,6 +102,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   }
 
   const [scanning, setScanning] = useState(false)
+  const [scanError, setScanError] = useState<string | null>(null)
 
   const uploadBlob = async (blob: Blob, side: 'recto' | 'verso') => {
     if (side === 'recto') setUploadingRecto(true)
@@ -127,6 +128,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
   const analyzeCard = async (blob: Blob) => {
     setScanning(true)
+    setScanError(null)
     try {
       const base64 = await new Promise<string>(res => {
         const reader = new FileReader()
@@ -138,9 +140,11 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg' }),
       })
-      if (!resp.ok) return
       const card = await resp.json()
-      if (card.error) return
+      if (!resp.ok || card.error) {
+        setScanError(card.error || `Erreur ${resp.status}`)
+        return
+      }
       setForm(f => ({
         ...f,
         nom:        card.nom        || f.nom,
@@ -154,8 +158,11 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         auto:       card.auto ?? f.auto,
         patch:      card.patch ?? f.patch,
       }))
-    } catch {}
-    finally { setScanning(false) }
+    } catch (e: any) {
+      setScanError(e.message)
+    } finally {
+      setScanning(false)
+    }
   }
 
   const getDist = (touches: React.TouchList) =>
@@ -344,6 +351,11 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             <span style={{ fontSize: 13, fontWeight: 600, color: '#003DA6' }}>
               {lang === 'fr' ? 'Analyse IA en cours…' : 'AI analysis in progress…'}
             </span>
+          </div>
+        )}
+        {scanError && (
+          <div style={{ background: '#fff5f5', border: '1.5px solid #ffc0c0', borderRadius: 10, padding: '10px 16px', marginBottom: 4, fontSize: 12, color: '#c0392b' }}>
+            Analyse IA : {scanError}
           </div>
         )}
 
