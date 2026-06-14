@@ -292,6 +292,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                     accent={accent}
                     lang={lang}
                     cardValues={cardValues}
+                    isOwner={isOwner}
                   />
                 )}
 

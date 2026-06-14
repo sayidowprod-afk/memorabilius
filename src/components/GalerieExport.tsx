@@ -13,6 +13,7 @@ interface Props {
   accent: string
   lang: string
   cardValues?: Map<string, number>
+  isOwner?: boolean
 }
 
 const FORMATS = {
@@ -294,7 +295,7 @@ function Toggle({ on, onChange, label }: { on: boolean; onChange: (v: boolean) =
 const SL: React.CSSProperties = { fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#888', marginBottom: 8, display: 'block' }
 
 // ─── Main ──────────────────────────────────────────────────────────────────────
-export default function GalerieExport({ cards, profileName, avatarUrl, accent, lang, cardValues = new Map() }: Props) {
+export default function GalerieExport({ cards, profileName, avatarUrl, accent, lang, cardValues = new Map(), isOwner = false }: Props) {
   const [open, setOpen] = useState(false)
   const [exporting, setExporting] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -358,9 +359,9 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
     try {
       const { default: jsPDF } = await import('jspdf')
 
-      // A4 paysage : 297 × 210 mm
-      const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' })
-      const PW = 297, PH = 210
+      // A4 portrait : 210 × 297 mm
+      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
+      const PW = 210, PH = 297
       const ML = 10, MR = 10
 
       const hasPdfValues = filtered.some(c => cardValues.has(c.f))
@@ -371,23 +372,28 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
       // Colonnes (mm) — avec ou sans photo
       type Col = { header: string; key: keyof Card | '_badges' | '_photo' | '_valeur'; w: number; align?: 'center' | 'right' }
       const cols: Col[] = [
-        ...(withPhotos ? [{ header: '', key: '_photo' as const, w: 12 }] : []),
-        { header: 'Joueur',      key: 'n',      w: 40 },
-        { header: 'Équipe',      key: 't',      w: 26 },
-        { header: 'Année',       key: 'y',      w: 15 },
-        { header: 'Collection',  key: 's',      w: 38 },
-        { header: 'Variation',   key: 'v',      w: 34 },
-        { header: 'Num.',        key: 'num',    w: 16 },
-        { header: 'Grade',       key: 'g',      w: 15 },
-        { header: 'RC',          key: 'rc',     w: 9,  align: 'center' },
-        { header: 'Auto',        key: 'auto',   w: 9,  align: 'center' },
-        { header: 'Patch',       key: 'patch',  w: 9,  align: 'center' },
-        ...(hasPdfValues ? [{ header: 'Valeur €', key: '_valeur' as const, w: 18, align: 'right' as const }] : []),
+        ...(withPhotos ? [{ header: '', key: '_photo' as const, w: 11 }] : []),
+        { header: 'Joueur',      key: 'n',      w: 32 },
+        { header: 'Équipe',      key: 't',      w: 22 },
+        { header: 'Année',       key: 'y',      w: 13 },
+        { header: 'Collection',  key: 's',      w: 30 },
+        { header: 'Variation',   key: 'v',      w: 26 },
+        { header: 'Num.',        key: 'num',    w: 14 },
+        { header: 'Grade',       key: 'g',      w: 13 },
+        { header: 'RC',          key: 'rc',     w: 8,  align: 'center' },
+        { header: 'Auto',        key: 'auto',   w: 8,  align: 'center' },
+        { header: 'Patch',       key: 'patch',  w: 8,  align: 'center' },
+        ...(hasPdfValues ? [{ header: 'Valeur €', key: '_valeur' as const, w: 16, align: 'right' as const }] : []),
       ]
-      // Ajuster la dernière colonne pour remplir la largeur
-      const totalW = cols.reduce((s, c) => s + c.w, 0)
       const usableW = PW - ML - MR
-      if (totalW < usableW) cols[cols.length - 1].w += usableW - totalW
+      // Réduire proportionnellement si débordement, puis étirer la dernière colonne
+      let totalW = cols.reduce((s, c) => s + c.w, 0)
+      if (totalW > usableW) {
+        const scale = usableW / totalW
+        cols.forEach(c => { c.w = Math.floor(c.w * scale) })
+        totalW = cols.reduce((s, c) => s + c.w, 0)
+      }
+      cols[cols.length - 1].w += usableW - totalW
 
       // Charger les images si besoin
       let cardImgs: (HTMLImageElement | null)[] = []
@@ -434,8 +440,8 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
         let cx = ML
         cols.forEach(col => {
           if (col.header) {
-            const tx = col.align === 'center' ? cx + col.w / 2 : cx + 1.5
-            doc.text(col.header, tx, y + COL_H / 2 + 2.2, { align: col.align === 'center' ? 'center' : 'left' })
+            const tx = col.align === 'center' ? cx + col.w / 2 : col.align === 'right' ? cx + col.w - 1.5 : cx + 1.5
+            doc.text(col.header, tx, y + COL_H / 2 + 2.2, { align: col.align ?? 'left' })
           }
           cx += col.w
         })
@@ -634,10 +640,10 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
             {exporting ? (lang === 'fr' ? '⏳ Génération...' : '⏳ Generating...') : `⬇️ ${lang === 'fr' ? `Télécharger image (${filtered.length} cartes)` : `Download image (${filtered.length} cards)`}`}
           </button>
 
-          <div style={{ height: 1, background: '#f0f0f0' }} />
+          {isOwner && <div style={{ height: 1, background: '#f0f0f0' }} />}
 
-          {/* Export tableur */}
-          <div>
+          {/* Export tableur — visible uniquement par le propriétaire */}
+          {isOwner && <div>
             <span style={SL}>{lang === 'fr' ? 'Export tableur / liste' : 'Spreadsheet / list export'}</span>
             <Toggle on={tableWithPhotos} onChange={setTableWithPhotos}
               label={lang === 'fr' ? 'Inclure les photos (PDF uniquement)' : 'Include photos (PDF only)'} />
@@ -656,7 +662,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
                 ? 'CSV s\'ouvre dans Excel / Google Sheets · PDF se télécharge directement'
                 : 'CSV opens in Excel / Google Sheets · PDF downloads directly'}
             </p>
-          </div>
+          </div>}
         </div>
       </div>
     </div>,
