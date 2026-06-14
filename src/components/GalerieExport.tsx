@@ -67,16 +67,20 @@ async function loadImgs(srcs: string[], limit = 20): Promise<HTMLImageElement[]>
   return out
 }
 
-// Trouve le minimum de colonnes tel que les cartes (largeur pleine) tiennent en hauteur.
-// nameH est proportionnel à la largeur de carte pour éviter qu'il écrase les petites cartes.
+// Trouve le nb de colonnes qui maximise la taille des cartes en tenant compte
+// des deux contraintes (largeur ET hauteur). Pas de cap artificiel sur les colonnes.
 function bestCols(n: number, availW: number, availH: number, textBelow: boolean): number {
+  const nameH = textBelow ? NAME_AREA : 0
+  let bestC = 1, bestCardW = 0
   for (let c = 1; c <= n; c++) {
-    const cardW = (availW - GAP * (c - 1)) / c
-    const nameH = textBelow ? Math.min(NAME_AREA, Math.round(cardW * 0.55)) : 0
-    const rows = Math.ceil(n / c)
-    if (rows * (cardW * CARD_RATIO + nameH) <= availH) return c
+    const r = Math.ceil(n / c)
+    const cardWfromW = (availW - GAP * (c - 1)) / c
+    const cardHfromH = (availH - GAP * (r - 1) - nameH * r) / r
+    if (cardHfromH <= 0) continue
+    const cardW = Math.min(cardWfromW, cardHfromH / CARD_RATIO)
+    if (cardW > bestCardW) { bestCardW = cardW; bestC = c }
   }
-  return n
+  return bestC
 }
 
 let fontPromise: Promise<void> | null = null
@@ -121,17 +125,18 @@ async function generate(cards: Card[], profileName: string, avatarUrl: string, a
   const availH = h - HEADER_H - FOOTER_H - PAD * 2
   const cols = bestCols(cards.length, availW, availH, hasBelow)
   const rows = Math.ceil(cards.length / cols)
-  // Cartes remplissent exactement la largeur
-  const cardW = Math.floor((availW - GAP * (cols - 1)) / cols)
-  const nameH = hasBelow ? Math.min(NAME_AREA, Math.round(cardW * 0.55)) : 0
+  const nameH = hasBelow ? NAME_AREA : 0
+  // Taille des cartes : contrainte la plus restrictive entre largeur et hauteur
+  const cardWfromW = (availW - GAP * (cols - 1)) / cols
+  const cardHfromH = (availH - GAP * (rows - 1) - nameH * rows) / rows
+  const cardW = Math.floor(Math.min(cardWfromW, cardHfromH / CARD_RATIO))
   const cardH = Math.floor(cardW * CARD_RATIO)
-  // vGap réduit : max 6px pour serrer la grille
-  const totalCardH = rows * (cardH + nameH)
-  const vGap = rows > 1 ? Math.min(6, Math.max(0, (availH - totalCardH) / (rows - 1))) : 0
-  const gridH = totalCardH + vGap * (rows - 1)
-
-  const gridX = PAD
+  // Grille centrée dans les deux dimensions
+  const gridW = cols * cardW + GAP * (cols - 1)
+  const gridH = rows * (cardH + nameH) + GAP * (rows - 1)
+  const gridX = PAD + Math.round((availW - gridW) / 2)
   const gridY = HEADER_H + PAD + Math.round((availH - gridH) / 2)
+  const vGap = GAP
 
   // Fond
   ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h)
