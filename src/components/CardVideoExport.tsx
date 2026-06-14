@@ -68,15 +68,23 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const ag = parseInt(accent.slice(3, 5), 16)
     const ab = parseInt(accent.slice(5, 7), 16)
 
-    const bgTop    = isDark ? '#080818' : '#eef2ff'
-    const bgBot    = isDark ? '#101028' : '#dde4ff'
-    const infoBg   = isDark ? '#0b0b20' : '#ffffff'
+    const bgBase   = isDark ? '#06060f' : '#f0f4ff'
+    const bgBot    = isDark ? '#0d0d22' : '#dde4ff'
+    const infoBg   = isDark ? '#08081a' : '#ffffff'
     const textMain = isDark ? '#ffffff' : '#111111'
     const textSub  = isDark ? 'rgba(255,255,255,0.52)' : 'rgba(0,0,0,0.48)'
 
-    // ── Fond ───────────────────────────────────────────────────────────────
+    // ── Fond : base sombre + halo accent en coin haut-droit ────────────────
+    ctx.fillStyle = bgBase; ctx.fillRect(0, 0, W, H)
+    // Halo accent rayonnant depuis le coin haut-droit
+    const halo = ctx.createRadialGradient(W * 0.85, H * 0.08, 0, W * 0.85, H * 0.08, W * 1.1)
+    halo.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.28 : 0.14})`)
+    halo.addColorStop(0.5, `rgba(${ar},${ag},${ab},${isDark ? 0.07 : 0.04})`)
+    halo.addColorStop(1, 'rgba(0,0,0,0)')
+    ctx.fillStyle = halo; ctx.fillRect(0, 0, W, H)
+    // Dégradé vertical subtil vers le bas
     const bgGrad = ctx.createLinearGradient(0, 0, 0, H)
-    bgGrad.addColorStop(0, bgTop); bgGrad.addColorStop(1, bgBot)
+    bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, bgBot + '99')
     ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, W, H)
 
     // ── Particules ─────────────────────────────────────────────────────────
@@ -162,7 +170,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const tags: { label: string; color: string }[] = []
     if (card.rc)    tags.push({ label: 'RC',    color: '#e67e22' })
     if (card.auto)  tags.push({ label: 'AUTO',  color: '#2e7d32' })
-    if (card.num)   tags.push({ label: `/${card.num}`, color: '#7b1fa2' })
+    if (card.num)   tags.push({ label: card.num, color: '#7b1fa2' })
     if (card.patch) tags.push({ label: 'PATCH', color: '#1976d2' })
 
     const badgeFs = Math.round(W * 0.025)
