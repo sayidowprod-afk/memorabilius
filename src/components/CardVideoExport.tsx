@@ -230,9 +230,25 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const ctx = canvas.getContext('2d')!
     const [frontImg, backImg] = await Promise.all([loadImage(card.f), loadImage(card.b || card.f)])
 
+    const totalFrames = Math.ceil((DURATION / 1000) * FPS)
+    const frameDur = DURATION / totalFrames
+
+    // ── Phase 1 : pré-rendu → JPEG blobs en mémoire (~5-10 Mo) ────────────
+    // Sépare le rendu lourd de l'encodage pour garantir un timing parfait
+    const blobs: Blob[] = []
+    for (let i = 0; i <= totalFrames; i++) {
+      drawFrame(ctx, frontImg, backImg, i / totalFrames)
+      const blob = await new Promise<Blob>(res =>
+        canvas.toBlob(b => res(b!), 'image/jpeg', 0.88)
+      )
+      blobs.push(blob)
+      setProgress(Math.round(i / totalFrames * 48))
+      await new Promise(r => setTimeout(r, 0)) // yield au navigateur
+    }
+
+    // ── Phase 2 : replay ultra-rapide → encodage avec timing parfait ───────
     const mimeType = codec === 'mp4' && MediaRecorder.isTypeSupported('video/mp4')
       ? 'video/mp4' : 'video/webm;codecs=vp9'
-    // captureStream(0) + requestFrame() : on ne capture que les frames réellement rendus
     const stream = canvas.captureStream(0)
     const videoTrack = stream.getVideoTracks()[0] as CanvasCaptureMediaStreamTrack
     const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 6_000_000 })
@@ -244,25 +260,15 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     }
     recorder.start()
 
-    const totalFrames = Math.ceil((DURATION / 1000) * FPS)
-    const frameDur = DURATION / totalFrames
-    let frame = 0
-    const startAt = Date.now()
-    const render = () => {
-      const p = Math.min(frame / totalFrames, 1)
-      setProgress(Math.round(p * 100))
-      drawFrame(ctx, frontImg, backImg, p)
+    for (let i = 0; i < blobs.length; i++) {
+      const bmp = await createImageBitmap(blobs[i])
+      ctx.drawImage(bmp, 0, 0, canvas.width, canvas.height)
+      bmp.close()
       videoTrack.requestFrame()
-      frame++
-      if (frame <= totalFrames) {
-        // Planifier depuis le temps absolu de départ : compense les frames lents
-        const next = startAt + frame * frameDur
-        setTimeout(render, Math.max(0, next - Date.now()))
-      } else {
-        setTimeout(() => recorder.stop(), 200)
-      }
+      setProgress(48 + Math.round(i / blobs.length * 52))
+      await new Promise(r => setTimeout(r, frameDur))
     }
-    setTimeout(render, 0)
+    setTimeout(() => recorder.stop(), 200)
   }
 
   const download = () => {
