@@ -101,6 +101,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     e.target.value = ''
   }
 
+  const [scanning, setScanning] = useState(false)
+
   const uploadBlob = async (blob: Blob, side: 'recto' | 'verso') => {
     if (side === 'recto') setUploadingRecto(true)
     else setUploadingVerso(true)
@@ -118,6 +120,42 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const url = data.publicUrl
     if (side === 'recto') { setForm(f => ({ ...f, image_recto: url })); setPreviewRecto(url); setUploadingRecto(false) }
     else { setForm(f => ({ ...f, image_verso: url })); setPreviewVerso(url); setUploadingVerso(false) }
+
+    // Analyse IA uniquement sur le recto
+    if (side === 'recto') analyzeCard(blob)
+  }
+
+  const analyzeCard = async (blob: Blob) => {
+    setScanning(true)
+    try {
+      const base64 = await new Promise<string>(res => {
+        const reader = new FileReader()
+        reader.onload = () => res((reader.result as string).split(',')[1])
+        reader.readAsDataURL(blob)
+      })
+      const resp = await fetch('/api/scan-card', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg' }),
+      })
+      if (!resp.ok) return
+      const card = await resp.json()
+      if (card.error) return
+      setForm(f => ({
+        ...f,
+        nom:        card.nom        || f.nom,
+        equipe:     card.equipe     || f.equipe,
+        annee:      card.annee      || f.annee,
+        collection: card.collection || f.collection,
+        variation:  card.variation  || f.variation,
+        num:        card.num        || f.num,
+        grade:      card.grade      || f.grade,
+        rc:         card.rc   ?? f.rc,
+        auto:       card.auto ?? f.auto,
+        patch:      card.patch ?? f.patch,
+      }))
+    } catch {}
+    finally { setScanning(false) }
   }
 
   const getDist = (touches: React.TouchList) =>
@@ -299,6 +337,15 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           <ImageUploader side="recto" label={lang === 'fr' ? 'Photo Recto *' : 'Front Photo *'} preview={previewRecto} uploading={uploadingRecto} />
           <ImageUploader side="verso" label={lang === 'fr' ? 'Photo Verso' : 'Back Photo'} preview={previewVerso} uploading={uploadingVerso} />
         </div>
+
+        {scanning && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#f0f7ff', border: '1.5px solid #c0d8ff', borderRadius: 10, padding: '10px 16px', marginBottom: 4 }}>
+            <div style={{ width: 16, height: 16, border: '2px solid #003DA6', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', flexShrink: 0 }} />
+            <span style={{ fontSize: 13, fontWeight: 600, color: '#003DA6' }}>
+              {lang === 'fr' ? 'Analyse IA en cours…' : 'AI analysis in progress…'}
+            </span>
+          </div>
+        )}
 
         <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', display: 'flex', flexDirection: 'column', gap: 18 }}>
           <div>
