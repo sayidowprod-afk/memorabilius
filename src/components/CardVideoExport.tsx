@@ -139,11 +139,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       ctx.save()
       ctx.translate(W / 2, CARD_CY)
       // Ombre portée
-      ctx.shadowColor = `rgba(${ar},${ag},${ab},0.5)`
-      ctx.shadowBlur = 40 * zoom
-      ctx.shadowOffsetY = 12
       ctx.drawImage(showBack ? backImg : frontImg, -cardW / 2, -cardH / 2, cardW, cardH)
-      ctx.shadowBlur = 0; ctx.shadowOffsetY = 0
       ctx.restore()
     }
 
@@ -249,16 +245,22 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     recorder.start()
 
     const totalFrames = Math.ceil((DURATION / 1000) * FPS)
-    let frame = 0
     const frameDur = DURATION / totalFrames
+    let frame = 0
+    const startAt = Date.now()
     const render = () => {
       const p = Math.min(frame / totalFrames, 1)
       setProgress(Math.round(p * 100))
       drawFrame(ctx, frontImg, backImg, p)
-      videoTrack.requestFrame() // capture uniquement ce frame rendu
+      videoTrack.requestFrame()
       frame++
-      if (frame <= totalFrames) setTimeout(render, frameDur)
-      else setTimeout(() => recorder.stop(), 200)
+      if (frame <= totalFrames) {
+        // Planifier depuis le temps absolu de départ : compense les frames lents
+        const next = startAt + frame * frameDur
+        setTimeout(render, Math.max(0, next - Date.now()))
+      } else {
+        setTimeout(() => recorder.stop(), 200)
+      }
     }
     setTimeout(render, 0)
   }
