@@ -49,8 +49,8 @@ function AnnuaireContent() {
     const { data: profiles } = await supabase
       .from('profiles')
       .select('id, display_name, avatar_url, lien_csv, stats_total, stats_rc, stats_auto, stats_num, stats_patch, stats_updated_at')
-      .not('lien_csv', 'is', null)
-      .neq('lien_csv', '')
+      .not('display_name', 'is', null)
+      .neq('display_name', '')
 
     if (!profiles) { setLoading(false); return }
 
@@ -71,12 +71,12 @@ function AnnuaireContent() {
     profiles.forEach(async p => {
       const lastUpdate = p.stats_updated_at ? new Date(p.stats_updated_at) : null
       const isStale = !lastUpdate || (Date.now() - lastUpdate.getTime() > 24 * 60 * 60 * 1000)
-      if (isStale && p.lien_csv) {
+      if (isStale) {
         try {
           const r = await fetch('/api/update-stats', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId: p.id, csvUrl: p.lien_csv }),
+            body: JSON.stringify({ userId: p.id, csvUrl: p.lien_csv || null }),
           })
           const data = await r.json()
           if (data.stats) {
