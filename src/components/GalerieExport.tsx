@@ -52,20 +52,14 @@ function loadImg(src: string): Promise<HTMLImageElement> {
   })
 }
 
-// Trouve le minimum de colonnes (diviseur exact de n) tel que les cartes tiennent en hauteur.
-// Garantit des lignes toujours complètes. Fallback : premier c qui rentre (dernière ligne incomplète).
+// Trouve le minimum de colonnes tel que les cartes (largeur pleine) tiennent en hauteur.
+// On remplira ensuite le vide vertical avec vGap.
 function bestCols(n: number, availW: number, availH: number, textBelow: boolean): number {
   const nameH = textBelow ? NAME_AREA : 0
-  const fits = (c: number) => {
+  for (let c = 1; c <= n; c++) {
     const cardW = (availW - GAP * (c - 1)) / c
     const rows = Math.ceil(n / c)
-    return rows * (cardW * CARD_RATIO + nameH) <= availH
-  }
-  for (let c = 1; c <= n; c++) {
-    if (n % c === 0 && fits(c)) return c
-  }
-  for (let c = 1; c <= n; c++) {
-    if (fits(c)) return c
+    if (rows * (cardW * CARD_RATIO + nameH) <= availH) return c
   }
   return n
 }
@@ -151,9 +145,13 @@ async function generate(cards: Card[], profileName: string, avatarUrl: string, a
   const varFs  = Math.min(11, Math.max(7,  Math.round(cardW * 0.072)))
   const infoFs = Math.min(10, Math.max(6,  Math.round(cardW * 0.062)))
 
+  const lastRowCount = cards.length % cols || cols
+  const lastRowOffset = lastRowCount < cols ? ((cols - lastRowCount) * (cardW + GAP)) / 2 : 0
+
   cards.forEach((card, i) => {
     const col = i % cols, row = Math.floor(i / cols)
-    const x = Math.round(gridX + col * (cardW + GAP))
+    const isLastRow = row === rows - 1
+    const x = Math.round(gridX + col * (cardW + GAP) + (isLastRow ? lastRowOffset : 0))
     const y = Math.round(gridY + row * (cardH + nameH + vGap))
 
     // Image carte
