@@ -47,8 +47,14 @@ function loadImg(src: string): Promise<HTMLImageElement> {
     const img = new Image()
     img.crossOrigin = 'anonymous'
     img.onload = () => resolve(img)
-    img.onerror = () => { const fb = new Image(); fb.onload = () => resolve(fb); fb.src = PLACEHOLDER }
-    img.src = src + (src.includes('?') ? '&' : '?') + '_e=1'
+    img.onerror = () => {
+      // Retry sans crossOrigin (évite les erreurs CORS pour les images même domaine)
+      const img2 = new Image()
+      img2.onload = () => resolve(img2)
+      img2.onerror = () => { const fb = new Image(); fb.onload = () => resolve(fb); fb.src = PLACEHOLDER }
+      img2.src = src
+    }
+    img.src = src
   })
 }
 
