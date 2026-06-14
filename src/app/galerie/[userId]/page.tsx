@@ -26,6 +26,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const [displayed, setDisplayed] = useState<Card[]>([])
   const [page, setPage] = useState(1)
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
+  const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc'>('default')
   const [search, setSearch] = useState('')
   const [fTeam, setFTeam] = useState('')
   const [fBrand, setFBrand] = useState('')
@@ -171,10 +172,29 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
         (!activeFilters.num || d.num !== '')
       )
     })
-    setFiltered(f)
+
+    const cmp = (a: string, b: string) => a.localeCompare(b, undefined, { sensitivity: 'base' })
+    const val = (d: Card) => cardValues.get(d.f) ?? -Infinity
+    const sorted = [...f].sort((a, b) => {
+      switch (sortBy) {
+        case 'n':          return cmp(a.n, b.n)
+        case 'n_desc':     return cmp(b.n, a.n)
+        case 't':          return cmp(a.t, b.t)
+        case 'y':          return cmp(a.y, b.y)
+        case 'y_desc':     return cmp(b.y, a.y)
+        case 's':          return cmp(a.s, b.s)
+        case 'v':          return cmp(a.v, b.v)
+        case 'g':          return cmp(a.g, b.g)
+        case 'valeur':     return val(b) - val(a)
+        case 'valeur_desc':return val(a) - val(b)
+        default:           return 0
+      }
+    })
+
+    setFiltered(sorted)
     setPage(1)
-    setDisplayed(f.slice(0, PAGE_SIZE))
-  }, [cards, search, fTeam, fBrand, fYear, activeFilters, privateCards, isOwner])
+    setDisplayed(sorted.slice(0, PAGE_SIZE))
+  }, [cards, search, fTeam, fBrand, fYear, activeFilters, privateCards, isOwner, sortBy, cardValues])
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -328,6 +348,31 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
               <select value={fYear} onChange={e => setFYear(e.target.value)}>
                 <option value="">{t('gallery_all')}</option>{years.map(year => <option key={year}>{year}</option>)}
               </select></div>
+            <div style={{ gridColumn: '1 / -1' }}>
+              <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>
+                {lang === 'fr' ? 'Trier par' : 'Sort by'}
+              </label>
+              <select value={sortBy} onChange={e => setSortBy(e.target.value as typeof sortBy)}
+                style={{ background: sortBy !== 'default' ? '#f0f4ff' : undefined, borderColor: sortBy !== 'default' ? '#003DA6' : undefined, color: sortBy !== 'default' ? '#003DA6' : undefined, fontWeight: sortBy !== 'default' ? 700 : undefined }}>
+                <option value="default">{lang === 'fr' ? '— Ordre par défaut —' : '— Default order —'}</option>
+                <optgroup label={lang === 'fr' ? 'Joueur' : 'Player'}>
+                  <option value="n">{lang === 'fr' ? 'Joueur A → Z' : 'Player A → Z'}</option>
+                  <option value="n_desc">{lang === 'fr' ? 'Joueur Z → A' : 'Player Z → A'}</option>
+                </optgroup>
+                <optgroup label={lang === 'fr' ? 'Année' : 'Year'}>
+                  <option value="y">{lang === 'fr' ? 'Année croissante' : 'Year asc'}</option>
+                  <option value="y_desc">{lang === 'fr' ? 'Année décroissante' : 'Year desc'}</option>
+                </optgroup>
+                <option value="t">{lang === 'fr' ? 'Équipe A → Z' : 'Team A → Z'}</option>
+                <option value="s">{lang === 'fr' ? 'Collection A → Z' : 'Brand A → Z'}</option>
+                <option value="v">{lang === 'fr' ? 'Variation A → Z' : 'Variation A → Z'}</option>
+                <option value="g">{lang === 'fr' ? 'Grade' : 'Grade'}</option>
+                {cardValues.size > 0 && <>
+                  <option value="valeur">{lang === 'fr' ? 'Valeur ↓ (plus cher en 1er)' : 'Value ↓ (highest first)'}</option>
+                  <option value="valeur_desc">{lang === 'fr' ? 'Valeur ↑ (moins cher en 1er)' : 'Value ↑ (lowest first)'}</option>
+                </>}
+              </select>
+            </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5 }}>
             {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
