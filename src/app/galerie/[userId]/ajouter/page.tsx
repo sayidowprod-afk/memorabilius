@@ -320,7 +320,15 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           </div>
         )}
       </div>
+      {/* Deux inputs : galerie + appareil photo */}
       <input id={`upload-${side}`} type="file" accept="image/*" style={{ display: 'none' }} onChange={e => handleFileChange(e, side)} />
+      <input id={`camera-${side}`} type="file" accept="image/*" capture="environment" style={{ display: 'none' }} onChange={e => handleFileChange(e, side)} />
+      {!preview && !uploading && (
+        <button type="button" onClick={() => document.getElementById(`camera-${side}`)?.click()}
+          style={{ marginTop: 6, width: '100%', background: '#f0f4ff', color: '#003DA6', border: 'none', borderRadius: 6, padding: '8px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+          {lang === 'fr' ? '📸 Prendre une photo' : '📸 Take a photo'}
+        </button>
+      )}
       {preview && (
         <button type="button" onClick={() => { setForm(f => ({ ...f, [`image_${side}`]: '' })); side === 'recto' ? setPreviewRecto(null) : setPreviewVerso(null) }}
           style={{ marginTop: 6, width: '100%', background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 6, padding: '6px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
