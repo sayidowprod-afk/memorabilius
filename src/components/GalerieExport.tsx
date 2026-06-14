@@ -52,18 +52,17 @@ function loadImg(src: string): Promise<HTMLImageElement> {
   })
 }
 
+// Trouve le minimum de colonnes tel que les cartes (largeur pleine) tiennent en hauteur.
+// On remplira ensuite le vide vertical avec vGap.
 function bestCols(n: number, availW: number, availH: number, textBelow: boolean): number {
   const nameH = textBelow ? NAME_AREA : 0
-  let bestC = 1, bestCardW = 0
-  for (let c = 1; c <= Math.min(n, 12); c++) {
-    const r = Math.ceil(n / c)
-    const cardWfromW = (availW - GAP * (c - 1)) / c
-    const cardHfromH = (availH - GAP * (r - 1) - nameH * r) / r
-    if (cardHfromH <= 0) continue // pas assez de hauteur
-    const cardW = Math.min(cardWfromW, cardHfromH / CARD_RATIO)
-    if (cardW > bestCardW) { bestCardW = cardW; bestC = c }
+  for (let c = 1; c <= n; c++) {
+    const cardW = (availW - GAP * (c - 1)) / c
+    const cardH = cardW * CARD_RATIO
+    const rows = Math.ceil(n / c)
+    if (rows * (cardH + nameH) <= availH) return c
   }
-  return bestC
+  return n
 }
 
 async function loadFont() {
@@ -106,15 +105,15 @@ async function generate(cards: Card[], profileName: string, avatarUrl: string, a
   const cols = bestCols(cards.length, availW, availH, hasBelow)
   const rows = Math.ceil(cards.length / cols)
   const nameH = hasBelow ? NAME_AREA : 0
-  const cardWfromW = (availW - GAP * (cols - 1)) / cols
-  const cardHfromH = (availH - GAP * (rows - 1) - nameH * rows) / rows
-  const cardW = Math.floor(Math.min(cardWfromW, cardHfromH / CARD_RATIO))
+  // Cartes remplissent exactement la largeur
+  const cardW = Math.floor((availW - GAP * (cols - 1)) / cols)
   const cardH = Math.floor(cardW * CARD_RATIO)
+  // L'espacement vertical s'adapte pour remplir la hauteur
+  const totalCardH = rows * (cardH + nameH)
+  const vGap = rows > 1 ? Math.max(0, (availH - totalCardH) / (rows - 1)) : 0
 
-  const gridW = cols * cardW + GAP * (cols - 1)
-  const gridH = rows * (cardH + nameH) + GAP * (rows - 1)
-  const gridX = PAD + (availW - gridW) / 2
-  const gridY = HEADER_H + PAD + (availH - gridH) / 2
+  const gridX = PAD
+  const gridY = HEADER_H + PAD
 
   // Fond
   ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h)
@@ -150,7 +149,7 @@ async function generate(cards: Card[], profileName: string, avatarUrl: string, a
   cards.forEach((card, i) => {
     const col = i % cols, row = Math.floor(i / cols)
     const x = Math.round(gridX + col * (cardW + GAP))
-    const y = Math.round(gridY + row * (cardH + nameH + GAP))
+    const y = Math.round(gridY + row * (cardH + nameH + vGap))
 
     // Image carte
     ctx.shadowColor = 'rgba(0,0,0,0.15)'; ctx.shadowBlur = 8; ctx.shadowOffsetY = 2
