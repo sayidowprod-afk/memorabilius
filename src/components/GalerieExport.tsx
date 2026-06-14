@@ -297,6 +297,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
   const [open, setOpen] = useState(false)
   const [exporting, setExporting] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [tableWithPhotos, setTableWithPhotos] = useState(false)
 
   const [opts, setOpts] = useState<Options>({ format: 'a4', bgType: 'white', bgColor: '#1a1a2e', showName: true, showInfo: true, showVariation: true, showBadges: true })
 
@@ -325,6 +326,94 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
   ), [cards, search, fTeam, fBrand, fYear, fRc, fAuto, fPatch, fNum])
 
   const set = <K extends keyof Options>(k: K, v: Options[K]) => setOpts(o => ({ ...o, [k]: v }))
+
+  // ── Export CSV ─────────────────────────────────────────────────────────────
+  const exportCSV = () => {
+    const headers = ['Joueur','Équipe','Année','Collection','Variation','Numérotation','Grade','RC','Auto','Patch']
+    const rows = filtered.map(c => [
+      c.n, c.t, c.y, c.s, c.v, c.num, c.g,
+      c.rc ? 'Oui' : 'Non',
+      c.auto ? 'Oui' : 'Non',
+      c.patch ? 'Oui' : 'Non',
+    ])
+    const csv = '﻿' + [headers, ...rows]
+      .map(r => r.map(cell => `"${(cell || '').replace(/"/g, '""')}"`).join(','))
+      .join('\r\n')
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url; a.download = `${profileName.replace(/\s+/g, '_')}_collection.csv`; a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  // ── Export PDF tableau (via impression navigateur) ─────────────────────────
+  const exportPdfTable = (withPhotos: boolean) => {
+    const win = window.open('', '_blank')
+    if (!win) { alert('Autorisez les popups pour cet export.'); return }
+
+    const badge = (label: string, color: string) =>
+      `<span style="display:inline-block;background:${color};color:#fff;font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px;margin-right:2px">${label}</span>`
+
+    const tableRows = filtered.map((c, i) => {
+      const badges = [
+        c.rc    ? badge('RC',    '#e67e22') : '',
+        c.auto  ? badge('AUTO',  '#2e7d32') : '',
+        c.patch ? badge('PATCH', '#1976d2') : '',
+        c.num   ? badge(c.num,   '#7b1fa2') : '',
+        c.g && c.g !== 'Raw' ? badge(c.g, '#555') : '',
+      ].join('')
+      return `<tr style="background:${i % 2 === 0 ? '#fff' : '#f7f9fc'}">
+        ${withPhotos ? `<td style="padding:3px 6px;vertical-align:middle">
+          <img src="${c.f}" crossorigin="anonymous" style="width:32px;height:45px;object-fit:cover;border-radius:3px;display:block" />
+        </td>` : ''}
+        <td style="font-weight:600">${c.n || ''}</td>
+        <td>${c.t || ''}</td>
+        <td>${c.y || ''}</td>
+        <td>${c.s || ''}</td>
+        <td>${c.v || ''}</td>
+        <td style="white-space:nowrap">${c.num || ''}</td>
+        <td>${c.g || ''}</td>
+        <td>${badges}</td>
+      </tr>`
+    }).join('')
+
+    win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8">
+      <title>${profileName} — Collection</title>
+      <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#1a1a1a;padding:12mm}
+        h1{font-size:16px;font-weight:700;margin-bottom:3px}
+        .sub{font-size:9px;color:#888;margin-bottom:12px}
+        table{border-collapse:collapse;width:100%}
+        thead tr{background:#003DA6}
+        th{color:#fff;padding:7px 8px;text-align:left;font-size:9px;font-weight:700;white-space:nowrap}
+        td{padding:5px 8px;border-bottom:1px solid #eee;vertical-align:middle;font-size:9.5px}
+        @media print{@page{margin:10mm;size:A4 landscape}body{padding:0}}
+      </style>
+    </head><body>
+      <h1>${profileName} — Collection (${filtered.length} carte${filtered.length > 1 ? 's' : ''})</h1>
+      <div class="sub">Exporté le ${new Date().toLocaleDateString('fr-FR')} · memorabilius.fr</div>
+      <table>
+        <thead><tr>
+          ${withPhotos ? '<th>Photo</th>' : ''}
+          <th>Joueur</th><th>Équipe</th><th>Année</th>
+          <th>Collection</th><th>Variation</th><th>Num.</th>
+          <th>Grade</th><th>Badges</th>
+        </tr></thead>
+        <tbody>${tableRows}</tbody>
+      </table>
+      <script>
+        const imgs = document.querySelectorAll('img');
+        if (!imgs.length) { window.print(); }
+        else {
+          let n = 0;
+          const done = () => { if (++n >= imgs.length) window.print(); };
+          imgs.forEach(img => { if (img.complete) done(); else { img.onload = done; img.onerror = done; } });
+        }
+      </script>
+    </body></html>`)
+    win.document.close()
+  }
 
   const handleExport = async () => {
     if (!filtered.length) return
@@ -436,11 +525,35 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
             </div>
           </div>
 
-          {/* CTA */}
+          {/* CTA galerie image */}
           <button onClick={handleExport} disabled={exporting || filtered.length === 0}
             style={{ background: exporting || !filtered.length ? '#ccc' : '#003DA6', color: '#fff', border: 'none', borderRadius: 10, padding: '14px', fontWeight: 800, fontSize: 15, cursor: exporting || !filtered.length ? 'not-allowed' : 'pointer', width: '100%', transition: '0.2s' }}>
-            {exporting ? (lang === 'fr' ? '⏳ Génération...' : '⏳ Generating...') : `⬇️ ${lang === 'fr' ? `Télécharger (${filtered.length} cartes)` : `Download (${filtered.length} cards)`}`}
+            {exporting ? (lang === 'fr' ? '⏳ Génération...' : '⏳ Generating...') : `⬇️ ${lang === 'fr' ? `Télécharger image (${filtered.length} cartes)` : `Download image (${filtered.length} cards)`}`}
           </button>
+
+          <div style={{ height: 1, background: '#f0f0f0' }} />
+
+          {/* Export tableur */}
+          <div>
+            <span style={SL}>{lang === 'fr' ? 'Export tableur / liste' : 'Spreadsheet / list export'}</span>
+            <Toggle on={tableWithPhotos} onChange={setTableWithPhotos}
+              label={lang === 'fr' ? 'Inclure les photos (PDF uniquement)' : 'Include photos (PDF only)'} />
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 12 }}>
+              <button onClick={exportCSV} disabled={!filtered.length}
+                style={{ padding: '12px 8px', border: '2px solid #ddd', borderRadius: 10, background: '#fafafa', color: '#333', fontWeight: 700, fontSize: 13, cursor: filtered.length ? 'pointer' : 'not-allowed', transition: '0.15s', opacity: filtered.length ? 1 : 0.5 }}>
+                📊 CSV / Excel
+              </button>
+              <button onClick={() => exportPdfTable(tableWithPhotos)} disabled={!filtered.length}
+                style={{ padding: '12px 8px', border: '2px solid #003DA6', borderRadius: 10, background: '#f0f4ff', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: filtered.length ? 'pointer' : 'not-allowed', transition: '0.15s', opacity: filtered.length ? 1 : 0.5 }}>
+                🖨️ PDF tableau
+              </button>
+            </div>
+            <p style={{ fontSize: 11, color: '#aaa', marginTop: 8, lineHeight: 1.5 }}>
+              {lang === 'fr'
+                ? 'CSV s\'ouvre dans Excel / Google Sheets · PDF : une impression s\'ouvre, choisissez "Enregistrer en PDF"'
+                : 'CSV opens in Excel / Google Sheets · PDF: a print dialog opens, choose "Save as PDF"'}
+            </p>
+          </div>
         </div>
       </div>
     </div>,
