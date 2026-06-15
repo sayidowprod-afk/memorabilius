@@ -527,7 +527,7 @@ async function imageToBase64(img: HTMLImageElement, maxSize = 800): Promise<{ b6
   return { b64: dataUrl.split(',')[1], scale }
 }
 
-async function detectCardFromFrame(img: HTMLImageElement, frame: FrameRect): Promise<Pt[] | null> {
+function detectCardFromFrame(img: HTMLImageElement, frame: FrameRect): Pt[] | null {
   try {
     // Crop de la zone cadre avec 20% de marge pour absorber l'imprécision d'alignement
     const PAD = 0.20
@@ -536,7 +536,6 @@ async function detectCardFromFrame(img: HTMLImageElement, frame: FrameRect): Pro
     const cw = Math.min(img.naturalWidth  - cx, frame.w * (1 + PAD * 2))
     const ch = Math.min(img.naturalHeight - cy, frame.h * (1 + PAD * 2))
 
-    // Crée un canvas du crop à taille raisonnable pour OpenCV
     const MAX = 600
     const cropScale = Math.min(MAX / cw, MAX / ch, 1)
     const cropCanvas = document.createElement('canvas')
@@ -544,22 +543,14 @@ async function detectCardFromFrame(img: HTMLImageElement, frame: FrameRect): Pro
     cropCanvas.height = Math.round(ch * cropScale)
     cropCanvas.getContext('2d')!.drawImage(img, cx, cy, cw, ch, 0, 0, cropCanvas.width, cropCanvas.height)
 
-    // Transforme le canvas en HTMLImageElement pour detectCardInCrop
-    const cropImg = await new Promise<HTMLImageElement>((resolve, reject) => {
-      const i = new Image()
-      i.onload = () => resolve(i)
-      i.onerror = reject
-      i.src = cropCanvas.toDataURL('image/jpeg', 0.92)
-    })
-
-    const cv = await loadOpenCV()
-    const corners = await detectCardInCrop(cropImg, cv)
+    const imageData = cropCanvas.getContext('2d')!.getImageData(0, 0, cropCanvas.width, cropCanvas.height)
+    const corners = detectByThreshold(imageData.data, cropCanvas.width, cropCanvas.height)
     if (!corners) return null
 
     // Coins dans l'espace du canvas cropé → espace image naturelle originale
     return corners.map(p => ({
-      x: cx + (p.x / cropScale),
-      y: cy + (p.y / cropScale),
+      x: cx + p.x / cropScale,
+      y: cy + p.y / cropScale,
     }))
   } catch {
     return null
@@ -783,10 +774,12 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     hasAdjusted.current = false
     setStatus('detecting')
 
-    const naturalCorners = await Promise.race<Pt[] | null>([
-      frameRect ? detectCardFromFrame(img, frameRect) : detectCard(img),
-      new Promise<null>(r => setTimeout(() => r(null), 15000)),
-    ])
+    const naturalCorners: Pt[] | null = frameRect
+      ? detectCardFromFrame(img, frameRect)
+      : await Promise.race<Pt[] | null>([
+          detectCard(img),
+          new Promise<null>(r => setTimeout(() => r(null), 15000)),
+        ])
     const display = naturalCorners
       ? naturalCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
       : defaultCorners(canvas)
