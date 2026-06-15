@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
           { text: PROMPT },
           { inline_data: { mime_type: mimeType, data: imageBase64 } }
         ]}],
-        generationConfig: { temperature: 0, maxOutputTokens: 256 }
+        generationConfig: { temperature: 0, maxOutputTokens: 512 }
       })
     })
 
@@ -50,9 +50,18 @@ export async function POST(req: NextRequest) {
     console.log('[detect-card] Gemini raw:', raw.slice(0, 300))
 
     const jsonMatch = raw.match(/\{[\s\S]*\}/)
-    if (!jsonMatch) return NextResponse.json({ error: 'pas de JSON dans la réponse' }, { status: 500 })
+    if (!jsonMatch) {
+      console.log('[detect-card] no JSON found in raw:', raw)
+      return NextResponse.json({ error: 'pas de JSON dans la réponse' }, { status: 500 })
+    }
 
-    const corners = JSON.parse(jsonMatch[0])
+    let corners: any
+    try {
+      corners = JSON.parse(jsonMatch[0])
+    } catch (parseErr) {
+      console.log('[detect-card] JSON parse error:', parseErr, 'raw match:', jsonMatch[0].slice(0, 200))
+      return NextResponse.json({ error: 'JSON invalide' }, { status: 500 })
+    }
     if (corners.error) return NextResponse.json({ error: corners.error }, { status: 404 })
 
     const { topLeft, topRight, bottomRight, bottomLeft } = corners
