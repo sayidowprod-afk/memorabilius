@@ -18,10 +18,14 @@ export async function POST(req: NextRequest) {
       }
     )
 
-    if (!res.ok) return NextResponse.json({ error: 'roboflow error' }, { status: 500 })
+    const responseText = await res.text()
+    console.log('[detect-card] Roboflow status:', res.status, 'body:', responseText.slice(0, 500))
 
-    const data = await res.json()
+    if (!res.ok) return NextResponse.json({ error: 'roboflow error', detail: responseText }, { status: 500 })
+
+    const data = JSON.parse(responseText)
     const preds = data.predictions ?? []
+    console.log('[detect-card] predictions count:', preds.length)
     if (preds.length === 0) return NextResponse.json({ error: 'aucune carte détectée' }, { status: 404 })
 
     // Prend la carte la plus grande (= carte principale que l'utilisateur veut scanner)
