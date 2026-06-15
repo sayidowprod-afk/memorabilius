@@ -524,43 +524,72 @@ async function imageToBase64(img: HTMLImageElement, maxSize = 800): Promise<{ b6
   return { b64: dataUrl.split(',')[1], scale }
 }
 
-async function detectCardGemini(img: HTMLImageElement): Promise<Pt[] | null> {
+async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   try {
+    // Étape 1 : Roboflow bbox → localise la carte
     const { b64, scale } = await imageToBase64(img, 800)
-    const ctrl = new AbortController()
-    const tid  = setTimeout(() => ctrl.abort(), 15000)
-    let res: Response
+    const ctrl1 = new AbortController()
+    const t1 = setTimeout(() => ctrl1.abort(), 8000)
+    let r1: Response
     try {
-      res = await fetch('/api/detect-card', {
+      r1 = await fetch('/api/detect-card', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ imageBase64: b64, mimeType: 'image/jpeg' }),
-        signal: ctrl.signal,
+        body: JSON.stringify({ imageBase64: b64 }),
+        signal: ctrl1.signal,
       })
-    } finally {
-      clearTimeout(tid)
-    }
-    if (!res!.ok) return null
-    const data = await res!.json()
-    const { corners } = data
-    if (!corners?.topLeft) return null
+    } finally { clearTimeout(t1) }
+    if (!r1!.ok) return null
+    const bbox = await r1!.json()
+    const { x, y, width, height } = bbox
+    if (!width || !height) return null
 
-    // Roboflow retourne des coords en pixels dans l'image redimensionnée → divise par scale
-    // Ordre fixe TL, TR, BR, BL — ne pas réordonner, les noms sont fiables
-    const { topLeft: tl, topRight: tr, bottomRight: br, bottomLeft: bl } = corners
+    // Étape 2 : crop de la carte (avec 8% de padding) → canvas
+    const PAD = 0.08
+    const cx = x / scale, cy = y / scale, cw = width / scale, ch = height / scale
+    const px = cw * PAD, py = ch * PAD
+    const cropX = Math.max(0, cx - px)
+    const cropY = Math.max(0, cy - py)
+    const cropW = Math.min(img.naturalWidth  - cropX, cw + px * 2)
+    const cropH = Math.min(img.naturalHeight - cropY, ch + py * 2)
+
+    const cropCanvas = document.createElement('canvas')
+    const MAX_CROP = 600
+    const cropScale = Math.min(MAX_CROP / cropW, MAX_CROP / cropH, 1)
+    cropCanvas.width  = Math.round(cropW * cropScale)
+    cropCanvas.height = Math.round(cropH * cropScale)
+    cropCanvas.getContext('2d')!.drawImage(
+      img, cropX, cropY, cropW, cropH,
+      0, 0, cropCanvas.width, cropCanvas.height
+    )
+    const cropB64 = cropCanvas.toDataURL('image/jpeg', 0.90).split(',')[1]
+
+    // Étape 3 : Gemini reçoit le crop → retourne les coins en fractions
+    const ctrl2 = new AbortController()
+    const t2 = setTimeout(() => ctrl2.abort(), 12000)
+    let r2: Response
+    try {
+      r2 = await fetch('/api/detect-corners', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imageBase64: cropB64, mimeType: 'image/jpeg' }),
+        signal: ctrl2.signal,
+      })
+    } finally { clearTimeout(t2) }
+    if (!r2!.ok) return null
+    const { topLeft: tl, topRight: tr, bottomRight: br, bottomLeft: bl } = await r2!.json()
+    if (!tl || !tr || !br || !bl) return null
+
+    // Convertit fractions du crop → coordonnées naturelles de l'image originale
     return [
-      { x: tl.x / scale, y: tl.y / scale },
-      { x: tr.x / scale, y: tr.y / scale },
-      { x: br.x / scale, y: br.y / scale },
-      { x: bl.x / scale, y: bl.y / scale },
+      { x: cropX + tl.x * cropW, y: cropY + tl.y * cropH },
+      { x: cropX + tr.x * cropW, y: cropY + tr.y * cropH },
+      { x: cropX + br.x * cropW, y: cropY + br.y * cropH },
+      { x: cropX + bl.x * cropW, y: cropY + bl.y * cropH },
     ]
   } catch {
     return null
   }
-}
-
-async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
-  return await detectCardGemini(img)
 }
 
 // ── Perspective warp pure JS (homographie) ────────────────────────────────
