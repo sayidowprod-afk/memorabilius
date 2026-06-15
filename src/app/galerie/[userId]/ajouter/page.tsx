@@ -24,7 +24,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     image_recto: '', image_verso: '',
   })
 
-  const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string; corners?: { x: number; y: number }[] } | null>(null)
+  const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string; frameRect?: { x: number; y: number; w: number; h: number } } | null>(null)
   const [cameraModal, setCameraModal] = useState<'recto' | 'verso' | null>(null)
   const [cropModal, setCropModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
   const [rotation, setRotation] = useState(0)
@@ -441,10 +441,10 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
       {cameraModal && (
         <CameraCapture
-          onCapture={(blob, corners) => {
+          onCapture={(blob, frameRect) => {
             const url = URL.createObjectURL(blob)
             setCameraModal(null)
-            setScannerModal({ side: cameraModal, src: url, corners })
+            setScannerModal({ side: cameraModal, src: url, frameRect })
           }}
           onClose={() => setCameraModal(null)}
         />
@@ -453,7 +453,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       {scannerModal && (
         <CardScanner
           src={scannerModal.src}
-          initialCorners={scannerModal.corners}
+          frameRect={scannerModal.frameRect}
           onResult={blob => uploadBlob(blob, scannerModal.side)}
           onFallback={() => {
             setCropModal({ side: scannerModal.side, src: scannerModal.src })

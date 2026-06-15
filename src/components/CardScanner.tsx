@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from 'react'
 type Pt = { x: number; y: number }
 type Status = 'detecting' | 'found' | 'notfound'
 
+interface FrameRect { x: number; y: number; w: number; h: number }
+
 interface Props {
   src: string
   onResult: (blob: Blob) => void
   onFallback: () => void
   onClose: () => void
-  initialCorners?: Pt[] // coins déjà connus (overlay caméra) → skip détection IA
+  frameRect?: FrameRect // zone cadre caméra → détection IA ciblée
 }
 
 // ── Chargement OpenCV.js (WASM) ───────────────────────────────────────────
@@ -525,6 +527,52 @@ async function imageToBase64(img: HTMLImageElement, maxSize = 800): Promise<{ b6
   return { b64: dataUrl.split(',')[1], scale }
 }
 
+async function detectCardFromFrame(img: HTMLImageElement, frame: FrameRect): Promise<Pt[] | null> {
+  try {
+    // Agrandit la zone de crop de 20% de chaque côté pour ne pas couper les coins
+    // si l'utilisateur n'était pas parfaitement aligné avec le cadre
+    const PAD = 0.20
+    const cx = Math.max(0, frame.x - frame.w * PAD)
+    const cy = Math.max(0, frame.y - frame.h * PAD)
+    const cw = Math.min(img.naturalWidth  - cx, frame.w * (1 + PAD * 2))
+    const ch = Math.min(img.naturalHeight - cy, frame.h * (1 + PAD * 2))
+
+    const cropCanvas = document.createElement('canvas')
+    const MAX = 700
+    const cropScale = Math.min(MAX / cw, MAX / ch, 1)
+    cropCanvas.width  = Math.round(cw * cropScale)
+    cropCanvas.height = Math.round(ch * cropScale)
+    cropCanvas.getContext('2d')!.drawImage(img, cx, cy, cw, ch, 0, 0, cropCanvas.width, cropCanvas.height)
+    const cropB64 = cropCanvas.toDataURL('image/jpeg', 0.92).split(',')[1]
+
+    const ctrl = new AbortController()
+    const tid = setTimeout(() => ctrl.abort(), 12000)
+    let res: Response
+    try {
+      res = await fetch('/api/detect-corners', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imageBase64: cropB64, mimeType: 'image/jpeg' }),
+        signal: ctrl.signal,
+      })
+    } finally { clearTimeout(tid) }
+
+    if (!res!.ok) return null
+    const { topLeft: tl, topRight: tr, bottomRight: br, bottomLeft: bl } = await res!.json()
+    if (!tl || !tr || !br || !bl) return null
+
+    // Fractions du crop élargi → coordonnées naturelles de l'image originale
+    return [
+      { x: cx + tl.x * cw, y: cy + tl.y * ch },
+      { x: cx + tr.x * cw, y: cy + tr.y * ch },
+      { x: cx + br.x * cw, y: cy + br.y * ch },
+      { x: cx + bl.x * cw, y: cy + bl.y * ch },
+    ]
+  } catch {
+    return null
+  }
+}
+
 async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   try {
     // Étape 1 : Roboflow bbox → localise la carte
@@ -689,7 +737,7 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
 const HANDLE_COLORS = ['#ff5252', '#ffeb3b', '#69f0ae', '#40c4ff']
 const HANDLE_R = 18
 
-export default function CardScanner({ src, onResult, onFallback, onClose, initialCorners }: Props) {
+export default function CardScanner({ src, onResult, onFallback, onClose, frameRect }: Props) {
   const canvasRef     = useRef<HTMLCanvasElement>(null)
   const imgRef        = useRef<HTMLImageElement | null>(null)
   const origImgRef    = useRef<HTMLImageElement | null>(null)  // toujours l'original non-tourné
@@ -740,20 +788,11 @@ export default function CardScanner({ src, onResult, onFallback, onClose, initia
     canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height)
 
     hasAdjusted.current = false
-
-    // Si coins déjà connus (caméra overlay) → skip détection IA
-    if (initialCorners && initialCorners.length === 4) {
-      const display = initialCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
-      setCorners(display)
-      setStatus('found')
-      return
-    }
-
     setStatus('detecting')
 
     const naturalCorners = await Promise.race<Pt[] | null>([
-      detectCard(img),
-      new Promise<null>(r => setTimeout(() => r(null), 12000)),
+      frameRect ? detectCardFromFrame(img, frameRect) : detectCard(img),
+      new Promise<null>(r => setTimeout(() => r(null), 15000)),
     ])
     const display = naturalCorners
       ? naturalCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))

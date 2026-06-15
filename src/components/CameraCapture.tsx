@@ -1,10 +1,10 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 
-type Pt = { x: number; y: number }
+interface FrameRect { x: number; y: number; w: number; h: number }
 
 interface Props {
-  onCapture: (blob: Blob, corners: Pt[]) => void
+  onCapture: (blob: Blob, frameRect: FrameRect) => void
   onClose: () => void
 }
 
@@ -60,13 +60,18 @@ export default function CameraCapture({ onCapture, onClose }: Props) {
     const scaleX = srcW / dw
     const scaleY = srcH / dh
 
-    // Coins du cadre en coordonnées vidéo naturelle
-    const corners: Pt[] = [
-      { x: srcX + frameX * scaleX, y: srcY + frameY * scaleY },
-      { x: srcX + (frameX + frameW) * scaleX, y: srcY + frameY * scaleY },
-      { x: srcX + (frameX + frameW) * scaleX, y: srcY + (frameY + frameH) * scaleY },
-      { x: srcX + frameX * scaleX, y: srcY + (frameY + frameH) * scaleY },
-    ]
+    // Zone du cadre en coordonnées vidéo naturelle (avec 6% de padding)
+    const PAD = 0.06
+    const fx = srcX + frameX * scaleX
+    const fy = srcY + frameY * scaleY
+    const fw = frameW * scaleX
+    const fh = frameH * scaleY
+    const frameRect: FrameRect = {
+      x: Math.max(0, fx - fw * PAD),
+      y: Math.max(0, fy - fh * PAD),
+      w: Math.min(vw, fw * (1 + PAD * 2)),
+      h: Math.min(vh, fh * (1 + PAD * 2)),
+    }
 
     // Canvas à pleine résolution vidéo
     const canvas = document.createElement('canvas')
@@ -77,7 +82,7 @@ export default function CameraCapture({ onCapture, onClose }: Props) {
     streamRef.current?.getTracks().forEach(t => t.stop())
 
     canvas.toBlob(blob => {
-      if (blob) onCapture(blob, corners)
+      if (blob) onCapture(blob, frameRect)
     }, 'image/jpeg', 0.92)
   }
 
