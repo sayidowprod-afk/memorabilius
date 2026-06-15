@@ -452,20 +452,20 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
           @media (min-width: 900px) { .card-item { flex: 0 0 calc(20% - 10px); max-width: calc(20% - 10px); } }
 
           @keyframes oon-anim {
-            0%,100% { transform: scale(1);    filter: drop-shadow(0 0 3px #ffd700) drop-shadow(0 0 6px #b8860b); }
-            50%      { transform: scale(1.12); filter: drop-shadow(0 0 10px #fffacd) drop-shadow(0 0 20px #ffd700); }
+            0%,100% { box-shadow: 0 0 4px 1px #ffd700, 0 0 8px 3px #b8860b; transform: scale(1); }
+            50%      { box-shadow: 0 0 12px 5px #ffd700, 0 0 24px 8px #b8860b, 0 0 4px 1px #fffacd inset; transform: scale(1.1); }
           }
           @keyframes low-anim {
-            0%,100% { filter: drop-shadow(0 0 2px #bbb); }
-            50%      { filter: drop-shadow(0 0 8px #fff) drop-shadow(0 0 4px #aaa); }
+            0%,100% { box-shadow: 0 0 3px 1px #999; }
+            50%      { box-shadow: 0 0 10px 4px #fff, 0 0 5px 2px #bbb; }
           }
           @keyframes bro-anim {
-            0%,100% { filter: drop-shadow(0 0 2px #cd7f32); }
-            50%      { filter: drop-shadow(0 0 7px #f5cba7) drop-shadow(0 0 3px #cd7f32); }
+            0%,100% { box-shadow: 0 0 3px 1px #cd7f32; }
+            50%      { box-shadow: 0 0 10px 4px #f5cba7, 0 0 5px 2px #cd7f32; }
           }
-          .tag-oon    { animation: oon-anim 1.8s ease-in-out infinite; }
-          .tag-low    { animation: low-anim 2.2s ease-in-out infinite; }
-          .tag-bronze { animation: bro-anim 2.6s ease-in-out infinite; }
+          .tag-oon    { animation: oon-anim 1.8s ease-in-out infinite; will-change: transform; }
+          .tag-low    { animation: low-anim 2.2s ease-in-out infinite; will-change: transform; }
+          .tag-bronze { animation: bro-anim 2.6s ease-in-out infinite; will-change: transform; }
           @media (prefers-reduced-motion: reduce) {
             .tag-oon, .tag-low, .tag-bronze { animation: none; }
           }
