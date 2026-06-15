@@ -431,15 +431,79 @@ function peripheralMask(edges: Uint8Array, w: number, h: number): Uint8Array {
   return out
 }
 
+// ── Détection Roboflow → bbox → OpenCV corners ───────────────────────────
+
+async function imageToBase64(img: HTMLImageElement, maxSize = 800): Promise<{ b64: string; scale: number }> {
+  const scale = Math.min(maxSize / img.naturalWidth, maxSize / img.naturalHeight, 1)
+  const W = Math.round(img.naturalWidth * scale)
+  const H = Math.round(img.naturalHeight * scale)
+  const c = document.createElement('canvas')
+  c.width = W; c.height = H
+  c.getContext('2d')!.drawImage(img, 0, 0, W, H)
+  const dataUrl = c.toDataURL('image/jpeg', 0.85)
+  return { b64: dataUrl.split(',')[1], scale }
+}
+
+async function detectCardRoboflow(img: HTMLImageElement): Promise<Pt[] | null> {
+  try {
+    const { b64, scale } = await imageToBase64(img, 800)
+    const res = await fetch('/api/detect-card', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ imageBase64: b64 }),
+    })
+    if (!res.ok) return null
+    const { x, y, width, height } = await res.json()
+    if (!width || !height) return null
+
+    // Convertit le bbox (coordonnées 800px) en coordonnées naturelles
+    const pad = 0.08
+    const nx = Math.max(0, (x / scale) - (width / scale) * pad)
+    const ny = Math.max(0, (y / scale) - (height / scale) * pad)
+    const nw = Math.min(img.naturalWidth  - nx, (width  / scale) * (1 + pad * 2))
+    const nh = Math.min(img.naturalHeight - ny, (height / scale) * (1 + pad * 2))
+
+    // Crée un canvas rogné autour de la carte détectée
+    const cropC = document.createElement('canvas')
+    cropC.width = Math.round(nw); cropC.height = Math.round(nh)
+    cropC.getContext('2d')!.drawImage(img, nx, ny, nw, nh, 0, 0, nw, nh)
+
+    const cropImg = new Image()
+    cropImg.src = cropC.toDataURL()
+    await new Promise(r => { cropImg.onload = r })
+
+    // OpenCV sur le crop — beaucoup plus facile à détecter maintenant
+    try {
+      const cv      = await loadOpenCV()
+      const corners = await detectCardOpenCV(cropImg, cv)
+      if (corners) return corners.map(p => ({ x: p.x + nx, y: p.y + ny }))
+    } catch {}
+
+    // Si OpenCV échoue sur le crop, retourne les coins du bbox directement
+    return orderCorners([
+      { x: nx,      y: ny },
+      { x: nx + nw, y: ny },
+      { x: nx + nw, y: ny + nh },
+      { x: nx,      y: ny + nh },
+    ])
+  } catch {
+    return null
+  }
+}
+
 async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
-  // Essai OpenCV (findContours — algo standard CamScanner/Adobe Scan)
+  // Méthode principale : Roboflow (modèle custom entraîné) + OpenCV pour les coins
+  const rfResult = await detectCardRoboflow(img)
+  if (rfResult) return rfResult
+
+  // Fallback 1 : OpenCV seul sur toute l'image
   try {
     const cv     = await loadOpenCV()
     const result = await detectCardOpenCV(img, cv)
     if (result) return result
   } catch {}
 
-  // Fallback : algo custom Hough/Otsu
+  // Fallback 2 : algo custom Hough/Otsu
   const MAX = 400
   const scale = Math.min(MAX / img.naturalWidth, MAX / img.naturalHeight, 1)
   const W = Math.round(img.naturalWidth  * scale)
@@ -451,21 +515,17 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   const data = c.getContext('2d')!.getImageData(0, 0, W, H).data
   await new Promise(r => setTimeout(r, 0))
 
-  // Méthode 1 : seuillage Otsu — 4 combinaisons, meilleur ratio carte
   const corners1 = detectByThreshold(data, W, H)
   if (corners1) return corners1.map(p => ({ x: p.x / scale, y: p.y / scale }))
 
-  // Calcul des bords une seule fois pour les méthodes Hough
   const gray  = normalize(toGray(data, W, H))
   const blur  = gaussBlur(gray, W, H)
   const edges = sobel(blur, W, H)
 
-  // Méthode 2 : Hough périphérique — ignore le centre de l'image (holographique/chrome)
   const periEdges = peripheralMask(edges, W, H)
   const corners2 = detectCornersHough(periEdges, W, H)
   if (corners2) return corners2.map(p => ({ x: p.x / scale, y: p.y / scale }))
 
-  // Méthode 3 : Hough classique (fallback)
   const corners3 = detectCornersHough(edges, W, H)
   if (corners3) return corners3.map(p => ({ x: p.x / scale, y: p.y / scale }))
 
