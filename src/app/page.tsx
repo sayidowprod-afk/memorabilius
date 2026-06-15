@@ -67,8 +67,20 @@ async function fetchPepites(profiles: { id: string; display_name: string; lien_c
     } catch { }
   }))
 
-  // Mélange et limite à 8
-  return all.sort(() => Math.random() - 0.5).slice(0, 8)
+  // Déduplique par image, garde les plus récentes en premier, max 2 par personne, 6 au total
+  const seen = new Set<string>()
+  const perUser = new Map<string, number>()
+  const result: Card[] = []
+  for (const card of all) {
+    if (seen.has(card.img)) continue
+    const count = perUser.get(card.userId) ?? 0
+    if (count >= 2) continue
+    seen.add(card.img)
+    perUser.set(card.userId, count + 1)
+    result.push(card)
+    if (result.length >= 6) break
+  }
+  return result
 }
 
 export default async function Home() {
