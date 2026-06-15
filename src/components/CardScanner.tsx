@@ -11,7 +11,86 @@ interface Props {
   onClose: () => void
 }
 
-// ── Détection par transformée de Hough ────────────────────────────────────
+// ── Chargement OpenCV.js (WASM) ───────────────────────────────────────────
+
+let _cvPromise: Promise<any> | null = null
+
+function loadOpenCV(): Promise<any> {
+  if (_cvPromise) return _cvPromise
+  const w = window as any
+  if (w.cv?.imread) return Promise.resolve(w.cv)
+  _cvPromise = new Promise((resolve, reject) => {
+    const script = document.createElement('script')
+    script.src = 'https://docs.opencv.org/4.10.0/opencv.js'
+    script.async = true
+    script.onload = () => {
+      const check = setInterval(() => {
+        if ((window as any).cv?.imread) { clearInterval(check); resolve((window as any).cv) }
+      }, 50)
+      setTimeout(() => { clearInterval(check); _cvPromise = null; reject('timeout') }, 20000)
+    }
+    script.onerror = () => { _cvPromise = null; reject('load error') }
+    document.head.appendChild(script)
+  })
+  return _cvPromise
+}
+
+async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | null> {
+  const MAX = 800
+  const scale = Math.min(MAX / img.naturalWidth, MAX / img.naturalHeight, 1)
+  const W = Math.round(img.naturalWidth * scale)
+  const H = Math.round(img.naturalHeight * scale)
+
+  const canvas = document.createElement('canvas')
+  canvas.width = W; canvas.height = H
+  canvas.getContext('2d')!.drawImage(img, 0, 0, W, H)
+
+  const src      = cv.imread(canvas)
+  const gray     = new cv.Mat()
+  const blur     = new cv.Mat()
+  const edges    = new cv.Mat()
+  const dilated  = new cv.Mat()
+  const contours = new cv.MatVector()
+  const hierarchy = new cv.Mat()
+
+  try {
+    cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY)
+    cv.GaussianBlur(gray, blur, new cv.Size(5, 5), 0)
+    cv.Canny(blur, edges, 50, 150)
+    const kernel = cv.Mat.ones(3, 3, cv.CV_8U)
+    cv.dilate(edges, dilated, kernel)
+    kernel.delete()
+    cv.findContours(dilated, contours, hierarchy, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
+
+    let best: Pt[] | null = null
+    let bestArea = 0
+
+    for (let i = 0; i < contours.size(); i++) {
+      const cnt  = contours.get(i)
+      const area = cv.contourArea(cnt)
+      if (area < W * H * 0.06) { cnt.delete(); continue }
+
+      const peri   = cv.arcLength(cnt, true)
+      const approx = new cv.Mat()
+      cv.approxPolyDP(cnt, approx, 0.02 * peri, true)
+
+      if (approx.rows === 4 && area > bestArea) {
+        bestArea = area
+        const pts: Pt[] = []
+        for (let j = 0; j < 4; j++)
+          pts.push({ x: approx.data32S[j * 2] / scale, y: approx.data32S[j * 2 + 1] / scale })
+        best = orderCorners(pts)
+      }
+      approx.delete(); cnt.delete()
+    }
+    return best
+  } finally {
+    src.delete(); gray.delete(); blur.delete(); edges.delete()
+    dilated.delete(); contours.delete(); hierarchy.delete()
+  }
+}
+
+// ── Détection par transformée de Hough (fallback) ────────────────────────
 
 // Ordre: TL, TR, BR, BL
 function orderCorners(pts: Pt[]): Pt[] {
@@ -275,6 +354,14 @@ function peripheralMask(edges: Uint8Array, w: number, h: number): Uint8Array {
 }
 
 async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
+  // Essai OpenCV (findContours — algo standard CamScanner/Adobe Scan)
+  try {
+    const cv     = await loadOpenCV()
+    const result = await detectCardOpenCV(img, cv)
+    if (result) return result
+  } catch {}
+
+  // Fallback : algo custom Hough/Otsu
   const MAX = 400
   const scale = Math.min(MAX / img.naturalWidth, MAX / img.naturalHeight, 1)
   const W = Math.round(img.naturalWidth  * scale)
@@ -685,7 +772,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
   return (
     <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.96)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '12px 16px 20px' }}>
       <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, marginBottom: 8, textAlign: 'center', minHeight: 18 }}>
-        {!applying && status === 'detecting' && 'Détection en cours…'}
+        {!applying && status === 'detecting' && 'Analyse en cours…'}
         {!applying && status === 'found'     && 'Carte détectée — ajustez les coins si besoin'}
         {!applying && status === 'notfound'  && 'Non détectée — placez les coins sur la carte'}
         {applying  && 'Recadrage en cours…'}
