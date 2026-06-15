@@ -62,78 +62,110 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
   canvas.width = W; canvas.height = H
   canvas.getContext('2d')!.drawImage(img, 0, 0, W, H)
 
-  const src       = cv.imread(canvas)
-  const gray      = new cv.Mat()
-  const blur      = new cv.Mat()
-  const contours  = new cv.MatVector()
-  const hierarchy = new cv.Mat()
+  const src  = cv.imread(canvas)
+  const gray = new cv.Mat()
+  const blur = new cv.Mat()
+  cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY)
+  cv.GaussianBlur(gray, blur, new cv.Size(7, 7), 0)
 
-  // Ratios acceptables : portrait (2.5/3.5 ≈ 0.714) ou paysage (3.5/2.5 ≈ 1.4)
   const CARD_RATIO_P = 2.5 / 3.5
   const CARD_RATIO_L = 3.5 / 2.5
-  const RATIO_TOL    = 0.28  // tolérance ±28%
-
+  const RATIO_TOL    = 0.30
   const isCardRatio = (r: number) =>
     Math.abs(r - CARD_RATIO_P) < RATIO_TOL || Math.abs(r - CARD_RATIO_L) < RATIO_TOL
-
   const ratioScore = (r: number) =>
     Math.min(Math.abs(r - CARD_RATIO_P), Math.abs(r - CARD_RATIO_L))
 
-  try {
-    cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY)
-    cv.GaussianBlur(gray, blur, new cv.Size(5, 5), 0)
+  // ── Étape 1 : estimer la couleur du fond depuis la bordure de l'image ────
+  const BORDER = Math.max(8, Math.round(Math.min(W, H) * 0.05))
+  const gData  = blur.data as Uint8Array
+  let bgSum = 0, bgCount = 0
+  for (let x = 0; x < W; x++) {
+    for (let b = 0; b < BORDER; b++) {
+      bgSum += gData[b * W + x]
+      bgSum += gData[(H - 1 - b) * W + x]
+      bgCount += 2
+    }
+  }
+  for (let y = BORDER; y < H - BORDER; y++) {
+    for (let b = 0; b < BORDER; b++) {
+      bgSum += gData[y * W + b]
+      bgSum += gData[y * W + (W - 1 - b)]
+      bgCount += 2
+    }
+  }
+  const bgVal = Math.round(bgSum / bgCount)
 
+  const extractQuads = (binary: any): Pt[] | null => {
+    const contours  = new cv.MatVector()
+    const hierarchy = new cv.Mat()
+    cv.findContours(binary, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
     let best: Pt[] | null = null
     let bestScore = Infinity
+    for (let i = 0; i < contours.size(); i++) {
+      const cnt  = contours.get(i)
+      const area = cv.contourArea(cnt)
+      // Rejette trop petit ou presque toute l'image
+      if (area < W * H * 0.04 || area > W * H * 0.90) { cnt.delete(); continue }
+      const peri   = cv.arcLength(cnt, true)
+      const approx = new cv.Mat()
+      cv.approxPolyDP(cnt, approx, 0.03 * peri, true)
+      if (approx.rows === 4) {
+        const pts: Pt[] = []
+        for (let j = 0; j < 4; j++)
+          pts.push({ x: approx.data32S[j * 2] / scale, y: approx.data32S[j * 2 + 1] / scale })
+        const ordered = orderCorners(pts)
+        const ratio   = quadRatio(ordered)
+        if (isCardRatio(ratio)) {
+          const score = ratioScore(ratio)
+          if (score < bestScore) { bestScore = score; best = ordered }
+        }
+      }
+      approx.delete(); cnt.delete()
+    }
+    contours.delete(); hierarchy.delete()
+    return best
+  }
 
-    // Essai avec plusieurs seuils Canny pour maximiser les chances de détection
+  let best: Pt[] | null = null
+
+  // ── Méthode A : seuillage par couleur de fond ─────────────────────────
+  // Plus robuste que Canny sur fond uniforme (table, bureau…)
+  for (const tol of [20, 35, 55]) {
+    const diff   = new cv.Mat()
+    const thresh = new cv.Mat()
+    const closed = new cv.Mat()
+    const bgMat  = new cv.Mat(H, W, cv.CV_8UC1, new cv.Scalar(bgVal))
+    cv.absdiff(blur, bgMat, diff)
+    bgMat.delete()
+    cv.threshold(diff, thresh, tol, 255, cv.THRESH_BINARY)
+    // Fermeture pour boucher les trous internes (hologrammes, etc.)
+    const kSz    = Math.max(3, Math.round(Math.min(W, H) * 0.04) * 2 + 1)
+    const kernel = cv.Mat.ones(kSz, kSz, cv.CV_8U)
+    cv.morphologyEx(thresh, closed, cv.MORPH_CLOSE, kernel)
+    kernel.delete()
+    best = extractQuads(closed)
+    diff.delete(); thresh.delete(); closed.delete()
+    if (best) break
+  }
+
+  // ── Méthode B : Canny (fallback sur fond contrasté) ───────────────────
+  if (!best) {
     for (const [lo, hi] of [[30, 90], [50, 150], [80, 200]]) {
       const edges   = new cv.Mat()
       const dilated = new cv.Mat()
       cv.Canny(blur, edges, lo, hi)
-      const kernel = cv.Mat.ones(3, 3, cv.CV_8U)
+      const kernel = cv.Mat.ones(5, 5, cv.CV_8U)
       cv.dilate(edges, dilated, kernel)
       kernel.delete()
-      cv.findContours(dilated, contours, hierarchy, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
-
-      for (let i = 0; i < contours.size(); i++) {
-        const cnt  = contours.get(i)
-        const area = cv.contourArea(cnt)
-
-        // Trop petit (<6%) ou trop grand (>92% = toute la photo)
-        if (area < W * H * 0.06 || area > W * H * 0.92) { cnt.delete(); continue }
-
-        const peri   = cv.arcLength(cnt, true)
-        const approx = new cv.Mat()
-        cv.approxPolyDP(cnt, approx, 0.02 * peri, true)
-
-        if (approx.rows === 4) {
-          const pts: Pt[] = []
-          for (let j = 0; j < 4; j++)
-            pts.push({ x: approx.data32S[j * 2] / scale, y: approx.data32S[j * 2 + 1] / scale })
-          const ordered = orderCorners(pts)
-          const ratio   = quadRatio(ordered)
-
-          // Rejette si tous les coins sont dans la zone de bord (image entière)
-          const scaledPts = ordered.map(p => ({ x: p.x * scale, y: p.y * scale }))
-          if (!cornersInsideImage(scaledPts, W, H)) { approx.delete(); cnt.delete(); continue }
-
-          // Garde le candidat avec le meilleur ratio carte
-          if (isCardRatio(ratio)) {
-            const score = ratioScore(ratio)
-            if (score < bestScore) { bestScore = score; best = ordered }
-          }
-        }
-        approx.delete(); cnt.delete()
-      }
+      best = extractQuads(dilated)
       edges.delete(); dilated.delete()
-      if (best) break // trouvé avec ce seuil, pas besoin d'essayer les autres
+      if (best) break
     }
-
-    return best
-  } finally {
-    src.delete(); gray.delete(); blur.delete(); contours.delete(); hierarchy.delete()
   }
+
+  src.delete(); gray.delete(); blur.delete()
+  return best
 }
 
 // ── Détection par transformée de Hough (fallback) ────────────────────────
