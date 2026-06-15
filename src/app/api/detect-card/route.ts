@@ -2,18 +2,18 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent'
 
-const PROMPT = `Locate the sports/trading card in this image and return the exact pixel coordinates of its 4 corners.
+const PROMPT = `Locate the sports/trading card in this image and return the 4 corner positions as fractions of the image size (values between 0.0 and 1.0, where 0,0 is top-left and 1,1 is bottom-right).
 
 Respond ONLY with a valid JSON object, no markdown, no explanation:
 {
-  "topLeft": {"x": 123, "y": 45},
-  "topRight": {"x": 456, "y": 45},
-  "bottomRight": {"x": 456, "y": 789},
-  "bottomLeft": {"x": 123, "y": 789}
+  "topLeft": {"x": 0.12, "y": 0.08},
+  "topRight": {"x": 0.88, "y": 0.08},
+  "bottomRight": {"x": 0.88, "y": 0.95},
+  "bottomLeft": {"x": 0.12, "y": 0.95}
 }
 
 Rules:
-- Coordinates must be in pixels relative to the original image dimensions
+- x is horizontal position (0=left edge, 1=right edge), y is vertical (0=top, 1=bottom)
 - Find the actual card corners precisely, even if the card is tilted or rotated
 - If multiple cards are visible, pick the largest/most prominent one
 - If no card is visible, return {"error": "no card found"}`
@@ -69,10 +69,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'coins manquants' }, { status: 500 })
     }
 
-    return NextResponse.json({
-      corners: { topLeft, topRight, bottomRight, bottomLeft },
-      imageSize: { width: imgWidth, height: imgHeight }
-    })
+    return NextResponse.json({ corners: { topLeft, topRight, bottomRight, bottomLeft } })
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 })
   }
