@@ -19,6 +19,11 @@ export async function GET(req: NextRequest) {
 
   const results: any[] = []
 
+  // Clés des cartes privées (card_key = image URL)
+  const { data: privees } = await supabase.from('cartes_privees').select('user_id, card_key')
+  const privateSet = new Set((privees || []).map(p => `${p.user_id}::${p.card_key}`))
+  const isPrivate = (userId: string, cardKey: string) => privateSet.has(`${userId}::${cardKey}`)
+
   // Cartes manuelles (toutes les cartes publiques)
   const { data: manuelles } = await supabase
     .from('cartes_manuelles')
@@ -34,6 +39,7 @@ export async function GET(req: NextRequest) {
     if (!query || !(name.includes(query) || team.includes(query) || variant.includes(query) || brand.includes(query))) return
     const p = profileMap.get(m.user_id)
     if (!p) return
+    if (isPrivate(m.user_id, m.image_recto)) return
     results.push({
       img: m.image_recto || 'https://placehold.co/300x420?text=No+Image',
       name: m.nom || '',
@@ -70,6 +76,7 @@ export async function GET(req: NextRequest) {
         const brand = (c[5] || '').toLowerCase()
 
         if (name.includes(query) || team.includes(query) || variant.includes(query) || brand.includes(query)) {
+          if (isPrivate(p.id, c[0]?.trim())) return
           results.push({
             img: c[0]?.trim(),
             name: c[2] || '',
