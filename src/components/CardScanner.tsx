@@ -527,11 +527,15 @@ async function imageToBase64(img: HTMLImageElement, maxSize = 800): Promise<{ b6
 async function detectCardRoboflow(img: HTMLImageElement): Promise<Pt[] | null> {
   try {
     const { b64, scale } = await imageToBase64(img, 800)
-    const res = await fetch('/api/detect-card', {
+    const ctrl = new AbortController()
+    const tid  = setTimeout(() => ctrl.abort(), 7000)
+    const res  = await fetch('/api/detect-card', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ imageBase64: b64 }),
+      signal: ctrl.signal,
     })
+    clearTimeout(tid)
     if (!res.ok) return null
     const { x, y, width, height } = await res.json()
     if (!width || !height) return null
@@ -742,29 +746,13 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
 
   // ── Chargement & détection ─────────────────────────────────────────────
   useEffect(() => {
-    const load = async () => {
-      // createImageBitmap avec imageOrientation applique la rotation EXIF
-      // (drawImage() ignore EXIF, d'où les photos en paysage qui restent de côté)
-      let imgSrc = src
-      try {
-        const blob   = await fetch(src).then(r => r.blob())
-        const bitmap = await createImageBitmap(blob, { imageOrientation: 'from-image' } as any)
-        const c = document.createElement('canvas')
-        c.width = bitmap.width; c.height = bitmap.height
-        c.getContext('2d')!.drawImage(bitmap, 0, 0)
-        imgSrc = c.toDataURL('image/jpeg', 0.95)
-        bitmap.close()
-      } catch {}
-
-      const img = new Image()
-      img.onload = async () => {
-        origImgRef.current = img
-        imgRef.current = img
-        await initCanvas(img)
-      }
-      img.src = imgSrc
+    const img = new Image()
+    img.onload = async () => {
+      origImgRef.current = img
+      imgRef.current = img
+      await initCanvas(img)
     }
-    load()
+    img.src = src
   }, [src])
 
   const initCanvas = async (img: HTMLImageElement) => {
@@ -783,7 +771,10 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
     hasAdjusted.current = false
     setStatus('detecting')
 
-    const naturalCorners = await detectCard(img)
+    const naturalCorners = await Promise.race<Pt[] | null>([
+      detectCard(img),
+      new Promise<null>(r => setTimeout(() => r(null), 12000)),
+    ])
     const display = naturalCorners
       ? naturalCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
       : defaultCorners(canvas)
