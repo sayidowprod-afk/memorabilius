@@ -240,28 +240,10 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
         {d.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
         {d.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
         {d.num && !oon && !low && !bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>{d.num}</span>}
-        {bronze && <span className="tag-bronze" style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#6d3a00,#cd7f32,#f5cba7,#cd7f32,#6d3a00)', color: 'white', textShadow: '0 1px 2px rgba(0,0,0,0.6)', position: 'relative', overflow: 'hidden', display: 'inline-block' }}>{d.num}</span>}
-        {oon && <span className="tag-oon" style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', color: '#3d2800', textShadow: '0 1px 0 rgba(255,255,255,0.4)', position: 'relative', overflow: 'hidden', display: 'inline-block' }}>⭐ {d.num}</span>}
-        {low && <span className="tag-low" style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#555,#c0c0c0,#fff,#c0c0c0,#555)', color: '#111', position: 'relative', overflow: 'hidden', display: 'inline-block' }}>{d.num}</span>}
+        {bronze && <span className="tag-bronze" style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#6d3a00,#cd7f32,#f5cba7,#cd7f32,#6d3a00)', color: 'white', textShadow: '0 1px 2px rgba(0,0,0,0.6)', display: 'inline-block' }}>{d.num}</span>}
+        {oon && <span className="tag-oon" style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', color: '#3d2800', textShadow: '0 1px 0 rgba(255,255,255,0.4)', display: 'inline-block' }}>{d.num}</span>}
+        {low && <span className="tag-low" style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#555,#c0c0c0,#fff,#c0c0c0,#555)', color: '#111', display: 'inline-block' }}>{d.num}</span>}
         {d.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#1976d2', color: 'white' }}>PATCH</span>}
-        <style>{`
-          @keyframes tag-sweep    { 0%{transform:translateX(-220%)} 100%{transform:translateX(220%)} }
-          @keyframes tag-glow-oon { 0%,100%{filter:drop-shadow(0 0 3px #ffd700) drop-shadow(0 0 6px #b8860b)} 50%{filter:drop-shadow(0 0 8px #fffacd) drop-shadow(0 0 16px #ffd700)} }
-          @keyframes tag-pulse-oon{ 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
-          @keyframes tag-glow-low { 0%,100%{filter:drop-shadow(0 0 2px #aaa)} 50%{filter:drop-shadow(0 0 6px #fff)} }
-          @keyframes tag-glow-bro { 0%,100%{filter:drop-shadow(0 0 2px #cd7f32)} 50%{filter:drop-shadow(0 0 5px #f5cba7)} }
-
-          .tag-oon { animation: tag-glow-oon 1.8s ease-in-out infinite, tag-pulse-oon 1.8s ease-in-out infinite; }
-          .tag-oon::after  { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.6),transparent); animation:tag-sweep 1.6s linear infinite; pointer-events:none; }
-
-          .tag-low { animation: tag-glow-low 2.4s ease-in-out infinite; }
-          .tag-low::after  { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.55),transparent); animation:tag-sweep 2s linear infinite; pointer-events:none; }
-
-          .tag-bronze { animation: tag-glow-bro 2.8s ease-in-out infinite; }
-          .tag-bronze::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent); animation:tag-sweep 2.4s linear infinite; pointer-events:none; }
-
-          @media (prefers-reduced-motion:reduce) { .tag-oon,.tag-low,.tag-bronze { animation:none; } .tag-oon::after,.tag-low::after,.tag-bronze::after { animation:none; } }
-        `}</style>
       </div>
     )
   }
@@ -468,6 +450,25 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
             .header-stats-block { width: 100% !important; align-items: center !important; }
           }
           @media (min-width: 900px) { .card-item { flex: 0 0 calc(20% - 10px); max-width: calc(20% - 10px); } }
+
+          @keyframes oon-anim {
+            0%,100% { transform: scale(1);    filter: drop-shadow(0 0 3px #ffd700) drop-shadow(0 0 6px #b8860b); }
+            50%      { transform: scale(1.12); filter: drop-shadow(0 0 10px #fffacd) drop-shadow(0 0 20px #ffd700); }
+          }
+          @keyframes low-anim {
+            0%,100% { filter: drop-shadow(0 0 2px #bbb); }
+            50%      { filter: drop-shadow(0 0 8px #fff) drop-shadow(0 0 4px #aaa); }
+          }
+          @keyframes bro-anim {
+            0%,100% { filter: drop-shadow(0 0 2px #cd7f32); }
+            50%      { filter: drop-shadow(0 0 7px #f5cba7) drop-shadow(0 0 3px #cd7f32); }
+          }
+          .tag-oon    { animation: oon-anim 1.8s ease-in-out infinite; }
+          .tag-low    { animation: low-anim 2.2s ease-in-out infinite; }
+          .tag-bronze { animation: bro-anim 2.6s ease-in-out infinite; }
+          @media (prefers-reduced-motion: reduce) {
+            .tag-oon, .tag-low, .tag-bronze { animation: none; }
+          }
         `}</style>
         
         <div className="card-grid">
