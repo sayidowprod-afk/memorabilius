@@ -545,14 +545,13 @@ async function detectCardGemini(img: HTMLImageElement): Promise<Pt[] | null> {
     const { corners } = data
     if (!corners?.topLeft) return null
 
-    // Gemini retourne des fractions (0-1) → multiplie par dimensions naturelles
-    const W = img.naturalWidth, H = img.naturalHeight
+    // Roboflow retourne des coords en pixels dans l'image redimensionnée → divise par scale
     const { topLeft: tl, topRight: tr, bottomRight: br, bottomLeft: bl } = corners
     return orderCorners([
-      { x: tl.x * W, y: tl.y * H },
-      { x: tr.x * W, y: tr.y * H },
-      { x: br.x * W, y: br.y * H },
-      { x: bl.x * W, y: bl.y * H },
+      { x: tl.x / scale, y: tl.y / scale },
+      { x: tr.x / scale, y: tr.y / scale },
+      { x: br.x / scale, y: br.y / scale },
+      { x: bl.x / scale, y: bl.y / scale },
     ])
   } catch {
     return null
