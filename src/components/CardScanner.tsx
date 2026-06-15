@@ -21,7 +21,7 @@ function loadOpenCV(): Promise<any> {
   if (w.cv?.imread) return Promise.resolve(w.cv)
   _cvPromise = new Promise((resolve, reject) => {
     const script = document.createElement('script')
-    script.src = 'https://docs.opencv.org/4.10.0/opencv.js'
+    script.src = 'https://cdn.jsdelivr.net/npm/opencv.js@1.2.1/opencv.js'
     script.async = true
     script.onload = () => {
       const check = setInterval(() => {
