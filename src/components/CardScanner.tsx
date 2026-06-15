@@ -9,6 +9,7 @@ interface Props {
   onResult: (blob: Blob) => void
   onFallback: () => void
   onClose: () => void
+  initialCorners?: Pt[] // coins déjà connus (overlay caméra) → skip détection IA
 }
 
 // ── Chargement OpenCV.js (WASM) ───────────────────────────────────────────
@@ -688,7 +689,7 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
 const HANDLE_COLORS = ['#ff5252', '#ffeb3b', '#69f0ae', '#40c4ff']
 const HANDLE_R = 18
 
-export default function CardScanner({ src, onResult, onFallback, onClose }: Props) {
+export default function CardScanner({ src, onResult, onFallback, onClose, initialCorners }: Props) {
   const canvasRef     = useRef<HTMLCanvasElement>(null)
   const imgRef        = useRef<HTMLImageElement | null>(null)
   const origImgRef    = useRef<HTMLImageElement | null>(null)  // toujours l'original non-tourné
@@ -739,6 +740,15 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
     canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height)
 
     hasAdjusted.current = false
+
+    // Si coins déjà connus (caméra overlay) → skip détection IA
+    if (initialCorners && initialCorners.length === 4) {
+      const display = initialCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
+      setCorners(display)
+      setStatus('found')
+      return
+    }
+
     setStatus('detecting')
 
     const naturalCorners = await Promise.race<Pt[] | null>([

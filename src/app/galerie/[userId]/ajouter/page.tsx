@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import CardScanner from '@/components/CardScanner'
+import CameraCapture from '@/components/CameraCapture'
 
 const CARD_RATIO = 2.5 / 3.5
 
@@ -23,7 +24,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     image_recto: '', image_verso: '',
   })
 
-  const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
+  const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string; corners?: { x: number; y: number }[] } | null>(null)
+  const [cameraModal, setCameraModal] = useState<'recto' | 'verso' | null>(null)
   const [cropModal, setCropModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
   const [rotation, setRotation] = useState(0)
 
@@ -321,11 +323,10 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           </div>
         )}
       </div>
-      {/* Deux inputs : galerie + appareil photo */}
+      {/* Input galerie uniquement */}
       <input id={`upload-${side}`} type="file" accept="image/*" style={{ display: 'none' }} onChange={e => handleFileChange(e, side)} />
-      <input id={`camera-${side}`} type="file" accept="image/*" capture="environment" style={{ display: 'none' }} onChange={e => handleFileChange(e, side)} />
       {!preview && !uploading && (
-        <button type="button" onClick={() => document.getElementById(`camera-${side}`)?.click()}
+        <button type="button" onClick={() => setCameraModal(side)}
           style={{ marginTop: 6, width: '100%', background: '#f0f4ff', color: '#003DA6', border: 'none', borderRadius: 6, padding: '8px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
           {lang === 'fr' ? '📸 Prendre une photo' : '📸 Take a photo'}
         </button>
@@ -438,9 +439,21 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         </div>
       </form>
 
+      {cameraModal && (
+        <CameraCapture
+          onCapture={(blob, corners) => {
+            const url = URL.createObjectURL(blob)
+            setCameraModal(null)
+            setScannerModal({ side: cameraModal, src: url, corners })
+          }}
+          onClose={() => setCameraModal(null)}
+        />
+      )}
+
       {scannerModal && (
         <CardScanner
           src={scannerModal.src}
+          initialCorners={scannerModal.corners}
           onResult={blob => uploadBlob(blob, scannerModal.side)}
           onFallback={() => {
             setCropModal({ side: scannerModal.side, src: scannerModal.src })
