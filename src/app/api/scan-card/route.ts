@@ -8,7 +8,7 @@ Analyse cette image de carte et extrais les informations suivantes en JSON stric
 Réponds UNIQUEMENT avec un objet JSON valide, sans markdown, sans explication :
 {
   "nom": "Nom complet du joueur (ou personnage TCG)",
-  "equipe": "Équipe ou franchise (vide si TCG)",
+  "equipe": "Nom complet de l'équipe ou franchise (ex: Philadelphia 76ers, Miami Heat, Los Angeles Lakers, Golden State Warriors). Toujours le nom complet ville + surnom, jamais juste le surnom. Vide si TCG.",
   "annee": "Année ou saison (ex: 2023-24 ou 2023)",
   "marque": "Fabricant de la carte (ex: Panini, Topps, Upper Deck, Pokemon)",
   "collection": "Nom du set uniquement, sans la marque (ex: Prizm, Chrome, Mosaic, Optic)",
