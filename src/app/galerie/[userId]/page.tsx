@@ -168,7 +168,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
     const f = cards.filter(d => {
       if (!isOwner && privateCards.has(d.f)) return false
       return (
-        d.n.toLowerCase().includes(search.toLowerCase()) &&
+        (d.n.toLowerCase().includes(search.toLowerCase()) || d.v.toLowerCase().includes(search.toLowerCase())) &&
         (!fTeam || d.t === fTeam) &&
         (!fBrand || d.s === fBrand) &&
         (!fYear || d.y === fYear) &&

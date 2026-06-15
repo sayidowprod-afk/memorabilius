@@ -31,7 +31,7 @@ const translations = {
     home_pepites: '✨ Dernières pépites',
 
     // Galerie
-    gallery_search: 'Joueur...',
+    gallery_search: 'Joueur, variation...',
     gallery_team: 'Équipe',
     gallery_all: 'Toutes',
     gallery_collection: 'Collection',
@@ -193,7 +193,7 @@ const translations = {
     home_pepites: '✨ Latest gems',
 
     // Gallery
-    gallery_search: 'Player...',
+    gallery_search: 'Player, variation...',
     gallery_team: 'Team',
     gallery_all: 'All',
     gallery_collection: 'Collection',
