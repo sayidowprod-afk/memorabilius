@@ -552,13 +552,17 @@ async function detectCardRoboflow(img: HTMLImageElement): Promise<Pt[] | null> {
     cropImg.src = cropC.toDataURL()
     await new Promise(r => { cropImg.onload = r })
 
-    // OpenCV sur le crop avec minAreaRect (rectangle orienté pour cartes inclinées)
+    // OpenCV sur le crop avec minAreaRect — timeout 5s pour ne pas bloquer
     try {
-      const cv      = await loadOpenCV()
-      const corners = await detectCardInCrop(cropImg, cv)
-      if (corners) {
-        const mapped = corners.map(p => ({ x: p.x + nx, y: p.y + ny }))
-        // Valide que les coins restent proches du bbox
+      const cvCorners = await Promise.race<Pt[] | null>([
+        (async () => {
+          const cv = await loadOpenCV()
+          return await detectCardInCrop(cropImg, cv)
+        })(),
+        new Promise<null>(r => setTimeout(() => r(null), 5000)),
+      ])
+      if (cvCorners) {
+        const mapped = cvCorners.map(p => ({ x: p.x + nx, y: p.y + ny }))
         const tol = 0.35
         const valid = mapped.every(p =>
           p.x >= nx - nw * tol && p.x <= nx + nw * (1 + tol) &&
