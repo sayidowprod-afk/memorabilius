@@ -38,15 +38,10 @@ export default function CameraCapture({ onCapture, onClose }: Props) {
     const dw = video.clientWidth
     const dh = video.clientHeight
 
-    // Cadre overlay : centré, ratio 2.5/3.5, 78% de la plus petite dimension
+    // Cadre overlay : min(78vw, 56vh) × ratio carte — centré
     const CARD_RATIO = 2.5 / 3.5
-    const PAD = 0.11
-    let frameW = dw * (1 - PAD * 2)
+    let frameW = Math.min(dw * 0.78, dh * 0.56 * CARD_RATIO)
     let frameH = frameW / CARD_RATIO
-    if (frameH > dh * (1 - PAD * 2)) {
-      frameH = dh * (1 - PAD * 2)
-      frameW = frameH * CARD_RATIO
-    }
     const frameX = (dw - frameW) / 2
     const frameY = (dh - frameH) / 2
 
@@ -86,12 +81,10 @@ export default function CameraCapture({ onCapture, onClose }: Props) {
     }, 'image/jpeg', 0.92)
   }
 
-  // Dimensions du cadre overlay en CSS (pour l'affichage)
   const CARD_RATIO = 2.5 / 3.5
-  const PAD = 0.11
 
   return (
-    <div style={{ position: 'fixed', inset: 0, background: 'black', zIndex: 999, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ position: 'fixed', inset: 0, background: 'black', zIndex: 9999, display: 'flex', flexDirection: 'column' }}>
       {error ? (
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', gap: 16 }}>
           <p style={{ fontSize: 16 }}>{error}</p>
@@ -110,7 +103,7 @@ export default function CameraCapture({ onCapture, onClose }: Props) {
 
           {/* Overlay sombre avec découpe */}
           {ready && (
-            <OverlayMask cardRatio={CARD_RATIO} pad={PAD} />
+            <OverlayMask cardRatio={CARD_RATIO} />
           )}
 
           {/* Boutons */}
@@ -136,54 +129,35 @@ export default function CameraCapture({ onCapture, onClose }: Props) {
   )
 }
 
-function OverlayMask({ cardRatio, pad }: { cardRatio: number; pad: number }) {
+function OverlayMask({ cardRatio }: { cardRatio: number }) {
+  // Calcule la taille du cadre en CSS pur (sans JS) via aspect-ratio
+  // Le cadre prend 80% de la largeur ou 70% de la hauteur (le plus petit)
   return (
-    <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
-      <svg width="100%" height="100%" style={{ position: 'absolute', inset: 0 }}>
-        <defs>
-          <mask id="card-mask">
-            <rect width="100%" height="100%" fill="white" />
-            {/* Découpe carte — dimensions calculées en CSS via viewBox relatif */}
-            <rect
-              x={`${pad * 100}%`}
-              y="0"
-              width={`${(1 - pad * 2) * 100}%`}
-              height="100%"
-              fill="black"
-            />
-          </mask>
-        </defs>
-        <rect width="100%" height="100%" fill="rgba(0,0,0,0.55)" mask="url(#card-mask)" />
-      </svg>
-
-      {/* Cadre blanc autour de la zone carte */}
+    <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      {/* Fond sombre via box-shadow géant sur le cadre */}
       <div style={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: `calc(100% - ${pad * 2 * 100}vw)`,
+        position: 'relative',
+        width: 'min(78vw, 56vh)',
         aspectRatio: `${cardRatio}`,
-        border: '2px solid rgba(255,255,255,0.85)',
-        borderRadius: 8,
-        boxShadow: '0 0 0 1px rgba(0,229,255,0.5)',
+        borderRadius: 10,
+        boxShadow: '0 0 0 200vmax rgba(0,0,0,0.60)',
+        border: '2px solid rgba(255,255,255,0.6)',
+        zIndex: 1,
       }}>
-        {/* Coins */}
-        {[['0','0'],['100%','0'],['100%','100%'],['0','100%']].map(([l, t], i) => (
-          <div key={i} style={{
-            position: 'absolute',
-            left: l === '0' ? -2 : undefined,
-            right: l === '100%' ? -2 : undefined,
-            top: t === '0' ? -2 : undefined,
-            bottom: t === '100%' ? -2 : undefined,
-            width: 20, height: 20,
-            borderTop: t === '0' ? '3px solid #00e5ff' : undefined,
-            borderBottom: t === '100%' ? '3px solid #00e5ff' : undefined,
-            borderLeft: l === '0' ? '3px solid #00e5ff' : undefined,
-            borderRight: l === '100%' ? '3px solid #00e5ff' : undefined,
-          }} />
+        {/* Coins cyan */}
+        {[
+          { top: -3, left: -3, borderTop: '4px solid #00e5ff', borderLeft: '4px solid #00e5ff' },
+          { top: -3, right: -3, borderTop: '4px solid #00e5ff', borderRight: '4px solid #00e5ff' },
+          { bottom: -3, right: -3, borderBottom: '4px solid #00e5ff', borderRight: '4px solid #00e5ff' },
+          { bottom: -3, left: -3, borderBottom: '4px solid #00e5ff', borderLeft: '4px solid #00e5ff' },
+        ].map((s, i) => (
+          <div key={i} style={{ position: 'absolute', width: 24, height: 24, borderRadius: 2, ...s }} />
         ))}
-        <p style={{ position: 'absolute', bottom: -28, left: 0, right: 0, textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: 12, fontWeight: 600 }}>
+        <p style={{
+          position: 'absolute', bottom: -36, left: 0, right: 0,
+          textAlign: 'center', color: 'rgba(255,255,255,0.8)',
+          fontSize: 13, fontWeight: 600, margin: 0, whiteSpace: 'nowrap',
+        }}>
           Alignez la carte dans le cadre
         </p>
       </div>
