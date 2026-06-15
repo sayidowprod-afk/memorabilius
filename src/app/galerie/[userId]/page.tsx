@@ -16,6 +16,7 @@ interface Card {
   br: string; s: string; v: string; num: string
   auto: boolean; rc: boolean; patch: boolean; g: string
   isManuelle?: boolean; // Permet de distinguer l'origine de la carte
+  created_at?: string;
 }
 
 export default function Galerie({ params }: { params: Promise<{ userId: string }> }) {
@@ -27,7 +28,7 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
   const [page, setPage] = useState(1)
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
   const [filterPrivate, setFilterPrivate] = useState(false)
-  const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc'>('default')
+  const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc' | 'num_asc' | 'date_desc' | 'date_asc'>('default')
   const [search, setSearch] = useState('')
   const [fTeam, setFTeam] = useState('')
   const [fBrand, setFBrand] = useState('')
@@ -150,7 +151,8 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
         n: m.nom || '', t: m.equipe || '', y: m.annee || '',
         br: m.marque || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', auto: m.auto || false, rc: m.rc || false,
-        patch: m.patch || false, g: m.grade || 'Raw', isManuelle: true
+        patch: m.patch || false, g: m.grade || 'Raw', isManuelle: true,
+        created_at: m.created_at || ''
       }))
 
       const allCards = [...parsed, ...cartesM]
@@ -192,6 +194,13 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
         case 'g':          return cmp(a.g, b.g)
         case 'valeur':     return val(b) - val(a)
         case 'valeur_desc':return val(a) - val(b)
+        case 'num_asc': {
+          const na = numValue(a.num) ?? Infinity
+          const nb = numValue(b.num) ?? Infinity
+          return na - nb
+        }
+        case 'date_desc': return (b.created_at || '').localeCompare(a.created_at || '')
+        case 'date_asc':  return (a.created_at || '').localeCompare(b.created_at || '')
         default:           return 0
       }
     })
@@ -231,11 +240,11 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
         {d.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
         {d.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
         {d.num && !oon && !low && !bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>{d.num}</span>}
-        {bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(90deg,#6d3a00,#cd7f32,#f5cba7,#cd7f32,#6d3a00)', color: 'white', textShadow: '0 1px 2px rgba(0,0,0,0.6)', backgroundSize: '200% 100%', animation: 'goldshine 2s linear infinite', boxShadow: '0 0 6px 2px rgba(205,127,50,0.5)' }}>{d.num}</span>}
-        {oon && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(90deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', color: 'white', textShadow: '0 1px 2px rgba(0,0,0,0.6)', backgroundSize: '200% 100%', animation: 'goldshine 2s linear infinite', boxShadow: '0 0 6px 2px rgba(255,215,0,0.5)' }}>{d.num}</span>}
-        {low && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(90deg,#888,#e0e0e0,#fff,#e0e0e0,#888)', color: '#222', backgroundSize: '200% 100%', animation: 'goldshine 2s linear infinite', boxShadow: '0 0 6px 2px rgba(200,200,200,0.6)' }}>{d.num}</span>}
+        {bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(90deg,#6d3a00,#cd7f32,#f5cba7,#cd7f32,#6d3a00)', color: 'white', textShadow: '0 1px 2px rgba(0,0,0,0.6)', backgroundSize: '200% 100%', animation: 'goldshine 3s linear infinite', boxShadow: '0 0 6px 2px rgba(205,127,50,0.5)', willChange: 'background-position' }}>{d.num}</span>}
+        {oon && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(90deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', color: 'white', textShadow: '0 1px 2px rgba(0,0,0,0.6)', backgroundSize: '200% 100%', animation: 'goldshine 3s linear infinite', boxShadow: '0 0 6px 2px rgba(255,215,0,0.5)', willChange: 'background-position' }}>{d.num}</span>}
+        {low && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(90deg,#888,#e0e0e0,#fff,#e0e0e0,#888)', color: '#222', backgroundSize: '200% 100%', animation: 'goldshine 3s linear infinite', boxShadow: '0 0 6px 2px rgba(200,200,200,0.6)', willChange: 'background-position' }}>{d.num}</span>}
         {d.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#1976d2', color: 'white' }}>PATCH</span>}
-        <style>{`@keyframes goldshine { 0%{background-position:200% 0} 100%{background-position:-200% 0} }`}</style>
+        <style>{`@keyframes goldshine { 0%{background-position:200% 0} 100%{background-position:-200% 0} } @media (prefers-reduced-motion: reduce) { .tag-shine { animation: none !important; } }`}</style>
       </div>
     )
   }
@@ -261,7 +270,11 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
                 <OnlineIndicator lastSeen={profile?.last_seen} size={12} />
                 {profile?.lien_logo && <img src={profile.lien_logo} style={{ maxHeight: 32, objectFit: 'contain' }} alt="logo" />}
               </div>
-              
+
+              {profile?.bio && (
+                <p style={{ fontSize: 13, color: '#555', margin: '0 0 10px', lineHeight: 1.5, maxWidth: 400 }}>{profile.bio}</p>
+              )}
+
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {profile?.instagram && (
                   <a href={`https://instagram.com/${profile.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
@@ -400,6 +413,13 @@ export default function Galerie({ params }: { params: Promise<{ userId: string }
               </optgroup>
               <optgroup label={lang === 'fr' ? 'Collection' : 'Brand'}>
                 <option value="s">{lang === 'fr' ? 'Collection A → Z' : 'Brand A → Z'}</option>
+              </optgroup>
+              <optgroup label={lang === 'fr' ? 'Numérotation' : 'Numbering'}>
+                <option value="num_asc">{lang === 'fr' ? 'Numérotation basse → haute' : 'Numbering low → high'}</option>
+              </optgroup>
+              <optgroup label={lang === 'fr' ? 'Date d\'ajout' : 'Date added'}>
+                <option value="date_desc">{lang === 'fr' ? 'Plus récent en 1er' : 'Newest first'}</option>
+                <option value="date_asc">{lang === 'fr' ? 'Plus ancien en 1er' : 'Oldest first'}</option>
               </optgroup>
               {cardValues.size > 0 && <>
                 <option value="valeur">{lang === 'fr' ? 'Valeur ↓ (plus cher en 1er)' : 'Value ↓ (highest first)'}</option>

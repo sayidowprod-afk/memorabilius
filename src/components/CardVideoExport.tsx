@@ -9,15 +9,17 @@ interface Card {
 }
 interface Props { card: Card; accent: string; onClose: () => void }
 
+const IS_MOBILE = typeof window !== 'undefined' && window.innerWidth < 768
 const VIDEO_FORMATS = {
-  default: { w: 900,  h: 1300, label: 'Défaut',  ratio: '9:13' },
-  reel:    { w: 1080, h: 1920, label: 'Reel',    ratio: '9:16' },
-  square:  { w: 1080, h: 1080, label: 'Carré',   ratio: '1:1'  },
+  default: { w: IS_MOBILE ? 540 : 900,  h: IS_MOBILE ? 780 : 1300, label: 'Défaut',  ratio: '9:13' },
+  reel:    { w: IS_MOBILE ? 540 : 1080, h: IS_MOBILE ? 960 : 1920, label: 'Reel',    ratio: '9:16' },
+  square:  { w: IS_MOBILE ? 640 : 1080, h: IS_MOBILE ? 640 : 1080, label: 'Carré',   ratio: '1:1'  },
 } as const
 type VideoFormat = keyof typeof VIDEO_FORMATS
 
-// Particules stables (déterministes)
-const PARTICLES = Array.from({ length: 50 }, (_, i) => ({
+// Particules stables (déterministes) — moins sur mobile pour les perfs
+const PARTICLE_COUNT = IS_MOBILE ? 20 : 50
+const PARTICLES = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
   x: (i * 137.508) % 1,
   y: (i * 97.3) % 1,
   r: 0.8 + (i % 4) * 0.7,
@@ -36,8 +38,9 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   const [vfmt, setVfmt] = useState<VideoFormat>('default')
   const { lang } = useLang()
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
   const DURATION = 6000
-  const FPS = 30
+  const FPS = isMobile ? 20 : 30
   const themeRef = useRef(theme)
   const vfmtRef = useRef(vfmt)
   themeRef.current = theme
@@ -240,7 +243,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     for (let i = 0; i < totalFrames; i++) {
       drawFrame(ctx, frontImg, backImg, i / totalFrames)
       const blob = await new Promise<Blob>(res =>
-        canvas.toBlob(b => res(b!), 'image/jpeg', 0.88)
+        canvas.toBlob(b => res(b!), 'image/jpeg', IS_MOBILE ? 0.75 : 0.88)
       )
       bitmaps.push(await createImageBitmap(blob))
       setProgress(Math.round(i / totalFrames * 60))

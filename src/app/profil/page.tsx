@@ -9,7 +9,7 @@ export default function Profil() {
   const router = useRouter()
   const { t, lang } = useLang()
   const [userId, setUserId] = useState<string | null>(null)
-  const [form, setForm] = useState({ display_name: '', lien_csv: '', couleur_bordure: '#003DA6', lien_logo: '', instagram: '', twitter: '', discord: '' })
+  const [form, setForm] = useState({ display_name: '', bio: '', lien_csv: '', couleur_bordure: '#003DA6', lien_logo: '', instagram: '', twitter: '', discord: '' })
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
   const [csvLinked, setCsvLinked] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -28,7 +28,7 @@ export default function Profil() {
       await supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', data.user.id)
       const { data: p } = await supabase.from('profiles').select('*').eq('id', data.user.id).single()
       if (p) {
-        setForm({ display_name: p.display_name || '', lien_csv: p.lien_csv || '', couleur_bordure: p.couleur_bordure || '#003DA6', lien_logo: p.lien_logo || '', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '' })
+        setForm({ display_name: p.display_name || '', bio: p.bio || '', lien_csv: p.lien_csv || '', couleur_bordure: p.couleur_bordure || '#003DA6', lien_logo: p.lien_logo || '', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '' })
         setCsvLinked(!!p.lien_csv)
         setAvatarUrl(p.avatar_url || null)
       }
@@ -69,6 +69,7 @@ export default function Profil() {
       instagram: form.instagram,
       twitter: form.twitter,
       discord: form.discord,
+      bio: form.bio,
       slug,
     }).eq('id', userId)
     if (!error) {
@@ -132,6 +133,11 @@ export default function Profil() {
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('profile_pseudo')}</label>
             <input value={form.display_name} onChange={e => setForm({ ...form, display_name: e.target.value })} placeholder="Votre pseudo" />
+          </div>
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Bio</label>
+            <textarea value={form.bio} onChange={e => setForm({ ...form, bio: e.target.value })} placeholder="Décrivez votre collection en quelques mots..." maxLength={200} rows={3} style={{ resize: 'vertical', fontFamily: 'inherit', fontSize: 14 }} />
+            <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>{form.bio.length}/200 caractères</p>
           </div>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('profile_csv_label')}</label>
