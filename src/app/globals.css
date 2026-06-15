@@ -13,6 +13,11 @@
   0%,100% { box-shadow: 0 0 4px 2px #cd7f32; transform: scale(1); }
   50%      { box-shadow: 0 0 14px 6px #f5cba7, 0 0 8px 3px #cd7f32; transform: scale(1.08); }
 }
+@media (max-width: 768px) {
+  [style*="oon-anim"]  { animation-duration: 3.5s !important; }
+  [style*="low-anim"]  { animation-duration: 4s !important; }
+  [style*="bro-anim"]  { animation-duration: 4.5s !important; }
+}
 
 :root {
   --bg: #f8f9fa;
