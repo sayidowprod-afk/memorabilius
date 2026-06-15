@@ -528,58 +528,32 @@ async function detectCardRoboflow(img: HTMLImageElement): Promise<Pt[] | null> {
   try {
     const { b64, scale } = await imageToBase64(img, 800)
     const ctrl = new AbortController()
-    const tid  = setTimeout(() => ctrl.abort(), 7000)
-    const res  = await fetch('/api/detect-card', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ imageBase64: b64 }),
-      signal: ctrl.signal,
-    })
-    clearTimeout(tid)
-    if (!res.ok) return null
-    const { x, y, width, height } = await res.json()
+    const tid  = setTimeout(() => ctrl.abort(), 8000)
+    let res: Response
+    try {
+      res = await fetch('/api/detect-card', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imageBase64: b64 }),
+        signal: ctrl.signal,
+      })
+    } finally {
+      clearTimeout(tid)
+    }
+    if (!res!.ok) return null
+    const bbox = await res!.json()
+    const { x, y, width, height } = bbox
     if (!width || !height) return null
 
-    // Convertit le bbox (coordonnées 800px) en coordonnées naturelles
-    const pad = 0.08
-    const nx = Math.max(0, (x / scale) - (width / scale) * pad)
-    const ny = Math.max(0, (y / scale) - (height / scale) * pad)
-    const nw = Math.min(img.naturalWidth  - nx, (width  / scale) * (1 + pad * 2))
-    const nh = Math.min(img.naturalHeight - ny, (height / scale) * (1 + pad * 2))
+    // Coins du bbox en coordonnées image originale
+    const nx = Math.max(0, x / scale)
+    const ny = Math.max(0, y / scale)
+    const nw = Math.min(img.naturalWidth  - nx, width  / scale)
+    const nh = Math.min(img.naturalHeight - ny, height / scale)
 
-    // Crée un canvas rogné autour de la carte détectée
-    const cropC = document.createElement('canvas')
-    cropC.width = Math.round(nw); cropC.height = Math.round(nh)
-    cropC.getContext('2d')!.drawImage(img, nx, ny, nw, nh, 0, 0, nw, nh)
-
-    const cropImg = new Image()
-    cropImg.src = cropC.toDataURL()
-    await new Promise(r => { cropImg.onload = r })
-
-    // OpenCV sur le crop avec minAreaRect — timeout 5s pour ne pas bloquer
-    try {
-      const cvCorners = await Promise.race<Pt[] | null>([
-        (async () => {
-          const cv = await loadOpenCV()
-          return await detectCardInCrop(cropImg, cv)
-        })(),
-        new Promise<null>(r => setTimeout(() => r(null), 5000)),
-      ])
-      if (cvCorners) {
-        const mapped = cvCorners.map(p => ({ x: p.x + nx, y: p.y + ny }))
-        const tol = 0.35
-        const valid = mapped.every(p =>
-          p.x >= nx - nw * tol && p.x <= nx + nw * (1 + tol) &&
-          p.y >= ny - nh * tol && p.y <= ny + nh * (1 + tol)
-        )
-        if (valid) return mapped
-      }
-    } catch {}
-
-    // Fallback : coins du bbox Roboflow directement
     return orderCorners([
-      { x: nx,      y: ny },
-      { x: nx + nw, y: ny },
+      { x: nx,      y: ny      },
+      { x: nx + nw, y: ny      },
       { x: nx + nw, y: ny + nh },
       { x: nx,      y: ny + nh },
     ])
