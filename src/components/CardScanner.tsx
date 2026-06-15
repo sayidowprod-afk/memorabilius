@@ -589,14 +589,7 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   const rfResult = await detectCardRoboflow(img)
   if (rfResult) return rfResult
 
-  // Fallback 1 : OpenCV seul sur toute l'image
-  try {
-    const cv     = await loadOpenCV()
-    const result = await detectCardOpenCV(img, cv)
-    if (result) return result
-  } catch {}
-
-  // Fallback 2 : algo custom Hough/Otsu
+  // Fallback : algo custom Hough/Otsu (pas besoin d'OpenCV)
   const MAX = 400
   const scale = Math.min(MAX / img.naturalWidth, MAX / img.naturalHeight, 1)
   const W = Math.round(img.naturalWidth  * scale)

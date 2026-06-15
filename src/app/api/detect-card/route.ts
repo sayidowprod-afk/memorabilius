@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
 
     // Roboflow inference API — retourne des coordonnées centrées (x, y = centre du bbox)
     const res = await fetch(
-      `https://detect.roboflow.com/memorabilius-card-detector/1?api_key=${apiKey}&confidence=40`,
+      `https://detect.roboflow.com/memorabilius-card-detector/1?api_key=${apiKey}&confidence=30`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
