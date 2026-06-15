@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 type Pt = { x: number; y: number }
-type Status = 'detecting' | 'found' | 'notfound' | 'ai'
+type Status = 'detecting' | 'found' | 'notfound'
 
 interface Props {
   src: string
@@ -429,38 +429,6 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
   const lastPanPt     = useRef<Pt | null>(null)
   const isPanning     = useRef(false)
 
-  // ── Détection Gemini Vision ────────────────────────────────────────────
-  const detectCardWithGemini = async (img: HTMLImageElement): Promise<Pt[] | null> => {
-    try {
-      const MAX = 800
-      const scale = Math.min(MAX / img.naturalWidth, MAX / img.naturalHeight, 1)
-      const W = Math.round(img.naturalWidth * scale)
-      const H = Math.round(img.naturalHeight * scale)
-      const c = document.createElement('canvas')
-      c.width = W; c.height = H
-      c.getContext('2d')!.drawImage(img, 0, 0, W, H)
-      const base64 = c.toDataURL('image/jpeg', 0.85).split(',')[1]
-
-      const res = await fetch('/api/detect-card', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ imageBase64: base64, mimeType: 'image/jpeg', width: W, height: H }),
-      })
-      if (!res.ok) return null
-      const data = await res.json()
-      if (data.error) return null
-
-      const { tl, tr, br, bl } = data
-      const inv = 1 / scale
-      return [
-        { x: tl.x * inv, y: tl.y * inv },
-        { x: tr.x * inv, y: tr.y * inv },
-        { x: br.x * inv, y: br.y * inv },
-        { x: bl.x * inv, y: bl.y * inv },
-      ]
-    } catch { return null }
-  }
-
   // ── Chargement & détection ─────────────────────────────────────────────
   useEffect(() => {
     const img = new Image()
@@ -488,30 +456,12 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
     hasAdjusted.current = false
     setStatus('detecting')
 
-    // Lancer Gemini en arrière-plan immédiatement
-    const geminiPromise = detectCardWithGemini(img)
-
-    // Détection locale rapide (~100ms)
-    const localCorners = await detectCard(img)
-    const localDisplay = localCorners
-      ? localCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
+    const naturalCorners = await detectCard(img)
+    const display = naturalCorners
+      ? naturalCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
       : defaultCorners(canvas)
-    setCorners(localDisplay)
-    setStatus(localCorners ? 'ai' : 'ai') // toujours "ai" = Gemini en cours
-
-    // Attendre Gemini et mettre à jour si l'utilisateur n'a pas touché les coins
-    try {
-      const geminiCorners = await geminiPromise
-      if (geminiCorners && !hasAdjusted.current) {
-        const display = geminiCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
-        setCorners(display)
-        setStatus('found')
-      } else if (!geminiCorners) {
-        setStatus(localCorners ? 'found' : 'notfound')
-      }
-    } catch {
-      setStatus(localCorners ? 'found' : 'notfound')
-    }
+    setCorners(display)
+    setStatus(naturalCorners ? 'found' : 'notfound')
   }
 
   // Tourne l'image depuis l'original (évite la dégradation par compressions successives)
@@ -736,7 +686,6 @@ export default function CardScanner({ src, onResult, onFallback, onClose }: Prop
     <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.96)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '12px 16px 20px' }}>
       <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, marginBottom: 8, textAlign: 'center', minHeight: 18 }}>
         {!applying && status === 'detecting' && 'Détection en cours…'}
-        {!applying && status === 'ai'        && 'Amélioration IA en cours…'}
         {!applying && status === 'found'     && 'Carte détectée — ajustez les coins si besoin'}
         {!applying && status === 'notfound'  && 'Non détectée — placez les coins sur la carte'}
         {applying  && 'Recadrage en cours…'}
