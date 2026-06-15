@@ -527,15 +527,167 @@ async function imageToBase64(img: HTMLImageElement, maxSize = 800): Promise<{ b6
   return { b64: dataUrl.split(',')[1], scale }
 }
 
-// Le cadre overlay EST la détection : l'utilisateur a aligné la carte dedans.
-// On retourne directement les 4 coins du cadre sans chercher quoi que ce soit.
-function detectCardFromFrame(_img: HTMLImageElement, frame: FrameRect): Pt[] {
-  return [
-    { x: frame.x,            y: frame.y },
-    { x: frame.x + frame.w,  y: frame.y },
-    { x: frame.x + frame.w,  y: frame.y + frame.h },
-    { x: frame.x,            y: frame.y + frame.h },
-  ]
+// Scan depuis les 4 bords de l'image vers l'intérieur pour trouver les bords de la carte.
+// Approche CamScanner : chaque côté donne un ensemble de points d'arête,
+// on fitte une droite sur ces points, on intersecte les 4 droites → 4 coins précis.
+// Ignore les patterns internes holographiques car on ne cherche que le PREMIER bord rencontré.
+function detectCardFromFrame(img: HTMLImageElement, frame: FrameRect): Pt[] | null {
+  try {
+    const PAD = 0.14
+    const cx = Math.max(0, frame.x - frame.w * PAD)
+    const cy = Math.max(0, frame.y - frame.h * PAD)
+    const cw = Math.min(img.naturalWidth  - cx, frame.w * (1 + PAD * 2))
+    const ch = Math.min(img.naturalHeight - cy, frame.h * (1 + PAD * 2))
+
+    const MAX = 700
+    const s = Math.min(MAX / cw, MAX / ch, 1)
+    const W = Math.round(cw * s), H = Math.round(ch * s)
+
+    const canvas = document.createElement('canvas')
+    canvas.width = W; canvas.height = H
+    canvas.getContext('2d')!.drawImage(img, cx, cy, cw, ch, 0, 0, W, H)
+    const { data } = canvas.getContext('2d')!.getImageData(0, 0, W, H)
+
+    // Grayscale
+    const gray = new Float32Array(W * H)
+    for (let i = 0; i < W * H; i++)
+      gray[i] = 0.299 * data[i*4] + 0.587 * data[i*4+1] + 0.114 * data[i*4+2]
+
+    // Blur 3×3 pour lisser le bruit de surface
+    const g = new Float32Array(W * H)
+    for (let y = 1; y < H - 1; y++)
+      for (let x = 1; x < W - 1; x++) {
+        let sum = 0
+        for (let dy = -1; dy <= 1; dy++)
+          for (let dx = -1; dx <= 1; dx++)
+            sum += gray[(y + dy) * W + (x + dx)]
+        g[y * W + x] = sum / 9
+      }
+
+    // Luminance de fond : moyenne des pixels en bordure extrême du crop (5px)
+    let bgSum = 0, bgN = 0
+    for (let x = 0; x < W; x++) {
+      bgSum += g[x] + g[(H - 1) * W + x]; bgN += 2
+    }
+    for (let y = 1; y < H - 1; y++) {
+      bgSum += g[y * W] + g[y * W + W - 1]; bgN += 2
+    }
+    const bgLum = bgSum / bgN
+
+    // Seuil adaptatif : distance à la luminance de fond
+    const THRESH = 22
+
+    // Scan top → bas : trouver premier pixel significativement différent du fond
+    const topPts: Pt[] = []
+    for (let x = Math.round(W * 0.08); x < W * 0.92; x++) {
+      for (let y = 2; y < Math.round(H * 0.55); y++) {
+        if (Math.abs(g[y * W + x] - bgLum) > THRESH) { topPts.push({ x, y }); break }
+      }
+    }
+
+    // Scan bas → haut
+    const botPts: Pt[] = []
+    for (let x = Math.round(W * 0.08); x < W * 0.92; x++) {
+      for (let y = H - 3; y >= Math.round(H * 0.45); y--) {
+        if (Math.abs(g[y * W + x] - bgLum) > THRESH) { botPts.push({ x, y }); break }
+      }
+    }
+
+    // Scan gauche → droite
+    const leftPts: Pt[] = []
+    for (let y = Math.round(H * 0.08); y < H * 0.92; y++) {
+      for (let x = 2; x < Math.round(W * 0.55); x++) {
+        if (Math.abs(g[y * W + x] - bgLum) > THRESH) { leftPts.push({ x, y }); break }
+      }
+    }
+
+    // Scan droite → gauche
+    const rightPts: Pt[] = []
+    for (let y = Math.round(H * 0.08); y < H * 0.92; y++) {
+      for (let x = W - 3; x >= Math.round(W * 0.45); x--) {
+        if (Math.abs(g[y * W + x] - bgLum) > THRESH) { rightPts.push({ x, y }); break }
+      }
+    }
+
+    if (topPts.length < 10 || botPts.length < 10 || leftPts.length < 10 || rightPts.length < 10)
+      return null
+
+    // Retire les outliers (médiane ± 1.5 * IQR) pour robustesse
+    function median(arr: number[]) { const s = [...arr].sort((a, b) => a - b); return s[Math.floor(s.length / 2)] }
+    function filterY(pts: Pt[]): Pt[] {
+      const ys = pts.map(p => p.y)
+      const med = median(ys)
+      const devs = ys.map(y => Math.abs(y - med))
+      const mad = median(devs) * 1.5 + 8
+      return pts.filter(p => Math.abs(p.y - med) <= mad)
+    }
+    function filterX(pts: Pt[]): Pt[] {
+      const xs = pts.map(p => p.x)
+      const med = median(xs)
+      const devs = xs.map(x => Math.abs(x - med))
+      const mad = median(devs) * 1.5 + 8
+      return pts.filter(p => Math.abs(p.x - med) <= mad)
+    }
+
+    const tPts = filterY(topPts)
+    const bPts = filterY(botPts)
+    const lPts = filterX(leftPts)
+    const rPts = filterX(rightPts)
+
+    if (tPts.length < 5 || bPts.length < 5 || lPts.length < 5 || rPts.length < 5)
+      return null
+
+    // Fit y = a*x + b (lignes horizontales: haut/bas)
+    function fitH(pts: Pt[]): { a: number; b: number } | null {
+      const n = pts.length
+      let sx = 0, sy = 0, sxx = 0, sxy = 0
+      for (const p of pts) { sx += p.x; sy += p.y; sxx += p.x * p.x; sxy += p.x * p.y }
+      const d = n * sxx - sx * sx
+      if (Math.abs(d) < 1e-6) return null
+      const a = (n * sxy - sx * sy) / d
+      const b = (sy - a * sx) / n
+      return { a, b }
+    }
+
+    // Fit x = a*y + b (lignes verticales: gauche/droite)
+    function fitV(pts: Pt[]): { a: number; b: number } | null {
+      const n = pts.length
+      let sx = 0, sy = 0, syy = 0, sxy = 0
+      for (const p of pts) { sx += p.x; sy += p.y; syy += p.y * p.y; sxy += p.x * p.y }
+      const d = n * syy - sy * sy
+      if (Math.abs(d) < 1e-6) return null
+      const a = (n * sxy - sy * sx) / d
+      const b = (sx - a * sy) / n
+      return { a, b }
+    }
+
+    // Intersection y=hA*x+hB avec x=vA*y+vB
+    // y = hA*(vA*y+vB)+hB → y*(1-hA*vA) = hA*vB+hB → y = ...
+    function intersect(h: { a: number; b: number }, v: { a: number; b: number }): Pt | null {
+      const d = 1 - h.a * v.a
+      if (Math.abs(d) < 1e-6) return null
+      const y = (h.a * v.b + h.b) / d
+      const x = v.a * y + v.b
+      return { x, y }
+    }
+
+    const top   = fitH(tPts)
+    const bot   = fitH(bPts)
+    const left  = fitV(lPts)
+    const right = fitV(rPts)
+    if (!top || !bot || !left || !right) return null
+
+    const TL = intersect(top,  left)
+    const TR = intersect(top,  right)
+    const BR = intersect(bot,  right)
+    const BL = intersect(bot,  left)
+    if (!TL || !TR || !BR || !BL) return null
+
+    // Reconvertit vers l'espace image naturelle originale
+    return [TL, TR, BR, BL].map(p => ({ x: cx + p.x / s, y: cy + p.y / s }))
+  } catch {
+    return null
+  }
 }
 
 async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
@@ -756,7 +908,12 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     setStatus('detecting')
 
     const naturalCorners: Pt[] | null = frameRect
-      ? detectCardFromFrame(img, frameRect)
+      ? (detectCardFromFrame(img, frameRect) ?? [
+          { x: frameRect.x,                 y: frameRect.y },
+          { x: frameRect.x + frameRect.w,   y: frameRect.y },
+          { x: frameRect.x + frameRect.w,   y: frameRect.y + frameRect.h },
+          { x: frameRect.x,                 y: frameRect.y + frameRect.h },
+        ])
       : await Promise.race([
           detectCard(img),
           new Promise<null>(r => setTimeout(() => r(null), 15000)),
