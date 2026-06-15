@@ -527,95 +527,15 @@ async function imageToBase64(img: HTMLImageElement, maxSize = 800): Promise<{ b6
   return { b64: dataUrl.split(',')[1], scale }
 }
 
-// Snap chaque coin du cadre vers le bord réel de la carte via gradient Sobel.
-// On sait déjà où chercher (zone autour de chaque coin du cadre overlay) →
-// on cherche le point de plus fort gradient pondéré par la proximité au coin attendu.
-function detectCardFromFrame(img: HTMLImageElement, frame: FrameRect): Pt[] | null {
-  try {
-    const PAD = 0.20
-    const cx = Math.max(0, frame.x - frame.w * PAD)
-    const cy = Math.max(0, frame.y - frame.h * PAD)
-    const cw = Math.min(img.naturalWidth  - cx, frame.w * (1 + PAD * 2))
-    const ch = Math.min(img.naturalHeight - cy, frame.h * (1 + PAD * 2))
-
-    const MAX = 800
-    const s = Math.min(MAX / cw, MAX / ch, 1)
-    const W = Math.round(cw * s), H = Math.round(ch * s)
-
-    const canvas = document.createElement('canvas')
-    canvas.width = W; canvas.height = H
-    const ctx = canvas.getContext('2d')!
-    ctx.drawImage(img, cx, cy, cw, ch, 0, 0, W, H)
-    const { data } = ctx.getImageData(0, 0, W, H)
-
-    // Grayscale
-    const gray = new Float32Array(W * H)
-    for (let i = 0; i < W * H; i++)
-      gray[i] = 0.299 * data[i*4] + 0.587 * data[i*4+1] + 0.114 * data[i*4+2]
-
-    // Blur 3×3 pour réduire le bruit
-    const blurred = new Float32Array(W * H)
-    for (let y = 1; y < H-1; y++)
-      for (let x = 1; x < W-1; x++) {
-        let sum = 0
-        for (let dy = -1; dy <= 1; dy++)
-          for (let dx = -1; dx <= 1; dx++)
-            sum += gray[(y+dy)*W+(x+dx)]
-        blurred[y*W+x] = sum / 9
-      }
-
-    // Gradient Sobel
-    const grad = new Float32Array(W * H)
-    let maxG = 0
-    for (let y = 1; y < H-1; y++)
-      for (let x = 1; x < W-1; x++) {
-        const gx = -blurred[(y-1)*W+(x-1)] + blurred[(y-1)*W+(x+1)]
-                  - 2*blurred[y*W+(x-1)]   + 2*blurred[y*W+(x+1)]
-                  - blurred[(y+1)*W+(x-1)] + blurred[(y+1)*W+(x+1)]
-        const gy = -blurred[(y-1)*W+(x-1)] - 2*blurred[(y-1)*W+x] - blurred[(y-1)*W+(x+1)]
-                  + blurred[(y+1)*W+(x-1)] + 2*blurred[(y+1)*W+x] + blurred[(y+1)*W+(x+1)]
-        const g = Math.sqrt(gx*gx + gy*gy)
-        grad[y*W+x] = g
-        if (g > maxG) maxG = g
-      }
-    if (maxG === 0) return null
-
-    // Positions attendues des 4 coins du cadre dans l'espace canvas cropé
-    const expected = [
-      { x: (frame.x - cx) * s,           y: (frame.y - cy) * s },
-      { x: (frame.x + frame.w - cx) * s, y: (frame.y - cy) * s },
-      { x: (frame.x + frame.w - cx) * s, y: (frame.y + frame.h - cy) * s },
-      { x: (frame.x - cx) * s,           y: (frame.y + frame.h - cy) * s },
-    ]
-
-    // Pour chaque coin : cherche le point de plus fort gradient dans un rayon,
-    // pondéré par la proximité au coin attendu (évite les faux bords lointains)
-    const SEARCH = Math.min(W, H) * 0.22
-
-    const snapped = expected.map(exp => {
-      const x0 = Math.max(1, Math.round(exp.x - SEARCH))
-      const x1 = Math.min(W-2, Math.round(exp.x + SEARCH))
-      const y0 = Math.max(1, Math.round(exp.y - SEARCH))
-      const y1 = Math.min(H-2, Math.round(exp.y + SEARCH))
-
-      let bestScore = -1, bestX = Math.round(exp.x), bestY = Math.round(exp.y)
-      for (let y = y0; y <= y1; y++) {
-        for (let x = x0; x <= x1; x++) {
-          const g = grad[y*W+x] / maxG
-          const dist = Math.hypot(x - exp.x, y - exp.y)
-          // g² pour favoriser les gradients forts, pénalise l'éloignement
-          const score = g * g / (1 + dist / SEARCH)
-          if (score > bestScore) { bestScore = score; bestX = x; bestY = y }
-        }
-      }
-
-      return { x: cx + bestX / s, y: cy + bestY / s }
-    })
-
-    return snapped
-  } catch {
-    return null
-  }
+// Le cadre overlay EST la détection : l'utilisateur a aligné la carte dedans.
+// On retourne directement les 4 coins du cadre sans chercher quoi que ce soit.
+function detectCardFromFrame(_img: HTMLImageElement, frame: FrameRect): Pt[] {
+  return [
+    { x: frame.x,            y: frame.y },
+    { x: frame.x + frame.w,  y: frame.y },
+    { x: frame.x + frame.w,  y: frame.y + frame.h },
+    { x: frame.x,            y: frame.y + frame.h },
+  ]
 }
 
 async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
@@ -837,7 +757,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
 
     const naturalCorners: Pt[] | null = frameRect
       ? detectCardFromFrame(img, frameRect)
-      : await Promise.race<Pt[] | null>([
+      : await Promise.race([
           detectCard(img),
           new Promise<null>(r => setTimeout(() => r(null), 15000)),
         ])
