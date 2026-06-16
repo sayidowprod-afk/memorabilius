@@ -190,6 +190,10 @@ export default function CardPublicPage({ userId, cardSlug, src }: Props) {
             set={`${card.br} ${card.s}`.trim()}
             year={card.y}
             num={card.num}
+            variant={card.v}
+            rc={card.rc}
+            auto={card.auto}
+            patch={card.patch}
             accent={accent}
           />
 

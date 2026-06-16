@@ -7,10 +7,14 @@ interface Props {
   set: string
   year: string
   num: string
+  variant?: string
+  rc?: boolean
+  auto?: boolean
+  patch?: boolean
   accent: string
 }
 
-export default function CardValueModule({ cardName, set, year, num, accent }: Props) {
+export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, accent }: Props) {
   const [data, setData] = useState<CardValueResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [hovered, setHovered] = useState<number | null>(null)
@@ -103,7 +107,7 @@ export default function CardValueModule({ cardName, set, year, num, accent }: Pr
         <span style={{ fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase', letterSpacing: 1 }}>Valeur estimée</span>
         {source === 'demo' && <span style={{ fontSize: 9, color: '#ccc', fontWeight: 600 }}>— données démo</span>}
         <a
-          href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, set, year, num].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`}
+          href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, num, rc && 'RC', auto && 'AUTO', patch && 'PATCH'].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`}
           target="_blank" rel="noopener noreferrer"
           style={{ fontSize: 9, fontWeight: 700, color: '#999', textDecoration: 'none', border: '1px solid #e0e0e0', borderRadius: 20, padding: '2px 8px', whiteSpace: 'nowrap', transition: '0.15s' }}
           onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = '#999' }}

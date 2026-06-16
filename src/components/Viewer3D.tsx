@@ -237,6 +237,10 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
             set={`${popup.br} ${popup.s}`.trim()}
             year={popup.y}
             num={popup.num}
+            variant={popup.v}
+            rc={popup.rc}
+            auto={popup.auto}
+            patch={popup.patch}
             accent={accent}
           />
 
