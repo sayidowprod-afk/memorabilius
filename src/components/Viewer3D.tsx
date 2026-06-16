@@ -10,12 +10,13 @@ interface Card {
   auto: boolean; rc: boolean; patch: boolean; g: string
 }
 
-export default function Viewer3D({ popup, accent, onClose, getTags, userId }: {
+export default function Viewer3D({ popup, accent, onClose, getTags, userId, userSlug }: {
   popup: Card
   accent: string
   onClose: () => void
   getTags: (d: Card) => React.ReactNode
   userId?: string
+  userSlug?: string
 }) {
   const rotX = useRef(0)
   const rotY = useRef(0)
@@ -33,7 +34,15 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId }: {
 
   const handleShare = () => {
     if (!userId) return
-    const url = `${window.location.origin}/galerie/${userId}?card=${encodeURIComponent(popup.f)}`
+    const base = userSlug || userId
+    const cardSlug = [popup.n, popup.y, popup.br, popup.s]
+      .filter(Boolean)
+      .join(' ')
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+    const url = `${window.location.origin}/galerie/${base}/${cardSlug}?src=${encodeURIComponent(popup.f)}`
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)

@@ -20,7 +20,7 @@ interface Card {
   created_at?: string;
 }
 
-export default function GalerieClient({ userId }: { userId: string }) {
+export default function GalerieClient({ userId, initialCardUrl }: { userId: string; initialCardUrl?: string }) {
   const [profile, setProfile] = useState<any>(null)
   const [cards, setCards] = useState<Card[]>([])
   const [filtered, setFiltered] = useState<Card[]>([])
@@ -163,9 +163,10 @@ export default function GalerieClient({ userId }: { userId: string }) {
       setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
       setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
       setLoaded(true)
-      // Auto-ouvre la carte si ?card= est dans l'URL
-      if (cardParam) {
-        const match = allCards.find(c => c.f === decodeURIComponent(cardParam))
+      // Auto-ouvre la carte depuis ?card= ou depuis initialCardUrl (route /[cardSlug])
+      const target = initialCardUrl || (cardParam ? decodeURIComponent(cardParam) : null)
+      if (target) {
+        const match = allCards.find(c => c.f === target)
         if (match) setPopup(match)
       }
     } catch (e) { console.error('CSV error', e); setLoaded(true) }
@@ -543,7 +544,7 @@ export default function GalerieClient({ userId }: { userId: string }) {
       </div>
 
       {popup && (
-        <Viewer3D popup={popup} accent={accent} onClose={() => setPopup(null)} getTags={getTags} userId={userId} />
+        <Viewer3D popup={popup} accent={accent} onClose={() => setPopup(null)} getTags={getTags} userId={userId} userSlug={profile?.slug || userId} />
       )}
     </>
   )
