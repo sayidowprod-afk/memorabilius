@@ -20,6 +20,8 @@ export async function GET(req: NextRequest) {
   if (!name || name.length < 2) return NextResponse.json([])
 
   const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
+  // Pour la numérotation : garde seulement le tirage (/99), ignore le numéro individuel (23/99 → 99)
+  const normNum = (s: string) => { const m = s.match(/\/(\d+)/); return m ? m[1] : normalize(s) }
 
   // Cartes manuelles
   const { data: manuelles } = await supabase
@@ -36,7 +38,7 @@ export async function GET(req: NextRequest) {
     const sameBrand   = !brand   || normalize(m.marque || '')     === normalize(brand)
     const sameSet     = !set     || normalize(m.collection || '') === normalize(set)
     const sameVariant = !variant || normalize(m.variation || '')  === normalize(variant)
-    const sameNum     = !num     || normalize(m.num || '')        === normalize(num)
+    const sameNum     = !num     || normNum(m.num || '')           === normNum(num)
     const sameRc      = !rc      || String(m.rc)    === rc
     const sameAuto    = !auto    || String(m.auto)  === auto
     const samePatch   = !patch   || String(m.patch) === patch
