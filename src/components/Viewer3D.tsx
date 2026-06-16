@@ -2,6 +2,7 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
 import { useLang } from '@/lib/LangContext'
 import CardVideoExport from '@/components/CardVideoExport'
+import CardValueModule from '@/components/CardValueModule'
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string
@@ -228,6 +229,14 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId }: {
               </button>
             )}
           </div>
+
+          <CardValueModule
+            cardName={popup.n}
+            set={`${popup.br} ${popup.s}`.trim()}
+            year={popup.y}
+            num={popup.num}
+            accent={accent}
+          />
 
           {showVideo && <CardVideoExport card={popup} accent={accent} onClose={() => setShowVideo(false)} />}
         </div>
