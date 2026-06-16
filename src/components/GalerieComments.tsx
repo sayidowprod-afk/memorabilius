@@ -1,7 +1,54 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+
+const EMOJIS = [
+  '😀','😂','🥰','😍','🤩','😎','🥳','🤯','😮','🔥',
+  '👏','🙌','💪','👍','❤️','💎','✨','🏆','🎯','🃏',
+  '🏀','⚽','🏈','⚾','🎾','🏒','🥊','🎱','🏅','🥇',
+  '😤','💯','🤝','👀','😅','🤣','😭','🫡','🫶','🙏',
+]
+
+function EmojiPicker({ onPick, accent }: { onPick: (e: string) => void; accent: string }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false) }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  return (
+    <div ref={ref} style={{ position: 'relative' }}>
+      <button type="button" onClick={() => setOpen(o => !o)} style={{
+        background: 'none', border: '1px solid #eee', borderRadius: 8,
+        padding: '5px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1,
+        color: open ? accent : '#aaa',
+      }} title="Emojis">😊</button>
+      {open && (
+        <div style={{
+          position: 'absolute', bottom: '110%', left: 0, zIndex: 100,
+          background: 'white', borderRadius: 12, padding: 10,
+          boxShadow: '0 8px 30px rgba(0,0,0,0.15)', border: '1px solid #eee',
+          display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: 2, width: 280,
+        }}>
+          {EMOJIS.map(e => (
+            <button key={e} type="button" onClick={() => { onPick(e); setOpen(false) }} style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              fontSize: 20, padding: '4px', borderRadius: 6, lineHeight: 1,
+              transition: '0.1s',
+            }}
+            onMouseEnter={ev => (ev.currentTarget.style.background = '#f5f5f5')}
+            onMouseLeave={ev => (ev.currentTarget.style.background = 'none')}
+            >{e}</button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 interface Profile { display_name: string; avatar_url: string | null; slug: string | null }
 interface CommentRow {
@@ -137,6 +184,17 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
   const [message, setMessage] = useState('')
   const [currentUserId, setCurrentUserId] = useState<string | null>(null)
   const [sending, setSending] = useState(false)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  const insertEmoji = (emoji: string) => {
+    const el = textareaRef.current
+    if (!el) { setMessage(m => m + emoji); return }
+    const start = el.selectionStart ?? message.length
+    const end = el.selectionEnd ?? message.length
+    const next = message.slice(0, start) + emoji + message.slice(end)
+    setMessage(next)
+    setTimeout(() => { el.focus(); el.setSelectionRange(start + emoji.length, start + emoji.length) }, 0)
+  }
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setCurrentUserId(data.user?.id || null))
@@ -217,6 +275,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
       {currentUserId && (
         <div style={{ marginBottom: 20, background: 'white', borderRadius: 14, padding: 16, boxShadow: '0 2px 10px rgba(0,0,0,0.05)', border: '1px solid #f0f0f0' }}>
           <textarea
+            ref={textareaRef}
             value={message}
             onChange={e => setMessage(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() } }}
@@ -230,7 +289,10 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
             }}
           />
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 8 }}>
-            <span style={{ fontSize: 11, color: '#bbb' }}>{message.length}/500</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <EmojiPicker onPick={insertEmoji} accent={accent} />
+              <span style={{ fontSize: 11, color: '#bbb' }}>{message.length}/500</span>
+            </div>
             <button onClick={send} disabled={sending || !message.trim()} style={{
               background: message.trim() ? accent : '#ddd', color: 'white', border: 'none',
               borderRadius: 8, padding: '8px 20px', fontWeight: 800, fontSize: 13, cursor: message.trim() ? 'pointer' : 'default',
