@@ -107,7 +107,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
         <span style={{ fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase', letterSpacing: 1 }}>Valeur estimée</span>
         {source === 'demo' && <span style={{ fontSize: 9, color: '#ccc', fontWeight: 600 }}>— données démo</span>}
         <a
-          href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, num, rc && 'RC', auto && 'AUTO', patch && 'PATCH'].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`}
+          href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, num ? (num.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num) : '', rc && 'RC', auto && 'AUTO', patch && 'PATCH'].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`}
           target="_blank" rel="noopener noreferrer"
           style={{ fontSize: 9, fontWeight: 700, color: '#999', textDecoration: 'none', border: '1px solid #e0e0e0', borderRadius: 20, padding: '2px 8px', whiteSpace: 'nowrap', transition: '0.15s' }}
           onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = '#999' }}
