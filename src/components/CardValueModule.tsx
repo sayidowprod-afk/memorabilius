@@ -102,6 +102,15 @@ export default function CardValueModule({ cardName, set, year, num, accent }: Pr
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
         <span style={{ fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase', letterSpacing: 1 }}>Valeur estimée</span>
         {source === 'demo' && <span style={{ fontSize: 9, color: '#ccc', fontWeight: 600 }}>— données démo</span>}
+        <a
+          href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, set, year, num].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`}
+          target="_blank" rel="noopener noreferrer"
+          style={{ fontSize: 9, fontWeight: 700, color: '#999', textDecoration: 'none', border: '1px solid #e0e0e0', borderRadius: 20, padding: '2px 8px', whiteSpace: 'nowrap', transition: '0.15s' }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = '#999' }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = '#e0e0e0' }}
+        >
+          eBay ↗
+        </a>
         <span style={{ marginLeft: 'auto', fontSize: 10, fontWeight: 700, color: trendColor }}>
           {trendSign}{Math.round(trend * 100) / 100}{currency} sur 4 mois
         </span>
