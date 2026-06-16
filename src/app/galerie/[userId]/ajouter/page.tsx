@@ -299,6 +299,17 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     })
 
     if (error) { alert('Erreur : ' + error.message); setSaving(false); return }
+
+    // Notifier les users qui ont cette carte dans leur wishlist
+    fetch('/api/wishlist-notify', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        card: { nom: form.nom, annee: form.annee, marque: form.marque, collection: form.collection, variation: form.variation, num: form.num, rc: form.rc, auto: form.auto, patch: form.patch },
+        cardUserId: user.id,
+      }),
+    })
+
     router.push(`/galerie/${userId}`)
   }
 

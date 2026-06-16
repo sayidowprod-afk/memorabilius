@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
+import Link from 'next/link'
 
 interface WishItem {
   id: string; nom: string; annee: string; marque: string
@@ -8,7 +9,45 @@ interface WishItem {
   rc: boolean; auto: boolean; patch: boolean; notes: string
 }
 
+interface Collector { id: string; display_name: string; slug: string | null }
+
 const empty = { nom: '', annee: '', marque: '', collection: '', variation: '', num: '', rc: false, auto: false, patch: false, notes: '' }
+
+function WishItemMatches({ item, accent }: { item: WishItem; accent: string }) {
+  const [collectors, setCollectors] = useState<Collector[] | null>(null)
+
+  useEffect(() => {
+    const params = new URLSearchParams({ name: item.nom })
+    if (item.annee) params.set('year', item.annee)
+    if (item.marque) params.set('brand', item.marque)
+    if (item.collection) params.set('set', item.collection)
+    if (item.variation) params.set('variant', item.variation)
+    if (item.num) params.set('num', item.num)
+    if (item.rc) params.set('rc', 'true')
+    if (item.auto) params.set('auto', 'true')
+    if (item.patch) params.set('patch', 'true')
+    fetch(`/api/same-card?${params}`)
+      .then(r => r.json())
+      .then(d => setCollectors(d || []))
+  }, [item.id])
+
+  if (!collectors || collectors.length === 0) return null
+
+  return (
+    <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+      <span style={{ fontSize: 10, color: '#999', fontWeight: 700 }}>Possédée par :</span>
+      {collectors.map(c => (
+        <Link key={c.id} href={`/galerie/${c.id}`} style={{
+          fontSize: 10, fontWeight: 800, padding: '2px 8px', borderRadius: 20,
+          background: accent + '18', color: accent, textDecoration: 'none',
+          border: `1px solid ${accent}44`,
+        }}>
+          {c.display_name}
+        </Link>
+      ))}
+    </div>
+  )
+}
 
 export default function PublicWishlist({ userId, accent, isOwner }: { userId: string; accent: string; isOwner?: boolean }) {
   const [items, setItems] = useState<WishItem[]>([])
@@ -25,7 +64,15 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
     if (!form.nom.trim()) return
     setSaving(true)
     const { data } = await supabase.from('wishlist').insert({ ...form, user_id: userId }).select().single()
-    if (data) setItems(prev => [data, ...prev])
+    if (data) {
+      setItems(prev => [data, ...prev])
+      // Notifier les collectionneurs qui ont cette carte
+      fetch('/api/wishlist-notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ wishItem: data, wishUserId: userId }),
+      })
+    }
     setForm(empty)
     setShowForm(false)
     setSaving(false)
@@ -122,7 +169,7 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
           <div key={item.id} style={{
             background: 'white', borderRadius: 12, padding: '14px 18px',
             boxShadow: '0 2px 10px rgba(0,0,0,0.05)', border: '1px solid #f0f0f0',
-            display: 'flex', alignItems: 'center', gap: 12,
+            display: 'flex', alignItems: 'flex-start', gap: 12,
           }}>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 800, fontSize: 15, marginBottom: 3 }}>{item.nom}</div>
@@ -135,6 +182,7 @@ export default function PublicWishlist({ userId, accent, isOwner }: { userId: st
                 ))}
               </div>
               {item.notes && <div style={{ fontSize: 11, color: '#aaa', marginTop: 6, fontStyle: 'italic' }}>"{item.notes}"</div>}
+              <WishItemMatches item={item} accent={accent} />
             </div>
             {isOwner && (
               <button onClick={() => remove(item.id)} style={{
