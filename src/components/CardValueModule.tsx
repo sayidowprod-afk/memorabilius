@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { CardValueResponse } from '@/app/api/card-value/route'
 
 interface Props {
@@ -13,6 +13,8 @@ interface Props {
 export default function CardValueModule({ cardName, set, year, num, accent }: Props) {
   const [data, setData] = useState<CardValueResponse | null>(null)
   const [loading, setLoading] = useState(true)
+  const [hovered, setHovered] = useState<number | null>(null)
+  const svgRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
     const q = [cardName, set, year, num].filter(Boolean).join(' ')
@@ -28,10 +30,8 @@ export default function CardValueModule({ cardName, set, year, num, accent }: Pr
 
   if (loading) return (
     <div style={{ borderTop: '1px solid #eee', paddingTop: 14, marginTop: 14 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-        <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1 }}>Valeur estimée</span>
-      </div>
-      <div style={{ height: 90, background: '#f7f7f7', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1 }}>Valeur estimée</span>
+      <div style={{ height: 90, background: '#f7f7f7', borderRadius: 10, marginTop: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <span style={{ fontSize: 11, color: '#ccc' }}>Chargement…</span>
       </div>
     </div>
@@ -45,7 +45,6 @@ export default function CardValueModule({ cardName, set, year, num, accent }: Pr
   const maxP = Math.max(...prices)
   const range = maxP - minP || 1
 
-  // SVG chart dimensions
   const W = 200, H = 72, PAD = 8
   const pts = sales.map((s, i) => ({
     x: PAD + (i / (sales.length - 1)) * (W - PAD * 2),
@@ -59,13 +58,38 @@ export default function CardValueModule({ cardName, set, year, num, accent }: Pr
   const trendColor = trend >= 0 ? '#2e7d32' : '#c62828'
   const trendSign = trend >= 0 ? '+' : ''
 
+  const hoveredSale = hovered !== null ? sales[hovered] : null
+  const hoveredPt   = hovered !== null ? pts[hovered]   : null
+
+  // Trouve l'index le plus proche de la position X de la souris dans le SVG
+  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
+    const svg = svgRef.current
+    if (!svg) return
+    const rect = svg.getBoundingClientRect()
+    const xRatio = (e.clientX - rect.left) / rect.width
+    const xSvg = xRatio * W
+    let closest = 0, minDist = Infinity
+    pts.forEach((p, i) => {
+      const d = Math.abs(p.x - xSvg)
+      if (d < minDist) { minDist = d; closest = i }
+    })
+    setHovered(closest)
+  }
+
+  // Formate la date "2024-11-03" → "3 nov. 2024"
+  const fmtDate = (d: string) => {
+    const date = new Date(d)
+    return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })
+  }
+
+  // Tooltip : afficher à gauche si on est dans la 2ème moitié du graphique
+  const tooltipLeft = hovered !== null && hovered > sales.length / 2
+
   return (
     <div style={{ borderTop: '1px solid #eee', paddingTop: 14, marginTop: 14 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
         <span style={{ fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase', letterSpacing: 1 }}>Valeur estimée</span>
-        {source === 'demo' && (
-          <span style={{ fontSize: 9, color: '#ccc', fontWeight: 600 }}>— données démo</span>
-        )}
+        {source === 'demo' && <span style={{ fontSize: 9, color: '#ccc', fontWeight: 600 }}>— données démo</span>}
         <span style={{ marginLeft: 'auto', fontSize: 10, fontWeight: 700, color: trendColor }}>
           {trendSign}{Math.round(trend * 100) / 100}{currency} sur 4 mois
         </span>
@@ -73,35 +97,81 @@ export default function CardValueModule({ cardName, set, year, num, accent }: Pr
 
       <div style={{ display: 'flex', gap: 12, alignItems: 'stretch' }}>
         {/* Graphique */}
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }}>
+        <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
+          <svg
+            ref={svgRef}
+            viewBox={`0 0 ${W} ${H}`}
+            style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible', cursor: 'crosshair' }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={() => setHovered(null)}
+          >
             <defs>
               <linearGradient id="cvm-area" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor={accent} stopOpacity="0.25" />
                 <stop offset="100%" stopColor={accent} stopOpacity="0.02" />
               </linearGradient>
             </defs>
-            {/* Grille légère */}
+
             {[0.25, 0.5, 0.75].map(f => (
               <line key={f} x1={PAD} y1={PAD + f * (H - PAD * 2)} x2={W - PAD} y2={PAD + f * (H - PAD * 2)}
                 stroke="#f0f0f0" strokeWidth="1" />
             ))}
-            {/* Aire */}
+
             <path d={areaPath} fill="url(#cvm-area)" />
-            {/* Ligne */}
             <path d={linePath} fill="none" stroke={accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            {/* Dernier point mis en valeur */}
-            <circle cx={pts[pts.length - 1].x} cy={pts[pts.length - 1].y} r="3.5" fill={accent} />
-            <circle cx={pts[pts.length - 1].x} cy={pts[pts.length - 1].y} r="6" fill={accent} fillOpacity="0.2" />
+
+            {/* Ligne verticale au hover */}
+            {hoveredPt && (
+              <line x1={hoveredPt.x} y1={PAD} x2={hoveredPt.x} y2={H}
+                stroke={accent} strokeWidth="1" strokeDasharray="3 2" strokeOpacity="0.5" />
+            )}
+
+            {/* Tous les points (petits) */}
+            {pts.map((p, i) => (
+              <circle key={i} cx={p.x} cy={p.y} r={hovered === i ? 4 : 2}
+                fill={hovered === i ? accent : '#fff'}
+                stroke={accent} strokeWidth="1.5"
+                style={{ transition: 'r 0.1s' }}
+              />
+            ))}
+
+            {/* Tooltip SVG */}
+            {hoveredPt && hoveredSale && (() => {
+              const tx = tooltipLeft ? hoveredPt.x - 4 : hoveredPt.x + 4
+              const anchor = tooltipLeft ? 'end' : 'start'
+              const ty = Math.max(PAD + 14, hoveredPt.y - 6)
+              return (
+                <g>
+                  <text x={tx} y={ty - 12} textAnchor={anchor}
+                    fontSize="8" fontWeight="800" fill="#555">
+                    {hoveredSale.price}{currency}
+                  </text>
+                  <text x={tx} y={ty - 3} textAnchor={anchor}
+                    fontSize="7" fill="#aaa">
+                    {fmtDate(hoveredSale.date)}
+                  </text>
+                </g>
+              )
+            })()}
+
+            {/* Dernier point fixe (quand pas de hover) */}
+            {hovered === null && (
+              <>
+                <circle cx={pts[pts.length - 1].x} cy={pts[pts.length - 1].y} r="3.5" fill={accent} />
+                <circle cx={pts[pts.length - 1].x} cy={pts[pts.length - 1].y} r="6" fill={accent} fillOpacity="0.2" />
+              </>
+            )}
           </svg>
         </div>
 
         {/* Valeurs */}
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minWidth: 72, textAlign: 'right' }}>
           <div>
-            <div style={{ fontSize: 9, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', marginBottom: 2 }}>Actuel</div>
-            <div style={{ fontSize: 22, fontWeight: 900, color: `rgb(${ar},${ag},${ab})`, lineHeight: 1 }}>
-              {current}{currency}
+            <div style={{ fontSize: 9, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', marginBottom: 2 }}>
+              {hoveredSale ? fmtDate(hoveredSale.date) : 'Actuel'}
+            </div>
+            <div style={{ fontSize: 22, fontWeight: 900, color: `rgb(${ar},${ag},${ab})`, lineHeight: 1, transition: '0.1s' }}>
+              {hoveredSale ? hoveredSale.price : current}{currency}
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
