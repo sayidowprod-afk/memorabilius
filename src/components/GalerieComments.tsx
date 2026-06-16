@@ -103,11 +103,11 @@ function CommentItem({
     setSending(false)
   }
 
-  const bg = dark ? '#2a2a2a' : 'white'
-  const border = dark ? '#3a3a3a' : '#f0f0f0'
-  const textMain = dark ? '#eee' : '#333'
-  const textBody = dark ? '#ccc' : '#444'
-  const textMuted = dark ? '#666' : '#bbb'
+  const bg = dark ? '#333333' : 'white'
+  const border = dark ? '#444' : '#f0f0f0'
+  const textMain = dark ? '#ffffff' : '#333'
+  const textBody = dark ? '#e0e0e0' : '#444'
+  const textMuted = dark ? '#999' : '#bbb'
 
   return (
     <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
@@ -199,10 +199,10 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const { dark } = useTheme()
 
-  const bg = dark ? '#2a2a2a' : 'white'
-  const border = dark ? '#3a3a3a' : '#f0f0f0'
-  const textMain = dark ? '#eee' : '#333'
-  const textMuted = dark ? '#666' : '#bbb'
+  const bg = dark ? '#333333' : 'white'
+  const border = dark ? '#444' : '#f0f0f0'
+  const textMain = dark ? '#ffffff' : '#333'
+  const textMuted = dark ? '#999' : '#bbb'
 
   const insertEmoji = (emoji: string) => {
     const el = textareaRef.current
@@ -340,7 +340,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
               width: '100%', border: `1px solid ${border}`, borderRadius: 10, padding: '10px 14px',
               fontSize: 14, fontFamily: 'Inter, sans-serif', resize: 'vertical',
               outline: 'none', boxSizing: 'border-box',
-              background: dark ? '#1a1a1a' : 'white', color: textMain,
+              background: dark ? '#2a2a2a' : 'white', color: textMain,
             }}
           />
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 8 }}>
