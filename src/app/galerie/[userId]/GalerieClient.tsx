@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 import OnlineIndicator from '@/components/OnlineIndicator'
 import GalerieExport from '@/components/GalerieExport'
 import PublicWishlist from '@/components/PublicWishlist'
+import GalerieComments from '@/components/GalerieComments'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 import { useLang } from '@/lib/LangContext'
@@ -43,7 +44,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [privateCards, setPrivateCards] = useState<Set<string>>(new Set())
   const [cardValues, setCardValues] = useState<Map<string, number>>(new Map())
   const [editMode, setEditMode] = useState(false)
-  const [activeTab, setActiveTab] = useState<'collection' | 'wishlist'>('collection')
+  const [activeTab, setActiveTab] = useState<'collection' | 'wishlist' | 'comments'>('collection')
   const [dragIdx, setDragIdx] = useState<number | null>(null)
   const loaderRef = useRef<HTMLDivElement>(null)
 
@@ -439,9 +440,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           )}
         </div>
 
-        {/* Onglets Collection / Wishlist */}
+        {/* Onglets Collection / Wishlist / Commentaires */}
         <div style={{ display: 'flex', gap: 4, marginBottom: 16, background: '#f0f0f0', borderRadius: 10, padding: 4, width: 'fit-content' }}>
-          {(['collection', 'wishlist'] as const).map(tab => (
+          {(['collection', 'wishlist', 'comments'] as const).map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)} style={{
               padding: '8px 20px', border: 'none', borderRadius: 8, cursor: 'pointer',
               fontWeight: 800, fontSize: 13,
@@ -450,12 +451,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               boxShadow: activeTab === tab ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
               transition: '0.15s',
             }}>
-              {tab === 'collection' ? '🃏 Collection' : '🎯 Wishlist'}
+              {tab === 'collection' ? '🃏 Collection' : tab === 'wishlist' ? '🎯 Wishlist' : '💬 Commentaires'}
             </button>
           ))}
         </div>
 
         {activeTab === 'wishlist' && <PublicWishlist userId={userId} accent={accent} isOwner={isOwner} />}
+        {activeTab === 'comments' && <GalerieComments galerieUserId={userId} accent={accent} isOwner={isOwner} />}
 
         {activeTab === 'collection' && <>
         {/* Filtres de recherche */}
