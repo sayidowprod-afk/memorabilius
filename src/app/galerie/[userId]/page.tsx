@@ -27,27 +27,30 @@ export async function generateMetadata({
   const name = profile?.display_name || 'Collectionneur'
 
   if (cardUrl) {
+    // Cherche dans les cartes manuelles (cartes CSV n'y sont pas — on affiche quand même l'image)
     const { data: cardRow } = await supabase
       .from('cartes_manuelles')
       .select('nom, marque, collection, annee')
       .eq('user_id', userId)
       .eq('image_recto', cardUrl)
-      .single()
+      .maybeSingle()
 
-    const cardName = cardRow?.nom || 'Carte'
-    const cardDesc = [cardRow?.marque, cardRow?.collection, cardRow?.annee].filter(Boolean).join(' · ')
+    const cardName = cardRow?.nom || `Carte de ${name}`
+    const cardDesc = cardRow
+      ? [cardRow.marque, cardRow.collection, cardRow.annee].filter(Boolean).join(' · ')
+      : `Collection de ${name} sur Memorabilius`
 
     return {
-      title: `${cardName} — ${name} | Memorabilius`,
-      description: cardDesc || `Carte de la collection de ${name} sur Memorabilius.`,
+      title: `${cardName} | Memorabilius`,
+      description: cardDesc,
       openGraph: {
-        title: `${cardName} — ${name}`,
-        description: cardDesc || `Collection de ${name} sur Memorabilius`,
+        title: cardName,
+        description: cardDesc,
         images: [{ url: cardUrl, width: 400, height: 560, alt: cardName }],
       },
       twitter: {
         card: 'summary_large_image',
-        title: `${cardName} — ${name}`,
+        title: cardName,
         description: cardDesc,
         images: [cardUrl],
       },
