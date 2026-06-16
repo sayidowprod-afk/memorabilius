@@ -1,6 +1,7 @@
 'use client'
 import { useRef, useCallback, useEffect, useState } from 'react'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 import CardVideoExport from '@/components/CardVideoExport'
 import CardValueModule from '@/components/CardValueModule'
 import SameCardCollectors from '@/components/SameCardCollectors'
@@ -19,6 +20,14 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
   userId?: string
   userSlug?: string
 }) {
+  const { dark } = useTheme()
+  const bg = dark ? '#1a1a1a' : '#fff'
+  const zoneBg = dark ? '#111' : '#f8f8f8'
+  const infoBg = dark ? '#1a1a1a' : 'white'
+  const textColor = dark ? '#eee' : '#111'
+  const borderColor = dark ? '#2a2a2a' : '#eee'
+  const metaColor = dark ? '#888' : '#999'
+
   const rotX = useRef(0)
   const rotY = useRef(0)
   const scale = useRef(1)
@@ -148,13 +157,13 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
   return (
     <div style={{
       position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
-      background: '#fff', zIndex: 9999999,
+      background: bg, zIndex: 9999999,
       display: 'flex', overflow: 'hidden',
     }}>
       <style>{`
         .viewer-layout { display: flex; width: 100%; height: 100%; overflow: hidden; }
-        .viewer-zone { flex: 1.2; position: relative; overflow: hidden; background: #f8f8f8; display: flex; align-items: center; justify-content: center; perspective: 2000px; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; }
-        .viewer-info { flex: 0.8; padding: 30px; display: flex; flex-direction: column; justify-content: center; background: white; overflow-y: auto; }
+        .viewer-zone { flex: 1.2; position: relative; overflow: hidden; background: ${zoneBg}; display: flex; align-items: center; justify-content: center; perspective: 2000px; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; }
+        .viewer-info { flex: 0.8; padding: 30px; display: flex; flex-direction: column; justify-content: center; background: ${infoBg}; overflow-y: auto; color: ${textColor}; }
         .viewer-card { width: 560px; height: 784px; }
         @media (max-width: 1200px) { .viewer-card { width: 420px; height: 588px; } }
         @media (max-width: 600px) {
@@ -168,8 +177,8 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
       `}</style>
       <button onClick={onClose} style={{
         position: 'absolute', top: 10, right: 10, fontSize: 18, cursor: 'pointer',
-        background: 'rgba(255,255,255,0.95)', width: 32, height: 32, borderRadius: '50%',
-        border: '1px solid #eee', display: 'flex', alignItems: 'center',
+        background: dark ? 'rgba(40,40,40,0.95)' : 'rgba(255,255,255,0.95)', width: 32, height: 32, borderRadius: '50%',
+        border: `1px solid ${borderColor}`, color: textColor, display: 'flex', alignItems: 'center',
         justifyContent: 'center', zIndex: 10001,
       }}>×</button>
 
@@ -203,11 +212,11 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
           <h2 style={{ fontSize: '1.4rem', fontWeight: 900, margin: '3px 0' }}>{popup.n}</h2>
           <div style={{ fontSize: '0.9rem', color: accent, fontWeight: 700, marginBottom: 8, fontStyle: 'italic' }}>{popup.v}</div>
           {getTags(popup)}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, borderTop: '1px solid #eee', marginTop: 10, paddingTop: 10 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, borderTop: `1px solid ${borderColor}`, marginTop: 10, paddingTop: 10 }}>
             {[['Année', popup.y], ['Numérotation', popup.num || 'N/A'], ['Grade', popup.g], ['Collection', `${popup.br} ${popup.s}`]].map(([l, v]) => (
               <div key={l}>
-                <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: '#999', textTransform: 'uppercase' }}>{l}</label>
-                <span style={{ fontSize: 12, fontWeight: 700 }}>{v}</span>
+                <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>{l}</label>
+                <span style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{v}</span>
               </div>
             ))}
           </div>
@@ -222,7 +231,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
             </button>
             {userId && (
               <button onClick={handleShare} style={{
-                background: copied ? '#2e7d32' : '#f0f0f0', color: copied ? 'white' : '#333',
+                background: copied ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: copied ? 'white' : (dark ? '#eee' : '#333'),
                 border: 'none', borderRadius: 10, padding: '12px 14px',
                 fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
                 transition: '0.2s',
