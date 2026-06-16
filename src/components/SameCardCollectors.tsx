@@ -7,11 +7,16 @@ interface Collector {
   avatar_url: string; accent: string; cardImg?: string
 }
 
-export default function SameCardCollectors({ cardName, year, brand, set, excludeUserId, accent }: {
+export default function SameCardCollectors({ cardName, year, brand, set, variant, num, rc, auto, patch, excludeUserId, accent }: {
   cardName: string
   year?: string
   brand?: string
   set?: string
+  variant?: string
+  num?: string
+  rc?: boolean
+  auto?: boolean
+  patch?: boolean
   excludeUserId?: string
   accent: string
 }) {
@@ -21,15 +26,20 @@ export default function SameCardCollectors({ cardName, year, brand, set, exclude
   useEffect(() => {
     if (!cardName) return
     const params = new URLSearchParams({ name: cardName })
-    if (year) params.set('year', year)
-    if (brand) params.set('brand', brand)
-    if (set) params.set('set', set)
+    if (year)    params.set('year', year)
+    if (brand)   params.set('brand', brand)
+    if (set)     params.set('set', set)
+    if (variant) params.set('variant', variant)
+    if (num)     params.set('num', num)
+    if (rc    != null) params.set('rc',    String(rc))
+    if (auto  != null) params.set('auto',  String(auto))
+    if (patch != null) params.set('patch', String(patch))
     if (excludeUserId) params.set('exclude', excludeUserId)
     fetch(`/api/same-card?${params}`)
       .then(r => r.json())
       .then(d => { setCollectors(d); setLoading(false) })
       .catch(() => setLoading(false))
-  }, [cardName, year, brand, set, excludeUserId])
+  }, [cardName, year, brand, set, variant, num, rc, auto, patch, excludeUserId])
 
   if (loading || collectors.length === 0) return null
 

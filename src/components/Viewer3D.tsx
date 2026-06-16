@@ -246,6 +246,11 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
               year={popup.y}
               brand={popup.br}
               set={popup.s}
+              variant={popup.v}
+              num={popup.num}
+              rc={popup.rc}
+              auto={popup.auto}
+              patch={popup.patch}
               excludeUserId={userId}
               accent={accent}
             />

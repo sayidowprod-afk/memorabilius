@@ -11,6 +11,11 @@ export async function GET(req: NextRequest) {
   const year = req.nextUrl.searchParams.get('year')?.trim() || ''
   const brand = req.nextUrl.searchParams.get('brand')?.trim() || ''
   const set = req.nextUrl.searchParams.get('set')?.trim() || ''
+  const variant = req.nextUrl.searchParams.get('variant')?.trim() || ''
+  const num = req.nextUrl.searchParams.get('num')?.trim() || ''
+  const rc = req.nextUrl.searchParams.get('rc') || ''
+  const auto = req.nextUrl.searchParams.get('auto') || ''
+  const patch = req.nextUrl.searchParams.get('patch') || ''
   const excludeUserId = req.nextUrl.searchParams.get('exclude') || ''
   if (!name || name.length < 2) return NextResponse.json([])
 
@@ -19,18 +24,23 @@ export async function GET(req: NextRequest) {
   // Cartes manuelles
   const { data: manuelles } = await supabase
     .from('cartes_manuelles')
-    .select('user_id, nom, image_recto, annee, marque, collection')
+    .select('user_id, nom, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
     .neq('user_id', excludeUserId)
 
   const matchIds = new Set<string>()
   const cardsByUser = new Map<string, any>()
 
   ;(manuelles || []).forEach(m => {
-    const sameName = normalize(m.nom || '') === normalize(name)
-    const sameYear = !year || normalize(m.annee || '') === normalize(year)
-    const sameBrand = !brand || normalize(m.marque || '') === normalize(brand)
-    const sameSet = !set || normalize(m.collection || '') === normalize(set)
-    if (sameName && sameYear && sameBrand && sameSet) {
+    const sameName    = normalize(m.nom || '') === normalize(name)
+    const sameYear    = !year    || normalize(m.annee || '')      === normalize(year)
+    const sameBrand   = !brand   || normalize(m.marque || '')     === normalize(brand)
+    const sameSet     = !set     || normalize(m.collection || '') === normalize(set)
+    const sameVariant = !variant || normalize(m.variation || '')  === normalize(variant)
+    const sameNum     = !num     || normalize(m.num || '')        === normalize(num)
+    const sameRc      = !rc      || String(m.rc)    === rc
+    const sameAuto    = !auto    || String(m.auto)  === auto
+    const samePatch   = !patch   || String(m.patch) === patch
+    if (sameName && sameYear && sameBrand && sameSet && sameVariant && sameNum && sameRc && sameAuto && samePatch) {
       matchIds.add(m.user_id)
       if (!cardsByUser.has(m.user_id)) cardsByUser.set(m.user_id, m)
     }

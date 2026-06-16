@@ -200,6 +200,11 @@ export default function CardPublicPage({ userId, cardSlug, src }: Props) {
               year={card.y}
               brand={card.br}
               set={card.s}
+              variant={card.v}
+              num={card.num}
+              rc={card.rc}
+              auto={card.auto}
+              patch={card.patch}
               excludeUserId={userId}
               accent={accent}
             />
