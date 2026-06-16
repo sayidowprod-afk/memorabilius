@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
 import OnlineIndicator from '@/components/OnlineIndicator'
 import GalerieExport from '@/components/GalerieExport'
+import PublicWishlist from '@/components/PublicWishlist'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 import { useLang } from '@/lib/LangContext'
@@ -16,8 +17,8 @@ interface Card {
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string
   auto: boolean; rc: boolean; patch: boolean; g: string
-  isManuelle?: boolean; // Permet de distinguer l'origine de la carte
-  created_at?: string;
+  isManuelle?: boolean
+  created_at?: string; position?: number;
 }
 
 export default function GalerieClient({ userId, initialCardUrl }: { userId: string; initialCardUrl?: string }) {
@@ -42,6 +43,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [privateCards, setPrivateCards] = useState<Set<string>>(new Set())
   const [cardValues, setCardValues] = useState<Map<string, number>>(new Map())
   const [editMode, setEditMode] = useState(false)
+  const [activeTab, setActiveTab] = useState<'collection' | 'wishlist'>('collection')
+  const [dragIdx, setDragIdx] = useState<number | null>(null)
   const loaderRef = useRef<HTMLDivElement>(null)
 
   const isOwner = currentUser === userId
@@ -154,9 +157,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         br: m.marque || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', auto: m.auto || false, rc: m.rc || false,
         patch: m.patch || false, g: m.grade || 'Raw', isManuelle: true,
-        created_at: m.created_at || ''
+        created_at: m.created_at || '', position: m.position ?? 9999
       }))
 
+      // Trier les cartes manuelles par position sauvegardée
+      cartesM.sort((a, b) => (a.position ?? 9999) - (b.position ?? 9999))
       const allCards = [...parsed, ...cartesM]
       setCards(allCards)
       setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
@@ -233,6 +238,25 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   }, [page, filtered])
 
   const toggleFilter = (k: keyof typeof activeFilters) => setActiveFilters(p => ({ ...p, [k]: !p[k] }))
+
+  const handleDragStart = (idx: number) => setDragIdx(idx)
+  const handleDragOver = (e: React.DragEvent, idx: number) => {
+    e.preventDefault()
+    if (dragIdx === null || dragIdx === idx) return
+    const newCards = [...cards]
+    const [moved] = newCards.splice(dragIdx, 1)
+    newCards.splice(idx, 0, moved)
+    setCards(newCards)
+    setDragIdx(idx)
+  }
+  const handleDragEnd = async () => {
+    setDragIdx(null)
+    // Sauvegarder les positions des cartes manuelles
+    const updates = cards
+      .filter(c => c.isManuelle && c.id_manuelle)
+      .map((c, i) => supabase.from('cartes_manuelles').update({ position: i }).eq('id', c.id_manuelle!))
+    await Promise.all(updates)
+  }
 
   const numValue = (num: string) => { const m = num.trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : null }
   const isOneOfOne = (num: string) => { const v = numValue(num); return v === 1 }
@@ -368,6 +392,25 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           )}
         </div>
 
+        {/* Onglets Collection / Wishlist */}
+        <div style={{ display: 'flex', gap: 4, marginBottom: 16, background: '#f0f0f0', borderRadius: 10, padding: 4, width: 'fit-content' }}>
+          {(['collection', 'wishlist'] as const).map(tab => (
+            <button key={tab} onClick={() => setActiveTab(tab)} style={{
+              padding: '8px 20px', border: 'none', borderRadius: 8, cursor: 'pointer',
+              fontWeight: 800, fontSize: 13,
+              background: activeTab === tab ? 'white' : 'transparent',
+              color: activeTab === tab ? accent : '#999',
+              boxShadow: activeTab === tab ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
+              transition: '0.15s',
+            }}>
+              {tab === 'collection' ? '🃏 Collection' : '🎯 Wishlist'}
+            </button>
+          ))}
+        </div>
+
+        {activeTab === 'wishlist' && <PublicWishlist userId={userId} accent={accent} isOwner={isOwner} />}
+
+        {activeTab === 'collection' && <>
         {/* Filtres de recherche */}
         <div style={{ background: '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: '1px solid #eee' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
@@ -463,13 +506,21 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         
         <div className="card-grid">
           {displayed.map((d, i) => (
-            <div key={i} className="card-item" onClick={() => !editMode && setPopup(d)} style={{
+            <div
+              key={i} className="card-item"
+              onClick={() => !editMode && setPopup(d)}
+              draggable={editMode && isOwner && !!d.isManuelle}
+              onDragStart={() => handleDragStart(i)}
+              onDragOver={e => handleDragOver(e, i)}
+              onDragEnd={handleDragEnd}
+              style={{
               border: `2px solid ${privateCards.has(d.f) && isOwner ? '#e74c3c' : accent}`,
               borderRadius: 8, padding: 8,
-              background: 'white', cursor: editMode ? 'default' : 'pointer',
+              background: 'white', cursor: editMode && d.isManuelle ? 'grab' : editMode ? 'default' : 'pointer',
               boxSizing: 'border-box',
-              opacity: privateCards.has(d.f) && isOwner ? 0.7 : 1,
+              opacity: dragIdx === i ? 0.4 : privateCards.has(d.f) && isOwner ? 0.7 : 1,
               position: 'relative',
+              transition: 'opacity 0.15s',
               overflow: 'visible',
             }}>
               {isOwner && privateCards.has(d.f) && (
@@ -541,6 +592,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             ) : null}
           </div>
         )}
+        </>}
       </div>
 
       {popup && (
