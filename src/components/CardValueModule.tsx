@@ -45,14 +45,26 @@ export default function CardValueModule({ cardName, set, year, num, accent }: Pr
   const maxP = Math.max(...prices)
   const range = maxP - minP || 1
 
-  const W = 200, H = 72, PAD = 8
+  const W = 200, H = 52, PAD_X = 4, PAD_Y = 8
   const pts = sales.map((s, i) => ({
-    x: PAD + (i / (sales.length - 1)) * (W - PAD * 2),
-    y: PAD + (1 - (s.price - minP) / range) * (H - PAD * 2),
+    x: PAD_X + (i / (sales.length - 1)) * (W - PAD_X * 2),
+    y: PAD_Y + (1 - (s.price - minP) / range) * (H - PAD_Y * 2),
   }))
 
-  const linePath = pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')
-  const areaPath = `${linePath} L ${pts[pts.length - 1].x} ${H} L ${pts[0].x} ${H} Z`
+  // Courbe lissée via bezier cubique
+  const smooth = (pts: {x:number,y:number}[]) => {
+    if (pts.length < 2) return ''
+    let d = `M ${pts[0].x} ${pts[0].y}`
+    for (let i = 1; i < pts.length; i++) {
+      const prev = pts[i - 1], cur = pts[i]
+      const cpx = (prev.x + cur.x) / 2
+      d += ` C ${cpx} ${prev.y} ${cpx} ${cur.y} ${cur.x} ${cur.y}`
+    }
+    return d
+  }
+
+  const linePath = smooth(pts)
+  const areaPath = `${linePath} L ${pts[pts.length - 1].x} ${H + 2} L ${pts[0].x} ${H + 2} Z`
 
   const trend = prices[prices.length - 1] - prices[0]
   const trendColor = trend >= 0 ? '#2e7d32' : '#c62828'
@@ -107,59 +119,47 @@ export default function CardValueModule({ cardName, set, year, num, accent }: Pr
           >
             <defs>
               <linearGradient id="cvm-area" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={accent} stopOpacity="0.25" />
-                <stop offset="100%" stopColor={accent} stopOpacity="0.02" />
+                <stop offset="0%" stopColor={accent} stopOpacity="0.18" />
+                <stop offset="100%" stopColor={accent} stopOpacity="0" />
               </linearGradient>
             </defs>
 
-            {[0.25, 0.5, 0.75].map(f => (
-              <line key={f} x1={PAD} y1={PAD + f * (H - PAD * 2)} x2={W - PAD} y2={PAD + f * (H - PAD * 2)}
-                stroke="#f0f0f0" strokeWidth="1" />
-            ))}
-
             <path d={areaPath} fill="url(#cvm-area)" />
-            <path d={linePath} fill="none" stroke={accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <path d={linePath} fill="none" stroke={accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 
-            {/* Ligne verticale au hover */}
+            {/* Ligne verticale fine au hover */}
             {hoveredPt && (
-              <line x1={hoveredPt.x} y1={PAD} x2={hoveredPt.x} y2={H}
-                stroke={accent} strokeWidth="1" strokeDasharray="3 2" strokeOpacity="0.5" />
+              <line x1={hoveredPt.x} y1={PAD_Y - 4} x2={hoveredPt.x} y2={H}
+                stroke={accent} strokeWidth="0.8" strokeOpacity="0.35" />
             )}
 
-            {/* Tous les points (petits) */}
-            {pts.map((p, i) => (
-              <circle key={i} cx={p.x} cy={p.y} r={hovered === i ? 4 : 2}
-                fill={hovered === i ? accent : '#fff'}
-                stroke={accent} strokeWidth="1.5"
-                style={{ transition: 'r 0.1s' }}
-              />
-            ))}
+            {/* Point hover uniquement */}
+            {hovered !== null && hoveredPt && (
+              <circle cx={hoveredPt.x} cy={hoveredPt.y} r="3" fill={accent} />
+            )}
 
-            {/* Tooltip SVG */}
+            {/* Tooltip SVG au hover */}
             {hoveredPt && hoveredSale && (() => {
-              const tx = tooltipLeft ? hoveredPt.x - 4 : hoveredPt.x + 4
+              const tx = tooltipLeft ? hoveredPt.x - 5 : hoveredPt.x + 5
               const anchor = tooltipLeft ? 'end' : 'start'
-              const ty = Math.max(PAD + 14, hoveredPt.y - 6)
+              const ty = Math.max(PAD_Y + 10, hoveredPt.y - 4)
               return (
                 <g>
-                  <text x={tx} y={ty - 12} textAnchor={anchor}
-                    fontSize="8" fontWeight="800" fill="#555">
+                  <text x={tx} y={ty - 8} textAnchor={anchor}
+                    fontSize="7.5" fontWeight="800" fill="#444">
                     {hoveredSale.price}{currency}
                   </text>
-                  <text x={tx} y={ty - 3} textAnchor={anchor}
-                    fontSize="7" fill="#aaa">
+                  <text x={tx} y={ty - 0.5} textAnchor={anchor}
+                    fontSize="6.5" fill="#bbb">
                     {fmtDate(hoveredSale.date)}
                   </text>
                 </g>
               )
             })()}
 
-            {/* Dernier point fixe (quand pas de hover) */}
+            {/* Point final discret (repos) */}
             {hovered === null && (
-              <>
-                <circle cx={pts[pts.length - 1].x} cy={pts[pts.length - 1].y} r="3.5" fill={accent} />
-                <circle cx={pts[pts.length - 1].x} cy={pts[pts.length - 1].y} r="6" fill={accent} fillOpacity="0.2" />
-              </>
+              <circle cx={pts[pts.length - 1].x} cy={pts[pts.length - 1].y} r="2.5" fill={accent} />
             )}
           </svg>
         </div>
