@@ -125,7 +125,7 @@ export default function CardValueModule({ cardName, set, year, num, accent }: Pr
             </defs>
 
             <path d={areaPath} fill="url(#cvm-area)" />
-            <path d={linePath} fill="none" stroke={accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d={linePath} fill="none" stroke={accent} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
 
             {/* Ligne verticale fine au hover */}
             {hoveredPt && (
@@ -146,11 +146,11 @@ export default function CardValueModule({ cardName, set, year, num, accent }: Pr
               return (
                 <g>
                   <text x={tx} y={ty - 8} textAnchor={anchor}
-                    fontSize="7.5" fontWeight="800" fill="#444">
+                    fontSize="6.5" fontWeight="600" fill="#666">
                     {hoveredSale.price}{currency}
                   </text>
                   <text x={tx} y={ty - 0.5} textAnchor={anchor}
-                    fontSize="6.5" fill="#bbb">
+                    fontSize="5.5" fill="#ccc">
                     {fmtDate(hoveredSale.date)}
                   </text>
                 </g>
