@@ -1,8 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
-import { redirect } from 'next/navigation'
-import GalerieClient from '../GalerieClient'
+import CardPublicPage from '@/components/CardPublicPage'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -75,7 +74,7 @@ export default async function CardPage({
   params: Promise<{ userId: string; cardSlug: string }>
   searchParams: Promise<{ src?: string }>
 }) {
-  const { userId } = await params
+  const { userId, cardSlug } = await params
   const { src } = await searchParams
 
   // Résoudre slug → UUID pour le client
@@ -86,10 +85,9 @@ export default async function CardPage({
     if (p) resolvedId = p.id
   }
 
-  // Passe l'image comme cardParam pour que GalerieClient auto-ouvre la carte
   return (
     <Suspense>
-      <GalerieClient userId={resolvedId} initialCardUrl={src} />
+      <CardPublicPage userId={resolvedId} cardSlug={cardSlug} src={src} />
     </Suspense>
   )
 }
