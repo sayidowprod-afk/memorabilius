@@ -202,16 +202,26 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
   }, [galerieUserId])
 
   const load = async () => {
+    const { data: { user } } = await supabase.auth.getUser()
+    const uid = user?.id || null
+
     const [{ data: rows }, { data: likes }] = await Promise.all([
       supabase.from('galerie_comments')
-        .select('*, profiles(display_name, avatar_url, slug)')
+        .select('id, message, created_at, author_id, parent_id')
         .eq('galerie_user_id', galerieUserId)
         .order('created_at', { ascending: true }),
       supabase.from('galerie_comment_likes').select('comment_id, user_id'),
     ])
 
-    const { data: { user } } = await supabase.auth.getUser()
-    const uid = user?.id || null
+    if (!rows) return
+
+    // Fetch profiles separately
+    const authorIds = [...new Set(rows.map((r: any) => r.author_id))]
+    const { data: profilesData } = await supabase
+      .from('profiles')
+      .select('id, display_name, avatar_url, slug')
+      .in('id', authorIds)
+    const profileMap = new Map((profilesData || []).map((p: any) => [p.id, p]))
 
     const likesByComment = new Map<string, { count: number; liked: boolean }>()
     for (const l of likes || []) {
@@ -221,8 +231,9 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
       likesByComment.set(l.comment_id, e)
     }
 
-    const allComments: Comment[] = (rows || []).map((r: any) => ({
+    const allComments: Comment[] = rows.map((r: any) => ({
       ...r,
+      profiles: profileMap.get(r.author_id) || null,
       likes: likesByComment.get(r.id)?.count || 0,
       liked: likesByComment.get(r.id)?.liked || false,
       replies: [],
