@@ -239,24 +239,70 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
   const toggleFilter = (k: keyof typeof activeFilters) => setActiveFilters(p => ({ ...p, [k]: !p[k] }))
 
-  const handleDragStart = (idx: number) => setDragIdx(idx)
-  const handleDragOver = (e: React.DragEvent, idx: number) => {
-    e.preventDefault()
-    if (dragIdx === null || dragIdx === idx) return
-    const newCards = [...cards]
-    const [moved] = newCards.splice(dragIdx, 1)
-    newCards.splice(idx, 0, moved)
-    setCards(newCards)
-    setDragIdx(idx)
+  const touchDragIdx = useRef<number | null>(null)
+
+  const reorder = (from: number, to: number) => {
+    if (from === to) return
+    setCards(prev => {
+      const arr = [...prev]
+      const [moved] = arr.splice(from, 1)
+      arr.splice(to, 0, moved)
+      return arr
+    })
+    setDragIdx(to)
   }
-  const handleDragEnd = async () => {
-    setDragIdx(null)
-    // Sauvegarder les positions des cartes manuelles
-    const updates = cards
+
+  const savePositions = async (cardList: Card[]) => {
+    const updates = cardList
       .filter(c => c.isManuelle && c.id_manuelle)
       .map((c, i) => supabase.from('cartes_manuelles').update({ position: i }).eq('id', c.id_manuelle!))
     await Promise.all(updates)
   }
+
+  // Desktop drag & drop
+  const handleDragStart = (idx: number) => setDragIdx(idx)
+  const handleDragOver = (e: React.DragEvent, idx: number) => {
+    e.preventDefault()
+    if (dragIdx === null || dragIdx === idx) return
+    reorder(dragIdx, idx)
+  }
+  const handleDragEnd = async () => {
+    setDragIdx(null)
+    await savePositions(cards)
+  }
+
+  // Mobile touch drag & drop
+  const handleTouchStart = (idx: number) => {
+    if (!editMode || !isOwner) return
+    touchDragIdx.current = idx
+    setDragIdx(idx)
+  }
+  const handleTouchMove = (e: React.TouchEvent, containerRef: React.RefObject<HTMLDivElement | null>) => {
+    if (touchDragIdx.current === null) return
+    e.preventDefault()
+    const touch = e.touches[0]
+    const grid = containerRef.current
+    if (!grid) return
+    const children = Array.from(grid.children) as HTMLElement[]
+    for (let i = 0; i < children.length; i++) {
+      const rect = children[i].getBoundingClientRect()
+      if (touch.clientX >= rect.left && touch.clientX <= rect.right &&
+          touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+        if (i !== touchDragIdx.current) {
+          reorder(touchDragIdx.current, i)
+          touchDragIdx.current = i
+        }
+        break
+      }
+    }
+  }
+  const handleTouchEnd = async () => {
+    touchDragIdx.current = null
+    setDragIdx(null)
+    await savePositions(cards)
+  }
+
+  const gridRef = useRef<HTMLDivElement>(null)
 
   const numValue = (num: string) => { const m = num.trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : null }
   const isOneOfOne = (num: string) => { const v = numValue(num); return v === 1 }
@@ -504,7 +550,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
         `}</style>
         
-        <div className="card-grid">
+        <div
+          ref={gridRef}
+          className="card-grid"
+          onTouchMove={e => editMode && isOwner ? handleTouchMove(e, gridRef) : undefined}
+          onTouchEnd={editMode && isOwner ? handleTouchEnd : undefined}
+        >
           {displayed.map((d, i) => (
             <div
               key={i} className="card-item"
@@ -513,6 +564,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               onDragStart={() => handleDragStart(i)}
               onDragOver={e => handleDragOver(e, i)}
               onDragEnd={handleDragEnd}
+              onTouchStart={() => d.isManuelle && handleTouchStart(i)}
               style={{
               border: `2px solid ${privateCards.has(d.f) && isOwner ? '#e74c3c' : accent}`,
               borderRadius: 8, padding: 8,
