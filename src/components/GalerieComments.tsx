@@ -248,10 +248,25 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
     setComments(roots.reverse())
   }
 
+  const getMyName = async () => {
+    if (!currentUserId) return 'Quelqu\'un'
+    const { data } = await supabase.from('profiles').select('display_name').eq('id', currentUserId).single()
+    return data?.display_name || 'Quelqu\'un'
+  }
+
   const send = async () => {
     if (!message.trim() || !currentUserId) return
     setSending(true)
     await supabase.from('galerie_comments').insert({ galerie_user_id: galerieUserId, author_id: currentUserId, message: message.trim() })
+    // Notifier le propriétaire de la galerie (pas si c'est lui qui commente)
+    if (currentUserId !== galerieUserId) {
+      const name = await getMyName()
+      await supabase.from('notifications').insert({
+        user_id: galerieUserId, type: 'comment', lu: false,
+        message: `${name} a commenté votre galerie : "${message.trim().slice(0, 60)}${message.length > 60 ? '…' : ''}"`,
+        lien: `/galerie/${galerieUserId}?tab=comments`,
+      })
+    }
     setMessage('')
     setSending(false)
     load()
@@ -278,6 +293,16 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
   const handleReply = async (parentId: string, msg: string) => {
     if (!currentUserId) return
     await supabase.from('galerie_comments').insert({ galerie_user_id: galerieUserId, author_id: currentUserId, message: msg, parent_id: parentId })
+    // Notifier l'auteur du commentaire parent (pas si c'est soi-même)
+    const parentComment = comments.find(c => c.id === parentId) || comments.flatMap(c => c.replies).find(c => c.id === parentId)
+    if (parentComment && parentComment.author_id !== currentUserId) {
+      const name = await getMyName()
+      await supabase.from('notifications').insert({
+        user_id: parentComment.author_id, type: 'comment', lu: false,
+        message: `${name} a répondu à votre commentaire : "${msg.slice(0, 60)}${msg.length > 60 ? '…' : ''}"`,
+        lien: `/galerie/${galerieUserId}?tab=comments`,
+      })
+    }
     load()
   }
 
