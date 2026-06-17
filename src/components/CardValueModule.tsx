@@ -21,22 +21,28 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
   const svgRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
-    const normNum = (s: string) => { const m = s?.match(/\/(\d+)/); return m ? `/${m[1]}` : s }
-    const q = [cardName, variant, set, year, normNum(num), rc && 'RC', auto && 'AUTO', patch && 'PATCH'].filter(Boolean).join(' ')
-    fetch(`/api/ebay-sold?q=${encodeURIComponent(q)}`)
+    if (!cardName) { setLoading(false); return }
+    const params = new URLSearchParams({ name: cardName })
+    if (set)     params.set('set', set)
+    if (year)    params.set('year', year)
+    if (num)     params.set('num', num)
+    if (variant) params.set('variant', variant)
+    if (rc)      params.set('rc', 'true')
+    if (auto)    params.set('auto', 'true')
+    if (patch)   params.set('patch', 'true')
+
+    fetch(`/api/ebay-sold?${params}`)
       .then(r => r.json())
       .then(({ items }) => {
         if (!items || items.length === 0) { setLoading(false); return }
-        // Trier par date croissante pour le graphique
         const sorted = [...items].sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime())
         const prices = sorted.map((i: any) => i.price)
-        const currency = items[0]?.currency === 'USD' ? '$' : '€'
         setData({
           sales: sorted.map((i: any) => ({ price: Math.round(i.price * 100) / 100, date: i.date.slice(0, 10) })),
           current: Math.round(prices[prices.length - 1] * 100) / 100,
           min: Math.round(Math.min(...prices) * 100) / 100,
           max: Math.round(Math.max(...prices) * 100) / 100,
-          currency,
+          currency: '€',
           source: 'ebay',
         } as any)
         setLoading(false)
