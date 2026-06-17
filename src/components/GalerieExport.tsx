@@ -3,7 +3,7 @@ import { useState, useMemo, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 
 interface Card {
-  f: string; n: string; v: string; y: string; br: string; s: string; t: string
+  f: string; b?: string; n: string; v: string; y: string; br: string; s: string; t: string
   rc: boolean; auto: boolean; patch: boolean; num: string; g: string
 }
 interface Props {
@@ -401,7 +401,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
       if (withPhotos) {
         ;[cardImgs, cardImgsVerso] = await Promise.all([
           loadImgs(filtered.map(c => c.f)),
-          loadImgs(filtered.map(c => c.b).filter(Boolean)),
+          loadImgs(filtered.map(c => c.b ?? '').filter(Boolean)),
         ])
       }
 
