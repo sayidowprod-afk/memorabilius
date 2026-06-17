@@ -90,21 +90,6 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
     )
   }
 
-  if (loading) return null
-
-  if (errorMsg) {
-    const printRun = num?.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num
-    const ebayUrl = `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH'].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`
-    return (
-      <div style={{ borderTop: '1px solid #eee', paddingTop: 10, marginTop: 10 }}>
-        <a href={ebayUrl} target="_blank" rel="noopener noreferrer"
-          style={{ fontSize: 12, fontWeight: 700, color: '#999', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
-          🔍 Voir les ventes eBay ↗
-        </a>
-      </div>
-    )
-  }
-
   if (!data || data.sales.length === 0) return null
 
   const { sales, current, min, max, currency, source } = data
