@@ -76,7 +76,9 @@ export default function Navbar() {
   return (
     <>
       <nav style={{ background: dark ? '#1a1a1a' : 'white', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#eee'}`, padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60, position: 'sticky', top: 0, zIndex: 200 }}>
-        <Link href="/" style={{ fontWeight: 900, fontSize: 20, color: '#003DA6', letterSpacing: '-0.5px' }}>Memorabilius</Link>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
+          <img src="/Memorabiliuslogo.png" alt="Memorabilius" style={{ height: 34, width: 'auto', filter: dark ? 'invert(1)' : 'none', transition: 'filter 0.2s' }} />
+        </Link>
 
         {/* Desktop */}
         <div style={{ display: 'flex', gap: 20, alignItems: 'center' }} className="nav-desktop">

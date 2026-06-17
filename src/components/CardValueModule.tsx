@@ -31,10 +31,14 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
     if (auto)    params.set('auto', 'true')
     if (patch)   params.set('patch', 'true')
 
-    fetch(`/api/ebay-sold?${params}`)
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 8000)
+
+    fetch(`/api/ebay-sold?${params}`, { signal: controller.signal })
       .then(r => r.json())
       .then(({ items }) => {
-        if (!items || items.length === 0) { setLoading(false); return }
+        clearTimeout(timeout)
+        if (!items || items.length < 2) { setLoading(false); return }
         const sorted = [...items].sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime())
         const prices = sorted.map((i: any) => i.price)
         setData({
@@ -47,21 +51,16 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
         } as any)
         setLoading(false)
       })
-      .catch(() => setLoading(false))
+      .catch(() => { clearTimeout(timeout); setLoading(false) })
+
+    return () => { clearTimeout(timeout); controller.abort() }
   }, [cardName, set, year, num, variant, rc, auto, patch])
 
   const ar = parseInt(accent.slice(1, 3), 16)
   const ag = parseInt(accent.slice(3, 5), 16)
   const ab = parseInt(accent.slice(5, 7), 16)
 
-  if (loading) return (
-    <div style={{ borderTop: '1px solid #eee', paddingTop: 14, marginTop: 14 }}>
-      <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1 }}>Valeur estimée</span>
-      <div style={{ height: 90, background: '#f7f7f7', borderRadius: 10, marginTop: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <span style={{ fontSize: 11, color: '#ccc' }}>Chargement…</span>
-      </div>
-    </div>
-  )
+  if (loading) return null
 
   if (!data || data.sales.length === 0) return null
 
