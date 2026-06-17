@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import CardScanner from '@/components/CardScanner'
+import CollectionTagSelect from '@/components/CollectionTagSelect'
 
 const CARD_RATIO = 2.5 / 3.5
 
@@ -350,8 +351,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
               {lang === 'fr' ? 'Ma collection (tag perso)' : 'My collection (personal tag)'}
             </label>
-            <input value={form.collection_tag} onChange={e => setForm({ ...form, collection_tag: e.target.value })} placeholder={lang === 'fr' ? 'ex: PC LeBron, NBA Graded, NFL…' : 'e.g. PC LeBron, Graded, NFL…'} />
-            <p style={{ fontSize: 11, color: '#bbb', marginTop: 4 }}>{lang === 'fr' ? 'Regroupe tes cartes en sous-collections dans ta galerie' : 'Group your cards into sub-collections in your gallery'}</p>
+            <CollectionTagSelect userId={userId} value={form.collection_tag} onChange={tag => setForm({ ...form, collection_tag: tag })} />
           </div>
 
           <div>

@@ -5,6 +5,7 @@ import { useTheme } from '@/lib/ThemeContext'
 import CardVideoExport from '@/components/CardVideoExport'
 import CardValueModule from '@/components/CardValueModule'
 import SameCardCollectors from '@/components/SameCardCollectors'
+import CollectionTagSelect from '@/components/CollectionTagSelect'
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string
@@ -236,26 +237,21 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
           </div>
 
           {/* Ma collection (tag) — owner seulement */}
-          {isOwner && onCollectionTagChange && (
+          {isOwner && onCollectionTagChange && userId && (
             <div style={{ marginTop: 10, borderTop: `1px solid ${borderColor}`, paddingTop: 10 }}>
               <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase', marginBottom: 5 }}>
-                Ma collection (tag)
+                Ma collection
               </label>
-              <div style={{ display: 'flex', gap: 6 }}>
-                <input
-                  value={tagInput}
-                  onChange={e => setTagInput(e.target.value)}
-                  onKeyDown={e => { if (e.key === 'Enter') saveTag() }}
-                  placeholder="ex: PC LeBron, Graded, NBA…"
-                  style={{ flex: 1, fontSize: 12, padding: '6px 10px', borderRadius: 6, border: `1px solid ${borderColor}`, background: dark ? '#2a2a2a' : '#f8f8f8', color: textColor }}
-                />
-                <button onClick={saveTag} disabled={tagSaving} style={{
-                  background: accent, color: 'white', border: 'none', borderRadius: 6,
-                  padding: '6px 12px', fontWeight: 700, fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap',
-                }}>
-                  {tagSaving ? '…' : 'OK'}
-                </button>
-              </div>
+              <CollectionTagSelect
+                userId={userId}
+                value={tagInput}
+                onChange={async (tag) => {
+                  setTagInput(tag)
+                  setTagSaving(true)
+                  await onCollectionTagChange(popup, tag)
+                  setTagSaving(false)
+                }}
+              />
             </div>
           )}
 
