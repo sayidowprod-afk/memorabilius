@@ -33,7 +33,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
     if (patch)   params.set('patch', 'true')
 
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 8000)
+    const timeout = setTimeout(() => controller.abort(), 15000)
 
     fetch(`/api/ebay-sold?${params}`, { signal: controller.signal })
       .then(r => r.json())

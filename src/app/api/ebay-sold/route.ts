@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+export const maxDuration = 30
+
 const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
 
 // Mots qui indiquent un grade PSA/BGS/SGC — on les exclut si la carte n'est pas gradée
@@ -76,7 +78,10 @@ export async function GET(req: NextRequest) {
   const url = `https://svcs.ebay.com/services/search/FindingService/v1?${params}`
 
   try {
-    const res = await fetch(url, { next: { revalidate: 3600 } })
+    const ebayController = new AbortController()
+    const ebayTimeout = setTimeout(() => ebayController.abort(), 12000)
+    const res = await fetch(url, { signal: ebayController.signal, next: { revalidate: 3600 } })
+    clearTimeout(ebayTimeout)
     const text = await res.text()
     let data: any
     try { data = JSON.parse(text) } catch {
