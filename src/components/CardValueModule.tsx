@@ -17,9 +17,11 @@ interface Props {
 export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, accent }: Props) {
   const [data, setData] = useState<CardValueResponse | null>(null)
   const [loading, setLoading] = useState(true)
-  const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [hovered, setHovered] = useState<number | null>(null)
   const svgRef = useRef<SVGSVGElement>(null)
+
+  const printRun = num?.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num
+  const ebayUrl = `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH'].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`
 
   useEffect(() => {
     if (!cardName) { setLoading(false); return }
@@ -39,10 +41,8 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
       .then(r => r.json())
       .then((json) => {
         clearTimeout(timeout)
-        if (json.error) { setErrorMsg(json.error); setLoading(false); return }
-        const { items } = json
-        if (!items || items.length < 2) { setLoading(false); return }
-        const sorted = [...items].sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime())
+        if (json.error || !json.items || json.items.length < 2) { setLoading(false); return }
+        const sorted = [...json.items].sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime())
         const prices = sorted.map((i: any) => i.price)
         setData({
           sales: sorted.map((i: any) => ({ price: Math.round(i.price * 100) / 100, date: i.date.slice(0, 10) })),
@@ -54,7 +54,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
         } as any)
         setLoading(false)
       })
-      .catch((err) => { clearTimeout(timeout); setErrorMsg(err?.name === 'AbortError' ? 'timeout' : 'erreur réseau'); setLoading(false) })
+      .catch(() => { clearTimeout(timeout); setLoading(false) })
 
     return () => { clearTimeout(timeout); controller.abort() }
   }, [cardName, set, year, num, variant, rc, auto, patch])
@@ -62,6 +62,33 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
   const ar = parseInt(accent.slice(1, 3), 16)
   const ag = parseInt(accent.slice(3, 5), 16)
   const ab = parseInt(accent.slice(5, 7), 16)
+
+  // Toujours afficher le lien eBay, avec le graphique par-dessus si on a des données
+  const ebayLink = (
+    <a href={ebayUrl} target="_blank" rel="noopener noreferrer"
+      style={{ fontSize: 11, fontWeight: 700, color: '#999', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4, border: '1px solid #e8e8e8', borderRadius: 20, padding: '4px 10px', transition: '0.15s' }}
+      onMouseEnter={e => (e.currentTarget.style.borderColor = '#bbb')}
+      onMouseLeave={e => (e.currentTarget.style.borderColor = '#e8e8e8')}
+    >
+      🔍 Ventes eBay ↗
+    </a>
+  )
+
+  if (!data || data.sales.length === 0) {
+    return (
+      <div style={{ borderTop: '1px solid #eee', paddingTop: 12, marginTop: 14 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: loading ? 8 : 0 }}>
+          <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1 }}>Valeur estimée</span>
+          {ebayLink}
+        </div>
+        {loading && (
+          <div style={{ height: 4, background: '#f0f0f0', borderRadius: 2, overflow: 'hidden', marginTop: 6 }}>
+            <div style={{ height: '100%', background: `linear-gradient(90deg, ${accent}33, ${accent}, ${accent}33)`, backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite' }} />
+          </div>
+        )}
+      </div>
+    )
+  }
 
   if (loading) return null
 
@@ -142,16 +169,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
     <div style={{ borderTop: '1px solid #eee', paddingTop: 14, marginTop: 14 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
         <span style={{ fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase', letterSpacing: 1 }}>Valeur estimée</span>
-        {(source as any) === 'ebay' && <span style={{ fontSize: 9, color: '#ccc', fontWeight: 600 }}>— ventes eBay</span>}
-        <a
-          href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, num ? (num.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num) : '', rc && 'RC', auto && 'AUTO', patch && 'PATCH'].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`}
-          target="_blank" rel="noopener noreferrer"
-          style={{ fontSize: 9, fontWeight: 700, color: '#999', textDecoration: 'none', border: '1px solid #e0e0e0', borderRadius: 20, padding: '2px 8px', whiteSpace: 'nowrap', transition: '0.15s' }}
-          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = '#999' }}
-          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = '#e0e0e0' }}
-        >
-          eBay ↗
-        </a>
+        {ebayLink}
         <span style={{ marginLeft: 'auto', fontSize: 10, fontWeight: 700, color: trendColor }}>
           {trendSign}{Math.round(trend * 100) / 100}{currency} sur 4 mois
         </span>
