@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const VERIFICATION_TOKEN = process.env.EBAY_VERIFICATION_TOKEN || 'memorabilius-ebay-2026'
+const VERIFICATION_TOKEN = process.env.EBAY_VERIFICATION_TOKEN || 'a3f8c2d1-7e4b-4a9f-b6c3-2d8e1f5a9b7c'
 const ENDPOINT_URL = 'https://www.memorabilius.fr/api/ebay-deletion'
 
 // eBay envoie un GET pour valider l'endpoint
