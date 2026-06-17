@@ -21,12 +21,28 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
   const svgRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
-    const q = [cardName, set, year, num].filter(Boolean).join(' ')
-    fetch(`/api/card-value?q=${encodeURIComponent(q)}`)
+    const normNum = (s: string) => { const m = s?.match(/\/(\d+)/); return m ? `/${m[1]}` : s }
+    const q = [cardName, variant, set, year, normNum(num), rc && 'RC', auto && 'AUTO', patch && 'PATCH'].filter(Boolean).join(' ')
+    fetch(`/api/ebay-sold?q=${encodeURIComponent(q)}`)
       .then(r => r.json())
-      .then(d => { setData(d); setLoading(false) })
+      .then(({ items }) => {
+        if (!items || items.length === 0) { setLoading(false); return }
+        // Trier par date croissante pour le graphique
+        const sorted = [...items].sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime())
+        const prices = sorted.map((i: any) => i.price)
+        const currency = items[0]?.currency === 'USD' ? '$' : '€'
+        setData({
+          sales: sorted.map((i: any) => ({ price: Math.round(i.price * 100) / 100, date: i.date.slice(0, 10) })),
+          current: Math.round(prices[prices.length - 1] * 100) / 100,
+          min: Math.round(Math.min(...prices) * 100) / 100,
+          max: Math.round(Math.max(...prices) * 100) / 100,
+          currency,
+          source: 'ebay',
+        } as any)
+        setLoading(false)
+      })
       .catch(() => setLoading(false))
-  }, [cardName, set, year, num])
+  }, [cardName, set, year, num, variant, rc, auto, patch])
 
   const ar = parseInt(accent.slice(1, 3), 16)
   const ag = parseInt(accent.slice(3, 5), 16)
@@ -105,7 +121,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
     <div style={{ borderTop: '1px solid #eee', paddingTop: 14, marginTop: 14 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
         <span style={{ fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase', letterSpacing: 1 }}>Valeur estimée</span>
-        {source === 'demo' && <span style={{ fontSize: 9, color: '#ccc', fontWeight: 600 }}>— données démo</span>}
+        {(source as any) === 'ebay' && <span style={{ fontSize: 9, color: '#ccc', fontWeight: 600 }}>— ventes eBay</span>}
         <a
           href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, num ? (num.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num) : '', rc && 'RC', auto && 'AUTO', patch && 'PATCH'].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`}
           target="_blank" rel="noopener noreferrer"
