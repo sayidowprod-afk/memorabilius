@@ -49,6 +49,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [activeTab, setActiveTab] = useState<'collection' | 'wishlist' | 'comments'>('collection')
   const [dragIdx, setDragIdx] = useState<number | null>(null)
   const [monthlyBadges, setMonthlyBadges] = useState<string[]>([])
+  const [csvTags, setCsvTags] = useState<Map<string, string>>(new Map())
   const loaderRef = useRef<HTMLDivElement>(null)
 
   const isOwner = currentUser === userId
@@ -68,8 +69,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         else return
       }
       
+      // Charger les tags CSV d'abord, puis le profil + CSV
+      const { data: tagsData } = await supabase.from('carte_tags').select('card_key, collection_tag').eq('user_id', resolvedId)
+      const tagsMap = new Map((tagsData || []).map((r: any) => [r.card_key, r.collection_tag]))
+      setCsvTags(tagsMap)
+
       supabase.from('profiles').select('*').eq('id', resolvedId).single().then(({ data }) => {
-        if (data) { setProfile(data); loadCSV(data.lien_csv ?? null) }
+        if (data) { setProfile(data); loadCSV(data.lien_csv ?? null, tagsMap) }
       })
       supabase.from('badges').select('mois').eq('user_id', resolvedId).eq('type', 'collectionneur_du_mois').order('mois', { ascending: false }).limit(6).then(({ data }) => {
         if (data) setMonthlyBadges(data.map((b: any) => b.mois))
@@ -133,7 +139,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     }
   }
 
-  const loadCSV = async (url: string | null) => {
+  const loadCSV = async (url: string | null, tagsMap?: Map<string, string>) => {
     try {
       let parsed: Card[] = []
       if (url) {
@@ -150,7 +156,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             num: c[8] || '', auto: c[9]?.toLowerCase().includes('oui') || false,
             rc: c[10]?.toLowerCase().includes('oui') || false,
             patch: c[11]?.toLowerCase().includes('oui') || false,
-            g: c[12] || 'Raw', isManuelle: false
+            g: c[12] || 'Raw', isManuelle: false,
+            collection_tag: (tagsMap || csvTags).get(c[0]?.trim()) || ''
           }
         }).filter(Boolean) as Card[]
       }
@@ -690,7 +697,22 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       </div>
 
       {popup && (
-        <Viewer3D popup={popup} accent={accent} onClose={() => setPopup(null)} getTags={getTags} userId={userId} userSlug={profile?.slug || userId} />
+        <Viewer3D popup={popup} accent={accent} onClose={() => setPopup(null)} getTags={getTags} userId={userId} userSlug={profile?.slug || userId}
+          isOwner={isOwner} currentUserId={currentUser ?? undefined}
+          onCollectionTagChange={async (card, tag) => {
+            if (card.isManuelle && card.id_manuelle) {
+              await supabase.from('cartes_manuelles').update({ collection_tag: tag || null }).eq('id', card.id_manuelle)
+            } else {
+              if (tag) {
+                await supabase.from('carte_tags').upsert({ user_id: currentUser!, card_key: card.f, collection_tag: tag }, { onConflict: 'user_id,card_key' })
+              } else {
+                await supabase.from('carte_tags').delete().eq('user_id', currentUser!).eq('card_key', card.f)
+              }
+            }
+            setCards(prev => prev.map(c => c.f === card.f ? { ...c, collection_tag: tag } : c))
+            setPopup(prev => prev ? { ...prev, collection_tag: tag } : null)
+          }}
+        />
       )}
     </>
   )

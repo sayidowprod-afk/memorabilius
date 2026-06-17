@@ -10,15 +10,19 @@ interface Card {
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string
   auto: boolean; rc: boolean; patch: boolean; g: string
+  isManuelle?: boolean; id_manuelle?: string; collection_tag?: string
 }
 
-export default function Viewer3D({ popup, accent, onClose, getTags, userId, userSlug }: {
+export default function Viewer3D({ popup, accent, onClose, getTags, userId, userSlug, isOwner, onCollectionTagChange }: {
   popup: Card
   accent: string
   onClose: () => void
   getTags: (d: Card) => React.ReactNode
   userId?: string
   userSlug?: string
+  isOwner?: boolean
+  currentUserId?: string
+  onCollectionTagChange?: (card: Card, tag: string) => void
 }) {
   const { dark } = useTheme()
   const bg = dark ? '#1a1a1a' : '#fff'
@@ -27,6 +31,16 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
   const textColor = dark ? '#eee' : '#111'
   const borderColor = dark ? '#2a2a2a' : '#eee'
   const metaColor = dark ? '#888' : '#999'
+
+  const [tagInput, setTagInput] = useState(popup.collection_tag || '')
+  const [tagSaving, setTagSaving] = useState(false)
+
+  const saveTag = async () => {
+    if (!onCollectionTagChange) return
+    setTagSaving(true)
+    await onCollectionTagChange(popup, tagInput.trim())
+    setTagSaving(false)
+  }
 
   const rotX = useRef(0)
   const rotY = useRef(0)
@@ -220,6 +234,30 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
               </div>
             ))}
           </div>
+
+          {/* Ma collection (tag) — owner seulement */}
+          {isOwner && onCollectionTagChange && (
+            <div style={{ marginTop: 10, borderTop: `1px solid ${borderColor}`, paddingTop: 10 }}>
+              <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase', marginBottom: 5 }}>
+                Ma collection (tag)
+              </label>
+              <div style={{ display: 'flex', gap: 6 }}>
+                <input
+                  value={tagInput}
+                  onChange={e => setTagInput(e.target.value)}
+                  onKeyDown={e => { if (e.key === 'Enter') saveTag() }}
+                  placeholder="ex: PC LeBron, Graded, NBA…"
+                  style={{ flex: 1, fontSize: 12, padding: '6px 10px', borderRadius: 6, border: `1px solid ${borderColor}`, background: dark ? '#2a2a2a' : '#f8f8f8', color: textColor }}
+                />
+                <button onClick={saveTag} disabled={tagSaving} style={{
+                  background: accent, color: 'white', border: 'none', borderRadius: 6,
+                  padding: '6px 12px', fontWeight: 700, fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap',
+                }}>
+                  {tagSaving ? '…' : 'OK'}
+                </button>
+              </div>
+            </div>
+          )}
 
           {/* Boutons actions */}
           <div style={{ marginTop: 16, display: 'flex', gap: 8 }}>
