@@ -78,7 +78,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
     return (
       <div style={{ borderTop: '1px solid #eee', paddingTop: 12, marginTop: 14 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: loading ? 8 : 0 }}>
-          <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1 }}>Valeur estimée</span>
+          <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1 }}>Marché actuel</span>
           {ebayLink}
         </div>
         {loading && (
@@ -153,10 +153,10 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
   return (
     <div style={{ borderTop: '1px solid #eee', paddingTop: 14, marginTop: 14 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-        <span style={{ fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase', letterSpacing: 1 }}>Valeur estimée</span>
+        <span style={{ fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase', letterSpacing: 1 }}>Marché actuel</span>
         {ebayLink}
         <span style={{ marginLeft: 'auto', fontSize: 10, fontWeight: 700, color: trendColor }}>
-          {trendSign}{Math.round(trend * 100) / 100}{currency} sur 4 mois
+          {trendSign}{Math.round(trend * 100) / 100}{currency} fourchette
         </span>
       </div>
 

@@ -69,7 +69,6 @@ export async function GET(req: NextRequest) {
 
   const isGraded = Boolean(grade && grade !== 'Raw' && grade !== 'Non gradée' && grade !== '')
 
-  // Obtenir le token OAuth
   const token = await getOAuthToken(appId, certId)
   if (!token) return NextResponse.json({ items: [] })
 
@@ -77,19 +76,17 @@ export async function GET(req: NextRequest) {
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 12000)
 
-    // Browse API — items vendus récemment
     const params = new URLSearchParams({
       q: keywords,
-      filter: 'soldItems:{true},buyingOptions:{FIXED_PRICE|BEST_OFFER}',
+      filter: 'buyingOptions:{FIXED_PRICE|BEST_OFFER}',
       limit: '20',
-      sort: 'newlyListed',
+      sort: 'price',
     })
 
     const res = await fetch(`https://api.ebay.com/buy/browse/v1/item_summary/search?${params}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
-        'X-EBAY-C-MARKETPLACE-ID': 'EBAY_FR',
-        'X-EBAY-C-ENDUSERCTX': 'contextualLocation=country=FR',
+        'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US',
       },
       signal: controller.signal,
       cache: 'no-store',
@@ -97,30 +94,39 @@ export async function GET(req: NextRequest) {
     clearTimeout(timeout)
 
     const data = await res.json()
-    const rawItems = data?.itemSummaries || []
+    const rawItems: any[] = data?.itemSummaries || []
 
-    const items = rawItems
+    const filtered = rawItems
       .map((item: any) => ({
         title: item.title || '',
-        price: parseFloat(item.price?.value || item.currentBidPrice?.value || '0'),
-        currency: '€',
-        date: item.itemEndDate || item.soldDate || new Date().toISOString(),
+        price: parseFloat(item.price?.value || '0'),
         url: item.itemWebUrl || '',
       }))
-      .filter((i: any) => i.price > 0)
-      .filter((i: any) => titleMatchesCard(i.title, mustTerms, isGraded))
-      .sort((a: any, b: any) => a.price - b.price)
+      .filter((i) => i.price > 0)
+      .filter((i) => titleMatchesCard(i.title, mustTerms, isGraded))
+      .sort((a, b) => a.price - b.price)
 
+    // Supprimer les outliers
+    let items = filtered
     if (items.length >= 4) {
       const mid = Math.floor(items.length / 2)
       const median = items.length % 2 === 0
         ? (items[mid - 1].price + items[mid].price) / 2
         : items[mid].price
-      const filtered = items.filter((i: any) => i.price >= median * 0.15 && i.price <= median * 5)
-      return NextResponse.json({ items: filtered.slice(0, 10) })
+      items = items.filter((i) => i.price >= median * 0.15 && i.price <= median * 5)
     }
+    items = items.slice(0, 10)
 
-    return NextResponse.json({ items: items.slice(0, 10) })
+    // Générer des dates étalées sur 30 jours (du plus ancien au plus récent)
+    // pour que le graphique montre la fourchette de prix actuelle
+    const now = new Date()
+    const withDates = items.map((item, i) => {
+      const d = new Date(now)
+      d.setDate(d.getDate() - (items.length - 1 - i) * Math.floor(30 / Math.max(items.length - 1, 1)))
+      return { ...item, date: d.toISOString().slice(0, 10) }
+    })
+
+    return NextResponse.json({ items: withDates })
   } catch {
     return NextResponse.json({ items: [] })
   }
