@@ -75,6 +75,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <PWAInstall />
           </LangProvider>
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
