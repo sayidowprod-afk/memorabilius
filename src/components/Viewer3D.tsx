@@ -201,7 +201,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
 
       <div className="viewer-layout">
         {popup.booklet ? (
-          <div className="viewer-zone" style={{ cursor: 'default' }}>
+          <div className="viewer-zone" style={{ padding: 0, display: 'flex', flexDirection: 'column' }}>
             <BookletViewer
               frontCover={popup.f}
               backCover={popup.b}
