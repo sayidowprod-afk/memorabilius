@@ -51,9 +51,18 @@ export async function GET(req: NextRequest) {
   const normNum = (s: string) => { const m = s?.match(/\/(\d+)/); return m ? `/${m[1]}` : s }
   const printRun = normNum(num)
 
+  // Année courte : "2019-20" → "2019", "2023-24" → "2023"
+  const yearShort = year?.match(/^(\d{4})/)?.[1] || year
+
+  // Mots significatifs du set (ignorer les mots génériques)
+  const GENERIC = new Set(['panini', 'topps', 'upper', 'deck', 'donruss', 'fleer', 'nba', 'nfl', 'mlb', 'basketball', 'football', 'baseball', 'card', 'cards'])
+  const setWords = set.split(/\s+/).filter(w => w.length > 2 && !GENERIC.has(w.toLowerCase()))
+
   const keywordParts = [
-    name, year,
-    set || variant,
+    name,
+    yearShort,
+    set,
+    variant,
     printRun || '',
     rc ? 'RC' : '',
     auto ? 'AUTO' : '',
@@ -61,11 +70,14 @@ export async function GET(req: NextRequest) {
   ].filter(Boolean)
   const keywords = keywordParts.join(' ')
 
+  // Termes OBLIGATOIRES dans le titre eBay
   const mustTerms: string[] = [name]
-  if (year) mustTerms.push(year)
+  if (yearShort) mustTerms.push(yearShort)
   if (printRun) mustTerms.push(printRun.replace('/', ''))
   if (auto) mustTerms.push('auto')
   if (rc) mustTerms.push('rc')
+  // Au moins un mot distinctif du set doit apparaître
+  const mustSetWord = setWords[0] || ''
 
   const isGraded = Boolean(grade && grade !== 'Raw' && grade !== 'Non gradée' && grade !== '')
 
@@ -104,6 +116,8 @@ export async function GET(req: NextRequest) {
       }))
       .filter((i) => i.price > 0)
       .filter((i) => titleMatchesCard(i.title, mustTerms, isGraded))
+      // Si on a un mot de set distinctif, il doit apparaître dans le titre
+      .filter((i) => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
       .sort((a, b) => a.price - b.price)
 
     // Supprimer les outliers
