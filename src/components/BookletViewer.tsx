@@ -118,37 +118,27 @@ export default function BookletViewer({ frontCover, backCover, interiorLeft, int
           <div ref={cardRef} style={{ willChange: 'transform', transformStyle: 'preserve-3d', position: 'relative', width: open ? openW : closedW, height: open ? openH : closedH }}>
 
             {open && interiorLeft && interiorRight ? (<>
-              {/* Face avant ouverte : pages intérieures (uploadées en portrait → rotation 90°) */}
+              {/* Face avant ouverte : pages intérieures (uploadées en paysage — pas de rotation) */}
               <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', boxShadow: shadow, display: 'flex' }}>
                 <div style={{ width: '50%', height: '100%', overflow: 'hidden', position: 'relative' }}>
-                  <img src={interiorLeft} draggable={false} style={{
-                    position: 'absolute', top: '50%', left: '50%',
-                    width: `${openH}px`, height: `${(openW - 8) / 2}px`,
-                    objectFit: 'cover',
-                    transform: 'translate(-50%, -50%) rotate(90deg)',
-                  }} alt="Page gauche" />
-                  <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 16, background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.22))', zIndex: 1 }} />
+                  <img src={interiorLeft} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt="Page gauche" />
+                  <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 16, background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.22))' }} />
                 </div>
                 {/* Reliure */}
                 <div style={{ width: 8, flexShrink: 0, background: 'linear-gradient(to right, #444, #aaa, #444)' }} />
                 <div style={{ width: 'calc(50% - 4px)', height: '100%', overflow: 'hidden', position: 'relative' }}>
-                  <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 16, background: 'linear-gradient(to left, transparent, rgba(0,0,0,0.12))', zIndex: 1 }} />
-                  <img src={interiorRight} draggable={false} style={{
-                    position: 'absolute', top: '50%', left: '50%',
-                    width: `${openH}px`, height: `${(openW - 8) / 2}px`,
-                    objectFit: 'cover',
-                    transform: 'translate(-50%, -50%) rotate(90deg)',
-                  }} alt="Page droite" />
+                  <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 16, background: 'linear-gradient(to left, transparent, rgba(0,0,0,0.12))' }} />
+                  <img src={interiorRight} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt="Page droite" />
                 </div>
               </div>
-              {/* Face arrière ouverte : couvertures (portrait → rotation 90° pour paysage) */}
+              {/* Face arrière ouverte : couvertures portrait → rotations pour paysage */}
               <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)', boxShadow: shadow, display: 'flex' }}>
                 <div style={{ width: '50%', height: '100%', overflow: 'hidden', position: 'relative' }}>
                   <img src={backCover} draggable={false} style={{
                     position: 'absolute', top: '50%', left: '50%',
                     width: `${openH}px`, height: `${(openW - 8) / 2}px`,
                     objectFit: 'cover',
-                    transform: 'translate(-50%, -50%) rotate(90deg)',
+                    transform: 'translate(-50%, -50%) rotate(-90deg)',
                   }} alt="Couverture arrière" />
                 </div>
                 <div style={{ width: 8, flexShrink: 0, background: 'linear-gradient(to right, #444, #aaa, #444)' }} />
