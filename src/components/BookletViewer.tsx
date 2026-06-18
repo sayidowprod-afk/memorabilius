@@ -104,7 +104,7 @@ export default function BookletViewer({ frontCover, backCover, interiorLeft, int
 
   // Dimensions : fermé = carte portrait, ouvert = double page paysage
   const closedW = 300, closedH = 420
-  const openW = 570, openH = 200
+  const openW = 560, openH = 210
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
@@ -132,13 +132,13 @@ export default function BookletViewer({ frontCover, backCover, interiorLeft, int
                 </div>
               </div>
               {/* Face arrière ouverte : couvertures en paysage */}
-              <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)', boxShadow: shadow, display: 'flex', background: dark ? '#111' : '#222' }}>
-                <div style={{ width: '50%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                  <img src={backCover} draggable={false} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }} alt="Couverture arrière" />
+              <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)', boxShadow: shadow, display: 'flex' }}>
+                <div style={{ width: '50%', height: '100%', overflow: 'hidden' }}>
+                  <img src={backCover} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt="Couverture arrière" />
                 </div>
                 <div style={{ width: 8, flexShrink: 0, background: 'linear-gradient(to right, #444, #aaa, #444)' }} />
-                <div style={{ width: 'calc(50% - 4px)', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                  <img src={frontCover} draggable={false} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }} alt="Couverture avant" />
+                <div style={{ width: 'calc(50% - 4px)', height: '100%', overflow: 'hidden' }}>
+                  <img src={frontCover} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt="Couverture avant" />
                 </div>
               </div>
             </>) : (<>
