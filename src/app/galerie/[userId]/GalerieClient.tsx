@@ -10,7 +10,8 @@ import GalerieComments from '@/components/GalerieComments'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 import { useLang } from '@/lib/LangContext'
-import { getTeam, getSpeciality } from '@/lib/nbaTeams'
+import { getSpeciality } from '@/lib/sportsTeams'
+import TeamBadge from '@/components/TeamBadge'
 
 const PAGE_SIZE = 48
 
@@ -384,12 +385,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 )}
                 {profile?.lien_logo && <img src={profile.lien_logo} style={{ maxHeight: 32, objectFit: 'contain' }} alt="logo" />}
                 {(() => {
-                  const team = profile?.favorite_team ? getTeam(profile.favorite_team) : null
+                  const teams: string[] = Array.isArray(profile?.favorite_teams) ? profile.favorite_teams : []
                   const stats = profile ? { total: profile.stats_total || 0, rc: profile.stats_rc || 0, auto: profile.stats_auto || 0, patch: profile.stats_patch || 0, num: profile.stats_num || 0 } : undefined
-                  const spec = getSpeciality(stats, profile?.favorite_team)
+                  const spec = getSpeciality(stats)
                   return (<>
-                    {team && <span style={{ fontSize: 11, fontWeight: 900, padding: '3px 8px', borderRadius: 6, background: team.color, color: 'white', letterSpacing: 0.5 }}>{team.abbr}</span>}
-                    {spec && <span style={{ fontSize: 11, fontWeight: 800, padding: '3px 8px', borderRadius: 6, background: spec.color + '18', color: spec.color, border: `1px solid ${spec.color}33` }}>{spec.label}</span>}
+                    {teams.map(id => <TeamBadge key={id} teamId={id} size={26} />)}
+                    {teams.length === 0 && spec && <span style={{ fontSize: 11, fontWeight: 800, padding: '3px 8px', borderRadius: 6, background: spec.color + '18', color: spec.color, border: `1px solid ${spec.color}33` }}>{spec.label}</span>}
                   </>)
                 })()}
               </div>

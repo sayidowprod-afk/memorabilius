@@ -4,10 +4,11 @@ import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
-import { NBA_TEAMS, getTeam, getSpeciality } from '@/lib/nbaTeams'
+import { SPORTS_TEAMS, getSpeciality } from '@/lib/sportsTeams'
+import TeamBadge from '@/components/TeamBadge'
 
 interface Stats { total: number; rc: number; auto: number; num: number; patch: number }
-interface Collector { id: string; display_name: string; avatar_url: string; lien_csv: string; stats?: Stats; favorite_team?: string }
+interface Collector { id: string; display_name: string; avatar_url: string; lien_csv: string; stats?: Stats; favorite_teams?: string[] }
 
 export default function Annuaire() {
   return (
@@ -51,7 +52,7 @@ function AnnuaireContent() {
   const loadData = async () => {
     const { data: profiles } = await supabase
       .from('profiles')
-      .select('id, display_name, avatar_url, lien_csv, stats_total, stats_rc, stats_auto, stats_num, stats_patch, stats_updated_at, favorite_team')
+      .select('id, display_name, avatar_url, lien_csv, stats_total, stats_rc, stats_auto, stats_num, stats_patch, stats_updated_at, favorite_teams')
       .not('display_name', 'is', null)
       .neq('display_name', '')
 
@@ -60,7 +61,7 @@ function AnnuaireContent() {
     // Utiliser les stats en cache directement
     setCollectors(profiles.map(p => ({
       ...p,
-      favorite_team: p.favorite_team || '',
+      favorite_teams: Array.isArray(p.favorite_teams) ? p.favorite_teams : [],
       stats: {
         total: p.stats_total || 0,
         rc: p.stats_rc || 0,
@@ -122,7 +123,7 @@ function AnnuaireContent() {
 
   const sorted = [...collectors].filter(c =>
     (!search || (c.display_name || '').toLowerCase().includes(search.toLowerCase())) &&
-    (!nbaFilter || c.favorite_team === nbaFilter)
+    (!nbaFilter || (c.favorite_teams || []).includes(nbaFilter))
   ).sort((a, b) => {
     if (sortKey === 'display_name') return sortAsc ? (a.display_name || '').localeCompare(b.display_name || '') : (b.display_name || '').localeCompare(a.display_name || '')
     const av = (a.stats?.[sortKey] || 0) as number
@@ -173,7 +174,7 @@ function AnnuaireContent() {
         </select>
         <select value={nbaFilter} onChange={e => setNbaFilter(e.target.value)} style={{ flex: '1 1 160px', minWidth: 140 }}>
           <option value="">🏀 Toutes les équipes NBA</option>
-          {NBA_TEAMS.map(t => <option key={t.abbr} value={t.abbr}>{t.name}</option>)}
+          {SPORTS_TEAMS.map(t => <option key={t.id} value={t.id}>{t.name} ({t.sport.toUpperCase()})</option>)}
         </select>
       </div>
 
@@ -208,16 +209,12 @@ function AnnuaireContent() {
                       <div style={{ minWidth: 0 }}>
                         <Link href={`/galerie/${c.id}`} style={{ fontWeight: 800, color: '#121212', fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>{c.display_name || 'Collectionneur'}</Link>
                         {(() => {
-                          const team = c.favorite_team ? getTeam(c.favorite_team) : null
-                          const spec = getSpeciality(c.stats, c.favorite_team)
+                          const teams = c.favorite_teams || []
+                          const spec = getSpeciality(c.stats)
                           return (
-                            <div style={{ display: 'flex', gap: 4, marginTop: 3, flexWrap: 'wrap' }}>
-                              {team && (
-                                <span style={{ fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, background: team.color, color: 'white', letterSpacing: 0.5 }}>
-                                  {team.abbr}
-                                </span>
-                              )}
-                              {spec && !team && (
+                            <div style={{ display: 'flex', gap: 4, marginTop: 4, flexWrap: 'wrap', alignItems: 'center' }}>
+                              {teams.slice(0, 3).map(id => <TeamBadge key={id} teamId={id} size={20} />)}
+                              {teams.length === 0 && spec && (
                                 <span style={{ fontSize: 9, fontWeight: 800, padding: '2px 6px', borderRadius: 4, background: spec.color + '18', color: spec.color, border: `1px solid ${spec.color}33` }}>
                                   {spec.label}
                                 </span>
