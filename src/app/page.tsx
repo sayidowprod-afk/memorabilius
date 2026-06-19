@@ -76,7 +76,7 @@ async function fetchPepites(profiles: { id: string; display_name: string; lien_c
   for (const card of all) {
     if (seen.has(card.img)) continue
     const count = perUser.get(card.userId) ?? 0
-    if (count >= 2) continue
+    if (count >= 1) continue
     seen.add(card.img)
     perUser.set(card.userId, count + 1)
     result.push(card)
