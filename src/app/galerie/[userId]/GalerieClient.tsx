@@ -41,6 +41,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [brands, setBrands] = useState<string[]>([])
   const [years, setYears] = useState<string[]>([])
   const [collectionTags, setCollectionTags] = useState<string[]>([])
+  const [tabSettings, setTabSettings] = useState<Map<string, { color: string; position: number }>>(new Map())
+  const [draggedTag, setDraggedTag] = useState<string | null>(null)
+  const [colorPickerTag, setColorPickerTag] = useState<string | null>(null)
   const [popup, setPopup] = useState<Card | null>(null)
   const [loaded, setLoaded] = useState(false)
   const [currentUser, setCurrentUser] = useState<string | null>(null)
@@ -80,6 +83,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       })
       supabase.from('badges').select('mois').eq('user_id', resolvedId).eq('type', 'collectionneur_du_mois').order('mois', { ascending: false }).limit(6).then(({ data }) => {
         if (data) setMonthlyBadges(data.map((b: any) => b.mois))
+      })
+      supabase.from('collection_tab_settings').select('tag, color, position').eq('user_id', resolvedId).then(({ data }) => {
+        if (data) setTabSettings(new Map(data.map((r: any) => [r.tag, { color: r.color, position: r.position }])))
       })
     }
     init()
@@ -548,33 +554,105 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               </>}
             </select>
           </div>
-          {collectionTags.length > 0 && (
-            <div style={{ marginTop: 8 }}>
-              <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 5 }}>
-                {lang === 'fr' ? 'Ma collection' : 'My collection'}
-              </label>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                <button onClick={() => setFCollectionTag('')} style={{
-                  padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer',
-                  fontSize: 11, fontWeight: 700,
-                  background: !fCollectionTag ? accent : '#f0f0f0',
-                  color: !fCollectionTag ? 'white' : '#555',
-                }}>
-                  {lang === 'fr' ? 'Tout' : 'All'}
-                </button>
-                {collectionTags.map(tag => (
-                  <button key={tag} onClick={() => setFCollectionTag(fCollectionTag === tag ? '' : tag)} style={{
+          {collectionTags.length > 0 && (() => {
+            const TAB_COLORS = ['#003DA6','#e53935','#2e7d32','#f57c00','#7b1fa2','#00838f','#c62828','#37474f','#6d4c41','#ad1457']
+            const orderedTags = [...collectionTags].sort((a, b) => {
+              const pa = tabSettings.get(a)?.position ?? 999
+              const pb = tabSettings.get(b)?.position ?? 999
+              return pa !== pb ? pa - pb : a.localeCompare(b)
+            })
+            const saveTabSetting = async (tag: string, patch: { color?: string; position?: number }) => {
+              const cur = tabSettings.get(tag) || { color: accent, position: 0 }
+              const next = { ...cur, ...patch }
+              setTabSettings(prev => new Map(prev).set(tag, next))
+              await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag, ...next }, { onConflict: 'user_id,tag' })
+            }
+            const handleDragOver = (e: React.DragEvent, overTag: string) => {
+              e.preventDefault()
+              if (!draggedTag || draggedTag === overTag) return
+              const fromPos = tabSettings.get(draggedTag)?.position ?? orderedTags.indexOf(draggedTag)
+              const toPos = tabSettings.get(overTag)?.position ?? orderedTags.indexOf(overTag)
+              // Swap positions
+              const newMap = new Map(tabSettings)
+              newMap.set(draggedTag, { ...(newMap.get(draggedTag) || { color: accent }), position: toPos })
+              newMap.set(overTag, { ...(newMap.get(overTag) || { color: accent }), position: fromPos })
+              setTabSettings(newMap)
+            }
+            const handleDragEnd = async () => {
+              if (!draggedTag) return
+              // Persist all positions
+              const allUpdates = orderedTags.map((tag, i) => ({
+                user_id: userId, tag,
+                color: tabSettings.get(tag)?.color || accent,
+                position: tabSettings.get(tag)?.position ?? i,
+              }))
+              await supabase.from('collection_tab_settings').upsert(allUpdates, { onConflict: 'user_id,tag' })
+              setDraggedTag(null)
+            }
+            return (
+              <div style={{ marginTop: 8 }} onClick={() => colorPickerTag && setColorPickerTag(null)}>
+                <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 5 }}>
+                  {lang === 'fr' ? 'Ma collection' : 'My collection'}
+                  {isOwner && <span style={{ fontSize: 8, color: '#bbb', marginLeft: 6, fontWeight: 600 }}>
+                    {lang === 'fr' ? '· glisser pour réordonner' : '· drag to reorder'}
+                  </span>}
+                </label>
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                  <button onClick={() => setFCollectionTag('')} style={{
                     padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer',
                     fontSize: 11, fontWeight: 700,
-                    background: fCollectionTag === tag ? accent : '#f0f0f0',
-                    color: fCollectionTag === tag ? 'white' : '#555',
+                    background: !fCollectionTag ? accent : '#f0f0f0',
+                    color: !fCollectionTag ? 'white' : '#555',
                   }}>
-                    {tag}
+                    {lang === 'fr' ? 'Tout' : 'All'}
                   </button>
-                ))}
+                  {orderedTags.map(tag => {
+                    const settings = tabSettings.get(tag)
+                    const tabColor = settings?.color || accent
+                    const isActive = fCollectionTag === tag
+                    const isDragging = draggedTag === tag
+                    return (
+                      <div key={tag} style={{ position: 'relative', display: 'inline-flex' }}>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setFCollectionTag(isActive ? '' : tag); setColorPickerTag(null) }}
+                          draggable={isOwner}
+                          onDragStart={() => setDraggedTag(tag)}
+                          onDragOver={(e) => handleDragOver(e, tag)}
+                          onDragEnd={handleDragEnd}
+                          style={{
+                            padding: '5px 10px', borderRadius: 20, cursor: isOwner ? 'grab' : 'pointer',
+                            fontSize: 11, fontWeight: 700, transition: '0.15s',
+                            opacity: isDragging ? 0.4 : 1,
+                            background: isActive ? tabColor : '#f0f0f0',
+                            color: isActive ? 'white' : '#555',
+                            border: `2px solid ${isActive ? tabColor : tabColor + '55'}`,
+                          }}
+                        >
+                          {!isActive && <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: tabColor, marginRight: 5, verticalAlign: 'middle', flexShrink: 0 }} />}
+                          {tag}
+                        </button>
+                        {isOwner && (
+                          <button
+                            onClick={(e) => { e.stopPropagation(); setColorPickerTag(colorPickerTag === tag ? null : tag) }}
+                            title="Couleur"
+                            style={{ position: 'absolute', top: -6, right: -6, width: 16, height: 16, borderRadius: '50%', background: tabColor, border: '2px solid white', cursor: 'pointer', padding: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.3)', zIndex: 1 }}
+                          />
+                        )}
+                        {colorPickerTag === tag && (
+                          <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', top: '110%', left: 0, background: 'white', borderRadius: 10, padding: 8, boxShadow: '0 4px 20px rgba(0,0,0,0.15)', zIndex: 100, display: 'flex', gap: 5, flexWrap: 'wrap', width: 130 }}>
+                            {TAB_COLORS.map(c => (
+                              <button key={c} onClick={() => { saveTabSetting(tag, { color: c }); setColorPickerTag(null) }}
+                                style={{ width: 22, height: 22, borderRadius: '50%', background: c, border: tabColor === c ? '2px solid #111' : '2px solid transparent', cursor: 'pointer', padding: 0 }} />
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
-            </div>
-          )}
+            )
+          })()}
         </div>
 
         {!loaded && (
