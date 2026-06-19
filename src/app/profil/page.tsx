@@ -12,6 +12,7 @@ export default function Profil() {
   const [userId, setUserId] = useState<string | null>(null)
   const [form, setForm] = useState({ display_name: '', bio: '', lien_csv: '', couleur_bordure: '#003DA6', lien_logo: '', instagram: '', twitter: '', discord: '' })
   const [favoriteTeams, setFavoriteTeams] = useState<string[]>([])
+  const [wrapOptOut, setWrapOptOut] = useState(false)
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
   const [csvLinked, setCsvLinked] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -32,6 +33,7 @@ export default function Profil() {
       if (p) {
         setForm({ display_name: p.display_name || '', bio: p.bio || '', lien_csv: p.lien_csv || '', couleur_bordure: p.couleur_bordure || '#003DA6', lien_logo: p.lien_logo || '', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '' })
         setFavoriteTeams(Array.isArray(p.favorite_teams) ? p.favorite_teams : [])
+        setWrapOptOut(!!p.wrap_opt_out)
         setCsvLinked(!!p.lien_csv)
         setAvatarUrl(p.avatar_url || null)
       }
@@ -74,6 +76,7 @@ export default function Profil() {
       discord: form.discord,
       bio: form.bio,
       favorite_teams: favoriteTeams,
+      wrap_opt_out: wrapOptOut,
       slug,
     }).eq('id', userId)
     if (!error) {
@@ -176,6 +179,14 @@ export default function Profil() {
               <input type="color" value={form.couleur_bordure} onChange={e => setForm({ ...form, couleur_bordure: e.target.value })} style={{ width: 50, height: 40, padding: 2, cursor: 'pointer' }} />
               <span style={{ fontSize: 13, color: '#666' }}>{form.couleur_bordure}</span>
             </div>
+          </div>
+          <div>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
+              <input type="checkbox" checked={!wrapOptOut} onChange={e => setWrapOptOut(!e.target.checked)} style={{ width: 16, height: 16 }} />
+              <span style={{ fontSize: 13, color: '#555' }}>
+                Recevoir le <strong>Wrap mensuel</strong> par email (résumé de ta collection chaque 1er du mois)
+              </span>
+            </label>
           </div>
           <button type="submit" className="btn-main btn-primary" style={{ background: saved ? '#2ecc71' : undefined, borderColor: saved ? '#2ecc71' : undefined }}>
             {saved ? t('profile_saved') : t('profile_save')}
