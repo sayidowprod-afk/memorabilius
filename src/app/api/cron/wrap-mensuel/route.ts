@@ -178,11 +178,16 @@ export async function GET(req: NextRequest) {
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://memorabilius.vercel.app'
 
+  // ?test=true : envoie uniquement à l'email spécifié en ?email=
+  const testEmail = req.nextUrl.searchParams.get('email')
+  const testMode = req.nextUrl.searchParams.get('test') === 'true'
+
   let sent = 0
   const errors: string[] = []
 
   for (const authUser of authUsers.users) {
     if (!authUser.email) continue
+    if (testMode && authUser.email !== testEmail) continue
 
     const profile = profiles.find(p => p.id === authUser.id)
     if (!profile) continue
