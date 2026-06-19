@@ -696,7 +696,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               onDragEnd={handleDragEnd}
               onTouchStart={() => d.isManuelle && handleTouchStart(i)}
               style={{
-              border: `2px solid ${privateCards.has(d.f) && isOwner ? '#e74c3c' : accent}`,
+              border: `2px solid ${privateCards.has(d.f) && isOwner ? '#e74c3c' : (d.collection_tag && tabSettings.get(d.collection_tag)?.color) || accent}`,
               borderRadius: 8, padding: 8,
               background: 'white', cursor: editMode && d.isManuelle ? 'grab' : editMode ? 'default' : 'pointer',
               boxSizing: 'border-box',
