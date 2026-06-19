@@ -195,6 +195,7 @@ export default function CardPublicPage({ userId, cardSlug, src }: Props) {
             auto={card.auto}
             patch={card.patch}
             accent={accent}
+            img={card.f}
           />
 
           {/* Autres collectionneurs */}

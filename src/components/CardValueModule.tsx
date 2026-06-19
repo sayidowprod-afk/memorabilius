@@ -12,9 +12,10 @@ interface Props {
   auto?: boolean
   patch?: boolean
   accent: string
+  img?: string
 }
 
-export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, accent }: Props) {
+export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, accent, img }: Props) {
   const [data, setData] = useState<CardValueResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [hovered, setHovered] = useState<number | null>(null)
@@ -37,6 +38,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 15000)
 
+    if (img) params.set('img', img)
     fetch(`/api/ebay-sold?${params}`, { signal: controller.signal })
       .then(r => r.json())
       .then((json) => {

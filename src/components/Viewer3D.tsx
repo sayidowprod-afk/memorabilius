@@ -299,6 +299,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
             auto={popup.auto}
             patch={popup.patch}
             accent={accent}
+            img={popup.f}
           />
 
           {popup.n && (
