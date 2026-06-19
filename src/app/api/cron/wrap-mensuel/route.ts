@@ -229,7 +229,7 @@ export async function GET(req: NextRequest) {
 
     try {
       await resend.emails.send({
-        from: 'Memorabilius <wrap@memorabilius.app>',
+        from: 'Memorabilius <contact@memorabilius.fr>',
         to: authUser.email,
         subject: `Ton Wrap ${monthLabel} 🏀 — Memorabilius`,
         html,
