@@ -390,7 +390,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   const spec = getSpeciality(stats)
                   return (<>
                     {teams.map(id => <TeamBadge key={id} teamId={id} size={26} />)}
-                    {teams.length === 0 && spec && <span style={{ fontSize: 11, fontWeight: 800, padding: '3px 8px', borderRadius: 6, background: spec.color + '18', color: spec.color, border: `1px solid ${spec.color}33` }}>{spec.label}</span>}
+                    {spec && <span style={{ fontSize: 11, fontWeight: 800, padding: '3px 8px', borderRadius: 6, background: spec.color + '18', color: spec.color, border: `1px solid ${spec.color}33` }}>{spec.label}</span>}
                   </>)
                 })()}
               </div>

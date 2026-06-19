@@ -214,7 +214,7 @@ function AnnuaireContent() {
                           return (
                             <div style={{ display: 'flex', gap: 4, marginTop: 4, flexWrap: 'wrap', alignItems: 'center' }}>
                               {teams.slice(0, 3).map(id => <TeamBadge key={id} teamId={id} size={20} />)}
-                              {teams.length === 0 && spec && (
+                              {spec && (
                                 <span style={{ fontSize: 9, fontWeight: 800, padding: '2px 6px', borderRadius: 4, background: spec.color + '18', color: spec.color, border: `1px solid ${spec.color}33` }}>
                                   {spec.label}
                                 </span>
