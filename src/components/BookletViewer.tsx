@@ -120,15 +120,15 @@ export default function BookletViewer({ frontCover, backCover, interiorLeft, int
             {open && interiorLeft && interiorRight ? (<>
               {/* Face avant ouverte : pages intérieures (uploadées en paysage — pas de rotation) */}
               <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', boxShadow: shadow, display: 'flex' }}>
-                <div style={{ width: '50%', height: '100%', overflow: 'hidden', position: 'relative' }}>
-                  <img src={interiorLeft} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt="Page gauche" />
+                <div style={{ width: '50%', height: '100%', overflow: 'hidden', position: 'relative', background: '#fff' }}>
+                  <img src={interiorLeft} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} alt="Page gauche" />
                   <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 16, background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.22))' }} />
                 </div>
                 {/* Reliure */}
                 <div style={{ width: 8, flexShrink: 0, background: 'linear-gradient(to right, #444, #aaa, #444)' }} />
-                <div style={{ width: 'calc(50% - 4px)', height: '100%', overflow: 'hidden', position: 'relative' }}>
+                <div style={{ width: 'calc(50% - 4px)', height: '100%', overflow: 'hidden', position: 'relative', background: '#fff' }}>
                   <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 16, background: 'linear-gradient(to left, transparent, rgba(0,0,0,0.12))' }} />
-                  <img src={interiorRight} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt="Page droite" />
+                  <img src={interiorRight} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} alt="Page droite" />
                 </div>
               </div>
               {/* Face arrière ouverte : couvertures portrait → rotations pour paysage */}

@@ -4,7 +4,6 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import { ThemeProvider } from '@/lib/ThemeContext'
 import { LangProvider } from '@/lib/LangContext'
-import PWAInstall from '@/components/PWAInstall'
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -72,7 +71,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main style={{ maxWidth: 1400, margin: '0 auto', padding: '20px 16px' }}>
               {children}
             </main>
-            <PWAInstall />
           </LangProvider>
         </ThemeProvider>
       </body>

@@ -1,6 +1,8 @@
 import { supabase } from '@/lib/supabase'
 import PepitesSection from '@/components/PepitesSection'
 import HomeHero from '@/components/HomeHero'
+import PodiumSection from '@/components/PodiumSection'
+import PWAInstall from '@/components/PWAInstall'
 
 export const revalidate = 300
 
@@ -83,25 +85,60 @@ async function fetchPepites(profiles: { id: string; display_name: string; lien_c
   return result
 }
 
+async function fetchPodium() {
+  const now = new Date()
+  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
+
+  const { data } = await supabase
+    .from('cartes_manuelles')
+    .select('user_id, profiles(display_name, avatar_url)')
+    .gte('created_at', startOfMonth)
+
+  if (!data || data.length === 0) return []
+
+  const counts = new Map<string, { displayName: string; avatarUrl: string | null; count: number }>()
+  for (const row of data) {
+    const uid = row.user_id
+    const profile = row.profiles as any
+    if (!profile?.display_name) continue
+    if (!counts.has(uid)) {
+      counts.set(uid, { displayName: profile.display_name, avatarUrl: profile.avatar_url || null, count: 0 })
+    }
+    counts.get(uid)!.count++
+  }
+
+  return [...counts.entries()]
+    .map(([userId, v]) => ({ userId, ...v }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10)
+}
+
 export default async function Home() {
   const [
     { count },
     { data: statsData },
+    { count: manuellesCount },
     { data: profiles },
+    podium,
   ] = await Promise.all([
     supabase.from('profiles').select('*', { count: 'exact', head: true }),
-    supabase.from('profiles').select('stats_total').not('lien_csv', 'is', null).neq('lien_csv', '').gt('stats_total', 0),
+    supabase.from('profiles').select('stats_total').gt('stats_total', 0),
+    supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }),
     supabase.from('profiles').select('id, display_name, lien_csv').order('updated_at', { ascending: false }).limit(20),
+    fetchPodium(),
   ])
 
   const total = count ?? 0
-  const totalCartes = statsData?.reduce((acc, p) => acc + (p.stats_total || 0), 0) ?? 0
+  const csvTotal = statsData?.reduce((acc, p) => acc + (p.stats_total || 0), 0) ?? 0
+  const totalCartes = csvTotal + (manuellesCount ?? 0)
   const cards = await fetchPepites(profiles || [])
 
   return (
     <div>
       <HomeHero total={total} totalCartes={totalCartes} />
       <PepitesSection cards={cards} />
+      <PodiumSection entries={podium} />
+      <PWAInstall />
     </div>
   )
 }
