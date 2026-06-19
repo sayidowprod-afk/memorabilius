@@ -555,7 +555,22 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             </select>
           </div>
           {collectionTags.length > 0 && (() => {
-            const TAB_COLORS = ['#003DA6','#e53935','#2e7d32','#f57c00','#7b1fa2','#00838f','#c62828','#37474f','#6d4c41','#ad1457']
+            const TAB_COLORS = [
+              // Rouges / Wines
+              '#CE1141','#860038','#98002E','#E03A3E','#C8102E',
+              // Bleus / Marines
+              '#1D428A','#00538C','#006BB6','#0077C0','#0C2340','#002D62','#00471B',
+              // Verts
+              '#007A33','#236192',
+              // Violets
+              '#552583','#5A2D81','#1D1160','#00788C',
+              // Oranges
+              '#E56020','#EF3B24','#F58426',
+              // Jaunes / Ors
+              '#FEC524','#FFC72C','#FDBB30','#F9A01B','#C8A96E',
+              // Gris / Neutres
+              '#5D76A9','#8A8D8F','#37474f','#000000',
+            ]
             const orderedTags = [...collectionTags].sort((a, b) => {
               const pa = tabSettings.get(a)?.position ?? 999
               const pb = tabSettings.get(b)?.position ?? 999
@@ -639,7 +654,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           />
                         )}
                         {colorPickerTag === tag && (
-                          <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', top: '110%', left: 0, background: 'white', borderRadius: 10, padding: 8, boxShadow: '0 4px 20px rgba(0,0,0,0.15)', zIndex: 100, display: 'flex', gap: 5, flexWrap: 'wrap', width: 130 }}>
+                          <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', top: '110%', left: 0, background: 'white', borderRadius: 10, padding: 8, boxShadow: '0 4px 20px rgba(0,0,0,0.15)', zIndex: 100, display: 'flex', gap: 5, flexWrap: 'wrap', width: 190 }}>
                             {TAB_COLORS.map(c => (
                               <button key={c} onClick={() => { saveTabSetting(tag, { color: c }); setColorPickerTag(null) }}
                                 style={{ width: 22, height: 22, borderRadius: '50%', background: c, border: tabColor === c ? '2px solid #111' : '2px solid transparent', cursor: 'pointer', padding: 0 }} />
