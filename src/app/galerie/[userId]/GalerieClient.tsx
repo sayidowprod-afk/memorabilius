@@ -49,6 +49,15 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [cardLikes, setCardLikes] = useState<Map<string, { count: number; liked: boolean }>>(new Map())
   const [deleteTagConfirm, setDeleteTagConfirm] = useState<string | null>(null)
   const isGradient = (c: string) => c.startsWith('linear-gradient')
+  // Retourne les styles de bordure corrects pour couleur unie ou dégradé
+  const coloredBorder = (color: string, width = 2): React.CSSProperties => {
+    if (!color) return { border: `${width}px solid ${accent}` }
+    if (isGradient(color)) return {
+      border: `${width}px solid transparent`,
+      background: `linear-gradient(#fff, #fff) padding-box, ${color} border-box`,
+    }
+    return { border: `${width}px solid ${color}` }
+  }
   const [popup, setPopup] = useState<Card | null>(null)
   const [loaded, setLoaded] = useState(false)
   const [currentUser, setCurrentUser] = useState<string | null>(null)
@@ -524,11 +533,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 8 }}>
                 {grailItems.map((card, i) => {
                   const tabColor = (card.collection_tag && tabSettings.get(card.collection_tag)?.color) || accent
+                  const resolvedColor = isGradient(tabColor) ? (tabColor.match(/#[0-9a-fA-F]{6}/)?.[0] || accent) : tabColor
                   return (
                     <div key={i} onClick={() => setPopup(card)} style={{
                       flexShrink: 0, width: 120, cursor: 'pointer', position: 'relative',
-                      border: `3px solid ${tabColor}`, borderRadius: 10, overflow: 'hidden',
-                      boxShadow: `0 4px 16px ${tabColor}44`, transition: 'transform 0.2s',
+                      ...coloredBorder(tabColor, 3),
+                      borderRadius: 10, overflow: 'hidden',
+                      boxShadow: `0 4px 16px ${resolvedColor}44`, transition: 'transform 0.2s',
                     }}
                       onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
                       onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
@@ -620,9 +631,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                                 setGrailCards(prev => [...prev, { card_key: card.f, position: pos }])
                                 if (grailCards.length + 1 >= 5) setGrailPickerOpen(false)
                                 setGrailSearch('')
-                              }} style={{ cursor: 'pointer', border: `2px solid ${tabColor}55`, borderRadius: 8, overflow: 'hidden', transition: '0.15s' }}
-                                onMouseEnter={e => (e.currentTarget.style.borderColor = tabColor)}
-                                onMouseLeave={e => (e.currentTarget.style.borderColor = tabColor + '55')}
+                              }} style={{ cursor: 'pointer', ...coloredBorder(tabColor), borderRadius: 8, overflow: 'hidden', transition: '0.15s' }}
+                                onMouseEnter={e => { if (!isGradient(tabColor)) e.currentTarget.style.borderColor = tabColor }}
+                                onMouseLeave={e => { if (!isGradient(tabColor)) e.currentTarget.style.borderColor = tabColor + '55' }}
                               >
                                 <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
                                   <img src={card.f} alt={card.n} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
@@ -946,9 +957,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               onDragEnd={handleDragEnd}
               onTouchStart={() => d.isManuelle && handleTouchStart(i)}
               style={{
-              border: `2px solid ${privateCards.has(d.f) && isOwner ? '#e74c3c' : isGradient((d.collection_tag && tabSettings.get(d.collection_tag)?.color) || '') ? 'transparent' : (d.collection_tag && tabSettings.get(d.collection_tag)?.color) || accent}`,
-              backgroundImage: !privateCards.has(d.f) && isGradient((d.collection_tag && tabSettings.get(d.collection_tag)?.color) || '') ? `${(d.collection_tag && tabSettings.get(d.collection_tag)?.color)}, linear-gradient(white, white)` : undefined,
-              backgroundOrigin: isGradient((d.collection_tag && tabSettings.get(d.collection_tag)?.color) || '') ? 'border-box, padding-box' : undefined,
+              ...((privateCards.has(d.f) && isOwner)
+                ? { border: '2px solid #e74c3c' }
+                : coloredBorder((d.collection_tag && tabSettings.get(d.collection_tag)?.color) || accent)),
               borderRadius: 8, padding: 8,
               background: 'white', cursor: editMode && d.isManuelle ? 'grab' : editMode ? 'default' : 'pointer',
               boxSizing: 'border-box',
