@@ -60,16 +60,45 @@ Shock → "Shock"
 Checkerboard → "Checkerboard"
 Rated Rookie → note rc=true
 
-PANINI MOSAIC:
+PANINI MOSAIC — INSERTS (subsets avec leur propre design/cadre distinct) :
+ATTENTION : Mosaic contient beaucoup d'INSERTS qui ont leur propre nom, à ne pas confondre avec les parallèles couleur.
+Si le design de la bordure/cadre de la carte est clairement différent du style Mosaic standard (carreaux bleus), c'est probablement un INSERT.
+
+Inserts Mosaic courants :
+  Bang! → bordure avec effet d'explosion/éclats, très colorée → variation = "Bang!" (base) ou "Bang! Silver Prizm" (holographique)
+  Jam! → joueur qui dunk, bordure dynamique → "Jam!" ou "Jam! Silver Prizm"
+  Stained Glass → effet vitrail → "Stained Glass" ou "Stained Glass Silver Prizm"
+  Will to Win → design motivationnel → "Will to Win"
+  Stare Down → gros plan visage → "Stare Down"
+  On the Rise → jeunes joueurs → "On the Rise"
+  Magnitude → bordure étoilée → "Magnitude"
+  Mosaic Memorabilia → relic → patch=true, "Mosaic Memorabilia"
+
+Parallèles Mosaic (même design de base, couleur différente) :
 Base → ""
-Silver Prizm → "Silver Mosaic"
+Silver Prizm → "Silver Mosaic" (holographique argenté)
 Pink Camo → "Pink Camo"
-Blue → "Blue Mosaic"
+Blue → "Blue Mosaic" (teinte bleue uniforme, SANS design d'insert spécial)
 Gold → "Gold Mosaic"
 Reactive Blue → "Reactive Blue"
 Reactive Yellow → "Reactive Yellow"
 Camo → "Camo"
 Genesis → "Genesis"
+
+RÈGLE CLÉ MOSAIC : Si la carte a un design de cadre/fond DISTINCT du carrelage Mosaic standard → c'est un INSERT, mets le nom de l'insert en variation.
+Si c'est juste le design standard Mosaic en couleur différente → c'est un parallèle couleur.
+Combinaison possible : insert + parallèle → "Bang! Silver Prizm"
+
+PANINI PRIZM — INSERTS courants :
+Prizm contient aussi des inserts distincts des parallèles :
+  Emergent → design futuriste → "Emergent" ou "Emergent Silver Prizm"
+  Fearless → "Fearless"
+  Get Hyped! → "Get Hyped!"
+  Sensational Swatches → relic → patch=true
+  Signatures → auto=true
+  Prizm Dominance → "Prizm Dominance"
+  Color Blast → fond multicolore éclaté → "Color Blast"
+  Far & Away → "Far & Away"
 
 PANINI SELECT:
 Base (Concourse/Premier/Courtside tier) → ""
@@ -127,12 +156,16 @@ ex → note dans variation
 
 ═══ RÈGLES GÉNÉRALES ═══
 
-IDENTIFICATION DE LA VARIATION :
-1. Cherche d'abord une indication TEXTUELLE sur la carte (tampons, étiquettes, numéros)
-2. Observe la BORDURE : argentée = Silver/Refractor, dorée = Gold, colorée = noter la couleur
-3. Observe la TEXTURE du fond : prismatique = Prizm/Holo, craquelée = Cracked Ice, rayures = Velocity
-4. Regarde si le numéro de tirage (/25 = souvent Gold ou Red, /10 = Gold, /1 = Black ou SuperFractor)
-5. Si base standard sans effet spécial visible → variation = ""
+IDENTIFICATION DE LA VARIATION — ORDRE DE PRIORITÉ :
+1. INSERTS D'ABORD : Est-ce que le design général de la carte (fond, cadre, composition) est DIFFÉRENT du style de base du set ? Si oui → c'est un INSERT, identifie son nom (Bang!, Jam!, Stained Glass, Color Blast, Emergent, etc.)
+2. Cherche une indication TEXTUELLE sur la carte (nom de l'insert/parallèle imprimé)
+3. Observe la BORDURE : argentée/holographique = Silver/Refractor, dorée = Gold, colorée unie = noter la couleur
+4. Observe la TEXTURE : prismatique = Prizm/Holo, craquelée = Cracked Ice, rayures = Velocity
+5. Combine INSERT + PARALLÈLE si applicable : "Bang! Silver Prizm", "Stained Glass Gold"
+6. Regarde le numéro de tirage (/25 = souvent Gold ou Red, /10 = Gold, /1 = Black ou SuperFractor)
+7. Si design standard du set sans effet spécial ni couleur différente → variation = ""
+
+ERREUR FRÉQUENTE À ÉVITER : Une carte Mosaic avec une bordure bleue mais un design d'insert distinct (ex: Bang!, Jam!) N'EST PAS "Blue Mosaic" — c'est l'INSERT en question.
 
 COLLECTION (set) :
 - Lis le texte en bas ou en haut de la carte
