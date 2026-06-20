@@ -1,295 +1,383 @@
 #!/usr/bin/env node
 /**
  * Scraper TCDB NBA → Supabase
- * Usage: node scripts/scrape-tcdb-nba.js
- * Options:
- *   --year=2024        scraper seulement cette année
- *   --limit=50         limiter à N sets (test)
- *   --start-page=3     reprendre à la page N de la liste
+ * Pour chaque set : parcourt les 30 équipes via ViewTeamsIns (base + tous les inserts)
+ *
+ * Usage:
+ *   node scripts/scrape-tcdb-nba.js --year=2024 --major-only
+ *   node scripts/scrape-tcdb-nba.js --year=2020 --year-end=2024 --major-only
+ *   node scripts/scrape-tcdb-nba.js --year=2024 --major-only --limit=2
  */
 
-const cheerio = require('cheerio')
+const puppeteerExtra = require('puppeteer-extra')
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+puppeteerExtra.use(StealthPlugin())
 const { createClient } = require('@supabase/supabase-js')
+const fs = require('fs')
 
-// ─── Config ────────────────────────────────────────────────────────────────
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
-const DELAY_MS = 1200 // 1.2s entre chaque requête
-const TCDB_BASE = 'https://www.tcdb.com'
+const TCDB = 'https://www.tcdb.com'
+const DELAY = 1200
 
 if (!SUPABASE_URL || !SUPABASE_KEY) {
   console.error('❌ NEXT_PUBLIC_SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY requis')
-  console.error('   Lancez avec: NEXT_PUBLIC_SUPABASE_URL=... SUPABASE_SERVICE_ROLE_KEY=... node scripts/scrape-tcdb-nba.js')
   process.exit(1)
 }
-
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
 
-// Parse args
-const args = Object.fromEntries(process.argv.slice(2).filter(a => a.startsWith('--')).map(a => {
-  const [k, v] = a.replace('--', '').split('=')
-  return [k, v]
-}))
-
-const FILTER_YEAR = args.year ? parseInt(args.year) : null
-const LIMIT_SETS = args.limit ? parseInt(args.limit) : null
-const START_PAGE = args['start-page'] ? parseInt(args['start-page']) : 1
-
-// ─── Helpers ───────────────────────────────────────────────────────────────
-const sleep = (ms) => new Promise(r => setTimeout(r, ms))
-
-async function fetchHtml(url) {
-  const res = await fetch(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      'Accept-Language': 'en-US,en;q=0.5',
-    }
+const args = Object.fromEntries(
+  process.argv.slice(2).filter(a => a.startsWith('--')).map(a => {
+    const [k, v] = a.replace('--', '').split('=')
+    return [k, v ?? true]
   })
-  if (!res.ok) throw new Error(`HTTP ${res.status} pour ${url}`)
-  return res.text()
+)
+const YEAR_START = args.year ? parseInt(args.year) : 2024
+const YEAR_END = args['year-end'] ? parseInt(args['year-end']) : YEAR_START
+const MAJOR_ONLY = !!args['major-only']
+const LIMIT = args.limit ? parseInt(args.limit) : null
+
+const sleep = ms => new Promise(r => setTimeout(r, ms))
+
+function findChrome() {
+  for (const p of [
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    process.env.LOCALAPPDATA + '\\Google\\Chrome\\Application\\chrome.exe',
+  ]) { try { if (fs.existsSync(p)) return p } catch {} }
 }
 
-// ─── Step 1: Liste des sets NBA ─────────────────────────────────────────────
-async function fetchSetList() {
-  console.log('📋 Récupération de la liste des sets NBA...')
-  const sets = []
-  let page = START_PAGE
-  let hasMore = true
+async function waitCloudflare(page, url) {
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
+  for (let i = 0; i < 15; i++) {
+    const title = await page.title()
+    if (!title.includes('instant') && !title.includes('moment')) break
+    await sleep(2000)
+  }
+}
 
-  while (hasMore) {
-    const url = `${TCDB_BASE}/ViewSets.cfm?sport=Basketball&page=${page}`
-    console.log(`  Page ${page}: ${url}`)
+// ─── 1. Liste des sets pour une année ─────────────────────────────────────
+async function fetchSetsForYear(page, year) {
+  await waitCloudflare(page, `${TCDB}/ViewAll.cfm/sp/Basketball/year/${year}`)
+  await sleep(800)
 
-    let html
-    try {
-      html = await fetchHtml(url)
-    } catch (e) {
-      console.error(`  ❌ Erreur page ${page}: ${e.message}`)
-      break
-    }
+  return await page.evaluate((tcdb, majorOnly) => {
+    const results = []
+    const seen = new Set()
 
-    const $ = cheerio.load(html)
-
-    // TCDB affiche les sets dans un tableau avec des liens /ViewSet.cfm/sid/XXXX
-    const rows = $('table.set-list tr, table tr').filter((i, el) => {
-      return $(el).find('a[href*="ViewSet.cfm"]').length > 0
-    })
-
-    if (rows.length === 0) {
-      // Essayer un sélecteur alternatif
-      const links = $('a[href*="ViewSet.cfm/sid/"]')
-      if (links.length === 0) {
-        console.log(`  ✓ Plus de sets trouvés à la page ${page}`)
-        hasMore = false
-        break
+    if (majorOnly) {
+      // Trouver la section "Major Releases"
+      let inMajor = false
+      for (const el of document.querySelectorAll('*')) {
+        const text = el.textContent?.trim() || ''
+        if (el.children.length > 0) continue // ignorer les éléments parents
+        if (/^major releases?$/i.test(text)) { inMajor = true; continue }
+        if (inMajor && /^(WNBA|College|European|Japanese|Minor|National Basketball League|Oddball|On-Demand|Promo)$/i.test(text)) break
       }
 
-      links.each((i, el) => {
-        const href = $(el).attr('href')
-        const tcdbId = href?.match(/sid\/(\d+)/)?.[1]
-        const name = $(el).text().trim()
-        if (!tcdbId || !name) return
+      // Fallback: chercher via anchor #Major
+      const majorAnchor = document.querySelector('a[href*="Major"], [id*="Major"]')
+      const container = majorAnchor?.closest('div, section, ul') ||
+        Array.from(document.querySelectorAll('h2, h3, h4, strong, b')).find(el =>
+          /major releases?/i.test(el.textContent)
+        )?.nextElementSibling
 
-        // Extraire l'année depuis le texte de la ligne parente
-        const rowText = $(el).closest('tr').text()
-        const yearMatch = rowText.match(/\b(19[5-9]\d|20\d{2})\b/)
-        const year = yearMatch ? parseInt(yearMatch[1]) : null
+      if (container) {
+        container.querySelectorAll('a[href*="ViewSet"], a[href*="/sid/"]').forEach(a => {
+          const href = a.getAttribute('href') || ''
+          const sidMatch = href.match(/sid\/(\d+)/)
+          if (!sidMatch || seen.has(sidMatch[1])) return
+          seen.add(sidMatch[1])
+          results.push({ tcdb_id: parseInt(sidMatch[1]), name: a.textContent.trim(), href: tcdb + href })
+        })
+      }
+    }
 
-        if (FILTER_YEAR && year !== FILTER_YEAR) return
-
-        sets.push({ tcdb_id: parseInt(tcdbId), name, year, sport: 'nba' })
+    // Si toujours vide, prendre tous les sets (ou si pas major-only)
+    if (results.length === 0) {
+      document.querySelectorAll('a[href*="ViewSet"], a[href*="/sid/"]').forEach(a => {
+        const href = a.getAttribute('href') || ''
+        const sidMatch = href.match(/sid\/(\d+)/)
+        if (!sidMatch || seen.has(sidMatch[1])) return
+        const name = a.textContent?.trim()
+        if (!name || name.length < 3) return
+        // Si major-only, filtrer par marque connue
+        if (majorOnly) {
+          const isMajor = /(Panini|Topps|Upper Deck|Fleer|Donruss|Hoops|Score|Bowman|Finest)/i.test(name)
+          if (!isMajor) return
+        }
+        seen.add(sidMatch[1])
+        results.push({ tcdb_id: parseInt(sidMatch[1]), name, href: tcdb + href })
       })
-    } else {
-      rows.each((i, el) => {
-        const link = $(el).find('a[href*="ViewSet.cfm"]').first()
-        const href = link.attr('href')
-        const tcdbId = href?.match(/sid\/(\d+)/)?.[1]
-        const name = link.text().trim()
-        if (!tcdbId || !name) return
-
-        const rowText = $(el).text()
-        const yearMatch = rowText.match(/\b(19[5-9]\d|20\d{2})\b/)
-        const year = yearMatch ? parseInt(yearMatch[1]) : null
-
-        if (FILTER_YEAR && year !== FILTER_YEAR) return
-
-        sets.push({ tcdb_id: parseInt(tcdbId), name, year, sport: 'nba' })
-      })
     }
 
-    // Vérifier s'il y a une page suivante
-    const nextLink = $('a').filter((i, el) => {
-      const text = $(el).text().trim().toLowerCase()
-      return text === 'next' || text === 'suivant' || text === '>'
-    })
-    hasMore = nextLink.length > 0
-
-    if (sets.length > 0) {
-      console.log(`  ✓ ${sets.length} sets trouvés jusqu'ici`)
-    }
-
-    if (LIMIT_SETS && sets.length >= LIMIT_SETS) {
-      console.log(`  ⚠️  Limite de ${LIMIT_SETS} sets atteinte`)
-      hasMore = false
-    }
-
-    page++
-    await sleep(DELAY_MS)
-  }
-
-  return LIMIT_SETS ? sets.slice(0, LIMIT_SETS) : sets
+    return results
+  }, TCDB, MAJOR_ONLY)
 }
 
-// ─── Step 2: Checklist d'un set ─────────────────────────────────────────────
-async function fetchSetCards(tcdbId) {
-  const url = `${TCDB_BASE}/ViewSet.cfm/sid/${tcdbId}`
-  const html = await fetchHtml(url)
-  const $ = cheerio.load(html)
+// ─── 2. Liste des équipes d'un set ─────────────────────────────────────────
+async function fetchTeamLinks(page, sid, setSlug) {
+  const url = `${TCDB}/ViewTeams.cfm/sid/${sid}/${setSlug}`
+  await waitCloudflare(page, url)
+  await sleep(600)
 
-  const cards = []
-
-  // Les cartes sont généralement dans un tableau avec des colonnes: #, Joueur, Équipe, Type
-  $('table tr').each((i, el) => {
-    const cells = $(el).find('td')
-    if (cells.length < 2) return
-
-    const firstCell = $(cells[0]).text().trim()
-    const secondCell = $(cells[1]).text().trim()
-
-    // La première colonne est généralement le numéro de carte (peut être vide, numérique, ou "SP")
-    // La deuxième est le nom du joueur
-    if (!secondCell || secondCell.length < 2) return
-
-    // Filtrer les lignes d'en-tête
-    if (secondCell.toLowerCase() === 'player' || secondCell.toLowerCase() === 'card') return
-
-    const cardNum = firstCell || ''
-    const playerName = secondCell
-    const team = cells.length > 2 ? $(cells[2]).text().trim() : ''
-    const variation = cells.length > 3 ? $(cells[3]).text().trim() : ''
-
-    // Détecter RC basé sur du texte ou symboles
-    const rowText = $(el).text()
-    const isRc = rowText.includes('RC') || rowText.includes('Rookie') || rowText.includes('(R)')
-
-    cards.push({
-      card_number: cardNum,
-      player_name: playerName,
-      team: team || null,
-      variation: variation || null,
-      is_rc: isRc,
+  return await page.evaluate((tcdb) => {
+    const links = []
+    document.querySelectorAll('a[href*="/team/"]').forEach(a => {
+      const href = a.getAttribute('href') || ''
+      const m = href.match(/\/team\/(\d+)\/(.+)/)
+      if (!m) return
+      links.push({
+        teamId: m[1],
+        teamName: decodeURIComponent(m[2].replace(/%20/g, ' ')),
+        href: href.startsWith('http') ? href : tcdb + href,
+      })
     })
+    return links
+  }, TCDB)
+}
+
+// ─── 3. Cartes d'une équipe (base + inserts) ───────────────────────────────
+async function fetchTeamCards(page, sid, teamId, teamName) {
+  const encodedTeam = encodeURIComponent(teamName)
+  const url = `${TCDB}/ViewTeamsIns.cfm/sid/${sid}/team/${teamId}/${encodedTeam}`
+  await waitCloudflare(page, url)
+  await sleep(600)
+
+  return await page.evaluate(() => {
+    const cards = []
+    let currentVariation = '' // section courante = variation (ex: "Black Wedges", "Gold Press Proof")
+    let isBaseSection = true
+
+    // Parcourir tous les éléments du contenu principal
+    const content = document.querySelector('#content, main, .container, body')
+
+    const walk = (el) => {
+      for (const child of el.children) {
+        const tag = child.tagName?.toLowerCase()
+        const text = child.textContent?.trim() || ''
+
+        // Détection des sections (headers de sous-sets = variation)
+        if (['h2', 'h3', 'h4', 'h5'].includes(tag) || child.classList.contains('set-header')) {
+          if (/^base cards?$/i.test(text)) {
+            currentVariation = ''
+            isBaseSection = true
+          } else if (text && text.length < 100 && !text.includes('record') && !text.includes('Cards')) {
+            currentVariation = text
+            isBaseSection = false
+          }
+          continue
+        }
+
+        // Lignes de table = cartes
+        if (tag === 'tr') {
+          const cells = child.querySelectorAll('td')
+          if (cells.length < 2) continue
+
+          // Trouver le numéro et le nom dans les cellules
+          let cardNum = '', playerName = '', team = '', extraFlags = ''
+
+          cells.forEach((cell, i) => {
+            const cellText = cell.textContent?.trim() || ''
+            // Cellule avec lien = probablement le joueur
+            if (cell.querySelector('a') && cellText.length > 2 && i <= 3) {
+              // Numéro avant le nom ou dans la cellule précédente
+              if (!playerName && cellText.length > 2 && !/^\d+$/.test(cellText)) {
+                // Extraire le numéro s'il est en début de cellule
+                const numMatch = cellText.match(/^(\d+[a-z]?)\s+(.+)/)
+                if (numMatch) {
+                  cardNum = numMatch[1]
+                  playerName = numMatch[2]
+                } else {
+                  playerName = cellText
+                }
+              }
+            } else if (/^\d+[a-z]?$/.test(cellText) && i <= 2) {
+              cardNum = cellText
+            } else if (cellText.includes('Hawks') || cellText.includes('Lakers') || cellText.includes('Heat') ||
+                       cellText.includes('Celtics') || cellText.includes('Bulls') || cellText.length < 40 &&
+                       /[A-Z]/.test(cellText) && i >= 2 && !team) {
+              team = cellText
+            }
+          })
+
+          // Flags: RC, RR, AU, SN
+          const rowText = child.textContent || ''
+          const isRc = /\bRC\b|\bRookie Card\b/.test(rowText)
+          const isAuto = /\bAU\b|\bAuto\b/i.test(rowText)
+
+          // Extraire SNX (numéro tirage ex: SN1, SN10)
+          const snMatch = rowText.match(/\bSN(\d+)\b/)
+          const serialNum = snMatch ? `/${snMatch[1]}` : null
+
+          if (!playerName || playerName.length < 2) continue
+          // Ignorer les lignes de navigation
+          if (/options|checklist|printable|gallery/i.test(playerName)) continue
+
+          cards.push({
+            card_number: cardNum || null,
+            player_name: playerName,
+            team: team || null,
+            variation: currentVariation || null,
+            serial_number: serialNum,
+            is_rc: isRc,
+            is_auto: isAuto,
+          })
+          continue
+        }
+
+        // Récursion
+        if (child.children?.length > 0) walk(child)
+      }
+    }
+
+    walk(content || document.body)
+    return cards
   })
-
-  // Extraire aussi le nom du set et la marque depuis la page
-  const setTitle = $('h1, .set-title, .page-title').first().text().trim()
-  const brandMatch = setTitle.match(/^(Panini|Topps|Upper Deck|Fleer|Donruss|Score|Bowman|Stadium Club|SkyBox|Hoops|NBA Hoops)/i)
-  const brand = brandMatch ? brandMatch[1] : null
-  const totalCards = cards.length
-
-  return { cards, brand, totalCards, setTitle }
 }
 
-// ─── Step 3: Insertion Supabase ──────────────────────────────────────────────
-async function upsertSet(setMeta) {
+// ─── Supabase ──────────────────────────────────────────────────────────────
+async function upsertSet(meta) {
   const { data, error } = await supabase
     .from('card_sets')
     .upsert({
-      tcdb_id: setMeta.tcdb_id,
-      name: setMeta.name,
-      year: setMeta.year,
-      brand: setMeta.brand || null,
+      tcdb_id: meta.tcdb_id,
+      name: meta.name,
+      year: meta.year,
+      brand: meta.brand,
       sport: 'nba',
-      total_cards: setMeta.totalCards,
+      total_cards: meta.totalCards,
     }, { onConflict: 'tcdb_id' })
-    .select('id')
-    .single()
-
-  if (error) throw new Error(`Upsert set ${setMeta.tcdb_id}: ${error.message}`)
+    .select('id').single()
+  if (error) throw new Error(`Upsert set: ${error.message}`)
   return data.id
 }
 
 async function insertCards(setId, cards) {
-  if (cards.length === 0) return
-
-  // Insérer par batch de 500
-  const BATCH = 500
-  for (let i = 0; i < cards.length; i += BATCH) {
-    const batch = cards.slice(i, i + BATCH).map(c => ({
+  if (!cards.length) return
+  // Dédupliquer
+  const seen = new Set()
+  const unique = cards.filter(c => {
+    const k = `${c.card_number}|${c.player_name}|${c.variation}`
+    if (seen.has(k)) return false
+    seen.add(k)
+    return true
+  })
+  for (let i = 0; i < unique.length; i += 500) {
+    const batch = unique.slice(i, i + 500).map(c => ({
       set_id: setId,
-      card_number: c.card_number || null,
+      card_number: c.card_number,
       player_name: c.player_name,
-      team: c.team || null,
-      variation: c.variation || null,
+      team: c.team,
+      variation: c.variation,
       is_rc: c.is_rc || false,
     }))
-
     const { error } = await supabase.from('card_set_entries').insert(batch)
-    if (error) throw new Error(`Insert cards set ${setId}: ${error.message}`)
+    if (error) throw new Error(`Insert cards: ${error.message}`)
   }
+  return unique.length
 }
 
 // ─── Main ──────────────────────────────────────────────────────────────────
 async function main() {
-  console.log('🏀 Scraper TCDB NBA → Supabase')
-  console.log(`   Délai: ${DELAY_MS}ms entre requêtes`)
-  if (FILTER_YEAR) console.log(`   Filtre année: ${FILTER_YEAR}`)
-  if (LIMIT_SETS) console.log(`   Limite: ${LIMIT_SETS} sets`)
-  console.log()
+  console.log('🏀 Scraper TCDB NBA (team-by-team + inserts)')
+  console.log(`   Saisons: ${YEAR_START}-${String(YEAR_START+1).slice(2)}${YEAR_END !== YEAR_START ? ' → ' + YEAR_END + '-' + String(YEAR_END+1).slice(2) : ''}`)
+  if (MAJOR_ONLY) console.log('   Mode: Major Releases uniquement')
+  if (LIMIT) console.log(`   Limite: ${LIMIT} sets`)
 
-  // 1. Récupérer la liste des sets
-  const sets = await fetchSetList()
-  console.log(`\n✅ ${sets.length} sets NBA trouvés\n`)
+  const browser = await puppeteerExtra.launch({
+    executablePath: findChrome(),
+    headless: false,
+    defaultViewport: null,
+    args: ['--no-sandbox', '--window-size=1280,900'],
+  })
+  const page = await browser.newPage()
 
-  if (sets.length === 0) {
-    console.log('❌ Aucun set trouvé. Vérifiez les sélecteurs CSS ou la connexion à TCDB.')
-    return
-  }
+  try {
+    await waitCloudflare(page, TCDB)
+    await sleep(2000)
+    console.log('✓ Cloudflare passé\n')
 
-  // 2. Pour chaque set, récupérer la checklist
-  let ok = 0
-  let errors = 0
-
-  for (let i = 0; i < sets.length; i++) {
-    const set = sets[i]
-    const progress = `[${i + 1}/${sets.length}]`
-
-    try {
-      process.stdout.write(`${progress} ${set.name} (tcdb:${set.tcdb_id})... `)
-
-      const { cards, brand, totalCards } = await fetchSetCards(set.tcdb_id)
-
-      if (cards.length === 0) {
-        console.log(`⚠️  0 cartes trouvées, skip`)
-        errors++
-        await sleep(DELAY_MS)
-        continue
-      }
-
-      // Upsert set
-      const setId = await upsertSet({ ...set, brand, totalCards })
-
-      // Supprimer les anciennes cartes si ré-import
-      await supabase.from('card_set_entries').delete().eq('set_id', setId)
-
-      // Insérer les cartes
-      await insertCards(setId, cards)
-
-      console.log(`✅ ${cards.length} cartes${brand ? ' · ' + brand : ''}`)
-      ok++
-    } catch (e) {
-      console.log(`❌ ${e.message}`)
-      errors++
+    // Collecter les sets
+    let allSets = []
+    for (let year = YEAR_START; year <= YEAR_END; year++) {
+      console.log(`📋 Saison ${year}-${String(year+1).slice(2)}...`)
+      const sets = await fetchSetsForYear(page, year)
+      console.log(`   ${sets.length} sets trouvés`)
+      sets.forEach(s => allSets.push({ ...s, year }))
+      await sleep(DELAY)
     }
 
-    await sleep(DELAY_MS)
-  }
+    if (LIMIT) allSets = allSets.slice(0, LIMIT)
+    console.log(`\n✅ ${allSets.length} sets à scraper:`)
+    allSets.forEach((s, i) => console.log(`  ${i+1}. ${s.name}`))
+    console.log()
 
-  console.log(`\n🏁 Terminé: ${ok} sets importés, ${errors} erreurs`)
+    let setsOk = 0, setsErr = 0
+
+    for (let si = 0; si < allSets.length; si++) {
+      const set = allSets[si]
+      // Extraire le slug du nom pour l'URL
+      const slug = set.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '')
+      console.log(`\n[${si+1}/${allSets.length}] ${set.name} (sid:${set.tcdb_id})`)
+
+      try {
+        // Récupérer la liste des équipes
+        const teamLinks = await fetchTeamLinks(page, set.tcdb_id, slug)
+        console.log(`  📂 ${teamLinks.length} équipes trouvées`)
+
+        if (teamLinks.length === 0) {
+          console.log('  ⚠️  Aucune équipe, on essaie quand même le scrape direct...')
+        }
+
+        // Pour chaque équipe, scraper base + inserts
+        const allCards = []
+        const teams = teamLinks.length > 0 ? teamLinks : []
+
+        for (let ti = 0; ti < teams.length; ti++) {
+          const { teamId, teamName } = teams[ti]
+          process.stdout.write(`  [${ti+1}/${teams.length}] ${teamName}... `)
+
+          try {
+            const cards = await fetchTeamCards(page, set.tcdb_id, teamId, teamName)
+            allCards.push(...cards)
+            console.log(`${cards.length} cartes`)
+          } catch (e) {
+            console.log(`❌ ${e.message}`)
+          }
+
+          await sleep(DELAY)
+        }
+
+        if (allCards.length === 0) {
+          console.log('  ⚠️  0 cartes au total, set ignoré')
+          setsErr++
+          continue
+        }
+
+        // Détecter la marque
+        const brandMatch = set.name.match(/(Panini|Topps|Upper Deck|Fleer|Donruss|Hoops|SkyBox|Score|Bowman)/i)
+        const brand = brandMatch ? brandMatch[1] : null
+
+        // Upsert set
+        const setId = await upsertSet({ ...set, brand, totalCards: allCards.length })
+
+        // Supprimer anciennes entrées et réinsérer
+        await supabase.from('card_set_entries').delete().eq('set_id', setId)
+        const inserted = await insertCards(setId, allCards)
+
+        console.log(`  ✅ ${inserted} cartes insérées (${allCards.length} brutes)`)
+        setsOk++
+      } catch (e) {
+        console.log(`  ❌ ${e.message}`)
+        setsErr++
+      }
+    }
+
+    console.log(`\n🏁 Terminé: ${setsOk} sets OK, ${setsErr} erreurs`)
+  } finally {
+    await browser.close()
+  }
 }
 
-main().catch(e => {
-  console.error('Fatal:', e)
-  process.exit(1)
-})
+main().catch(e => { console.error('Fatal:', e.message); process.exit(1) })
