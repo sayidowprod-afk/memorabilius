@@ -537,13 +537,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   return (
                     <div key={i} onClick={() => setPopup(card)} style={{
                       flexShrink: 0, width: 120, cursor: 'pointer', position: 'relative',
-                      ...coloredBorder(tabColor, 3),
-                      borderRadius: 10, overflow: 'hidden',
+                      background: tabColor, padding: 3, borderRadius: 10,
                       boxShadow: `0 4px 16px ${resolvedColor}44`, transition: 'transform 0.2s',
                     }}
                       onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
                       onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
                     >
+                      <div style={{ borderRadius: 8, overflow: 'hidden', background: 'white', position: 'relative' }}>
                       {isOwner && (
                         <button onClick={async e => {
                           e.stopPropagation()
@@ -559,9 +559,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
                         <img src={card.f} alt={card.n} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                       </div>
-                      <div style={{ padding: '6px 8px', background: 'white' }}>
+                      <div style={{ padding: '6px 8px' }}>
                         <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</p>
-                        <p style={{ fontSize: 9, color: tabColor, fontWeight: 700, margin: '1px 0 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.v || card.s}</p>
+                        <p style={{ fontSize: 9, color: resolvedColor, fontWeight: 700, margin: '1px 0 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.v || card.s}</p>
+                      </div>
                       </div>
                     </div>
                   )
