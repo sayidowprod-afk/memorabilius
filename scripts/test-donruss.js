@@ -275,7 +275,7 @@ async function main() {
       .from('card_sets')
       .upsert({ tcdb_id: SID, name: SET_NAME, year: 2024, brand: 'Panini', sport: 'nba', total_cards: unique.length }, { onConflict: 'tcdb_id' })
       .select('id').single()
-    if (setErr) throw new Error(setErr.message)
+    if (setErr) throw new Error(`Supabase upsert set: ${setErr.message} (URL: ${SUPABASE_URL?.substring(0,40)})`)
 
     await supabase.from('card_set_entries').delete().eq('set_id', setData.id)
 
