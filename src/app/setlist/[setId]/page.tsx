@@ -40,6 +40,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
   const [userId, setUserId] = useState<string | null>(null)
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState<'all' | 'owned' | 'missing'>('all')
+  const [filterTeam, setFilterTeam] = useState('')
   const [saving, setSaving] = useState<number | null>(null)
   const [openVariations, setOpenVariations] = useState<Set<string>>(new Set(['Base']))
   const [totalOwned, setTotalOwned] = useState(0)
@@ -228,6 +229,11 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
 
   const pct = set?.total_cards ? Math.round((totalOwned / set.total_cards) * 100) : 0
 
+  // Équipes disponibles depuis toutes les variations chargées
+  const allTeams = Array.from(new Set(
+    variations.flatMap(v => v.entries.map(e => e.team)).filter(Boolean) as string[]
+  )).sort()
+
   if (loading) return <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>Chargement...</div>
   if (!set) return <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>Set introuvable.</div>
 
@@ -266,6 +272,11 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 20 }}>
         <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher un joueur..."
           style={{ flex: '1 1 200px', minWidth: 160, padding: '10px 14px', border: '1.5px solid #e0e0e0', borderRadius: 8, fontSize: 14, outline: 'none' }} />
+        <select value={filterTeam} onChange={e => setFilterTeam(e.target.value)}
+          style={{ padding: '10px 14px', border: `1.5px solid ${filterTeam ? '#003DA6' : '#e0e0e0'}`, borderRadius: 8, fontSize: 13, background: 'white', cursor: 'pointer', fontWeight: filterTeam ? 700 : 400, color: filterTeam ? '#003DA6' : '#666', minWidth: 160 }}>
+          <option value="">Toutes les équipes</option>
+          {allTeams.map(t => <option key={t} value={t}>{t}</option>)}
+        </select>
         {userId && (
           <div style={{ display: 'flex', gap: 4 }}>
             {(['all', 'owned', 'missing'] as const).map(f => (
@@ -287,13 +298,14 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
           const displayEntries = variation.loaded
             ? variation.entries.filter(e => {
                 if (search && !e.player_name.toLowerCase().includes(search.toLowerCase())) return false
+                if (filterTeam && e.team !== filterTeam) return false
                 if (filter === 'owned' && !e.owned) return false
                 if (filter === 'missing' && e.owned) return false
                 return true
               })
             : []
 
-          if ((filter !== 'all' || search) && variation.loaded && displayEntries.length === 0) return null
+          if ((filter !== 'all' || search || filterTeam) && variation.loaded && displayEntries.length === 0) return null
 
           return (
             <div key={variation.name} style={{ background: 'white', borderRadius: 12, overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', border: '1px solid #f0f0f0' }}>
