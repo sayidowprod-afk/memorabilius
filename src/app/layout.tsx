@@ -73,6 +73,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </main>
           </LangProvider>
         </ThemeProvider>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   )
