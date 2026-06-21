@@ -48,7 +48,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     setSet(setData)
 
     const { data: entriesData } = await supabase
-      .from('card_set_entries').select('*').eq('set_id', setId)
+      .from('card_set_entries').select('*').eq('set_id', setId).limit(50000)
 
     if (!entriesData) { setLoading(false); return }
 
