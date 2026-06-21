@@ -56,20 +56,14 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     if (!setData) { setLoading(false); return }
     setSet(setData)
 
-    // Charger la liste des variations + counts via une requête légère
-    const { data: varData } = await supabase
-      .from('card_set_entries')
-      .select('variation')
-      .eq('set_id', setId)
-      .limit(100000)
-
+    // Charger les counts par variation via RPC (évite la limite max_rows)
+    const { data: varData } = await supabase.rpc('get_set_variations', { p_set_id: parseInt(setId) })
     if (!varData) { setLoading(false); return }
 
-    // Compter par variation
     const counts = new Map<string, number>()
     for (const row of varData) {
-      const v = row.variation || 'Base'
-      counts.set(v, (counts.get(v) || 0) + 1)
+      const v = row.variation ?? 'Base'
+      counts.set(v, Number(row.cnt))
     }
 
     // Récupérer les completions de l'user pour ce set (juste entry_id)
