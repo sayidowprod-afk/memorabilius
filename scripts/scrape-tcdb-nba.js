@@ -15,7 +15,7 @@ const fs = require('fs')
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
 const TCDB = 'https://www.tcdb.com'
-const DELAY = 1200
+const DELAY = 2500
 
 if (!SUPABASE_URL || !SUPABASE_KEY) {
   console.error('❌ NEXT_PUBLIC_SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY requis')
@@ -69,7 +69,7 @@ async function waitCF(page, url) {
 
 async function fetchSets(page, year) {
   await waitCF(page, `${TCDB}/ViewAll.cfm/sp/Basketball/year/${year}`)
-  await sleep(800)
+  await sleep(1500)
 
   return await page.evaluate((majorOnly) => {
     const results = []
@@ -125,7 +125,7 @@ async function fetchSets(page, year) {
 async function fetchTeams(page, sid) {
   const slug = `${YEAR}-${String(YEAR+1).slice(2)}`
   await waitCF(page, `${TCDB}/ViewTeams.cfm/sid/${sid}/${slug}`)
-  await sleep(600)
+  await sleep(1200)
 
   const teams = await page.evaluate(() => {
     const results = []
@@ -146,7 +146,7 @@ async function fetchTeams(page, sid) {
 async function fetchTeamCards(page, sid, teamId, teamName) {
   const encoded = encodeURIComponent(teamName)
   await waitCF(page, `${TCDB}/ViewTeamsIns.cfm/sid/${sid}/team/${teamId}/${encoded}`)
-  await sleep(600)
+  await sleep(1200)
 
   return await page.evaluate(() => {
     const cards = []
