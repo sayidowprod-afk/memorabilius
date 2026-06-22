@@ -647,7 +647,7 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   try {
     const { b64 } = await imageToBase64(img, 1024)
     const ctrl = new AbortController()
-    const t = setTimeout(() => ctrl.abort(), 8000)
+    const t = setTimeout(() => ctrl.abort(), 5000)
     let res: Response
     try {
       res = await fetch('/api/detect-corners', {
@@ -682,7 +682,7 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   try {
     const cv = await Promise.race([
       loadOpenCV(),
-      new Promise<null>(r => setTimeout(() => r(null), 8000)),
+      new Promise<null>(r => setTimeout(() => r(null), 4000)),
     ])
     if (cv) {
       const result = await detectCardOpenCV(img, cv)
@@ -851,7 +851,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
         ])
       : await Promise.race([
           detectCard(img),
-          new Promise<null>(r => setTimeout(() => r(null), 15000)),
+          new Promise<null>(r => setTimeout(() => r(null), 10000)),
         ])
     const display = naturalCorners
       ? naturalCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
@@ -1080,12 +1080,20 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
 
   return (
     <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.96)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '12px 16px 20px' }}>
-      <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, marginBottom: 8, textAlign: 'center', minHeight: 18 }}>
-        {!applying && status === 'detecting' && 'Analyse en cours…'}
-        {!applying && status === 'found'     && 'Carte détectée — ajustez les coins si besoin'}
-        {!applying && status === 'notfound'  && 'Non détectée — placez les coins sur la carte'}
-        {applying  && 'Recadrage en cours…'}
-      </p>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, margin: 0, textAlign: 'center' }}>
+          {!applying && status === 'detecting' && 'Analyse en cours…'}
+          {!applying && status === 'found'     && 'Carte détectée — ajustez les coins si besoin'}
+          {!applying && status === 'notfound'  && 'Non détectée — placez les coins sur la carte'}
+          {applying  && 'Recadrage en cours…'}
+        </p>
+        {status === 'detecting' && !applying && (
+          <button onClick={() => setStatus('notfound')}
+            style={{ padding: '4px 12px', background: 'rgba(255,255,255,0.15)', color: 'white', border: 'none', borderRadius: 20, fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+            Passer ✕
+          </button>
+        )}
+      </div>
 
       <canvas
         ref={canvasRef}

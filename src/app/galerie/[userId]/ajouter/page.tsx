@@ -655,7 +655,19 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               </button>
             </div>
 
-            {/* Slider rotation */}
+            {/* Boutons rotation 90° */}
+            <div style={{ display: 'flex', gap: 8, marginBottom: 8, justifyContent: 'center' }}>
+              <button type="button" onClick={() => setRotation(r => ((r - 90) % 360))}
+                style={{ padding: '7px 18px', background: 'rgba(255,255,255,0.15)', color: 'white', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>
+                ↺ 90°
+              </button>
+              <button type="button" onClick={() => setRotation(r => ((r + 90) % 360))}
+                style={{ padding: '7px 18px', background: 'rgba(255,255,255,0.15)', color: 'white', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>
+                ↻ 90°
+              </button>
+            </div>
+
+            {/* Slider rotation fine */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
               <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', whiteSpace: 'nowrap', width: 52 }}>🔄 {rotation}°</span>
               <input
