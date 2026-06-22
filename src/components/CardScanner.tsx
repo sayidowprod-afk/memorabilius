@@ -641,71 +641,56 @@ function detectCardFromFrame(img: HTMLImageElement, frame: FrameRect): Pt[] | nu
 }
 
 async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
+  const W = img.naturalWidth, H = img.naturalHeight
+
+  // ── Étape 1 : Gemini Pro sur l'image entière (premier, le plus précis) ──
   try {
-    // Étape 1 : Roboflow bbox → localise la carte
-    const { b64, scale } = await imageToBase64(img, 800)
-    const ctrl1 = new AbortController()
-    const t1 = setTimeout(() => ctrl1.abort(), 8000)
-    let r1: Response
+    const { b64 } = await imageToBase64(img, 1024)
+    const ctrl = new AbortController()
+    const t = setTimeout(() => ctrl.abort(), 15000)
+    let res: Response
     try {
-      r1 = await fetch('/api/detect-card', {
+      res = await fetch('/api/detect-corners', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ imageBase64: b64 }),
-        signal: ctrl1.signal,
+        body: JSON.stringify({ imageBase64: b64, mimeType: 'image/jpeg' }),
+        signal: ctrl.signal,
       })
-    } finally { clearTimeout(t1) }
-    if (!r1!.ok) return null
-    const bbox = await r1!.json()
-    const { x, y, width, height } = bbox
-    if (!width || !height) return null
+    } finally { clearTimeout(t) }
 
-    // Étape 2 : crop de la carte (avec 8% de padding) → canvas
-    const PAD = 0.08
-    const cx = x / scale, cy = y / scale, cw = width / scale, ch = height / scale
-    const px = cw * PAD, py = ch * PAD
-    const cropX = Math.max(0, cx - px)
-    const cropY = Math.max(0, cy - py)
-    const cropW = Math.min(img.naturalWidth  - cropX, cw + px * 2)
-    const cropH = Math.min(img.naturalHeight - cropY, ch + py * 2)
+    if (res!.ok) {
+      const { topLeft: tl, topRight: tr, bottomRight: br, bottomLeft: bl } = await res!.json()
+      if (tl && tr && br && bl) {
+        const corners: Pt[] = [
+          { x: tl.x * W, y: tl.y * H },
+          { x: tr.x * W, y: tr.y * H },
+          { x: br.x * W, y: br.y * H },
+          { x: bl.x * W, y: bl.y * H },
+        ]
+        // Sanity check : quadrilatère convexe et ratio raisonnable
+        const w = (Math.hypot(corners[1].x-corners[0].x, corners[1].y-corners[0].y) + Math.hypot(corners[2].x-corners[3].x, corners[2].y-corners[3].y)) / 2
+        const h = (Math.hypot(corners[3].x-corners[0].x, corners[3].y-corners[0].y) + Math.hypot(corners[2].x-corners[1].x, corners[2].y-corners[1].y)) / 2
+        const ratio = w / (h || 1)
+        const CARD_RATIO = 2.5 / 3.5
+        const rScore = Math.min(Math.abs(ratio - CARD_RATIO), Math.abs(ratio - 1 / CARD_RATIO))
+        if (rScore < 0.45) return corners
+      }
+    }
+  } catch { /* fallback OpenCV */ }
 
-    const cropCanvas = document.createElement('canvas')
-    const MAX_CROP = 600
-    const cropScale = Math.min(MAX_CROP / cropW, MAX_CROP / cropH, 1)
-    cropCanvas.width  = Math.round(cropW * cropScale)
-    cropCanvas.height = Math.round(cropH * cropScale)
-    cropCanvas.getContext('2d')!.drawImage(
-      img, cropX, cropY, cropW, cropH,
-      0, 0, cropCanvas.width, cropCanvas.height
-    )
-    const cropB64 = cropCanvas.toDataURL('image/jpeg', 0.90).split(',')[1]
+  // ── Étape 2 : OpenCV fallback ────────────────────────────────────────────
+  try {
+    const cv = await Promise.race([
+      loadOpenCV(),
+      new Promise<null>(r => setTimeout(() => r(null), 8000)),
+    ])
+    if (cv) {
+      const result = await detectCardOpenCV(img, cv)
+      if (result) return result
+    }
+  } catch { /* rien */ }
 
-    // Étape 3 : Gemini reçoit le crop → retourne les coins en fractions
-    const ctrl2 = new AbortController()
-    const t2 = setTimeout(() => ctrl2.abort(), 12000)
-    let r2: Response
-    try {
-      r2 = await fetch('/api/detect-corners', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ imageBase64: cropB64, mimeType: 'image/jpeg' }),
-        signal: ctrl2.signal,
-      })
-    } finally { clearTimeout(t2) }
-    if (!r2!.ok) return null
-    const { topLeft: tl, topRight: tr, bottomRight: br, bottomLeft: bl } = await r2!.json()
-    if (!tl || !tr || !br || !bl) return null
-
-    // Convertit fractions du crop → coordonnées naturelles de l'image originale
-    return [
-      { x: cropX + tl.x * cropW, y: cropY + tl.y * cropH },
-      { x: cropX + tr.x * cropW, y: cropY + tr.y * cropH },
-      { x: cropX + br.x * cropW, y: cropY + br.y * cropH },
-      { x: cropX + bl.x * cropW, y: cropY + bl.y * cropH },
-    ]
-  } catch {
-    return null
-  }
+  return null
 }
 
 // ── Perspective warp pure JS (homographie) ────────────────────────────────

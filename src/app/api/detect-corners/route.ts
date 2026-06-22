@@ -1,24 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent'
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent'
 
-const PROMPT = `You are analyzing an image that contains a physical sports/trading card placed on a surface.
+const PROMPT = `You are a precise vision system. Locate the 4 outer corners of a physical trading card in this image.
 
-Your task: find the exact pixel positions of the 4 corners of the card's outer border, then express them as fractions (0.0 to 1.0) of the image width/height.
+The card is a thin rectangular object (standard size ~2.5×3.5 inches, aspect ratio ~0.714 portrait or ~1.4 landscape).
+It may be slightly tilted. The card has straight edges and a border. Background is a table, hand, or surface.
 
-The card is a rectangular object with:
-- A distinct colored border (often blue, white, gold, silver, or black)
-- Sharp straight edges
-- It may be slightly tilted or angled — the corners will NOT necessarily be at the image corners
-- The background is different from the card (dark surface, table, hand, etc.)
+Instructions:
+1. Identify the outermost boundary of the card (not inner elements like the photo or text).
+2. Find the exact 4 corners where the card edges meet at ~90° angles.
+3. Express each corner as a fraction of the image dimensions (x = 0.0 left → 1.0 right, y = 0.0 top → 1.0 bottom).
+4. The 4 points must form a convex quadrilateral. Double-check they are the actual card corners, not image corners.
 
-Find where the card's 4 outer corners are. Each corner is where two edges of the card meet at a sharp angle (~90°).
-
-Return ONLY this JSON (no markdown, no explanation):
-{"topLeft":{"x":0.12,"y":0.08},"topRight":{"x":0.88,"y":0.06},"bottomRight":{"x":0.90,"y":0.94},"bottomLeft":{"x":0.10,"y":0.96}}
-
-Coordinates: x = fraction of image width (0=left, 1=right), y = fraction of image height (0=top, 1=bottom).
-The 4 corners must form a convex quadrilateral matching the card shape.`
+Return ONLY valid JSON, no markdown, no explanation:
+{"topLeft":{"x":0.12,"y":0.08},"topRight":{"x":0.88,"y":0.06},"bottomRight":{"x":0.90,"y":0.94},"bottomLeft":{"x":0.10,"y":0.96}}`
 
 export async function POST(req: NextRequest) {
   const apiKey = process.env.GEMINI_API_KEY
@@ -38,8 +34,8 @@ export async function POST(req: NextRequest) {
         ]}],
         generationConfig: {
           temperature: 0,
-          maxOutputTokens: 256,
-          thinkingConfig: { thinkingBudget: 0 }
+          maxOutputTokens: 512,
+          thinkingConfig: { thinkingBudget: 1024 }
         }
       })
     })
