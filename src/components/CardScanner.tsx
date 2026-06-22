@@ -647,7 +647,7 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   try {
     const { b64 } = await imageToBase64(img, 1024)
     const ctrl = new AbortController()
-    const t = setTimeout(() => ctrl.abort(), 15000)
+    const t = setTimeout(() => ctrl.abort(), 8000)
     let res: Response
     try {
       res = await fetch('/api/detect-corners', {

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent'
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent'
 
 const PROMPT = `You are a precise vision system. Locate the 4 outer corners of a physical trading card in this image.
 
@@ -34,8 +34,8 @@ export async function POST(req: NextRequest) {
         ]}],
         generationConfig: {
           temperature: 0,
-          maxOutputTokens: 512,
-          thinkingConfig: { thinkingBudget: 1024 }
+          maxOutputTokens: 256,
+          thinkingConfig: { thinkingBudget: 0 }
         }
       })
     })
