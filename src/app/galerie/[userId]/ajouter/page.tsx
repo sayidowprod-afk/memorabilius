@@ -247,61 +247,41 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const cw = container.clientWidth
     const ch = container.clientHeight
 
-    // Frame dimensions (same as overlay)
     const frameW = Math.min(cw * 0.82, ch * cropRatio * 0.9)
     const frameH = frameW / cropRatio
 
     const img = imgRef.current
-
-    // Build rotated + scaled canvas
     const angleRad = (rotation * Math.PI) / 180
-    const absCos = Math.abs(Math.cos(angleRad))
-    const absSin = Math.abs(Math.sin(angleRad))
-    const rotW = img.naturalWidth * absCos + img.naturalHeight * absSin
-    const rotH = img.naturalWidth * absSin + img.naturalHeight * absCos
 
-    const srcCanvas = document.createElement('canvas')
-    srcCanvas.width = rotW
-    srcCanvas.height = rotH
-    const srcCtx = srcCanvas.getContext('2d')!
-    srcCtx.translate(rotW / 2, rotH / 2)
-    srcCtx.rotate(angleRad)
-    srcCtx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2)
+    // Reproduire l'état visuel du cadre sur un canvas intermédiaire de la taille du container
+    // puis extraire le rectangle du cadre à pleine résolution
+    const frameX = (cw - frameW) / 2
+    const frameY = (ch - frameH) / 2
 
-    // The displayed image size after CSS transform (scale)
-    const displayedImgW = img.width * imgTransform.scale
-    const displayedImgH = img.height * imgTransform.scale
+    // pixelScale : ratio pixels naturels / pixels CSS (pour sortir à haute résolution)
+    const cssDisplayedW = img.naturalWidth * imgTransform.scale
+    const pixelScale = img.naturalWidth / cssDisplayedW  // = 1 / imgTransform.scale
 
-    // Center of container
-    const cx = cw / 2
-    const cy = ch / 2
+    const outCanvas = document.createElement('canvas')
+    outCanvas.width = Math.round(frameW * pixelScale)
+    outCanvas.height = Math.round(frameH * pixelScale)
+    const outCtx = outCanvas.getContext('2d')!
 
-    // Image center in container space
-    const imgCx = cx + imgTransform.x
-    const imgCy = cy + imgTransform.y
-
-    // Frame top-left in container space
-    const frameX = cx - frameW / 2
-    const frameY = cy - frameH / 2
-
-    // Frame top-left relative to image top-left
-    const relX = frameX - (imgCx - displayedImgW / 2)
-    const relY = frameY - (imgCy - displayedImgH / 2)
-
-    // Scale factor from displayed image coords to natural canvas coords
-    const scaleToCanvas = rotW / displayedImgW
-
-    const cropX = relX * scaleToCanvas
-    const cropY = relY * scaleToCanvas
-    const cropW = frameW * scaleToCanvas
-    const cropH = frameH * scaleToCanvas
+    // Même transform que le CSS (translate + rotate + scale), décalé pour ne montrer que le cadre
+    outCtx.translate(
+      (cw / 2 + imgTransform.x - frameX) * pixelScale,
+      (ch / 2 + imgTransform.y - frameY) * pixelScale
+    )
+    outCtx.rotate(angleRad)
+    outCtx.scale(imgTransform.scale * pixelScale, imgTransform.scale * pixelScale)
+    outCtx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2)
 
     const finalCanvas = document.createElement('canvas')
     const isLandscape = side === 'il' || side === 'ir'
     finalCanvas.width = isLandscape ? 840 : 600
     finalCanvas.height = isLandscape ? 600 : 840
     const finalCtx = finalCanvas.getContext('2d')!
-    finalCtx.drawImage(srcCanvas, cropX, cropY, cropW, cropH, 0, 0, finalCanvas.width, finalCanvas.height)
+    finalCtx.drawImage(outCanvas, 0, 0, finalCanvas.width, finalCanvas.height)
 
     setCropModal(null)
 
