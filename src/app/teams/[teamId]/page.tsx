@@ -238,15 +238,17 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
   const createPost = async () => {
     if ((!newPost.trim() && !postCards.length) || !currentUser) return
-    const { data } = await supabase.from('team_posts').insert({
+    const { data, error } = await supabase.from('team_posts').insert({
       team_id: parseInt(teamId),
       user_id: currentUser,
       content: newPost.trim() || null,
       card_ids: postCards.map(c => c.id),
     }).select('*, profiles(id, display_name, avatar_url)').single()
-    if (data) setPosts(prev => [data, ...prev])
+    console.log('[createPost]', { data, error })
     setNewPost('')
     setPostCards([])
+    // Recharger tous les posts pour être sûr
+    loadPosts(currentUser)
   }
 
   const togglePostReaction = async (postId: number, emoji: string) => {
