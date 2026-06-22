@@ -134,11 +134,12 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   }
 
   const loadMyCards = async (uid: string) => {
-    const { data } = await supabase.from('cartes_manuelles')
-      .select('id, nom, annee, marque, image_recto, card_key')
+    const { data, error } = await supabase.from('cartes_manuelles')
+      .select('id, nom, annee, marque, image_recto')
       .eq('user_id', uid)
       .order('created_at', { ascending: false })
       .limit(100)
+    console.log('[loadMyCards]', { uid, count: data?.length, error })
     setMyCards(data || [])
   }
 
@@ -409,7 +410,9 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 </div>
               </div>
               {showPostCardPicker && (
-                <div onClick={e => e.stopPropagation()} style={{ marginTop: 10, maxHeight: 200, overflowY: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))', gap: 6 }}>
+                <div onClick={e => e.stopPropagation()} style={{ marginTop: 10, maxHeight: 200, overflowY: 'auto' }}>
+                  {myCards.length === 0 && <p style={{ textAlign: 'center', color: '#bbb', padding: 20, fontSize: 13 }}>Aucune carte trouvée.</p>}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))', gap: 6 }}>
                   {myCards.map(c => (
                     <div key={c.id} onClick={() => { setPostCard(c); setShowPostCardPicker(false) }}
                       style={{ cursor: 'pointer', borderRadius: 6, overflow: 'hidden', border: '2px solid transparent', transition: 'border-color 0.15s', background: '#f0f0f0', aspectRatio: '2.5/3.5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
@@ -420,6 +423,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                         : <span style={{ fontSize: 10, color: '#999', textAlign: 'center', padding: 4 }}>{c.nom}</span>}
                     </div>
                   ))}
+                  </div>
                 </div>
               )}
             </div>
