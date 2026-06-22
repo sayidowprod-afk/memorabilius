@@ -130,7 +130,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       .not('image_recto', 'is', null)
       .order('created_at', { ascending: false })
       .limit(100)
-    setGalerieCards(data || [])
+    const shuffled = (data || []).sort(() => Math.random() - 0.5)
+    setGalerieCards(shuffled)
   }
 
   const loadMyCards = async (uid: string) => {
