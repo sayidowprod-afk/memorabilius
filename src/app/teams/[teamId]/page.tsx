@@ -295,12 +295,21 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     setPosts(prev => prev.filter(p => p.id !== postId))
   }
 
+  const enrichWithProfiles = async (rows: any[]) => {
+    if (!rows.length) return rows
+    const uids = [...new Set(rows.map(r => r.user_id))]
+    const { data: profs } = await supabase.from('profiles').select('id, display_name, avatar_url').in('id', uids)
+    const map = Object.fromEntries((profs || []).map(p => [p.id, p]))
+    return rows.map(r => ({ ...r, profiles: map[r.user_id] || null }))
+  }
+
   const loadComments = async (postId: number) => {
     const { data } = await supabase.from('team_post_comments')
-      .select('*, profiles(id, display_name, avatar_url)')
+      .select('*')
       .eq('post_id', postId)
       .order('created_at', { ascending: true })
-    setComments(prev => ({ ...prev, [postId]: data || [] }))
+    const enriched = await enrichWithProfiles(data || [])
+    setComments(prev => ({ ...prev, [postId]: enriched }))
     setShowComments(prev => ({ ...prev, [postId]: true }))
   }
 
@@ -309,8 +318,11 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     if (!content || !currentUser) return
     const { data } = await supabase.from('team_post_comments').insert({
       post_id: postId, user_id: currentUser, content
-    }).select('*, profiles(id, display_name, avatar_url)').single()
-    if (data) setComments(prev => ({ ...prev, [postId]: [...(prev[postId] || []), data] }))
+    }).select('*').single()
+    if (data) {
+      const [enriched] = await enrichWithProfiles([data])
+      setComments(prev => ({ ...prev, [postId]: [...(prev[postId] || []), enriched] }))
+    }
     setNewComment(prev => ({ ...prev, [postId]: '' }))
   }
 
