@@ -118,7 +118,7 @@ export default function Evenements() {
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32, flexWrap: 'wrap', gap: 12 }}>
           <div>
-            <h1 style={{ color: text, margin: 0, fontSize: 28, fontWeight: 800 }}>📅 Événements</h1>
+            <h1 style={{ color: text, margin: 0, fontSize: 28, fontWeight: 800 }}>📅 Events</h1>
             <p style={{ color: sub, margin: '4px 0 0', fontSize: 14 }}>Card shows, conventions et rencontres de collectionneurs</p>
           </div>
           <div style={{ display: 'flex', gap: 10 }}>

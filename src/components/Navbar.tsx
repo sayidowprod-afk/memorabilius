@@ -88,7 +88,7 @@ export default function Navbar() {
           <Link href="/recherche" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>{t('nav_recherche')}</Link>
           <Link href="/tuto" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>{t('nav_tuto')}</Link>
           <Link href="/setlist" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>Setlist</Link>
-          <Link href="/evenements" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>Événements</Link>
+          <Link href="/evenements" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>Events</Link>
           {user ? (
             <>
               <Link href={`/galerie/${user.id}`} style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>{t('nav_galerie')}</Link>
@@ -130,7 +130,7 @@ export default function Navbar() {
           <Link href="/recherche" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_recherche')}</Link>
           <Link href="/tuto" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_tuto')}</Link>
           <Link href="/setlist" style={ls} onClick={() => setMenuOpen(false)}>Setlist</Link>
-          <Link href="/evenements" style={ls} onClick={() => setMenuOpen(false)}>📅 Événements</Link>
+          <Link href="/evenements" style={ls} onClick={() => setMenuOpen(false)}>📅 Events</Link>
           {user ? (
             <>
               <Link href={`/galerie/${user.id}`} style={ls} onClick={() => setMenuOpen(false)}>{t('nav_galerie')}</Link>
