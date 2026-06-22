@@ -39,7 +39,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
   // Posts
   const [newPost, setNewPost] = useState('')
-  const [postCard, setPostCard] = useState<any | null>(null)
+  const [postCards, setPostCards] = useState<any[]>([])
   const [showPostCardPicker, setShowPostCardPicker] = useState(false)
   const [showEmojiForPost, setShowEmojiForPost] = useState<number | null>(null)
 
@@ -237,17 +237,16 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   }
 
   const createPost = async () => {
-    if ((!newPost.trim() && !postCard) || !currentUser) return
+    if ((!newPost.trim() && !postCards.length) || !currentUser) return
     const { data } = await supabase.from('team_posts').insert({
       team_id: parseInt(teamId),
       user_id: currentUser,
       content: newPost.trim() || null,
-      card_key: postCard?.card_key || null,
-      card_user_id: postCard ? currentUser : null,
+      card_ids: postCards.map(c => c.id),
     }).select('*, profiles(id, display_name, avatar_url)').single()
     if (data) setPosts(prev => [data, ...prev])
     setNewPost('')
-    setPostCard(null)
+    setPostCards([])
   }
 
   const togglePostReaction = async (postId: number, emoji: string) => {
@@ -382,11 +381,15 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               <textarea value={newPost} onChange={e => setNewPost(e.target.value)}
                 placeholder="Partagez quelque chose avec votre team..."
                 style={{ width: '100%', border: '1.5px solid #e0e0e0', borderRadius: 10, padding: '12px 14px', fontSize: 14, resize: 'none', outline: 'none', fontFamily: 'Inter, sans-serif', boxSizing: 'border-box', minHeight: 80 }} />
-              {postCard && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '8px 0', padding: '8px 12px', background: '#f5f8ff', borderRadius: 8 }}>
-                  {postCard.image_recto && <img src={postCard.image_recto} style={{ height: 48, borderRadius: 4, objectFit: 'cover' }} alt="" />}
-                  <span style={{ fontSize: 13, fontWeight: 700 }}>{postCard.nom}</span>
-                  <button onClick={() => setPostCard(null)} style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontWeight: 700 }}>✕</button>
+              {postCards.length > 0 && (
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', margin: '8px 0' }}>
+                  {postCards.map(c => (
+                    <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 10px', background: '#f5f8ff', borderRadius: 8 }}>
+                      {c.image_recto && <img src={c.image_recto} style={{ height: 40, borderRadius: 4, objectFit: 'cover' }} alt="" />}
+                      <span style={{ fontSize: 12, fontWeight: 700, maxWidth: 100, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom}</span>
+                      <button onClick={() => setPostCards(prev => prev.filter(x => x.id !== c.id))} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontWeight: 700, fontSize: 14, padding: 0 }}>✕</button>
+                    </div>
+                  ))}
                 </div>
               )}
               <div style={{ display: 'flex', gap: 8, marginTop: 10, justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -414,7 +417,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                   {myCards.length === 0 && <p style={{ textAlign: 'center', color: '#bbb', padding: 20, fontSize: 13 }}>Aucune carte trouvée.</p>}
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))', gap: 6 }}>
                   {myCards.map(c => (
-                    <div key={c.id} onClick={() => { setPostCard(c); setShowPostCardPicker(false) }}
+                    <div key={c.id} onClick={() => { setPostCards(prev => prev.find(x => x.id === c.id) ? prev : [...prev, c]); setShowPostCardPicker(false) }}
                       style={{ cursor: 'pointer', borderRadius: 6, overflow: 'hidden', border: '2px solid transparent', transition: 'border-color 0.15s', background: '#f0f0f0', aspectRatio: '2.5/3.5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                       onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.borderColor = ACCENT}
                       onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.borderColor = 'transparent'}>
@@ -442,7 +445,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 </div>
               </div>
               {post.content && <p style={{ fontSize: 15, color: '#222', margin: '0 0 12px', lineHeight: 1.6 }}>{post.content}</p>}
-              {post.card_key && post.card_user_id && <CardPreview cardKey={post.card_key} userId={post.card_user_id} />}
+              {post.card_ids?.length > 0 && <PostCardsPreview cardIds={post.card_ids} userId={post.user_id} />}
+              {post.card_key && post.card_user_id && !post.card_ids?.length && <CardPreview cardKey={post.card_key} userId={post.card_user_id} />}
               {/* Réactions */}
               <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 12, alignItems: 'center' }}>
                 {(postReactions[post.id] || []).map(r => (
@@ -677,6 +681,34 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           }
         </div>
       )}
+    </div>
+  )
+}
+
+// ── Aperçu plusieurs cartes dans un post ──────────────────────────────────
+function PostCardsPreview({ cardIds, userId }: { cardIds: number[]; userId: string }) {
+  const [cards, setCards] = useState<any[]>([])
+  useEffect(() => {
+    supabase.from('cartes_manuelles').select('id, nom, image_recto, annee, marque')
+      .in('id', cardIds)
+      .then(({ data }) => setCards(data || []))
+  }, [cardIds.join(',')])
+
+  if (!cards.length) return null
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(cards.length, 4)}, 1fr)`, gap: 8, marginTop: 10 }}>
+      {cards.map(c => (
+        <Link key={c.id} href={`/galerie/${userId}`} style={{ textDecoration: 'none' }}>
+          <div style={{ borderRadius: 8, overflow: 'hidden', background: '#f0f0f0', aspectRatio: '2.5/3.5' }}>
+            {c.image_recto
+              ? <img src={c.image_recto} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={c.nom} />
+              : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 6 }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: '#003DA6', textAlign: 'center' }}>{c.nom}</span>
+                </div>}
+          </div>
+          <div style={{ fontSize: 10, fontWeight: 700, color: '#333', marginTop: 3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.nom}</div>
+        </Link>
+      ))}
     </div>
   )
 }
