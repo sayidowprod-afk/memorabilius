@@ -350,6 +350,49 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
     URL.revokeObjectURL(url)
   }
 
+  // ── Export ZIP images ──────────────────────────────────────────────────────
+  const [exportingZip, setExportingZip] = useState(false)
+  const [zipProgress, setZipProgress] = useState(0)
+
+  const exportZip = async () => {
+    if (!filtered.length) return
+    setExportingZip(true)
+    setZipProgress(0)
+    try {
+      const { default: JSZip } = await import('jszip')
+      const zip = new JSZip()
+
+      const toSlug = (s: string) => (s || 'carte').replace(/[^a-z0-9]/gi, '_').slice(0, 40)
+
+      let done = 0
+      const total = filtered.reduce((n, c) => n + 1 + (c.b ? 1 : 0), 0)
+
+      await Promise.all(filtered.map(async (card, i) => {
+        const slug = `${String(i + 1).padStart(3, '0')}_${toSlug(card.n)}`
+        const fetchImg = async (url: string, filename: string) => {
+          try {
+            const res = await fetch(url)
+            const blob = await res.blob()
+            zip.file(filename, blob)
+          } catch {}
+          done++
+          setZipProgress(Math.round((done / total) * 100))
+        }
+        await fetchImg(card.f, `${slug}_recto.jpg`)
+        if (card.b) await fetchImg(card.b, `${slug}_verso.jpg`)
+      }))
+
+      const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 3 } })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url; a.download = `${profileName.replace(/\s+/g, '_')}_images.zip`; a.click()
+      URL.revokeObjectURL(url)
+    } finally {
+      setExportingZip(false)
+      setZipProgress(0)
+    }
+  }
+
   // ── Export PDF tableau (jsPDF, téléchargement direct) ─────────────────────
   const [exportingPdf, setExportingPdf] = useState(false)
 
@@ -672,10 +715,14 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
                 {exportingPdf ? '⏳ PDF…' : '⬇️ PDF tableau'}
               </button>
             </div>
+            <button onClick={exportZip} disabled={!filtered.length || exportingZip}
+              style={{ marginTop: 8, width: '100%', padding: '12px 8px', border: '2px solid #27ae60', borderRadius: 10, background: exportingZip ? '#eafaf1' : '#f0faf4', color: '#1a7a45', fontWeight: 700, fontSize: 13, cursor: filtered.length && !exportingZip ? 'pointer' : 'not-allowed', transition: '0.15s', opacity: filtered.length ? 1 : 0.5 }}>
+              {exportingZip ? `⏳ ZIP en cours… ${zipProgress}%` : `🗜️ Télécharger les images (ZIP) — ${filtered.length} cartes`}
+            </button>
             <p style={{ fontSize: 11, color: '#aaa', marginTop: 8, lineHeight: 1.5 }}>
               {lang === 'fr'
-                ? 'CSV s\'ouvre dans Excel / Google Sheets · PDF se télécharge directement'
-                : 'CSV opens in Excel / Google Sheets · PDF downloads directly'}
+                ? 'CSV s\'ouvre dans Excel / Google Sheets · PDF se télécharge directement · ZIP contient les photos recto/verso'
+                : 'CSV opens in Excel / Google Sheets · PDF downloads directly · ZIP contains front/back photos'}
             </p>
           </div>}
         </div>
