@@ -33,6 +33,7 @@ const YEAR = args.year ? parseInt(args.year) : 2024
 const MAJOR_ONLY = !!args['major-only']
 const LIMIT = args.limit ? parseInt(args.limit) : null
 const DRY_RUN = !!args['dry-run']
+const SKIP_EXISTING = !args['force']
 
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 
@@ -70,23 +71,55 @@ async function fetchSets(page, year) {
   await waitCF(page, `${TCDB}/ViewAll.cfm/sp/Basketball/year/${year}`)
   await sleep(800)
 
-  return await page.evaluate((tcdb, majorOnly, majorBrandsStr) => {
-    const majorRe = new RegExp(majorBrandsStr, 'i')
+  return await page.evaluate((majorOnly) => {
     const results = []
     const seen = new Set()
 
+    if (majorOnly) {
+      // Trouver la section "Major Releases" et récupérer uniquement ses liens
+      let inMajor = false
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, {
+        acceptNode(node) {
+          const tag = node.tagName
+          if (['SCRIPT','STYLE','NAV','HEADER','FOOTER'].includes(tag)) return NodeFilter.FILTER_REJECT
+          if (['H3','H2','H4','LI','A'].includes(tag)) return NodeFilter.FILTER_ACCEPT
+          return NodeFilter.FILTER_SKIP
+        }
+      })
+      while (walker.nextNode()) {
+        const el = walker.currentNode
+        const tag = el.tagName
+        const text = el.textContent?.trim() || ''
+        if (['H3','H2','H4'].includes(tag)) {
+          inMajor = /^major releases?$/i.test(text)
+          continue
+        }
+        if (!inMajor) continue
+        if (tag === 'A') {
+          const href = el.getAttribute('href') || ''
+          const m = href.match(/sid\/(\d+)/)
+          if (!m || seen.has(m[1])) continue
+          const name = el.textContent?.trim()
+          if (!name || name.length < 3) continue
+          seen.add(m[1])
+          results.push({ tcdb_id: parseInt(m[1]), name })
+        }
+      }
+      return results
+    }
+
+    // Sans --major-only : tout scraper
     document.querySelectorAll('a[href*="ViewSet"], a[href*="/sid/"]').forEach(a => {
       const href = a.getAttribute('href') || ''
       const sidMatch = href.match(/sid\/(\d+)/)
       if (!sidMatch || seen.has(sidMatch[1])) return
       const name = a.textContent?.trim()
       if (!name || name.length < 3) return
-      if (majorOnly && !majorRe.test(name)) return
       seen.add(sidMatch[1])
       results.push({ tcdb_id: parseInt(sidMatch[1]), name })
     })
     return results
-  }, TCDB, MAJOR_ONLY, MAJOR_BRANDS.source)
+  }, MAJOR_ONLY)
 }
 
 async function fetchTeams(page, sid) {
@@ -210,6 +243,11 @@ async function main() {
       console.log(`\n[${si+1}/${sets.length}] ${set.name} (sid:${set.tcdb_id})`)
 
       try {
+        if (SKIP_EXISTING) {
+          const { data: existing } = await supabase.from('card_sets').select('id, total_cards').eq('tcdb_id', set.tcdb_id).single()
+          if (existing && existing.total_cards > 100) { console.log(`  ⏭️  Déjà en base (${existing.total_cards} cartes) — ignoré`); ok++; continue }
+        }
+
         const teams = await fetchTeams(page, set.tcdb_id)
         console.log(`  📂 ${teams.length} équipes NBA`)
 
