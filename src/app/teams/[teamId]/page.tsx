@@ -125,9 +125,9 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     const memberIds = membersList.map((m: any) => m.user_id)
     if (!memberIds.length) return
     const { data } = await supabase.from('cartes_manuelles')
-      .select('id, player_name, year, brand, image_url, user_id, profiles(display_name, avatar_url)')
+      .select('id, nom, annee, marque, image_recto, user_id, profiles(display_name, avatar_url)')
       .in('user_id', memberIds)
-      .not('image_url', 'is', null)
+      .not('image_recto', 'is', null)
       .order('created_at', { ascending: false })
       .limit(100)
     setGalerieCards(data || [])
@@ -135,9 +135,9 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
   const loadMyCards = async (uid: string) => {
     const { data } = await supabase.from('cartes_manuelles')
-      .select('id, player_name, year, brand, image_url, card_key')
+      .select('id, nom, annee, marque, image_recto, card_key')
       .eq('user_id', uid)
-      .not('image_url', 'is', null)
+      .not('image_recto', 'is', null)
       .order('created_at', { ascending: false })
       .limit(50)
     setMyCards(data || [])
@@ -384,8 +384,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 style={{ width: '100%', border: '1.5px solid #e0e0e0', borderRadius: 10, padding: '12px 14px', fontSize: 14, resize: 'none', outline: 'none', fontFamily: 'Inter, sans-serif', boxSizing: 'border-box', minHeight: 80 }} />
               {postCard && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '8px 0', padding: '8px 12px', background: '#f5f8ff', borderRadius: 8 }}>
-                  {postCard.image_url && <img src={postCard.image_url} style={{ height: 48, borderRadius: 4, objectFit: 'cover' }} alt="" />}
-                  <span style={{ fontSize: 13, fontWeight: 700 }}>{postCard.player_name}</span>
+                  {postCard.image_recto && <img src={postCard.image_recto} style={{ height: 48, borderRadius: 4, objectFit: 'cover' }} alt="" />}
+                  <span style={{ fontSize: 13, fontWeight: 700 }}>{postCard.nom}</span>
                   <button onClick={() => setPostCard(null)} style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontWeight: 700 }}>✕</button>
                 </div>
               )}
@@ -405,7 +405,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                     <div key={c.id} onClick={() => { setPostCard(c); setShowPostCardPicker(false) }} style={{ cursor: 'pointer', borderRadius: 6, overflow: 'hidden', border: '2px solid transparent', transition: 'border-color 0.15s' }}
                       onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.borderColor = ACCENT}
                       onMouseLeave={e => (e.currentTarget as HTMLDivElement).style.borderColor = 'transparent'}>
-                      <img src={c.image_url} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover' }} alt={c.player_name} />
+                      <img src={c.image_recto} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover' }} alt={c.nom} />
                     </div>
                   ))}
                 </div>
@@ -532,9 +532,9 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 <div style={{ borderRadius: 10, overflow: 'hidden', background: 'white', boxShadow: '0 2px 8px rgba(0,0,0,0.08)', transition: 'transform 0.15s, box-shadow 0.15s' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 6px 20px rgba(0,0,0,0.14)' }}
                   onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = 'none'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)' }}>
-                  <img src={card.image_url} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block' }} alt={card.player_name} />
+                  <img src={card.image_recto} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block' }} alt={card.nom} />
                   <div style={{ padding: '6px 8px' }}>
-                    <div style={{ fontSize: 11, fontWeight: 800, color: '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.player_name}</div>
+                    <div style={{ fontSize: 11, fontWeight: 800, color: '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.nom}</div>
                     <div style={{ fontSize: 10, color: '#999', display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
                       <img src={card.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(card.profiles?.display_name || 'U')}&background=003DA6&color=fff&size=20`}
                         style={{ width: 14, height: 14, borderRadius: '50%' }} alt="" />
@@ -601,8 +601,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           {/* Carte en attente */}
           {pendingCard && (
             <div style={{ padding: '6px 16px', background: '#f5f8ff', display: 'flex', alignItems: 'center', gap: 8, borderTop: '1px solid #e8eef8' }}>
-              {pendingCard.image_url && <img src={pendingCard.image_url} style={{ height: 40, borderRadius: 4 }} alt="" />}
-              <span style={{ fontSize: 13, fontWeight: 700, flex: 1 }}>{pendingCard.player_name}</span>
+              {pendingCard.image_recto && <img src={pendingCard.image_recto} style={{ height: 40, borderRadius: 4 }} alt="" />}
+              <span style={{ fontSize: 13, fontWeight: 700, flex: 1 }}>{pendingCard.nom}</span>
               <button onClick={() => setPendingCard(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontWeight: 700 }}>✕</button>
             </div>
           )}
@@ -611,7 +611,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             <div style={{ padding: '8px 16px', borderTop: '1px solid #f0f0f0', maxHeight: 160, overflowY: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(60px, 1fr))', gap: 4 }}>
               {myCards.map(c => (
                 <div key={c.id} onClick={() => { setPendingCard(c); setShowCardPicker(false) }} style={{ cursor: 'pointer', borderRadius: 4, overflow: 'hidden' }}>
-                  <img src={c.image_url} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover' }} alt={c.player_name} />
+                  <img src={c.image_recto} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover' }} alt={c.nom} />
                 </div>
               ))}
             </div>
@@ -661,7 +661,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 function CardPreview({ cardKey, userId, compact }: { cardKey: string; userId: string; compact?: boolean }) {
   const [card, setCard] = useState<any>(null)
   useEffect(() => {
-    supabase.from('cartes_manuelles').select('player_name, image_url, year, brand')
+    supabase.from('cartes_manuelles').select('nom, image_recto, annee, marque')
       .eq('card_key', cardKey).eq('user_id', userId).single()
       .then(({ data }) => setCard(data))
   }, [cardKey, userId])
@@ -670,10 +670,10 @@ function CardPreview({ cardKey, userId, compact }: { cardKey: string; userId: st
   return (
     <Link href={`/galerie/${userId}`} style={{ textDecoration: 'none', display: 'block', marginTop: compact ? 6 : 10 }}>
       <div style={{ background: 'rgba(0,0,0,0.06)', borderRadius: 8, padding: 8, display: 'flex', gap: 10, alignItems: 'center' }}>
-        {card.image_url && <img src={card.image_url} style={{ height: compact ? 48 : 64, borderRadius: 4, objectFit: 'cover' }} alt="" />}
+        {card.image_recto && <img src={card.image_recto} style={{ height: compact ? 48 : 64, borderRadius: 4, objectFit: 'cover' }} alt="" />}
         <div>
-          <div style={{ fontWeight: 800, fontSize: 13 }}>{card.player_name}</div>
-          <div style={{ fontSize: 11, opacity: 0.7 }}>{card.year} · {card.brand}</div>
+          <div style={{ fontWeight: 800, fontSize: 13 }}>{card.nom}</div>
+          <div style={{ fontSize: 11, opacity: 0.7 }}>{card.annee} · {card.marque}</div>
         </div>
       </div>
     </Link>
