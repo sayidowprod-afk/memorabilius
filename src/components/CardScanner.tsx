@@ -731,57 +731,47 @@ function gaussElim(A: number[][], b: number[]): number[] {
 }
 
 async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
-  // Source limitée à 1200px pour éviter le crash mémoire
-  const SRC_MAX = 1200
-  const sScale  = Math.min(SRC_MAX / img.naturalWidth, SRC_MAX / img.naturalHeight, 1)
-  const sW = Math.round(img.naturalWidth  * sScale)
-  const sH = Math.round(img.naturalHeight * sScale)
+  // corners = [TL, TR, BR, BL] en coordonnées naturelles de l'image
+  const [tl, tr, br, bl] = corners
 
-  const srcC = document.createElement('canvas')
-  srcC.width = sW; srcC.height = sH
-  srcC.getContext('2d')!.drawImage(img, 0, 0, sW, sH)
-  const srcData = srcC.getContext('2d')!.getImageData(0, 0, sW, sH)
+  // Centre du quadrilatère
+  const cx = (tl.x + tr.x + br.x + bl.x) / 4
+  const cy = (tl.y + tr.y + br.y + bl.y) / 4
 
-  const OUT_W = 600, OUT_H = 840
-  const scaledCorners = corners.map(p => ({ x: p.x * sScale, y: p.y * sScale }))
+  // Largeur et hauteur moyennes
+  const w = (Math.hypot(tr.x - tl.x, tr.y - tl.y) + Math.hypot(br.x - bl.x, br.y - bl.y)) / 2
+  const h = (Math.hypot(bl.x - tl.x, bl.y - tl.y) + Math.hypot(br.x - tr.x, br.y - tr.y)) / 2
 
-  // Homographie : dst → src (mapping inverse pour chaque pixel de sortie)
-  const dstPts = [{ x:0,y:0 }, { x:OUT_W,y:0 }, { x:OUT_W,y:OUT_H }, { x:0,y:OUT_H }]
-  const H = computeHomography(dstPts, scaledCorners)
+  // Angle de rotation (depuis le bord supérieur)
+  const angle = Math.atan2(tr.y - tl.y, tr.x - tl.x)
 
-  await new Promise(r => setTimeout(r, 0)) // yield avant le warp
-
-  const outData = new Uint8ClampedArray(OUT_W * OUT_H * 4)
-  const [h0,h1,h2,h3,h4,h5,h6,h7,h8] = H
-  const srcD = srcData.data
-
-  for (let oy = 0; oy < OUT_H; oy++) {
-    for (let ox = 0; ox < OUT_W; ox++) {
-      const w_ = h6*ox + h7*oy + h8
-      const sx  = (h0*ox + h1*oy + h2) / w_
-      const sy  = (h3*ox + h4*oy + h5) / w_
-      const ix = Math.floor(sx), iy = Math.floor(sy)
-      if (ix < 0 || ix >= sW - 1 || iy < 0 || iy >= sH - 1) continue
-      const fx = sx - ix, fy = sy - iy
-      const i00 = (iy * sW + ix) * 4
-      const i10 = i00 + 4
-      const i01 = i00 + sW * 4
-      const i11 = i01 + 4
-      const oi  = (oy * OUT_W + ox) * 4
-      for (let c = 0; c < 3; c++) {
-        outData[oi+c] = srcD[i00+c]*(1-fx)*(1-fy) + srcD[i10+c]*fx*(1-fy)
-                      + srcD[i01+c]*(1-fx)*fy      + srcD[i11+c]*fx*fy
-      }
-      outData[oi+3] = 255
-    }
-    // yield toutes les 100 lignes pour ne pas bloquer l'UI
-    if (oy % 100 === 99) await new Promise(r => setTimeout(r, 0))
-  }
+  // Portrait ou paysage ?
+  const isLandscape = w > h
+  const OUT_W = isLandscape ? 840 : 600
+  const OUT_H = isLandscape ? 600 : 840
 
   const outC = document.createElement('canvas')
   outC.width = OUT_W; outC.height = OUT_H
-  outC.getContext('2d')!.putImageData(new ImageData(outData, OUT_W, OUT_H), 0, 0)
-  return new Promise(res => outC.toBlob(b => res(b!), 'image/jpeg', 0.88))
+  const ctx = outC.getContext('2d')!
+
+  // Fond blanc (pas de zone noire si la carte dépasse légèrement)
+  ctx.fillStyle = '#fff'
+  ctx.fillRect(0, 0, OUT_W, OUT_H)
+
+  // Transformer : placer le centre du quadrilatère au centre de la sortie,
+  // dérotation, puis scale pour que la carte remplisse OUT_W × OUT_H
+  const scaleX = OUT_W / w
+  const scaleY = OUT_H / h
+  const scale  = Math.min(scaleX, scaleY)
+
+  ctx.save()
+  ctx.translate(OUT_W / 2, OUT_H / 2)
+  ctx.rotate(-angle)
+  ctx.scale(scale, scale)
+  ctx.drawImage(img, -cx, -cy)
+  ctx.restore()
+
+  return new Promise(res => outC.toBlob(b => res(b!), 'image/jpeg', 0.90))
 }
 
 // ── Composant ────────────────────────────────────────────────────────────
