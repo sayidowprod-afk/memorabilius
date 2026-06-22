@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
@@ -35,8 +35,10 @@ export default function AdminEvenements() {
   const [events, setEvents] = useState<Event[]>([])
   const [loading, setLoading] = useState(true)
   const [showAddManual, setShowAddManual] = useState(false)
-  const [manualForm, setManualForm] = useState({ title: '', description: '', date: '', city: '', country: 'France', location_name: '', website: '' })
+  const [manualForm, setManualForm] = useState({ title: '', description: '', date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' })
   const [saving, setSaving] = useState(false)
+  const [uploadingImg, setUploadingImg] = useState(false)
+  const imgInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     supabase.auth.getUser().then(async ({ data }) => {
@@ -84,13 +86,22 @@ export default function AdminEvenements() {
     loadAll()
   }
 
+  const uploadEventImage = async (file: File): Promise<string | null> => {
+    setUploadingImg(true)
+    const path = `evenements/${Date.now()}_${file.name.replace(/[^a-z0-9.]/gi, '_')}`
+    const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
+    setUploadingImg(false)
+    if (error) { alert('Erreur upload image : ' + error.message); return null }
+    return supabase.storage.from('avatars').getPublicUrl(path).data.publicUrl
+  }
+
   const addManual = async () => {
     if (!manualForm.title || !manualForm.date || !manualForm.city) return
     setSaving(true)
     await supabase.from('events').insert({ ...manualForm })
     setSaving(false)
     setShowAddManual(false)
-    setManualForm({ title: '', description: '', date: '', city: '', country: 'France', location_name: '', website: '' })
+    setManualForm({ title: '', description: '', date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' })
     loadAll()
   }
 
@@ -209,6 +220,23 @@ export default function AdminEvenements() {
               </div>
               <input style={inp} placeholder="Lieu" value={manualForm.location_name} onChange={e => setManualForm(f => ({ ...f, location_name: e.target.value }))} />
               <input style={inp} placeholder="Site web" value={manualForm.website} onChange={e => setManualForm(f => ({ ...f, website: e.target.value }))} />
+              <div>
+                <input ref={imgInputRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={async e => {
+                  const file = e.target.files?.[0]; if (!file) return
+                  const url = await uploadEventImage(file)
+                  if (url) setManualForm(f => ({ ...f, image_url: url }))
+                }} />
+                {manualForm.image_url ? (
+                  <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden' }}>
+                    <img src={manualForm.image_url} style={{ width: '100%', maxHeight: 160, objectFit: 'cover', display: 'block' }} />
+                    <button type="button" onClick={() => setManualForm(f => ({ ...f, image_url: '' }))} style={{ position: 'absolute', top: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', width: 26, height: 26, color: 'white', cursor: 'pointer', fontWeight: 700 }}>✕</button>
+                  </div>
+                ) : (
+                  <button type="button" onClick={() => imgInputRef.current?.click()} disabled={uploadingImg} style={{ width: '100%', padding: '10px', borderRadius: 8, border: `2px dashed ${border}`, background: 'none', color: sub, cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>
+                    {uploadingImg ? 'Upload...' : '🖼️ Ajouter une image (optionnel)'}
+                  </button>
+                )}
+              </div>
               <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
                 <button onClick={() => setShowAddManual(false)} style={{ flex: 1, padding: '11px', borderRadius: 8, border: `1px solid ${border}`, background: 'none', color: text, fontWeight: 600, cursor: 'pointer' }}>Annuler</button>
                 <button onClick={addManual} disabled={saving || !manualForm.title || !manualForm.date || !manualForm.city} style={{ flex: 2, padding: '11px', borderRadius: 8, background: '#27ae60', color: 'white', fontWeight: 700, border: 'none', cursor: 'pointer' }}>

@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
@@ -13,11 +13,12 @@ type Event = {
   country: string
   location_name: string | null
   website: string | null
+  image_url: string | null
   attendees?: number
   going?: boolean
 }
 
-const emptyForm = { title: '', description: '', date: '', city: '', country: 'France', location_name: '', website: '' }
+const emptyForm = { title: '', description: '', date: '', city: '', country: 'France', location_name: '', website: '', image_url: '' }
 
 export default function Evenements() {
   const { dark } = useTheme()
@@ -29,6 +30,8 @@ export default function Evenements() {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [uploadingImg, setUploadingImg] = useState(false)
+  const imgInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     loadEvents()
@@ -72,6 +75,15 @@ export default function Evenements() {
       ? { ...e, going: !e.going, attendees: (e.attendees || 0) + (e.going ? -1 : 1) }
       : e
     ))
+  }
+
+  const uploadEventImage = async (file: File): Promise<string | null> => {
+    setUploadingImg(true)
+    const path = `evenements/${Date.now()}_${file.name.replace(/[^a-z0-9.]/gi, '_')}`
+    const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
+    setUploadingImg(false)
+    if (error) { alert('Erreur upload image : ' + error.message); return null }
+    return supabase.storage.from('avatars').getPublicUrl(path).data.publicUrl
   }
 
   const submitRequest = async () => {
@@ -173,6 +185,23 @@ export default function Evenements() {
                 </div>
                 <input style={inp} placeholder="Lieu (ex: Parc des Expositions)" value={form.location_name} onChange={e => setForm(f => ({ ...f, location_name: e.target.value }))} />
                 <input style={inp} placeholder="Site web (optionnel)" value={form.website} onChange={e => setForm(f => ({ ...f, website: e.target.value }))} />
+                <div>
+                  <input ref={imgInputRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={async e => {
+                    const file = e.target.files?.[0]; if (!file) return
+                    const url = await uploadEventImage(file)
+                    if (url) setForm(f => ({ ...f, image_url: url }))
+                  }} />
+                  {form.image_url ? (
+                    <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden' }}>
+                      <img src={form.image_url} style={{ width: '100%', maxHeight: 160, objectFit: 'cover', display: 'block' }} />
+                      <button type="button" onClick={() => setForm(f => ({ ...f, image_url: '' }))} style={{ position: 'absolute', top: 6, right: 6, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', width: 26, height: 26, color: 'white', cursor: 'pointer', fontWeight: 700 }}>✕</button>
+                    </div>
+                  ) : (
+                    <button type="button" onClick={() => imgInputRef.current?.click()} disabled={uploadingImg} style={{ width: '100%', padding: '10px', borderRadius: 8, border: `2px dashed ${border}`, background: 'none', color: sub, cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>
+                      {uploadingImg ? 'Upload...' : '🖼️ Ajouter une image (optionnel)'}
+                    </button>
+                  )}
+                </div>
                 <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
                   <button onClick={() => setShowPropose(false)} style={{ flex: 1, padding: '11px', borderRadius: 8, border: `1px solid ${border}`, background: 'none', color: text, fontWeight: 600, cursor: 'pointer' }}>Annuler</button>
                   <button onClick={submitRequest} disabled={submitting || !form.title || !form.date || !form.city} style={{ flex: 2, padding: '11px', borderRadius: 8, background: '#003DA6', color: 'white', fontWeight: 700, border: 'none', cursor: 'pointer', opacity: submitting ? 0.7 : 1 }}>
@@ -203,7 +232,9 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
   }
 
   return (
-    <div style={{ background: card, border: `1px solid ${border}`, borderRadius: 14, padding: '20px 22px' }}>
+    <div style={{ background: card, border: `1px solid ${border}`, borderRadius: 14, overflow: 'hidden' }}>
+      {ev.image_url && <img src={ev.image_url} style={{ width: '100%', maxHeight: 200, objectFit: 'cover', display: 'block' }} />}
+      <div style={{ padding: '20px 22px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap' }}>
         <div style={{ flex: 1 }}>
           <h3 style={{ color: text, margin: '0 0 6px', fontSize: 17, fontWeight: 800 }}>{ev.title}</h3>
@@ -239,6 +270,7 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
             ))}
           </div>
         )}
+      </div>
       </div>
     </div>
   )
