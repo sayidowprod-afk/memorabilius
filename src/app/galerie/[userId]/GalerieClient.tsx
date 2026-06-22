@@ -1042,6 +1042,17 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           await supabase.from('card_likes').delete().eq('card_key', d.f).eq('gallery_user_id', userId).eq('liker_user_id', currentUser)
                         } else {
                           await supabase.from('card_likes').upsert({ card_key: d.f, gallery_user_id: userId, liker_user_id: currentUser }, { onConflict: 'card_key,gallery_user_id,liker_user_id' })
+                          // Notifier le propriétaire de la carte (pas soi-même)
+                          if (currentUser !== userId) {
+                            const { data: liker } = await supabase.from('profiles').select('username').eq('id', currentUser).single()
+                            await supabase.from('notifications').insert({
+                              user_id: userId,
+                              type: 'like',
+                              content: `${liker?.username || 'Quelqu\'un'} a aimé votre carte ${d.f}`,
+                              link: `/galerie/${userId}`,
+                              lu: false,
+                            })
+                          }
                         }
                       }}
                       style={{

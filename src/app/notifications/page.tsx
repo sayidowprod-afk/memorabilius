@@ -29,7 +29,7 @@ export default function Notifications() {
 
   const getIcon = (type: string) => {
     const icons: Record<string, string> = {
-      team_join: '👥', team_candidature: '📋', message: '💬', trade: '🔄', system: '🔔', wishlist_match: '🎯', comment: '💬', badge: '🏆'
+      team_join: '👥', team_candidature: '📋', message: '💬', trade: '🔄', system: '🔔', wishlist_match: '🎯', comment: '💬', badge: '🏆', like: '❤️'
     }
     return icons[type] || '🔔'
   }
