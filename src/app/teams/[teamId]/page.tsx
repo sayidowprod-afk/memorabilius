@@ -127,9 +127,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     const { data } = await supabase.from('cartes_manuelles')
       .select('id, nom, annee, marque, image_recto, user_id, profiles(display_name, avatar_url)')
       .in('user_id', memberIds)
-      .not('image_recto', 'is', null)
       .order('created_at', { ascending: false })
-      .limit(100)
+      .limit(5000)
     const shuffled = (data || []).sort(() => Math.random() - 0.5)
     setGalerieCards(shuffled)
   }
@@ -399,7 +398,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                   ))}
                 </div>
                 <div style={{ display: 'flex', gap: 8 }}>
-                  <button onClick={() => setShowPostCardPicker(!showPostCardPicker)}
+                  <button onClick={e => { e.stopPropagation(); setShowPostCardPicker(v => !v) }}
                     style={{ background: '#f0f4ff', color: ACCENT, border: 'none', borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
                     🃏 Carte
                   </button>
@@ -410,7 +409,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 </div>
               </div>
               {showPostCardPicker && (
-                <div style={{ marginTop: 10, maxHeight: 200, overflowY: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))', gap: 6 }}>
+                <div onClick={e => e.stopPropagation()} style={{ marginTop: 10, maxHeight: 200, overflowY: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))', gap: 6 }}>
                   {myCards.map(c => (
                     <div key={c.id} onClick={() => { setPostCard(c); setShowPostCardPicker(false) }}
                       style={{ cursor: 'pointer', borderRadius: 6, overflow: 'hidden', border: '2px solid transparent', transition: 'border-color 0.15s', background: '#f0f0f0', aspectRatio: '2.5/3.5', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
@@ -539,13 +538,18 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       {activeTab === 'galerie' && (
         <div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 10 }}>
-            {galerieCards.length === 0 && <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#bbb', padding: 60 }}>Aucune carte avec photo.</p>}
+            {galerieCards.length === 0 && <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#bbb', padding: 60 }}>Aucune carte trouvée.</p>}
             {galerieCards.map(card => (
               <Link key={card.id} href={`/galerie/${card.user_id}`} style={{ textDecoration: 'none' }}>
                 <div style={{ borderRadius: 10, overflow: 'hidden', background: 'white', boxShadow: '0 2px 8px rgba(0,0,0,0.08)', transition: 'transform 0.15s, box-shadow 0.15s' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 6px 20px rgba(0,0,0,0.14)' }}
                   onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = 'none'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)' }}>
-                  <img src={card.image_recto} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block' }} alt={card.nom} />
+                  {card.image_recto
+                    ? <img src={card.image_recto} style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block' }} alt={card.nom} />
+                    : <div style={{ width: '100%', aspectRatio: '2.5/3.5', background: 'linear-gradient(135deg, #f0f4ff, #e8eef8)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 8 }}>
+                        <span style={{ fontSize: 11, fontWeight: 700, color: ACCENT, textAlign: 'center' }}>{card.nom}</span>
+                      </div>
+                  }
                   <div style={{ padding: '6px 8px' }}>
                     <div style={{ fontSize: 11, fontWeight: 800, color: '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.nom}</div>
                     <div style={{ fontSize: 10, color: '#999', display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
