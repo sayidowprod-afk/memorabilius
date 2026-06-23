@@ -104,6 +104,10 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         galleryCards = gc || []
 
         if (galleryCards.length && setData.year) {
+          console.log('[automatch] galerie:', galleryCards.length, 'cartes', galleryCards.slice(0,3))
+          console.log('[automatch] set:', setData.year, setData.brand, setData.name)
+          console.log('[automatch] entries:', allEntries?.length)
+
           const norm = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]/g, '') || ''
           const words = (s: string) => s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2) || []
 
