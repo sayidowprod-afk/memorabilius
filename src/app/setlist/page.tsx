@@ -176,22 +176,19 @@ export default function SetlistPage() {
         const cy = (card.annee || '').trim()
         if (cy !== ys && cy !== yn && cy !== yp) continue
 
-        // Brand : si la carte a une marque, elle DOIT matcher le set
-        if (card.marque) {
-          if (!set.brand) continue
+        // La collection est OBLIGATOIRE pour auto-matcher (sinon trop ambigu)
+        const coll = (card.collection || card.collection_tag || '').trim()
+        if (!coll) continue
+
+        // La collection DOIT matcher le nom du set
+        const uw = words(coll)
+        if (uw.length === 0 || !uw.some(w => norm(set.name).includes(w))) continue
+
+        // Brand : validation optionnelle supplémentaire si la carte a une marque
+        if (card.marque && set.brand) {
           const nb = norm(card.marque), ns = norm(set.brand)
           if (!nb.includes(ns) && !ns.includes(nb)) continue
         }
-
-        // Collection : si la carte a une collection, elle DOIT matcher le nom du set
-        const coll = (card.collection || card.collection_tag || '').trim()
-        if (coll) {
-          const uw = words(coll)
-          if (uw.length > 0 && !uw.some(w => norm(set.name).includes(w))) continue
-        }
-
-        // Si ni marque ni collection : trop ambigu, on ne matche pas automatiquement
-        if (!card.marque && !coll) continue
 
         const cv = (card.variation || '').trim(), ev = (e.variation || '').trim()
         const varMatch = !cv ? !ev : !!ev && (norm(cv).includes(norm(ev)) || norm(ev).includes(norm(cv)) || words(cv).some(w => norm(ev).includes(w)))
