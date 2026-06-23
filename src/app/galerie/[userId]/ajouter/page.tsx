@@ -120,24 +120,6 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [scanError, setScanError] = useState<string | null>(null)
   const rectoBase64Ref = useRef<string | null>(null)
 
-  const compressBlob = (blob: Blob): Promise<Blob> => new Promise((resolve) => {
-    const MAX = 1200
-    const img = new Image()
-    const url = URL.createObjectURL(blob)
-    img.onload = () => {
-      URL.revokeObjectURL(url)
-      const scale = Math.min(1, MAX / Math.max(img.naturalWidth, img.naturalHeight))
-      const w = Math.round(img.naturalWidth * scale)
-      const h = Math.round(img.naturalHeight * scale)
-      const canvas = document.createElement('canvas')
-      canvas.width = w; canvas.height = h
-      canvas.getContext('2d')!.drawImage(img, 0, 0, w, h)
-      canvas.toBlob(b => resolve(b ?? blob), 'image/jpeg', 0.85)
-    }
-    img.onerror = () => { URL.revokeObjectURL(url); resolve(blob) }
-    img.src = url
-  })
-
   const uploadBlob = async (blob: Blob, side: 'recto' | 'verso' | 'il' | 'ir') => {
     if (side === 'recto') setUploadingRecto(true)
     else if (side === 'verso') setUploadingVerso(true)
@@ -148,9 +130,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
-    const compressed = await compressBlob(blob)
     const path = `cartes/${user.id}/${Date.now()}_${side}.jpg`
-    const file = new File([compressed], `${Date.now()}_${side}.jpg`, { type: 'image/jpeg' })
+    const file = new File([blob], `${Date.now()}_${side}.jpg`, { type: 'image/jpeg' })
     const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
     if (error) { alert('Erreur upload : ' + error.message); setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false); return }
 
