@@ -70,15 +70,22 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     // Récupérer les completions de l'user pour ce set (juste entry_id)
     let completedEntryIds = new Set<number>()
     let completionDetails = new Map<number, { id: string; manually_checked: boolean }>()
-    let galleryCards: { nom: string; annee: string; marque: string; collection: string; variation: string }[] = []
+    let galleryCards: { nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string }[] = []
 
     if (userId) {
-      // Charger tous les entry_ids du set
-      const { data: allEntries } = await supabase
-        .from('card_set_entries')
-        .select('id, player_name, variation')
-        .eq('set_id', setId)
-        .limit(100000)
+      // Charger tous les entry_ids du set (pagination pour dépasser max_rows=1000)
+      const allEntries: { id: number; player_name: string; variation: string | null }[] = []
+      const PAGE = 1000
+      for (let from = 0; ; from += PAGE) {
+        const { data: page } = await supabase
+          .from('card_set_entries')
+          .select('id, player_name, variation')
+          .eq('set_id', setId)
+          .range(from, from + PAGE - 1)
+        if (!page || page.length === 0) break
+        allEntries.push(...page)
+        if (page.length < PAGE) break
+      }
 
       if (allEntries) {
         const entryIds = allEntries.map(e => e.id)
@@ -99,7 +106,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         // Auto-match galerie
         const { data: gc } = await supabase
           .from('cartes_manuelles')
-          .select('nom, annee, marque, collection, variation')
+          .select('nom, annee, marque, collection, collection_tag, variation')
           .eq('user_id', userId)
         galleryCards = gc || []
 
@@ -133,8 +140,10 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
               }
 
               // 4. Collection (fuzzy : au moins 1 mot clé en commun — ignoré si vide)
-              if (card.collection) {
-                const userWords = words(card.collection)
+              // On teste collection ET collection_tag contre le nom du set
+              const collToTest = card.collection || card.collection_tag || ''
+              if (collToTest) {
+                const userWords = words(collToTest)
                 const setNorm = norm(setData.name)
                 if (userWords.length > 0 && !userWords.some(w => setNorm.includes(w))) return false
               }
