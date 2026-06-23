@@ -156,6 +156,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
             return cy === yearStr || cy === yearNext || cy === yearPrev
           })
 
+          console.log('[debug] galleryCards total:', (galleryCards as any[]).length, '| mogbo:', (galleryCards as any[]).filter((c:any) => c.nom?.toLowerCase().includes('mogbo')))
+
           for (const e of allEntries) {
             if (completedEntryIds.has(e.id)) continue
 
