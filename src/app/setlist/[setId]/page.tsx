@@ -164,7 +164,17 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
               }
             })
 
-            if (matched) completedEntryIds.add(e.id)
+            if (matched) {
+              completedEntryIds.add(e.id)
+              const matchCard = (galleryCards as any[]).find(card => {
+                const y = setData.year!
+                const yearStr = String(y), yearNext = `${y}-${String(y+1).slice(2)}`, yearPrev = `${y-1}-${yearStr.slice(2)}`
+                const norm2 = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]/g, '') || ''
+                const cardYear = (card.annee||'').trim()
+                return norm2(card.nom) === norm2(e.player_name) && (cardYear === yearStr || cardYear === yearNext || cardYear === yearPrev)
+              })
+              console.log('[automatch] MATCH:', e.player_name, e.variation||'(base)', '←', matchCard?.nom, matchCard?.annee, matchCard?.coll, matchCard?.var)
+            }
           }
         }
 
