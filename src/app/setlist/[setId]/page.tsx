@@ -111,10 +111,23 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         galleryCards = gc || []
 
         if (galleryCards.length && setData.year) {
-          console.log('[automatch] galerie:', galleryCards.length, 'cartes')
+          const y = setData.year!
+          const yearStr = String(y), yearNext = `${y}-${String(y+1).slice(2)}`, yearPrev = `${y-1}-${yearStr.slice(2)}`
+          const cardsThisYear = (galleryCards as any[]).filter(c => {
+            const cy = (c.annee||'').trim()
+            return cy === yearStr || cy === yearNext || cy === yearPrev
+          })
           console.log('[automatch] set:', setData.year, setData.brand, setData.name)
-          console.log('[automatch] entries:', allEntries?.length)
-          console.log('[automatch] toutes les cartes:', JSON.stringify(galleryCards.map(c => ({nom: c.nom, annee: c.annee, marque: c.marque, coll: c.collection, tag: c.collection_tag, var: c.variation}))))
+          console.log('[automatch] entries:', allEntries?.length, '| galerie this year:', cardsThisYear.length)
+          for (const c of cardsThisYear) {
+            const nb = norm(c.marque||''), ns = norm(setData.brand||'')
+            const brandOk = !setData.brand || !c.marque || nb.includes(ns) || ns.includes(nb)
+            const collToTest2 = c.collection || c.collection_tag || ''
+            const userWords2 = words(collToTest2)
+            const setNorm2 = norm(setData.name)
+            const collOk = !collToTest2 || userWords2.length === 0 || userWords2.some((w: string) => setNorm2.includes(w))
+            console.log(`  [${c.nom}] annee:${c.annee} marque:"${c.marque}" coll:"${c.collection}" tag:"${c.collection_tag}" var:"${c.variation}" → brand:${brandOk} coll:${collOk}`)
+          }
 
           const norm = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]/g, '') || ''
           const words = (s: string) => s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2) || []
