@@ -200,6 +200,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
         </span>
       </div>
 
+      <div onMouseLeave={() => setHovered(null)}>
       <div style={{ display: 'flex', gap: 12, alignItems: 'stretch' }}>
         {/* Graphique : distribution des prix demandés */}
         <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
@@ -208,7 +209,6 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
             viewBox={`0 0 ${W} ${H}`}
             style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible', cursor: 'crosshair' }}
             onMouseMove={handleMouseMove}
-            onMouseLeave={() => setHovered(null)}
           >
             <defs>
               <linearGradient id="cvm-area" x1="0" y1="0" x2="0" y2="1">
@@ -289,6 +289,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
         ) : (
           <span style={{ fontSize: 9, color: '#ccc' }}>Prix demandés des annonces actuelles · pas un historique de ventes</span>
         )}
+      </div>
       </div>
 
       {/* ----- 2e graphique : courbe d'évolution (ancien rendu) ----- */}
