@@ -111,6 +111,9 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         galleryCards = gc || []
 
         if (galleryCards.length && setData.year) {
+          const norm = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]/g, '') || ''
+          const words = (s: string) => s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2) || []
+
           const y = setData.year!
           const yearStr = String(y), yearNext = `${y}-${String(y+1).slice(2)}`, yearPrev = `${y-1}-${yearStr.slice(2)}`
           const cardsThisYear = (galleryCards as any[]).filter(c => {
@@ -126,11 +129,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
             const userWords2 = words(collToTest2)
             const setNorm2 = norm(setData.name)
             const collOk = !collToTest2 || userWords2.length === 0 || userWords2.some((w: string) => setNorm2.includes(w))
-            console.log(`  [${c.nom}] annee:${c.annee} marque:"${c.marque}" coll:"${c.collection}" tag:"${c.collection_tag}" var:"${c.variation}" → brand:${brandOk} coll:${collOk}`)
+            console.log(`  [${c.nom}] annee:${c.annee} coll:"${c.collection}" tag:"${c.collection_tag}" var:"${c.variation}" → brand:${brandOk} coll:${collOk}`)
           }
-
-          const norm = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]/g, '') || ''
-          const words = (s: string) => s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2) || []
 
           for (const e of allEntries) {
             if (completedEntryIds.has(e.id)) continue
