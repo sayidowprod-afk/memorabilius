@@ -70,13 +70,13 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     // Récupérer les completions de l'user pour ce set (juste entry_id)
     let completedEntryIds = new Set<number>()
     let completionDetails = new Map<number, { id: string; manually_checked: boolean }>()
-    let galleryCards: { player_name: string; year: string; brand: string }[] = []
+    let galleryCards: { nom: string; annee: string; marque: string; collection: string; variation: string }[] = []
 
     if (userId) {
       // Charger tous les entry_ids du set
       const { data: allEntries } = await supabase
         .from('card_set_entries')
-        .select('id, player_name')
+        .select('id, player_name, variation')
         .eq('set_id', setId)
         .limit(100000)
 
@@ -99,20 +99,57 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         // Auto-match galerie
         const { data: gc } = await supabase
           .from('cartes_manuelles')
-          .select('player_name, year, brand')
+          .select('nom, annee, marque, collection, variation')
           .eq('user_id', userId)
         galleryCards = gc || []
 
         if (galleryCards.length && setData.year) {
-          const normalize = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]/g, '') || ''
+          const norm = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]/g, '') || ''
+          const words = (s: string) => s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2) || []
+
           for (const e of allEntries) {
             if (completedEntryIds.has(e.id)) continue
-            const matched = galleryCards.some(gc => {
-              const samePlayer = normalize(gc.player_name) === normalize(e.player_name)
-              const sameYear = gc.year && (gc.year === String(setData.year) || gc.year === `${setData.year - 1}-${String(setData.year).slice(2)}`)
-              const sameBrand = !setData.brand || normalize(gc.brand || '') === normalize(setData.brand)
-              return samePlayer && sameYear && sameBrand
+
+            const matched = (galleryCards as any[]).some(card => {
+              // 1. Joueur (normalisé)
+              if (norm(card.nom) !== norm(e.player_name)) return false
+
+              // 2. Année (ex: "2023" ou "2022-23")
+              const yearStr = String(setData.year)
+              const yearAlt = `${setData.year - 1}-${yearStr.slice(2)}`
+              if (card.annee !== yearStr && card.annee !== yearAlt) return false
+
+              // 3. Marque (fuzzy : l'un contient l'autre)
+              if (setData.brand && card.marque) {
+                const nb = norm(card.marque), ns = norm(setData.brand)
+                if (!nb.includes(ns) && !ns.includes(nb)) return false
+              }
+
+              // 4. Collection (fuzzy : 60% des mots de la carte doivent matcher dans le nom du set)
+              if (card.collection) {
+                const userWords = words(card.collection)
+                const setNorm = norm(setData.name)
+                if (userWords.length > 0) {
+                  const hits = userWords.filter(w => setNorm.includes(w))
+                  if (hits.length / userWords.length < 0.6) return false
+                }
+              }
+
+              // 5. Variation : base vs parallèle
+              const cardVar = card.variation?.trim() || ''
+              const entryVar = e.variation?.trim() || ''
+
+              if (!cardVar) {
+                // Carte sans variation → seulement les entrées base (variation null)
+                return !entryVar
+              } else {
+                // Carte avec variation → fuzzy match (l'un contient l'autre ou mots en commun)
+                if (!entryVar) return false
+                const nc = norm(cardVar), ne = norm(entryVar)
+                return nc.includes(ne) || ne.includes(nc) || words(cardVar).some(w => ne.includes(w))
+              }
             })
+
             if (matched) completedEntryIds.add(e.id)
           }
         }
