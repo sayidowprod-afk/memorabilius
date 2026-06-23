@@ -28,7 +28,9 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
   const [data, setData] = useState<MarketData | null>(null)
   const [loading, setLoading] = useState(true)
   const [hovered, setHovered] = useState<number | null>(null)
+  const [hovered2, setHovered2] = useState<number | null>(null)
   const svgRef = useRef<SVGSVGElement>(null)
+  const svgRef2 = useRef<SVGSVGElement>(null)
 
   const printRun = num?.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num
   const ebayUrl = `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH'].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`
@@ -157,6 +159,37 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
 
   const tooltipLeft = hovered !== null && hovered > listings.length / 2
 
+  // ----- 2e graphique (ancien) : courbe sur des dates réparties -----
+  const now = new Date()
+  const sales = listings.map((l, i) => {
+    const d = new Date(now)
+    d.setDate(d.getDate() - (listings.length - 1 - i) * Math.floor(30 / Math.max(listings.length - 1, 1)))
+    return { price: l.price, date: d.toISOString().slice(0, 10) }
+  })
+  const pts2 = sales.map((s, i) => ({
+    x: PAD_X + (sales.length === 1 ? 0.5 : i / (sales.length - 1)) * (W - PAD_X * 2),
+    y: PAD_Y + (1 - (s.price - minP) / range) * (H - PAD_Y * 2),
+  }))
+  const linePath2 = smooth(pts2)
+  const areaPath2 = `${linePath2} L ${pts2[pts2.length - 1].x} ${H + 2} L ${pts2[0].x} ${H + 2} Z`
+  const current = sales[sales.length - 1].price
+  const trend = sales[sales.length - 1].price - sales[0].price
+  const trendColor = trend >= 0 ? '#2e7d32' : '#c62828'
+  const trendSign = trend >= 0 ? '+' : ''
+  const hoveredSale = hovered2 !== null ? sales[hovered2] : null
+  const hoveredPt2   = hovered2 !== null ? pts2[hovered2]  : null
+  const tooltipLeft2 = hovered2 !== null && hovered2 > sales.length / 2
+  const fmtDate = (d: string) => new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })
+  const handleMouseMove2 = (e: React.MouseEvent<SVGSVGElement>) => {
+    const svg = svgRef2.current
+    if (!svg) return
+    const rect = svg.getBoundingClientRect()
+    const xSvg = ((e.clientX - rect.left) / rect.width) * W
+    let closest = 0, minDist = Infinity
+    pts2.forEach((p, i) => { const dd = Math.abs(p.x - xSvg); if (dd < minDist) { minDist = dd; closest = i } })
+    setHovered2(closest)
+  }
+
   return (
     <div style={{ borderTop: '1px solid #eee', paddingTop: 14, marginTop: 14 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
@@ -256,6 +289,85 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
         ) : (
           <span style={{ fontSize: 9, color: '#ccc' }}>Prix demandés des annonces actuelles · pas un historique de ventes</span>
         )}
+      </div>
+
+      {/* ----- 2e graphique : courbe d'évolution (ancien rendu) ----- */}
+      <div style={{ borderTop: '1px solid #f4f4f4', paddingTop: 14, marginTop: 14 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+          <span style={{ fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase', letterSpacing: 1 }}>Évolution</span>
+          <span style={{ marginLeft: 'auto', fontSize: 10, fontWeight: 700, color: trendColor }}>
+            {trendSign}{Math.round(trend * 100) / 100}{currency} fourchette
+          </span>
+        </div>
+
+        <div style={{ display: 'flex', gap: 12, alignItems: 'stretch' }}>
+          <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
+            <svg
+              ref={svgRef2}
+              viewBox={`0 0 ${W} ${H}`}
+              style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible', cursor: 'crosshair' }}
+              onMouseMove={handleMouseMove2}
+              onMouseLeave={() => setHovered2(null)}
+            >
+              <defs>
+                <linearGradient id="cvm-area2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor={accent} stopOpacity="0.18" />
+                  <stop offset="100%" stopColor={accent} stopOpacity="0" />
+                </linearGradient>
+              </defs>
+
+              <path d={areaPath2} fill="url(#cvm-area2)" />
+              <path d={linePath2} fill="none" stroke={accent} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+
+              {hoveredPt2 && (
+                <line x1={hoveredPt2.x} y1={PAD_Y - 4} x2={hoveredPt2.x} y2={H}
+                  stroke={accent} strokeWidth="0.8" strokeOpacity="0.35" />
+              )}
+              {hovered2 !== null && hoveredPt2 && (
+                <circle cx={hoveredPt2.x} cy={hoveredPt2.y} r="3" fill={accent} />
+              )}
+              {hoveredPt2 && hoveredSale && (() => {
+                const tx = tooltipLeft2 ? hoveredPt2.x - 5 : hoveredPt2.x + 5
+                const anchor = tooltipLeft2 ? 'end' : 'start'
+                const ty = Math.max(PAD_Y + 10, hoveredPt2.y - 4)
+                return (
+                  <g>
+                    <text x={tx} y={ty - 8} textAnchor={anchor} fontSize="6.5" fontWeight="600" fill="#666">
+                      {hoveredSale.price}{currency}
+                    </text>
+                    <text x={tx} y={ty - 0.5} textAnchor={anchor} fontSize="5.5" fill="#ccc">
+                      {fmtDate(hoveredSale.date)}
+                    </text>
+                  </g>
+                )
+              })()}
+              {hovered2 === null && (
+                <circle cx={pts2[pts2.length - 1].x} cy={pts2[pts2.length - 1].y} r="2.5" fill={accent} />
+              )}
+            </svg>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minWidth: 72, textAlign: 'right' }}>
+            <div>
+              <div style={{ fontSize: 9, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', marginBottom: 2 }}>
+                {hoveredSale ? fmtDate(hoveredSale.date) : 'Actuel'}
+              </div>
+              <div style={{ fontSize: 22, fontWeight: 900, color: `rgb(${ar},${ag},${ab})`, lineHeight: 1, transition: '0.1s' }}>
+                {hoveredSale ? hoveredSale.price : current}{currency}
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+                <span style={{ fontSize: 9, fontWeight: 800, color: '#bbb', textTransform: 'uppercase' }}>Min</span>
+                <span style={{ fontSize: 12, fontWeight: 800, color: '#555' }}>{min}{currency}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+                <span style={{ fontSize: 9, fontWeight: 800, color: '#bbb', textTransform: 'uppercase' }}>Max</span>
+                <span style={{ fontSize: 12, fontWeight: 800, color: '#555' }}>{max}{currency}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
