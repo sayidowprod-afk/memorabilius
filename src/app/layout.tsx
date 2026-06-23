@@ -2,8 +2,11 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/lib/ThemeContext'
 import { LangProvider } from '@/lib/LangContext'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -71,8 +74,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main style={{ maxWidth: 1400, margin: '0 auto', padding: '20px 16px' }}>
               {children}
             </main>
+            <Footer />
           </LangProvider>
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )

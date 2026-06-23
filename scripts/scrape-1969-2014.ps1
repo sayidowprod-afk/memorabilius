@@ -4,7 +4,7 @@ Get-Content .env.local | ForEach-Object {
     }
 }
 
-$years = 2014..1969
+$years = 2000..1969
 
 foreach ($year in $years) {
     Write-Host ''
