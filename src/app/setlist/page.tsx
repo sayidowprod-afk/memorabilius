@@ -152,39 +152,47 @@ export default function SetlistPage() {
     }
     setSyncProgress(65)
 
-    // 4. Completions existantes
-    const existing = new Set<number>()
-    for (let i = 0; i < allEntries.length; i += 500) {
-      const { data: chunk } = await supabase.from('user_set_completion').select('entry_id')
-        .eq('user_id', userId).in('entry_id', allEntries.slice(i, i + 500).map(e => e.id))
-      chunk?.forEach((c: any) => existing.add(c.entry_id))
-    }
     setSyncProgress(75)
 
-    // 5. Matching — on trace quelles cartes galerie ont matché (index)
+    // 5. Matching : UNE carte galerie → AU PLUS UNE entrée setlist (la plus précise)
+    // On itère par carte galerie, pas par entrée, pour garantir max 1 match par carte.
     const matchedGalleryIdx = new Set<number>()
     const newRows: { user_id: string; entry_id: number; manually_checked: boolean }[] = []
 
+    // Index des entrées par nom de joueur normalisé pour accès rapide
+    const entriesByPlayer = new Map<string, typeof allEntries>()
     for (const e of allEntries) {
-      const set = setsMap.get(e.set_id)
-      if (!set?.year) continue
-      const y = set.year, ys = String(y), yn = `${y}-${String(y+1).slice(2)}`, yp = `${y-1}-${ys.slice(2)}`
+      const key = norm(e.player_name)
+      if (!entriesByPlayer.has(key)) entriesByPlayer.set(key, [])
+      entriesByPlayer.get(key)!.push(e)
+    }
 
-      for (let gi = 0; gi < galleryCards.length; gi++) {
-        const card = galleryCards[gi]
-        if (norm(card.nom) !== norm(e.player_name)) continue
+    for (let gi = 0; gi < galleryCards.length; gi++) {
+      const card = galleryCards[gi]
+      const coll = (card.collection || card.collection_tag || '').trim()
+      if (!coll) continue  // collection obligatoire
+
+      const playerEntries = entriesByPlayer.get(norm(card.nom)) || []
+      if (!playerEntries.length) continue
+
+      const uw = words(coll)
+      if (!uw.length) continue
+
+      // Trouver toutes les entrées candidates pour cette carte
+      const candidates: { entryId: number; extraWords: number }[] = []
+
+      for (const e of playerEntries) {
+        const set = setsMap.get(e.set_id)
+        if (!set?.year) continue
+        const y = set.year, ys = String(y), yn = `${y}-${String(y+1).slice(2)}`, yp = `${y-1}-${ys.slice(2)}`
+
         const cy = (card.annee || '').trim()
         if (cy !== ys && cy !== yn && cy !== yp) continue
 
-        // La collection est OBLIGATOIRE pour auto-matcher (sinon trop ambigu)
-        const coll = (card.collection || card.collection_tag || '').trim()
-        if (!coll) continue
+        // La collection doit matcher le nom du set
+        if (!uw.some(w => norm(set.name).includes(w))) continue
 
-        // La collection DOIT matcher le nom du set
-        const uw = words(coll)
-        if (uw.length === 0 || !uw.some(w => norm(set.name).includes(w))) continue
-
-        // Brand : validation optionnelle supplémentaire si la carte a une marque
+        // Brand optionnel
         if (card.marque && set.brand) {
           const nb = norm(card.marque), ns = norm(set.brand)
           if (!nb.includes(ns) && !ns.includes(nb)) continue
@@ -194,13 +202,22 @@ export default function SetlistPage() {
         const varMatch = !cv ? !ev : !!ev && (norm(cv).includes(norm(ev)) || norm(ev).includes(norm(cv)) || words(cv).some(w => norm(ev).includes(w)))
         if (!varMatch) continue
 
-        // Cette carte galerie correspond à cette entrée
-        matchedGalleryIdx.add(gi)
-        if (!existing.has(e.id)) {
-          newRows.push({ user_id: userId, entry_id: e.id, manually_checked: false })
-        }
-        break // une carte galerie suffit pour matcher cette entrée
+        // Score : nombre de mots dans le nom du set qui ne sont pas dans la collection
+        // (moins = plus précis)
+        const extraWords = words(set.name).filter(w => !uw.includes(w) && w.length > 3).length
+        candidates.push({ entryId: e.id, extraWords })
       }
+
+      if (!candidates.length) continue
+
+      // Garder uniquement l'entrée du set le plus précis (le moins de mots extra)
+      candidates.sort((a, b) => a.extraWords - b.extraWords)
+      const best = candidates[0]
+
+      matchedGalleryIdx.add(gi)
+      if (!best.entryId) continue
+      // Vérifier si déjà en base (on a supprimé les auto-matches avant, donc existing est vide, mais sécurité)
+      newRows.push({ user_id: userId, entry_id: best.entryId, manually_checked: false })
     }
     setSyncProgress(88)
 
