@@ -15,6 +15,10 @@ interface CardSet {
   pct?: number
 }
 
+interface GalleryCard {
+  nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string
+}
+
 function CompletionBar({ pct }: { pct: number }) {
   const color = pct >= 80 ? '#2ecc71' : pct >= 40 ? '#f39c12' : pct > 0 ? '#3498db' : '#e0e0e0'
   return (
@@ -35,7 +39,9 @@ export default function SetlistPage() {
   const [activeSeason, setActiveSeason] = useState<number | null>(null)
   const [syncing, setSyncing] = useState(false)
   const [syncProgress, setSyncProgress] = useState(0)
-  const [syncStats, setSyncStats] = useState<{ newMatches: number; total: number } | null>(null)
+  const [syncDone, setSyncDone] = useState(false)
+  const [newMatchCount, setNewMatchCount] = useState(0)
+  const [unmatchedCards, setUnmatchedCards] = useState<GalleryCard[]>([])
   const [showMissing, setShowMissing] = useState(false)
 
   useEffect(() => {
@@ -54,7 +60,6 @@ export default function SetlistPage() {
 
     if (!userId) {
       setSets(setsData.map(s => ({ ...s, owned: 0, pct: 0 })))
-      // Sélectionner la saison la plus récente par défaut
       const mostRecent = setsData[0]?.year
       if (mostRecent) setActiveSeason(mostRecent)
       setLoading(false)
@@ -87,13 +92,15 @@ export default function SetlistPage() {
 
   const syncAll = async () => {
     if (!userId) return
-    setSyncing(true); setSyncProgress(0); setSyncStats(null)
+    setSyncing(true); setSyncProgress(0); setSyncDone(false)
     const norm = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]/g, '') || ''
     const words = (s: string) => s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2) || []
 
     // 1. Galerie (manuelles + CSV)
-    const { data: gc } = await supabase.from('cartes_manuelles').select('nom, annee, marque, collection, collection_tag, variation').eq('user_id', userId)
-    let galleryCards: any[] = gc || []
+    const { data: gc } = await supabase.from('cartes_manuelles')
+      .select('nom, annee, marque, collection, collection_tag, variation').eq('user_id', userId)
+    let galleryCards: GalleryCard[] = (gc || []) as GalleryCard[]
+
     const { data: prof } = await supabase.from('profiles').select('lien_csv').eq('id', userId).single()
     if (prof?.lien_csv) {
       try {
@@ -102,78 +109,97 @@ export default function SetlistPage() {
         const csvCards = txt.split(/\r?\n/).slice(4).map(row => {
           const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
           if (!c[0]?.includes('http')) return null
-          return { nom: c[2]?.trim() || '', annee: c[4]?.trim() || '', marque: c[5]?.trim() || '', collection: c[6]?.trim() || '', collection_tag: '', variation: c[7]?.trim() || '' }
-        }).filter(Boolean)
+          return { nom: c[2]?.trim() || '', annee: c[4]?.trim() || '', marque: c[5]?.trim() || '', collection: c[6]?.trim() || '', collection_tag: '', variation: c[7]?.trim() || '' } as GalleryCard
+        }).filter(Boolean) as GalleryCard[]
         galleryCards = [...galleryCards, ...csvCards]
       } catch {}
     }
     if (!galleryCards.length) { setSyncing(false); return }
     setSyncProgress(10)
 
-    // 2. Tous les sets
+    // 2. Tous les sets (métadonnées)
     const { data: allSetsData } = await supabase.from('card_sets').select('id, name, year, brand').eq('sport', 'nba')
     const setsMap = new Map((allSetsData || []).map(s => [s.id, s]))
     setSyncProgress(15)
 
-    // 3. Entrées pour nos joueurs (par chunks de noms)
-    const uniquePlayers = [...new Set(galleryCards.map((c: any) => c.nom as string).filter(Boolean))]
+    // 3. Entrées pour nos joueurs (par chunks de 30 noms)
+    const uniquePlayers = [...new Set(galleryCards.map(c => c.nom).filter(Boolean))]
     const allEntries: { id: number; player_name: string; variation: string | null; set_id: number }[] = []
     const PCHUNK = 30
     for (let ci = 0; ci < uniquePlayers.length; ci += PCHUNK) {
-      setSyncProgress(15 + Math.round((ci / uniquePlayers.length) * 55))
+      setSyncProgress(15 + Math.round((ci / uniquePlayers.length) * 50))
       const batch = uniquePlayers.slice(ci, ci + PCHUNK)
       let from = 0
       for (;;) {
-        const { data: page } = await supabase.from('card_set_entries').select('id, player_name, variation, set_id').in('player_name', batch).range(from, from + 999)
+        const { data: page } = await supabase.from('card_set_entries')
+          .select('id, player_name, variation, set_id').in('player_name', batch).range(from, from + 999)
         if (!page?.length) break
         allEntries.push(...page)
         if (page.length < 1000) break
         from += 1000
       }
     }
-    setSyncProgress(70)
+    setSyncProgress(65)
 
-    // 4. Completions existantes (pour ne pas écraser)
+    // 4. Completions existantes
     const existing = new Set<number>()
     for (let i = 0; i < allEntries.length; i += 500) {
-      const { data: chunk } = await supabase.from('user_set_completion').select('entry_id').eq('user_id', userId).in('entry_id', allEntries.slice(i, i + 500).map(e => e.id))
+      const { data: chunk } = await supabase.from('user_set_completion').select('entry_id')
+        .eq('user_id', userId).in('entry_id', allEntries.slice(i, i + 500).map(e => e.id))
       chunk?.forEach((c: any) => existing.add(c.entry_id))
     }
-    setSyncProgress(80)
+    setSyncProgress(75)
 
-    // 5. Matching
+    // 5. Matching — on trace quelles cartes galerie ont matché (index)
+    const matchedGalleryIdx = new Set<number>()
     const newRows: { user_id: string; entry_id: number; manually_checked: boolean }[] = []
+
     for (const e of allEntries) {
-      if (existing.has(e.id)) continue
       const set = setsMap.get(e.set_id)
       if (!set?.year) continue
       const y = set.year, ys = String(y), yn = `${y}-${String(y+1).slice(2)}`, yp = `${y-1}-${ys.slice(2)}`
-      const matched = galleryCards.some((card: any) => {
-        if (norm(card.nom) !== norm(e.player_name)) return false
-        const cy = (card.annee || '').trim()
-        if (cy !== ys && cy !== yn && cy !== yp) return false
-        if (set.brand && card.marque) { const nb = norm(card.marque), ns = norm(set.brand); if (!nb.includes(ns) && !ns.includes(nb)) return false }
-        const coll = card.collection || card.collection_tag || ''
-        if (coll) { const uw = words(coll); if (uw.length > 0 && !uw.some((w: string) => norm(set.name).includes(w))) return false }
-        const cv = (card.variation || '').trim(), ev = (e.variation || '').trim()
-        if (!cv) return !ev
-        if (!ev) return false
-        const nc = norm(cv), ne = norm(ev)
-        return nc.includes(ne) || ne.includes(nc) || words(cv).some((w: string) => ne.includes(w))
-      })
-      if (matched) newRows.push({ user_id: userId, entry_id: e.id, manually_checked: false })
-    }
-    setSyncProgress(90)
 
-    // 6. Sauvegarde
+      for (let gi = 0; gi < galleryCards.length; gi++) {
+        const card = galleryCards[gi]
+        if (norm(card.nom) !== norm(e.player_name)) continue
+        const cy = (card.annee || '').trim()
+        if (cy !== ys && cy !== yn && cy !== yp) continue
+        if (set.brand && card.marque) {
+          const nb = norm(card.marque), ns = norm(set.brand)
+          if (!nb.includes(ns) && !ns.includes(nb)) continue
+        }
+        const coll = card.collection || card.collection_tag || ''
+        if (coll) {
+          const uw = words(coll)
+          if (uw.length > 0 && !uw.some(w => norm(set.name).includes(w))) continue
+        }
+        const cv = (card.variation || '').trim(), ev = (e.variation || '').trim()
+        const varMatch = !cv ? !ev : !!ev && (norm(cv).includes(norm(ev)) || norm(ev).includes(norm(cv)) || words(cv).some(w => norm(ev).includes(w)))
+        if (!varMatch) continue
+
+        // Cette carte galerie correspond à cette entrée
+        matchedGalleryIdx.add(gi)
+        if (!existing.has(e.id)) {
+          newRows.push({ user_id: userId, entry_id: e.id, manually_checked: false })
+        }
+        break // une carte galerie suffit pour matcher cette entrée
+      }
+    }
+    setSyncProgress(88)
+
+    // 6. Cartes galerie NON placées dans aucun setlist
+    const unmatched = galleryCards.filter((_, i) => !matchedGalleryIdx.has(i))
+    setUnmatchedCards(unmatched)
+
+    // 7. Sauvegarde des nouveaux matches
     for (let i = 0; i < newRows.length; i += 500)
-      await supabase.from('user_set_completion').upsert(newRows.slice(i, i+500), { onConflict: 'user_id,entry_id', ignoreDuplicates: true })
+      await supabase.from('user_set_completion').upsert(newRows.slice(i, i + 500), { onConflict: 'user_id,entry_id', ignoreDuplicates: true })
 
     setSyncProgress(100)
-    await loadSets()
-    const totalOwned2 = sets.reduce((a, s) => a + (s.owned || 0), 0) + newRows.length
-    setSyncStats({ newMatches: newRows.length, total: totalOwned2 })
+    setNewMatchCount(newRows.length)
+    setSyncDone(true)
     setSyncing(false)
+    await loadSets()
   }
 
   // Saisons disponibles (triées desc)
@@ -183,6 +209,8 @@ export default function SetlistPage() {
   const totalOwned = seasonSets.reduce((acc, s) => acc + (s.owned || 0), 0)
   const totalCards = seasonSets.reduce((acc, s) => acc + s.total_cards, 0)
   const seasonPct = totalCards > 0 ? Math.round((totalOwned / totalCards) * 100) : 0
+  const totalOwnedAllSets = sets.reduce((a, s) => a + (s.owned || 0), 0)
+  const setsWithCards = sets.filter(s => (s.owned || 0) > 0).length
 
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 20px' }}>
@@ -196,7 +224,7 @@ export default function SetlistPage() {
             <button
               onClick={syncAll}
               disabled={syncing}
-              style={{ padding: '11px 22px', borderRadius: 12, border: 'none', background: syncing ? '#e0e0e0' : '#003DA6', color: syncing ? '#999' : 'white', fontWeight: 800, fontSize: 14, cursor: syncing ? 'default' : 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}
+              style={{ padding: '11px 22px', borderRadius: 12, border: 'none', background: syncing ? '#ccc' : '#003DA6', color: syncing ? '#666' : 'white', fontWeight: 800, fontSize: 14, cursor: syncing ? 'default' : 'pointer' }}
             >
               {syncing ? `Synchronisation... ${syncProgress}%` : '🔄 Synchroniser ma galerie'}
             </button>
@@ -205,25 +233,82 @@ export default function SetlistPage() {
                 <div style={{ height: '100%', width: `${syncProgress}%`, background: '#003DA6', borderRadius: 3, transition: 'width 0.3s' }} />
               </div>
             )}
-            {syncStats && !syncing && (
+            {/* Stats toujours visibles dès que les sets sont chargés */}
+            {!loading && (
               <div style={{ background: '#f0f4ff', borderRadius: 12, padding: '12px 18px', fontSize: 14, display: 'flex', flexDirection: 'column', gap: 6, minWidth: 240 }}>
-                <div style={{ fontWeight: 800, color: '#003DA6' }}>
-                  ✅ {syncStats.newMatches} nouvelle{syncStats.newMatches !== 1 ? 's' : ''} carte{syncStats.newMatches !== 1 ? 's' : ''} cochée{syncStats.newMatches !== 1 ? 's' : ''}
+                {syncDone && (
+                  <div style={{ fontWeight: 800, color: '#2ecc71', marginBottom: 2 }}>
+                    ✅ {newMatchCount} nouvelle{newMatchCount !== 1 ? 's' : ''} carte{newMatchCount !== 1 ? 's' : ''} cochée{newMatchCount !== 1 ? 's' : ''}
+                  </div>
+                )}
+                <div style={{ fontWeight: 700, color: '#003DA6' }}>
+                  {totalOwnedAllSets.toLocaleString()} cartes validées
                 </div>
-                <div style={{ color: '#555', fontSize: 13 }}>
-                  {sets.reduce((a,s) => a+(s.owned||0), 0).toLocaleString()} cartes validées au total dans {sets.filter(s => (s.owned||0) > 0).length} setlists
+                <div style={{ color: '#666', fontSize: 13 }}>
+                  dans {setsWithCards} setlist{setsWithCards !== 1 ? 's' : ''}
                 </div>
                 <button
                   onClick={() => setShowMissing(true)}
                   style={{ marginTop: 4, padding: '7px 14px', borderRadius: 8, border: '1.5px solid #003DA6', background: 'white', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
                 >
-                  Voir les cartes manquantes →
+                  {syncDone ? `Voir les cartes non placées (${unmatchedCards.length})` : 'Voir les cartes non placées →'}
                 </button>
               </div>
             )}
           </div>
         )}
       </div>
+
+      {/* Modal cartes galerie non placées */}
+      {showMissing && (
+        <div
+          style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+          onClick={() => setShowMissing(false)}
+        >
+          <div
+            style={{ background: 'white', borderRadius: 18, padding: '28px 24px', maxWidth: 620, width: '100%', maxHeight: '80vh', overflow: 'auto' }}
+            onClick={e => e.stopPropagation()}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+              <h2 style={{ fontWeight: 900, fontSize: 20, margin: 0 }}>
+                Cartes non placées dans un setlist
+              </h2>
+              <button onClick={() => setShowMissing(false)} style={{ background: 'none', border: 'none', fontSize: 22, cursor: 'pointer', color: '#aaa' }}>✕</button>
+            </div>
+            {!syncDone ? (
+              <div style={{ textAlign: 'center', color: '#888', padding: '30px 0' }}>
+                Lance une synchronisation pour voir quelles cartes de ta galerie ne sont pas dans un setlist.
+              </div>
+            ) : unmatchedCards.length === 0 ? (
+              <div style={{ textAlign: 'center', color: '#2ecc71', fontWeight: 700, padding: '30px 0', fontSize: 16 }}>
+                Toutes tes cartes sont placées dans un setlist 🎉
+              </div>
+            ) : (
+              <>
+                <p style={{ color: '#888', fontSize: 13, marginBottom: 16 }}>
+                  {unmatchedCards.length} carte{unmatchedCards.length !== 1 ? 's' : ''} de ta galerie sans correspondance dans les setlists.
+                </p>
+                {unmatchedCards.map((card, i) => (
+                  <div key={i} style={{ padding: '10px 0', borderBottom: '1px solid #f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
+                    <div>
+                      <div style={{ fontWeight: 700, fontSize: 14, color: '#111' }}>
+                        {card.nom || '—'}
+                        {card.variation && <span style={{ fontWeight: 400, color: '#888', marginLeft: 6 }}>{card.variation}</span>}
+                      </div>
+                      <div style={{ fontSize: 12, color: '#aaa', marginTop: 2 }}>
+                        {[card.annee, card.marque, card.collection].filter(Boolean).join(' · ')}
+                      </div>
+                    </div>
+                    <span style={{ fontSize: 11, color: '#e74c3c', fontWeight: 700, background: '#fff0f0', borderRadius: 6, padding: '3px 8px', whiteSpace: 'nowrap' }}>
+                      non placée
+                    </span>
+                  </div>
+                ))}
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Boutons de saison */}
       {!loading && (
@@ -270,38 +355,6 @@ export default function SetlistPage() {
           {userId && totalCards > 0 && (
             <span style={{ fontWeight: 900, fontSize: 16, color: seasonPct === 100 ? '#2ecc71' : '#003DA6' }}>{seasonPct}% complété</span>
           )}
-        </div>
-      )}
-
-      {/* Modal cartes manquantes */}
-      {showMissing && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }} onClick={() => setShowMissing(false)}>
-          <div style={{ background: 'white', borderRadius: 18, padding: '28px 24px', maxWidth: 600, width: '100%', maxHeight: '80vh', overflow: 'auto' }} onClick={e => e.stopPropagation()}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-              <h2 style={{ fontWeight: 900, fontSize: 20, margin: 0 }}>Cartes manquantes par setlist</h2>
-              <button onClick={() => setShowMissing(false)} style={{ background: 'none', border: 'none', fontSize: 22, cursor: 'pointer', color: '#aaa' }}>✕</button>
-            </div>
-            {sets.filter(s => (s.owned || 0) > 0 && (s.owned || 0) < s.total_cards).sort((a, b) => (a.pct || 0) - (b.pct || 0)).map(s => {
-              const missing = s.total_cards - (s.owned || 0)
-              return (
-                <a key={s.id} href={`/setlist/${s.id}`} style={{ textDecoration: 'none', display: 'block', padding: '12px 0', borderBottom: '1px solid #f0f0f0' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      <div style={{ fontWeight: 700, fontSize: 14, color: '#111' }}>{s.name}</div>
-                      <div style={{ fontSize: 12, color: '#aaa' }}>{s.year} · {s.brand}</div>
-                    </div>
-                    <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontWeight: 800, color: '#e74c3c', fontSize: 14 }}>{missing} manquante{missing !== 1 ? 's' : ''}</div>
-                      <div style={{ fontSize: 12, color: '#aaa' }}>{s.owned}/{s.total_cards}</div>
-                    </div>
-                  </div>
-                </a>
-              )
-            })}
-            {sets.filter(s => (s.owned || 0) > 0 && (s.owned || 0) < s.total_cards).length === 0 && (
-              <div style={{ textAlign: 'center', color: '#888', padding: 30 }}>Aucune setlist en cours 🎉</div>
-            )}
-          </div>
         </div>
       )}
 
