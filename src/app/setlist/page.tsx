@@ -66,13 +66,21 @@ export default function SetlistPage() {
       return
     }
 
-    const { data: completions } = await supabase
-      .from('user_set_completion')
-      .select('entry_id, card_set_entries(set_id)')
-      .eq('user_id', userId)
+    // Paginer les completions (Supabase max 1000 par requête)
+    const allCompletions: { entry_id: number; card_set_entries: { set_id: number } | null }[] = []
+    for (let from = 0; ; from += 1000) {
+      const { data: page } = await supabase
+        .from('user_set_completion')
+        .select('entry_id, card_set_entries(set_id)')
+        .eq('user_id', userId)
+        .range(from, from + 999)
+      if (!page?.length) break
+      allCompletions.push(...(page as any))
+      if (page.length < 1000) break
+    }
 
     const countBySet = new Map<number, number>()
-    completions?.forEach((c: any) => {
+    allCompletions.forEach((c: any) => {
       const setId = c.card_set_entries?.set_id
       if (setId) countBySet.set(setId, (countBySet.get(setId) || 0) + 1)
     })
@@ -115,6 +123,9 @@ export default function SetlistPage() {
       } catch {}
     }
     if (!galleryCards.length) { setSyncing(false); return }
+
+    // Supprimer les matches auto précédents (manually_checked = false) pour repartir propre
+    await supabase.from('user_set_completion').delete().eq('user_id', userId).eq('manually_checked', false)
     setSyncProgress(10)
 
     // 2. Tous les sets (métadonnées)
@@ -164,15 +175,24 @@ export default function SetlistPage() {
         if (norm(card.nom) !== norm(e.player_name)) continue
         const cy = (card.annee || '').trim()
         if (cy !== ys && cy !== yn && cy !== yp) continue
-        if (set.brand && card.marque) {
+
+        // Brand : si la carte a une marque, elle DOIT matcher le set
+        if (card.marque) {
+          if (!set.brand) continue
           const nb = norm(card.marque), ns = norm(set.brand)
           if (!nb.includes(ns) && !ns.includes(nb)) continue
         }
-        const coll = card.collection || card.collection_tag || ''
+
+        // Collection : si la carte a une collection, elle DOIT matcher le nom du set
+        const coll = (card.collection || card.collection_tag || '').trim()
         if (coll) {
           const uw = words(coll)
           if (uw.length > 0 && !uw.some(w => norm(set.name).includes(w))) continue
         }
+
+        // Si ni marque ni collection : trop ambigu, on ne matche pas automatiquement
+        if (!card.marque && !coll) continue
+
         const cv = (card.variation || '').trim(), ev = (e.variation || '').trim()
         const varMatch = !cv ? !ev : !!ev && (norm(cv).includes(norm(ev)) || norm(ev).includes(norm(cv)) || words(cv).some(w => norm(ev).includes(w)))
         if (!varMatch) continue
