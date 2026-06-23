@@ -114,30 +114,30 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
               // 1. Joueur (normalisé)
               if (norm(card.nom) !== norm(e.player_name)) return false
 
-              // 2. Année (ex: "2023" ou "2022-23")
-              const yearStr = String(setData.year)
-              const yearAlt = `${setData.year - 1}-${yearStr.slice(2)}`
-              if (card.annee !== yearStr && card.annee !== yearAlt) return false
+              // 2. Année : "2023", "2023-24", ou "2022-23" pour un set year=2023
+              const y = setData.year!
+              const yearStr = String(y)                                    // "2023"
+              const yearNext = `${y}-${String(y + 1).slice(2)}`           // "2023-24"
+              const yearPrev = `${y - 1}-${yearStr.slice(2)}`             // "2022-23"
+              const cardYear = (card.annee || '').trim()
+              if (cardYear !== yearStr && cardYear !== yearNext && cardYear !== yearPrev) return false
 
-              // 3. Marque (fuzzy : l'un contient l'autre)
+              // 3. Marque (fuzzy : l'un contient l'autre — ignoré si l'un des deux est vide)
               if (setData.brand && card.marque) {
                 const nb = norm(card.marque), ns = norm(setData.brand)
                 if (!nb.includes(ns) && !ns.includes(nb)) return false
               }
 
-              // 4. Collection (fuzzy : 60% des mots de la carte doivent matcher dans le nom du set)
+              // 4. Collection (fuzzy : au moins 1 mot clé en commun — ignoré si vide)
               if (card.collection) {
                 const userWords = words(card.collection)
                 const setNorm = norm(setData.name)
-                if (userWords.length > 0) {
-                  const hits = userWords.filter(w => setNorm.includes(w))
-                  if (hits.length / userWords.length < 0.6) return false
-                }
+                if (userWords.length > 0 && !userWords.some(w => setNorm.includes(w))) return false
               }
 
               // 5. Variation : base vs parallèle
-              const cardVar = card.variation?.trim() || ''
-              const entryVar = e.variation?.trim() || ''
+              const cardVar = (card.variation || '').trim()
+              const entryVar = (e.variation || '').trim()
 
               if (!cardVar) {
                 // Carte sans variation → seulement les entrées base (variation null)
