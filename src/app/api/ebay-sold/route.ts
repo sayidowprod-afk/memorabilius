@@ -61,7 +61,14 @@ function processItems(rawItems: any[], mustTerms: string[], mustSetWord: string,
       : items[mid].price
     items = items.filter((i) => i.price >= median * 0.15 && i.price <= median * 5)
   }
-  return items.slice(0, 10)
+  return items.slice(0, 24)
+}
+
+function median(prices: number[]): number {
+  if (!prices.length) return 0
+  const sorted = [...prices].sort((a, b) => a - b)
+  const mid = Math.floor(sorted.length / 2)
+  return sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid]
 }
 
 export async function GET(req: NextRequest) {
@@ -156,16 +163,18 @@ export async function GET(req: NextRequest) {
 
     clearTimeout(timeout)
 
+    // Annonces actives triées par prix croissant (distribution du marché actuel).
+    // NB : la Browse API ne donne PAS les ventes conclues — ce sont des prix demandés.
     const items = processItems(rawItems, mustTerms, mustSetWord, isGraded)
+    const prices = items.map(i => i.price)
 
-    const now = new Date()
-    const withDates = items.map((item, i) => {
-      const d = new Date(now)
-      d.setDate(d.getDate() - (items.length - 1 - i) * Math.floor(30 / Math.max(items.length - 1, 1)))
-      return { ...item, date: d.toISOString().slice(0, 10) }
+    return NextResponse.json({
+      items,                       // [{ title, price, url }] triés par prix croissant
+      count: items.length,
+      median: median(prices),
+      min: prices.length ? Math.min(...prices) : 0,
+      max: prices.length ? Math.max(...prices) : 0,
     })
-
-    return NextResponse.json({ items: withDates })
   } catch {
     return NextResponse.json({ items: [] })
   }
