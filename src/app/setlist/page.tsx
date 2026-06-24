@@ -16,7 +16,7 @@ interface CardSet {
 }
 
 interface GalleryCard {
-  nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string
+  nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string; card_number?: string
 }
 
 interface SetCandidate {
@@ -174,7 +174,7 @@ export default function SetlistPage() {
 
     // 1. Galerie (manuelles + CSV)
     const { data: gc } = await supabase.from('cartes_manuelles')
-      .select('nom, annee, marque, collection, collection_tag, variation').eq('user_id', userId)
+      .select('nom, annee, marque, collection, collection_tag, variation, card_number').eq('user_id', userId)
     let galleryCards: GalleryCard[] = (gc || []) as GalleryCard[]
 
     const { data: prof } = await supabase.from('profiles').select('lien_csv').eq('id', userId).single()
@@ -209,7 +209,7 @@ export default function SetlistPage() {
 
     // 3. Entrées pour nos joueurs (par chunks de 30 noms)
     const uniquePlayers = [...new Set(galleryCards.map(c => c.nom).filter(Boolean))]
-    const allEntries: { id: number; player_name: string; variation: string | null; set_id: number }[] = []
+    const allEntries: { id: number; player_name: string; variation: string | null; set_id: number; card_number: string | null }[] = []
     const PCHUNK = 30
     for (let ci = 0; ci < uniquePlayers.length; ci += PCHUNK) {
       setSyncProgress(15 + Math.round((ci / uniquePlayers.length) * 50))
@@ -217,7 +217,7 @@ export default function SetlistPage() {
       let from = 0
       for (;;) {
         const { data: page } = await supabase.from('card_set_entries')
-          .select('id, player_name, variation, set_id').in('player_name', batch).range(from, from + 999)
+          .select('id, player_name, variation, set_id, card_number').in('player_name', batch).range(from, from + 999)
         if (!page?.length) break
         allEntries.push(...page)
         if (page.length < 1000) break
@@ -292,10 +292,13 @@ export default function SetlistPage() {
         }
 
         // Score : mots extra dans le set + mots manquants + pénalité variation
+        // Bonus -1 si card_number correspond (renforce la correspondance exacte)
         const sn = norm(set.name)
         const extraWords = words(set.name).filter(w => !uw.includes(w) && w.length > 3).length
         const missedWords = uw.filter(w => w.length > 3 && !sn.includes(w)).length
-        candidates.push({ entryId: e.id, extraWords: extraWords + missedWords + varScore })
+        const cn = (card.card_number || '').trim(), en = (e.card_number || '').trim()
+        const cardNumBonus = cn && en && norm(cn) === norm(en) ? -1 : 0
+        candidates.push({ entryId: e.id, extraWords: extraWords + missedWords + varScore + cardNumBonus })
       }
 
       if (!candidates.length) continue

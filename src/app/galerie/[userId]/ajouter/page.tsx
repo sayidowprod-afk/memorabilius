@@ -25,7 +25,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [uploadingIR, setUploadingIR] = useState(false)
   const [form, setForm] = useState({
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
-    grade: 'Raw', num: '', rc: false, auto: false, patch: false, booklet: false, collection_tag: '',
+    grade: 'Raw', num: '', card_number: '', rc: false, auto: false, patch: false, booklet: false, collection_tag: '',
     image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
   })
 
@@ -181,7 +181,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         marque:     (isVerso && !rectoBase64 && f.marque)     ? f.marque     : card.marque     || f.marque,
         collection: card.collection || f.collection,
         variation:  card.variation  !== undefined ? card.variation : f.variation,
-        num:        card.num        || f.num,
+        num:         card.num         || f.num,
+        card_number: card.card_number || f.card_number,
         grade:      (isVerso && !rectoBase64 && f.grade !== 'Raw') ? f.grade : card.grade || f.grade,
         rc:         f.rc   || (card.rc   ?? false),
         auto:       f.auto || (card.auto ?? false),
@@ -303,7 +304,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const { error } = await supabase.from('cartes_manuelles').insert({
       user_id: user.id, nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
       marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, grade: form.grade,
-      num: form.num || null, rc: form.rc, auto: form.auto, patch: form.patch, booklet: form.booklet,
+      num: form.num || null, card_number: form.card_number || null,
+      rc: form.rc, auto: form.auto, patch: form.patch, booklet: form.booklet,
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
       image_interieur_gauche: form.image_interieur_gauche || null,
       image_interieur_droite: form.image_interieur_droite || null,
@@ -457,10 +459,14 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Grade</label>
               <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })} placeholder="Raw, PSA 10, BGS 9.5…" />
+            </div>
+            <div>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'N° de carte' : 'Card #'}</label>
+              <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder="48, HTR-IFS, EC-1…" />
             </div>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Numérotation (ex: 48/99)' : 'Numbering (ex: 48/99)'}</label>

@@ -15,6 +15,7 @@ Réponds UNIQUEMENT avec un objet JSON valide, sans markdown, sans explication.
   "collection": "Nom du SET principal sans la marque (ex: Prizm, Chrome, Mosaic, Optic, Select, Hoops, Donruss, Bowman, Heritage, Stadium Club, National Treasures, Immaculate, Flawless, Obsidian, Revolution, Noir, Illusions, Court Kings)",
   "variation": "Parallèle ou variante EXACTE visible sur la carte (voir guide ci-dessous). Vide si c'est la base standard.",
   "num": "Numérotation sérielle au format X/Y ou /Y si visible et imprimée (ex: 48/99, /25, /10). Vide sinon.",
+  "card_number": "Numéro de la carte dans le set, imprimé au dos (ex: '48', 'HTR-IFS', 'EC-1', 'PP-LJ'). Souvent précédé de '#' au dos. NE PAS confondre avec la numérotation /99. Vide si absent.",
   "grade": "Raw",
   "rc": false,
   "auto": false,
@@ -179,6 +180,7 @@ RÈGLES BOOLÉENNES :
 - patch = true si morceau de tissu/jersey encapsulé visible OU "Patch" OU "Relic" inscrit
 - grade = "Raw" par défaut. Si slab PSA visible → "PSA X", BGS → "BGS X.X", CGC → "CGC X"
 - num : UNIQUEMENT si tu lis "X/Y" ou "/Y" imprimé sur la carte comme tirage limité. Pas le numéro de carte (#123), pas le numéro de maillot.
+- card_number : le numéro identifiant la carte dans le set, typiquement au dos (ex: "#48", "HTR-IFS", "EC-1"). Si visible, retourne UNIQUEMENT la valeur sans le '#' (ex: "48" pas "#48"). Le verso est souvent plus clair pour ça.
 
 Si une info est absente ou vraiment illisible → chaîne vide "".
 Ne devine pas. Reste factuel à ce qui est visible.

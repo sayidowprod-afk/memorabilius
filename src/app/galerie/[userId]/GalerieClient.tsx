@@ -18,7 +18,7 @@ const PAGE_SIZE = 48
 interface Card {
   id_manuelle?: string;
   f: string; b: string; n: string; t: string; y: string
-  br: string; s: string; v: string; num: string
+  br: string; s: string; v: string; num: string; card_number?: string
   auto: boolean; rc: boolean; patch: boolean; g: string
   booklet?: boolean; il?: string; ir?: string
   isManuelle?: boolean
@@ -209,7 +209,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         b: m.image_verso || m.image_recto || 'https://placehold.co/300x420?text=No+Image',
         n: m.nom || '', t: m.equipe || '', y: m.annee || '',
         br: m.marque || '', s: m.collection || '', v: m.variation || '',
-        num: m.num || '', auto: m.auto || false, rc: m.rc || false,
+        num: m.num || '', card_number: m.card_number || '', auto: m.auto || false, rc: m.rc || false,
         patch: m.patch || false, g: m.grade || 'Raw', isManuelle: true,
         booklet: m.booklet || false,
         il: m.image_interieur_gauche || '', ir: m.image_interieur_droite || '',
@@ -1022,7 +1022,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 <div style={{ minWidth: 0 }}>
                   <p style={{ fontWeight: 800, fontSize: 13, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.n}</p>
                   <p style={{ fontSize: 10, color: accent, fontWeight: 700, margin: '2px 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.v}</p>
-                  <p style={{ fontSize: 10, color: '#999', marginTop: 2 }}>{d.y} {d.br} {d.s}</p>
+                  <p style={{ fontSize: 10, color: '#999', marginTop: 2, display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
+                    <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.y} {d.br} {d.s}</span>
+                    {d.card_number && <span style={{ flexShrink: 0, fontWeight: 800, color: '#555', background: '#f0f0f0', borderRadius: 4, padding: '1px 5px', fontSize: 9 }}>#{d.card_number}</span>}
+                  </p>
                 </div>
                 {/* Bouton like */}
                 {!editMode && (() => {
