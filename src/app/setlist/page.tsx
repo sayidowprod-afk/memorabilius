@@ -45,6 +45,7 @@ export default function SetlistPage() {
   const [loading, setLoading] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
   const [activeSeason, setActiveSeason] = useState<number | null>(null)
+  const [activeDecade, setActiveDecade] = useState<number | null>(null)
   const [syncing, setSyncing] = useState(false)
   const [syncProgress, setSyncProgress] = useState(0)
   const [syncDone, setSyncDone] = useState(false)
@@ -390,6 +391,11 @@ export default function SetlistPage() {
   const seasons = Array.from(new Set(sets.map(s => s.year).filter(Boolean) as number[])).sort((a, b) => b - a)
   const seasonSets = sets.filter(s => s.year === activeSeason).sort((a, b) => a.name.localeCompare(b.name))
 
+  // Navigation par décennie
+  const decades = Array.from(new Set(seasons.map(y => Math.floor(y / 10) * 10))).sort((a, b) => b - a)
+  const resolvedDecade = activeDecade ?? (seasons.length ? Math.floor(seasons[0] / 10) * 10 : null)
+  const decadeSeasons = resolvedDecade !== null ? seasons.filter(y => Math.floor(y / 10) * 10 === resolvedDecade) : []
+
   const totalOwned = seasonSets.reduce((acc, s) => acc + (s.owned || 0), 0)
   const totalCards = seasonSets.reduce((acc, s) => acc + s.total_cards, 0)
   const seasonPct = totalCards > 0 ? Math.round((totalOwned / totalCards) * 100) : 0
@@ -509,38 +515,67 @@ export default function SetlistPage() {
         </div>
       )}
 
-      {/* Boutons de saison */}
+      {/* Navigation décennie → saison */}
       {!loading && (
-        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 32 }}>
-          {seasons.map(year => {
-            const isActive = activeSeason === year
-            const ssets = sets.filter(s => s.year === year)
-            const sOwned = ssets.reduce((a, s) => a + (s.owned || 0), 0)
-            const sTotal = ssets.reduce((a, s) => a + s.total_cards, 0)
-            const sPct = sTotal > 0 ? Math.round((sOwned / sTotal) * 100) : 0
-            return (
-              <button key={year} onClick={() => setActiveSeason(year)} style={{
-                padding: '14px 22px', borderRadius: 14, border: '2.5px solid',
-                borderColor: isActive ? '#003DA6' : '#e0e0e0',
-                background: isActive ? '#003DA6' : 'white',
-                cursor: 'pointer', transition: 'all 0.15s',
-                display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
-                minWidth: 90,
-              }}>
-                <span style={{ fontSize: 17, fontWeight: 900, color: isActive ? 'white' : '#111' }}>
-                  {seasonLabel(year)}
-                </span>
-                <span style={{ fontSize: 11, color: isActive ? 'rgba(255,255,255,0.75)' : '#aaa', fontWeight: 600 }}>
-                  {ssets.length} sets
-                </span>
-                {userId && sPct > 0 && (
-                  <span style={{ fontSize: 11, fontWeight: 800, color: isActive ? '#7eb8ff' : '#003DA6' }}>
-                    {sPct}%
+        <div style={{ marginBottom: 32 }}>
+          {/* Onglets décennie */}
+          <div style={{ display: 'flex', gap: 8, marginBottom: 14, borderBottom: '2px solid #f0f0f0', paddingBottom: 0 }}>
+            {decades.map(decade => {
+              const isAct = resolvedDecade === decade
+              const label = `${String(decade).slice(2)}s`
+              return (
+                <button
+                  key={decade}
+                  onClick={() => {
+                    setActiveDecade(decade)
+                    const first = seasons.find(y => Math.floor(y / 10) * 10 === decade)
+                    if (first) setActiveSeason(first)
+                  }}
+                  style={{
+                    padding: '10px 22px', border: 'none', background: 'none', cursor: 'pointer',
+                    fontWeight: 800, fontSize: 16, color: isAct ? '#003DA6' : '#aaa',
+                    borderBottom: isAct ? '3px solid #003DA6' : '3px solid transparent',
+                    marginBottom: -2, transition: 'all 0.15s',
+                  }}
+                >
+                  {label}
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Boutons d'années dans la décennie */}
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', paddingTop: 8 }}>
+            {decadeSeasons.map(year => {
+              const isActive = activeSeason === year
+              const ssets = sets.filter(s => s.year === year)
+              const sOwned = ssets.reduce((a, s) => a + (s.owned || 0), 0)
+              const sTotal = ssets.reduce((a, s) => a + s.total_cards, 0)
+              const sPct = sTotal > 0 ? Math.round((sOwned / sTotal) * 100) : 0
+              return (
+                <button key={year} onClick={() => setActiveSeason(year)} style={{
+                  padding: '10px 18px', borderRadius: 12, border: '2px solid',
+                  borderColor: isActive ? '#003DA6' : '#e0e0e0',
+                  background: isActive ? '#003DA6' : 'white',
+                  cursor: 'pointer', transition: 'all 0.15s',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
+                  minWidth: 80,
+                }}>
+                  <span style={{ fontSize: 15, fontWeight: 900, color: isActive ? 'white' : '#111' }}>
+                    {seasonLabel(year)}
                   </span>
-                )}
-              </button>
-            )
-          })}
+                  <span style={{ fontSize: 11, color: isActive ? 'rgba(255,255,255,0.7)' : '#aaa', fontWeight: 600 }}>
+                    {ssets.length} sets
+                  </span>
+                  {userId && sPct > 0 && (
+                    <span style={{ fontSize: 11, fontWeight: 800, color: isActive ? '#7eb8ff' : '#003DA6' }}>
+                      {sPct}%
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
         </div>
       )}
 
