@@ -16,8 +16,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
   const [error, setError] = useState<string | null>(null)
   const streamRef = useRef<MediaStream | null>(null)
   const [torch, setTorch] = useState(false)
-  const torchRef = useRef(false)
-  const torchCapable = useRef(false)
+  const [torchCapable, setTorchCapable] = useState(false)   // useState → re-render quand détecté
   const [focusPt, setFocusPt] = useState<{ x: number; y: number } | null>(null)
 
   useEffect(() => {
@@ -28,7 +27,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
       streamRef.current = stream
       const track = stream.getVideoTracks()[0]
       const caps = (track.getCapabilities?.() ?? {}) as any
-      if (caps.torch) torchCapable.current = true
+      if (caps.torch) setTorchCapable(true)   // déclenche le re-render → bouton apparaît
       if (videoRef.current) {
         videoRef.current.srcObject = stream
         videoRef.current.onloadedmetadata = () => setReady(true)
@@ -40,11 +39,10 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
 
   const toggleTorch = async () => {
     const track = streamRef.current?.getVideoTracks()[0]
-    if (!track || !torchCapable.current) return
-    const next = !torchRef.current
+    if (!track || !torchCapable) return
+    const next = !torch
     try {
       await (track as any).applyConstraints({ advanced: [{ torch: next }] })
-      torchRef.current = next
       setTorch(next)
     } catch { /* non supporté */ }
   }
@@ -186,7 +184,7 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
             <button onClick={capture} disabled={!ready}
               style={{ width: 72, height: 72, borderRadius: '50%', background: ready ? 'white' : '#666', border: '4px solid rgba(255,255,255,0.5)', cursor: ready ? 'pointer' : 'default', boxShadow: '0 0 0 3px white' }}>
             </button>
-            {torchCapable.current ? (
+            {torchCapable ? (
               <button onClick={toggleTorch}
                 title={torch ? 'Éteindre la lampe' : 'Allumer la lampe'}
                 style={{ width: 48, height: 48, borderRadius: '50%', background: torch ? 'rgba(255,235,59,0.35)' : 'rgba(255,255,255,0.2)', border: `2px solid ${torch ? '#ffeb3b' : 'white'}`, color: torch ? '#ffeb3b' : 'white', fontSize: 22, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

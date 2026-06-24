@@ -920,6 +920,16 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           }
         } catch {}
       }
+
+      // Essai 3 : Gemini sur l'image complète (JS + OpenCV ont tous les deux échoué)
+      if (!detectedCorners) {
+        try {
+          detectedCorners = await Promise.race([
+            detectCard(img),
+            new Promise<null>(r => setTimeout(() => r(null), 8000)),
+          ])
+        } catch {}
+      }
     } else {
       detectedCorners = await Promise.race([
         detectCard(img),
