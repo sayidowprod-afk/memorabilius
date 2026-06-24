@@ -155,12 +155,13 @@ export default function SetlistPage() {
     }
     const normBrand = (b: string) => { const n = norm(b); return BRAND_PARENT[n] ?? n }
 
-    // Alias de noms de collection : "Topps" ↔ "Topps Flagship", "NBA Hoops" ↔ "Hoops"
+    // Alias de noms de collection : "Flagship" ↔ "Topps Flagship" ↔ "Topps", "NBA Hoops" ↔ "Hoops"
     const COLL_ALIASES: Record<string, string[]> = {
-      topps: ['toppsflagship', 'flagship'],
-      toppsflagship: ['topps'],
-      nbahoops: ['hoops'],
-      hoops: ['nbahoops', 'hoops'],
+      topps:        ['toppsflagship', 'flagship'],
+      toppsflagship: ['topps', 'flagship'],
+      flagship:     ['topps', 'toppsflagship'],
+      nbahoops:     ['hoops'],
+      hoops:        ['nbahoops'],
     }
     const collWords = (coll: string) => {
       const base = words(coll)
@@ -272,10 +273,12 @@ export default function SetlistPage() {
         const varMatch = !cv ? !ev : !!ev && (norm(cv).includes(norm(ev)) || norm(ev).includes(norm(cv)) || words(cv).some(w => norm(ev).includes(w)))
         if (!varMatch) continue
 
-        // Score : nombre de mots dans le nom du set qui ne sont pas dans la collection
-        // (moins = plus précis)
+        // Score : mots extra dans le set (non demandés) + mots manquants (demandés mais absents)
+        // Minimiser les deux → préfère le set dont le nom coïncide le mieux avec la collection
+        const sn = norm(set.name)
         const extraWords = words(set.name).filter(w => !uw.includes(w) && w.length > 3).length
-        candidates.push({ entryId: e.id, extraWords })
+        const missedWords = uw.filter(w => w.length > 3 && !sn.includes(w)).length
+        candidates.push({ entryId: e.id, extraWords: extraWords + missedWords })
       }
 
       if (!candidates.length) continue
