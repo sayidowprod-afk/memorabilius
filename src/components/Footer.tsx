@@ -15,15 +15,13 @@ export default function Footer() {
             href="https://ko-fi.com/gknnn_cards"
             target="_blank"
             rel="noopener noreferrer"
+            className="kofi-btn"
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
               background: '#FF5E5B', color: 'white',
               padding: '7px 14px', borderRadius: 20,
               fontSize: 13, fontWeight: 800, textDecoration: 'none',
-              transition: 'opacity 0.15s',
             }}
-            onMouseOver={e => (e.currentTarget.style.opacity = '0.85')}
-            onMouseOut={e => (e.currentTarget.style.opacity = '1')}
           >
             ☕ Soutenir le projet
           </a>

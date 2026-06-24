@@ -267,3 +267,5 @@ img {
   aspect-ratio: attr(width) / attr(height);
   background: #f0f0f0;
 }
+
+.kofi-btn:hover { opacity: 0.85; }
