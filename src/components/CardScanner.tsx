@@ -55,6 +55,8 @@ function cornersInsideImage(pts: Pt[], W: number, H: number): boolean {
   )
 }
 
+const yieldThread = () => new Promise<void>(r => setTimeout(r, 0))
+
 async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | null> {
   const MAX = 800
   const scale = Math.min(MAX / img.naturalWidth, MAX / img.naturalHeight, 1)
@@ -66,10 +68,17 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
   canvas.getContext('2d')!.drawImage(img, 0, 0, W, H)
 
   const src  = cv.imread(canvas)
+  canvas.width = 0 // libère le backing store
   const gray = new cv.Mat()
   const blur = new cv.Mat()
-  cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY)
-  cv.GaussianBlur(gray, blur, new cv.Size(7, 7), 0)
+
+  try {
+    cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY)
+    cv.GaussianBlur(gray, blur, new cv.Size(7, 7), 0)
+  } catch (e) {
+    src.delete(); gray.delete(); blur.delete()
+    throw e
+  }
 
   const CARD_RATIO_P = 2.5 / 3.5
   const CARD_RATIO_L = 3.5 / 2.5
@@ -79,22 +88,18 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
   const ratioScore = (r: number) =>
     Math.min(Math.abs(r - CARD_RATIO_P), Math.abs(r - CARD_RATIO_L))
 
-  // ── Étape 1 : estimer la couleur du fond depuis la bordure de l'image ────
+  // ── Estimer la couleur du fond depuis la bordure de l'image ──────────────
   const BORDER = Math.max(8, Math.round(Math.min(W, H) * 0.05))
   const gData  = blur.data as Uint8Array
   let bgSum = 0, bgCount = 0
   for (let x = 0; x < W; x++) {
     for (let b = 0; b < BORDER; b++) {
-      bgSum += gData[b * W + x]
-      bgSum += gData[(H - 1 - b) * W + x]
-      bgCount += 2
+      bgSum += gData[b * W + x]; bgSum += gData[(H - 1 - b) * W + x]; bgCount += 2
     }
   }
   for (let y = BORDER; y < H - BORDER; y++) {
     for (let b = 0; b < BORDER; b++) {
-      bgSum += gData[y * W + b]
-      bgSum += gData[y * W + (W - 1 - b)]
-      bgCount += 2
+      bgSum += gData[y * W + b]; bgSum += gData[y * W + (W - 1 - b)]; bgCount += 2
     }
   }
   const bgVal = Math.round(bgSum / bgCount)
@@ -102,96 +107,71 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
   const extractQuads = (binary: any): Pt[] | null => {
     const contours  = new cv.MatVector()
     const hierarchy = new cv.Mat()
-    cv.findContours(binary, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
-    let best: Pt[] | null = null
-    let bestScore = Infinity
-    for (let i = 0; i < contours.size(); i++) {
-      const cnt  = contours.get(i)
-      const area = cv.contourArea(cnt)
-      // Rejette trop petit ou presque toute l'image
-      if (area < W * H * 0.04 || area > W * H * 0.90) { cnt.delete(); continue }
-      const peri   = cv.arcLength(cnt, true)
-      const approx = new cv.Mat()
-      cv.approxPolyDP(cnt, approx, 0.03 * peri, true)
-      if (approx.rows === 4) {
-        const pts: Pt[] = []
-        for (let j = 0; j < 4; j++)
-          pts.push({ x: approx.data32S[j * 2] / scale, y: approx.data32S[j * 2 + 1] / scale })
-        const ordered = orderCorners(pts)
-        const ratio   = quadRatio(ordered)
-        if (isCardRatio(ratio)) {
-          const score = ratioScore(ratio)
-          if (score < bestScore) { bestScore = score; best = ordered }
-        }
+    try {
+      cv.findContours(binary, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+      let best: Pt[] | null = null
+      let bestScore = Infinity
+      for (let i = 0; i < contours.size(); i++) {
+        const cnt  = contours.get(i)
+        const area = cv.contourArea(cnt)
+        if (area < W * H * 0.04 || area > W * H * 0.90) { cnt.delete(); continue }
+        const peri   = cv.arcLength(cnt, true)
+        const approx = new cv.Mat()
+        try {
+          cv.approxPolyDP(cnt, approx, 0.03 * peri, true)
+          if (approx.rows === 4) {
+            const pts: Pt[] = []
+            for (let j = 0; j < 4; j++)
+              pts.push({ x: approx.data32S[j * 2] / scale, y: approx.data32S[j * 2 + 1] / scale })
+            const ordered = orderCorners(pts)
+            const ratio   = quadRatio(ordered)
+            if (isCardRatio(ratio)) {
+              const score = ratioScore(ratio)
+              if (score < bestScore) { bestScore = score; best = ordered }
+            }
+          }
+        } finally { approx.delete(); cnt.delete() }
       }
-      approx.delete(); cnt.delete()
-    }
-    contours.delete(); hierarchy.delete()
-    return best
+      return best
+    } finally { contours.delete(); hierarchy.delete() }
   }
 
   let best: Pt[] | null = null
 
-  // ── Méthode A : seuillage par couleur de fond ─────────────────────────
-  // Plus robuste que Canny sur fond uniforme (table, bureau…)
-  for (const tol of [20, 35, 55]) {
-    const diff   = new cv.Mat()
-    const thresh = new cv.Mat()
-    const closed = new cv.Mat()
-    const bgMat  = new cv.Mat(H, W, cv.CV_8UC1, new cv.Scalar(bgVal))
-    cv.absdiff(blur, bgMat, diff)
-    bgMat.delete()
-    cv.threshold(diff, thresh, tol, 255, cv.THRESH_BINARY)
-    // Fermeture pour boucher les trous internes (hologrammes, etc.)
-    const kSz    = Math.max(3, Math.round(Math.min(W, H) * 0.04) * 2 + 1)
-    const kernel = cv.Mat.ones(kSz, kSz, cv.CV_8U)
-    cv.morphologyEx(thresh, closed, cv.MORPH_CLOSE, kernel)
-    kernel.delete()
-    best = extractQuads(closed)
-    diff.delete(); thresh.delete(); closed.delete()
-    if (best) break
-  }
-
-  // ── Méthode B : Canny (fallback sur fond contrasté) ───────────────────
-  if (!best) {
-    for (const [lo, hi] of [[30, 90], [50, 150], [80, 200]]) {
-      const edges   = new cv.Mat()
-      const dilated = new cv.Mat()
-      cv.Canny(blur, edges, lo, hi)
-      const kernel = cv.Mat.ones(5, 5, cv.CV_8U)
-      cv.dilate(edges, dilated, kernel)
-      kernel.delete()
-      best = extractQuads(dilated)
-      edges.delete(); dilated.delete()
+  try {
+    // ── Méthode A : seuillage par couleur de fond ─────────────────────────
+    for (const tol of [20, 35, 55]) {
+      const diff   = new cv.Mat(), thresh = new cv.Mat(), closed = new cv.Mat()
+      const bgMat  = new cv.Mat(H, W, cv.CV_8UC1, new cv.Scalar(bgVal))
+      try {
+        cv.absdiff(blur, bgMat, diff)
+        cv.threshold(diff, thresh, tol, 255, cv.THRESH_BINARY)
+        const kSz   = Math.max(3, Math.round(Math.min(W, H) * 0.04) * 2 + 1)
+        const kernel = cv.Mat.ones(kSz, kSz, cv.CV_8U)
+        try { cv.morphologyEx(thresh, closed, cv.MORPH_CLOSE, kernel) } finally { kernel.delete() }
+        best = extractQuads(closed)
+      } finally { bgMat.delete(); diff.delete(); thresh.delete(); closed.delete() }
       if (best) break
     }
-  }
 
-  // ── Méthode C : CLAHE + Canny (éclairage non uniforme, reflets) ─────────
-  // CLAHE normalise le contraste local → les méthodes A/B échouent sur fond
-  // gradient ou avec un reflet sur un côté de la carte ; CLAHE corrige cela.
-  if (!best) {
-    try {
-      const clahe    = cv.createCLAHE(3.0, new cv.Size(8, 8))
-      const enhanced = new cv.Mat()
-      clahe.apply(blur, enhanced)
-      clahe.delete()
-      for (const [lo, hi] of [[20, 60], [35, 100], [60, 150]]) {
-        const edges   = new cv.Mat()
-        const dilated = new cv.Mat()
-        cv.Canny(enhanced, edges, lo, hi)
+    // ── Méthode B : Canny (fallback sur fond contrasté) ───────────────────
+    if (!best) {
+      await yieldThread() // rend la main au navigateur entre les deux passes
+      for (const [lo, hi] of [[30, 90], [50, 150], [80, 200]]) {
+        const edges = new cv.Mat(), dilated = new cv.Mat()
         const kernel = cv.Mat.ones(5, 5, cv.CV_8U)
-        cv.dilate(edges, dilated, kernel)
-        kernel.delete()
-        best = extractQuads(dilated)
-        edges.delete(); dilated.delete()
+        try {
+          cv.Canny(blur, edges, lo, hi)
+          cv.dilate(edges, dilated, kernel)
+          best = extractQuads(dilated)
+        } finally { kernel.delete(); edges.delete(); dilated.delete() }
         if (best) break
       }
-      enhanced.delete()
-    } catch { /* createCLAHE non disponible dans cette version OpenCV.js */ }
+    }
+  } finally {
+    src.delete(); gray.delete(); blur.delete()
   }
 
-  src.delete(); gray.delete(); blur.delete()
   return best
 }
 
@@ -470,6 +450,7 @@ async function detectCardInCrop(cropImg: HTMLImageElement, cv: any): Promise<Pt[
   canvas.getContext('2d')!.drawImage(cropImg, 0, 0, W, H)
 
   const src  = cv.imread(canvas)
+  canvas.width = 0 // libère le backing store
   const gray = new cv.Mat()
   const blur = new cv.Mat()
   cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY)
@@ -721,6 +702,7 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   } catch { /* fallback OpenCV */ }
 
   // ── Étape 2 : OpenCV fallback ────────────────────────────────────────────
+  await yieldThread() // respire entre Gemini et OpenCV
   try {
     const cv = await Promise.race([
       loadOpenCV(),
@@ -943,7 +925,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     } else {
       detectedCorners = await Promise.race([
         detectCard(img),
-        new Promise<null>(r => setTimeout(() => r(null), 10000)),
+        new Promise<null>(r => setTimeout(() => r(null), 7000)),
       ])
     }
 
