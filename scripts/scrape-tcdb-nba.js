@@ -6,10 +6,13 @@
  *   node scripts/scrape-tcdb-nba.js --year=2024 --major-only --limit=3
  *   node scripts/scrape-tcdb-nba.js --year=2024 --major-only --dry-run
  */
+require('dotenv').config({ path: require('path').join(__dirname, '../.env.local') })
+require('dns').setDefaultResultOrder('ipv4first')
 const puppeteerExtra = require('puppeteer-extra')
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 puppeteerExtra.use(StealthPlugin())
 const { createClient } = require('@supabase/supabase-js')
+const nodeFetch = require('node-fetch')
 const fs = require('fs')
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -21,7 +24,7 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
   console.error('❌ NEXT_PUBLIC_SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY requis')
   process.exit(1)
 }
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, { global: { fetch: nodeFetch } })
 
 const args = Object.fromEntries(
   process.argv.slice(2).filter(a => a.startsWith('--')).map(a => {
@@ -34,8 +37,19 @@ const MAJOR_ONLY = !!args['major-only']
 const LIMIT = args.limit ? parseInt(args.limit) : null
 const DRY_RUN = !!args['dry-run']
 const SKIP_EXISTING = !args['force']
+const NAME_FILTER = args.name ? args.name.toLowerCase() : null
 
 const sleep = ms => new Promise(r => setTimeout(r, ms))
+
+async function retry(fn, attempts = 3, delay = 3000) {
+  for (let i = 0; i < attempts; i++) {
+    try { return await fn() } catch (e) {
+      if (i === attempts - 1) throw e
+      console.log(`  ⚠️  Retry ${i + 1}/${attempts - 1}: ${e.message}`)
+      await sleep(delay)
+    }
+  }
+}
 
 const NBA_TEAMS = new Set([
   'Atlanta Hawks','Boston Celtics','Brooklyn Nets','Charlotte Hornets','Chicago Bulls',
@@ -186,9 +200,13 @@ async function fetchTeamCards(page, sid, teamId, teamName) {
         for (const td of tds) {
           const rawText = td.textContent?.trim() || ''
           const linkText = td.querySelector('a')?.textContent?.trim() || null
-          if (!cardNum && /^\d+[a-zA-Z]?$/.test(rawText) && rawText.length <= 6) { cardNum = rawText; continue }
-          if (!playerName && linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText)) { playerName = linkText; continue }
-          if (playerName && !team && linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText)) team = linkText
+          // Accepte: "46", "100A" (base) ET "DMA-DUR", "S-BEN", "THR-BEN" (inserts/variations)
+          const isCardCode = /^\d+[a-zA-Z]?$/.test(rawText) || /^[A-Z]{1,5}-[A-Z0-9]{2,6}$/.test(rawText)
+          if (!cardNum && isCardCode && rawText.length <= 12) { cardNum = rawText; continue }
+          // Le nom du joueur est un lien avec des espaces (exclut les codes comme "DMA-DUR")
+          const isPlayerName = linkText && linkText.length > 3 && /[a-zA-Z]{2}/.test(linkText) && !/^\d/.test(linkText) && linkText.includes(' ')
+          if (!playerName && isPlayerName) { playerName = linkText; continue }
+          if (playerName && !team && isPlayerName) team = linkText
         }
 
         if (!cardNum || !playerName) continue
@@ -230,14 +248,18 @@ async function main() {
     console.log(`📋 Récupération des sets ${YEAR}-${String(YEAR+1).slice(2)}...`)
     let sets = await fetchSets(page, YEAR)
     console.log(`   ${sets.length} sets trouvés`)
+    if (NAME_FILTER) {
+      sets = sets.filter(s => s.name.toLowerCase().includes(NAME_FILTER))
+      console.log(`   Filtre "${NAME_FILTER}" → ${sets.length} sets`)
+    }
     if (LIMIT) sets = sets.slice(0, LIMIT)
 
     console.log(`\nSets à scraper (${sets.length}):`)
     sets.forEach((s, i) => console.log(`  ${i+1}. [${s.tcdb_id}] ${s.name}`))
     console.log()
 
-    let ok = 0, err = 0
-
+    // Phase 1 : scraping complet en mémoire
+    const scraped = []
     for (let si = 0; si < sets.length; si++) {
       const set = sets[si]
       console.log(`\n[${si+1}/${sets.length}] ${set.name} (sid:${set.tcdb_id})`)
@@ -245,13 +267,12 @@ async function main() {
       try {
         if (SKIP_EXISTING) {
           const { data: existing } = await supabase.from('card_sets').select('id, total_cards').eq('tcdb_id', set.tcdb_id).single()
-          if (existing && existing.total_cards > 100) { console.log(`  ⏭️  Déjà en base (${existing.total_cards} cartes) — ignoré`); ok++; continue }
+          if (existing && existing.total_cards > 100) { console.log(`  ⏭️  Déjà en base (${existing.total_cards} cartes) — ignoré`); scraped.push(null); continue }
         }
 
         const teams = await fetchTeams(page, set.tcdb_id)
         console.log(`  📂 ${teams.length} équipes NBA`)
-
-        if (!teams.length) { console.log('  ⚠️  Aucune équipe — ignoré'); err++; continue }
+        if (!teams.length) { console.log('  ⚠️  Aucune équipe — ignoré'); scraped.push(null); continue }
 
         const allCards = []
         for (let ti = 0; ti < teams.length; ti++) {
@@ -265,7 +286,7 @@ async function main() {
           await sleep(DELAY)
         }
 
-        if (!allCards.length) { console.log('  ⚠️  0 cartes — ignoré'); err++; continue }
+        if (!allCards.length) { console.log('  ⚠️  0 cartes — ignoré'); scraped.push(null); continue }
 
         const seen = new Set()
         const unique = allCards.filter(c => {
@@ -274,39 +295,32 @@ async function main() {
           seen.add(k); return true
         })
 
-        const base = unique.filter(c => !c.variation).length
-        const varCount = new Set(unique.filter(c => c.variation).map(c => c.variation)).size
-        console.log(`  📊 ${unique.length} cartes (${base} base, ${varCount} variations)`)
-
-        if (DRY_RUN) { ok++; continue }
-
         const brandMatch = set.name.match(MAJOR_BRANDS)
         const brand = brandMatch ? brandMatch[1] : null
-
-        const { data: setData, error: setErr } = await supabase
-          .from('card_sets')
-          .upsert({ tcdb_id: set.tcdb_id, name: set.name, year: YEAR, brand, sport: 'nba', total_cards: unique.length }, { onConflict: 'tcdb_id' })
-          .select('id').single()
-        if (setErr) throw new Error(`Upsert: ${setErr.message}`)
-
-        await supabase.from('card_set_entries').delete().eq('set_id', setData.id)
-        for (let i = 0; i < unique.length; i += 500) {
-          const batch = unique.slice(i, i + 500).map(c => ({ set_id: setData.id, ...c }))
-          const { error } = await supabase.from('card_set_entries').insert(batch)
-          if (error) throw new Error(`Insert: ${error.message}`)
-        }
-
-        console.log(`  ✅ ${unique.length} cartes insérées (id: ${setData.id})`)
-        ok++
+        console.log(`  📊 ${unique.length} cartes scrappées`)
+        scraped.push({ set, unique, brand })
       } catch (e) {
-        console.log(`  ❌ ${e.message}`)
-        err++
+        console.log(`  ❌ Scraping: ${e.message}`)
+        scraped.push(null)
       }
     }
 
-    console.log(`\n🏁 Terminé: ${ok} sets OK, ${err} erreurs`)
-  } finally {
+    // Phase 2 : fermer le browser, puis spawner un process fresh pour l'import
     await browser.close()
+    const valid = scraped.filter(Boolean)
+    console.log(`\n✓ Browser fermé — ${valid.length} sets à importer\n`)
+
+    if (!DRY_RUN && valid.length) {
+      const outFile = require('path').join(__dirname, 'scraped-data.json')
+      fs.writeFileSync(outFile, JSON.stringify({ year: YEAR, sets: valid }, null, 2))
+      console.log(`\n✅ Scraping terminé — ${valid.length} sets, données sauvegardées`)
+      console.log(`\n👉 Lance maintenant dans une NOUVELLE fenêtre PowerShell :`)
+      console.log(`   node scripts/import-tcdb.js scripts/scraped-data.json\n`)
+    } else {
+      console.log(`🏁 Dry run terminé: ${valid.length} sets`)
+    }
+  } finally {
+    try { await browser.close() } catch {}
   }
 }
 

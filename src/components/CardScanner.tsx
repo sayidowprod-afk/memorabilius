@@ -911,14 +911,20 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
             const cy2 = Math.max(0, frameRect.y - frameRect.h * PAD)
             const cw2 = Math.min(img.naturalWidth  - cx2, frameRect.w * (1 + PAD * 2))
             const ch2 = Math.min(img.naturalHeight - cy2, frameRect.h * (1 + PAD * 2))
+            // Plafonner à 800px pour éviter OOM sur mobile
+            const cropScale = Math.min(1, 800 / Math.max(cw2, ch2))
+            const ccW = Math.round(cw2 * cropScale), ccH = Math.round(ch2 * cropScale)
             const cc  = document.createElement('canvas')
-            cc.width = cw2; cc.height = ch2
-            cc.getContext('2d')!.drawImage(img, cx2, cy2, cw2, ch2, 0, 0, cw2, ch2)
+            cc.width = ccW; cc.height = ccH
+            cc.getContext('2d')!.drawImage(img, cx2, cy2, cw2, ch2, 0, 0, ccW, ccH)
             const ci  = new Image()
             ci.src = cc.toDataURL('image/jpeg', 0.92)
             await new Promise(r => { ci.onload = r })
             const cropCorners = await detectCardInCrop(ci, cv)
-            if (cropCorners) detectedCorners = cropCorners.map(p => ({ x: p.x + cx2, y: p.y + cy2 }))
+            if (cropCorners) detectedCorners = cropCorners.map(p => ({
+              x: p.x / cropScale + cx2,
+              y: p.y / cropScale + cy2,
+            }))
           }
         } catch {}
       }
