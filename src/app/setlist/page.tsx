@@ -142,8 +142,10 @@ export default function SetlistPage() {
   const syncAll = async () => {
     if (!userId) return
     setSyncing(true); setSyncProgress(0); setSyncDone(false)
-    const norm = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]/g, '') || ''
-    const words = (s: string) => s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2) || []
+    // Normalise les diacritiques avant suppression : Jokić→Jokic, Dončić→Doncic, Šarić→Saric…
+    const stripD = (s: string) => s.normalize('NFD').replace(/\p{M}/gu, '')
+    const norm = (s: string) => s ? stripD(s).toLowerCase().replace(/[^a-z0-9]/g, '') : ''
+    const words = (s: string) => s ? stripD(s).toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2) : []
 
     // Sous-marques Panini/Topps : "Panini" doit matcher un set dont brand="Hoops", "Prizm", etc.
     const BRAND_PARENT: Record<string, string> = {
@@ -258,7 +260,10 @@ export default function SetlistPage() {
         const y = set.year, ys = String(y), yn = `${y}-${String(y+1).slice(2)}`, yp = `${y-1}-${ys.slice(2)}`
 
         const cy = (card.annee || '').trim()
-        if (cy !== ys && cy !== yn && cy !== yp) continue
+        if (!cy) continue
+        // Formats acceptés : "2024", "2024-25", "2024-2025", "2023-24" (prev season)
+        const yn2 = `${y}-${y+1}`
+        if (cy !== ys && cy !== yn && cy !== yp && cy !== yn2 && cy !== `${y-1}-${y}`) continue
 
         // La collection doit matcher le nom du set
         if (!uw.some(w => norm(set.name).includes(w))) continue
@@ -269,16 +274,27 @@ export default function SetlistPage() {
           if (!nb.includes(ns) && !ns.includes(nb)) continue
         }
 
+        // Variation : base↔base = parfait ; carte a variation mais entrée n'en a pas = match faible
+        // (gap de scraping) ; entrée a variation mais carte n'en a pas = impossible
         const cv = (card.variation || '').trim(), ev = (e.variation || '').trim()
-        const varMatch = !cv ? !ev : !!ev && (norm(cv).includes(norm(ev)) || norm(ev).includes(norm(cv)) || words(cv).some(w => norm(ev).includes(w)))
-        if (!varMatch) continue
+        let varScore = 0
+        if (!cv && !ev) {
+          varScore = 0
+        } else if (!cv && ev) {
+          continue  // carte base ne peut pas matcher un insert
+        } else if (cv && !ev) {
+          varScore = 1  // insert dont la variation n'a pas été scrapée → match faible
+        } else {
+          const varOk = norm(cv).includes(norm(ev)) || norm(ev).includes(norm(cv)) || words(cv).some(w => norm(ev).includes(w))
+          if (!varOk) continue
+          varScore = 0
+        }
 
-        // Score : mots extra dans le set (non demandés) + mots manquants (demandés mais absents)
-        // Minimiser les deux → préfère le set dont le nom coïncide le mieux avec la collection
+        // Score : mots extra dans le set + mots manquants + pénalité variation
         const sn = norm(set.name)
         const extraWords = words(set.name).filter(w => !uw.includes(w) && w.length > 3).length
         const missedWords = uw.filter(w => w.length > 3 && !sn.includes(w)).length
-        candidates.push({ entryId: e.id, extraWords: extraWords + missedWords })
+        candidates.push({ entryId: e.id, extraWords: extraWords + missedWords + varScore })
       }
 
       if (!candidates.length) continue
