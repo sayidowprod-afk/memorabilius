@@ -257,12 +257,20 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     if (!v || v.loaded) return
 
     const isBase = varName === 'Base'
-    const q = isBase
-      ? supabase.from('card_set_entries').select('*').eq('set_id', setId).is('variation', null)
-      : supabase.from('card_set_entries').select('*').eq('set_id', setId).eq('variation', varName)
-    const { data: finalData } = await q
+    const allPages: any[] = []
+    const PAGE = 1000
+    for (let from = 0; ; from += PAGE) {
+      const q = isBase
+        ? supabase.from('card_set_entries').select('*').eq('set_id', setId).is('variation', null).range(from, from + PAGE - 1)
+        : supabase.from('card_set_entries').select('*').eq('set_id', setId).eq('variation', varName).range(from, from + PAGE - 1)
+      const { data: page } = await q
+      if (!page?.length) break
+      allPages.push(...page)
+      if (page.length < PAGE) break
+    }
+    const finalData = allPages
 
-    if (!finalData) return
+    if (!finalData.length && !isBase) return
 
     const usedIds = completedIds || new Set<number>()
     const usedDets = completionDets || new Map<number, { id: string; manually_checked: boolean }>()

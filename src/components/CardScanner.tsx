@@ -789,16 +789,18 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
     ? [{ x: OUT_W, y: 0 }, { x: OUT_W, y: OUT_H }, { x: 0, y: OUT_H }, { x: 0, y: 0 }]
     : [{ x: 0, y: 0 }, { x: OUT_W, y: 0 }, { x: OUT_W, y: OUT_H }, { x: 0, y: OUT_H }]
 
-  // Homographie inverse : pixel de sortie → pixel source (inverse mapping)
-  const Hi = computeHomography(dst, corners)
-  const [h0, h1, h2, h3, h4, h5, h6, h7] = Hi  // h8 = 1 (fixé par convention)
-
-  // Image source en pleine résolution
+  // Limiter la source à 1500px max — évite OOM + freeze sur mobile
+  const MAX_SRC = 1500
+  const srcScale = Math.min(1, MAX_SRC / Math.max(img.naturalWidth, img.naturalHeight))
+  const IW = Math.round(img.naturalWidth * srcScale)
+  const IH = Math.round(img.naturalHeight * srcScale)
   const srcC = document.createElement('canvas')
-  srcC.width = img.naturalWidth; srcC.height = img.naturalHeight
-  srcC.getContext('2d')!.drawImage(img, 0, 0)
-  const srcPx = srcC.getContext('2d')!.getImageData(0, 0, img.naturalWidth, img.naturalHeight).data
-  const IW = img.naturalWidth, IH = img.naturalHeight
+  srcC.width = IW; srcC.height = IH
+  srcC.getContext('2d')!.drawImage(img, 0, 0, IW, IH)
+  const srcPx = srcC.getContext('2d')!.getImageData(0, 0, IW, IH).data
+  // Homographie inverse sur les coins à l'échelle réduite
+  const scaledCorners = corners.map(p => ({ x: p.x * srcScale, y: p.y * srcScale }))
+  const [h0, h1, h2, h3, h4, h5, h6, h7] = computeHomography(dst, scaledCorners)
 
   const outC = document.createElement('canvas')
   outC.width = OUT_W; outC.height = OUT_H
