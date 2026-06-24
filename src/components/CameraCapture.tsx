@@ -58,11 +58,25 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     const clientY = 'touches' in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY
     const x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width))
     const y = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height))
-    // Indicateur visuel de mise au point
     setFocusPt({ x: clientX - rect.left, y: clientY - rect.top })
     setTimeout(() => setFocusPt(null), 900)
+
+    const caps = (track.getCapabilities?.() ?? {}) as any
+    const supportedModes: string[] = caps.focusMode ?? []
+
     try {
-      await (track as any).applyConstraints({ advanced: [{ focusMode: 'manual', pointOfInterest: { x, y } }] })
+      // 'single-shot' déclenche un cycle de mise au point puis verrouille
+      // 'manual' = garder la distance actuelle (NE refocalise PAS — à éviter)
+      if (supportedModes.includes('single-shot')) {
+        await (track as any).applyConstraints({ advanced: [{ pointOfInterest: { x, y }, focusMode: 'single-shot' }] })
+        // Reprendre autofocus continu après 2s pour les prochains réglages
+        setTimeout(async () => {
+          try { await (track as any).applyConstraints({ advanced: [{ focusMode: 'continuous' }] }) } catch {}
+        }, 2000)
+      } else {
+        // Fallback : juste déplacer le point d'intérêt sans changer le mode
+        await (track as any).applyConstraints({ advanced: [{ pointOfInterest: { x, y } }] })
+      }
     } catch { /* non supporté sur cet appareil */ }
   }
 

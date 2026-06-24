@@ -593,37 +593,52 @@ function detectCardFromFrame(img: HTMLImageElement, frame: FrameRect): Pt[] | nu
     const fyT = Math.round((frame.y - cy) * s)
     const fyB = Math.round((frame.y + frame.h - cy) * s)
 
-    // Fond estimé depuis les 4 coins du crop (zones PAD — garanties background)
-    const CORNER = Math.round(Math.min(W, H) * 0.08)
-    let bgSum = 0, bgN = 0
-    for (let y = 0; y < CORNER; y++) for (let x = 0; x < CORNER; x++) { bgSum += g[y*W+x]; bgN++ }
-    for (let y = 0; y < CORNER; y++) for (let x = W-CORNER; x < W; x++) { bgSum += g[y*W+x]; bgN++ }
-    for (let y = H-CORNER; y < H; y++) for (let x = 0; x < CORNER; x++) { bgSum += g[y*W+x]; bgN++ }
-    for (let y = H-CORNER; y < H; y++) for (let x = W-CORNER; x < W; x++) { bgSum += g[y*W+x]; bgN++ }
-    const bgLum = bgSum / bgN
+    // Fond estimé par côté depuis les zones de padding garanties (hors cadre).
+    // Une valeur globale échoue sur fond en dégradé ou avec éclairage non uniforme.
+    const sideBg = (y0: number, y1: number, x0: number, x1: number): number => {
+      let sum = 0, n = 0
+      for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) { sum += g[y*W+x]; n++ }
+      return n > 4 ? sum / n : -1
+    }
+    const CORNER = Math.round(Math.min(W, H) * 0.06)
+    let bgS = 0, bgN2 = 0
+    for (let y = 0; y < CORNER; y++) for (let x = 0; x < CORNER; x++) { bgS += g[y*W+x]; bgN2++ }
+    for (let y = 0; y < CORNER; y++) for (let x = W-CORNER; x < W; x++) { bgS += g[y*W+x]; bgN2++ }
+    for (let y = H-CORNER; y < H; y++) for (let x = 0; x < CORNER; x++) { bgS += g[y*W+x]; bgN2++ }
+    for (let y = H-CORNER; y < H; y++) for (let x = W-CORNER; x < W; x++) { bgS += g[y*W+x]; bgN2++ }
+    const bgGlobal = bgS / bgN2
+    // Chaque côté utilise la luminosité de SA zone de padding (peut différer de 30+ sur fond gradient)
+    const raw_bgT = sideBg(1, fyT, 0, W)
+    const raw_bgB = sideBg(fyB, H-1, 0, W)
+    const raw_bgL = sideBg(0, H, 1, fxL)
+    const raw_bgR = sideBg(0, H, fxR, W-1)
+    const bgTop   = raw_bgT >= 0 ? raw_bgT : bgGlobal
+    const bgBot   = raw_bgB >= 0 ? raw_bgB : bgGlobal
+    const bgLeft  = raw_bgL >= 0 ? raw_bgL : bgGlobal
+    const bgRight = raw_bgR >= 0 ? raw_bgR : bgGlobal
 
     // Essai sur plusieurs seuils, garde le meilleur ratio carte
     const CARD_RATIO = 2.5 / 3.5
     let bestResult: Pt[] | null = null
     let bestScore = Infinity
 
-    for (const THRESH of [18, 28, 40, 55]) {
+    for (const THRESH of [15, 25, 38, 55]) {
       const topPts: Pt[] = [], botPts: Pt[] = [], leftPts: Pt[] = [], rightPts: Pt[] = []
 
       for (let x = Math.round(W * 0.05); x < W * 0.95; x++) {
         for (let y = 1; y < fyT + Math.round((fyB - fyT) * 0.5); y++) {
-          if (Math.abs(g[y*W+x] - bgLum) > THRESH) { topPts.push({ x, y }); break }
+          if (Math.abs(g[y*W+x] - bgTop) > THRESH) { topPts.push({ x, y }); break }
         }
         for (let y = H - 2; y >= fyB - Math.round((fyB - fyT) * 0.5); y--) {
-          if (Math.abs(g[y*W+x] - bgLum) > THRESH) { botPts.push({ x, y }); break }
+          if (Math.abs(g[y*W+x] - bgBot) > THRESH) { botPts.push({ x, y }); break }
         }
       }
       for (let y = Math.round(H * 0.05); y < H * 0.95; y++) {
         for (let x = 1; x < fxL + Math.round((fxR - fxL) * 0.5); x++) {
-          if (Math.abs(g[y*W+x] - bgLum) > THRESH) { leftPts.push({ x, y }); break }
+          if (Math.abs(g[y*W+x] - bgLeft) > THRESH) { leftPts.push({ x, y }); break }
         }
         for (let x = W - 2; x >= fxR - Math.round((fxR - fxL) * 0.5); x--) {
-          if (Math.abs(g[y*W+x] - bgLum) > THRESH) { rightPts.push({ x, y }); break }
+          if (Math.abs(g[y*W+x] - bgRight) > THRESH) { rightPts.push({ x, y }); break }
         }
       }
 
@@ -878,22 +893,51 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     hasAdjusted.current = false
     setStatus('detecting')
 
-    const naturalCorners: Pt[] | null = frameRect
-      ? (detectCardFromFrame(img, frameRect) ?? [
-          { x: frameRect.x,                 y: frameRect.y },
-          { x: frameRect.x + frameRect.w,   y: frameRect.y },
-          { x: frameRect.x + frameRect.w,   y: frameRect.y + frameRect.h },
-          { x: frameRect.x,                 y: frameRect.y + frameRect.h },
-        ])
-      : await Promise.race([
-          detectCard(img),
-          new Promise<null>(r => setTimeout(() => r(null), 10000)),
-        ])
+    let detectedCorners: Pt[] | null = null
+
+    if (frameRect) {
+      // Essai 1 : JS pur depuis le cadre overlay (rapide, pas de serveur)
+      detectedCorners = detectCardFromFrame(img, frameRect)
+
+      // Essai 2 : OpenCV sur le crop du cadre si JS échoue
+      if (!detectedCorners) {
+        try {
+          const cv = await Promise.race([loadOpenCV(), new Promise<null>(r => setTimeout(() => r(null), 3500))])
+          if (cv) {
+            const PAD = 0.12
+            const cx2 = Math.max(0, frameRect.x - frameRect.w * PAD)
+            const cy2 = Math.max(0, frameRect.y - frameRect.h * PAD)
+            const cw2 = Math.min(img.naturalWidth  - cx2, frameRect.w * (1 + PAD * 2))
+            const ch2 = Math.min(img.naturalHeight - cy2, frameRect.h * (1 + PAD * 2))
+            const cc  = document.createElement('canvas')
+            cc.width = cw2; cc.height = ch2
+            cc.getContext('2d')!.drawImage(img, cx2, cy2, cw2, ch2, 0, 0, cw2, ch2)
+            const ci  = new Image()
+            ci.src = cc.toDataURL('image/jpeg', 0.92)
+            await new Promise(r => { ci.onload = r })
+            const cropCorners = await detectCardInCrop(ci, cv)
+            if (cropCorners) detectedCorners = cropCorners.map(p => ({ x: p.x + cx2, y: p.y + cy2 }))
+          }
+        } catch {}
+      }
+    } else {
+      detectedCorners = await Promise.race([
+        detectCard(img),
+        new Promise<null>(r => setTimeout(() => r(null), 10000)),
+      ])
+    }
+
+    // Fallback corners : rectangle du cadre ou defaultCorners (status 'notfound')
+    const fallbackNatural: Pt[] | null = frameRect
+      ? [{ x: frameRect.x, y: frameRect.y }, { x: frameRect.x + frameRect.w, y: frameRect.y },
+         { x: frameRect.x + frameRect.w, y: frameRect.y + frameRect.h }, { x: frameRect.x, y: frameRect.y + frameRect.h }]
+      : null
+    const naturalCorners = detectedCorners ?? fallbackNatural
     const display = naturalCorners
       ? naturalCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
       : defaultCorners(canvas)
     setCorners(display)
-    setStatus(naturalCorners ? 'found' : 'notfound')
+    setStatus(detectedCorners ? 'found' : 'notfound')
   }
 
   // Tourne l'image depuis l'original (évite la dégradation par compressions successives)
