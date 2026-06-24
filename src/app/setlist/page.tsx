@@ -145,6 +145,29 @@ export default function SetlistPage() {
     const norm = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]/g, '') || ''
     const words = (s: string) => s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2) || []
 
+    // Sous-marques Panini/Topps : "Panini" doit matcher un set dont brand="Hoops", "Prizm", etc.
+    const BRAND_PARENT: Record<string, string> = {
+      hoops: 'panini', prizm: 'panini', select: 'panini', donruss: 'panini',
+      optic: 'panini', mosaic: 'panini', chronicles: 'panini', contenders: 'panini',
+      spectra: 'panini', noir: 'panini', obsidian: 'panini', immaculate: 'panini',
+      revolution: 'panini', eminence: 'panini', illusions: 'panini', nbahoops: 'panini',
+      flagship: 'topps', finest: 'topps', bowman: 'topps',
+    }
+    const normBrand = (b: string) => { const n = norm(b); return BRAND_PARENT[n] ?? n }
+
+    // Alias de noms de collection : "Topps" ↔ "Topps Flagship", "NBA Hoops" ↔ "Hoops"
+    const COLL_ALIASES: Record<string, string[]> = {
+      topps: ['toppsflagship', 'flagship'],
+      toppsflagship: ['topps'],
+      nbahoops: ['hoops'],
+      hoops: ['nbahoops', 'hoops'],
+    }
+    const collWords = (coll: string) => {
+      const base = words(coll)
+      const extra = COLL_ALIASES[norm(coll)] || []
+      return [...new Set([...base, ...extra])]
+    }
+
     // 1. Galerie (manuelles + CSV)
     const { data: gc } = await supabase.from('cartes_manuelles')
       .select('nom, annee, marque, collection, collection_tag, variation').eq('user_id', userId)
@@ -222,7 +245,7 @@ export default function SetlistPage() {
       const playerEntries = entriesByPlayer.get(norm(card.nom)) || []
       if (!playerEntries.length) continue
 
-      const uw = words(coll)
+      const uw = collWords(coll)
       if (!uw.length) continue
 
       // Trouver toutes les entrées candidates pour cette carte
@@ -239,9 +262,9 @@ export default function SetlistPage() {
         // La collection doit matcher le nom du set
         if (!uw.some(w => norm(set.name).includes(w))) continue
 
-        // Brand optionnel
+        // Brand optionnel — avec résolution des sous-marques (Hoops→Panini, Flagship→Topps…)
         if (card.marque && set.brand) {
-          const nb = norm(card.marque), ns = norm(set.brand)
+          const nb = normBrand(card.marque), ns = normBrand(set.brand)
           if (!nb.includes(ns) && !ns.includes(nb)) continue
         }
 
@@ -283,7 +306,7 @@ export default function SetlistPage() {
       const card = galleryCards[gi]
       const playerEntries = entriesByPlayer.get(norm(card.nom)) || []
       const coll = (card.collection || card.collection_tag || '').trim()
-      const uw = words(coll)
+      const uw = collWords(coll)
 
       // Une entrée par set (on garde celle dont la variation colle le mieux)
       const bySet = new Map<number, { entryId: number; varMatch: boolean }>()
