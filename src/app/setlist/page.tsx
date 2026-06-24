@@ -222,8 +222,16 @@ export default function SetlistPage() {
     }
     if (!galleryCards.length) { setSyncing(false); return }
 
-    // Supprimer les matches auto précédents (manually_checked = false) pour repartir propre
-    await supabase.from('user_set_completion').delete().eq('user_id', userId).eq('manually_checked', false)
+    // Charger les entry_ids déjà en base (toutes les cartes déjà placées, auto ou manuelles)
+    // → on ne les recrée pas, et on ne les supprime jamais lors d'une sync
+    const existingEntryIds = new Set<number>()
+    for (let from = 0; ; from += 1000) {
+      const { data: page } = await supabase.from('user_set_completion')
+        .select('entry_id').eq('user_id', userId).range(from, from + 999)
+      if (!page?.length) break
+      page.forEach((r: any) => existingEntryIds.add(r.entry_id))
+      if (page.length < 1000) break
+    }
     setSyncProgress(10)
 
     // 2. Tous les sets (métadonnées) — paginé pour dépasser la limite max_rows=1000
@@ -260,6 +268,10 @@ export default function SetlistPage() {
 
     // 5. Matching : UNE carte galerie → AU PLUS UNE entrée setlist (la plus précise)
     // On itère par carte galerie, pas par entrée, pour garantir max 1 match par carte.
+    // Index inversé entry_id → set pour marquer les cartes dont l'entrée est déjà en base
+    const existingSetIds = new Set<number>()
+    for (const e of allEntries) { if (existingEntryIds.has(e.id)) existingSetIds.add(e.id) }
+
     const matchedGalleryIdx = new Set<number>()
     const newRows: { user_id: string; entry_id: number; manually_checked: boolean }[] = []
 
@@ -278,6 +290,12 @@ export default function SetlistPage() {
 
       const playerEntries = entriesByPlayer.get(norm(card.nom)) || []
       if (!playerEntries.length) continue
+
+      // Si une entrée de ce joueur est déjà placée en DB → carte considérée comme matchée
+      if (playerEntries.some(e => existingEntryIds.has(e.id))) {
+        matchedGalleryIdx.add(gi)
+        continue
+      }
 
       const uw = collWords(coll)
       if (!uw.length) continue
@@ -339,7 +357,7 @@ export default function SetlistPage() {
 
       matchedGalleryIdx.add(gi)
       if (!best.entryId) continue
-      // Vérifier si déjà en base (on a supprimé les auto-matches avant, donc existing est vide, mais sécurité)
+      if (existingEntryIds.has(best.entryId)) continue  // déjà placée, on ne touche pas
       newRows.push({ user_id: userId, entry_id: best.entryId, manually_checked: false })
     }
     setSyncProgress(88)
