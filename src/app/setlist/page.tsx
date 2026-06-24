@@ -80,10 +80,12 @@ export default function SetlistPage() {
     } catch {}
   }, [userId])
 
-  const loadSets = useCallback(async () => {
-    setLoading(true)
+  const SETS_CACHE_KEY = userId ? `setlist_sets_v2_${userId}` : null
 
-    // Pagination obligatoire — Supabase max_rows=1000 par requête sans .range()
+  // Charge les sets depuis Supabase et met à jour le cache
+  const fetchAndCacheSets = useCallback(async (silent = false) => {
+    if (!silent) setLoading(true)
+
     const allRaw: any[] = []
     for (let from = 0; ; from += 1000) {
       const { data: page } = await supabase
@@ -97,18 +99,17 @@ export default function SetlistPage() {
       if (page.length < 1000) break
     }
     const setsData = allRaw.length ? allRaw : null
-
-    if (!setsData) { setLoading(false); return }
+    if (!setsData) { if (!silent) setLoading(false); return }
 
     if (!userId) {
-      setSets(setsData.map(s => ({ ...s, owned: 0, pct: 0 })))
+      const result = setsData.map(s => ({ ...s, owned: 0, pct: 0 }))
+      setSets(result)
       const mostRecent = setsData[0]?.year
-      if (mostRecent) setActiveSeason(mostRecent)
-      setLoading(false)
+      if (mostRecent) setActiveSeason(prev => prev ?? mostRecent)
+      if (!silent) setLoading(false)
       return
     }
 
-    // Paginer les completions (Supabase max 1000 par requête)
     const allCompletions: { entry_id: number; card_set_entries: { set_id: number } | null }[] = []
     for (let from = 0; ; from += 1000) {
       const { data: page } = await supabase
@@ -132,11 +133,40 @@ export default function SetlistPage() {
       const pct = s.total_cards > 0 ? Math.round((owned / s.total_cards) * 100) : 0
       return { ...s, owned, pct }
     })
+
     setSets(enriched)
     const mostRecent = setsData[0]?.year
-    if (mostRecent) setActiveSeason(mostRecent)
-    setLoading(false)
-  }, [userId])
+    if (mostRecent) setActiveSeason(prev => prev ?? mostRecent)
+    if (!silent) setLoading(false)
+
+    // Mettre en cache pour la prochaine visite
+    if (SETS_CACHE_KEY) {
+      try { localStorage.setItem(SETS_CACHE_KEY, JSON.stringify({ sets: enriched, ts: Date.now() })) } catch {}
+    }
+  }, [userId, SETS_CACHE_KEY])
+
+  const loadSets = useCallback(async () => {
+    // 1. Charger le cache instantanément si disponible
+    if (SETS_CACHE_KEY) {
+      try {
+        const raw = localStorage.getItem(SETS_CACHE_KEY)
+        if (raw) {
+          const { sets: cached, ts } = JSON.parse(raw)
+          if (Array.isArray(cached) && cached.length) {
+            setSets(cached)
+            const mostRecent = cached.find((s: CardSet) => s.year)?.year
+            if (mostRecent) setActiveSeason(prev => prev ?? mostRecent)
+            setLoading(false)
+            // Rafraîchir silencieusement si le cache a + de 5 min
+            if (Date.now() - ts > 5 * 60 * 1000) fetchAndCacheSets(true)
+            return
+          }
+        }
+      } catch {}
+    }
+    // 2. Pas de cache → chargement normal
+    await fetchAndCacheSets(false)
+  }, [SETS_CACHE_KEY, fetchAndCacheSets])
 
   useEffect(() => { loadSets() }, [loadSets])
 
@@ -372,7 +402,7 @@ export default function SetlistPage() {
     setNewMatchCount(newRows.length)
     setSyncDone(true)
     setSyncing(false)
-    await loadSets()
+    await fetchAndCacheSets(false)
   }
 
   // Placer manuellement une carte non placée dans un setlist choisi
@@ -385,7 +415,7 @@ export default function SetlistPage() {
       const updated = unmatchedCards.filter((_, i) => i !== cardIdx)
       setUnmatchedCards(updated)
       saveUnmatched(updated)
-      await loadSets()
+      await fetchAndCacheSets(false)
     }
     setPlacingIdx(null)
   }
