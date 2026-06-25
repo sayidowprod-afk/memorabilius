@@ -81,46 +81,52 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
   useEffect(() => {
     const init = async () => {
-      supabase.auth.getUser().then(({ data }) => setCurrentUser(data.user?.id || null))
-      
-      let resolvedId = userId
-      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
-      if (!uuidRegex.test(userId)) {
-        const { data: p } = await supabase.from('profiles').select('id').eq('slug', userId).single()
-        if (p) resolvedId = p.id
-        else return
-      }
-      
-      // Charger les tags CSV d'abord, puis le profil + CSV
-      const { data: tagsData } = await supabase.from('carte_tags').select('card_key, collection_tag').eq('user_id', resolvedId)
-      const tagsMap = new Map((tagsData || []).map((r: any) => [r.card_key, r.collection_tag]))
-      setCsvTags(tagsMap)
+      try {
+        supabase.auth.getUser().then(({ data }) => setCurrentUser(data.user?.id || null))
 
-      supabase.from('profiles').select('*').eq('id', resolvedId).single().then(({ data }) => {
-        if (data) { setProfile(data); loadCSV(data.lien_csv ?? null, tagsMap) }
-      })
-      supabase.from('badges').select('mois').eq('user_id', resolvedId).eq('type', 'collectionneur_du_mois').order('mois', { ascending: false }).limit(6).then(({ data }) => {
-        if (data) setMonthlyBadges(data.map((b: any) => b.mois))
-      })
-      supabase.from('collection_tab_settings').select('tag, color, position').eq('user_id', resolvedId).then(({ data }) => {
-        if (data) setTabSettings(new Map(data.map((r: any) => [r.tag, { color: r.color, position: r.position }])))
-      })
-      supabase.from('grail_cards').select('card_key, position').eq('user_id', resolvedId).order('position').then(({ data }) => {
-        if (data) setGrailCards(data)
-      })
-      // Charger les likes de la galerie + ceux de l'utilisateur connecté
-      supabase.auth.getUser().then(async ({ data: authData }) => {
-        const uid = authData.user?.id || null
-        const { data: likesData } = await supabase.from('card_likes').select('card_key, liker_user_id').eq('gallery_user_id', resolvedId)
-        if (likesData) {
-          const map = new Map<string, { count: number; liked: boolean }>()
-          for (const l of likesData) {
-            const prev = map.get(l.card_key) || { count: 0, liked: false }
-            map.set(l.card_key, { count: prev.count + 1, liked: prev.liked || l.liker_user_id === uid })
-          }
-          setCardLikes(map)
+        let resolvedId = userId
+        const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+        if (!uuidRegex.test(userId)) {
+          const { data: p } = await supabase.from('profiles').select('id').eq('slug', userId).single()
+          if (p) resolvedId = p.id
+          else { setLoaded(true); return }
         }
-      })
+
+        // Charger les tags CSV d'abord, puis le profil + CSV
+        const { data: tagsData } = await supabase.from('carte_tags').select('card_key, collection_tag').eq('user_id', resolvedId)
+        const tagsMap = new Map((tagsData || []).map((r: any) => [r.card_key, r.collection_tag]))
+        setCsvTags(tagsMap)
+
+        supabase.from('profiles').select('*').eq('id', resolvedId).single().then(({ data }) => {
+          if (data) { setProfile(data); loadCSV(data.lien_csv ?? null, tagsMap) }
+          else setLoaded(true)
+        })
+        supabase.from('badges').select('mois').eq('user_id', resolvedId).eq('type', 'collectionneur_du_mois').order('mois', { ascending: false }).limit(6).then(({ data }) => {
+          if (data) setMonthlyBadges(data.map((b: any) => b.mois))
+        })
+        supabase.from('collection_tab_settings').select('tag, color, position').eq('user_id', resolvedId).then(({ data }) => {
+          if (data) setTabSettings(new Map(data.map((r: any) => [r.tag, { color: r.color, position: r.position }])))
+        })
+        supabase.from('grail_cards').select('card_key, position').eq('user_id', resolvedId).order('position').then(({ data }) => {
+          if (data) setGrailCards(data)
+        })
+        // Charger les likes de la galerie + ceux de l'utilisateur connecté
+        supabase.auth.getUser().then(async ({ data: authData }) => {
+          const uid = authData.user?.id || null
+          const { data: likesData } = await supabase.from('card_likes').select('card_key, liker_user_id').eq('gallery_user_id', resolvedId)
+          if (likesData) {
+            const map = new Map<string, { count: number; liked: boolean }>()
+            for (const l of likesData) {
+              const prev = map.get(l.card_key) || { count: 0, liked: false }
+              map.set(l.card_key, { count: prev.count + 1, liked: prev.liked || l.liker_user_id === uid })
+            }
+            setCardLikes(map)
+          }
+        })
+      } catch (e) {
+        console.error('Gallery init error', e)
+        setLoaded(true)
+      }
     }
     init()
   }, [userId])

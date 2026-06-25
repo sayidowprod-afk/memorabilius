@@ -10,6 +10,17 @@ export async function POST(req: NextRequest) {
   const { candidatureId, teamId, userId, action } = await req.json()
   if (!candidatureId || !teamId || !userId) return NextResponse.json({ error: 'missing params' }, { status: 400 })
 
+  // Vérifier que l'appelant est chef ou admin de la team
+  const token = req.headers.get('authorization')?.replace('Bearer ', '')
+  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const { data: { user: caller } } = await supabase.auth.getUser(token)
+  if (!caller) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const { data: team } = await supabase.from('teams').select('created_by').eq('id', teamId).single()
+  const { data: callerMember } = await supabase.from('team_members').select('role').eq('team_id', teamId).eq('user_id', caller.id).single()
+  const isChef = team?.created_by === caller.id
+  const isAdmin = callerMember?.role === 'admin'
+  if (!isChef && !isAdmin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+
   if (action === 'accept') {
     await supabase.from('team_candidatures').update({ statut: 'accepte' }).eq('id', candidatureId)
     const { error } = await supabase.from('team_members').insert({ team_id: teamId, user_id: userId })
