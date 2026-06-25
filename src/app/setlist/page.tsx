@@ -51,6 +51,7 @@ export default function SetlistPage() {
   const [syncProgress, setSyncProgress] = useState(0)
   const [syncDone, setSyncDone] = useState(false)
   const [newMatchCount, setNewMatchCount] = useState(0)
+  const [totalSynced, setTotalSynced] = useState<number | null>(null)
   const [unmatchedCards, setUnmatchedCards] = useState<UnmatchedCard[]>([])
   const [showMissing, setShowMissing] = useState(false)
   const [showAddManual, setShowAddManual] = useState(false)
@@ -144,11 +145,11 @@ export default function SetlistPage() {
       return
     }
 
-    const allCompletions: { entry_id: number; card_set_entries: { set_id: number } | null }[] = []
+    const allCompletions: { entry_id: number; manually_checked: boolean; card_set_entries: { set_id: number } | null }[] = []
     for (let from = 0; ; from += 1000) {
       const { data: page } = await supabase
         .from('user_set_completion')
-        .select('entry_id, card_set_entries(set_id)')
+        .select('entry_id, manually_checked, card_set_entries(set_id)')
         .eq('user_id', userId)
         .range(from, from + 999)
       if (!page?.length) break
@@ -156,11 +157,16 @@ export default function SetlistPage() {
       if (page.length < 1000) break
     }
 
+    // Compter par set pour les barres de progression (toutes les coches)
     const countBySet = new Map<number, number>()
     allCompletions.forEach((c: any) => {
       const setId = c.card_set_entries?.set_id
       if (setId) countBySet.set(setId, (countBySet.get(setId) || 0) + 1)
     })
+
+    // Total galerie synchro = seulement manually_checked = false (placées automatiquement)
+    const syncedCount = allCompletions.filter(c => !c.manually_checked).length
+    setTotalSynced(syncedCount)
 
     const enriched = setsData.map(s => {
       const owned = countBySet.get(s.id) || 0
@@ -522,7 +528,7 @@ export default function SetlistPage() {
                   </div>
                 )}
                 <div style={{ fontWeight: 700, color: '#003DA6' }}>
-                  {totalOwnedAllSets.toLocaleString()} cartes validées
+                  {(totalSynced ?? totalOwnedAllSets).toLocaleString()} cartes synchronisées
                 </div>
                 <div style={{ color: '#666', fontSize: 13 }}>
                   dans {setsWithCards} setlist{setsWithCards !== 1 ? 's' : ''}
