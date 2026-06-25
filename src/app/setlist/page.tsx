@@ -44,6 +44,7 @@ export default function SetlistPage() {
   const [sets, setSets] = useState<CardSet[]>([])
   const [loading, setLoading] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
+  const [authReady, setAuthReady] = useState(false)
   const [activeSeason, setActiveSeason] = useState<number | null>(null)
   const [activeDecade, setActiveDecade] = useState<number | null>(null)
   const [syncing, setSyncing] = useState(false)
@@ -55,7 +56,10 @@ export default function SetlistPage() {
   const [placingIdx, setPlacingIdx] = useState<number | null>(null)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id || null))
+    supabase.auth.getUser().then(({ data }) => {
+      setUserId(data.user?.id || null)
+      setAuthReady(true)
+    })
   }, [])
 
   // Restaurer la liste des cartes non placées depuis le stockage local
@@ -168,7 +172,8 @@ export default function SetlistPage() {
     await fetchAndCacheSets(false)
   }, [SETS_CACHE_KEY, fetchAndCacheSets])
 
-  useEffect(() => { loadSets() }, [loadSets])
+  // N'appelle loadSets qu'une fois l'auth résolue — évite le flash owned=0
+  useEffect(() => { if (authReady) loadSets() }, [loadSets, authReady])
 
   const syncAll = async () => {
     if (!userId) return
