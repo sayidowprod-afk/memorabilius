@@ -240,12 +240,25 @@ async function scrapeSet(page, set, year, cp) {
   for (let ti = 0; ti < teams.length; ti++) {
     const { teamId, teamName } = teams[ti]
     process.stdout.write(`  [${ti+1}/${teams.length}] ${teamName}... `)
-    try {
-      const cards = await fetchTeamCards(page, set.tcdb_id, teamId, teamName)
-      allCards.push(...cards)
-      console.log(cards.length)
-    } catch (e) { console.log(`❌ ${e.message}`) }
-    await delayTeam()
+    let ok = false
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const cards = await fetchTeamCards(page, set.tcdb_id, teamId, teamName)
+        allCards.push(...cards)
+        console.log(cards.length)
+        ok = true
+        break
+      } catch (e) {
+        if (attempt < 3) {
+          const wait = rand(3000, 6000) * attempt
+          process.stdout.write(`❌ retry ${attempt}/3 (${Math.round(wait/1000)}s)... `)
+          await sleep(wait)
+        } else {
+          console.log(`❌ abandon après 3 tentatives: ${e.message}`)
+        }
+      }
+    }
+    if (ok) await delayTeam()
   }
 
   if (!allCards.length) { console.log(`  ⚠️  0 cartes`); return null }
