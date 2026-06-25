@@ -54,8 +54,8 @@ export default function SetlistPage() {
   const [unmatchedCards, setUnmatchedCards] = useState<UnmatchedCard[]>([])
   const [showMissing, setShowMissing] = useState(false)
   const [placingIdx, setPlacingIdx] = useState<number | null>(null)
-  const [createPickerIdx, setCreatePickerIdx] = useState<number | null>(null)
-  const [createSetId, setCreateSetId] = useState<string>('')
+  const [gotoPickerIdx, setGotoPickerIdx] = useState<number | null>(null)
+  const [gotoSetId, setGotoSetId] = useState<string>('')
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -445,33 +445,6 @@ export default function SetlistPage() {
     setPlacingIdx(null)
   }
 
-  // Créer une entrée dans card_set_entries puis placer la carte
-  const createAndPlace = async (cardIdx: number, setId: number) => {
-    if (!userId || !setId) return
-    const card = unmatchedCards[cardIdx]
-    setPlacingIdx(cardIdx)
-    const resp = await fetch('/api/create-set-entry', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        set_id: setId,
-        player_name: card.nom,
-        team: null,
-        variation: card.variation || null,
-        card_number: card.card_number || null,
-        user_id: userId,
-      }),
-    })
-    const result = await resp.json()
-    if (!resp.ok) { alert('Erreur : ' + result.error); setPlacingIdx(null); return }
-    const updated = unmatchedCards.filter((_, i) => i !== cardIdx)
-    setUnmatchedCards(updated)
-    saveUnmatched(updated)
-    setCreatePickerIdx(null)
-    setCreateSetId('')
-    await fetchAndCacheSets(false)
-    setPlacingIdx(null)
-  }
 
   // Saisons disponibles (triées desc)
   const seasons = Array.from(new Set(sets.map(s => s.year).filter(Boolean) as number[])).sort((a, b) => b - a)
@@ -588,11 +561,11 @@ export default function SetlistPage() {
                           <option key={c.entryId} value={c.entryId}>{c.setName}</option>
                         ))}
                       </select>
-                    ) : createPickerIdx === i ? (
+                    ) : gotoPickerIdx === i ? (
                       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
                         <select
-                          value={createSetId}
-                          onChange={e => setCreateSetId(e.target.value)}
+                          value={gotoSetId}
+                          onChange={e => setGotoSetId(e.target.value)}
                           style={{ fontSize: 12, padding: '6px 8px', borderRadius: 8, border: '1.5px solid #888', maxWidth: 200 }}
                         >
                           <option value="">Choisir un set…</option>
@@ -602,21 +575,22 @@ export default function SetlistPage() {
                             .map(s => <option key={s.id} value={s.id}>{s.name}</option>)
                           }
                         </select>
-                        <button
-                          onClick={() => createAndPlace(i, Number(createSetId))}
-                          disabled={!createSetId}
-                          style={{ fontSize: 12, padding: '6px 12px', borderRadius: 8, border: 'none', background: createSetId ? '#003DA6' : '#ccc', color: 'white', fontWeight: 700, cursor: createSetId ? 'pointer' : 'default' }}
-                        >
-                          Créer
-                        </button>
-                        <button onClick={() => setCreatePickerIdx(null)} style={{ fontSize: 12, padding: '6px 8px', borderRadius: 8, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888' }}>✕</button>
+                        {gotoSetId && (
+                          <Link
+                            href={`/setlist/${gotoSetId}`}
+                            style={{ fontSize: 12, padding: '6px 12px', borderRadius: 8, background: '#003DA6', color: 'white', fontWeight: 700, textDecoration: 'none' }}
+                          >
+                            Voir →
+                          </Link>
+                        )}
+                        <button onClick={() => setGotoPickerIdx(null)} style={{ fontSize: 12, padding: '6px 8px', borderRadius: 8, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888' }}>✕</button>
                       </div>
                     ) : (
                       <button
-                        onClick={() => { setCreatePickerIdx(i); setCreateSetId('') }}
-                        style={{ fontSize: 11, color: '#e67e22', fontWeight: 700, background: '#fff8f0', border: '1.5px solid #e67e22', borderRadius: 6, padding: '4px 10px', cursor: 'pointer', whiteSpace: 'nowrap' }}
+                        onClick={() => { setGotoPickerIdx(i); setGotoSetId('') }}
+                        style={{ fontSize: 11, color: '#888', fontWeight: 700, background: '#f5f5f5', border: '1.5px solid #ddd', borderRadius: 6, padding: '4px 10px', cursor: 'pointer', whiteSpace: 'nowrap' }}
                       >
-                        + Créer l&apos;entrée
+                        Voir le set →
                       </button>
                     )}
                   </div>
