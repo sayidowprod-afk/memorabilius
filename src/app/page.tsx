@@ -57,25 +57,47 @@ async function fetchPepites(): Promise<Card[]> {
 }
 
 async function fetchPodium() {
-  const month = new Date().toISOString().slice(0, 7)
+  const now = new Date()
+  const month = now.toISOString().slice(0, 7)
+  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
 
-  const { data } = await supabase
-    .from('monthly_additions')
-    .select('user_id, count, profiles(display_name, avatar_url)')
-    .eq('month', month)
-    .order('count', { ascending: false })
-    .limit(10)
+  const counts = new Map<string, { displayName: string; avatarUrl: string | null; count: number }>()
 
-  if (!data?.length) return []
+  // Source 1 : monthly_additions (CSV + manuelles, table optionnelle)
+  try {
+    const { data } = await supabase
+      .from('monthly_additions')
+      .select('user_id, count, profiles(display_name, avatar_url)')
+      .eq('month', month)
+    for (const row of (data || []) as any[]) {
+      if (!row.profiles?.display_name) continue
+      counts.set(row.user_id, { displayName: row.profiles.display_name, avatarUrl: row.profiles.avatar_url || null, count: row.count })
+    }
+  } catch {}
 
-  return data
-    .map((row: any) => ({
-      userId: row.user_id,
-      displayName: row.profiles?.display_name || '',
-      avatarUrl: row.profiles?.avatar_url || null,
-      count: row.count,
-    }))
-    .filter(e => e.displayName)
+  // Source 2 : cartes_manuelles pour les users absents de monthly_additions
+  const { data: manual } = await supabase
+    .from('cartes_manuelles')
+    .select('user_id, profiles(display_name, avatar_url)')
+    .gte('created_at', startOfMonth)
+    .limit(500)
+
+  const manualCounts = new Map<string, { displayName: string; avatarUrl: string | null; count: number }>()
+  for (const row of (manual || []) as any[]) {
+    if (!row.profiles?.display_name) continue
+    const e = manualCounts.get(row.user_id)
+    if (!e) manualCounts.set(row.user_id, { displayName: row.profiles.display_name, avatarUrl: row.profiles.avatar_url || null, count: 1 })
+    else e.count++
+  }
+  // N'ajouter depuis cartes_manuelles que les users non couverts par monthly_additions
+  for (const [uid, v] of manualCounts) {
+    if (!counts.has(uid)) counts.set(uid, v)
+  }
+
+  return [...counts.entries()]
+    .map(([userId, v]) => ({ userId, ...v }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10)
 }
 
 export default async function Home() {
