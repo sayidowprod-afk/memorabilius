@@ -32,15 +32,16 @@ const FROM    = args.from  ? parseInt(args.from)  : 2025  // année TCDB (2025 =
 const TO      = args.to    ? parseInt(args.to)    : 1969
 const DRY_RUN = !!args['dry-run']
 
-// Délais aléatoires humains
+// Délais aléatoires humains (optimisés — ~3x plus rapide, toujours variable)
 const rand    = (min, max) => Math.floor(Math.random() * (max - min)) + min
 const sleep   = ms => new Promise(r => setTimeout(r, ms))
-const delayTeam  = () => sleep(rand(2200, 5500))   // entre équipes
-const delaySet   = () => sleep(rand(12000, 30000))  // entre sets
-const delayYear  = () => sleep(rand(90000, 240000)) // entre années (1.5–4 min)
+const delayTeam  = () => sleep(rand(600, 1400))    // était 2200–5500
+const delaySet   = () => sleep(rand(3000, 7000))   // était 12000–30000
+const delayYear  = () => sleep(rand(8000, 18000))  // était 90000–240000
+const BREAK_EVERY = 30  // était 20
 const delayBreak = () => {
-  const ms = rand(300000, 600000) // pause 5–10 min toutes les ~20 sets
-  console.log(`\n☕ Pause anti-détection ${Math.round(ms/60000)} min...\n`)
+  const ms = rand(90000, 150000) // était 300000–600000
+  console.log(`\n☕ Pause anti-détection ${Math.round(ms/1000)}s...\n`)
   return sleep(ms)
 }
 
@@ -98,7 +99,7 @@ async function waitCF(page, url) {
 
 async function fetchSets(page, year) {
   await waitCF(page, `${TCDB}/ViewAll.cfm/sp/Basketball/year/${year}`)
-  await sleep(rand(1200, 2500))
+  await sleep(rand(500, 1000))
 
   return await page.evaluate(() => {
     const results = []
@@ -138,7 +139,7 @@ async function fetchSets(page, year) {
 async function fetchTeams(page, sid, year) {
   const slug = `${year}-${String(year + 1).slice(2)}`
   await waitCF(page, `${TCDB}/ViewTeams.cfm/sid/${sid}/${slug}`)
-  await sleep(rand(900, 2000))
+  await sleep(rand(300, 700))
 
   const teams = await page.evaluate(() => {
     const results = []
@@ -159,7 +160,7 @@ async function fetchTeams(page, sid, year) {
 async function fetchTeamCards(page, sid, teamId, teamName) {
   const encoded = encodeURIComponent(teamName)
   await waitCF(page, `${TCDB}/ViewTeamsIns.cfm/sid/${sid}/team/${teamId}/${encoded}`)
-  await sleep(rand(800, 1800))
+  await sleep(rand(250, 600))
 
   return await page.evaluate(() => {
     const cards = []
@@ -306,8 +307,8 @@ async function main() {
       console.log(`📅 Saison ${season} (${yi+1}/${remaining.length})`)
       console.log(`${'═'.repeat(60)}`)
 
-      // Restart browser tous les 5 ans pour éviter la détection
-      if (yi > 0 && yi % 5 === 0) {
+      // Restart browser tous les 8 ans pour éviter la détection
+      if (yi > 0 && yi % 8 === 0) {
         console.log('\n🔄 Restart browser (anti-détection)...')
         page = await openBrowser()
       }
@@ -345,8 +346,8 @@ async function main() {
           console.log(`  ❌ ${e.message}`)
         }
 
-        // Pause longue toutes les 20 sets
-        if (totalSets > 0 && totalSets % 20 === 0) await delayBreak()
+        // Pause courte toutes les 30 sets
+        if (totalSets > 0 && totalSets % BREAK_EVERY === 0) await delayBreak()
         else if (si < sets.length - 1) await delaySet()
       }
 
@@ -371,7 +372,7 @@ async function main() {
       saveCheckpoint(cp)
 
       if (yi < remaining.length - 1) {
-        const ms = rand(90000, 240000)
+        const ms = rand(8000, 18000)
         console.log(`\n⏳ Pause entre années: ${Math.round(ms/1000)}s...`)
         await sleep(ms)
       }
