@@ -57,6 +57,7 @@ export default function SetlistPage() {
   const [gotoPickerIdx, setGotoPickerIdx] = useState<number | null>(null)
   const [gotoSetId, setGotoSetId] = useState<string>('')
   const [gotoAllSets, setGotoAllSets] = useState(false)
+  const [gotoVisited, setGotoVisited] = useState<Set<number>>(new Set())
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -610,15 +611,33 @@ export default function SetlistPage() {
                         >
                           {gotoAllSets ? 'Filtrés' : 'Tous'}
                         </button>
-                        {gotoSetId && (
-                          <Link
+                        {gotoSetId && !gotoVisited.has(i) && (
+                          <a
                             href={`/setlist/${gotoSetId}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setGotoVisited(prev => new Set([...prev, i]))}
                             style={{ fontSize: 12, padding: '6px 12px', borderRadius: 8, background: '#003DA6', color: 'white', fontWeight: 700, textDecoration: 'none' }}
                           >
                             Voir →
-                          </Link>
+                          </a>
                         )}
-                        <button onClick={() => setGotoPickerIdx(null)} style={{ fontSize: 12, padding: '6px 8px', borderRadius: 8, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888' }}>✕</button>
+                        {gotoVisited.has(i) && (
+                          <button
+                            onClick={async () => {
+                              const updated = unmatchedCards.filter((_, idx) => idx !== i)
+                              setUnmatchedCards(updated)
+                              saveUnmatched(updated)
+                              setGotoPickerIdx(null)
+                              setGotoVisited(prev => { const s = new Set(prev); s.delete(i); return s })
+                              await fetchAndCacheSets(false)
+                            }}
+                            style={{ fontSize: 12, padding: '6px 12px', borderRadius: 8, border: 'none', background: '#2ecc71', color: 'white', fontWeight: 700, cursor: 'pointer' }}
+                          >
+                            ✓ J&apos;ai coché la carte
+                          </button>
+                        )}
+                        {!gotoVisited.has(i) && <button onClick={() => setGotoPickerIdx(null)} style={{ fontSize: 12, padding: '6px 8px', borderRadius: 8, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888' }}>✕</button>}
                       </div>
                     ) : (
                       <button
