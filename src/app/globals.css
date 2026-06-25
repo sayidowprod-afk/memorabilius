@@ -269,3 +269,14 @@ img {
 }
 
 .kofi-btn:hover { opacity: 0.85; }
+
+/* ===== NAV CLS FIX ===== */
+/* Ces règles doivent être dans globals.css (pas dans un <style> React)
+   pour éviter un FOUC qui cause CLS avant la hydration */
+.nav-hamburger { display: none !important; }
+.nav-mobile-menu { display: none !important; }
+@media (max-width: 900px) {
+  .nav-desktop { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+  .nav-mobile-menu { display: flex !important; }
+}

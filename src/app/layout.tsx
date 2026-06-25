@@ -8,9 +8,9 @@ import { LangProvider } from '@/lib/LangContext'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
-const inter = Inter({ 
-  subsets: ['latin'], 
-  display: 'swap',
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'optional',
   preload: true,
   fallback: ['system-ui', 'arial'],
 })
