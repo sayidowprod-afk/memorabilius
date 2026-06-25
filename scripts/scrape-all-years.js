@@ -344,7 +344,7 @@ async function main() {
         continue
       }
 
-      const yearScraped = []
+      let yearOk = 0
       for (let si = 0; si < sets.length; si++) {
         const set = sets[si]
         console.log(`\n  [${si+1}/${sets.length}] ${set.name} (sid:${set.tcdb_id})`)
@@ -352,8 +352,23 @@ async function main() {
         try {
           const result = await scrapeSet(page, set, year, cp)
           if (result) {
-            yearScraped.push(result)
             totalSets++
+            if (!DRY_RUN) {
+              // Import immédiat après chaque set
+              const jsonFile = path.join(DATA_DIR, `scraped-${set.tcdb_id}.json`)
+              fs.writeFileSync(jsonFile, JSON.stringify({ year, sets: [result] }, null, 2))
+              const ok = importYear(jsonFile)
+              if (ok) {
+                cp.doneTcdbIds.push(set.tcdb_id)
+                saveCheckpoint(cp)
+                yearOk++
+                console.log(`  ✅ Importé`)
+              } else {
+                console.log(`  ⚠️  Import échoué — JSON conservé: ${jsonFile}`)
+              }
+            } else {
+              yearOk++
+            }
           }
         } catch (e) {
           console.log(`  ❌ ${e.message}`)
@@ -364,24 +379,9 @@ async function main() {
         else if (si < sets.length - 1) await delaySet()
       }
 
-      // Import l'année
-      if (!DRY_RUN && yearScraped.length > 0) {
-        const jsonFile = path.join(DATA_DIR, `scraped-${year}.json`)
-        fs.writeFileSync(jsonFile, JSON.stringify({ year, sets: yearScraped }, null, 2))
-        const ok = importYear(jsonFile)
-        if (ok) {
-          console.log(`  ✅ Année ${season} importée`)
-        } else {
-          console.log(`  ⚠️  Import échoué — JSON conservé: ${jsonFile}`)
-        }
-      } else if (DRY_RUN) {
-        console.log(`  [DRY-RUN] ${yearScraped.length} sets scrapés`)
-      }
+      if (DRY_RUN) console.log(`  [DRY-RUN] ${yearOk} sets scrapés`)
 
       cp.doneYears.push(year)
-      if (!DRY_RUN) {
-        for (const item of yearScraped) cp.doneTcdbIds.push(item.set.tcdb_id)
-      }
       saveCheckpoint(cp)
 
       if (yi < remaining.length - 1) {
