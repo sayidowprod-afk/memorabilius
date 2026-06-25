@@ -13,29 +13,55 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Paramètres manquants' }, { status: 400 })
     }
 
-    // Créer l'entrée dans card_set_entries
-    const { data: entry, error: entryError } = await supabaseAdmin
+    // 1. Chercher une entrée existante pour ce joueur + variation + set
+    //    (évite les doublons si TCDB a déjà scrapé cette carte)
+    let entryId: number | null = null
+
+    const normStr = (s: string | null) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '')
+
+    const { data: existing } = await supabaseAdmin
       .from('card_set_entries')
-      .insert({
-        set_id,
-        player_name,
-        team: team || null,
-        variation: variation || null,
-        card_number: card_number || null,
-      })
-      .select('id')
-      .single()
+      .select('id, variation, card_number')
+      .eq('set_id', set_id)
+      .eq('player_name', player_name)
 
-    if (entryError) return NextResponse.json({ error: entryError.message }, { status: 500 })
+    if (existing?.length) {
+      const cv = normStr(variation)
+      // Cherche la meilleure correspondance : variation exacte > card_number > première entrée du joueur
+      const match =
+        existing.find(e => normStr(e.variation) === cv) ||
+        (card_number ? existing.find(e => normStr(e.card_number) === normStr(card_number)) : null) ||
+        (cv === '' ? existing.find(e => !e.variation) : null)
 
-    // Placer la carte dans user_set_completion
+      if (match) entryId = match.id
+    }
+
+    // 2. Créer l'entrée seulement si aucune correspondance trouvée
+    if (!entryId) {
+      const { data: entry, error: entryError } = await supabaseAdmin
+        .from('card_set_entries')
+        .insert({
+          set_id,
+          player_name,
+          team: team || null,
+          variation: variation || null,
+          card_number: card_number || null,
+        })
+        .select('id')
+        .single()
+
+      if (entryError) return NextResponse.json({ error: entryError.message }, { status: 500 })
+      entryId = entry.id
+    }
+
+    // 3. Placer la carte dans user_set_completion
     const { error: compError } = await supabaseAdmin
       .from('user_set_completion')
-      .upsert({ user_id, entry_id: entry.id, manually_checked: true }, { onConflict: 'user_id,entry_id' })
+      .upsert({ user_id, entry_id: entryId, manually_checked: true }, { onConflict: 'user_id,entry_id' })
 
     if (compError) return NextResponse.json({ error: compError.message }, { status: 500 })
 
-    return NextResponse.json({ entry_id: entry.id })
+    return NextResponse.json({ entry_id: entryId })
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 })
   }
