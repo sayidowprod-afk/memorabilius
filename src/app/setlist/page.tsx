@@ -257,7 +257,7 @@ export default function SetlistPage() {
         const csvCards = txt.split(/\r?\n/).slice(4).map(row => {
           const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
           if (!c[0]?.includes('http')) return null
-          return { nom: c[2]?.trim() || '', annee: c[4]?.trim() || '', marque: c[5]?.trim() || '', collection: c[6]?.trim() || '', collection_tag: '', variation: c[7]?.trim() || '' } as GalleryCard
+          return { nom: c[2]?.trim() || '', annee: c[4]?.trim() || '', marque: c[5]?.trim() || '', collection: c[6]?.trim() || '', collection_tag: '', variation: c[7]?.trim() || '', card_number: c[13]?.trim() || '' } as GalleryCard
         }).filter(Boolean) as GalleryCard[]
         galleryCards = [...galleryCards, ...csvCards]
       } catch {}

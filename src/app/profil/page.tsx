@@ -21,6 +21,11 @@ export default function Profil() {
   const [showDelete, setShowDelete] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState('')
   const [deleting, setDeleting] = useState(false)
+  const [showPasswordForm, setShowPasswordForm] = useState(false)
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [changingPassword, setChangingPassword] = useState(false)
+  const [passwordMsg, setPasswordMsg] = useState<{ ok: boolean; text: string } | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -85,6 +90,19 @@ export default function Profil() {
       setSaved(true)
       setTimeout(() => setSaved(false), 3000)
     } else { alert('Erreur : ' + error.message) }
+  }
+
+  const handlePasswordChange = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (newPassword !== confirmPassword) { setPasswordMsg({ ok: false, text: 'Les mots de passe ne correspondent pas.' }); return }
+    if (newPassword.length < 8) { setPasswordMsg({ ok: false, text: 'Le mot de passe doit faire au moins 8 caractères.' }); return }
+    setChangingPassword(true)
+    const { error } = await supabase.auth.updateUser({ password: newPassword })
+    setChangingPassword(false)
+    if (error) { setPasswordMsg({ ok: false, text: error.message }); return }
+    setPasswordMsg({ ok: true, text: 'Mot de passe modifié avec succès !' })
+    setNewPassword(''); setConfirmPassword('')
+    setTimeout(() => { setShowPasswordForm(false); setPasswordMsg(null) }, 2500)
   }
 
   const handleDeleteAccount = async () => {
@@ -192,6 +210,38 @@ export default function Profil() {
             {saved ? t('profile_saved') : t('profile_save')}
           </button>
         </form>
+      </div>
+
+      {/* Modifier le mot de passe */}
+      <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+        <h3 style={{ fontWeight: 800, marginBottom: 8 }}>Mot de passe</h3>
+        {!showPasswordForm ? (
+          <button onClick={() => setShowPasswordForm(true)} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+            Modifier le mot de passe
+          </button>
+        ) : (
+          <form onSubmit={handlePasswordChange} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Nouveau mot de passe</label>
+              <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="Min. 8 caractères" autoComplete="new-password" />
+            </div>
+            <div>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Confirmer le mot de passe</label>
+              <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Répéter le mot de passe" autoComplete="new-password" />
+            </div>
+            {passwordMsg && (
+              <p style={{ fontSize: 13, color: passwordMsg.ok ? '#2ecc71' : '#e74c3c', fontWeight: 600 }}>{passwordMsg.text}</p>
+            )}
+            <div style={{ display: 'flex', gap: 10 }}>
+              <button type="submit" disabled={changingPassword} style={{ background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+                {changingPassword ? 'En cours...' : 'Enregistrer'}
+              </button>
+              <button type="button" onClick={() => { setShowPasswordForm(false); setNewPassword(''); setConfirmPassword(''); setPasswordMsg(null) }} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+                Annuler
+              </button>
+            </div>
+          </form>
+        )}
       </div>
 
       {/* Zone danger */}

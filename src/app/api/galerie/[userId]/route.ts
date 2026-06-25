@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic'
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string
-  br: string; s: string; v: string; num: string
+  br: string; s: string; v: string; num: string; card_number: string
   auto: boolean; rc: boolean; patch: boolean; g: string
 }
 
@@ -63,7 +63,7 @@ export async function GET(
           num: c[8] || '', auto: c[9]?.toLowerCase().includes('oui') || false,
           rc: c[10]?.toLowerCase().includes('oui') || false,
           patch: c[11]?.toLowerCase().includes('oui') || false,
-          g: c[12] || 'Raw',
+          g: c[12] || 'Raw', card_number: c[13]?.trim() || '',
         }
       })
       .filter(Boolean) as Card[]
