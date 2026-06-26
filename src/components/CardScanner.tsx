@@ -1210,45 +1210,54 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
 
   // ── Écran de prévisualisation résultat IA ───────────────────────────────
   if (aiPreview && aiBlob) {
+    const adjustOriginal = () => {
+      URL.revokeObjectURL(aiPreview)
+      setAiPreview(null)
+      setAiBlob(null)
+      skipAI.current = true
+      setStatus('detecting')
+      setTimeout(() => initCanvas(imgRef.current!), 0)
+    }
+    const adjustAiResult = () => {
+      const img = new window.Image()
+      img.onload = () => {
+        origImgRef.current = img
+        imgRef.current = img
+        URL.revokeObjectURL(aiPreview)
+        setAiPreview(null)
+        setAiBlob(null)
+        skipAI.current = true
+        setStatus('detecting')
+        setTimeout(() => initCanvas(img), 0)
+      }
+      img.src = aiPreview
+    }
     return (
       <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.96)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '12px 16px 20px' }}>
         <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, marginBottom: 12, textAlign: 'center' }}>
-          Vérifiez le résultat — acceptez ou ajustez manuellement
+          Vérifiez le résultat IA — acceptez ou recadrez manuellement
         </p>
         <img
           src={aiPreview}
           alt="Carte recadrée"
-          style={{ maxWidth: '100%', maxHeight: '55vh', borderRadius: 8, objectFit: 'contain', display: 'block' }}
+          style={{ maxWidth: '100%', maxHeight: '52vh', borderRadius: 8, objectFit: 'contain', display: 'block' }}
         />
-        <div style={{ display: 'flex', gap: 10, marginTop: 16, width: '100%', maxWidth: 420 }}>
-          <button
-            onClick={() => {
-              URL.revokeObjectURL(aiPreview)
-              setAiPreview(null)
-              setAiBlob(null)
-              skipAI.current = true
-              setStatus('detecting')
-              setTimeout(() => initCanvas(imgRef.current!), 0)
-            }}
-            style={{ flex: 1, padding: '13px 0', background: 'rgba(255,255,255,0.08)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
+        <div style={{ display: 'flex', gap: 8, marginTop: 14, width: '100%', maxWidth: 420, flexWrap: 'wrap' }}>
+          <button onClick={onClose}
+            style={{ flex: '1 1 calc(50% - 4px)', padding: '12px 0', background: 'rgba(255,255,255,0.08)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
             Annuler
           </button>
-          <button
-            onClick={() => {
-              URL.revokeObjectURL(aiPreview)
-              setAiPreview(null)
-              setAiBlob(null)
-              skipAI.current = true
-              setStatus('detecting')
-              setTimeout(() => initCanvas(imgRef.current!), 0)
-            }}
-            style={{ flex: 1, padding: '13px 0', background: 'rgba(255,255,255,0.14)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
-            Ajuster
-          </button>
-          <button
-            onClick={() => { onResult(aiBlob!); URL.revokeObjectURL(aiPreview) }}
-            style={{ flex: 2, padding: '13px 0', background: 'white', color: '#111', border: 'none', borderRadius: 12, fontWeight: 800, cursor: 'pointer', fontSize: 14 }}>
+          <button onClick={() => { onResult(aiBlob!); URL.revokeObjectURL(aiPreview) }}
+            style={{ flex: '1 1 calc(50% - 4px)', padding: '12px 0', background: 'white', color: '#111', border: 'none', borderRadius: 12, fontWeight: 800, cursor: 'pointer', fontSize: 13 }}>
             Utiliser
+          </button>
+          <button onClick={adjustAiResult}
+            style={{ flex: '1 1 calc(50% - 4px)', padding: '12px 0', background: 'rgba(255,255,255,0.14)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+            Rogner ce résultat
+          </button>
+          <button onClick={adjustOriginal}
+            style={{ flex: '1 1 calc(50% - 4px)', padding: '12px 0', background: 'rgba(255,255,255,0.14)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+            Ajuster l'original
           </button>
         </div>
       </div>
