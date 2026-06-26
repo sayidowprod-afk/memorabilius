@@ -881,6 +881,33 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     hasAdjusted.current = false
     setStatus('detecting')
 
+    // ── Fast path: OpenAI crop-card (recadrage + suppression reflets) ────────
+    try {
+      const { b64 } = await imageToBase64(img, 1024)
+      const { data: { session } } = await supabase.auth.getSession()
+      const ctrl = new AbortController()
+      const timeoutId = setTimeout(() => ctrl.abort(), 15000)
+      try {
+        const res = await fetch('/api/crop-card', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
+          body: JSON.stringify({ imageBase64: b64, mimeType: 'image/jpeg' }),
+          signal: ctrl.signal,
+        })
+        if (res.ok) {
+          const { imageBase64: croppedB64 } = await res.json()
+          if (croppedB64) {
+            const blob = await (await fetch(`data:image/png;base64,${croppedB64}`)).blob()
+            onResult(blob)
+            return
+          }
+        }
+      } finally {
+        clearTimeout(timeoutId)
+      }
+    } catch { /* fallback vers détection de coins */ }
+
+    // ── Fallback: détection de coins ─────────────────────────────────────────
     let detectedCorners: Pt[] | null = null
 
     if (frameRect) {
