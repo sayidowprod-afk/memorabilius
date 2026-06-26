@@ -285,63 +285,99 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
                 return (
                   <div ref={cardRef} style={{ position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform' }}>
                     <style>{`
-                      /* ── SLAB CASE ── */
+                      /* ── SLAB CASE — clear acrylic effect ── */
                       .slb-case {
                         width: 260px;
-                        border-radius: 8px;
+                        border-radius: 7px;
                         overflow: hidden;
-                        background: linear-gradient(160deg, #2e2e2e 0%, #1a1a1a 45%, #222 100%);
-                        border: 1px solid rgba(255,255,255,0.07);
-                        box-shadow:
-                          0 0 0 1px rgba(0,0,0,0.9),
-                          inset 1px 1px 0 rgba(255,255,255,0.07),
-                          inset -1px -1px 0 rgba(0,0,0,0.5),
-                          8px 24px 70px rgba(0,0,0,0.95),
-                          2px 4px 12px rgba(0,0,0,0.6);
                         position: relative;
+                        /* Transparent acrylic tint */
+                        background: linear-gradient(158deg,
+                          rgba(230,242,255,0.42) 0%,
+                          rgba(212,228,252,0.26) 38%,
+                          rgba(222,236,254,0.34) 68%,
+                          rgba(210,226,250,0.28) 100%
+                        );
+                        /* Thick acrylic border — bright white inner edge → tinted plastic → darker outer edge */
+                        box-shadow:
+                          0 0 0 1px   rgba(255,255,255,0.94),
+                          0 0 0 12px  rgba(208,224,246,0.80),
+                          0 0 0 13.5px rgba(180,202,232,0.62),
+                          0 0 0 15px  rgba(155,182,218,0.40),
+                          0 0 0 16px  rgba(135,165,205,0.22),
+                          /* depth drop shadow */
+                          0 30px 90px rgba(0,0,0,0.88),
+                          6px 12px 28px rgba(0,0,0,0.55),
+                          /* inner highlights simulating surface */
+                          inset 0  1px 0 rgba(255,255,255,0.70),
+                          inset 1px 0  0 rgba(255,255,255,0.40),
+                          inset -1px 0  0 rgba(0,0,0,0.10),
+                          inset 0 -1px 0 rgba(0,0,0,0.16);
+                        backdrop-filter: blur(3px);
                       }
                       @media (max-width:1200px) { .slb-case { width:220px; } }
-                      @media (max-width:600px)  { .slb-case { width:170px; } }
+                      @media (max-width:600px)  { .slb-case { width:168px; } }
+
+                      /* Diagonal gloss shine on the acrylic surface */
+                      .slb-case::before {
+                        content: ''; position: absolute; inset: 0; z-index: 2;
+                        pointer-events: none; border-radius: 7px;
+                        background: linear-gradient(118deg,
+                          rgba(255,255,255,0.22) 0%,
+                          rgba(255,255,255,0.10) 22%,
+                          rgba(255,255,255,0.03) 42%,
+                          transparent 56%,
+                          rgba(255,255,255,0.02) 78%,
+                          rgba(255,255,255,0.07) 100%
+                        );
+                      }
 
                       /* top plastic area containing the label */
-                      .slb-top { padding: 10px 14px 10px; }
+                      .slb-top { padding: 12px 15px 12px; position: relative; z-index: 1; }
 
                       /* sides + window */
-                      .slb-mid { padding: 0 14px; }
+                      .slb-mid { padding: 0 15px; position: relative; z-index: 1; }
                       .slb-window {
-                        position: relative;
-                        overflow: hidden;
-                        border-radius: 3px;
+                        position: relative; overflow: hidden; border-radius: 2px;
+                        /* inset shadow = card sits BEHIND the plastic surface */
                         box-shadow:
-                          0 0 0 1px rgba(0,0,0,0.9),
-                          inset 0 0 0 1px rgba(255,255,255,0.04),
-                          inset 0 4px 16px rgba(0,0,0,0.7);
+                          0 0 0 1px rgba(0,0,0,0.88),
+                          inset 0 4px 14px rgba(0,0,0,0.80),
+                          inset 3px 0 10px rgba(0,0,0,0.50),
+                          inset -3px 0 10px rgba(0,0,0,0.50),
+                          inset 0 -4px 12px rgba(0,0,0,0.55);
                       }
                       .slb-window img {
                         display: block; width: 100%; aspect-ratio: 5/7; object-fit: cover;
                       }
-                      /* sheen overlay on window */
+                      /* light catch on top edge of window */
                       .slb-sheen {
                         position: absolute; inset: 0; pointer-events: none;
-                        background: linear-gradient(135deg,rgba(255,255,255,0.04) 0%,rgba(255,255,255,0.01) 40%,transparent 60%);
+                        background: linear-gradient(to bottom,
+                          rgba(255,255,255,0.06) 0%,
+                          transparent 18%
+                        );
                       }
 
                       /* bottom plastic */
                       .slb-bot {
-                        padding: 10px 14px 12px;
+                        padding: 10px 15px 14px; position: relative; z-index: 1;
                         display: flex; flex-direction: column; align-items: center; gap: 6px;
                       }
                       .slb-gold {
-                        width: 75%; height: 1px;
-                        background: linear-gradient(to right,transparent,rgba(210,170,50,0.75),rgba(230,190,60,0.9),rgba(210,170,50,0.75),transparent);
-                        border-radius: 1px;
+                        width: 68%; height: 1.5px;
+                        background: linear-gradient(to right,
+                          transparent,
+                          rgba(218,178,55,0.72),
+                          rgba(240,200,65,0.95),
+                          rgba(218,178,55,0.72),
+                          transparent
+                        );
                       }
-                      .slb-dot-row {
-                        display: flex; gap: 5px; align-items: center;
-                      }
+                      .slb-dot-row { display: flex; gap: 5px; align-items: center; }
                       .slb-dot {
                         width: 4px; height: 4px; border-radius: 50%;
-                        background: rgba(210,170,50,0.45);
+                        background: rgba(215,172,48,0.48);
                       }
 
                       /* ── PSA LABEL ── */
