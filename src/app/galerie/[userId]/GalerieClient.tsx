@@ -16,7 +16,7 @@ import { CSS } from '@dnd-kit/utilities'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 import { useLang } from '@/lib/LangContext'
-import { getSpeciality } from '@/lib/sportsTeams'
+import { getSpeciality, getTeamById } from '@/lib/sportsTeams'
 import TeamBadge from '@/components/TeamBadge'
 
 function SortableCard({ id, disabled, children, className, style, onClick }: {
@@ -449,12 +449,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 <h1 style={{ fontSize: 24, fontWeight: 900, margin: 0 }}>{profile?.display_name || 'Collectionneur'}</h1>
                 <OnlineIndicator lastSeen={profile?.last_seen} size={12} />
                 {monthlyBadges.length > 0 && (
-                  <span title={`Collectionneur du mois : ${monthlyBadges.join(', ')}`} style={{ fontSize: 20, cursor: 'default' }}>🏆</span>
+                  <span className="sticker-badge" data-label={`Collectionneur du mois : ${monthlyBadges.join(', ')}`} style={{ fontSize: 26 }}>🏆</span>
                 )}
                 {profile?.is_donor && (
-                  <span title="Donateur Ko-fi — merci pour ton soutien !" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, fontWeight: 800, background: '#fff4e6', color: '#e67e22', border: '1.5px solid #f0c080', borderRadius: 20, padding: '3px 9px', cursor: 'default', whiteSpace: 'nowrap' }}>
-                    ☕ Donateur
-                  </span>
+                  <span className="sticker-badge" data-label="Donateur Ko-fi ☕" style={{ fontSize: 26 }}>☕</span>
                 )}
                 {profile?.lien_logo && <img src={profile.lien_logo} style={{ maxHeight: 32, objectFit: 'contain' }} alt="logo" />}
                 {(() => {
@@ -462,8 +460,19 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   const stats = profile ? { total: profile.stats_total || 0, rc: profile.stats_rc || 0, auto: profile.stats_auto || 0, patch: profile.stats_patch || 0, num: profile.stats_num || 0 } : undefined
                   const spec = getSpeciality(stats)
                   return (<>
-                    {teams.map(id => <TeamBadge key={id} teamId={id} size={26} />)}
-                    {spec && <span style={{ fontSize: 11, fontWeight: 800, padding: '3px 8px', borderRadius: 6, background: spec.color + '18', color: spec.color, border: `1px solid ${spec.color}33` }}>{spec.label}</span>}
+                    {teams.map(id => {
+                      const team = getTeamById(id)
+                      return (
+                        <span key={id} className="sticker-team" data-label={team?.name ?? id}>
+                          <TeamBadge teamId={id} size={28} />
+                        </span>
+                      )
+                    })}
+                    {spec && (
+                      <span className="sticker-badge" data-label={spec.label.replace(/^\S+\s*/, '')} style={{ fontSize: 26 }}>
+                        {spec.label.match(/^\S+/)?.[0] ?? '⭐'}
+                      </span>
+                    )}
                   </>)
                 })()}
               </div>
@@ -988,6 +997,66 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           }
           @media (min-width: 900px) { .card-item { flex: 0 0 calc(20% - 10px); max-width: calc(20% - 10px); } }
 
+          .sticker-badge {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: default;
+            line-height: 1;
+            filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 4px white);
+            transition: transform 0.15s;
+          }
+          .sticker-badge:hover { transform: scale(1.15); }
+          .sticker-badge::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.82);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s;
+            z-index: 20;
+            font-family: inherit;
+          }
+          .sticker-badge:hover::after { opacity: 1; }
+
+          .sticker-team {
+            position: relative;
+            display: inline-flex;
+            cursor: default;
+            filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 4px white);
+            transition: transform 0.15s;
+          }
+          .sticker-team:hover { transform: scale(1.15); }
+          .sticker-team::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.82);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s;
+            z-index: 20;
+            font-family: inherit;
+          }
+          .sticker-team:hover::after { opacity: 1; }
         `}</style>
         
         {editMode && isOwner && selectedCards.size > 0 && (

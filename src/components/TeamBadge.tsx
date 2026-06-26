@@ -16,7 +16,7 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
       title={team.name}
       width={size}
       height={size}
-      style={{ borderRadius: '50%', background: team.color + '22', border: `1.5px solid ${team.color}44`, objectFit: 'contain', flexShrink: 0 }}
+      style={{ borderRadius: '50%', objectFit: 'contain', flexShrink: 0, display: 'block' }}
       onError={(e) => {
         // Fallback: colored abbr badge
         const el = e.currentTarget
