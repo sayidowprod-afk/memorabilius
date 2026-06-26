@@ -10,7 +10,7 @@ export default function Profil() {
   const router = useRouter()
   const { t, lang } = useLang()
   const [userId, setUserId] = useState<string | null>(null)
-  const [form, setForm] = useState({ display_name: '', bio: '', lien_csv: '', couleur_bordure: '#003DA6', lien_logo: '', instagram: '', twitter: '', discord: '' })
+  const [form, setForm] = useState({ display_name: '', bio: '', lien_csv: '', couleur_bordure: '#003DA6', instagram: '', twitter: '', discord: '' })
   const [favoriteTeams, setFavoriteTeams] = useState<string[]>([])
   const [wrapOptOut, setWrapOptOut] = useState(false)
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
@@ -36,7 +36,7 @@ export default function Profil() {
       await supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', data.user.id)
       const { data: p } = await supabase.from('profiles').select('*').eq('id', data.user.id).single()
       if (p) {
-        setForm({ display_name: p.display_name || '', bio: p.bio || '', lien_csv: p.lien_csv || '', couleur_bordure: p.couleur_bordure || '#003DA6', lien_logo: p.lien_logo || '', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '' })
+        setForm({ display_name: p.display_name || '', bio: p.bio || '', lien_csv: p.lien_csv || '', couleur_bordure: p.couleur_bordure || '#003DA6', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '' })
         setFavoriteTeams(Array.isArray(p.favorite_teams) ? p.favorite_teams : [])
         setWrapOptOut(!!p.wrap_opt_out)
         setCsvLinked(!!p.lien_csv)
@@ -75,7 +75,6 @@ export default function Profil() {
       display_name: form.display_name,
       lien_csv: form.lien_csv,
       couleur_bordure: form.couleur_bordure,
-      lien_logo: form.lien_logo,
       instagram: form.instagram,
       twitter: form.twitter,
       discord: form.discord,
@@ -170,10 +169,7 @@ export default function Profil() {
             <input value={form.lien_csv} onChange={e => setForm({ ...form, lien_csv: e.target.value })} placeholder="https://docs.google.com/spreadsheets/d/..." />
             <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>Fichier &gt; Partager &gt; Publier sur le web &gt; CSV</p>
           </div>
-          <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('profile_logo_label')}</label>
-            <input value={form.lien_logo} onChange={e => setForm({ ...form, lien_logo: e.target.value })} placeholder="https://..." />
-          </div>
+
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Instagram</label>
