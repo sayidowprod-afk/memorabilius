@@ -454,7 +454,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 {profile?.is_donor && (
                   <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 26 }}>☕</span>
                 )}
-                {profile?.lien_logo && <img src={profile.lien_logo} style={{ maxHeight: 32, objectFit: 'contain' }} alt="logo" />}
+
                 {(() => {
                   const teams: string[] = Array.isArray(profile?.favorite_teams) ? profile.favorite_teams : []
                   const stats = profile ? { total: profile.stats_total || 0, rc: profile.stats_rc || 0, auto: profile.stats_auto || 0, patch: profile.stats_patch || 0, num: profile.stats_num || 0 } : undefined
