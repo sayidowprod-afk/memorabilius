@@ -63,16 +63,12 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
   const [addState, setAddState] = useState<'idle' | 'loading' | 'added' | 'duplicate'>(initialAddState ?? 'idle')
   const { lang } = useLang()
 
-  // Parse grade: "PSA 9" → { company: "PSA", grade: "9", label: "MINT" }
+  // Parse grade: "PSA 9", "BGS 9.5", or just "9" / "10" → slab info
   const gradeInfo = (() => {
     const g = popup.g?.trim()
     if (!g || g.toLowerCase() === 'raw') return null
-    const m = g.match(/^(PSA|BGS|SGC|CGC|BVG)\s*([\d.]+)$/i)
-    if (!m) return null
-    const company = m[1].toUpperCase()
-    const num = parseFloat(m[2])
+
     const psaLabels: Record<number, string> = { 10: 'GEM MT', 9: 'MINT', 8: 'NM-MT', 7: 'NM', 6: 'EX-MT', 5: 'EX', 4: 'VG-EX', 3: 'VG', 2: 'GOOD', 1: 'POOR' }
-    const label = company === 'PSA' ? (psaLabels[num] || 'MINT') : company === 'BGS' ? 'PRISTINE' : 'AUTHENTIC'
     const colors: Record<string, { top: string; text: string; accent: string }> = {
       PSA: { top: '#c8102e', text: '#fff', accent: '#e8c840' },
       BGS: { top: '#1a1a1a', text: '#e8c840', accent: '#e8c840' },
@@ -80,7 +76,25 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
       CGC: { top: '#003399', text: '#fff', accent: '#fff' },
       BVG: { top: '#1a1a1a', text: '#e8c840', accent: '#e8c840' },
     }
-    return { company, grade: m[2], label, color: colors[company] || colors.PSA }
+
+    // "PSA 9", "BGS 9.5" etc.
+    const withCompany = g.match(/^(PSA|BGS|SGC|CGC|BVG)\s*([\d.]+)$/i)
+    if (withCompany) {
+      const company = withCompany[1].toUpperCase()
+      const num = parseFloat(withCompany[2])
+      const label = company === 'PSA' ? (psaLabels[num] || 'GRADED') : company === 'BGS' ? 'PRISTINE' : 'AUTHENTIC'
+      return { company, grade: withCompany[2], label, color: colors[company] || colors.PSA }
+    }
+
+    // Just a number: "9", "10", "8.5"
+    const numOnly = g.match(/^([\d.]+)$/)
+    if (numOnly) {
+      const num = parseFloat(numOnly[1])
+      return { company: 'PSA', grade: numOnly[1], label: psaLabels[num] || 'GRADED', color: colors.PSA }
+    }
+
+    // Any non-raw value (e.g. "Graded", "Auth")
+    return { company: 'GRADE', grade: g, label: 'CERTIFIED', color: colors.PSA }
   })()
 
   const handleShare = () => {
