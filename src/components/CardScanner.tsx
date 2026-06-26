@@ -1228,7 +1228,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
               setAiBlob(null)
               skipAI.current = true
               setStatus('detecting')
-              initCanvas(imgRef.current!)
+              setTimeout(() => initCanvas(imgRef.current!), 0)
             }}
             style={{ flex: 1, padding: '13px 0', background: 'rgba(255,255,255,0.08)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
             Annuler
@@ -1240,7 +1240,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
               setAiBlob(null)
               skipAI.current = true
               setStatus('detecting')
-              initCanvas(imgRef.current!)
+              setTimeout(() => initCanvas(imgRef.current!), 0)
             }}
             style={{ flex: 1, padding: '13px 0', background: 'rgba(255,255,255,0.14)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
             Ajuster
