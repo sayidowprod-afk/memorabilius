@@ -451,6 +451,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 {monthlyBadges.length > 0 && (
                   <span title={`Collectionneur du mois : ${monthlyBadges.join(', ')}`} style={{ fontSize: 20, cursor: 'default' }}>🏆</span>
                 )}
+                {profile?.is_donor && (
+                  <span title="Donateur Ko-fi — merci pour ton soutien !" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, fontWeight: 800, background: '#fff4e6', color: '#e67e22', border: '1.5px solid #f0c080', borderRadius: 20, padding: '3px 9px', cursor: 'default', whiteSpace: 'nowrap' }}>
+                    ☕ Donateur
+                  </span>
+                )}
                 {profile?.lien_logo && <img src={profile.lien_logo} style={{ maxHeight: 32, objectFit: 'contain' }} alt="logo" />}
                 {(() => {
                   const teams: string[] = Array.isArray(profile?.favorite_teams) ? profile.favorite_teams : []
