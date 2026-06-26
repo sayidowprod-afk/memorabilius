@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { sendPushToUser } from '@/lib/pushNotify'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -58,13 +59,15 @@ export async function POST(req: NextRequest) {
     if (notified.has(card.user_id)) continue
     if (cardMatchesWish(card, wishItem)) {
       notified.add(card.user_id)
+      const msg = `${ownerName} recherche une carte que vous possédez : ${wishItem.nom}${wishItem.annee ? ' ' + wishItem.annee : ''}`
       await supabase.from('notifications').insert({
         user_id: card.user_id,
         type: 'wishlist_match',
-        message: `${ownerName} recherche une carte que vous possédez : ${wishItem.nom}${wishItem.annee ? ' ' + wishItem.annee : ''}`,
+        message: msg,
         lien: `/galerie/${wishUserId}?tab=wishlist`,
         lu: false,
       })
+      await sendPushToUser(card.user_id, { title: '🎯 Wishlist Match', body: msg, url: `/galerie/${wishUserId}?tab=wishlist` })
     }
   }
 
@@ -100,13 +103,15 @@ export async function PUT(req: NextRequest) {
     if (notified.has(wish.user_id)) continue
     if (cardMatchesWish(card, wish)) {
       notified.add(wish.user_id)
+      const msg2 = `${ownerName} vient d'ajouter une carte de votre wishlist : ${card.nom}${card.annee ? ' ' + card.annee : ''}`
       await supabase.from('notifications').insert({
         user_id: wish.user_id,
         type: 'wishlist_match',
-        message: `${ownerName} vient d'ajouter une carte de votre wishlist : ${card.nom}${card.annee ? ' ' + card.annee : ''}`,
+        message: msg2,
         lien: `/galerie/${cardUserId}`,
         lu: false,
       })
+      await sendPushToUser(wish.user_id, { title: '🎯 Wishlist Match', body: msg2, url: `/galerie/${cardUserId}` })
     }
   }
 

@@ -141,6 +141,16 @@ function MessagesContent() {
     setNewMsg('')
     loadMessages(userId, activeConv)
     loadConversations(userId)
+    // Push notification au destinataire
+    const { data: { session } } = await supabase.auth.getSession()
+    if (session?.access_token) {
+      const senderName = profiles[userId]?.display_name || 'Quelqu\'un'
+      fetch('/api/message-notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
+        body: JSON.stringify({ toUserId: activeConv, senderName }),
+      }).catch(() => {})
+    }
   }
 
   const sendPhoto = async (file: File) => {

@@ -4,12 +4,18 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { subscribePush } from '@/components/PWAInstall'
 
 export default function Notifications() {
   const router = useRouter()
   const { t } = useLang()
   const [notifs, setNotifs] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [pushPerm, setPushPerm] = useState<NotificationPermission | null>(null)
+
+  useEffect(() => {
+    if ('Notification' in window) setPushPerm(Notification.permission)
+  }, [])
 
   useEffect(() => {
     supabase.auth.getUser().then(async ({ data }) => {
@@ -49,7 +55,24 @@ export default function Notifications() {
 
   return (
     <div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'Inter, sans-serif' }}>
-      <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 24 }}>{t('notif_title')}</h1>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
+        <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>{t('notif_title')}</h1>
+        {'Notification' in window && pushPerm !== 'granted' && pushPerm !== null && (
+          <button
+            onClick={async () => {
+              const perm = await Notification.requestPermission()
+              if (perm === 'granted') { await subscribePush(); setPushPerm('granted') }
+              else setPushPerm(perm)
+            }}
+            style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 16px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 10, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+          >
+            🔔 Activer les notifications push
+          </button>
+        )}
+        {pushPerm === 'granted' && (
+          <span style={{ fontSize: 12, color: '#2ecc71', fontWeight: 700 }}>🔔 Notifications activées</span>
+        )}
+      </div>
 
       {notifs.length === 0 ? (
         <div style={{ background: 'white', borderRadius: 16, padding: 60, textAlign: 'center', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
