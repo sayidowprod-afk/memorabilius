@@ -160,15 +160,21 @@ export function getTeam(abbr: string): SportsTeam | null {
 export function getSpeciality(
   stats: { total: number; rc: number; auto: number; patch: number; num: number } | undefined,
   favoriteTeams?: string[] | null
-): { label: string; color: string } | null {
-  if (!stats || stats.total === 0) return null
+): { label: string; color: string }[] {
+  if (!stats || stats.total === 0) return []
   const { total, rc, auto, patch, num } = stats
-  if (total >= 1000)        return { label: '🏆 Légende',             color: '#f39c12' }
-  if (total >= 300)         return { label: '🎖️ Grand Collectionneur', color: '#e67e22' }
-  if (rc / total > 0.35)   return { label: '🌟 RC Hunter',            color: '#e67e22' }
-  if (auto / total > 0.25) return { label: '✍️ Auto Collector',       color: '#2e7d32' }
-  if (patch / total > 0.12)return { label: '🧩 Patch Master',         color: '#1976d2' }
-  if (num / total > 0.55)  return { label: '🔢 Serial #',             color: '#7b1fa2' }
-  if (total >= 100)         return { label: '📦 Collectionneur',       color: '#003DA6' }
-  return null
+  const result: { label: string; color: string }[] = []
+
+  // Tier total (exclusifs entre eux — on garde le plus haut)
+  if (total >= 1000)      result.push({ label: '🏆 Légende',             color: '#f39c12' })
+  else if (total >= 300)  result.push({ label: '🎖️ Grand Collectionneur', color: '#e67e22' })
+  else if (total >= 100)  result.push({ label: '📦 Collectionneur',       color: '#003DA6' })
+
+  // Badges ratio (cumulables)
+  if (rc / total > 0.35)    result.push({ label: '🌟 RC Hunter',      color: '#e67e22' })
+  if (auto / total > 0.25)  result.push({ label: '✍️ Auto Collector',  color: '#2e7d32' })
+  if (patch / total > 0.12) result.push({ label: '🧩 Patch Master',    color: '#1976d2' })
+  if (num / total > 0.55)   result.push({ label: '🔢 Serial #',        color: '#7b1fa2' })
+
+  return result
 }

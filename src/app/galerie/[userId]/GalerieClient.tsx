@@ -468,11 +468,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                         </span>
                       )
                     })}
-                    {spec && (
-                      <span className="sticker-badge" data-label={spec.label.replace(/^\S+\s*/, '')} style={{ fontSize: 26 }}>
-                        {spec.label.match(/^\S+/)?.[0] ?? '⭐'}
+                    {spec.map((s, i) => (
+                      <span key={i} className="sticker-badge" data-label={s.label.replace(/^\S+\s*/, '')} style={{ fontSize: 26 }}>
+                        {s.label.match(/^\S+/)?.[0] ?? '⭐'}
                       </span>
-                    )}
+                    ))}
                   </>)
                 })()}
               </div>
