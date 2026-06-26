@@ -104,6 +104,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [editMode, setEditMode] = useState(false)
   const [activeTab, setActiveTab] = useState<'collection' | 'wishlist' | 'comments'>('collection')
   const [activeDragId, setActiveDragId] = useState<string | null>(null)
+  const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set())
   const [monthlyBadges, setMonthlyBadges] = useState<string[]>([])
   const [csvTags, setCsvTags] = useState<Map<string, string>>(new Map())
   const [grailCards, setGrailCards] = useState<{ card_key: string; position: number }[]>([])
@@ -366,16 +367,42 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     await supabase.from('profiles').update({ gallery_order: order }).eq('id', userId)
   }
 
+  const toggleCardSelection = (cardId: string) => {
+    setSelectedCards(prev => {
+      const next = new Set(prev)
+      if (next.has(cardId)) next.delete(cardId); else next.add(cardId)
+      return next
+    })
+  }
+
   const onDragEnd = (event: DragEndEvent) => {
     const { active, over } = event
     setActiveDragId(null)
     if (!over || active.id === over.id) return
-    const movedIdx = cards.findIndex(c => getCardId(c) === active.id)
-    const targetIdx = cards.findIndex(c => getCardId(c) === over.id)
-    if (movedIdx === -1 || targetIdx === -1) return
-    const newCards = arrayMove(cards, movedIdx, targetIdx)
-    setCards(newCards)
-    saveGalleryOrder(newCards)
+
+    const movedId = active.id as string
+    const targetId = over.id as string
+    const isMulti = selectedCards.has(movedId) && selectedCards.size > 1
+
+    if (isMulti) {
+      // Retire toutes les cartes sélectionnées puis les réinsère après la cible
+      const sel = new Set(selectedCards)
+      const selList = cards.filter(c => sel.has(getCardId(c)))
+      const rest = cards.filter(c => !sel.has(getCardId(c)))
+      const insertAfter = rest.findIndex(c => getCardId(c) === targetId)
+      const pos = insertAfter === -1 ? rest.length : insertAfter + 1
+      const newCards = [...rest.slice(0, pos), ...selList, ...rest.slice(pos)]
+      setCards(newCards)
+      saveGalleryOrder(newCards)
+      setSelectedCards(new Set())
+    } else {
+      const movedIdx = cards.findIndex(c => getCardId(c) === movedId)
+      const targetIdx = cards.findIndex(c => getCardId(c) === targetId)
+      if (movedIdx === -1 || targetIdx === -1) return
+      const newCards = arrayMove(cards, movedIdx, targetIdx)
+      setCards(newCards)
+      saveGalleryOrder(newCards)
+    }
   }
 
   const gridRef = useRef<HTMLDivElement>(null)
@@ -489,7 +516,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
               <div style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
                 {isOwner && (
-                  <button onClick={() => setEditMode(!editMode)} style={{
+                  <button onClick={() => { setEditMode(m => !m); setSelectedCards(new Set()) }} style={{
                     background: editMode ? '#e74c3c' : '#f0f0f0',
                     color: editMode ? 'white' : '#333',
                     border: 'none', borderRadius: 8, padding: '10px 16px',
@@ -958,6 +985,15 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
         `}</style>
         
+        {editMode && isOwner && selectedCards.size > 0 && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, background: '#003DA6', color: 'white', borderRadius: 10, padding: '8px 14px', fontSize: 13, fontWeight: 700 }}>
+            <span style={{ flex: 1 }}>{selectedCards.size} carte{selectedCards.size > 1 ? 's' : ''} sélectionnée{selectedCards.size > 1 ? 's' : ''} — glisse pour déplacer</span>
+            <button onClick={() => setSelectedCards(new Set())} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
+              Tout désélectionner
+            </button>
+          </div>
+        )}
+
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
@@ -972,11 +1008,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               id={getCardId(d)}
               disabled={!editMode || !isOwner || sortBy !== 'default'}
               className="card-item"
-              onClick={() => !editMode && setPopup(d)}
+              onClick={() => editMode && isOwner ? toggleCardSelection(getCardId(d)) : (!editMode && setPopup(d))}
               style={{
               borderRadius: 8, padding: 8,
-              background: 'white',
-              cursor: editMode && isOwner && sortBy === 'default' ? 'grab' : editMode ? 'default' : 'pointer',
+              background: selectedCards.has(getCardId(d)) ? '#e8f0fe' : 'white',
+              outline: selectedCards.has(getCardId(d)) ? '2px solid #003DA6' : 'none',
+              cursor: editMode && isOwner && sortBy === 'default' ? 'pointer' : editMode ? 'default' : 'pointer',
               ...((privateCards.has(d.f) && isOwner)
                 ? { border: '2px solid #e74c3c' }
                 : coloredBorder((d.collection_tag && tabSettings.get(d.collection_tag)?.color) || accent)),
@@ -991,7 +1028,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   {t('gallery_private')}
                 </div>
               )}
-              
+              {editMode && isOwner && selectedCards.has(getCardId(d)) && (
+                <div style={{ position: 'absolute', top: 6, left: 6, background: '#003DA6', color: 'white', fontSize: 13, width: 22, height: 22, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3, fontWeight: 900 }}>
+                  ✓
+                </div>
+              )}
+
               {/* Actions du mode édition (Confidentialité + Valeur + Suppression) */}
               {editMode && isOwner && (
                 <div style={{ position: 'absolute', top: 4, left: 0, right: 0, zIndex: 2, display: 'flex', flexDirection: 'column', gap: 4, padding: '0 4px' }}>
