@@ -42,6 +42,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
   const [filter, setFilter] = useState<'all' | 'owned' | 'missing'>('all')
   const [filterTeam, setFilterTeam] = useState('')
   const [saving, setSaving] = useState<number | null>(null)
+  const [checkingAll, setCheckingAll] = useState<string | null>(null)
   const [openVariations, setOpenVariations] = useState<Set<string>>(new Set(['Base']))
   const [totalOwned, setTotalOwned] = useState(0)
 
@@ -298,6 +299,65 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     ))
   }
 
+  async function checkAllVariation(varName: string, ev: React.MouseEvent) {
+    ev.stopPropagation()
+    if (!userId) return
+    setCheckingAll(varName)
+
+    const isBase = varName === 'Base'
+    const allEntryIds: number[] = []
+    const PAGE = 1000
+    for (let from = 0; ; from += PAGE) {
+      const q = isBase
+        ? supabase.from('card_set_entries').select('id').eq('set_id', setId).is('variation', null).range(from, from + PAGE - 1)
+        : supabase.from('card_set_entries').select('id').eq('set_id', setId).eq('variation', varName).range(from, from + PAGE - 1)
+      const { data: page } = await q
+      if (!page?.length) break
+      allEntryIds.push(...(page as any[]).map(e => e.id))
+      if (page.length < PAGE) break
+    }
+
+    if (!allEntryIds.length) { setCheckingAll(null); return }
+
+    const existingCompletions: { id: string; entry_id: number }[] = []
+    for (let i = 0; i < allEntryIds.length; i += 500) {
+      const { data } = await supabase.from('user_set_completion')
+        .select('id, entry_id').eq('user_id', userId).in('entry_id', allEntryIds.slice(i, i + 500))
+      if (data) existingCompletions.push(...(data as any[]))
+    }
+
+    const ownedSet = new Set(existingCompletions.map(c => c.entry_id))
+    const allOwned = allEntryIds.every(id => ownedSet.has(id))
+
+    if (allOwned) {
+      const completionIds = existingCompletions.map(c => c.id)
+      for (let i = 0; i < completionIds.length; i += 500)
+        await supabase.from('user_set_completion').delete().in('id', completionIds.slice(i, i + 500))
+      setTotalOwned(p => p - existingCompletions.length)
+      setVariations(prev => prev.map(v =>
+        v.name === varName ? { ...v, owned: 0, entries: v.entries.map(e => ({ ...e, owned: false, completion_id: null })) } : v
+      ))
+    } else {
+      const missingIds = allEntryIds.filter(id => !ownedSet.has(id))
+      const rows = missingIds.map(id => ({ user_id: userId, entry_id: id, manually_checked: true }))
+      const newCompletions: { id: string; entry_id: number }[] = []
+      for (let i = 0; i < rows.length; i += 500) {
+        const { data } = await supabase.from('user_set_completion')
+          .upsert(rows.slice(i, i + 500), { onConflict: 'user_id,entry_id' }).select('id, entry_id')
+        if (data) newCompletions.push(...(data as any[]))
+      }
+      const newIds = new Map(newCompletions.map(c => [c.entry_id, c.id]))
+      setTotalOwned(p => p + missingIds.length)
+      setVariations(prev => prev.map(v =>
+        v.name === varName ? {
+          ...v, owned: allEntryIds.length,
+          entries: v.entries.map(e => ({ ...e, owned: true, manually_checked: true, completion_id: newIds.get(e.id) || e.completion_id }))
+        } : v
+      ))
+    }
+    setCheckingAll(null)
+  }
+
   async function toggleVariation(varName: string) {
     const isOpen = openVariations.has(varName)
     setOpenVariations(prev => {
@@ -423,8 +483,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
 
           return (
             <div key={variation.name} style={{ background: 'white', borderRadius: 12, overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', border: '1px solid #f0f0f0' }}>
-              <button onClick={() => toggleVariation(variation.name)}
-                style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '13px 18px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}>
+              <div onClick={() => toggleVariation(variation.name)}
+                style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '13px 18px', cursor: 'pointer', boxSizing: 'border-box' }}>
                 <span style={{ fontSize: 15, fontWeight: 800, color: '#111', flex: 1 }}>{variation.name}</span>
                 <span style={{ fontSize: 12, color: '#aaa', whiteSpace: 'nowrap' }}>{variation.count} cartes</span>
                 {userId && (
@@ -435,8 +495,18 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                     <span style={{ fontSize: 12, fontWeight: 700, color: varPct === 100 ? '#2ecc71' : '#003DA6', minWidth: 32, textAlign: 'right' }}>{varPct}%</span>
                   </div>
                 )}
+                {userId && (
+                  <button
+                    onClick={ev => checkAllVariation(variation.name, ev)}
+                    disabled={checkingAll === variation.name}
+                    title={varPct === 100 ? 'Tout décocher' : 'Tout cocher'}
+                    style={{ fontSize: 11, fontWeight: 800, padding: '4px 9px', borderRadius: 6, border: '1.5px solid', borderColor: varPct === 100 ? '#2ecc71' : '#003DA6', background: 'white', color: varPct === 100 ? '#2ecc71' : '#003DA6', cursor: checkingAll === variation.name ? 'default' : 'pointer', whiteSpace: 'nowrap', opacity: checkingAll === variation.name ? 0.5 : 1, flexShrink: 0 }}
+                  >
+                    {checkingAll === variation.name ? '…' : varPct === 100 ? '✗ Tout' : '✓ Tout'}
+                  </button>
+                )}
                 <span style={{ fontSize: 11, color: '#ccc', marginLeft: 4 }}>{isOpen ? '▲' : '▼'}</span>
-              </button>
+              </div>
 
               {isOpen && (
                 <div style={{ borderTop: '1px solid #f5f5f5' }}>
