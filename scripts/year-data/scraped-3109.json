@@ -1,0 +1,2710 @@
+{
+  "year": 2004,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3109,
+        "name": "2004-05 Upper Deck Hardcourt"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Boris Diaw",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Antoine Walker",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Al Harrington",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Donta Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Royal Ivey",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "EN-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Jiri Welsch",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ricky Davis",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Al Jefferson",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Justin Reed",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Delonte West",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Tony Allen",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "EE-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-BR",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Eddie House",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jason Kapono",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-EO",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Chris Duhon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HCC-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EE-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-JM",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jeff McInnis",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Anderson Varejao",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EE-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-BO",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HC-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Marquis Daniels",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Pavel Podkolzin",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "EN-DE",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-DE",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-JS",
+          "player_name": "Jerry Stackhouse",
+          "team": "Dallas Mavericks",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JT",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-JT",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-AM",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EE-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Rickey Paulding",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-CH",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HC-RH",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Derek Fisher",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Andris Biedrins",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EE-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Tyronn Lue",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EE-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EE-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Stephen Jackson",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "David Harrison",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-AH",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EE-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-FJ",
+          "player_name": "Fred Jones",
+          "team": "Indiana Pacers",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Marko Jaric",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Lionel Chalmers",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-EB",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-EB",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-EB",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Sasha Vujacic",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HCC-LO",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EE-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-MA",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-MA",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-LO",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-LO",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "James Posey",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Andre Emmett",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Antonio Burks",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Dorell Wright",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "EE-LO",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-MR",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EE-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HC-SC",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Aaron Williams",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HCC-ZO",
+          "player_name": "Alonzo Mourning",
+          "team": "New Jersey Nets",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EE-AM",
+          "player_name": "Alonzo Mourning",
+          "team": "New Jersey Nets",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EE-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HC-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "EE-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-JR",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JM",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-JM",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Trevor Ariza",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JC",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-JC",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Hedo Turkoglu",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Cuttino Mobley",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "EE-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Kenny Thomas",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "EE-AI",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-AI",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-JE",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Quentin Richardson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Jackson Vroman",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "EE-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SH",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SN",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-SH",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-SN",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Darius Miles",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Sergei Monia",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Ha Seung-Jin",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-ZR",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EN-ST",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Etched Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HC-DA",
+          "player_name": "Darius Miles",
+          "team": "Portland Trail Blazers",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HC-SA",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-SA",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-ZR",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-SA",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-ZR",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Kevin Martin",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Beno Udrih",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Romain Sato",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-DR",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-EG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-EG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Ronald Murray",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Robert Swift",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HC-JA",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Carlos Arroyo",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Kris Humphries",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Kirk Snyder",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EE-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Engraved Endorsements",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ET-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ET-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Etched in Time",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Peter John Ramos",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCC-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Clear Commemorative Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HC-AJ",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Hardwood Commemoratives",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-AJ",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-AJ",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HCM-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Materials Combo",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

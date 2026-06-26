@@ -1,0 +1,4550 @@
+{
+  "year": 2003,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3052,
+        "name": "2003-04 SP Authentic"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Theo Ratliff",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Boris Diaw",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "183",
+          "player_name": "Travis Hansen",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Theo Ratliff",
+          "team": "Atlanta Hawks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Boris Diaw",
+          "team": "Atlanta Hawks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "183",
+          "player_name": "Travis Hansen",
+          "team": "Atlanta Hawks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Theo Ratliff",
+          "team": "Atlanta Hawks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Boris Diaw",
+          "team": "Atlanta Hawks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "183",
+          "player_name": "Travis Hansen",
+          "team": "Atlanta Hawks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Raef LaFrentz",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Vin Baker",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Marcus Banks",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "171",
+          "player_name": "Kendrick Perkins",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "181",
+          "player_name": "Brandon Hunter",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Raef LaFrentz",
+          "team": "Boston Celtics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Vin Baker",
+          "team": "Boston Celtics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Marcus Banks",
+          "team": "Boston Celtics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "171",
+          "player_name": "Kendrick Perkins",
+          "team": "Boston Celtics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "181",
+          "player_name": "Brandon Hunter",
+          "team": "Boston Celtics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Raef LaFrentz",
+          "team": "Boston Celtics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Vin Baker",
+          "team": "Boston Celtics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Marcus Banks",
+          "team": "Boston Celtics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "171",
+          "player_name": "Kendrick Perkins",
+          "team": "Boston Celtics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "181",
+          "player_name": "Brandon Hunter",
+          "team": "Boston Celtics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Antonio Davis",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Ronald Dupree",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Antonio Davis",
+          "team": "Chicago Bulls",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Ronald Dupree",
+          "team": "Chicago Bulls",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Antonio Davis",
+          "team": "Chicago Bulls",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Ronald Dupree",
+          "team": "Chicago Bulls",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "175",
+          "player_name": "Jason Kapono",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "175",
+          "player_name": "Jason Kapono",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "175",
+          "player_name": "Jason Kapono",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Antoine Walker",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Jon Stefansson",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Marquis Daniels",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Antoine Walker",
+          "team": "Dallas Mavericks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Jon Stefansson",
+          "team": "Dallas Mavericks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Marquis Daniels",
+          "team": "Dallas Mavericks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Antoine Walker",
+          "team": "Dallas Mavericks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Jon Stefansson",
+          "team": "Dallas Mavericks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Marquis Daniels",
+          "team": "Dallas Mavericks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Earl Boykins",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Francisco Elson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Earl Boykins",
+          "team": "Denver Nuggets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Francisco Elson",
+          "team": "Denver Nuggets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Earl Boykins",
+          "team": "Denver Nuggets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Francisco Elson",
+          "team": "Denver Nuggets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Darko Milicic",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Darko Milicic",
+          "team": "Detroit Pistons",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Darko Milicic",
+          "team": "Detroit Pistons",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Clifford Robinson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Nick Van Exel",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Clifford Robinson",
+          "team": "Golden State Warriors",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Nick Van Exel",
+          "team": "Golden State Warriors",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Clifford Robinson",
+          "team": "Golden State Warriors",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Nick Van Exel",
+          "team": "Golden State Warriors",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "James Jones",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "James Jones",
+          "team": "Indiana Pacers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "James Jones",
+          "team": "Indiana Pacers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Quentin Richardson",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Josh Moore",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Quentin Richardson",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Josh Moore",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Quentin Richardson",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Josh Moore",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Maurice Carter",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Brian Cook",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "176",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Maurice Carter",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Brian Cook",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "176",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Maurice Carter",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Brian Cook",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "176",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Bonzi Wells",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Dahntay Jones",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "160",
+          "player_name": "Troy Bell",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "184",
+          "player_name": "Theron Smith",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Bonzi Wells",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Dahntay Jones",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "160",
+          "player_name": "Troy Bell",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "184",
+          "player_name": "Theron Smith",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Bonzi Wells",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Dahntay Jones",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "160",
+          "player_name": "Troy Bell",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "184",
+          "player_name": "Theron Smith",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "169",
+          "player_name": "Jerome Beasley",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "188",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "169",
+          "player_name": "Jerome Beasley",
+          "team": "Miami Heat",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "188",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "169",
+          "player_name": "Jerome Beasley",
+          "team": "Miami Heat",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "188",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Toni Kukoc",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Toni Kukoc",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Toni Kukoc",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Ndudi Ebi",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Ndudi Ebi",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Ndudi Ebi",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Zoran Planinic",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Zoran Planinic",
+          "team": "New Jersey Nets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Zoran Planinic",
+          "team": "New Jersey Nets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Wesley",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "189",
+          "player_name": "James Lang",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Wesley",
+          "team": "New Orleans Hornets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "189",
+          "player_name": "James Lang",
+          "team": "New Orleans Hornets",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Wesley",
+          "team": "New Orleans Hornets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "189",
+          "player_name": "James Lang",
+          "team": "New Orleans Hornets",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Keith Van Horn",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Mike Sweetney",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "174",
+          "player_name": "Maciej Lampe",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "177",
+          "player_name": "Slavko Vranes",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Keith Van Horn",
+          "team": "New York Knicks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Mike Sweetney",
+          "team": "New York Knicks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "174",
+          "player_name": "Maciej Lampe",
+          "team": "New York Knicks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "177",
+          "player_name": "Slavko Vranes",
+          "team": "New York Knicks",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Keith Van Horn",
+          "team": "New York Knicks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Mike Sweetney",
+          "team": "New York Knicks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "174",
+          "player_name": "Maciej Lampe",
+          "team": "New York Knicks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "177",
+          "player_name": "Slavko Vranes",
+          "team": "New York Knicks",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Gordan Giricek",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Drew Gooden",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Reece Gaines",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "179",
+          "player_name": "Zaza Pachulia",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "182",
+          "player_name": "Keith Bogans",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Gordan Giricek",
+          "team": "Orlando Magic",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Drew Gooden",
+          "team": "Orlando Magic",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Reece Gaines",
+          "team": "Orlando Magic",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "179",
+          "player_name": "Zaza Pachulia",
+          "team": "Orlando Magic",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "182",
+          "player_name": "Keith Bogans",
+          "team": "Orlando Magic",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Gordan Giricek",
+          "team": "Orlando Magic",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Drew Gooden",
+          "team": "Orlando Magic",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Reece Gaines",
+          "team": "Orlando Magic",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "179",
+          "player_name": "Zaza Pachulia",
+          "team": "Orlando Magic",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "182",
+          "player_name": "Keith Bogans",
+          "team": "Orlando Magic",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Eric Snow",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Willie Green",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "187",
+          "player_name": "Kyle Korver",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Eric Snow",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Willie Green",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "187",
+          "player_name": "Kyle Korver",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Eric Snow",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Willie Green",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "187",
+          "player_name": "Kyle Korver",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Antonio McDyess",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Leandro Barbosa",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "178",
+          "player_name": "Zarko Cabarkapa",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Antonio McDyess",
+          "team": "Phoenix Suns",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Leandro Barbosa",
+          "team": "Phoenix Suns",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "178",
+          "player_name": "Zarko Cabarkapa",
+          "team": "Phoenix Suns",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Antonio McDyess",
+          "team": "Phoenix Suns",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Leandro Barbosa",
+          "team": "Phoenix Suns",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "178",
+          "player_name": "Zarko Cabarkapa",
+          "team": "Phoenix Suns",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Travis Outlaw",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Travis Outlaw",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Travis Outlaw",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Alex Garcia",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Devin Brown",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Alex Garcia",
+          "team": "San Antonio Spurs",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Devin Brown",
+          "team": "San Antonio Spurs",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Alex Garcia",
+          "team": "San Antonio Spurs",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Devin Brown",
+          "team": "San Antonio Spurs",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Nick Collison",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Richie Frahm",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "79",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Nick Collison",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Richie Frahm",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "79",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Nick Collison",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Richie Frahm",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Matt Harpring",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Carlos Arroyo",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Ben Handlogten",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Aleksandar Pavlovic",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "180",
+          "player_name": "Maurice Williams",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Matt Harpring",
+          "team": "Utah Jazz",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Carlos Arroyo",
+          "team": "Utah Jazz",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Ben Handlogten",
+          "team": "Utah Jazz",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Aleksandar Pavlovic",
+          "team": "Utah Jazz",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "180",
+          "player_name": "Maurice Williams",
+          "team": "Utah Jazz",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Matt Harpring",
+          "team": "Utah Jazz",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Carlos Arroyo",
+          "team": "Utah Jazz",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Ben Handlogten",
+          "team": "Utah Jazz",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Aleksandar Pavlovic",
+          "team": "Utah Jazz",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "180",
+          "player_name": "Maurice Williams",
+          "team": "Utah Jazz",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Larry Hughes",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "164",
+          "player_name": "Steve Blake",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Larry Hughes",
+          "team": "Washington Wizards",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "164",
+          "player_name": "Steve Blake",
+          "team": "Washington Wizards",
+          "variation": "SP Extra Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Larry Hughes",
+          "team": "Washington Wizards",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "164",
+          "player_name": "Steve Blake",
+          "team": "Washington Wizards",
+          "variation": "SP Limited",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

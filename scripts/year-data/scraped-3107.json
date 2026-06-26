@@ -1,0 +1,3638 @@
+{
+  "year": 2004,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3107,
+        "name": "2004-05 Upper Deck All-Star Lineup"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Harrington",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Boris Diaw",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Donta Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Royal Ivey",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Harrington",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Boris Diaw",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Donta Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Royal Ivey",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-BD",
+          "player_name": "Boris Diaw",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Ricky Davis",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jiri Welsch",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Al Jefferson",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Delonte West",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Tony Allen",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Ricky Davis",
+          "team": "Boston Celtics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jiri Welsch",
+          "team": "Boston Celtics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Al Jefferson",
+          "team": "Boston Celtics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Delonte West",
+          "team": "Boston Celtics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Tony Allen",
+          "team": "Boston Celtics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MA",
+          "player_name": "Marcus Banks",
+          "team": "Boston Celtics",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WH-RD",
+          "player_name": "Ricky Davis",
+          "team": "Boston Celtics",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-RD",
+          "player_name": "Ricky Davis",
+          "team": "Boston Celtics",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-RD",
+          "player_name": "Ricky Davis",
+          "team": "Boston Celtics",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Marcus Fizer",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jahidi White",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Marcus Fizer",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jahidi White",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jamal Crawford",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Chris Duhon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jamal Crawford",
+          "team": "Chicago Bulls",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Chris Duhon",
+          "team": "Chicago Bulls",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Jeff McInnis",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Drew Gooden",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Anderson Varejao",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Jeff McInnis",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Drew Gooden",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Anderson Varejao",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-JA",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-JS",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-JA",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-JS",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-JA",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-JS",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Antoine Walker",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Pavel Podkolzin",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Antoine Walker",
+          "team": "Dallas Mavericks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Pavel Podkolzin",
+          "team": "Dallas Mavericks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-HH",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-PH",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-HH",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-PH",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-HH",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-PH",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MD",
+          "player_name": "Marquis Daniels",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-KM",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-KM",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-KM",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-JA",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-MN",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-NH",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-JA",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-MN",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-NH",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-JA",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-MN",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-NH",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SC-FE",
+          "player_name": "Francisco Elson",
+          "team": "Denver Nuggets",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WH-AN",
+          "player_name": "Chris Anderson",
+          "team": "Denver Nuggets",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-EB",
+          "player_name": "Earl Boykins",
+          "team": "Denver Nuggets",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-VL",
+          "player_name": "Voshon Lenard",
+          "team": "Denver Nuggets",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-AN",
+          "player_name": "Chris Anderson",
+          "team": "Denver Nuggets",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-EB",
+          "player_name": "Earl Boykins",
+          "team": "Denver Nuggets",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-VL",
+          "player_name": "Voshon Lenard",
+          "team": "Denver Nuggets",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-AN",
+          "player_name": "Chris Anderson",
+          "team": "Denver Nuggets",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-EB",
+          "player_name": "Earl Boykins",
+          "team": "Denver Nuggets",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-VL",
+          "player_name": "Voshon Lenard",
+          "team": "Denver Nuggets",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Rickey Paulding",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Rickey Paulding",
+          "team": "Detroit Pistons",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-PH",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-PM",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-PH",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-PM",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-PH",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-PM",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-CB",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-CB",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-CB",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Erick Dampier",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Andris Biedrins",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Erick Dampier",
+          "team": "Golden State Warriors",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Andris Biedrins",
+          "team": "Golden State Warriors",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-BD",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-KD",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-BD",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-KD",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-BD",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-KD",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WH-DF",
+          "player_name": "Derek Fisher",
+          "team": "Golden State Warriors",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-DF",
+          "player_name": "Derek Fisher",
+          "team": "Golden State Warriors",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-DF",
+          "player_name": "Derek Fisher",
+          "team": "Golden State Warriors",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Juwan Howard",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Juwan Howard",
+          "team": "Houston Rockets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-MN",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-MN",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-MN",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "David Harrison",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "David Harrison",
+          "team": "Indiana Pacers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WH-FJ",
+          "player_name": "Fred Jones",
+          "team": "Indiana Pacers",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-FJ",
+          "player_name": "Fred Jones",
+          "team": "Indiana Pacers",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-FJ",
+          "player_name": "Fred Jones",
+          "team": "Indiana Pacers",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Kerry Kittles",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Lionel Chalmers",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Kerry Kittles",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Lionel Chalmers",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-HK",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-JB",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-KD",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-HK",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-JB",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-KD",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-HK",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-JB",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-KD",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-CW",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WH-JA",
+          "player_name": "Marko Jaric",
+          "team": "Los Angeles Clippers",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-JA",
+          "player_name": "Marko Jaric",
+          "team": "Los Angeles Clippers",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-JA",
+          "player_name": "Marko Jaric",
+          "team": "Los Angeles Clippers",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Sasha Vujacic",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Sasha Vujacic",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Bonzi Wells",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Andre Emmett",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Antonio Burks",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Bonzi Wells",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Andre Emmett",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Antonio Burks",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Dorell Wright",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Matt Freije",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Dorell Wright",
+          "team": "Miami Heat",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Matt Freije",
+          "team": "Miami Heat",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-HK",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-NH",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-WG",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-HK",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-NH",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-WG",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-HK",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-NH",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-WG",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SC-SC",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Kurt Thomas",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Trevor Ariza",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Kurt Thomas",
+          "team": "New York Knicks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Trevor Ariza",
+          "team": "New York Knicks",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Cuttino Mobley",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Cuttino Mobley",
+          "team": "Orlando Magic",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-CM",
+          "player_name": "Cuttino Mobley",
+          "team": "Orlando Magic",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-CM",
+          "player_name": "Cuttino Mobley",
+          "team": "Orlando Magic",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-CM",
+          "player_name": "Cuttino Mobley",
+          "team": "Orlando Magic",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-GR",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WH-KK",
+          "player_name": "Kyle Korver",
+          "team": "Philadelphia 76ers",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-KK",
+          "player_name": "Kyle Korver",
+          "team": "Philadelphia 76ers",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-KK",
+          "player_name": "Kyle Korver",
+          "team": "Philadelphia 76ers",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Quentin Richardson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Quentin Richardson",
+          "team": "Phoenix Suns",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-JS",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-SG",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-JS",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-SG",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-JS",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-SG",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-SM",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Sergei Monia",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Darius Rice",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Viktor Khryapa",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Ha Seung-Jin",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Sergei Monia",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Darius Rice",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Viktor Khryapa",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Ha Seung-Jin",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-SA",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SC-ZR",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Kevin Martin",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Kevin Martin",
+          "team": "Sacramento Kings",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Sacramento Kings",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SC-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WH-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Weekend Highlights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WH-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Weekend Highlights Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WHT-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Weekend Highlights Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Emanuel Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Beno Udrih",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Romain Sato",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "All-Star Staples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "All-Star Staples Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "STT-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "All-Star Staples Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Emanuel Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Beno Udrih",
+          "team": "San Antonio Spurs",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Romain Sato",
+          "team": "San Antonio Spurs",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-SG",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-WG",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-SG",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-WG",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-SG",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-WG",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Ronald Murray",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Robert Swift",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Ronald Murray",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Robert Swift",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-MH",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-PM",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-MH",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-PM",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-MH",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-PM",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-JB",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-JB",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-JB",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Carlos Arroyo",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Kris Humphries",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Kirk Snyder",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Carlos Arroyo",
+          "team": "Utah Jazz",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Kris Humphries",
+          "team": "Utah Jazz",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Kirk Snyder",
+          "team": "Utah Jazz",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-BD",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-BD",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-BD",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Gold Honors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-HH",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-MH",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Prominent Futures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-HH",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PF-MH",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Prominent Futures Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-HH",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PFT-MH",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Prominent Futures Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-JD",
+          "player_name": "Juan Dixon",
+          "team": "Washington Wizards",
+          "variation": "Signature Class",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

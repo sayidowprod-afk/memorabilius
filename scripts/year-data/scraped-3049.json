@@ -1,0 +1,3694 @@
+{
+  "year": 2003,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3049,
+        "name": "2003-04 Hoops Hot Prospects"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Dan Dickau",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Boris Diaw",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Travis Hansen",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Dan Dickau",
+          "team": "Atlanta Hawks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Boris Diaw",
+          "team": "Atlanta Hawks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Travis Hansen",
+          "team": "Atlanta Hawks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Marcus Banks",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "105",
+          "player_name": "Kendrick Perkins",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-CB",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-CB",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-CB",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Antoine Walker",
+          "team": "Dallas Mavericks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Marcus Banks",
+          "team": "Boston Celtics",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Kendrick Perkins",
+          "team": "Boston Celtics",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jason Kapono",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "112",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jason Kapono",
+          "team": "Cleveland Cavaliers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Antoine Walker",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Antawn Jamison",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SN",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SN",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SN",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DN-KM",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KG-DN",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SN-JK",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-SN",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DN-KM",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KG-DN",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SN-JK",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-SN",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DN-KM",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KG-DN",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SN-JK",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-SN",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Antawn Jamison",
+          "team": "Dallas Mavericks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Nikoloz Tskitishvili",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Rodney White",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CA-DW",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CA-TM",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CA-DW",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CA-TM",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CA-DW",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CA-TM",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Nikoloz Tskitishvili",
+          "team": "Denver Nuggets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Rodney White",
+          "team": "Denver Nuggets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Darko Milicic",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TP",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TP",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TP",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BW-SO",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-BW",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-DG",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BW-SO",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-BW",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-DG",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BW-SO",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-BW",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-DG",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Player Graphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Darko Milicic",
+          "team": "Detroit Pistons",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MD",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MD",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MD",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JR-MD",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JR-MP",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-MS",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JR-MD",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JR-MP",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-MS",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JR-MD",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JR-MP",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-MS",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-YM",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BD-SF",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YM-AI",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-YM",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BD-SF",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YM-AI",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-YM",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BD-SF",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YM-AI",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Quinton Ross",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "93",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CK",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CK",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CK",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-CK",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-CK",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-CK",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Quinton Ross",
+          "team": "Los Angeles Clippers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Brian Cook",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "111",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BW-SO",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-SO",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BW-SO",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-SO",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BW-SO",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-SO",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-LW",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": "Player Graphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Brian Cook",
+          "team": "Los Angeles Lakers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Troy Bell",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Dahntay Jones",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Troy Bell",
+          "team": "Memphis Grizzlies",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Dahntay Jones",
+          "team": "Memphis Grizzlies",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-CB2",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CB2",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CB2",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CA-DW",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-CB",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CA-DW",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-CB",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CA-DW",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PP-CB",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Marcus Haislip",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MR",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MR",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MR",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MR-BW",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MR-BW",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MR-BW",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Marcus Haislip",
+          "team": "Milwaukee Bucks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Ndudi Ebi",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KG",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KG-DN",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KG",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KG-DN",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KG",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KG-DN",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Ndudi Ebi",
+          "team": "Minnesota Timberwolves",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Alonzo Mourning",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Zoran Planinic",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-KM",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-KM",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-KM",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DN-KM",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JK-BD",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-SO",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SN-JK",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DN-KM",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JK-BD",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-SO",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SN-JK",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DN-KM",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JK-BD",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-SO",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SN-JK",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Alonzo Mourning",
+          "team": "New Jersey Nets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Zoran Planinic",
+          "team": "New Jersey Nets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BD-SF",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JK-BD",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BD-SF",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JK-BD",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BD-SF",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JK-BD",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Keith Van Horn",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Matt Carroll",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Maciej Lampe",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "Slavko Vranes",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Mike Sweetney",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-MS",
+          "player_name": "Mike Sweetney",
+          "team": "New York Knicks",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MS",
+          "player_name": "Mike Sweetney",
+          "team": "New York Knicks",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MS",
+          "player_name": "Mike Sweetney",
+          "team": "New York Knicks",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-MS",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-MS",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MP-MS",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Keith Van Horn",
+          "team": "New York Knicks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Matt Carroll",
+          "team": "New York Knicks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Maciej Lampe",
+          "team": "New York Knicks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Slavko Vranes",
+          "team": "New York Knicks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Mike Sweetney",
+          "team": "New York Knicks",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Drew Gooden",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Zaza Pachulia",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "Keith Bogans",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Reece Gaines",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-DG",
+          "player_name": "Drew Gooden",
+          "team": "Orlando Magic",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-DG",
+          "player_name": "Drew Gooden",
+          "team": "Orlando Magic",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-DG",
+          "player_name": "Drew Gooden",
+          "team": "Orlando Magic",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CA-TM",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TM-DG",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-DG",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CA-TM",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TM-DG",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-DG",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CA-TM",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TM-DG",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-DG",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Drew Gooden",
+          "team": "Orlando Magic",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Zaza Pachulia",
+          "team": "Orlando Magic",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Keith Bogans",
+          "team": "Orlando Magic",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Reece Gaines",
+          "team": "Orlando Magic",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kenny Thomas",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "John Salmons",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VC-AI",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YM-AI",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VC-AI",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YM-AI",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VC-AI",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YM-AI",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kenny Thomas",
+          "team": "Philadelphia 76ers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "John Salmons",
+          "team": "Philadelphia 76ers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Zarko Cabarkapa",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "106",
+          "player_name": "Leandro Barbosa",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KG",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-YM",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KG",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-YM",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-KG",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AS-YM",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Zarko Cabarkapa",
+          "team": "Phoenix Suns",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Leandro Barbosa",
+          "team": "Phoenix Suns",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Travis Outlaw",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-BW",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-BW",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-BW",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MR-BW",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MR-BW",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MR-BW",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Travis Outlaw",
+          "team": "Portland Trail Blazers",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Bobby Jackson",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Bobby Jackson",
+          "team": "Sacramento Kings",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Bruce Bowen",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-MG",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-SN",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-MG",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-SN",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-MG",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-SN",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Bruce Bowen",
+          "team": "San Antonio Spurs",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "117",
+          "player_name": "Nick Collison",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-LR",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": "Player Graphs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Nick Collison",
+          "team": "Seattle SuperSonics",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HM-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Hot Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Hot Materials Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HM-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Hot Materials White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-CK",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-VC",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VC-AI",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Hot Tandems",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-CK",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-VC",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VC-AI",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Hot Tandems Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-CK",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-VC",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VC-AI",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Hot Tandems White",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Player Graphs Aftermarket",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Matt Harpring",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Matt Harpring",
+          "team": "Utah Jazz",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Juan Dixon",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Steve Blake",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Juan Dixon",
+          "team": "Washington Wizards",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Steve Blake",
+          "team": "Washington Wizards",
+          "variation": "White Hot",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Hoops"
+    }
+  ]
+}

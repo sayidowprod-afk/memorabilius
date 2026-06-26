@@ -1,0 +1,1454 @@
+{
+  "year": 2005,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3139,
+        "name": "2005-06 Upper Deck Slam"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Tony Delk",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Al Harrington",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Salim Stoudamire",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Gary Payton",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Gerald Green",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Kareem Rush",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Primoz Brezec",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PB",
+          "player_name": "Primoz Brezec",
+          "team": "Charlotte Bobcats",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-KR",
+          "player_name": "Kareem Rush",
+          "team": "Charlotte Bobcats",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CD",
+          "player_name": "Chris Duhon",
+          "team": "Chicago Bulls",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Drew Gooden",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Larry Hughes",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Martynas Andriuskevicius",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-DW",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Earl Boykins",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-BR",
+          "player_name": "Bryon Russell",
+          "team": "Denver Nuggets",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Troy Murphy",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Chris Taft",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Ike Diogu",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BD",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Juwan Howard",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Luther Head",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Stephen Jackson",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Sarunas Jasikevicius",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CW",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-LO",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-DG",
+          "player_name": "Devean George",
+          "team": "Los Angeles Lakers",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-ME",
+          "player_name": "Slava Medvedenko",
+          "team": "Los Angeles Lakers",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Eddie Jones",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Damon Stoudamire",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Hakim Warrick",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SB",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Antoine Walker",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jason Williams",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Wayne Simien",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DW",
+          "player_name": "Dorell Wright",
+          "team": "Miami Heat",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JW",
+          "player_name": "Jason Williams",
+          "team": "Miami Heat",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-UH",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Bobby Simmons",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Maurice Williams",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MR",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rashad McCants",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-WS",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Antoine Wright",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Dan Dickau",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JR",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Nate Robinson",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-MR",
+          "player_name": "Malik Rose",
+          "team": "New York Knicks",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-ST",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JN",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Chris Webber",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SN",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-KT",
+          "player_name": "Kurt Thomas",
+          "team": "Phoenix Suns",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-SM",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-SN",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Jarrett Jack",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Francisco Garcia",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BM",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "76",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BU",
+          "player_name": "Beno Udrih",
+          "team": "San Antonio Spurs",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-BB",
+          "player_name": "Bruce Bowen",
+          "team": "San Antonio Spurs",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Ronald Murray",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Johan Petro",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Rafer Alston",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Joey Graham",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Charlie Villanueva",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MP",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-CH",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Matt Harpring",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "C.J. Miles",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SL-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SL-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Slam Dunk Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AJ",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Signature Slams",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

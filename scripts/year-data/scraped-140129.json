@@ -1,0 +1,5854 @@
+{
+  "year": 2015,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 140129,
+        "name": "2015-16 Panini Replay"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Maurice Cheeks",
+          "team": "Atlanta Hawks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "105",
+          "player_name": "Kyle Korver",
+          "team": "Atlanta Hawks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "159",
+          "player_name": "Mike Scott",
+          "team": "Atlanta Hawks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jared Sullinger",
+          "team": "Boston Celtics",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Don Nelson",
+          "team": "Boston Celtics",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Tom Heinsohn",
+          "team": "Boston Celtics",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Kevin McHale",
+          "team": "Boston Celtics",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "98",
+          "player_name": "Gerald Wallace",
+          "team": "Boston Celtics",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TW-TO",
+          "player_name": "Tom Heinsohn",
+          "team": "Boston Celtics",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Brook Lopez",
+          "team": "Brooklyn Nets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Brook Lopez",
+          "team": "Brooklyn Nets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "C.J. Watson",
+          "team": "Brooklyn Nets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "MarShon Brooks",
+          "team": "Brooklyn Nets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Tyshawn Taylor",
+          "team": "Brooklyn Nets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "438",
+          "player_name": "Mirza Teletovic",
+          "team": "Brooklyn Nets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Gerald Henderson",
+          "team": "Charlotte Bobcats",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Bismack Biyombo",
+          "team": "Charlotte Bobcats",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Michael Kidd-Gilchrist",
+          "team": "Charlotte Bobcats",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "161",
+          "player_name": "Bismack Biyombo",
+          "team": "Charlotte Bobcats",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Rex Chapman",
+          "team": "Charlotte Hornets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-MKG",
+          "player_name": "Michael Kidd-Gilchrist",
+          "team": "Charlotte Hornets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jay Williams",
+          "team": "Chicago Bulls",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jimmy Butler",
+          "team": "Chicago Bulls",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "174",
+          "player_name": "James Johnson",
+          "team": "Chicago Bulls",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "488",
+          "player_name": "Jay Williams",
+          "team": "Chicago Bulls",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kyrie Irving",
+          "team": "Cleveland Cavaliers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kevin Love",
+          "team": "Cleveland Cavaliers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Dan Majerle",
+          "team": "Cleveland Cavaliers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "134",
+          "player_name": "Kyrie Irving",
+          "team": "Cleveland Cavaliers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "242",
+          "player_name": "Luke Harangody",
+          "team": "Cleveland Cavaliers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jose Calderon",
+          "team": "Dallas Mavericks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jose Calderon",
+          "team": "Dallas Mavericks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "106",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "182",
+          "player_name": "Rodrigue Beaubois",
+          "team": "Dallas Mavericks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "196",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Justin Anderson",
+          "team": "Dallas Mavericks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Fat Lever",
+          "team": "Denver Nuggets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Ty Lawson",
+          "team": "Denver Nuggets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Dikembe Mutombo",
+          "team": "Denver Nuggets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Dikembe Mutombo",
+          "team": "Denver Nuggets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "152",
+          "player_name": "Evan Fournier",
+          "team": "Denver Nuggets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "185",
+          "player_name": "Randy Foye",
+          "team": "Denver Nuggets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NB-JNK",
+          "player_name": "Jusuf Nurkic",
+          "team": "Denver Nuggets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "S-GHS",
+          "player_name": "Gary Harris",
+          "team": "Denver Nuggets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Greg Monroe",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jose Calderon",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Greg Monroe",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Mark Aguirre",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Greg Monroe",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Kyle Singler",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jason Maxiell",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "114",
+          "player_name": "Peyton Siva",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "116",
+          "player_name": "Jason Maxiell",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "186",
+          "player_name": "Kyle Singler",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "273",
+          "player_name": "Peyton Siva",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "390",
+          "player_name": "Peyton Siva",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "S-AHS",
+          "player_name": "Allan Houston",
+          "team": "Detroit Pistons",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Stanley Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Gordon Hayward",
+          "team": "Golden State Warriors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Harrison Barnes",
+          "team": "Golden State Warriors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jeremy Lin",
+          "team": "Golden State Warriors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Andrew Bogut",
+          "team": "Golden State Warriors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Steve Blake",
+          "team": "Golden State Warriors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Chris Mullin",
+          "team": "Golden State Warriors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Andrew Bogut",
+          "team": "Golden State Warriors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Andre Iguodala",
+          "team": "Golden State Warriors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Andre Iguodala",
+          "team": "Golden State Warriors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "Andrew Bogut",
+          "team": "Golden State Warriors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "150",
+          "player_name": "Andrew Bogut",
+          "team": "Golden State Warriors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "363",
+          "player_name": "Andrew Bogut",
+          "team": "Golden State Warriors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Chandler Parsons",
+          "team": "Houston Rockets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Calvin Murphy",
+          "team": "Houston Rockets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ralph Sampson",
+          "team": "Houston Rockets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Sleepy Floyd",
+          "team": "Houston Rockets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "110",
+          "player_name": "Robert Covington",
+          "team": "Houston Rockets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "278",
+          "player_name": "Robert Covington",
+          "team": "Houston Rockets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IN-CP",
+          "player_name": "Chandler Parsons",
+          "team": "Houston Rockets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Sam Dekker",
+          "team": "Houston Rockets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Paul George",
+          "team": "Indiana Pacers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Chuck Person",
+          "team": "Indiana Pacers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "183",
+          "player_name": "Detlef Schrempf",
+          "team": "Indiana Pacers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "294",
+          "player_name": "Mark Jackson",
+          "team": "Indiana Pacers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CJS-RH",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GGS-RHI",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IN-PL",
+          "player_name": "Miles Plumlee",
+          "team": "Indiana Pacers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "S-RHI",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SM-RH",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Al-Farouq Aminu",
+          "team": "Los Angeles Clippers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Danny Granger",
+          "team": "Los Angeles Clippers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Danny Granger",
+          "team": "Los Angeles Clippers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Eric Bledsoe",
+          "team": "Los Angeles Clippers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "J.J. Redick",
+          "team": "Los Angeles Clippers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "J.J. Redick",
+          "team": "Los Angeles Clippers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kurt Rambis",
+          "team": "Los Angeles Lakers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Michael Cooper",
+          "team": "Los Angeles Lakers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Michael Cooper",
+          "team": "Los Angeles Lakers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Steve Nash",
+          "team": "Los Angeles Lakers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Darius Johnson-Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "194",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Zach Randolph",
+          "team": "Memphis Grizzlies",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jon Leuer",
+          "team": "Memphis Grizzlies",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "135",
+          "player_name": "Sam Young",
+          "team": "Memphis Grizzlies",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "172",
+          "player_name": "Zach Randolph",
+          "team": "Memphis Grizzlies",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "188",
+          "player_name": "Sam Young",
+          "team": "Memphis Grizzlies",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "189",
+          "player_name": "Jon Leuer",
+          "team": "Memphis Grizzlies",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "James Jones",
+          "team": "Miami Heat",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "James Jones",
+          "team": "Miami Heat",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Chris Bosh",
+          "team": "Miami Heat",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "76",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Josh Richardson",
+          "team": "Miami Heat",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Khris Middleton",
+          "team": "Milwaukee Bucks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Larry Sanders",
+          "team": "Milwaukee Bucks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Tobias Harris",
+          "team": "Milwaukee Bucks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Doron Lamb",
+          "team": "Milwaukee Bucks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "104",
+          "player_name": "Miroslav Raduljica",
+          "team": "Milwaukee Bucks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "168",
+          "player_name": "Larry Sanders",
+          "team": "Milwaukee Bucks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "180",
+          "player_name": "Ersan Ilyasova",
+          "team": "Milwaukee Bucks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "199",
+          "player_name": "Jodie Meeks",
+          "team": "Milwaukee Bucks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "270",
+          "player_name": "Miroslav Raduljica",
+          "team": "Milwaukee Bucks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "346",
+          "player_name": "Ersan Ilyasova",
+          "team": "Milwaukee Bucks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Alexey Shved",
+          "team": "Minnesota Timberwolves",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Alexey Shved",
+          "team": "Minnesota Timberwolves",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Alexey Shved",
+          "team": "Minnesota Timberwolves",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Greg Stiemsma",
+          "team": "Minnesota Timberwolves",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "175",
+          "player_name": "Alexey Shved",
+          "team": "Minnesota Timberwolves",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "193",
+          "player_name": "Greg Stiemsma",
+          "team": "Minnesota Timberwolves",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Tyus Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Derrick Favors",
+          "team": "New Jersey Nets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Kendall Gill",
+          "team": "New Jersey Nets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "267",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Lance Thomas",
+          "team": "New Orleans Hornets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "165",
+          "player_name": "Lance Thomas",
+          "team": "New Orleans Hornets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Anthony Davis",
+          "team": "New Orleans Pelicans",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jrue Holiday",
+          "team": "New Orleans Pelicans",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Anthony Davis",
+          "team": "New Orleans Pelicans",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Anthony Davis",
+          "team": "New Orleans Pelicans",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "173",
+          "player_name": "Lance Thomas",
+          "team": "New Orleans Pelicans",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "344",
+          "player_name": "Jrue Holiday",
+          "team": "New Orleans Pelicans",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IN-LT",
+          "player_name": "Lance Thomas",
+          "team": "New Orleans Pelicans",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Raymond Felton",
+          "team": "New York Knicks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Micheal Ray Richardson",
+          "team": "New York Knicks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "John Starks",
+          "team": "New York Knicks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Charles Oakley",
+          "team": "New York Knicks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Iman Shumpert",
+          "team": "New York Knicks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Iman Shumpert",
+          "team": "New York Knicks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Charles Oakley",
+          "team": "New York Knicks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Doug Christie",
+          "team": "New York Knicks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "Iman Shumpert",
+          "team": "New York Knicks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "432",
+          "player_name": "Iman Shumpert",
+          "team": "New York Knicks",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jerian Grant",
+          "team": "New York Knicks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Reggie Jackson",
+          "team": "Oklahoma City Thunder",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "194",
+          "player_name": "Serge Ibaka",
+          "team": "Oklahoma City Thunder",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ND-JU",
+          "player_name": "Josh Huestis",
+          "team": "Oklahoma City Thunder",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Cameron Payne",
+          "team": "Oklahoma City Thunder",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Tobias Harris",
+          "team": "Orlando Magic",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Beno Udrih",
+          "team": "Orlando Magic",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Doron Lamb",
+          "team": "Orlando Magic",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Beno Udrih",
+          "team": "Orlando Magic",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "100",
+          "player_name": "Maurice Harkless",
+          "team": "Orlando Magic",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "172",
+          "player_name": "Doron Lamb",
+          "team": "Orlando Magic",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "253",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Mario Hezonja",
+          "team": "Orlando Magic",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Lavoy Allen",
+          "team": "Philadelphia 76ers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jeff Malone",
+          "team": "Philadelphia 76ers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Evan Turner",
+          "team": "Philadelphia 76ers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Dorell Wright",
+          "team": "Philadelphia 76ers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Dan Majerle",
+          "team": "Phoenix Suns",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Michael Finley",
+          "team": "Phoenix Suns",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Larry Nance",
+          "team": "Phoenix Suns",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Charlie Scott",
+          "team": "Phoenix Suns",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "227",
+          "player_name": "Archie Goodwin",
+          "team": "Phoenix Suns",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Damian Lillard",
+          "team": "Portland Trail Blazers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Will Barton",
+          "team": "Portland Trail Blazers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "168",
+          "player_name": "Will Barton",
+          "team": "Portland Trail Blazers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "446",
+          "player_name": "Robin Lopez",
+          "team": "Portland Trail Blazers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "582",
+          "player_name": "Robin Lopez",
+          "team": "Portland Trail Blazers",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Tyreke Evans",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Isaiah Thomas",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Carl Landry",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Hassan Whiteside",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Isaiah Thomas",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Isaiah Thomas",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "John Salmons",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Isaiah Thomas",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "159",
+          "player_name": "Isaiah Thomas",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ABW-AC",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AC-DC",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "IN-JF",
+          "player_name": "Jimmer Fredette",
+          "team": "Sacramento Kings",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Michael Finley",
+          "team": "San Antonio Spurs",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Bruce Bowen",
+          "team": "San Antonio Spurs",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "Sean Elliott",
+          "team": "San Antonio Spurs",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "440",
+          "player_name": "Bruce Bowen",
+          "team": "San Antonio Spurs",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Boban Marjanovic",
+          "team": "San Antonio Spurs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Ed Davis",
+          "team": "Toronto Raptors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Amir Johnson",
+          "team": "Toronto Raptors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Amir Johnson",
+          "team": "Toronto Raptors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Amir Johnson",
+          "team": "Toronto Raptors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "159",
+          "player_name": "DeMar DeRozan",
+          "team": "Toronto Raptors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "209",
+          "player_name": "DeMar DeRozan",
+          "team": "Toronto Raptors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "244",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Delon Wright",
+          "team": "Toronto Raptors",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Derrick Favors",
+          "team": "Utah Jazz",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Gordon Hayward",
+          "team": "Utah Jazz",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Gordon Hayward",
+          "team": "Utah Jazz",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "83",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "144",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "196",
+          "player_name": "Wes Matthews",
+          "team": "Utah Jazz",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SH-TB",
+          "player_name": "Trey Burke",
+          "team": "Utah Jazz",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Trey Lyles",
+          "team": "Utah Jazz",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bernard King",
+          "team": "Washington Bullets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Wes Unseld",
+          "team": "Washington Bullets",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Shelvin Mack",
+          "team": "Washington Wizards",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Jeff Malone",
+          "team": "Washington Wizards",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "182",
+          "player_name": "Jan Vesely",
+          "team": "Washington Wizards",
+          "variation": "Buyback Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Kelly Oubre Jr.",
+          "team": "Washington Wizards",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Panini"
+    }
+  ]
+}

@@ -1,0 +1,6846 @@
+{
+  "year": 2011,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 66498,
+        "name": "2011-12 Panini Past & Present"
+      },
+      "unique": [
+        {
+          "card_number": "43",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Tracy McGrady",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Pete Maravich",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Jeff Teague",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "John Jenkins",
+          "team": "Atlanta Hawks",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "167",
+          "player_name": "Jeff Teague",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Tracy McGrady",
+          "team": "Atlanta Hawks",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Tree Rollins",
+          "team": "Atlanta Hawks",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kevin Willis",
+          "team": "Atlanta Hawks",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jeff Teague",
+          "team": "Atlanta Hawks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jeff Teague",
+          "team": "Atlanta Hawks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Wes Unseld",
+          "team": "Baltimore Bullets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Phil Chenier",
+          "team": "Baltimore Bullets",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Brandon Bass",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sam Jones",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "183",
+          "player_name": "Bob Cousy",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "189",
+          "player_name": "K.C. Jones",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "197",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "199",
+          "player_name": "Jo Jo White",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "JaJuan Johnson",
+          "team": "Boston Celtics",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jared Sullinger",
+          "team": "Boston Celtics",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Fab Melo",
+          "team": "Boston Celtics",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sam Jones",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "93",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "161",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "189",
+          "player_name": "K.C. Jones",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "197",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dave Cowens",
+          "team": "Boston Celtics",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Arnie Risen",
+          "team": "Boston Celtics",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Paul Silas",
+          "team": "Boston Celtics",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Bob Cousy",
+          "team": "Boston Celtics",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Avery Bradley",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jermaine O'Neal",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Avery Bradley",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jermaine O'Neal",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Pete Maravich",
+          "team": "Boston Celtics",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Bill Walton",
+          "team": "Boston Celtics",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Bob Cousy",
+          "team": "Boston Celtics",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "MarShon Brooks",
+          "team": "Brooklyn Nets",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Bob McAdoo",
+          "team": "Buffalo Braves",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Bismack Biyombo",
+          "team": "Charlotte Bobcats",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Michael Kidd-Gilchrist",
+          "team": "Charlotte Bobcats",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Corey Maggette",
+          "team": "Charlotte Bobcats",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "D.J. White",
+          "team": "Charlotte Bobcats",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Tyrus Thomas",
+          "team": "Charlotte Bobcats",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Tyrus Thomas",
+          "team": "Charlotte Bobcats",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Alonzo Mourning",
+          "team": "Charlotte Hornets",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Carlos Boozer",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Carlos Boozer",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Richard Hamilton",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "B.J. Armstrong",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "181",
+          "player_name": "Bill Cartwright",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "187",
+          "player_name": "Artis Gilmore",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "127",
+          "player_name": "Richard Hamilton",
+          "team": "Chicago Bulls",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "162",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "177",
+          "player_name": "B.J. Armstrong",
+          "team": "Chicago Bulls",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "187",
+          "player_name": "Artis Gilmore",
+          "team": "Chicago Bulls",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ronnie Brewer",
+          "team": "Chicago Bulls",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Carlos Boozer",
+          "team": "Chicago Bulls",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Taj Gibson",
+          "team": "Chicago Bulls",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Ron Harper",
+          "team": "Chicago Bulls",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Taj Gibson",
+          "team": "Chicago Bulls",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Taj Gibson",
+          "team": "Chicago Bulls",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Carlos Boozer",
+          "team": "Chicago Bulls",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ron Harper",
+          "team": "Chicago Bulls",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Carlos Boozer",
+          "team": "Chicago Bulls",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ron Harper",
+          "team": "Chicago Bulls",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Modern Marks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Artis Gilmore",
+          "team": "Chicago Bulls",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "192",
+          "player_name": "Jerry Lucas",
+          "team": "Cincinnati Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Oscar Robertson",
+          "team": "Cincinnati Royals",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Tristan Thompson",
+          "team": "Cleveland Cavaliers",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kyrie Irving",
+          "team": "Cleveland Cavaliers",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Dion Waiters",
+          "team": "Cleveland Cavaliers",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Tyler Zeller",
+          "team": "Cleveland Cavaliers",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Anderson Varejao",
+          "team": "Cleveland Cavaliers",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Antawn Jamison",
+          "team": "Cleveland Cavaliers",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mark Price",
+          "team": "Cleveland Cavaliers",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Luke Walton",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Luke Walton",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Vince Carter",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Shawn Marion",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Shawn Marion",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Lamar Odom",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jared Cunningham",
+          "team": "Dallas Mavericks",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "155",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lamar Odom",
+          "team": "Dallas Mavericks",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Sam Perkins",
+          "team": "Dallas Mavericks",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Brendan Haywood",
+          "team": "Dallas Mavericks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Peja Stojakovic",
+          "team": "Dallas Mavericks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Rodrigue Beaubois",
+          "team": "Dallas Mavericks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Brendan Haywood",
+          "team": "Dallas Mavericks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Peja Stojakovic",
+          "team": "Dallas Mavericks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Rodrigue Beaubois",
+          "team": "Dallas Mavericks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Vince Carter",
+          "team": "Dallas Mavericks",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Vince Carter",
+          "team": "Dallas Mavericks",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Chris Andersen",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ty Lawson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "David Thompson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Ty Lawson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jordan Hamilton",
+          "team": "Denver Nuggets",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Kenneth Faried",
+          "team": "Denver Nuggets",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Evan Fournier",
+          "team": "Denver Nuggets",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "David Thompson",
+          "team": "Denver Nuggets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Danilo Gallinari",
+          "team": "Denver Nuggets",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Danilo Gallinari",
+          "team": "Denver Nuggets",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Danilo Gallinari",
+          "team": "Denver Nuggets",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "David Thompson",
+          "team": "Denver Nuggets",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Bobby Jones",
+          "team": "Denver Nuggets",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Chris Andersen",
+          "team": "Denver Nuggets",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Ty Lawson",
+          "team": "Denver Nuggets",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Chris Andersen",
+          "team": "Denver Nuggets",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Ty Lawson",
+          "team": "Denver Nuggets",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "David Thompson",
+          "team": "Denver Nuggets",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Greg Monroe",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Brandon Knight",
+          "team": "Detroit Pistons",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Andre Drummond",
+          "team": "Detroit Pistons",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Greg Monroe",
+          "team": "Detroit Pistons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Ben Gordon",
+          "team": "Detroit Pistons",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Greg Monroe",
+          "team": "Detroit Pistons",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Bill Laimbeer",
+          "team": "Detroit Pistons",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Greg Monroe",
+          "team": "Detroit Pistons",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Greg Monroe",
+          "team": "Detroit Pistons",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allan Houston",
+          "team": "Detroit Pistons",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Charlie Villanueva",
+          "team": "Detroit Pistons",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Greg Monroe",
+          "team": "Detroit Pistons",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allan Houston",
+          "team": "Detroit Pistons",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Charlie Villanueva",
+          "team": "Detroit Pistons",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Greg Monroe",
+          "team": "Detroit Pistons",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Andrew Bogut",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "David Lee",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "179",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Klay Thompson",
+          "team": "Golden State Warriors",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Charles Jenkins",
+          "team": "Golden State Warriors",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Harrison Barnes",
+          "team": "Golden State Warriors",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Andrew Bogut",
+          "team": "Golden State Warriors",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "114",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "179",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "David Lee",
+          "team": "Golden State Warriors",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Brandon Rush",
+          "team": "Golden State Warriors",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "79",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Andrew Bogut",
+          "team": "Golden State Warriors",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Andrew Bogut",
+          "team": "Golden State Warriors",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": "Modern Marks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chris Mullin",
+          "team": "Golden State Warriors",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Kyle Lowry",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Kevin Martin",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Luis Scola",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "Moses Malone",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Chandler Parsons",
+          "team": "Houston Rockets",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Royce White",
+          "team": "Houston Rockets",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Terrence Jones",
+          "team": "Houston Rockets",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "163",
+          "player_name": "Luis Scola",
+          "team": "Houston Rockets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chase Budinger",
+          "team": "Houston Rockets",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kevin Martin",
+          "team": "Houston Rockets",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Dikembe Mutombo",
+          "team": "Houston Rockets",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kenny Smith",
+          "team": "Houston Rockets",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Marcus Camby",
+          "team": "Houston Rockets",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Patrick Patterson",
+          "team": "Houston Rockets",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Marcus Camby",
+          "team": "Houston Rockets",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Darren Collison",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "George Hill",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "David West",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Tyler Hansbrough",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Darren Collison",
+          "team": "Indiana Pacers",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "David West",
+          "team": "Indiana Pacers",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tyler Hansbrough",
+          "team": "Indiana Pacers",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Mel Daniels",
+          "team": "Indiana Pacers",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "George McGinnis",
+          "team": "Indiana Pacers",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Darren Collison",
+          "team": "Indiana Pacers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Lance Stephenson",
+          "team": "Indiana Pacers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Paul George",
+          "team": "Indiana Pacers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Darren Collison",
+          "team": "Indiana Pacers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Lance Stephenson",
+          "team": "Indiana Pacers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Nate Archibald",
+          "team": "Kansas City Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Nate Archibald",
+          "team": "Kansas City Kings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Eric Bledsoe",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Chris Paul",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Chauncey Billups",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Chris Paul",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Eric Bledsoe",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Chris Paul",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "126",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "158",
+          "player_name": "Chris Paul",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Chauncey Billups",
+          "team": "Los Angeles Clippers",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Eric Bledsoe",
+          "team": "Los Angeles Clippers",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Eric Bledsoe",
+          "team": "Los Angeles Clippers",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Chris Paul",
+          "team": "Los Angeles Clippers",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chris Paul",
+          "team": "Los Angeles Clippers",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Danny Manning",
+          "team": "Los Angeles Clippers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mo Williams",
+          "team": "Los Angeles Clippers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Eric Bledsoe",
+          "team": "Los Angeles Clippers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Danny Manning",
+          "team": "Los Angeles Clippers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Mo Williams",
+          "team": "Los Angeles Clippers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Eric Bledsoe",
+          "team": "Los Angeles Clippers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "Modern Marks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Chris Paul",
+          "team": "Los Angeles Clippers",
+          "variation": "Modern Marks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chris Paul",
+          "team": "Los Angeles Clippers",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "James Worthy",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "178",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "194",
+          "player_name": "Gail Goodrich",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "100",
+          "player_name": "James Worthy",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "111",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "178",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "194",
+          "player_name": "Gail Goodrich",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Derek Fisher",
+          "team": "Los Angeles Lakers",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Wilt Chamberlain",
+          "team": "Los Angeles Lakers",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "A.C. Green",
+          "team": "Los Angeles Lakers",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Ramon Sessions",
+          "team": "Los Angeles Lakers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Ramon Sessions",
+          "team": "Los Angeles Lakers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Modern Marks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Metta World Peace",
+          "team": "Los Angeles Lakers",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Marc Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Zach Randolph",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Tony Wroten Jr.",
+          "team": "Memphis Grizzlies",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Marc Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Zach Randolph",
+          "team": "Memphis Grizzlies",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Marc Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Marc Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Quincy Pondexter",
+          "team": "Memphis Grizzlies",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Zach Randolph",
+          "team": "Memphis Grizzlies",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Marc Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Quincy Pondexter",
+          "team": "Memphis Grizzlies",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Zach Randolph",
+          "team": "Memphis Grizzlies",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Marc Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Modern Marks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Shane Battier",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chris Bosh",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "LeBron James",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Shane Battier",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Chris Bosh",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "LeBron James",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Norris Cole",
+          "team": "Miami Heat",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Shane Battier",
+          "team": "Miami Heat",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "103",
+          "player_name": "Shane Battier",
+          "team": "Miami Heat",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Chris Bosh",
+          "team": "Miami Heat",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "LeBron James",
+          "team": "Miami Heat",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Glen Rice",
+          "team": "Miami Heat",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "LeBron James",
+          "team": "Miami Heat",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "LeBron James",
+          "team": "Miami Heat",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Chris Bosh",
+          "team": "Miami Heat",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "LeBron James",
+          "team": "Miami Heat",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "LeBron James",
+          "team": "Miami Heat",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "LeBron James",
+          "team": "Miami Heat",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Chris Bosh",
+          "team": "Miami Heat",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "LeBron James",
+          "team": "Miami Heat",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Monta Ellis",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Brandon Jennings",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Ekpe Udoh",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Oscar Robertson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Monta Ellis",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Tobias Harris",
+          "team": "Milwaukee Bucks",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "John Henson",
+          "team": "Milwaukee Bucks",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Brandon Jennings",
+          "team": "Milwaukee Bucks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "Oscar Robertson",
+          "team": "Milwaukee Bucks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Stephen Jackson",
+          "team": "Milwaukee Bucks",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Drew Gooden",
+          "team": "Milwaukee Bucks",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Brandon Jennings",
+          "team": "Milwaukee Bucks",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Brandon Jennings",
+          "team": "Milwaukee Hawks",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Monta Ellis",
+          "team": "Milwaukee Bucks",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Monta Ellis",
+          "team": "Milwaukee Bucks",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Beno Udrih",
+          "team": "Milwaukee Bucks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Brandon Jennings",
+          "team": "Milwaukee Bucks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ekpe Udoh",
+          "team": "Milwaukee Bucks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Brandon Jennings",
+          "team": "Milwaukee Bucks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ekpe Udoh",
+          "team": "Milwaukee Bucks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Modern Marks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Oscar Robertson",
+          "team": "Milwaukee Bucks",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Ricky Rubio",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Michael Beasley",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Derrick Williams",
+          "team": "Minnesota Timberwolves",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "145",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "J.J. Barea",
+          "team": "Minnesota Timberwolves",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Luke Ridnour",
+          "team": "Minnesota Timberwolves",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Michael Beasley",
+          "team": "Minnesota Timberwolves",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Ricky Rubio",
+          "team": "Minnesota Timberwolves",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Michael Beasley",
+          "team": "Minnesota Timberwolves",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Modern Marks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Deron Williams",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Gerald Wallace",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "174",
+          "player_name": "Deron Williams",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Deron Williams",
+          "team": "New Jersey Nets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "144",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Mehmet Okur",
+          "team": "New Jersey Nets",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Deron Williams",
+          "team": "New Jersey Nets",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kris Humphries",
+          "team": "New Jersey Nets",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Damion James",
+          "team": "New Jersey Nets",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Damion James",
+          "team": "New Jersey Nets",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Deron Williams",
+          "team": "New Jersey Nets",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Eric Gordon",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Emeka Okafor",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Anthony Davis",
+          "team": "New Orleans Hornets",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Austin Rivers",
+          "team": "New Orleans Hornets",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Emeka Okafor",
+          "team": "New Orleans Hornets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Carl Landry",
+          "team": "New Orleans Hornets",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Chris Kaman",
+          "team": "New Orleans Hornets",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jarrett Jack",
+          "team": "New Orleans Hornets",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Eric Gordon",
+          "team": "New Orleans Hornets",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Eric Gordon",
+          "team": "New Orleans Hornets",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Pete Maravich",
+          "team": "New Orleans Jazz",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Carmelo Anthony",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Tyson Chandler",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Baron Davis",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Amare Stoudemire",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jeremy Lin",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Willis Reed",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Carmelo Anthony",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Tyson Chandler",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Baron Davis",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Amare Stoudemire",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "175",
+          "player_name": "Jeremy Lin",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Walt Bellamy",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "184",
+          "player_name": "Dave DeBusschere",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "Harry Gallatin",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "188",
+          "player_name": "Phil Jackson",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Josh Harrellson",
+          "team": "New York Knicks",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Iman Shumpert",
+          "team": "New York Knicks",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Tyson Chandler",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Baron Davis",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Amare Stoudemire",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jeremy Lin",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "90",
+          "player_name": "Willis Reed",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "112",
+          "player_name": "Tyson Chandler",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "115",
+          "player_name": "Baron Davis",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "165",
+          "player_name": "Amare Stoudemire",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "175",
+          "player_name": "Jeremy Lin",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "180",
+          "player_name": "Walt Bellamy",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "185",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "186",
+          "player_name": "Harry Gallatin",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "188",
+          "player_name": "Phil Jackson",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Carmelo Anthony",
+          "team": "New York Knicks",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Landry Fields",
+          "team": "New York Knicks",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Tyson Chandler",
+          "team": "New York Knicks",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Amare Stoudemire",
+          "team": "New York Knicks",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Harry Gallatin",
+          "team": "New York Knicks",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Mark Jackson",
+          "team": "New York Knicks",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Charles Oakley",
+          "team": "New York Knicks",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Landry Fields",
+          "team": "New York Knicks",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jeremy Lin",
+          "team": "New York Knicks",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Landry Fields",
+          "team": "New York Knicks",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jeremy Lin",
+          "team": "New York Knicks",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Harry Gallatin",
+          "team": "New York Knicks",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Carmelo Anthony",
+          "team": "New York Knicks",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Amare Stoudemire",
+          "team": "New York Knicks",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jeremy Lin",
+          "team": "New York Knicks",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Amare Stoudemire",
+          "team": "New York Knicks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Charles Oakley",
+          "team": "New York Knicks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Larry Johnson",
+          "team": "New York Knicks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Landry Fields",
+          "team": "New York Knicks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Toney Douglas",
+          "team": "New York Knicks",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Amare Stoudemire",
+          "team": "New York Knicks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Charles Oakley",
+          "team": "New York Knicks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Larry Johnson",
+          "team": "New York Knicks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Landry Fields",
+          "team": "New York Knicks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Toney Douglas",
+          "team": "New York Knicks",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Carmelo Anthony",
+          "team": "New York Knicks",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jeremy Lin",
+          "team": "New York Knicks",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Carmelo Anthony",
+          "team": "New York Knicks",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Baron Davis",
+          "team": "New York Knicks",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Amare Stoudemire",
+          "team": "New York Knicks",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Dave DeBusschere",
+          "team": "New York Knicks",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Phil Jackson",
+          "team": "New York Knicks",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Derek Fisher",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "James Harden",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Serge Ibaka",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "James Harden",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Serge Ibaka",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Reggie Jackson",
+          "team": "Oklahoma City Thunder",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jeremy Lamb",
+          "team": "Oklahoma City Thunder",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "James Harden",
+          "team": "Oklahoma City Thunder",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Serge Ibaka",
+          "team": "Oklahoma City Thunder",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "118",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "130",
+          "player_name": "James Harden",
+          "team": "Oklahoma City Thunder",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "135",
+          "player_name": "Serge Ibaka",
+          "team": "Oklahoma City Thunder",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "173",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "James Harden",
+          "team": "Oklahoma City Thunder",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "James Harden",
+          "team": "Oklahoma City Thunder",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Serge Ibaka",
+          "team": "Oklahoma City Thunder",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "James Harden",
+          "team": "Oklahoma City Thunder",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Serge Ibaka",
+          "team": "Oklahoma City Thunder",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Cole Aldrich",
+          "team": "Oklahoma City Thunder",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Lazar Hayward",
+          "team": "Oklahoma City Thunder",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Cole Aldrich",
+          "team": "Oklahoma City Thunder",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Lazar Hayward",
+          "team": "Oklahoma City Thunder",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Modern Marks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jason Richardson",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Hedo Turkoglu",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "169",
+          "player_name": "Hedo Turkoglu",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Gustavo Ayon",
+          "team": "Orlando Magic",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Maurice Harkless",
+          "team": "Orlando Magic",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Andrew Nicholson",
+          "team": "Orlando Magic",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Daniel Orton",
+          "team": "Orlando Magic",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jason Richardson",
+          "team": "Orlando Magic",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Hedo Turkoglu",
+          "team": "Orlando Magic",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Daniel Orton",
+          "team": "Orlando Magic",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jason Richardson",
+          "team": "Orlando Magic",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Hedo Turkoglu",
+          "team": "Orlando Magic",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jason Richardson",
+          "team": "Orlando Magic",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Elton Brand",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Evan Turner",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Elton Brand",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Lavoy Allen",
+          "team": "Philadelphia 76ers",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "68",
+          "player_name": "Evan Turner",
+          "team": "Philadelphia 76ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jrue Holiday",
+          "team": "Philadelphia 76ers",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Elton Brand",
+          "team": "Philadelphia 76ers",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Evan Turner",
+          "team": "Philadelphia 76ers",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Maurice Cheeks",
+          "team": "Philadelphia 76ers",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Hersey Hawkins",
+          "team": "Philadelphia 76ers",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Chet Walker",
+          "team": "Philadelphia 76ers",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jrue Holiday",
+          "team": "Philadelphia 76ers",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jrue Holiday",
+          "team": "Philadelphia 76ers",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Evan Turner",
+          "team": "Philadelphia 76ers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Spencer Hawes",
+          "team": "Philadelphia 76ers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jrue Holiday",
+          "team": "Philadelphia 76ers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Evan Turner",
+          "team": "Philadelphia 76ers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Spencer Hawes",
+          "team": "Philadelphia 76ers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jrue Holiday",
+          "team": "Philadelphia 76ers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Moses Malone",
+          "team": "Philadelphia 76ers",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Al Attles",
+          "team": "Philadelphia Warriors",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Marcin Gortat",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Grant Hill",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Grant Hill",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "182",
+          "player_name": "Tom Chambers",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Markieff Morris",
+          "team": "Phoenix Suns",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kendall Marshall",
+          "team": "Phoenix Suns",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Grant Hill",
+          "team": "Phoenix Suns",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "151",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "182",
+          "player_name": "Tom Chambers",
+          "team": "Phoenix Suns",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Grant Hill",
+          "team": "Phoenix Suns",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Hakim Warrick",
+          "team": "Phoenix Suns",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Dan Majerle",
+          "team": "Phoenix Suns",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Grant Hill",
+          "team": "Phoenix Suns",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Grant Hill",
+          "team": "Phoenix Suns",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Dan Majerle",
+          "team": "Phoenix Suns",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Grant Hill",
+          "team": "Phoenix Suns",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Raymond Felton",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Wesley Matthews",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Bill Walton",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Nolan Smith",
+          "team": "Portland Trail Blazers",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Damian Lillard",
+          "team": "Portland Trail Blazers",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Meyers Leonard",
+          "team": "Portland Trail Blazers",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Bill Walton",
+          "team": "Portland Trail Blazers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Raymond Felton",
+          "team": "Portland Trail Blazers",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jamal Crawford",
+          "team": "Portland Trail Blazers",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Clyde Drexler",
+          "team": "Portland Trail Blazers",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Terry Porter",
+          "team": "Portland Trail Blazers",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Wesley Matthews",
+          "team": "Portland Trail Blazers",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Wesley Matthews",
+          "team": "Portland Trail Blazers",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Modern Marks Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "113",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Tyreke Evans",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Isaiah Thomas",
+          "team": "Sacramento Kings",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jimmer Fredette",
+          "team": "Sacramento Kings",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Thomas Robinson",
+          "team": "Sacramento Kings",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Tyreke Evans",
+          "team": "Sacramento Kings",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Tyreke Evans",
+          "team": "Sacramento Kings",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Tyreke Evans",
+          "team": "Sacramento Kings",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Tyreke Evans",
+          "team": "Sacramento Kings",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bobby Jackson",
+          "team": "Sacramento Kings",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Hassan Whiteside",
+          "team": "Sacramento Kings",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Terrence Williams",
+          "team": "Sacramento Kings",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Beno Udrih",
+          "team": "Sacramento Kings",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Bobby Jackson",
+          "team": "Sacramento Kings",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Hassan Whiteside",
+          "team": "Sacramento Kings",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Terrence Williams",
+          "team": "Sacramento Kings",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Tiago Splitter",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Stephen Jackson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Cory Joseph",
+          "team": "San Antonio Spurs",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Kawhi Leonard",
+          "team": "San Antonio Spurs",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "80",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Gary Neal",
+          "team": "San Antonio Spurs",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Sean Elliott",
+          "team": "San Antonio Spurs",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Robert Horry",
+          "team": "San Antonio Spurs",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "DeJuan Blair",
+          "team": "San Antonio Spurs",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "DeJuan Blair",
+          "team": "San Antonio Spurs",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "James Anderson",
+          "team": "San Antonio Spurs",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Gary Neal",
+          "team": "San Antonio Spurs",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "James Anderson",
+          "team": "San Antonio Spurs",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Gary Neal",
+          "team": "San Antonio Spurs",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Robert Horry",
+          "team": "San Antonio Spurs",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "200",
+          "player_name": "Lenny Wilkens",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "200",
+          "player_name": "Lenny Wilkens",
+          "team": "Seattle SuperSonics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Dale Ellis",
+          "team": "Seattle SuperSonics",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jack Sikma",
+          "team": "Seattle SuperSonics",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Lenny Wilkens",
+          "team": "Seattle SuperSonics",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "196",
+          "player_name": "Bob Pettit",
+          "team": "St. Louis Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "196",
+          "player_name": "Bob Pettit",
+          "team": "St. Louis Hawks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Lenny Wilkens",
+          "team": "St. Louis Hawks",
+          "variation": "Changing Times",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "DeMar DeRozan",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Terrence Ross",
+          "team": "Toronto Raptors",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Leandro Barbosa",
+          "team": "Toronto Raptors",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "DeMar DeRozan",
+          "team": "Toronto Raptors",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Amir Johnson",
+          "team": "Toronto Raptors",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jose Calderon",
+          "team": "Toronto Raptors",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "DeMar DeRozan",
+          "team": "Toronto Raptors",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "DeMar DeRozan",
+          "team": "Toronto Raptors",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ed Davis",
+          "team": "Toronto Raptors",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "DeMar DeRozan",
+          "team": "Toronto Raptors",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "DeMar DeRozan",
+          "team": "Toronto Raptors",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Devin Harris",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Al Jefferson",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Devin Harris",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Al Jefferson",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Alec Burks",
+          "team": "Utah Jazz",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Enes Kanter",
+          "team": "Utah Jazz",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Devin Harris",
+          "team": "Utah Jazz",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gordon Hayward",
+          "team": "Utah Jazz",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Al Jefferson",
+          "team": "Utah Jazz",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Bread for Life",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Derrick Favors",
+          "team": "Utah Jazz",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Gordon Hayward",
+          "team": "Utah Jazz",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Derrick Favors",
+          "team": "Utah Jazz",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Gordon Hayward",
+          "team": "Utah Jazz",
+          "variation": "Breakout Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Jefferson",
+          "team": "Utah Jazz",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Derrick Favors",
+          "team": "Utah Jazz",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Raja Bell",
+          "team": "Utah Jazz",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Jefferson",
+          "team": "Utah Jazz",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Derrick Favors",
+          "team": "Utah Jazz",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Raja Bell",
+          "team": "Utah Jazz",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Raining 3's",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "Mitch Kupchak",
+          "team": "Washington Bullets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "198",
+          "player_name": "Wes Unseld",
+          "team": "Washington Bullets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Wes Unseld",
+          "team": "Washington Bullets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "198",
+          "player_name": "Wes Unseld",
+          "team": "Washington Bullets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Wes Unseld",
+          "team": "Washington Bullets",
+          "variation": "Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Shelvin Mack",
+          "team": "Washington Wizards",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chris Singleton",
+          "team": "Washington Wizards",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jan Vesely",
+          "team": "Washington Wizards",
+          "variation": "2011 Draft Pick Redemptions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Bradley Beal",
+          "team": "Washington Wizards",
+          "variation": "2012 Draft Pick Redemptions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Andray Blatche",
+          "team": "Washington Wizards",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rashard Lewis",
+          "team": "Washington Wizards",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": "Bread for Energy",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "JaVale McGee",
+          "team": "Washington Wizards",
+          "variation": "Bread for Health",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": "Breakout",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": "Fireworks",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Trevor Booker",
+          "team": "Washington Wizards",
+          "variation": "Gamers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Trevor Booker",
+          "team": "Washington Wizards",
+          "variation": "Gamers Jerseys Prime",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Panini"
+    }
+  ]
+}

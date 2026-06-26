@@ -1,0 +1,3694 @@
+{
+  "year": 2016,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 259656,
+        "name": "2016-17 Panini NBA (International)"
+      },
+      "unique": [
+        {
+          "card_number": "32",
+          "player_name": "Paul Millsap",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Dennis Schröder",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Kent Bazemore",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kyle Korver",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Dwight Howard",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Dennis Schröder",
+          "team": "Atlanta Hawks",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Dennis Schröder",
+          "team": "Atlanta Hawks",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Dennis Schröder",
+          "team": "Atlanta Hawks",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kent Bazemore",
+          "team": "Atlanta Hawks",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Paul Millsap",
+          "team": "Atlanta Hawks",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Taurean Prince",
+          "team": "Atlanta Hawks",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "DeAndre' Bembry",
+          "team": "Atlanta Hawks",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Taurean Prince",
+          "team": "Atlanta Hawks",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "DeAndre' Bembry",
+          "team": "Atlanta Hawks",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Paul Millsap",
+          "team": "Atlanta Hawks",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Paul Millsap",
+          "team": "Atlanta Hawks",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Paul Millsap",
+          "team": "Atlanta Hawks",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dwight Howard",
+          "team": "Atlanta Hawks",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Dennis Schröder",
+          "team": "Atlanta Hawks",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Paul Millsap",
+          "team": "Atlanta Hawks",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Isaiah Thomas",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Avery Bradley",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jae Crowder",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Marcus Smart",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Al Horford",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Marcus Smart",
+          "team": "Boston Celtics",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kelly Olynyk",
+          "team": "Boston Celtics",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Avery Bradley",
+          "team": "Boston Celtics",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jaylen Brown",
+          "team": "Boston Celtics",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jaylen Brown",
+          "team": "Boston Celtics",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Isaiah Thomas",
+          "team": "Boston Celtics",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Isaiah Thomas",
+          "team": "Boston Celtics",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Isaiah Thomas",
+          "team": "Boston Celtics",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Al Horford",
+          "team": "Boston Celtics",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jeremy Lin",
+          "team": "Brooklyn Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Brook Lopez",
+          "team": "Brooklyn Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Rondae Hollis-Jefferson",
+          "team": "Brooklyn Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Bojan Bogdanovic",
+          "team": "Brooklyn Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Chris McCullough",
+          "team": "Brooklyn Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jeremy Lin",
+          "team": "Brooklyn Nets",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Caris LeVert",
+          "team": "Brooklyn Nets",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Brook Lopez",
+          "team": "Brooklyn Nets",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Brook Lopez",
+          "team": "Brooklyn Nets",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Brook Lopez",
+          "team": "Brooklyn Nets",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Brook Lopez",
+          "team": "Brooklyn Nets",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jeremy Lin",
+          "team": "Brooklyn Nets",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Kemba Walker",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Frank Kaminsky",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nicolas Batum",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Michael Kidd-Gilchrist",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Marco Belinelli",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Michael Kidd-Gilchrist",
+          "team": "Charlotte Hornets",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kemba Walker",
+          "team": "Charlotte Hornets",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kemba Walker",
+          "team": "Charlotte Hornets",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Kemba Walker",
+          "team": "Charlotte Hornets",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Nicolas Batum",
+          "team": "Charlotte Hornets",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jimmy Butler",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Bobby Portis",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Nikola Mirotic",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Dwyane Wade",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Rajon Rondo",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Jimmy Butler",
+          "team": "Chicago Bulls",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Dwyane Wade",
+          "team": "Chicago Bulls",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Denzel Valentine",
+          "team": "Chicago Bulls",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Denzel Valentine",
+          "team": "Chicago Bulls",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Robin Lopez",
+          "team": "Chicago Bulls",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jimmy Butler",
+          "team": "Chicago Bulls",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jimmy Butler",
+          "team": "Chicago Bulls",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Rajon Rondo",
+          "team": "Chicago Bulls",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Dwyane Wade",
+          "team": "Chicago Bulls",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jimmy Butler",
+          "team": "Chicago Bulls",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Kyrie Irving",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Kevin Love",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Iman Shumpert",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Tristan Thompson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Double Trouble",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kyrie Irving",
+          "team": "Cleveland Cavaliers",
+          "variation": "Dreams",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Kyrie Irving",
+          "team": "Cleveland Cavaliers",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Kyrie Irving",
+          "team": "Cleveland Cavaliers",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "NBA Champions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "NBA Champions",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kevin Love",
+          "team": "Cleveland Cavaliers",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Kyrie Irving",
+          "team": "Cleveland Cavaliers",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Deron Williams",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Harrison Barnes",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Andrew Bogut",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Wesley Matthews",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Deron Williams",
+          "team": "Dallas Mavericks",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andrew Bogut",
+          "team": "Dallas Mavericks",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Andrew Bogut",
+          "team": "Dallas Mavericks",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Danilo Gallinari",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Kenneth Faried",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Wilson Chandler",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Double Trouble",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Will Barton",
+          "team": "Denver Nuggets",
+          "variation": "High Flyers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Nikola Jokic",
+          "team": "Denver Nuggets",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jamal Murray",
+          "team": "Denver Nuggets",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Malik Beasley",
+          "team": "Denver Nuggets",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jamal Murray",
+          "team": "Denver Nuggets",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Malik Beasley",
+          "team": "Denver Nuggets",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Danilo Gallinari",
+          "team": "Denver Nuggets",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Emmanuel Mudiay",
+          "team": "Denver Nuggets",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Reggie Jackson",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Tobias Harris",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Kentavious Caldwell-Pope",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Andre Drummond",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Marcus Morris",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Double Trouble",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Reggie Jackson",
+          "team": "Detroit Pistons",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Kentavious Caldwell-Pope",
+          "team": "Detroit Pistons",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kentavious Caldwell-Pope",
+          "team": "Detroit Pistons",
+          "variation": "High Flyers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Henry Ellenson",
+          "team": "Detroit Pistons",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Henry Ellenson",
+          "team": "Detroit Pistons",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Andre Drummond",
+          "team": "Detroit Pistons",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Andre Drummond",
+          "team": "Detroit Pistons",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Reggie Jackson",
+          "team": "Detroit Pistons",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Tobias Harris",
+          "team": "Detroit Pistons",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Andre Drummond",
+          "team": "Detroit Pistons",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Klay Thompson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Draymond Green",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Kevin Durant",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Shaun Livingston",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Double Trouble",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": "Dreams",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Draymond Green",
+          "team": "Golden State Warriors",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Kevin Durant",
+          "team": "Golden State Warriors",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Damian Jones",
+          "team": "Golden State Warriors",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Klay Thompson",
+          "team": "Golden State Warriors",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Kevin Durant",
+          "team": "Golden State Warriors",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Draymond Green",
+          "team": "Golden State Warriors",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Ryan Anderson",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "James Harden",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Trevor Ariza",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Clint Capela",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Corey Brewer",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Clint Capela",
+          "team": "Houston Rockets",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Gary Payton II",
+          "team": "Houston Rockets",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "James Harden",
+          "team": "Houston Rockets",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "James Harden",
+          "team": "Houston Rockets",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "James Harden",
+          "team": "Houston Rockets",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Al Jefferson",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Thaddeus Young",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Paul George",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Monta Ellis",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Double Trouble",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Paul George",
+          "team": "Indiana Pacers",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Paul George",
+          "team": "Indiana Pacers",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Thaddeus Young",
+          "team": "Indiana Pacers",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Myles Turner",
+          "team": "Indiana Pacers",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Paul George",
+          "team": "Indiana Pacers",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Chris Paul",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "J.J. Redick",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jamal Crawford",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Double Trouble",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Brice Johnson",
+          "team": "Los Angeles Clippers",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Brice Johnson",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chris Paul",
+          "team": "Los Angeles Clippers",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Luol Deng",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jordan Clarkson",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Julius Randle",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Larry Nance Jr.",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Dreams",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jordan Clarkson",
+          "team": "Los Angeles Lakers",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "D'Angelo Russell",
+          "team": "Los Angeles Lakers",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Julius Randle",
+          "team": "Los Angeles Lakers",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Julius Randle",
+          "team": "Los Angeles Lakers",
+          "variation": "High Flyers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Honorking Kobe",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Larry Nance Jr.",
+          "team": "Los Angeles Lakers",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Brandon Ingram",
+          "team": "Los Angeles Lakers",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Brandon Ingram",
+          "team": "Los Angeles Lakers",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Ivica Zubac",
+          "team": "Los Angeles Lakers",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Julius Randle",
+          "team": "Los Angeles Lakers",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Julius Randle",
+          "team": "Los Angeles Lakers",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Marc Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Zach Randolph",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Chandler Parsons",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Tony Allen",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Wade Baldwin IV",
+          "team": "Memphis Grizzlies",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Wade Baldwin IV",
+          "team": "Memphis Grizzlies",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Deyonta Davis",
+          "team": "Memphis Grizzlies",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Zach Randolph",
+          "team": "Memphis Grizzlies",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Zach Randolph",
+          "team": "Memphis Grizzlies",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Marc Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Zach Randolph",
+          "team": "Memphis Grizzlies",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Goran Dragic",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Hassan Whiteside",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Dion Waiters",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Tyler Johnson",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Justise Winslow",
+          "team": "Miami Heat",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Goran Dragic",
+          "team": "Miami Heat",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Hassan Whiteside",
+          "team": "Miami Heat",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Hassan Whiteside",
+          "team": "Miami Heat",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Hassan Whiteside",
+          "team": "Miami Heat",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Hassan Whiteside",
+          "team": "Miami Heat",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Goran Dragic",
+          "team": "Miami Heat",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Giannis Antetokounmpo",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jabari Parker",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Khris Middleton",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Greg Monroe",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "John Henson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jabari Parker",
+          "team": "Milwaukee Bucks",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Giannis Antetokounmpo",
+          "team": "Milwaukee Bucks",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Jabari Parker",
+          "team": "Milwaukee Bucks",
+          "variation": "High Flyers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Matthew Dellavedova",
+          "team": "Milwaukee Bucks",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Michael Carter-Williams",
+          "team": "Milwaukee Bucks",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Khris Middleton",
+          "team": "Milwaukee Bucks",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Thon Maker",
+          "team": "Milwaukee Bucks",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Thon Maker",
+          "team": "Milwaukee Bucks",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "John Henson",
+          "team": "Milwaukee Bucks",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Khris Middleton",
+          "team": "Milwaukee Bucks",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Khris Middleton",
+          "team": "Milwaukee Bucks",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Giannis Antetokounmpo",
+          "team": "Milwaukee Bucks",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Khris Middleton",
+          "team": "Milwaukee Bucks",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Greg Monroe",
+          "team": "Milwaukee Bucks",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Andrew Wiggins",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Zach LaVine",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Ricky Rubio",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Gorgui Dieng",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Double Trouble",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Dreams",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andrew Wiggins",
+          "team": "Minnesota Timberwolves",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Zach LaVine",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Flyers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Shabazz Muhammad",
+          "team": "Minnesota Timberwolves",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Andrew Wiggins",
+          "team": "Minnesota Timberwolves",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kris Dunn",
+          "team": "Minnesota Timberwolves",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Kris Dunn",
+          "team": "Minnesota Timberwolves",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Karl-Anthony Towns",
+          "team": "Minnesota Timberwolves",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ricky Rubio",
+          "team": "Minnesota Timberwolves",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Andrew Wiggins",
+          "team": "Minnesota Timberwolves",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Anthony Davis",
+          "team": "New Orleans Pelicans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Jrue Holiday",
+          "team": "New Orleans Pelicans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tyreke Evans",
+          "team": "New Orleans Pelicans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "E'Twaun Moore",
+          "team": "New Orleans Pelicans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Terrence Jones",
+          "team": "New Orleans Pelicans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Anthony Davis",
+          "team": "New Orleans Pelicans",
+          "variation": "Dreams",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Jrue Holiday",
+          "team": "New Orleans Pelicans",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Anthony Davis",
+          "team": "New Orleans Pelicans",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Buddy Hield",
+          "team": "New Orleans Pelicans",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "New Orleans Pelicans",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Buddy Hield",
+          "team": "New Orleans Pelicans",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Anthony Davis",
+          "team": "New Orleans Pelicans",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Anthony Davis",
+          "team": "New Orleans Pelicans",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Anthony Davis",
+          "team": "New Orleans Pelicans",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Tyreke Evans",
+          "team": "New Orleans Pelicans",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Jrue Holiday",
+          "team": "New Orleans Pelicans",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Anthony Davis",
+          "team": "New Orleans Pelicans",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Derrick Rose",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Carmelo Anthony",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Courtney Lee",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Brandon Jennings",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Double Trouble",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Dreams",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kristaps Porzingis",
+          "team": "New York Knicks",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Carmelo Anthony",
+          "team": "New York Knicks",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Victor Oladipo",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Steven Adams",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Enes Kanter",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Andre Roberson",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Victor Oladipo",
+          "team": "Oklahoma City Thunder",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Steven Adams",
+          "team": "Oklahoma City Thunder",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Domantas Sabonis",
+          "team": "Oklahoma City Thunder",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Domantas Sabonis",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Victor Oladipo",
+          "team": "Oklahoma City Thunder",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Nikola Vucevic",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Elfrid Payton",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Bismack Biyombo",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Serge Ibaka",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Evan Fournier",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Aaron Gordon",
+          "team": "Orlando Magic",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Aaron Gordon",
+          "team": "Orlando Magic",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Aaron Gordon",
+          "team": "Orlando Magic",
+          "variation": "High Flyers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Elfrid Payton",
+          "team": "Orlando Magic",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Elfrid Payton",
+          "team": "Orlando Magic",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Nikola Vucevic",
+          "team": "Orlando Magic",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Nerlens Noel",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Robert Covington",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Joel Embiid",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Gerald Henderson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Joel Embiid",
+          "team": "Philadelphia 76ers",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Robert Covington",
+          "team": "Philadelphia 76ers",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Ben Simmons",
+          "team": "Philadelphia 76ers",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Timothe Luwawu-Cabarrot",
+          "team": "Philadelphia 76ers",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Dario Saric",
+          "team": "Philadelphia 76ers",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Nerlens Noel",
+          "team": "Philadelphia 76ers",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jerami Grant",
+          "team": "Philadelphia 76ers",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Ben Simmons",
+          "team": "Philadelphia 76ers",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jahlil Okafor",
+          "team": "Philadelphia 76ers",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Eric Bledsoe",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Brandon Knight",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Alex Len",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "T.J. Warren",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Double Trouble",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Devin Booker",
+          "team": "Phoenix Suns",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Eric Bledsoe",
+          "team": "Phoenix Suns",
+          "variation": "High Flyers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Alex Len",
+          "team": "Phoenix Suns",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Eric Bledsoe",
+          "team": "Phoenix Suns",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Dragan Bender",
+          "team": "Phoenix Suns",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Marquese Chriss",
+          "team": "Phoenix Suns",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Tyler Ulis",
+          "team": "Phoenix Suns",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Dragan Bender",
+          "team": "Phoenix Suns",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Marquese Chriss",
+          "team": "Phoenix Suns",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Eric Bledsoe",
+          "team": "Phoenix Suns",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Eric Bledsoe",
+          "team": "Phoenix Suns",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Eric Bledsoe",
+          "team": "Phoenix Suns",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Brandon Knight",
+          "team": "Phoenix Suns",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Evan Turner",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Damian Lillard",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "C.J. McCollum",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Al-Farouq Aminu",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Mason Plumlee",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Double Trouble",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Damian Lillard",
+          "team": "Portland Trail Blazers",
+          "variation": "Dreams",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "C.J. McCollum",
+          "team": "Portland Trail Blazers",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Mason Plumlee",
+          "team": "Portland Trail Blazers",
+          "variation": "High Flyers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Allen Crabbe",
+          "team": "Portland Trail Blazers",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "C.J. McCollum",
+          "team": "Portland Trail Blazers",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Damian Lillard",
+          "team": "Portland Trail Blazers",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Damian Lillard",
+          "team": "Portland Trail Blazers",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "C.J. McCollum",
+          "team": "Portland Trail Blazers",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Damian Lillard",
+          "team": "Portland Trail Blazers",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Rudy Gay",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Willie Cauley-Stein",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Darren Collison",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Ben McLemore",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Rudy Gay",
+          "team": "Sacramento Kings",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": "High Flyers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Malachi Richardson",
+          "team": "Sacramento Kings",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Georgios Papagiannis",
+          "team": "Sacramento Kings",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Malachi Richardson",
+          "team": "Sacramento Kings",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Skal Labissiere",
+          "team": "Sacramento Kings",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Rudy Gay",
+          "team": "Sacramento Kings",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "DeMarcus Cousins",
+          "team": "Sacramento Kings",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Pau Gasol",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Kawhi Leonard",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "LaMarcus Aldridge",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Dejounte Murray",
+          "team": "San Antonio Spurs",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "LaMarcus Aldridge",
+          "team": "San Antonio Spurs",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "LaMarcus Aldridge",
+          "team": "San Antonio Spurs",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "LaMarcus Aldridge",
+          "team": "San Antonio Spurs",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Pau Gasol",
+          "team": "San Antonio Spurs",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Kawhi Leonard",
+          "team": "San Antonio Spurs",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Kyle Lowry",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "DeMar DeRozan",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Jonas Valanciunas",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "DeMarre Carroll",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Cory Joseph",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "DeMar DeRozan",
+          "team": "Toronto Raptors",
+          "variation": "High Flyers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jonas Valanciunas",
+          "team": "Toronto Raptors",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "DeMarre Carroll",
+          "team": "Toronto Raptors",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jakob Poeltl",
+          "team": "Toronto Raptors",
+          "variation": "Hot Signatures Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jakob Poeltl",
+          "team": "Toronto Raptors",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Pascal Siakam",
+          "team": "Toronto Raptors",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Kyle Lowry",
+          "team": "Toronto Raptors",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Kyle Lowry",
+          "team": "Toronto Raptors",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "DeMar DeRozan",
+          "team": "Toronto Raptors",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Kyle Lowry",
+          "team": "Toronto Raptors",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Gordon Hayward",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Rudy Gobert",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Rodney Hood",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Derrick Favors",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Dante Exum",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Rudy Gobert",
+          "team": "Utah Jazz",
+          "variation": "Faces of the Future",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Rudy Gobert",
+          "team": "Utah Jazz",
+          "variation": "Swat Team",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Rudy Gobert",
+          "team": "Utah Jazz",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Rudy Gobert",
+          "team": "Utah Jazz",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Gordon Hayward",
+          "team": "Utah Jazz",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Derrick Favors",
+          "team": "Utah Jazz",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Rudy Gobert",
+          "team": "Utah Jazz",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Markieff Morris",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Bradley Beal",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Marcin Gortat",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Otto Porter",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": "End 2 End",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Otto Porter",
+          "team": "Washington Wizards",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": "Hot Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "One on One",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Tomas Satoransky",
+          "team": "Washington Wizards",
+          "variation": "Rookies 2016-17",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": "Team Leaders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": "Team Leaders Ultra Rare",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Bradley Beal",
+          "team": "Washington Wizards",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Marcin Gortat",
+          "team": "Washington Wizards",
+          "variation": "Tian Tian Elite",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "John Wall",
+          "team": "Washington Wizards",
+          "variation": "Tian Tian Legend",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Panini"
+    }
+  ]
+}

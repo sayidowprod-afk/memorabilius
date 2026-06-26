@@ -1,0 +1,70 @@
+{
+  "year": 2002,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 289641,
+        "name": "2002-03 Topps Special Edition Autographs"
+      },
+      "unique": [
+        {
+          "card_number": "SE-KBR",
+          "player_name": "Kedrick Brown",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SE-EC",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SE-JT",
+          "player_name": "Jeff Trepagnier",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SE-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SE-LW",
+          "player_name": "Loren Woods",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SE-AJ",
+          "player_name": "Alvin Jones",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SE-KB",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

@@ -1,0 +1,6118 @@
+{
+  "year": 2004,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3086,
+        "name": "2004-05 Fleer Showcase"
+      },
+      "unique": [
+        {
+          "card_number": "15",
+          "player_name": "Bob Sura",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Stephen Jackson",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Bob Sura",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Stephen Jackson",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Bob Sura",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Stephen Jackson",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JS2",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JS2",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-JS2",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ricky Davis",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Marcus Banks",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Delonte West",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Al Jefferson",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Tony Allen",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ricky Davis",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Marcus Banks",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Delonte West",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Al Jefferson",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Tony Allen",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ricky Davis",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Marcus Banks",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Delonte West",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Al Jefferson",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Tony Allen",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Theron Smith",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Jason Kapono",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Theron Smith",
+          "team": "Charlotte Bobcats",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Jason Kapono",
+          "team": "Charlotte Bobcats",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Theron Smith",
+          "team": "Charlotte Bobcats",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Jason Kapono",
+          "team": "Charlotte Bobcats",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jamal Crawford",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Chris Duhon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jamal Crawford",
+          "team": "Chicago Bulls",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Chris Duhon",
+          "team": "Chicago Bulls",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jamal Crawford",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Chris Duhon",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-CD2",
+          "player_name": "Chris Duhon",
+          "team": "Chicago Bulls",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-CD2",
+          "player_name": "Chris Duhon",
+          "team": "Chicago Bulls",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-CD",
+          "player_name": "Chris Duhon",
+          "team": "Chicago Bulls",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Sergei Monia",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Sergei Monia",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Sergei Monia",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-DW2",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-LJ",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-AV",
+          "player_name": "Anderson Varejao",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-DW2",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-LJ",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-AV",
+          "player_name": "Anderson Varejao",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-DJW",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-LJ",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jerry Stackhouse",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Pavel Podkolzin",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jerry Stackhouse",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Pavel Podkolzin",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jerry Stackhouse",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Pavel Podkolzin",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-DH",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JS",
+          "player_name": "Jerry Stackhouse",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-PP",
+          "player_name": "Pavel Podkolzin",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-DH",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-PP",
+          "player_name": "Pavel Podkolzin",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-DH",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-JS",
+          "player_name": "Jerry Stackhouse",
+          "team": "Dallas Mavericks",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-PP",
+          "player_name": "Pavel Podkolzin",
+          "team": "Dallas Mavericks",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Feature Film Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Feature Film Patches (10)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Hot Hands Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Hot Hands Patches (15)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-AM",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-AM",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-AM",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Darko Milicic",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Darko Milicic",
+          "team": "Detroit Pistons",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Darko Milicic",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-CD",
+          "player_name": "Carlos Delfino",
+          "team": "Detroit Pistons",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-CD",
+          "player_name": "Carlos Delfino",
+          "team": "Detroit Pistons",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-CD",
+          "player_name": "Carlos Delfino",
+          "team": "Detroit Pistons",
+          "variation": "Signature Showcase Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Andris Biedrins",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Andris Biedrins",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Andris Biedrins",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Feature Film Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Feature Film Patches (10)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Hot Hands Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Hot Hands Patches (15)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Sasha Vujacic",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-KM",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": "Feature Film Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Feature Film Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-KM",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": "Feature Film Patches (10)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Feature Film Patches (10)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Hot Hands Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Hot Hands Patches (15)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Sasha Vujacic",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Sasha Vujacic",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-GP",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-GP",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-GP",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-GP",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-GP",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-GP",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-GP",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-GP",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Bonzi Wells",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Bonzi Wells",
+          "team": "Memphis Grizzlies",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Bonzi Wells",
+          "team": "Memphis Grizzlies",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-TB",
+          "player_name": "Troy Bell",
+          "team": "Memphis Grizzlies",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-TB",
+          "player_name": "Troy Bell",
+          "team": "Memphis Grizzlies",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-TB",
+          "player_name": "Troy Bell",
+          "team": "Memphis Grizzlies",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Dorell Wright",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Hot Hands Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Hot Hands Patches (15)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Dorell Wright",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Dorell Wright",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-DW2",
+          "player_name": "Dorell Wright",
+          "team": "Miami Heat",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-LO",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-DW2",
+          "player_name": "Dorell Wright",
+          "team": "Miami Heat",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-LO",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-DW2",
+          "player_name": "Dorell Wright",
+          "team": "Miami Heat",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-LO",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Feature Film Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Feature Film Patches (10)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Feature Film Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Feature Film Patches (10)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-KM",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-KM",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-KM",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-KM",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-KM",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Hot Hands Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Hot Hands Patches (15)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-DW3",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JS3",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-DW3",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JS3",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JS3",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Signature Showcase Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-DW3",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-JS3",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Tim Thomas",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Tim Thomas",
+          "team": "New York Knicks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Tim Thomas",
+          "team": "New York Knicks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Drew Gooden",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Cuttino Mobley",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Keith Bogans",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Anderson Varejao",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Feature Film Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Feature Film Patches (10)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Drew Gooden",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Keith Bogans",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Anderson Varejao",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Drew Gooden",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Keith Bogans",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Anderson Varejao",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-AV",
+          "player_name": "Anderson Varejao",
+          "team": "Orlando Magic",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JN",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JN",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-JN",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Willie Green",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Feature Film Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Feature Film Patches (10)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Hot Hands Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Hot Hands Patches (15)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Willie Green",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Willie Green",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Amaré Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-SM2",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-SM2",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-SM2",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Darius Miles",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Viktor Khryapa",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Ha Seung-Jin",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Darius Miles",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Viktor Khryapa",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Ha Seung-Jin",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Darius Miles",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Viktor Khryapa",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Ha Seung-Jin",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-DM",
+          "player_name": "Darius Miles",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-HS",
+          "player_name": "Ha Seung-Jin",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-ST",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-DM",
+          "player_name": "Darius Miles",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-HS",
+          "player_name": "Ha Seung-Jin",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-ST",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-ST",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Showcase Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-DM",
+          "player_name": "Darius Miles",
+          "team": "Portland Trail Blazers",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-HS",
+          "player_name": "Ha Seung-Jin",
+          "team": "Portland Trail Blazers",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-ST",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Hot Hands Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Hot Hands Patches (15)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Beno Udrih",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Feature Film Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Feature Film Patches (10)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Hot Hands Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Hot Hands Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Hot Hands Patches (15)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Hot Hands Patches (15)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Beno Udrih",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Beno Udrih",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Robert Swift",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Robert Swift",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Robert Swift",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-RM",
+          "player_name": "Ronald Murray",
+          "team": "Seattle SuperSonics",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-RM",
+          "player_name": "Ronald Murray",
+          "team": "Seattle SuperSonics",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Feature Film Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Feature Film Patches (10)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Hot Hands Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HH-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Hot Hands Patches (15)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Playmakers Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Playmakers Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Playmakers Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Playmakers Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PM-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Playmakers Jerseys Win Total",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-CBO",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-RA",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-CB2",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-RA",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-CBO",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-RA",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Supreme Showcase Jerseys (100)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Supreme Showcase Jerseys (300)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Supreme Showcase Jerseys All-Star",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Supreme Showcase Jerseys All-Star Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Supreme Showcase Jerseys Career High Points",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Supreme Showcase Jerseys Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Supreme Showcase Jerseys Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Carlos Arroyo",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Matt Harpring",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Kris Humphries",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Kirk Snyder",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Carlos Arroyo",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Matt Harpring",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Kris Humphries",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Kirk Snyder",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Carlos Arroyo",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Matt Harpring",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Kris Humphries",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Kirk Snyder",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-KH",
+          "player_name": "Kris Humphries",
+          "team": "Utah Jazz",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-KS",
+          "player_name": "Kirk Snyder",
+          "team": "Utah Jazz",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-KH",
+          "player_name": "Kris Humphries",
+          "team": "Utah Jazz",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-KS",
+          "player_name": "Kirk Snyder",
+          "team": "Utah Jazz",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-KH",
+          "player_name": "Kris Humphries",
+          "team": "Utah Jazz",
+          "variation": "Signature Showcase Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-KH",
+          "player_name": "Kris Humphries",
+          "team": "Utah Jazz",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-KS",
+          "player_name": "Kirk Snyder",
+          "team": "Utah Jazz",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SGA-KB",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": "Signature Showcase",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-JS",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGA-KB",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": "Signature Showcase Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SGJA-KB",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": "Signatures Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}

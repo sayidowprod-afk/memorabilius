@@ -1,0 +1,6790 @@
+{
+  "year": 2008,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 8901,
+        "name": "2008-09 SP Rookie Threads"
+      },
+      "unique": [
+        {
+          "card_number": "59",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-AH",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-JJ",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-SJ",
+          "player_name": "Solomon Jones",
+          "team": "Atlanta Hawks",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-JJ",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JJ",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-BR",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-RA",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-SC",
+          "player_name": "Sam Cassell",
+          "team": "Boston Celtics",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-JG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HGS",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WGD",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HGS",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WGD",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HGS",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WGD",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-LP",
+          "player_name": "Leon Powe",
+          "team": "Boston Celtics",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-RA",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-JG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-RA",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-GM",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-JB",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-GM",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-JB",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-RA",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Jason Richardson",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-AM",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-JR",
+          "player_name": "Jason Richardson",
+          "team": "Charlotte Bobcats",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-SB",
+          "player_name": "Shannon Brown",
+          "team": "Charlotte Bobcats",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-DA",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DA",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AB",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AB",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AW",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AB",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AW",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DA",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DA",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGW",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ALA",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ARW",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGW",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ALA",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ARW",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGW",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ALA",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ARW",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-EO",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-DA",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-JR",
+          "player_name": "Jason Richardson",
+          "team": "Charlotte Bobcats",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JR",
+          "player_name": "Jason Richardson",
+          "team": "Charlotte Bobcats",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Charlotte Hornets",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JP",
+          "player_name": "John Paxson",
+          "team": "Chicago Bulls",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-JN",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-MR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-MR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-MR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ARW",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MBR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MRG",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RDD",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ARW",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MBR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MRG",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RDD",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ARW",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MBR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MRG",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RDD",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-LH",
+          "player_name": "Larry Hughes",
+          "team": "Chicago Bulls",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-TT",
+          "player_name": "Tyrus Thomas",
+          "team": "Chicago Bulls",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-KH",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-AP",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-BJ",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-AP",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-BJ",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JN",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Ben Wallace",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JA",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-MW",
+          "player_name": "Maurice Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-DW",
+          "player_name": "Delonte West",
+          "team": "Cleveland Cavaliers",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-JH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HGS",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HMH",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HGS",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HMH",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HGS",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HMH",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-JH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-DG",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-JB",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-RM",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-JB",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-RM",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DG",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-HO",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-JK",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-JT",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JK",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-KJ",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-KJ",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-AI",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-KM",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-WH",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-WH",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-WH",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-DWE",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-GWH",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-DWE",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-GWH",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-DWE",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-GWH",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-AI",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-AP",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-IR",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-AP",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-IR",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-AI",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Trent Plaisted",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-CB",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-RH",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-RW",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HGS",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WES",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HGS",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WES",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HGS",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WES",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Trent Plaisted",
+          "team": "Detroit Pistons",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-RS",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-TP",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-RH",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-PT",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-WL",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-PT",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-WL",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-RH",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Stephen Jackson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-CM",
+          "player_name": "Chris Mullin",
+          "team": "Golden State Warriors",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-BI",
+          "player_name": "Andris Biedrins",
+          "team": "Golden State Warriors",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-BW",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-CM",
+          "player_name": "Corey Maggette",
+          "team": "Golden State Warriors",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-ME",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-AR",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-AR",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-AR",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-AR",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RLS",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RLS",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RLS",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-KA",
+          "player_name": "Kelenna Azubuike",
+          "team": "Golden State Warriors",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-AR",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "Patrick Ewing Jr.",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-LS",
+          "player_name": "Luis Scola",
+          "team": "Houston Rockets",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-AR",
+          "player_name": "Ron Artest",
+          "team": "Houston Rockets",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-DD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-DD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-DD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RDD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WGD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RDD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WGD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RDD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WGD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "Patrick Ewing Jr.",
+          "team": "Houston Rockets",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-HE",
+          "player_name": "Luther Head",
+          "team": "Houston Rockets",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-SB",
+          "player_name": "Shane Battier",
+          "team": "Houston Rockets",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TD-DD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-DD",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "T.J. Ford",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-DG",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-JA",
+          "player_name": "Jarrett Jack",
+          "team": "Indiana Pacers",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-BR",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-RH",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BR",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-RC",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-HE",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-HM",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-RC",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-RH",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-RL",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-HE",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-HM",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-RC",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-RH",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-RL",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BR",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-RH",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BR",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-RH",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HMH",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RAC",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RSC",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RTB",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HMH",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RAC",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RSC",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RTB",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HMH",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RAC",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RSC",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RTB",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-GR",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-TF",
+          "player_name": "T.J. Ford",
+          "team": "Indiana Pacers",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-BR",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-RH",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Mike Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-BD",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-CK",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-MC",
+          "player_name": "Marcus Camby",
+          "team": "Los Angeles Clippers",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GA",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GW",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GA",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GJ",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GW",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GA",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GJ",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GW",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DJ",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DJ",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGW",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JLK",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JWC",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MGB",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MRG",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGW",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JLK",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JWC",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MGB",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MRG",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGW",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JLK",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JWC",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MGB",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MRG",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Mike Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-BD",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Joe Crawford",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-AB",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-KA",
+          "player_name": "Kareem Abdul-Jabbar",
+          "team": "Los Angeles Lakers",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-PG",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Joe Crawford",
+          "team": "Los Angeles Lakers",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-AB",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-DF",
+          "player_name": "Derek Fisher",
+          "team": "Los Angeles Lakers",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-JC",
+          "player_name": "Joe Crawford",
+          "team": "Los Angeles Lakers",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-PG",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-BJ",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-KJ",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-BJ",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-KJ",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-PG",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Darrell Arthur",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-RG",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-MI",
+          "player_name": "Darko Milicic",
+          "team": "Memphis Grizzlies",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-AD",
+          "player_name": "Darrell Arthur",
+          "team": "Memphis Grizzlies",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-OM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-OM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-MR",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AM",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-MR",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AM",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-MR",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-AD",
+          "player_name": "Darrell Arthur",
+          "team": "Memphis Grizzlies",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-OM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-AD",
+          "player_name": "Darrell Arthur",
+          "team": "Memphis Grizzlies",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-OM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGH",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MBR",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MGB",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MRG",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RAC",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGH",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MBR",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MGB",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MRG",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RAC",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGH",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MBR",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MGB",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MRG",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RAC",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Darrell Arthur",
+          "team": "Memphis Grizzlies",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-KL",
+          "player_name": "Kyle Lowry",
+          "team": "Memphis Grizzlies",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-OM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Shawn Marion",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-WR",
+          "player_name": "Dorell Wright",
+          "team": "Miami Heat",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-MB",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-MC",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MB",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MC",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BR",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-RC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BR",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-RC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BR",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-RC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MB",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MC",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MB",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MC",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-BLA",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JWC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MBR",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RAC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RSC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-BLA",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JWC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MBR",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RAC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RSC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-BLA",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JWC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MBR",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RAC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RSC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-MB",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-MC",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-SM",
+          "player_name": "Shawn Marion",
+          "team": "Miami Heat",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-MW",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-MW",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-SM",
+          "player_name": "Shawn Marion",
+          "team": "Miami Heat",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Richard Jefferson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-BO",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-MR",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "Milwaukee Bucks",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AL",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GA",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AL",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GA",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AL",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GA",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ALA",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-BLA",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ALA",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-BLA",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ALA",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-BLA",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "Milwaukee Bucks",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-BO",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-RM",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-RM",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-BO",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Al Jefferson",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Corey Brewer",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "LI-KL",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KL",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AL",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-LW",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AL",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-LW",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AL",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-LW",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KL",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KL",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-BLA",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-BLA",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-BLA",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-AJ",
+          "player_name": "Al Jefferson",
+          "team": "Minnesota Timberwolves",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-RC",
+          "player_name": "Rodney Carney",
+          "team": "Minnesota Timberwolves",
+          "variation": "Scripted in Time",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-KL",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TD-EJ",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-EJ",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "93",
+          "player_name": "Chris Douglas-Roberts",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-DH",
+          "player_name": "Devin Harris",
+          "team": "New Jersey Nets",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-JH",
+          "player_name": "Jarvis Hayes",
+          "team": "New Jersey Nets",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-BL",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-CD",
+          "player_name": "Chris Douglas-Roberts",
+          "team": "New Jersey Nets",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-DD",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-LL",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-DA",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-DD",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-LL",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-DA",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-DD",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-LL",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BL",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-CD",
+          "player_name": "Chris Douglas-Roberts",
+          "team": "New Jersey Nets",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-BL",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-CD",
+          "player_name": "Chris Douglas-Roberts",
+          "team": "New Jersey Nets",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ALA",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-DWE",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-LAK",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-LDA",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RDD",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ALA",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-DWE",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-LAK",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-LDA",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RDD",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ALA",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-DWE",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-LAK",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-LDA",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RDD",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "93",
+          "player_name": "Chris Douglas-Roberts",
+          "team": "New Jersey Nets",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-BL",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-CD",
+          "player_name": "Chris Douglas-Roberts",
+          "team": "New Jersey Nets",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-DH",
+          "player_name": "Devin Harris",
+          "team": "New Jersey Nets",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-MW",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-MW",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DH",
+          "player_name": "Devin Harris",
+          "team": "New Jersey Nets",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "New Orleans Hornets",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SIT-HA",
+          "player_name": "Hilton Armstrong",
+          "team": "New Orleans Hornets",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TD-PT",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-PT",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-DW",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-WF",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-DL",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-ZR",
+          "player_name": "Zach Randolph",
+          "team": "New York Knicks",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-PE",
+          "player_name": "Patrick Ewing Jr.",
+          "team": "New York Knicks",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-HE",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-TE",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-HE",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-TE",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-PE",
+          "player_name": "Patrick Ewing Jr.",
+          "team": "New York Knicks",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-PE",
+          "player_name": "Patrick Ewing Jr.",
+          "team": "New York Knicks",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-DWE",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WES",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-DWE",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WES",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-DWE",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WES",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-DG",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-PE",
+          "player_name": "Patrick Ewing Jr.",
+          "team": "New York Knicks",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TD-EJ",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-MM",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-SP",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-EJ",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-MM",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-SP",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jeff Green",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "80",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-CW",
+          "player_name": "Chris Wilcox",
+          "team": "Oklahoma City Thunder",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-KD",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-JG",
+          "player_name": "Jeff Green",
+          "team": "Oklahoma City Thunder",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-KD",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-KW",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-LW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-LW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-WW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-LW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-WW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DW",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KW",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-DW",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KW",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ARW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JWC",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WES",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WGD",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ARW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JWC",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WES",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WGD",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-ARW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JWC",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WES",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-WGD",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "80",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-JG",
+          "player_name": "Jeff Green",
+          "team": "Oklahoma City Thunder",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-DW",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-JG",
+          "player_name": "Jeff Green",
+          "team": "Oklahoma City Thunder",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-KD",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-DD",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-DD",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-JG",
+          "player_name": "Jeff Green",
+          "team": "Oklahoma City Thunder",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-KD",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Hedo Turkoglu",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-RE",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-RL",
+          "player_name": "Rashard Lewis",
+          "team": "Orlando Magic",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-CL",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-RL",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-RL",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-CL",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-CL",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-LAK",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-LAK",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-LAK",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-HO",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-HO",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-HO",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JE",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-EB",
+          "player_name": "Elton Brand",
+          "team": "Philadelphia 76ers",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-TY",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-MS",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MS",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-TS",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-TS",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MS",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-MS",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RLS",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RSC",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RLS",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RSC",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RLS",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RSC",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-JS",
+          "player_name": "Jason Smith",
+          "team": "Philadelphia 76ers",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-MS",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-EB",
+          "player_name": "Elton Brand",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-EA",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-EA",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-EB",
+          "player_name": "Elton Brand",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-TC",
+          "player_name": "Tom Chambers",
+          "team": "Phoenix Suns",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-RL",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-LL",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-LL",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-LL",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-RL",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-RL",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JLK",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RLS",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JLK",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RLS",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JLK",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RLS",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-RL",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-GH",
+          "player_name": "Grant Hill",
+          "team": "Phoenix Suns",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-HO",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-SR",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-HO",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-SR",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-GH",
+          "player_name": "Grant Hill",
+          "team": "Phoenix Suns",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-BW",
+          "player_name": "Bill Walton",
+          "team": "Portland Trail Blazers",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-SR",
+          "player_name": "Sergio Rodriguez",
+          "team": "Portland Trail Blazers",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-JB",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JB",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AB",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BH",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AB",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BH",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-AB",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BH",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JB",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JB",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MGB",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RTB",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MGB",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RTB",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-MGB",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RTB",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-LA",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-JB",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TD-IR",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-IR",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Beno Udrih",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Kevin Martin",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-QD",
+          "player_name": "Quincy Douby",
+          "team": "Sacramento Kings",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-DG",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-JT",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-GR",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JT",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GD",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GD",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-TE",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-TS",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-GD",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-TE",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-TS",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-GR",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JT",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-GR",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JT",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGH",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-GWH",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RTB",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGH",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-GWH",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RTB",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGH",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-GWH",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-RTB",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-GR",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-JT",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "James Gist",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Malik Hairston",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Rookie Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BH",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-WH",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BH",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-WH",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-BH",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-WH",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGH",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-GWH",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGH",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-GWH",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-AGH",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-GWH",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "James Gist",
+          "team": "San Antonio Spurs",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Malik Hairston",
+          "team": "San Antonio Spurs",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-BB",
+          "player_name": "Bruce Bowen",
+          "team": "San Antonio Spurs",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-MH",
+          "player_name": "Malik Hairston",
+          "team": "San Antonio Spurs",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-SP",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-SR",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-SP",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-SR",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jermaine O'Neal",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-JM",
+          "player_name": "Jamario Moon",
+          "team": "Toronto Raptors",
+          "variation": "Authorization",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-AB",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Toronto Raptors",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-AB",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-CH",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-AB",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Kosta Koufos",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-MA",
+          "player_name": "Morris Almond",
+          "team": "Utah Jazz",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-MO",
+          "player_name": "Mehmet Okur",
+          "team": "Utah Jazz",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-KK",
+          "player_name": "Kosta Koufos",
+          "team": "Utah Jazz",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KK",
+          "player_name": "Kosta Koufos",
+          "team": "Utah Jazz",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-KK",
+          "player_name": "Kosta Koufos",
+          "team": "Utah Jazz",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JLK",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-LAK",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JLK",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-LAK",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-JLK",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-LAK",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Kosta Koufos",
+          "team": "Utah Jazz",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SIT-PM",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": "Scripted in Time",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-KK",
+          "player_name": "Kosta Koufos",
+          "team": "Utah Jazz",
+          "variation": "Signing Day",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-HK",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-MB",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-WS",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-HK",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-MB",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-WS",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BL-CB",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BL-NY",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "By the Letter",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LI-JM",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": "Letters of Introduction",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-HM",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Rookie Threads Dual Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTD-HM",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Rookie Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JM",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": "Rookie Threads Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RT-JM",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": "Rookie Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HMH",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Rookie Threads Triple",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HMH",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Rookie Threads Triple Parallel",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RTT-HMH",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Rookie Threads Triple Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": "Rookies Parallel",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "T-CB",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "SP Threads",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-EA",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "SP Threads Dual",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TD-EA",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "SP Threads Dual Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "T-CB",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "SP Threads Patch",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

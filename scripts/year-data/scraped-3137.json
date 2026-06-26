@@ -1,0 +1,6646 @@
+{
+  "year": 2005,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3137,
+        "name": "2005-06 UD Portraits"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Al Harrington",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tyronn Lue",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Salim Stoudamire",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Al Harrington",
+          "team": "Atlanta Hawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tyronn Lue",
+          "team": "Atlanta Hawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Salim Stoudamire",
+          "team": "Atlanta Hawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Al Harrington",
+          "team": "Atlanta Hawks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tyronn Lue",
+          "team": "Atlanta Hawks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Salim Stoudamire",
+          "team": "Atlanta Hawks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-MA",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-MA",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MA",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-MA",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-WI",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-WI",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-24",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Al Harrington",
+          "team": "Atlanta Hawks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tyronn Lue",
+          "team": "Atlanta Hawks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Salim Stoudamire",
+          "team": "Atlanta Hawks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Jefferson",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Dan Dickau",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Gary Payton",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Ryan Gomes",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Jefferson",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Dan Dickau",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Gary Payton",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Ryan Gomes",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Jefferson",
+          "team": "Boston Celtics",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Dan Dickau",
+          "team": "Boston Celtics",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Gary Payton",
+          "team": "Boston Celtics",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Ryan Gomes",
+          "team": "Boston Celtics",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-GG",
+          "player_name": "Gerald Green",
+          "team": "Boston Celtics",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-GG",
+          "player_name": "Gerald Green",
+          "team": "Boston Celtics",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SB-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-GG",
+          "player_name": "Gerald Green",
+          "team": "Boston Celtics",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-GG",
+          "player_name": "Gerald Green",
+          "team": "Boston Celtics",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Jefferson",
+          "team": "Boston Celtics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Dan Dickau",
+          "team": "Boston Celtics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Gary Payton",
+          "team": "Boston Celtics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Ryan Gomes",
+          "team": "Boston Celtics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Brevin Knight",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Brevin Knight",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Brevin Knight",
+          "team": "Charlotte Bobcats",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-SM",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SB-SM",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-SM",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-SM",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-SM",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-11",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Brevin Knight",
+          "team": "Charlotte Bobcats",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DE",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MJ1",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MJ2",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-SP",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DE",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MJ1",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MJ2",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-SP",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-14",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-26",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Damon Jones",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Donyell Marshall",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Drew Gooden",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Damon Jones",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Donyell Marshall",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Drew Gooden",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Damon Jones",
+          "team": "Cleveland Cavaliers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Donyell Marshall",
+          "team": "Cleveland Cavaliers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Drew Gooden",
+          "team": "Cleveland Cavaliers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-ES",
+          "player_name": "Eric Snow",
+          "team": "Cleveland Cavaliers",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-LJ1",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-LJ2",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-LJ1",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-LJ2",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Damon Jones",
+          "team": "Cleveland Cavaliers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Donyell Marshall",
+          "team": "Cleveland Cavaliers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Drew Gooden",
+          "team": "Cleveland Cavaliers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-JA",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Marcus Camby",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Julius Hodge",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Linas Kleiza",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Marcus Camby",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Julius Hodge",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Linas Kleiza",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Marcus Camby",
+          "team": "Denver Nuggets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Julius Hodge",
+          "team": "Denver Nuggets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Linas Kleiza",
+          "team": "Denver Nuggets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-KM",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SB-JH",
+          "player_name": "Julius Hodge",
+          "team": "Denver Nuggets",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JH",
+          "player_name": "Julius Hodge",
+          "team": "Denver Nuggets",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-JH",
+          "player_name": "Julius Hodge",
+          "team": "Denver Nuggets",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JH",
+          "player_name": "Julius Hodge",
+          "team": "Denver Nuggets",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JH",
+          "player_name": "Julius Hodge",
+          "team": "Denver Nuggets",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-10",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Marcus Camby",
+          "team": "Denver Nuggets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Julius Hodge",
+          "team": "Denver Nuggets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Linas Kleiza",
+          "team": "Denver Nuggets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Jason Maxiell",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Jason Maxiell",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Jason Maxiell",
+          "team": "Detroit Pistons",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-RW",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-JM",
+          "player_name": "Jason Maxiell",
+          "team": "Detroit Pistons",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JA",
+          "player_name": "Jason Maxiell",
+          "team": "Detroit Pistons",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-JA",
+          "player_name": "Jason Maxiell",
+          "team": "Detroit Pistons",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CB",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RH",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CB",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RH",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Jason Maxiell",
+          "team": "Detroit Pistons",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Larry Hughes",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Troy Murphy",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Chris Taft",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Ike Diogu",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Larry Hughes",
+          "team": "Golden State Warriors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Troy Murphy",
+          "team": "Golden State Warriors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Chris Taft",
+          "team": "Golden State Warriors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Ike Diogu",
+          "team": "Golden State Warriors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Larry Hughes",
+          "team": "Golden State Warriors",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Troy Murphy",
+          "team": "Golden State Warriors",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Chris Taft",
+          "team": "Golden State Warriors",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Ike Diogu",
+          "team": "Golden State Warriors",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-DF",
+          "player_name": "Derek Fisher",
+          "team": "Golden State Warriors",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-ID",
+          "player_name": "Ike Diogu",
+          "team": "Golden State Warriors",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CT",
+          "player_name": "Chris Taft",
+          "team": "Golden State Warriors",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-ME",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SP-ID",
+          "player_name": "Ike Diogu",
+          "team": "Golden State Warriors",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-ID",
+          "player_name": "Ike Diogu",
+          "team": "Golden State Warriors",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Larry Hughes",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Troy Murphy",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Chris Taft",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Ike Diogu",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Bob Sura",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Luther Head",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Bob Sura",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Luther Head",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Bob Sura",
+          "team": "Houston Rockets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Luther Head",
+          "team": "Houston Rockets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-DA",
+          "player_name": "David Wesley",
+          "team": "Houston Rockets",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-LH",
+          "player_name": "Luther Head",
+          "team": "Houston Rockets",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-HO",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-HO",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-16",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-21",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-23",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Bob Sura",
+          "team": "Houston Rockets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Luther Head",
+          "team": "Houston Rockets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Sarunas Jasikevicius",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Sarunas Jasikevicius",
+          "team": "Indiana Pacers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Sarunas Jasikevicius",
+          "team": "Indiana Pacers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-DG",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-JT",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-DG",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DG",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-DG",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DG",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DG",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Sarunas Jasikevicius",
+          "team": "Indiana Pacers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Cuttino Mobley",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Sam Cassell",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Daniel Ewing",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "James Singleton",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Yaroslav Korolev",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Cuttino Mobley",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Sam Cassell",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Daniel Ewing",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "James Singleton",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Yaroslav Korolev",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Cuttino Mobley",
+          "team": "Los Angeles Clippers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Sam Cassell",
+          "team": "Los Angeles Clippers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Daniel Ewing",
+          "team": "Los Angeles Clippers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "James Singleton",
+          "team": "Los Angeles Clippers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Yaroslav Korolev",
+          "team": "Los Angeles Clippers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-EB",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-DE",
+          "player_name": "Daniel Ewing",
+          "team": "Los Angeles Clippers",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DE",
+          "player_name": "Daniel Ewing",
+          "team": "Los Angeles Clippers",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-DE",
+          "player_name": "Daniel Ewing",
+          "team": "Los Angeles Clippers",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Cuttino Mobley",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Sam Cassell",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Daniel Ewing",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "James Singleton",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Yaroslav Korolev",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-AM",
+          "player_name": "Aaron McKie",
+          "team": "Los Angeles Lakers",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-LW",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-AN",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AN",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-KA",
+          "player_name": "Kareem Abdul-Jabbar",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AN",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-KA",
+          "player_name": "Kareem Abdul-Jabbar",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Hakim Warrick",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Hakim Warrick",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Hakim Warrick",
+          "team": "Memphis Grizzlies",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-HW",
+          "player_name": "Hakim Warrick",
+          "team": "Memphis Grizzlies",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-HK",
+          "player_name": "Hakim Warrick",
+          "team": "Memphis Grizzlies",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DSP-10",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Hakim Warrick",
+          "team": "Memphis Grizzlies",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jason Williams",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Wayne Simien",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jason Williams",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Wayne Simien",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jason Williams",
+          "team": "Miami Heat",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Wayne Simien",
+          "team": "Miami Heat",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-WS",
+          "player_name": "Wayne Simien",
+          "team": "Miami Heat",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-GP",
+          "player_name": "Gary Payton",
+          "team": "Miami Heat",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-UH",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-WS",
+          "player_name": "Wayne Simien",
+          "team": "Miami Heat",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-GP",
+          "player_name": "Gary Payton",
+          "team": "Miami Heat",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-WS",
+          "player_name": "Wayne Simien",
+          "team": "Miami Heat",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-14",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jason Williams",
+          "team": "Miami Heat",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Wayne Simien",
+          "team": "Miami Heat",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Maurice Williams",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Ersan Ilyasova",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Maurice Williams",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Ersan Ilyasova",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Maurice Williams",
+          "team": "Milwaukee Bucks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Ersan Ilyasova",
+          "team": "Milwaukee Bucks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-AB",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-JM",
+          "player_name": "Jamaal Magloire",
+          "team": "Milwaukee Bucks",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-AB",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SB-EI",
+          "player_name": "Ersan Ilyasova",
+          "team": "Milwaukee Bucks",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AB",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JM",
+          "player_name": "Jamaal Magloire",
+          "team": "Milwaukee Bucks",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-AB",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AB",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AB",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-16",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Maurice Williams",
+          "team": "Milwaukee Bucks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Ersan Ilyasova",
+          "team": "Milwaukee Bucks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Eddie Griffin",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Rashad McCants",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Eddie Griffin",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Rashad McCants",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Eddie Griffin",
+          "team": "Minnesota Timberwolves",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Rashad McCants",
+          "team": "Minnesota Timberwolves",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-RM",
+          "player_name": "Rashad McCants",
+          "team": "Minnesota Timberwolves",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-RM",
+          "player_name": "Rashad McCants",
+          "team": "Minnesota Timberwolves",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-RM",
+          "player_name": "Rashad McCants",
+          "team": "Minnesota Timberwolves",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RM",
+          "player_name": "Rashad McCants",
+          "team": "Minnesota Timberwolves",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RM",
+          "player_name": "Rashad McCants",
+          "team": "Minnesota Timberwolves",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Eddie Griffin",
+          "team": "Minnesota Timberwolves",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Rashad McCants",
+          "team": "Minnesota Timberwolves",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Antoine Wright",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Antoine Wright",
+          "team": "New Jersey Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Antoine Wright",
+          "team": "New Jersey Nets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-AW",
+          "player_name": "Antoine Wright",
+          "team": "New Jersey Nets",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AW",
+          "player_name": "Antoine Wright",
+          "team": "New Jersey Nets",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Antoine Wright",
+          "team": "New Jersey Nets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Desmond Mason",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Brandon Bass",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Desmond Mason",
+          "team": "New Orleans Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Brandon Bass",
+          "team": "New Orleans Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Desmond Mason",
+          "team": "New Orleans Hornets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Brandon Bass",
+          "team": "New Orleans Hornets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-BB",
+          "player_name": "Brandon Bass",
+          "team": "New Orleans Hornets",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SB-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JR",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-JR",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-22",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Desmond Mason",
+          "team": "New Orleans Hornets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Brandon Bass",
+          "team": "New Orleans Hornets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jalen Rose",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Nate Robinson",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jalen Rose",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Nate Robinson",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jalen Rose",
+          "team": "New York Knicks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Nate Robinson",
+          "team": "New York Knicks",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-CF",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-QR",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-DL",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SB-ST",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CF",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-QR",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-QR",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-BK",
+          "player_name": "Bernard King",
+          "team": "New York Knicks",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-ST",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-WF",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-WR",
+          "player_name": "Willis Reed",
+          "team": "New York Knicks",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-BK",
+          "player_name": "Bernard King",
+          "team": "New York Knicks",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-ST",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-WF",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-WR",
+          "player_name": "Willis Reed",
+          "team": "New York Knicks",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-12",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jalen Rose",
+          "team": "New York Knicks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Nate Robinson",
+          "team": "New York Knicks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Travis Diener",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Travis Diener",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Travis Diener",
+          "team": "Orlando Magic",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-KD",
+          "player_name": "Keyon Dooling",
+          "team": "Orlando Magic",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JN",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JN",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Travis Diener",
+          "team": "Orlando Magic",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chris Webber",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Kyle Korver",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Louis Williams",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chris Webber",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Kyle Korver",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Louis Williams",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chris Webber",
+          "team": "Philadelphia 76ers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Kyle Korver",
+          "team": "Philadelphia 76ers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Louis Williams",
+          "team": "Philadelphia 76ers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-CW",
+          "player_name": "Chris Webber",
+          "team": "Philadelphia 76ers",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-LW",
+          "player_name": "Louis Williams",
+          "team": "Philadelphia 76ers",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LW",
+          "player_name": "Louis Williams",
+          "team": "Philadelphia 76ers",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-LW",
+          "player_name": "Louis Williams",
+          "team": "Philadelphia 76ers",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AI",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AI",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chris Webber",
+          "team": "Philadelphia 76ers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Kyle Korver",
+          "team": "Philadelphia 76ers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Louis Williams",
+          "team": "Philadelphia 76ers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Kurt Thomas",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Raja Bell",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Dijon Thompson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Kurt Thomas",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Raja Bell",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Dijon Thompson",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Kurt Thomas",
+          "team": "Phoenix Suns",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Raja Bell",
+          "team": "Phoenix Suns",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Dijon Thompson",
+          "team": "Phoenix Suns",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-SH",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-DT",
+          "player_name": "Dijon Thompson",
+          "team": "Phoenix Suns",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SB-SN",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SH",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-SH",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-SH",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-SN",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-SH",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-SN",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Kurt Thomas",
+          "team": "Phoenix Suns",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Raja Bell",
+          "team": "Phoenix Suns",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Dijon Thompson",
+          "team": "Phoenix Suns",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Jarrett Jack",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Jarrett Jack",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Jarrett Jack",
+          "team": "Portland Trail Blazers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-MW",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-JJ",
+          "player_name": "Jarrett Jack",
+          "team": "Portland Trail Blazers",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SB-MW",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JJ",
+          "player_name": "Jarrett Jack",
+          "team": "Portland Trail Blazers",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MW",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-JJ",
+          "player_name": "Jarrett Jack",
+          "team": "Portland Trail Blazers",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-MW",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JJ",
+          "player_name": "Jarrett Jack",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MW",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-SE",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JJ",
+          "player_name": "Jarrett Jack",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MW",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-SE",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-19",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-22",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Jarrett Jack",
+          "team": "Portland Trail Blazers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Francisco Garcia",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Gerald Green",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Francisco Garcia",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Gerald Green",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Sacramento Kings",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Francisco Garcia",
+          "team": "Sacramento Kings",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Gerald Green",
+          "team": "Sacramento Kings",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-FG",
+          "player_name": "Francisco Garcia",
+          "team": "Sacramento Kings",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SB-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-FG",
+          "player_name": "Francisco Garcia",
+          "team": "Sacramento Kings",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-FG",
+          "player_name": "Francisco Garcia",
+          "team": "Sacramento Kings",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-24",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Sacramento Kings",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Francisco Garcia",
+          "team": "Sacramento Kings",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Gerald Green",
+          "team": "Sacramento Kings",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Michael Finley",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Michael Finley",
+          "team": "San Antonio Spurs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Michael Finley",
+          "team": "San Antonio Spurs",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SP-DR",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DR",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Michael Finley",
+          "team": "San Antonio Spurs",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-JP",
+          "player_name": "Johan Petro",
+          "team": "Seattle SuperSonics",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Charlie Villanueva",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Jose Calderon",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Joey Graham",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Charlie Villanueva",
+          "team": "Toronto Raptors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Jose Calderon",
+          "team": "Toronto Raptors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Joey Graham",
+          "team": "Toronto Raptors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Charlie Villanueva",
+          "team": "Toronto Raptors",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Jose Calderon",
+          "team": "Toronto Raptors",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Joey Graham",
+          "team": "Toronto Raptors",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-JG",
+          "player_name": "Joey Graham",
+          "team": "Toronto Raptors",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CV",
+          "player_name": "Charlie Villanueva",
+          "team": "Toronto Raptors",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JG",
+          "player_name": "Joey Graham",
+          "team": "Toronto Raptors",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-JG",
+          "player_name": "Joey Graham",
+          "team": "Toronto Raptors",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JG",
+          "player_name": "Joey Graham",
+          "team": "Toronto Raptors",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JG",
+          "player_name": "Joey Graham",
+          "team": "Toronto Raptors",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Charlie Villanueva",
+          "team": "Toronto Raptors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Jose Calderon",
+          "team": "Toronto Raptors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Joey Graham",
+          "team": "Toronto Raptors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "C.J. Miles",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "C.J. Miles",
+          "team": "Utah Jazz",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "C.J. Miles",
+          "team": "Utah Jazz",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-CM",
+          "player_name": "C.J. Miles",
+          "team": "Utah Jazz",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-DE",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-CJ",
+          "player_name": "C.J. Miles",
+          "team": "Utah Jazz",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SB-DW",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DW",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-DW",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DW",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DW",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-23",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "C.J. Miles",
+          "team": "Utah Jazz",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SP-EH",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "Signature Portraits 8x10",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-EH",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "Signature Portraits 8x10 Black and White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-20",
+          "player_name": "Washington Bullets",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Andray Blatche",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Andray Blatche",
+          "team": "Washington Wizards",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Andray Blatche",
+          "team": "Washington Wizards",
+          "variation": "Holofoil",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-CB",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Material Moments",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SB-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Scrapbook Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Scrapbook Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Scrapbook Swatches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-11",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DSP-20",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Signature Portraits 8x10 Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Andray Blatche",
+          "team": "Washington Wizards",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

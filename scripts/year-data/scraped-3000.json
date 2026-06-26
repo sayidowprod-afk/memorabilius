@@ -1,0 +1,3566 @@
+{
+  "year": 2002,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3000,
+        "name": "2002-03 Flair"
+      },
+      "unique": [
+        {
+          "card_number": "13",
+          "player_name": "Glenn Robinson",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Dan Dickau",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Glenn Robinson",
+          "team": "Atlanta Hawks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Dan Dickau",
+          "team": "Atlanta Hawks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Glenn Robinson",
+          "team": "Atlanta Hawks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Dan Dickau",
+          "team": "Atlanta Hawks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Vin Baker",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Kedrick Brown",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-AW",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HN-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Hot Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JH-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Jersey Heights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Vin Baker",
+          "team": "Boston Celtics",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Kedrick Brown",
+          "team": "Boston Celtics",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Vin Baker",
+          "team": "Boston Celtics",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Kedrick Brown",
+          "team": "Boston Celtics",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jay Williams",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jay Williams",
+          "team": "Chicago Bulls",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jay Williams",
+          "team": "Chicago Bulls",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Jumaine Jones",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-DM",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JH-DM",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Jersey Heights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Jumaine Jones",
+          "team": "Cleveland Cavaliers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Jumaine Jones",
+          "team": "Cleveland Cavaliers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOF-DW",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Wave of the Future Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOFP-DW",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Wave of the Future Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Wang Zhizhi",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HN-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Hot Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JH-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Jersey Heights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Wang Zhizhi",
+          "team": "Dallas Mavericks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Wang Zhizhi",
+          "team": "Dallas Mavericks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SN",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SN",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Juwan Howard",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Mengke Bateer",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Nene Hilario",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Nikoloz Tskitishvili",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Juwan Howard",
+          "team": "Denver Nuggets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Mengke Bateer",
+          "team": "Denver Nuggets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Nene Hilario",
+          "team": "Denver Nuggets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Nikoloz Tskitishvili",
+          "team": "Denver Nuggets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Juwan Howard",
+          "team": "Denver Nuggets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Mengke Bateer",
+          "team": "Denver Nuggets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Nene Hilario",
+          "team": "Denver Nuggets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Nikoloz Tskitishvili",
+          "team": "Denver Nuggets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOF-NH",
+          "player_name": "Nene Hilario",
+          "team": "Denver Nuggets",
+          "variation": "Wave of the Future Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOF-NT",
+          "player_name": "Nikoloz Tskitishvili",
+          "team": "Denver Nuggets",
+          "variation": "Wave of the Future Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOFP-NH",
+          "player_name": "Nene Hilario",
+          "team": "Denver Nuggets",
+          "variation": "Wave of the Future Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOFP-NT",
+          "player_name": "Nikoloz Tskitishvili",
+          "team": "Denver Nuggets",
+          "variation": "Wave of the Future Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Chucky Atkins",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-JS",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Chucky Atkins",
+          "team": "Detroit Pistons",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Chucky Atkins",
+          "team": "Detroit Pistons",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Mike Dunleavy Jr.",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jiri Welsch",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-AJ",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jiri Welsch",
+          "team": "Golden State Warriors",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Jiri Welsch",
+          "team": "Golden State Warriors",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Bostjan Nachbar",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Bostjan Nachbar",
+          "team": "Houston Rockets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Bostjan Nachbar",
+          "team": "Houston Rockets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Fred Jones",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Fred Jones",
+          "team": "Indiana Pacers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Fred Jones",
+          "team": "Indiana Pacers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JT",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JT",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Andre Miller",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Quentin Richardson",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Melvin Ely",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-EB",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HN-DM",
+          "player_name": "Darius Miles",
+          "team": "Los Angeles Clippers",
+          "variation": "Hot Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Andre Miller",
+          "team": "Los Angeles Clippers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Quentin Richardson",
+          "team": "Los Angeles Clippers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Melvin Ely",
+          "team": "Los Angeles Clippers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Andre Miller",
+          "team": "Los Angeles Clippers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Quentin Richardson",
+          "team": "Los Angeles Clippers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Melvin Ely",
+          "team": "Los Angeles Clippers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOF-CW",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": "Wave of the Future Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOFP-CW",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": "Wave of the Future Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Robert Horry",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Kareem Rush",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Robert Horry",
+          "team": "Los Angeles Lakers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Kareem Rush",
+          "team": "Los Angeles Lakers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Robert Horry",
+          "team": "Los Angeles Lakers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Kareem Rush",
+          "team": "Los Angeles Lakers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Drew Gooden",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Gordan Giricek",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HN-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Hot Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JH-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Jersey Heights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Drew Gooden",
+          "team": "Memphis Grizzlies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Gordan Giricek",
+          "team": "Memphis Grizzlies",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Drew Gooden",
+          "team": "Memphis Grizzlies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Gordan Giricek",
+          "team": "Memphis Grizzlies",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOF-DG",
+          "player_name": "Drew Gooden",
+          "team": "Memphis Grizzlies",
+          "variation": "Wave of the Future Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOFP-DG",
+          "player_name": "Drew Gooden",
+          "team": "Memphis Grizzlies",
+          "variation": "Wave of the Future Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Brian Grant",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-EJ",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Brian Grant",
+          "team": "Miami Heat",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Brian Grant",
+          "team": "Miami Heat",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOF-CB",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Wave of the Future Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOFP-CB",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Wave of the Future Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Toni Kukoc",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Marcus Haislip",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-RA",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Toni Kukoc",
+          "team": "Milwaukee Bucks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Marcus Haislip",
+          "team": "Milwaukee Bucks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Toni Kukoc",
+          "team": "Milwaukee Bucks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Marcus Haislip",
+          "team": "Milwaukee Bucks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Rasho Nesterovic",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Rasho Nesterovic",
+          "team": "Minnesota Timberwolves",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Rasho Nesterovic",
+          "team": "Minnesota Timberwolves",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Dikembe Mutombo",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-KM",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HN-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Hot Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Dikembe Mutombo",
+          "team": "New Jersey Nets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Dikembe Mutombo",
+          "team": "New Jersey Nets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KM",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KM",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "David Wesley",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "David Wesley",
+          "team": "New Orleans Hornets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "David Wesley",
+          "team": "New Orleans Hornets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Antonio McDyess",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Frank Williams",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-LS",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Antonio McDyess",
+          "team": "New York Knicks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Frank Williams",
+          "team": "New York Knicks",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Antonio McDyess",
+          "team": "New York Knicks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Frank Williams",
+          "team": "New York Knicks",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Ryan Humphrey",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HN-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Hot Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JH-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Jersey Heights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Ryan Humphrey",
+          "team": "Orlando Magic",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Ryan Humphrey",
+          "team": "Orlando Magic",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MM",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MM",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Keith Van Horn",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Aaron McKie",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "John Salmons",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HN-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Hot Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JH-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Jersey Heights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Keith Van Horn",
+          "team": "Philadelphia 76ers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Aaron McKie",
+          "team": "Philadelphia 76ers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "John Salmons",
+          "team": "Philadelphia 76ers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Keith Van Horn",
+          "team": "Philadelphia 76ers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Aaron McKie",
+          "team": "Philadelphia 76ers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "John Salmons",
+          "team": "Philadelphia 76ers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Casey Jacobsen",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "JH-JK",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Jersey Heights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Amare Stoudemire",
+          "team": "PHOENIX SUNS",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Casey Jacobsen",
+          "team": "Phoenix Suns",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Amare Stoudemire",
+          "team": "PHOENIX SUNS",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Casey Jacobsen",
+          "team": "Phoenix Suns",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOF-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Wave of the Future Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOFP-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Wave of the Future Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Qyntel Woods",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Qyntel Woods",
+          "team": "Portland Trail Blazers",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Qyntel Woods",
+          "team": "Portland Trail Blazers",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Hedo Turkoglu",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-CW",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Hedo Turkoglu",
+          "team": "Sacramento Kings",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Hedo Turkoglu",
+          "team": "Sacramento Kings",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-HT",
+          "player_name": "Hedo Turkoglu",
+          "team": "Sacramento Kings",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-HT",
+          "player_name": "Hedo Turkoglu",
+          "team": "Sacramento Kings",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Steve Smith",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Steve Smith",
+          "team": "San Antonio Spurs",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Emanuel Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Steve Smith",
+          "team": "San Antonio Spurs",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Joseph Forte",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Joseph Forte",
+          "team": "Seattle SuperSonics",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Joseph Forte",
+          "team": "Seattle SuperSonics",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Alvin Williams",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Chris Jefferies",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HN-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Hot Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JH-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Jersey Heights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Alvin Williams",
+          "team": "Toronto Raptors",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Chris Jefferies",
+          "team": "Toronto Raptors",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Alvin Williams",
+          "team": "Toronto Raptors",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Chris Jefferies",
+          "team": "Toronto Raptors",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Sweet Swatch Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Sweet Swatch Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Curtis Borchardt",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CK-KM",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Court Kings Game Used",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Curtis Borchardt",
+          "team": "Utah Jazz",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Curtis Borchardt",
+          "team": "Utah Jazz",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Jared Jeffries",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Juan Dixon",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Jared Jeffries",
+          "team": "Washington Wizards",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Juan Dixon",
+          "team": "Washington Wizards",
+          "variation": "Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Jared Jeffries",
+          "team": "Washington Wizards",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Juan Dixon",
+          "team": "Washington Wizards",
+          "variation": "Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOF-JJ",
+          "player_name": "Jared Jeffries",
+          "team": "Washington Wizards",
+          "variation": "Wave of the Future Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WOFP-JJ",
+          "player_name": "Jared Jeffries",
+          "team": "Washington Wizards",
+          "variation": "Wave of the Future Patches",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

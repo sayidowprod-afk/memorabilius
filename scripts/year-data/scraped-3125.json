@@ -1,0 +1,4526 @@
+{
+  "year": 2005,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3125,
+        "name": "2005-06 SPx"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Al Harrington",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Esteban Batista",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Salim Stoudamire",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "154",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Al Harrington",
+          "team": "Atlanta Hawks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Esteban Batista",
+          "team": "Atlanta Hawks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Salim Stoudamire",
+          "team": "Atlanta Hawks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "154",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-MW",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-MW",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-MW",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Dan Dickau",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Orien Greene",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Gerald Green",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "144",
+          "player_name": "Ryan Gomes",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Dan Dickau",
+          "team": "Boston Celtics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Orien Greene",
+          "team": "Boston Celtics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Gerald Green",
+          "team": "Boston Celtics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "144",
+          "player_name": "Ryan Gomes",
+          "team": "Boston Celtics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-GG",
+          "player_name": "Gerald Green",
+          "team": "Boston Celtics",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-GG",
+          "player_name": "Gerald Green",
+          "team": "Boston Celtics",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-PJ",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-GW",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWC-PJ",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-PJ",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-GG",
+          "player_name": "Gerald Green",
+          "team": "Boston Celtics",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Kareem Rush",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Alan Anderson",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "151",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-SE",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Kareem Rush",
+          "team": "Charlotte Bobcats",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Alan Anderson",
+          "team": "Charlotte Bobcats",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Sean May",
+          "team": "Charlotte Bobcats",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "151",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-RW",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-PF",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-RW",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Eddie Basden",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-KH",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Eddie Basden",
+          "team": "Chicago Bulls",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWM-KH",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWM-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-DC",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-GH",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-JJ",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-GH",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWC-GJ",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWC-JJ",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-DC",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-GH",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-JJ",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Drew Gooden",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Larry Hughes",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Martynas Andriuskevicius",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Drew Gooden",
+          "team": "Cleveland Cavaliers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Larry Hughes",
+          "team": "Cleveland Cavaliers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Martynas Andriuskevicius",
+          "team": "Cleveland Cavaliers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-ZI",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-JI",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-JJ",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-WS",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-GJ",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWC-JJ",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-JI",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-JJ",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-WS",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-ZI",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Keith Van Horn",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Josh Powell",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Keith Van Horn",
+          "team": "Dallas Mavericks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-NT",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-TH",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-NT",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-TH",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Linas Kleiza",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Julius Hodge",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Linas Kleiza",
+          "team": "Denver Nuggets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Julius Hodge",
+          "team": "Denver Nuggets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-KM",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-AN",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-KM",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-AN",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-KM",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-KM",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Amir Johnson",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Alex Acker",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Jason Maxiell",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-CB",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-RH",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Amir Johnson",
+          "team": "Detroit Pistons",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Alex Acker",
+          "team": "Detroit Pistons",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Jason Maxiell",
+          "team": "Detroit Pistons",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWM-CB",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-BH",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-BH",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Troy Murphy",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Chris Taft",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Ike Diogu",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Aaron Miles",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-BD",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-QR",
+          "player_name": "Quentin Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Troy Murphy",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Chris Taft",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Ike Diogu",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Aaron Miles",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-BD",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-RD",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-RD",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-BD",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "David Wesley",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Rafer Alston",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Luther Head",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-HO",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "David Wesley",
+          "team": "Houston Rockets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Luther Head",
+          "team": "Houston Rockets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWM-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-BS",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-MY",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-WW",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-YO",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-MY",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-BS",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-MY",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-WW",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-YO",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Sarunas Jasikevicius",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "140",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Sarunas Jasikevicius",
+          "team": "Indiana Pacers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "140",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-OT",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-OT",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Sam Cassell",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "James Singleton",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Yaroslav Korolev",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Daniel Ewing",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Sam Cassell",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "James Singleton",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Yaroslav Korolev",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Daniel Ewing",
+          "team": "Los Angeles Clippers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-EB",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-CL",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-MB",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-CL",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-MB",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-EB",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Von Wafer",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-LO",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-MA",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Von Wafer",
+          "team": "Los Angeles Lakers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-BB",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-GC",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-BB",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-GC",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Eddie Jones",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Damon Stoudamire",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Lawrence Roberts",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Hakim Warrick",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Eddie Jones",
+          "team": "Memphis Grizzlies",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Damon Stoudamire",
+          "team": "Memphis Grizzlies",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Lawrence Roberts",
+          "team": "Memphis Grizzlies",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Hakim Warrick",
+          "team": "Memphis Grizzlies",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-GB",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWC-GW",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Antoine Walker",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Gary Payton",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jason Williams",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Earl Barron",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Matt Walsh",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Wayne Simien",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-UH",
+          "player_name": "Udonis Haslem",
+          "team": "Miami Heat",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Antoine Walker",
+          "team": "Miami Heat",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Gary Payton",
+          "team": "Miami Heat",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Earl Barron",
+          "team": "Miami Heat",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Matt Walsh",
+          "team": "Miami Heat",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Wayne Simien",
+          "team": "Miami Heat",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-HW",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-WP",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-YO",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-HW",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-WP",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-YO",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Bobby Simmons",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Ersan Ilyasova",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Bobby Simmons",
+          "team": "Milwaukee Bucks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Ersan Ilyasova",
+          "team": "Milwaukee Bucks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-AB",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-AB",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWC-BF",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-AB",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Bracey Wright",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Dwayne Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Rashad McCants",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Bracey Wright",
+          "team": "Minnesota Timberwolves",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Dwayne Jones",
+          "team": "Minnesota Timberwolves",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Josh Powell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Rashad McCants",
+          "team": "Minnesota Timberwolves",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-GS",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-MW",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-GS",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Antoine Wright",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Antoine Wright",
+          "team": "New Jersey Nets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-KJ",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-WM",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWC-WW",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-KJ",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Arvydas Macijauskas",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Brandon Bass",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "153",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-JR",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Arvydas Macijauskas",
+          "team": "New Orleans Hornets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Brandon Bass",
+          "team": "New Orleans Hornets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "153",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-SM",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-PF",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWC-SM",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-SM",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Nate Robinson",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "137",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "142",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-ST",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-WF",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Nate Robinson",
+          "team": "New York Knicks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "137",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "142",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-QR",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-ST",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-QR",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-HM",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-BF",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-HM",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-QR",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-ST",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Travis Diener",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Travis Diener",
+          "team": "Orlando Magic",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-GH",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-FN",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-HH",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-HN",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-FN",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-HH",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-GH",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Chris Webber",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Shavlik Randolph",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Louis Williams",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Chris Webber",
+          "team": "Philadelphia 76ers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Shavlik Randolph",
+          "team": "Philadelphia 76ers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Louis Williams",
+          "team": "Philadelphia 76ers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-CW",
+          "player_name": "Chris Webber",
+          "team": "Philadelphia 76ers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-DW",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-DW",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-CW",
+          "player_name": "Chris Webber",
+          "team": "Philadelphia 76ers",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Dijon Thompson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-SN",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "68",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Dijon Thompson",
+          "team": "Phoenix Suns",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-SM",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-SN",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-SN",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-MS",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-NR",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-NR",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-MS",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-NR",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-SM",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-SN",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Jarrett Jack",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "147",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Jarrett Jack",
+          "team": "Portland Trail Blazers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "147",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-RM",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-WM",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWC-WW",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-RM",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Ronnie Price",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Francisco Garcia",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Sacramento Kings",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Ronnie Price",
+          "team": "Sacramento Kings",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Francisco Garcia",
+          "team": "Sacramento Kings",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWM-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-BP",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-MS",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-BP",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Fabricio Oberto",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-DR",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Fabricio Oberto",
+          "team": "San Antonio Spurs",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-MF",
+          "player_name": "Michael Finley",
+          "team": "San Antonio Spurs",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-DG",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-PU",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-DG",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-PU",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-MF",
+          "player_name": "Michael Finley",
+          "team": "San Antonio Spurs",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-MG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Johan Petro",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Johan Petro",
+          "team": "Seattle SuperSonics",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RL",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-AL",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-RR",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-AL",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-RR",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RL",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jose Calderon",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Joey Graham",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "150",
+          "player_name": "Charlie Villanueva",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-CH",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "83",
+          "player_name": "Rafer Alston",
+          "team": "Toronto Raptors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jose Calderon",
+          "team": "Toronto Raptors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Joey Graham",
+          "team": "Toronto Raptors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "150",
+          "player_name": "Charlie Villanueva",
+          "team": "Toronto Raptors",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-CH",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-RA",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-RA",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Matt Harpring",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Robert Whaley",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "C.J. Miles",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "149",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-BO",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Matt Harpring",
+          "team": "Utah Jazz",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Robert Whaley",
+          "team": "Utah Jazz",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "C.J. Miles",
+          "team": "Utah Jazz",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "149",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-DE",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWM-DE",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Winning Materials Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-KB",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-KB",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AWC-MW",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-KB",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-DE",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Andray Blatche",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Donell Taylor",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "FF-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Flashback Fabrics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Andray Blatche",
+          "team": "Washington Wizards",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Donell Taylor",
+          "team": "Washington Wizards",
+          "variation": "Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-BB",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-JA",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Winning Materials Combos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AWC-JA",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Winning Materials Combos Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WC-BB",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WC-JA",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Winning Materials Combos Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Winning Materials Spectrum",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

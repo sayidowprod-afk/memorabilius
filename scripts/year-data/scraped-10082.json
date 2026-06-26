@@ -1,0 +1,3590 @@
+{
+  "year": 2009,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 10082,
+        "name": "2009-10 Panini Crown Royale"
+      },
+      "unique": [
+        {
+          "card_number": "67",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jamal Crawford",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Jeff Teague",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Rasheed Wallace",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Nate Robinson",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "King on the Court",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "King on the Court Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "King on the Court Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "M.L. Carr",
+          "team": "Boston Celtics",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Living Legends Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Living Legends Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Deron Williams",
+          "team": "Brooklyn Nets",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Stephen Jackson",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Gerald Henderson",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Stephen Jackson",
+          "team": "Charlotte Bobcats",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Stephen Jackson",
+          "team": "Charlotte Bobcats",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Stephen Jackson",
+          "team": "Charlotte Bobcats",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Hakim Warrick",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Taj Gibson",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "124",
+          "player_name": "James Johnson",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": "King on the Court",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": "King on the Court Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": "King on the Court Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Bob Love",
+          "team": "Chicago Bulls",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Living Legends Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Living Legends Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Oscar Robertson",
+          "team": "Cincinnati Royals",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Mo Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Shaquille O'Neal",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Antawn Jamison",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Antawn Jamison",
+          "team": "Cleveland Cavaliers",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "King on the Court",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "King on the Court Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "King on the Court Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Brad Daugherty",
+          "team": "Cleveland Cavaliers",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Mo Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Nothing But Net",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Nothing But Net",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Nothing But Net Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Mo Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Nothing But Net Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Nothing But Net Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Shaquille O'Neal",
+          "team": "Cleveland Cavaliers",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Shaquille O'Neal",
+          "team": "Cleveland Cavaliers",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Shaquille O'Neal",
+          "team": "Cleveland Cavaliers",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "J.J. Barea",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Caron Butler",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Rodrigue Beaubois",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Brad Davis",
+          "team": "Dallas Mavericks",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": "Nothing But Net",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": "Nothing But Net Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Chauncey Billups",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "J.R. Smith",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Ty Lawson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chauncey Billups",
+          "team": "Denver Nuggets",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chauncey Billups",
+          "team": "Denver Nuggets",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chauncey Billups",
+          "team": "Denver Nuggets",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alex English",
+          "team": "Denver Nuggets",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Lafayette Lever",
+          "team": "Denver Nuggets",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alex English",
+          "team": "Denver Nuggets",
+          "variation": "Living Legends Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Alex English",
+          "team": "Denver Nuggets",
+          "variation": "Living Legends Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Chauncey Billups",
+          "team": "Denver Nuggets",
+          "variation": "Nothing But Net",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Chauncey Billups",
+          "team": "Denver Nuggets",
+          "variation": "Nothing But Net Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Chauncey Billups",
+          "team": "Denver Nuggets",
+          "variation": "Nothing But Net Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Ben Gordon",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Charlie Villanueva",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Austin Daye",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "128",
+          "player_name": "DaJuan Summers",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "134",
+          "player_name": "Jonas Jerebko",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Mark Aguirre",
+          "team": "Detroit Pistons",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Corey Maggette",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Kelenna Azubuike",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Stephen Curry",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Corey Maggette",
+          "team": "Golden State Warriors",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Corey Maggette",
+          "team": "Golden State Warriors",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Corey Maggette",
+          "team": "Golden State Warriors",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Trevor Ariza",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Kevin Martin",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Chase Budinger",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "131",
+          "player_name": "Jermaine Taylor",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "139",
+          "player_name": "David Andersen",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Martin",
+          "team": "Houston Rockets",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Martin",
+          "team": "Houston Rockets",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Martin",
+          "team": "Houston Rockets",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Living Legends Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Living Legends Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Nothing But Net",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Nothing But Net Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Nothing But Net Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Dahntay Jones",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Troy Murphy",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Tyler Hansbrough",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Blake Griffin",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Ron Artest",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "King on the Court",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "King on the Court Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "King on the Court Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Living Legends Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "Living Legends Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Living Legends Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "Living Legends Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Zach Randolph",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Hasheem Thabeet",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "127",
+          "player_name": "DeMarre Carroll",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "135",
+          "player_name": "Sam Young",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Zach Randolph",
+          "team": "Memphis Grizzlies",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jermaine O'Neal",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "King on the Court",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "King on the Court Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "King on the Court Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "John Salmons",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Luke Ridnour",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Brandon Jennings",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "129",
+          "player_name": "Jodie Meeks",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ricky Pierce",
+          "team": "Milwaukee Bucks",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Al Jefferson",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Corey Brewer",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Jonny Flynn",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "122",
+          "player_name": "Wayne Ellington",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Al Jefferson",
+          "team": "Minnesota Timberwolves",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Al Jefferson",
+          "team": "Minnesota Timberwolves",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Al Jefferson",
+          "team": "Minnesota Timberwolves",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Devin Harris",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Terrence Williams",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Peja Stojakovic",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Darren Collison",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "133",
+          "player_name": "Marcus Thornton",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "King on the Court",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "King on the Court Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "King on the Court Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Peja Stojakovic",
+          "team": "New Orleans Hornets",
+          "variation": "Nothing But Net",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Peja Stojakovic",
+          "team": "New Orleans Hornets",
+          "variation": "Nothing But Net Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Peja Stojakovic",
+          "team": "New Orleans Hornets",
+          "variation": "Nothing But Net Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Al Harrington",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Jordan Hill",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "126",
+          "player_name": "Toney Douglas",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Phil Jackson",
+          "team": "New York Knicks",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Living Legends Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Living Legends Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Nothing But Net",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Nothing But Net Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Jeff Green",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "James Harden",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "125",
+          "player_name": "B.J. Mullens",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "138",
+          "player_name": "Serge Ibaka",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "King on the Court",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "King on the Court Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "King on the Court Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Rashard Lewis",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Vince Carter",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Rashard Lewis",
+          "team": "Orlando Magic",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Rashard Lewis",
+          "team": "Orlando Magic",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Rashard Lewis",
+          "team": "Orlando Magic",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Rashard Lewis",
+          "team": "Orlando Magic",
+          "variation": "Nothing But Net",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Rashard Lewis",
+          "team": "Orlando Magic",
+          "variation": "Nothing But Net Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Rashard Lewis",
+          "team": "Orlando Magic",
+          "variation": "Nothing But Net Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Vince Carter",
+          "team": "Orlando Magic",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Vince Carter",
+          "team": "Orlando Magic",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Vince Carter",
+          "team": "Orlando Magic",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Elton Brand",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Louis Williams",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Jrue Holiday",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Jason Richardson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Earl Clark",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Dan Majerle",
+          "team": "Phoenix Suns",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Channing Frye",
+          "team": "Phoenix Suns",
+          "variation": "Nothing But Net",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Andre Miller",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Jeff Pendergraph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "140",
+          "player_name": "Dante Cunningham",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Mychal Thompson",
+          "team": "Portland Trail Blazers",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Martell Webster",
+          "team": "Portland Trail Blazers",
+          "variation": "Nothing But Net",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Carl Landry",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Beno Udrih",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Tyreke Evans",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "110",
+          "player_name": "Omri Casspi",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "132",
+          "player_name": "Jon Brockman",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Tyreke Evans",
+          "team": "Sacramento Kings",
+          "variation": "King on the Court",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Tyreke Evans",
+          "team": "Sacramento Kings",
+          "variation": "King on the Court Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Tyreke Evans",
+          "team": "Sacramento Kings",
+          "variation": "King on the Court Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Living Legends Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Living Legends Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "DeJuan Blair",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "All-Stars",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "All-Stars Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "All-Stars Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "King on the Court",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "King on the Court Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "King on the Court Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Living Legends Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Maurice Lucas",
+          "team": "Seattle SuperSonics",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Maurice Lucas",
+          "team": "Seattle SuperSonics",
+          "variation": "Living Legends Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Maurice Lucas",
+          "team": "Seattle SuperSonics",
+          "variation": "Living Legends Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Hedo Turkoglu",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "DeMar DeRozan",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "King on the Court",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "King on the Court Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "King on the Court Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Rookie Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Rookie Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Rookie Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Royalty Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Mehmet Okur",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Wesley Matthews",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Living Legends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Living Legends Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Living Legends Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Living Legends Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Living Legends Materials Prime",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Royalty",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Royalty Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Randy Foye",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Al Thornton",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Panini"
+    }
+  ]
+}

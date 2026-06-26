@@ -1,0 +1,5606 @@
+{
+  "year": 2008,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 9330,
+        "name": "2008-09 Topps Signature"
+      },
+      "unique": [
+        {
+          "card_number": "TS-SC",
+          "player_name": "Speedy Claxton",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-SC",
+          "player_name": "Speedy Claxton",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-SWE",
+          "player_name": "Spud Webb",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-WC",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-SC",
+          "player_name": "Speedy Claxton",
+          "team": "Atlanta Hawks",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SC",
+          "player_name": "Speedy Claxton",
+          "team": "Atlanta Hawks",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SC",
+          "player_name": "Speedy Claxton",
+          "team": "Atlanta Hawks",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SC",
+          "player_name": "Speedy Claxton",
+          "team": "Atlanta Hawks",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SC",
+          "player_name": "Speedy Claxton",
+          "team": "Atlanta Hawks",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SC",
+          "player_name": "Speedy Claxton",
+          "team": "Atlanta Hawks",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BRU",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWA",
+          "player_name": "Bill Walker",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GP",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHA",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJW",
+          "player_name": "Jo Jo White",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JRG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RAL",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RP",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RR",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-GP",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-RP",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-RR",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-BRU",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-BWA",
+          "player_name": "Bill Walker",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-JHA",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-JJW",
+          "player_name": "Jo Jo White",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-JRG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-WR",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TST-PBR",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Autographs Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-BRU",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWA",
+          "player_name": "Bill Walker",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GP",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHA",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJW",
+          "player_name": "Jo Jo White",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JRG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RAL",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RP",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RR",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BRU",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWA",
+          "player_name": "Bill Walker",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GP",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHA",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJW",
+          "player_name": "Jo Jo White",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JRG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RAL",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RP",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RR",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BRU",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWA",
+          "player_name": "Bill Walker",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GP",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHA",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJW",
+          "player_name": "Jo Jo White",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JRG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RAL",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RP",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RR",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BRU",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWA",
+          "player_name": "Bill Walker",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GP",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHA",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJW",
+          "player_name": "Jo Jo White",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JRG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RAL",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RP",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RR",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BRU",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWA",
+          "player_name": "Bill Walker",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GP",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHA",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJW",
+          "player_name": "Jo Jo White",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JRG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RAL",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RP",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RR",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BRU",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWA",
+          "player_name": "Bill Walker",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GP",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHA",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJW",
+          "player_name": "Jo Jo White",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JRG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RAL",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RP",
+          "player_name": "Robert Parish",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RR",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SS",
+          "player_name": "Sean Singletary",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-SS",
+          "player_name": "Sean Singletary",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SS",
+          "player_name": "Sean Singletary",
+          "team": "Charlotte Bobcats",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SS",
+          "player_name": "Sean Singletary",
+          "team": "Charlotte Bobcats",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SS",
+          "player_name": "Sean Singletary",
+          "team": "Charlotte Bobcats",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SS",
+          "player_name": "Sean Singletary",
+          "team": "Charlotte Bobcats",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SS",
+          "player_name": "Sean Singletary",
+          "team": "Charlotte Bobcats",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RF",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SS",
+          "player_name": "Sean Singletary",
+          "team": "Charlotte Bobcats",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRD",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RT",
+          "player_name": "Reggie Theus",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-RT",
+          "player_name": "Reggie Theus",
+          "team": "Chicago Bulls",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-DRD",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-PR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TST-WPR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Autographs Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRD",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RT",
+          "player_name": "Reggie Theus",
+          "team": "Chicago Bulls",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRD",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RT",
+          "player_name": "Reggie Theus",
+          "team": "Chicago Bulls",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRD",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RT",
+          "player_name": "Reggie Theus",
+          "team": "Chicago Bulls",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRD",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RT",
+          "player_name": "Reggie Theus",
+          "team": "Chicago Bulls",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRD",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RT",
+          "player_name": "Reggie Theus",
+          "team": "Chicago Bulls",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRD",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RT",
+          "player_name": "Reggie Theus",
+          "team": "Chicago Bulls",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGI",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHRW",
+          "player_name": "John \"Hot Rod\" Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LW",
+          "player_name": "Lenny Wilkens",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-LW",
+          "player_name": "Lenny Wilkens",
+          "team": "Cleveland Cavaliers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-DGI",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-JJH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-JHRW",
+          "player_name": "Hot Rod Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-DGI",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHRW",
+          "player_name": "John \"Hot Rod\" Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LW",
+          "player_name": "Lenny Wilkens",
+          "team": "Cleveland Cavaliers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGI",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHRW",
+          "player_name": "John \"Hot Rod\" Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LW",
+          "player_name": "Lenny Wilkens",
+          "team": "Cleveland Cavaliers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGI",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHRW",
+          "player_name": "John \"Hot Rod\" Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LW",
+          "player_name": "Lenny Wilkens",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGI",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHRW",
+          "player_name": "John \"Hot Rod\" Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LW",
+          "player_name": "Lenny Wilkens",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGI",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHRW",
+          "player_name": "John \"Hot Rod\" Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LW",
+          "player_name": "Lenny Wilkens",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGI",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JHRW",
+          "player_name": "John \"Hot Rod\" Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JJH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-LW",
+          "player_name": "Lenny Wilkens",
+          "team": "Cleveland Cavaliers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-FL",
+          "player_name": "Fat Lever",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-FL",
+          "player_name": "Lafayette Lever",
+          "team": "Denver Nuggets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-BA",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-FL",
+          "player_name": "Fat Lever",
+          "team": "Denver Nuggets",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-FL",
+          "player_name": "Fat Lever",
+          "team": "Denver Nuggets",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-FL",
+          "player_name": "Fat Lever",
+          "team": "Denver Nuggets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-FL",
+          "player_name": "Fat Lever",
+          "team": "Denver Nuggets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-FL",
+          "player_name": "Fat Lever",
+          "team": "Denver Nuggets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-FL",
+          "player_name": "Fat Lever",
+          "team": "Denver Nuggets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-AA",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RS",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-AA",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-RS",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-AA",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RS",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-AA",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RS",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-AA",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RS",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-AA",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RS",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-AA",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RS",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-AA",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RS",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BW",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MW",
+          "player_name": "Marcus Williams",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-BW",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-MW",
+          "player_name": "Marcus Williams",
+          "team": "Golden State Warriors",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-BW",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MW",
+          "player_name": "Marcus Williams",
+          "team": "Golden State Warriors",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BW",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MW",
+          "player_name": "Marcus Williams",
+          "team": "Golden State Warriors",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BW",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MW",
+          "player_name": "Marcus Williams",
+          "team": "Golden State Warriors",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BW",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MW",
+          "player_name": "Marcus Williams",
+          "team": "Golden State Warriors",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BW",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MW",
+          "player_name": "Marcus Williams",
+          "team": "Golden State Warriors",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BW",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MW",
+          "player_name": "Marcus Williams",
+          "team": "Golden State Warriors",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ABR",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-ABR",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-DGR",
+          "player_name": "Donte Greene",
+          "team": "Houston Rockets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-ABR",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ABR",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ABR",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ABR",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ABR",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ABR",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RPI",
+          "player_name": "Ricky Pierce",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-RPI",
+          "player_name": "Ricky Pierce",
+          "team": "Indiana Pacers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-IG",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-RPI",
+          "player_name": "Ricky Pierce",
+          "team": "Indiana Pacers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RPI",
+          "player_name": "Ricky Pierce",
+          "team": "Indiana Pacers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RPI",
+          "player_name": "Ricky Pierce",
+          "team": "Indiana Pacers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RPI",
+          "player_name": "Ricky Pierce",
+          "team": "Indiana Pacers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RPI",
+          "player_name": "Ricky Pierce",
+          "team": "Indiana Pacers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RPI",
+          "player_name": "Ricky Pierce",
+          "team": "Indiana Pacers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-OB",
+          "player_name": "Otis Birdsong",
+          "team": "Kansas City Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-OB",
+          "player_name": "Otis Birdsong",
+          "team": "Kansas City Kings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-OB",
+          "player_name": "Otis Birdsong",
+          "team": "Kansas City Kings",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-OB",
+          "player_name": "Otis Birdsong",
+          "team": "Kansas City Kings",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-OB",
+          "player_name": "Otis Birdsong",
+          "team": "Kansas City Kings",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-OB",
+          "player_name": "Otis Birdsong",
+          "team": "Kansas City Kings",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-OB",
+          "player_name": "Otis Birdsong",
+          "team": "Kansas City Kings",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-OB",
+          "player_name": "Otis Birdsong",
+          "team": "Kansas City Kings",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-AT",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BD",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DJ",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ZR",
+          "player_name": "Zach Randolph",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-AT",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-BD",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-DJ",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-AT",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BD",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DJ",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ZR",
+          "player_name": "Zach Randolph",
+          "team": "Los Angeles Clippers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-AT",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BD",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DJ",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ZR",
+          "player_name": "Zach Randolph",
+          "team": "Los Angeles Clippers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-AT",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BD",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DJ",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ZR",
+          "player_name": "Zach Randolph",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-AT",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BD",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DJ",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ZR",
+          "player_name": "Zach Randolph",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-AT",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BD",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DJ",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ZR",
+          "player_name": "Zach Randolph",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-AT",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BD",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DJ",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ZR",
+          "player_name": "Zach Randolph",
+          "team": "Los Angeles Clippers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EB",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JW",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SP",
+          "player_name": "Sam Perkins",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-EB",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-JW",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-SP",
+          "player_name": "Sam Perkins",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-SJ",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-WR",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TST-JWB",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Autographs Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-EB",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JW",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SP",
+          "player_name": "Sam Perkins",
+          "team": "Los Angeles Lakers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EB",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JW",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SP",
+          "player_name": "Sam Perkins",
+          "team": "Los Angeles Lakers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EB",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JW",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SP",
+          "player_name": "Sam Perkins",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EB",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JW",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SP",
+          "player_name": "Sam Perkins",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EB",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JW",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SP",
+          "player_name": "Sam Perkins",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EB",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JW",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SP",
+          "player_name": "Sam Perkins",
+          "team": "Los Angeles Lakers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-OJM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RG",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-RG",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-OJM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-GM",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TST-ARM",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Autographs Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-OJM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RG",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-OJM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RG",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-OJM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RG",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-OJM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RG",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-OJM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RG",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-OJM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RG",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DWA",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-DWA",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-HW",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TST-WPR",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Autographs Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DWA",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DWA",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DWA",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DWA",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DWA",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DWA",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DE",
+          "player_name": "Dale Ellis",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-DE",
+          "player_name": "Dale Ellis",
+          "team": "Milwaukee Bucks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-RAL",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-DE",
+          "player_name": "Dale Ellis",
+          "team": "Milwaukee Bucks",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DE",
+          "player_name": "Dale Ellis",
+          "team": "Milwaukee Bucks",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DE",
+          "player_name": "Dale Ellis",
+          "team": "Milwaukee Bucks",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DE",
+          "player_name": "Dale Ellis",
+          "team": "Milwaukee Bucks",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DE",
+          "player_name": "Dale Ellis",
+          "team": "Milwaukee Bucks",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DE",
+          "player_name": "Dale Ellis",
+          "team": "Milwaukee Bucks",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWI",
+          "player_name": "Buck Williams",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-YJ",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-YJ",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-WC",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-BWI",
+          "player_name": "Buck Williams",
+          "team": "New Jersey Nets",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-YJ",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWI",
+          "player_name": "Buck Williams",
+          "team": "New Jersey Nets",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-YJ",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWI",
+          "player_name": "Buck Williams",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-YJ",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWI",
+          "player_name": "Buck Williams",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-YJ",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWI",
+          "player_name": "Buck Williams",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-YJ",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BWI",
+          "player_name": "Buck Williams",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-YJ",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-PR",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TST-WPR",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Autographs Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGA",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MRR",
+          "player_name": "Micheal Ray Richardson",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-ZR",
+          "player_name": "Zach Randolph",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-DGA",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-MRR",
+          "player_name": "Micheal Ray Richardson",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-DGA",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MRR",
+          "player_name": "Micheal Ray Richardson",
+          "team": "New York Knicks",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGA",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MRR",
+          "player_name": "Micheal Ray Richardson",
+          "team": "New York Knicks",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGA",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MRR",
+          "player_name": "Micheal Ray Richardson",
+          "team": "New York Knicks",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGA",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MRR",
+          "player_name": "Micheal Ray Richardson",
+          "team": "New York Knicks",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGA",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MRR",
+          "player_name": "Micheal Ray Richardson",
+          "team": "New York Knicks",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGA",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MRR",
+          "player_name": "Micheal Ray Richardson",
+          "team": "New York Knicks",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-KW",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-KW",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-KW",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-KW",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-KW",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-KW",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-KW",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-KW",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CL",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DSC",
+          "player_name": "Danny Schayes",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-CL",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Orlando Magic",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-DSC",
+          "player_name": "Danny Schayes",
+          "team": "Orlando Magic",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-HW",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TST-HOR",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Autographs Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-CL",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DSC",
+          "player_name": "Danny Schayes",
+          "team": "Orlando Magic",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Orlando Magic",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CL",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DSC",
+          "player_name": "Danny Schayes",
+          "team": "Orlando Magic",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Orlando Magic",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CL",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DSC",
+          "player_name": "Danny Schayes",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CL",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DSC",
+          "player_name": "Danny Schayes",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CL",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DSC",
+          "player_name": "Danny Schayes",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CL",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DSC",
+          "player_name": "Danny Schayes",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Orlando Magic",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SD",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-TY",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-SD",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-TY",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-IG",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-SD",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-TY",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SD",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-TY",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SD",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-TY",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SD",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-TY",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SD",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-TY",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SD",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-TY",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ATU",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-ATU",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TST-HOR",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Autographs Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-ATU",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ATU",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ATU",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ATU",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ATU",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ATU",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BR",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ML",
+          "player_name": "Maurice Lucas",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-BR",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-ML",
+          "player_name": "Maurice Lucas",
+          "team": "Portland Trail Blazers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-BWI",
+          "player_name": "Buck Williams",
+          "team": "Portland Trail Blazers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-OR",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TST-ARM",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Autographs Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-BR",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ML",
+          "player_name": "Maurice Lucas",
+          "team": "Portland Trail Blazers",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BR",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ML",
+          "player_name": "Maurice Lucas",
+          "team": "Portland Trail Blazers",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BR",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ML",
+          "player_name": "Maurice Lucas",
+          "team": "Portland Trail Blazers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BR",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ML",
+          "player_name": "Maurice Lucas",
+          "team": "Portland Trail Blazers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BR",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ML",
+          "player_name": "Maurice Lucas",
+          "team": "Portland Trail Blazers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-BR",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ML",
+          "player_name": "Maurice Lucas",
+          "team": "Portland Trail Blazers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGR",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SH",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SWE",
+          "player_name": "Spud Webb",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-SH",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-DGR",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SH",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SWE",
+          "player_name": "Spud Webb",
+          "team": "Sacramento Kings",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGR",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SH",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SWE",
+          "player_name": "Spud Webb",
+          "team": "Sacramento Kings",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGR",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SH",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SWE",
+          "player_name": "Spud Webb",
+          "team": "Sacramento Kings",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGR",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SH",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SWE",
+          "player_name": "Spud Webb",
+          "team": "Sacramento Kings",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGR",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SH",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SWE",
+          "player_name": "Spud Webb",
+          "team": "Sacramento Kings",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DGR",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SH",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SWE",
+          "player_name": "Spud Webb",
+          "team": "Sacramento Kings",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GG",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-GG",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-RG",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TST-HOR",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Autographs Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GG",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GG",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GG",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GG",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GG",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GG",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SHA",
+          "player_name": "Spencer Haywood",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-SHA",
+          "player_name": "Spencer Haywood",
+          "team": "Seattle SuperSonics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-SHA",
+          "player_name": "Spencer Haywood",
+          "team": "Seattle SuperSonics",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SHA",
+          "player_name": "Spencer Haywood",
+          "team": "Seattle SuperSonics",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SHA",
+          "player_name": "Spencer Haywood",
+          "team": "Seattle SuperSonics",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SHA",
+          "player_name": "Spencer Haywood",
+          "team": "Seattle SuperSonics",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SHA",
+          "player_name": "Spencer Haywood",
+          "team": "Seattle SuperSonics",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-SHA",
+          "player_name": "Spencer Haywood",
+          "team": "Seattle SuperSonics",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MA",
+          "player_name": "Morris Almond",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ME",
+          "player_name": "Mark Eaton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-MA",
+          "player_name": "Morris Almond",
+          "team": "Utah Jazz",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-ME",
+          "player_name": "Mark Eaton",
+          "team": "Utah Jazz",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSD-SJ",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Autographs Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MA",
+          "player_name": "Morris Almond",
+          "team": "Utah Jazz",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ME",
+          "player_name": "Mark Eaton",
+          "team": "Utah Jazz",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MA",
+          "player_name": "Morris Almond",
+          "team": "Utah Jazz",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ME",
+          "player_name": "Mark Eaton",
+          "team": "Utah Jazz",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MA",
+          "player_name": "Morris Almond",
+          "team": "Utah Jazz",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ME",
+          "player_name": "Mark Eaton",
+          "team": "Utah Jazz",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MA",
+          "player_name": "Morris Almond",
+          "team": "Utah Jazz",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ME",
+          "player_name": "Mark Eaton",
+          "team": "Utah Jazz",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MA",
+          "player_name": "Morris Almond",
+          "team": "Utah Jazz",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ME",
+          "player_name": "Mark Eaton",
+          "team": "Utah Jazz",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-MA",
+          "player_name": "Morris Almond",
+          "team": "Utah Jazz",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-ME",
+          "player_name": "Mark Eaton",
+          "team": "Utah Jazz",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EH",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-EH",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-EH",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EH",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EH",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EH",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EH",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-EH",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CBU",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JM",
+          "player_name": "JaVale McGee",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-NY",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TSA-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-JM",
+          "player_name": "JaVale McGee",
+          "team": "Washington Wizards",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-NY",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TSA-CBU",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TST-ARM",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Autographs Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TS-CBU",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JM",
+          "player_name": "JaVale McGee",
+          "team": "Washington Wizards",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-NY",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Facsimile Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CBU",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JM",
+          "player_name": "JaVale McGee",
+          "team": "Washington Wizards",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-NY",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Facsimile Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CBU",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JM",
+          "player_name": "JaVale McGee",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-NY",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CBU",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JM",
+          "player_name": "JaVale McGee",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-NY",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CBU",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JM",
+          "player_name": "JaVale McGee",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-NY",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-CBU",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-JM",
+          "player_name": "JaVale McGee",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TS-NY",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

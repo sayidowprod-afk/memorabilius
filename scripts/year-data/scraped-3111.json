@@ -1,0 +1,3438 @@
+{
+  "year": 2004,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3111,
+        "name": "2004-05 Upper Deck Sweet Shot"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Antoine Walker",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Al Harrington",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Boris Diaw",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Donta Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Royal Ivey",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CH",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-CH",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-CH",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-JC",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-CH",
+          "player_name": "Josh Childress",
+          "team": "Atlanta Hawks",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-AW",
+          "player_name": "Antoine Walker",
+          "team": "Atlanta Hawks",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Ricky Davis",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Gary Payton",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Justin Reed",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Al Jefferson",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Delonte West",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Tony Allen",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-BR",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-BW",
+          "player_name": "Bill Walton",
+          "team": "Boston Celtics",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-GP",
+          "player_name": "Gary Payton",
+          "team": "Boston Celtics",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-GP1",
+          "player_name": "Gary Payton",
+          "team": "Boston Celtics",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-LA",
+          "player_name": "Larry Brown",
+          "team": "Boston Celtics",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-GP",
+          "player_name": "Gary Payton",
+          "team": "Boston Celtics",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jason Kapono",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jahidi White",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Bernard Robinson",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Antonio Davis",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Chris Duhon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-MJ1",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-LD",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-EC",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Jeff McInnis",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Anderson Varejao",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-LU",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-LU",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-LU",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-LU",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-LU",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-LU",
+          "player_name": "Luke Jackson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jerry Stackhouse",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Pavel Podkolzin",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DE",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MD",
+          "player_name": "Marquis Daniels",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-DE",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-MD",
+          "player_name": "Marquis Daniels",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-DE",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-MD",
+          "player_name": "Marquis Daniels",
+          "team": "Dallas Mavericks",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-DE",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-DE",
+          "player_name": "Devin Harris",
+          "team": "Dallas Mavericks",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-MD",
+          "player_name": "Marquis Daniels",
+          "team": "Dallas Mavericks",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-JT",
+          "player_name": "Jason Terry",
+          "team": "Dallas Mavericks",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-MF",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-AN",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-KM",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-AM",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-KM",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-NH",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RWB-AM",
+          "player_name": "Antonio McDyess",
+          "team": "Detroit Pistons",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-CH",
+          "player_name": "Chuck Daly",
+          "team": "Detroit Pistons",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-RH",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-RH",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-RW",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Derek Fisher",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Andris Biedrins",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-BD",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Juwan Howard",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-HO",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-HO",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-HO",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-HO",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Ron Artest",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "David Harrison",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RWB-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Marko Jaric",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Lionel Chalmers",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-EB",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-CK",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-SL",
+          "player_name": "Shaun Livingston",
+          "team": "Los Angeles Clippers",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Sasha Vujacic",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JW",
+          "player_name": "Jamaal Wilkes",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MA",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-PR",
+          "player_name": "Pat Riley",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-JW",
+          "player_name": "Jamaal Wilkes",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-MA",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-PR",
+          "player_name": "Pat Riley",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-LO",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-JW",
+          "player_name": "Jamaal Wilkes",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-MA",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-PR",
+          "player_name": "Pat Riley",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-JW",
+          "player_name": "Jamaal Wilkes",
+          "team": "Los Angeles Lakers",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-MA",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-PR",
+          "player_name": "Pat Riley",
+          "team": "Los Angeles Lakers",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-LO",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Bonzi Wells",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Andre Emmett",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Antonio Burks",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Albert Miralles",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Dorell Wright",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-MR",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-LS",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-SC",
+          "player_name": "Sam Cassell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Aaron Williams",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Nenad Krstic",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-ZO",
+          "player_name": "Alonzo Mourning",
+          "team": "New Jersey Nets",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jamaal Magloire",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Tim Pickett",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JR",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-JR",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-JR",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-JR",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-JR",
+          "player_name": "J.R. Smith",
+          "team": "New Orleans Hornets",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Trevor Ariza",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BK",
+          "player_name": "Bernard King",
+          "team": "New York Knicks",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JC",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-ST",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-WF",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-BK",
+          "player_name": "Bernard King",
+          "team": "New York Knicks",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-JC",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-ST",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-WF",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-LW",
+          "player_name": "Lenny Wilkens",
+          "team": "New York Knicks",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-BK",
+          "player_name": "Bernard King",
+          "team": "New York Knicks",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-JC",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-ST",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-WF",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-BK",
+          "player_name": "Bernard King",
+          "team": "New York Knicks",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-JC",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-ST",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-WF",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-AH",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Keith Bogans",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Cuttino Mobley",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JN",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-JN",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-JN",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-JN",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-SF",
+          "player_name": "Steve Francis",
+          "team": "Orlando Magic",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-JN",
+          "player_name": "Jameer Nelson",
+          "team": "Orlando Magic",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Kenny Thomas",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JE",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-AI",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-JE",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-AI",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-JE",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-AN",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-AI",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-JE",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Quentin Richardson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jackson Vroman",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Yuta Tabuse",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-SM",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-SH",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-SM",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-SN",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-SM",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-QR",
+          "player_name": "Quentin Richardson",
+          "team": "Phoenix Suns",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-SH",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Viktor Khryapa",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Sergei Monia",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CD",
+          "player_name": "Clyde Drexler",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SE",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-CD",
+          "player_name": "Clyde Drexler",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-SE",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-CD",
+          "player_name": "Clyde Drexler",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-SA",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-CD",
+          "player_name": "Clyde Drexler",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-SE",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-ST",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-CD",
+          "player_name": "Clyde Drexler",
+          "team": "Portland Trail Blazers",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-SE",
+          "player_name": "Sebastian Telfair",
+          "team": "Portland Trail Blazers",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Kevin Martin",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BM",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-BM",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-BM",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-BM",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-CW",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-BM",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Beno Udrih",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RWB-DR",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-DR1",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-DR2",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-EG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-DR",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-EG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Ronald Murray",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "David Young",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Robert Swift",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RA",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-RA",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-RA",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-RA",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-RA",
+          "player_name": "Rafael Araujo",
+          "team": "Toronto Raptors",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-JA",
+          "player_name": "Jalen Rose",
+          "team": "Toronto Raptors",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Matt Harpring",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Kris Humphries",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Kirk Snyder",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JO",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Signature Shots",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSB-JO",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Signature Shots Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RWB-JSI",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Signature Shots Stars and Stripes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSW-JO",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Signature Shots White",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJ-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSS-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSS-JO",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Sweet Spot Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-AK",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Peter John Ramos",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJ-AJ",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Sweet Shot Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

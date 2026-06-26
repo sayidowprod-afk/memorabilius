@@ -1,0 +1,4782 @@
+{
+  "year": 2007,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 7584,
+        "name": "2007-08 Topps Echelon"
+      },
+      "unique": [
+        {
+          "card_number": "5",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Acie Law IV",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-DWI",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-DWI",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-DWI",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-DWI",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-DWI",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Acie Law IV",
+          "team": "Atlanta Hawks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Acie Law IV",
+          "team": "Atlanta Hawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Acie Law IV",
+          "team": "Atlanta Hawks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Acie Law IV",
+          "team": "Atlanta Hawks",
+          "variation": "Rookie Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Acie Law IV",
+          "team": "Atlanta Hawks",
+          "variation": "Rookie Autographs Dual Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Acie Law IV",
+          "team": "Atlanta Hawks",
+          "variation": "Rookie Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Acie Law IV",
+          "team": "Atlanta Hawks",
+          "variation": "Rookie Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Wes Unseld",
+          "team": "Baltimore Bullets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Wes Unseld",
+          "team": "Baltimore Bullets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Wes Unseld",
+          "team": "Baltimore Bullets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Wes Unseld",
+          "team": "Baltimore Bullets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Glen Davis",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-BR",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-RA",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-BR",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-RA",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-BR",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-RA",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-BR",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-RA",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-BR",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-RA",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Glen Davis",
+          "team": "Boston Celtics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Glen Davis",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Glen Davis",
+          "team": "Boston Celtics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Rookie Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Rookie Autographs Dual Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Rookie Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Rookie Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bob Mcadoo",
+          "team": "Buffalo Braves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bob Mcadoo",
+          "team": "Buffalo Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bob Mcadoo",
+          "team": "Buffalo Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Bob Mcadoo",
+          "team": "Buffalo Braves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jared Dudley",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jermareo Davidson",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-AM",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-EO",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-AM",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-AM",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-AM",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-AM",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-EO",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-GW",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jared Dudley",
+          "team": "Charlotte Bobcats",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jermareo Davidson",
+          "team": "Charlotte Bobcats",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jared Dudley",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jermareo Davidson",
+          "team": "Charlotte Bobcats",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jared Dudley",
+          "team": "Charlotte Bobcats",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jermareo Davidson",
+          "team": "Charlotte Bobcats",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jared Dudley",
+          "team": "Charlotte Bobcats",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jared Dudley",
+          "team": "Charlotte Bobcats",
+          "variation": "Rookie Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Aaron Gray",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-BL",
+          "player_name": "Bob Love",
+          "team": "Chicago Bulls",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-KH",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-KH",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-KH",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-KH",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-BL",
+          "player_name": "Bob Love",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-KH",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Aaron Gray",
+          "team": "Chicago Bulls",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Aaron Gray",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Aaron Gray",
+          "team": "Chicago Bulls",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Oscar Robertson",
+          "team": "Cincinnati Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Oscar Robertson",
+          "team": "Cincinnati Royals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Oscar Robertson",
+          "team": "Cincinnati Royals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Oscar Robertson",
+          "team": "Cincinnati Royals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Lebron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Lebron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Lebron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Lebron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Nick Fazekas",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Reyshawn Terry",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-JH",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Nick Fazekas",
+          "team": "Dallas Mavericks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Nick Fazekas",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Nick Fazekas",
+          "team": "Dallas Mavericks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Nick Fazekas",
+          "team": "Dallas Mavericks",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Nick Fazekas",
+          "team": "Dallas Mavericks",
+          "variation": "Rookie Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Chris Webber",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-CBI",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-CBI",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-CBI",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-CBI",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-CBI",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-IT",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Chris Webber",
+          "team": "Detroit Pistons",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Chris Webber",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Chris Webber",
+          "team": "Detroit Pistons",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Rookie Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Rookie Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Rookie Autographs Dual Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Rookie Autographs Dual Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Rookie Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Rookie Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Rookie Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Rookie Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Marco Belinelli",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-BD",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-RB",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-BD",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-RB",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Marco Belinelli",
+          "team": "Golden State Warriors",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Marco Belinelli",
+          "team": "Golden State Warriors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MAR-BW",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "McDonald's All-American Autographs Five-Piece Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MAP-BW",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "McDonald's All-American Autographs Super Size Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MAGR-BW",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "McDonald's All-American Own the Game Autographs Letter Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Baron Davis",
+          "team": "Golden State Warriors",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Marco Belinelli",
+          "team": "Golden State Warriors",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Marco Belinelli",
+          "team": "Golden State Warriors",
+          "variation": "Rookie Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Marco Belinelli",
+          "team": "Golden State Warriors",
+          "variation": "Rookie Autographs Dual Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Marco Belinelli",
+          "team": "Golden State Warriors",
+          "variation": "Rookie Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Marco Belinelli",
+          "team": "Golden State Warriors",
+          "variation": "Rookie Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Rookie Autographs Quad Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Rookie Autographs Quad Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Rookie Autographs Quad Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": "Rookie Autographs Quad Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-RT",
+          "player_name": "Rudy Tomjanovich",
+          "team": "Houston Rockets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-RT",
+          "player_name": "Rudy Tomjanovich",
+          "team": "Houston Rockets",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Carl Landry",
+          "team": "Houston Rockets",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Rookie Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Carl Landry",
+          "team": "Houston Rockets",
+          "variation": "Rookie Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookie Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookie Autographs Dual Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookie Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookie Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "James Worthy",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Javaris Crittenton",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-JF",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-JF",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-JF",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-JF",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-JF",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-MJ",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "James Worthy",
+          "team": "Los Angeles Lakers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Javaris Crittenton",
+          "team": "Los Angeles Lakers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "James Worthy",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Javaris Crittenton",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MAR-JC",
+          "player_name": "Javaris Crittenton",
+          "team": "Los Angeles Lakers",
+          "variation": "McDonald's All-American Autographs Five-Piece Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MAP-JC",
+          "player_name": "Javaris Crittenton",
+          "team": "Los Angeles Lakers",
+          "variation": "McDonald's All-American Autographs Super Size Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MAGR-JC",
+          "player_name": "Javaris Crittenton",
+          "team": "Los Angeles Lakers",
+          "variation": "McDonald's All-American Own the Game Autographs Letter Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "James Worthy",
+          "team": "Los Angeles Lakers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Javaris Crittenton",
+          "team": "Los Angeles Lakers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Javaris Crittenton",
+          "team": "Los Angeles Lakers",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Javaris Crittenton",
+          "team": "Los Angeles Lakers",
+          "variation": "Rookie Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Mike Miller",
+          "team": "Memphis Grizzlies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-DW",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MAR-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "McDonald's All-American Autographs Five-Piece Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MAP-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "McDonald's All-American Autographs Super Size Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MAGR-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "McDonald's All-American Own the Game Autographs Letter Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Rookie Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Yi Jianlian",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-LE",
+          "player_name": "Len Elmore",
+          "team": "Milwaukee Bucks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-LE",
+          "player_name": "Len Elmore",
+          "team": "Milwaukee Bucks",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Yi Jianlian",
+          "team": "Milwaukee Bucks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Yi Jianlian",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Yi Jianlian",
+          "team": "Milwaukee Bucks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Yi Jianlian",
+          "team": "Milwaukee Bucks",
+          "variation": "Rookie Autographs Quad Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Yi Jianlian",
+          "team": "Milwaukee Bucks",
+          "variation": "Rookie Autographs Quad Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Yi Jianlian",
+          "team": "Milwaukee Bucks",
+          "variation": "Rookie Autographs Quad Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Yi Jianlian",
+          "team": "Milwaukee Bucks",
+          "variation": "Rookie Autographs Quad Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Bob Pettit",
+          "team": "Milwaukee Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Bob Pettit",
+          "team": "Milwaukee Hawks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Bob Pettit",
+          "team": "Milwaukee Hawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Bob Pettit",
+          "team": "Milwaukee Hawks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Corey Brewer",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-RF",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-RF",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-RF",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-RF",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-RF",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Corey Brewer",
+          "team": "Minnesota Timberwolves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Corey Brewer",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Corey Brewer",
+          "team": "Minnesota Timberwolves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Sean Williams",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Sean Williams",
+          "team": "New Jersey Nets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Sean Williams",
+          "team": "New Jersey Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Sean Williams",
+          "team": "New Jersey Nets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Julian Wright",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Julian Wright",
+          "team": "New Orleans Hornets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Julian Wright",
+          "team": "New Orleans Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Julian Wright",
+          "team": "New Orleans Hornets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jerry Lucas",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Wilson Chandler",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-EM",
+          "player_name": "Earl Monroe",
+          "team": "New York Knicks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-EM",
+          "player_name": "Earl Monroe",
+          "team": "New York Knicks",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jerry Lucas",
+          "team": "New York Knicks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Wilson Chandler",
+          "team": "New York Knicks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jerry Lucas",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Wilson Chandler",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jerry Lucas",
+          "team": "New York Knicks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Wilson Chandler",
+          "team": "New York Knicks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Wilson Chandler",
+          "team": "New York Knicks",
+          "variation": "Rookie Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Wilson Chandler",
+          "team": "New York Knicks",
+          "variation": "Rookie Autographs Dual Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Wilson Chandler",
+          "team": "New York Knicks",
+          "variation": "Rookie Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Wilson Chandler",
+          "team": "New York Knicks",
+          "variation": "Rookie Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-JJR",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-JJR",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-JJR",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-JJR",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-JJR",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Reyshawn Terry",
+          "team": "Orlando Magic",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Reyshawn Terry",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Reyshawn Terry",
+          "team": "Orlando Magic",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-AI",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-MB",
+          "player_name": "Manute Bol",
+          "team": "Philadelphia 76ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-AI",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-MB",
+          "player_name": "Manute Bol",
+          "team": "Philadelphia 76ers",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MAR-TY",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "McDonald's All-American Autographs Five-Piece Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MAP-TY",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "McDonald's All-American Autographs Super Size Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MAGR-TY",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "McDonald's All-American Own the Game Autographs Letter Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Rookie Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Rookie Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Josh Mcroberts",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Taurean Green",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-BW",
+          "player_name": "Bill Walton",
+          "team": "Portland Trail Blazers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-BW",
+          "player_name": "Bill Walton",
+          "team": "Portland Trail Blazers",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-BW",
+          "player_name": "Bill Walton",
+          "team": "Portland Trail Blazers",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-BW",
+          "player_name": "Bill Walton",
+          "team": "Portland Trail Blazers",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-BW",
+          "player_name": "Bill Walton",
+          "team": "Portland Trail Blazers",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Josh Mcroberts",
+          "team": "Portland Trail Blazers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Taurean Green",
+          "team": "Portland Trail Blazers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Josh Mcroberts",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Taurean Green",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MAR-GO",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": "McDonald's All-American Autographs Five-Piece Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MAP-GO",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": "McDonald's All-American Autographs Super Size Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MAGR-GO",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": "McDonald's All-American Own the Game Autographs Letter Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Josh Mcroberts",
+          "team": "Portland Trail Blazers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Taurean Green",
+          "team": "Portland Trail Blazers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Josh McRoberts",
+          "team": "Portland Trail Blazers",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "68",
+          "player_name": "Josh McRoberts",
+          "team": "Portland Trail Blazers",
+          "variation": "Rookie Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": "Rookie Autographs Quad Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": "Rookie Autographs Quad Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": "Rookie Autographs Quad Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": "Rookie Autographs Quad Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MAR-SH",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "McDonald's All-American Autographs Five-Piece Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MAP-SH",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "McDonald's All-American Autographs Super Size Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MAGR-SH",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "McDonald's All-American Own the Game Autographs Letter Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Rookie Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Rookie Autographs Dual Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Rookie Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Spencer Hawes",
+          "team": "Sacramento Kings",
+          "variation": "Rookie Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Marcus Williams",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-DRO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Marcus Williams",
+          "team": "San Antonio Spurs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Marcus Williams",
+          "team": "San Antonio Spurs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Marcus Williams",
+          "team": "San Antonio Spurs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Marcus Williams",
+          "team": "San Antonio Spurs",
+          "variation": "Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Marcus Williams",
+          "team": "San Antonio Spurs",
+          "variation": "Rookie Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Carl Landry",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Kevin Durant",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Jeff Green",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Carl Landry",
+          "team": "Seattle SuperSonics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Kevin Durant",
+          "team": "Seattle SuperSonics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Jeff Green",
+          "team": "Seattle SuperSonics",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Carl Landry",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Kevin Durant",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Jeff Green",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Carl Landry",
+          "team": "Seattle SuperSonics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Kevin Durant",
+          "team": "Seattle SuperSonics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Jeff Green",
+          "team": "Seattle SuperSonics",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-TJF",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-TJF",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-TJF",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-TJF",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-TJF",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TEA-CBO",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-DEW",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-JST",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-CBO",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-DEW",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADP-JST",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Autographs Dual Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-CBO",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-DEW",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-JST",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Autographs Dual Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-CBO",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-DEW",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEADR-JST",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Autographs Dual Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-CBO",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-DEW",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TEA-JST",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Rookie Autographs Quad Patches",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Rookie Autographs Quad Patches Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Rookie Autographs Quad Relics",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Nick Young",
+          "team": "Washington Wizards",
+          "variation": "Rookie Autographs Quad Relics Gold",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

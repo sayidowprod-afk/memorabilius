@@ -1,0 +1,6366 @@
+{
+  "year": 2008,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 8960,
+        "name": "2008-09 SP Authentic"
+      },
+      "unique": [
+        {
+          "card_number": "45",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Mike Bibby",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "C-WI",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AP-14",
+          "player_name": "Spud Webb",
+          "team": "Atlanta Hawks",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-16",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-38",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Mike Bibby",
+          "team": "Atlanta Hawks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Joe Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Mike Bibby",
+          "team": "Atlanta Hawks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-GH",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-HM",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SQ-2007",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-CHW",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-AH",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-MW",
+          "player_name": "Mario West",
+          "team": "Atlanta Hawks",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-AH",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-MW",
+          "player_name": "Mario West",
+          "team": "Atlanta Hawks",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-AH",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-BS",
+          "player_name": "Bill Sharman",
+          "team": "Boston Celtics",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-JH",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-SJ",
+          "player_name": "Sam Jones",
+          "team": "Boston Celtics",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-TH",
+          "player_name": "Tom Heinsohn",
+          "team": "Boston Celtics",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-TS",
+          "player_name": "Tom Sanders",
+          "team": "Boston Celtics",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-23",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-23",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-41",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-BW",
+          "player_name": "Bill Walker",
+          "team": "Boston Celtics",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCC-JG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-BW",
+          "player_name": "Bill Walker",
+          "team": "Boston Celtics",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-JG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-GH",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-PA",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-RG",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-VR",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-BGD",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-EJB",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-ORA",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-JG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VL-BR",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-SJ",
+          "player_name": "Sam Jones",
+          "team": "Boston Celtics",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-BR",
+          "player_name": "Bill Russell",
+          "team": "Boston Celtics",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-SJ",
+          "player_name": "Sam Jones",
+          "team": "Boston Celtics",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jason Richardson",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Alexis Ajinca",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "105",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-20",
+          "player_name": "Alexis Ajinca",
+          "team": "Charlotte Bobcats",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-57",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-DJ",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-DJ",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jason Richardson",
+          "team": "Charlotte Bobcats",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Alexis Ajinca",
+          "team": "Charlotte Bobcats",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Emeka Okafor",
+          "team": "Charlotte Bobcats",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jason Richardson",
+          "team": "Charlotte Bobcats",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-CO",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-FF",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-SF",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-DA",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-11",
+          "player_name": "Muggsy Bogues",
+          "team": "Charlotte Hornets",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SQ-HRNT",
+          "player_name": "Charlotte Hornets",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-RBJ",
+          "player_name": "Charlotte Hornets",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Charlotte Hornets",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Charlotte Hornets",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-MB",
+          "player_name": "Muggsy Bogues",
+          "team": "Charlotte Hornets",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-SK",
+          "player_name": "Steve Kerr",
+          "team": "Chicago Bulls",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AP-10",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-46",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-GS",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-HT",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SQ-2008",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SQ-CBLL",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-JBJ",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-KCA",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VL-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Mo Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Anderson Varejao",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-BD",
+          "player_name": "Brad Daugherty",
+          "team": "Cleveland Cavaliers",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-19",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-24",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-JH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Mo Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Anderson Varejao",
+          "team": "Cleveland Cavaliers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Mo Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Anderson Varejao",
+          "team": "Cleveland Cavaliers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-JW",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-RG",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SQ-CAVS",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-JBJ",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-JH",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VL-BD",
+          "player_name": "Brad Daugherty",
+          "team": "Cleveland Cavaliers",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-MP",
+          "player_name": "Mark Price",
+          "team": "Cleveland Cavaliers",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-BD",
+          "player_name": "Brad Daugherty",
+          "team": "Cleveland Cavaliers",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-MP",
+          "player_name": "Mark Price",
+          "team": "Cleveland Cavaliers",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-21",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-KB",
+          "player_name": "Dallas Mavericks",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Chauncey Billups",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-AE",
+          "player_name": "Alex English",
+          "team": "Denver Nuggets",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-DT",
+          "player_name": "David Thompson",
+          "team": "Denver Nuggets",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-25",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-33",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-34",
+          "player_name": "Chauncey Billups",
+          "team": "Denver Nuggets",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Chauncey Billups",
+          "team": "Denver Nuggets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-DS",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-KK",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-SV",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Allen Iverson",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-BL",
+          "player_name": "Bob Lanier",
+          "team": "Detroit Pistons",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-DR",
+          "player_name": "Dennis Rodman",
+          "team": "Detroit Pistons",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-JS",
+          "player_name": "John Salley",
+          "team": "Detroit Pistons",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AP-13",
+          "player_name": "Rick Mahorn",
+          "team": "Detroit Pistons",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-26",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-31",
+          "player_name": "Allen Iverson",
+          "team": "Detroit Pistons",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Allen Iverson",
+          "team": "Detroit Pistons",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "93",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-HA",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-IS",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-KB",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-PH",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-LMS",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VL-BL",
+          "player_name": "Bob Lanier",
+          "team": "Detroit Pistons",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-RM",
+          "player_name": "Rick Mahorn",
+          "team": "Detroit Pistons",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-BL",
+          "player_name": "Bob Lanier",
+          "team": "Detroit Pistons",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-ST",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-ST",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-RS",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Corey Maggette",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Al Harrington",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-14",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-AR",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-AR",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Corey Maggette",
+          "team": "Golden State Warriors",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Al Harrington",
+          "team": "Golden State Warriors",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Corey Maggette",
+          "team": "Golden State Warriors",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Al Harrington",
+          "team": "Golden State Warriors",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-BW",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-MR",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-AR",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VL-RB",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-RB",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Ron Artest",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Shane Battier",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Luis Scola",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "133",
+          "player_name": "Sean Singletary",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-24",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-30",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-44",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Ron Artest",
+          "team": "Houston Rockets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Shane Battier",
+          "team": "Houston Rockets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Luis Scola",
+          "team": "Houston Rockets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "133",
+          "player_name": "Sean Singletary",
+          "team": "Houston Rockets",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Ron Artest",
+          "team": "Houston Rockets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Shane Battier",
+          "team": "Houston Rockets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Luis Scola",
+          "team": "Houston Rockets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-BB",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-TS",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-WL",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SQ-2007",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-ORA",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-JD",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VV-CL",
+          "player_name": "Carl Landry",
+          "team": "Houston Rockets",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-CL",
+          "player_name": "Carl Landry",
+          "team": "Houston Rockets",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "T.J. Ford",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mike Dunleavy Jr.",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "131",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-13",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DS-17",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-BR",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCC-RH",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-BR",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-RH",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "T.J. Ford",
+          "team": "Indiana Pacers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mike Dunleavy",
+          "team": "Indiana Pacers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "131",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "T.J. Ford",
+          "team": "Indiana Pacers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Mike Dunleavy",
+          "team": "Indiana Pacers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPL-BR",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Marcus Camby",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "121",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "135",
+          "player_name": "Mike Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AP-32",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-54",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Marcus Camby",
+          "team": "Los Angeles Clippers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "121",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "135",
+          "player_name": "Mike Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Marcus Camby",
+          "team": "Los Angeles Clippers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-KJ",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-TS",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SQ-2007",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-DJ",
+          "player_name": "DeAndre Jordan",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPL-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VV-CK",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-CK",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Joe Crawford",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-GO",
+          "player_name": "Gail Goodrich",
+          "team": "Los Angeles Lakers",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-VD",
+          "player_name": "Vlade Divac",
+          "team": "Los Angeles Lakers",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-27",
+          "player_name": "Sun Yue",
+          "team": "Los Angeles Lakers",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-25",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-40",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-52",
+          "player_name": "Sun Yue",
+          "team": "Los Angeles Lakers",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-JC",
+          "player_name": "Joe Crawford",
+          "team": "Los Angeles Lakers",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-JC",
+          "player_name": "Joe Crawford",
+          "team": "Los Angeles Lakers",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Joe Crawford",
+          "team": "Los Angeles Lakers",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Pau Gasol",
+          "team": "Los Angeles Lakers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-KK",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-OB",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-SB",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-SV",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-VR",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-WL",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SQ-CBLL",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-BGD",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-EJB",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-JBJ",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-ORA",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-BY",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-JF",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-LW",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-SV",
+          "player_name": "Sasha Vujacic",
+          "team": "Los Angeles Lakers",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-BY",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-JF",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-LW",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-SV",
+          "player_name": "Sasha Vujacic",
+          "team": "Los Angeles Lakers",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-DF",
+          "player_name": "Derek Fisher",
+          "team": "Los Angeles Lakers",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-LW",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Darrell Arthur",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "127",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-29",
+          "player_name": "Marc Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DS-30",
+          "player_name": "Hamed Haddadi",
+          "team": "Memphis Grizzlies",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-48",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-56",
+          "player_name": "Marc Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-60",
+          "player_name": "Hamed Haddadi",
+          "team": "Memphis Grizzlies",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-DA",
+          "player_name": "Darrell Arthur",
+          "team": "Memphis Grizzlies",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCC-OM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-DA",
+          "player_name": "Darrell Arthur",
+          "team": "Memphis Grizzlies",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-OM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Darrell Arthur",
+          "team": "Memphis Grizzlies",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "127",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Darrell Arthur",
+          "team": "Memphis Grizzlies",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-CC",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-GC",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-WG",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SQ-2008",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-AD",
+          "player_name": "Darrell Arthur",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPL-OM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VV-MC",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-MC",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-RG",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "108",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-GR",
+          "player_name": "Glen Rice",
+          "team": "Miami Heat",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-26",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-28",
+          "player_name": "Shawn Marion",
+          "team": "Miami Heat",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-37",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-47",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-MB",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-MB",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "108",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-DS",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SQ-2008",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-MB",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPL-MC",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VL-GR",
+          "player_name": "Glen Rice",
+          "team": "Miami Heat",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-GR",
+          "player_name": "Glen Rice",
+          "team": "Miami Heat",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-AM",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-AM",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-DC",
+          "player_name": "Daequan Cook",
+          "team": "Miami Heat",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Richard Jefferson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AP-12",
+          "player_name": "Oscar Robertson",
+          "team": "Milwaukee Bucks",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-59",
+          "player_name": "Luc Mbah A Moute",
+          "team": "Milwaukee Bucks",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Richard Jefferson",
+          "team": "Milwaukee Bucks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Richard Jefferson",
+          "team": "Milwaukee Bucks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-JW",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-SF",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VV-AB",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "Milwaukee Bucks",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-RS",
+          "player_name": "Ramon Sessions",
+          "team": "Milwaukee Bucks",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "Milwaukee Bucks",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-RS",
+          "player_name": "Ramon Sessions",
+          "team": "Milwaukee Bucks",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-SE",
+          "player_name": "Ramon Sessions",
+          "team": "Milwaukee Bucks",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Al Jefferson",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Corey Brewer",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Mike Miller",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AP-50",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-KL",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-KL",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Al Jefferson",
+          "team": "Minnesota Timberwolves",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Corey Brewer",
+          "team": "Minnesota Timberwolves",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Mike Miller",
+          "team": "Minnesota Timberwolves",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Al Jefferson",
+          "team": "Minnesota Timberwolves",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Corey Brewer",
+          "team": "Minnesota Timberwolves",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Mike Miller",
+          "team": "Minnesota Timberwolves",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-FF",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-KJ",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-KL",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VV-AJ",
+          "player_name": "Al Jefferson",
+          "team": "Minnesota Timberwolves",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Devin Harris",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "111",
+          "player_name": "Chris Douglas-Roberts",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "124",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-BW",
+          "player_name": "Buck Williams",
+          "team": "New Jersey Nets",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-DD",
+          "player_name": "Darryl Dawkins",
+          "team": "New Jersey Nets",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-10",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-45",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-BL",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCC-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Devin Harris",
+          "team": "New Jersey Nets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Devin Harris",
+          "team": "New Jersey Nets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Chris Douglas-Roberts",
+          "team": "New Jersey Nets",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-JS",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-CHW",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-BL",
+          "player_name": "Brook Lopez",
+          "team": "New Jersey Nets",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPL-CD",
+          "player_name": "Chris Douglas-Roberts",
+          "team": "New Jersey Nets",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPL-RA",
+          "player_name": "Ryan Anderson",
+          "team": "New Jersey Nets",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VS-JB",
+          "player_name": "Josh Boone",
+          "team": "New Jersey Nets",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Tyson Chandler",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Peja Stojakovic",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-20",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-35",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Tyson Chandler",
+          "team": "New Orleans Hornets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Peja Stojakovic",
+          "team": "New Orleans Hornets",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Tyson Chandler",
+          "team": "New Orleans Hornets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Peja Stojakovic",
+          "team": "New Orleans Hornets",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-CO",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-PP",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-WG",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SQ-HRNT",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-PWR",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-DW",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-DW",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-DW",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-TC",
+          "player_name": "Tyson Chandler",
+          "team": "New Orleans Hornets",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddy Curry",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Patrick Ewing Jr.",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "113",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-WF",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AP-51",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-DG",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCC-PE",
+          "player_name": "Patrick Ewing Jr.",
+          "team": "New York Knicks",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-PE",
+          "player_name": "Patrick Ewing Jr.",
+          "team": "New York Knicks",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddy Curry",
+          "team": "New York Knicks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Patrick Ewing Jr.",
+          "team": "New York Knicks",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "113",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eddy Curry",
+          "team": "New York Knicks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Stephon Marbury",
+          "team": "New York Knicks",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Patrick Ewing Jr.",
+          "team": "New York Knicks",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-MR",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-QR",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-QR",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-DL",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jeff Green",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Chris Wilcox",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "139",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "140",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-22",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-39",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-49",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-DW",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCC-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-DW",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jeff Green",
+          "team": "Oklahoma City Thunder",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Chris Wilcox",
+          "team": "Oklahoma City Thunder",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "139",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "140",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jeff Green",
+          "team": "Oklahoma City Thunder",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Chris Wilcox",
+          "team": "Oklahoma City Thunder",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-DG",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SQ-2007",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SQ-2008",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Sign of the Times Quad",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-BGD",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-KW",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VV-KD",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-KD",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-JG",
+          "player_name": "Jeff Green",
+          "team": "Oklahoma City Thunder",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-KD",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Hedo Turkoglu",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Rashard Lewis",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-21",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-22",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Hedo Turkoglu",
+          "team": "Orlando Magic",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Rashard Lewis",
+          "team": "Orlando Magic",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Hedo Turkoglu",
+          "team": "Orlando Magic",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Rashard Lewis",
+          "team": "Orlando Magic",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Courtney Lee",
+          "team": "Orlando Magic",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-PH",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-CHW",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-GWP",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Andre Miller",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Elton Brand",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-GM",
+          "player_name": "George McGinnis",
+          "team": "Philadelphia 76ers",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-JE",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-MC",
+          "player_name": "Maurice Cheeks",
+          "team": "Philadelphia 76ers",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-16",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-MS",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-MS",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Andre Miller",
+          "team": "Philadelphia 76ers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Elton Brand",
+          "team": "Philadelphia 76ers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Andre Miller",
+          "team": "Philadelphia 76ers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Elton Brand",
+          "team": "Philadelphia 76ers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-AS",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-IS",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-MI",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-EJB",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-MS",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Leandro Barbosa",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-15",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-17",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-27",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-42",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-RL",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCC-SS",
+          "player_name": "Sean Singletary",
+          "team": "Phoenix Suns",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-RL",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-SS",
+          "player_name": "Sean Singletary",
+          "team": "Phoenix Suns",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "74",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Leandro Barbosa",
+          "team": "Phoenix Suns",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "74",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Leandro Barbosa",
+          "team": "Phoenix Suns",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-AS",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-HT",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-SB",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-RL",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VL-TC",
+          "player_name": "Tom Chambers",
+          "team": "Phoenix Suns",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-TC",
+          "player_name": "Tom Chambers",
+          "team": "Phoenix Suns",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-AT",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-AT",
+          "player_name": "Alando Tucker",
+          "team": "Phoenix Suns",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "147",
+          "player_name": "Rudy Fernandez",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-11",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DS-28",
+          "player_name": "Rudy Fernandez",
+          "team": "Portland Trail Blazers",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-55",
+          "player_name": "Rudy Fernandez",
+          "team": "Portland Trail Blazers",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-58",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-JB",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-JB",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "147",
+          "player_name": "Rudy Fernandez",
+          "team": "Portland Trail Blazers",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Rudy Fernandez",
+          "team": "Portland Trail Blazers",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-AR",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-PWR",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-JB",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPL-RF",
+          "player_name": "Rudy Fernandez",
+          "team": "Portland Trail Blazers",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VS-RF",
+          "player_name": "Rudy Fernandez",
+          "team": "Portland Trail Blazers",
+          "variation": "Vital Signs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Kevin Martin",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "136",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-12",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-15",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-53",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-JT",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-JT",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Kevin Martin",
+          "team": "Sacramento Kings",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "136",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Kevin Martin",
+          "team": "Sacramento Kings",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPL-DG",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPL-JT",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Malik Hairston",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "120",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-AG",
+          "player_name": "Artis Gilmore",
+          "team": "San Antonio Spurs",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-GG",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-RO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AP-29",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-43",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-PP",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VL-RO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-RO",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-NT",
+          "player_name": "Nate Thurmond",
+          "team": "San Francisco Warriors",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-RB",
+          "player_name": "Rick Barry",
+          "team": "San Francisco Warriors",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-DW",
+          "player_name": "Don Watts",
+          "team": "Seattle SuperSonics",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-XM",
+          "player_name": "Xavier McDaniel",
+          "team": "Seattle SuperSonics",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-DW",
+          "player_name": "Don \"Slick\" Watts",
+          "team": "Seattle SuperSonics",
+          "variation": "Varsity Letters Legends City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VL-DW",
+          "player_name": "Don \"Slick\" Watts",
+          "team": "Seattle SuperSonics",
+          "variation": "Varsity Letters Legends Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jermaine O'Neal",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jose Calderon",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-19",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jermaine O'Neal",
+          "team": "Toronto Raptors",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jose Calderon",
+          "team": "Toronto Raptors",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jermaine O'Neal",
+          "team": "Toronto Raptors",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jose Calderon",
+          "team": "Toronto Raptors",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-HM",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Kosta Koufos",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-AD",
+          "player_name": "Adrian Dantley",
+          "team": "Utah Jazz",
+          "variation": "Chirography",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AP-18",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AP-36",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Profiles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Kosta Koufos",
+          "team": "Utah Jazz",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Kosta Koufos",
+          "team": "Utah Jazz",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-BB",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SD-OB",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-PWR",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Sign of the Times Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-KK",
+          "player_name": "Kosta Koufos",
+          "team": "Utah Jazz",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DS-18",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": "Destination Stardom",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RCC-JM",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": "Recruiting Class City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RCN-JM",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": "Recruiting Class Full Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Retail",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": "Retail",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Retail Blue Die Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": "Rookies Logoman",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SD-JP",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Sign of the Times Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPL-JM",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": "SP Limited Memorabilia",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VV-JA",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Varsity Letters Veterans City Name",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VV-JA",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": "Varsity Letters Veterans Full Name",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

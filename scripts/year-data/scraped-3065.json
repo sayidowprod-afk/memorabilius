@@ -1,0 +1,3654 @@
+{
+  "year": 2003,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3065,
+        "name": "2003-04 UD Glass"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Travis Hansen",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Boris Diaw",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Travis Hansen",
+          "team": "Atlanta Hawks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Boris Diaw",
+          "team": "Atlanta Hawks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-SA",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TB",
+          "player_name": "Terrell Brandon",
+          "team": "Atlanta Hawks",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Kendrick Perkins",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Marcus Banks",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Kendrick Perkins",
+          "team": "Boston Celtics",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Marcus Banks",
+          "team": "Boston Celtics",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-MB",
+          "player_name": "Marcus Banks",
+          "team": "Boston Celtics",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Kirk Hinrich",
+          "team": "Chicago Bulls",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-EC",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TC",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jason Kapono",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Jason Kapono",
+          "team": "Cleveland Cavaliers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-DW",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-DM",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-DW",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-DW",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Antoine Walker",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-AJ",
+          "player_name": "Antawn Jamison",
+          "team": "Dallas Mavericks",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Antoine Walker",
+          "team": "Dallas Mavericks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-SN",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-AW",
+          "player_name": "Antoine Walker",
+          "team": "Dallas Mavericks",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-SN",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Antoine Walker",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Antoine Walker",
+          "team": "Dallas Mavericks",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-HO",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-AJ",
+          "player_name": "Antawn Jamison",
+          "team": "Dallas Mavericks",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MF",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-AN",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Andre Miller",
+          "team": "Denver Nuggets",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MC",
+          "player_name": "Marcus Camby",
+          "team": "Denver Nuggets",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-CA",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Darko Milicic",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Darko Milicic",
+          "team": "Detroit Pistons",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-DM",
+          "player_name": "Darko Milicic",
+          "team": "Detroit Pistons",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-BW",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-DM",
+          "player_name": "Darko Milicic",
+          "team": "Detroit Pistons",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Nick Van Exel",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Derrick Zimmerman",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Nick Van Exel",
+          "team": "Golden State Warriors",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Derrick Zimmerman",
+          "team": "Golden State Warriors",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Nick Van Exel",
+          "team": "Golden State Warriors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Nick Van Exel",
+          "team": "Golden State Warriors",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-MP",
+          "player_name": "Mickael Pietrus",
+          "team": "Golden State Warriors",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JR",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-JO",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-EB",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-CK",
+          "player_name": "Chris Kaman",
+          "team": "Los Angeles Clippers",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-EB",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Brian Cook",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Brian Cook",
+          "team": "Los Angeles Lakers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Gary Payton",
+          "team": "Los Angeles Lakers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-BC",
+          "player_name": "Brian Cook",
+          "team": "Los Angeles Lakers",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-LW",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-KM",
+          "player_name": "Karl Malone",
+          "team": "Los Angeles Lakers",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Theron Smith",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dahntay Jones",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Troy Bell",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Theron Smith",
+          "team": "Memphis Grizzlies",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dahntay Jones",
+          "team": "Memphis Grizzlies",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Troy Bell",
+          "team": "Memphis Grizzlies",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-DJ",
+          "player_name": "Dahntay Jones",
+          "team": "Memphis Grizzlies",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-TB",
+          "player_name": "Troy Bell",
+          "team": "Memphis Grizzlies",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Jerome Beasley",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Jerome Beasley",
+          "team": "Miami Heat",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-CB",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-LO",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-DY",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LO",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-LO",
+          "player_name": "Lamar Odom",
+          "team": "Miami Heat",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "T.J. Ford",
+          "team": "Milwaukee Bucks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Desmond Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-LS",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-LS",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-WS",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Latrell Sprewell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MM",
+          "player_name": "Mark Madsen",
+          "team": "Minnesota Timberwolves",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-WS",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-KM",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-AM",
+          "player_name": "Alonzo Mourning",
+          "team": "New Jersey Nets",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-KE",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-DE",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Keith Van Horn",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Slavko Vranes",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Maciej Lampe",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Ndudi Ebi",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Mike Sweetney",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-AH",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Keith Van Horn",
+          "team": "New York Knicks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Slavko Vranes",
+          "team": "New York Knicks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Maciej Lampe",
+          "team": "New York Knicks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Ndudi Ebi",
+          "team": "New York Knicks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Mike Sweetney",
+          "team": "New York Knicks",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Keith Van Horn",
+          "team": "New York Knicks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Keith Van Horn",
+          "team": "New York Knicks",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-MS",
+          "player_name": "Mike Sweetney",
+          "team": "New York Knicks",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AH",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CW",
+          "player_name": "Charlie Ward",
+          "team": "New York Knicks",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Juwan Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Keith Bogans",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Zaza Pachulia",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Reece Gaines",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Juwan Howard",
+          "team": "Orlando Magic",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Keith Bogans",
+          "team": "Orlando Magic",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Zaza Pachulia",
+          "team": "Orlando Magic",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Reece Gaines",
+          "team": "Orlando Magic",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-GH",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-GH",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Juwan Howard",
+          "team": "Orlando Magic",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Juwan Howard",
+          "team": "Orlando Magic",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-RG",
+          "player_name": "Reece Gaines",
+          "team": "Orlando Magic",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Kyle Korver",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Willie Green",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Kyle Korver",
+          "team": "Philadelphia 76ers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Willie Green",
+          "team": "Philadelphia 76ers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Glenn Robinson",
+          "team": "Philadelphia 76ers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Leandro Barbosa",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Zarko Cabarkapa",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-SM",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Leandro Barbosa",
+          "team": "Phoenix Suns",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Zarko Cabarkapa",
+          "team": "Phoenix Suns",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-AS",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-SM",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-ZC",
+          "player_name": "Zarko Cabarkapa",
+          "team": "Phoenix Suns",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JJ",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-SH",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-SM",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Travis Outlaw",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Travis Outlaw",
+          "team": "Portland Trail Blazers",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-RW",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-TO",
+          "player_name": "Travis Outlaw",
+          "team": "Portland Trail Blazers",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-CW",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-MB",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-PS",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-CW",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-DR",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-DR",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-EG",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RS",
+          "player_name": "Rasho Nesterovic",
+          "team": "San Antonio Spurs",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Nick Collison",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Nick Collison",
+          "team": "Seattle SuperSonics",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-LR",
+          "player_name": "Luke Ridnour",
+          "team": "Seattle SuperSonics",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-RA",
+          "player_name": "Ray Allen",
+          "team": "Seattle SuperSonics",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-RL",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-CB",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jarron Collins",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Aleksandar Pavlovic",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jarron Collins",
+          "team": "Utah Jazz",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Aleksandar Pavlovic",
+          "team": "Utah Jazz",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jarron Collins",
+          "team": "Utah Jazz",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jarron Collins",
+          "team": "Utah Jazz",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Steve Blake",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "CW-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Clear Cut Winners Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Steve Blake",
+          "team": "Washington Wizards",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": "Crystal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CE-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Cutting Edge Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Game Gear",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "Plexi-Glass",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-JH",
+          "player_name": "Jarvis Hayes",
+          "team": "Washington Wizards",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PI-SB",
+          "player_name": "Steve Blake",
+          "team": "Washington Wizards",
+          "variation": "Premier Issue Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-GA",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Superlative Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-JS",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SC-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Swatch of Class",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VIP-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "VIP Access Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

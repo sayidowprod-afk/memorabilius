@@ -1,0 +1,6734 @@
+{
+  "year": 2006,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3151,
+        "name": "2006-07 Bowman Sterling"
+      },
+      "unique": [
+        {
+          "card_number": "34",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Solomon Jones",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Shelden Williams",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Solomon Jones",
+          "team": "Atlanta Hawks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Shelden Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Solomon Jones",
+          "team": "Atlanta Hawks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Shelden Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Solomon Jones",
+          "team": "Atlanta Hawks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Shelden Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Solomon Jones",
+          "team": "Atlanta Hawks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Shelden Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Solomon Jones",
+          "team": "Atlanta Hawks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Shelden Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Solomon Jones",
+          "team": "Atlanta Hawks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Shelden Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "Shelden Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Solomon Jones",
+          "team": "Atlanta Hawks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Shelden Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Pete Maravich",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Bill Walton",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Leon Powe",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Allan Ray",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Pete Maravich",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Bill Walton",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Leon Powe",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Allan Ray",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Pete Maravich",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Bill Walton",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Leon Powe",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Allan Ray",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Pete Maravich",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Bill Walton",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Leon Powe",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Allan Ray",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Pete Maravich",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Bill Walton",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Leon Powe",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Allan Ray",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Pete Maravich",
+          "team": "Boston Celtics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Bill Walton",
+          "team": "Boston Celtics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Leon Powe",
+          "team": "Boston Celtics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Allan Ray",
+          "team": "Boston Celtics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Pete Maravich",
+          "team": "Boston Celtics",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Bill Walton",
+          "team": "Boston Celtics",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Leon Powe",
+          "team": "Boston Celtics",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Allan Ray",
+          "team": "Boston Celtics",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Pete Maravich",
+          "team": "Boston Celtics",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Bill Walton",
+          "team": "Boston Celtics",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Leon Powe",
+          "team": "Boston Celtics",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Allan Ray",
+          "team": "Boston Celtics",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Walter Herrmann",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Ryan Hollins",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Walter Herrmann",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Ryan Hollins",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Walter Herrmann",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Ryan Hollins",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Walter Herrmann",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Ryan Hollins",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Walter Herrmann",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Ryan Hollins",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Walter Herrmann",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Ryan Hollins",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Walter Herrmann",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Ryan Hollins",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "90",
+          "player_name": "Ryan Hollins",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Raymond Felton",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Walter Herrmann",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Ryan Hollins",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Adam Morrison",
+          "team": "Charlotte Bobcats",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Ben Wallace",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tyrus Thomas",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Thabo Sefolosha",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Ben Wallace",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tyrus Thomas",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Thabo Sefolosha",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Ben Wallace",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tyrus Thomas",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Thabo Sefolosha",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Ben Wallace",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tyrus Thomas",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Thabo Sefolosha",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Ben Wallace",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tyrus Thomas",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Thabo Sefolosha",
+          "team": "Chicago Bulls",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Ben Wallace",
+          "team": "Chicago Bulls",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tyrus Thomas",
+          "team": "Chicago Bulls",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Thabo Sefolosha",
+          "team": "Chicago Bulls",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Ben Wallace",
+          "team": "Chicago Bulls",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tyrus Thomas",
+          "team": "Chicago Bulls",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Thabo Sefolosha",
+          "team": "Chicago Bulls",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "Thabo Sefolosha",
+          "team": "Chicago Bulls",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Ben Wallace",
+          "team": "Chicago Bulls",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tyrus Thomas",
+          "team": "Chicago Bulls",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Thabo Sefolosha",
+          "team": "Chicago Bulls",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Shannon Brown",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Shannon Brown",
+          "team": "Cleveland Cavaliers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Shannon Brown",
+          "team": "Cleveland Cavaliers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Shannon Brown",
+          "team": "Cleveland Cavaliers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Shannon Brown",
+          "team": "Cleveland Cavaliers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Shannon Brown",
+          "team": "Cleveland Cavaliers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Shannon Brown",
+          "team": "Cleveland Cavaliers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Shannon Brown",
+          "team": "Cleveland Cavaliers",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Shannon Brown",
+          "team": "Cleveland Cavaliers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Pops Mensah-Bonsu",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jose Barea",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Maurice Ager",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Pops Mensah-Bonsu",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jose Barea",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Maurice Ager",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Pops Mensah-Bonsu",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jose Barea",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Maurice Ager",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Pops Mensah-Bonsu",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jose Barea",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Maurice Ager",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Pops Mensah-Bonsu",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jose Barea",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Maurice Ager",
+          "team": "Dallas Mavericks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Pops Mensah-Bonsu",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jose Barea",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Maurice Ager",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Pops Mensah-Bonsu",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jose Barea",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Maurice Ager",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "93",
+          "player_name": "Maurice Ager",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Josh Howard",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Pops Mensah-Bonsu",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Jose Barea",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Maurice Ager",
+          "team": "Dallas Mavericks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Yakhouba Diawara",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Yakhouba Diawara",
+          "team": "Denver Nuggets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Yakhouba Diawara",
+          "team": "Denver Nuggets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Yakhouba Diawara",
+          "team": "Denver Nuggets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Yakhouba Diawara",
+          "team": "Denver Nuggets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Yakhouba Diawara",
+          "team": "Denver Nuggets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Yakhouba Diawara",
+          "team": "Denver Nuggets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Allen Iverson",
+          "team": "Denver Nuggets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Yakhouba Diawara",
+          "team": "Denver Nuggets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Will Blalock",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Will Blalock",
+          "team": "Detroit Pistons",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Will Blalock",
+          "team": "Detroit Pistons",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Will Blalock",
+          "team": "Detroit Pistons",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Will Blalock",
+          "team": "Detroit Pistons",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Will Blalock",
+          "team": "Detroit Pistons",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Will Blalock",
+          "team": "Detroit Pistons",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Will Blalock",
+          "team": "Detroit Pistons",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chauncey Billups",
+          "team": "Detroit Pistons",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Isiah Thomas",
+          "team": "Detroit Pistons",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Will Blalock",
+          "team": "Detroit Pistons",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelenna Azubuike",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Patrick O'Bryant",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelenna Azubuike",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Patrick O'Bryant",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelenna Azubuike",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Patrick O'Bryant",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelenna Azubuike",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Patrick O'Bryant",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelenna Azubuike",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Patrick O'Bryant",
+          "team": "Golden State Warriors",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelenna Azubuike",
+          "team": "Golden State Warriors",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Patrick O'Bryant",
+          "team": "Golden State Warriors",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelenna Azubuike",
+          "team": "Golden State Warriors",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Patrick O'Bryant",
+          "team": "Golden State Warriors",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kelenna Azubuike",
+          "team": "Golden State Warriors",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Patrick O'Bryant",
+          "team": "Golden State Warriors",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Novak",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Vassilis Spanoulis",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Novak",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Vassilis Spanoulis",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Novak",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Vassilis Spanoulis",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Novak",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Vassilis Spanoulis",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Novak",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Vassilis Spanoulis",
+          "team": "Houston Rockets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Novak",
+          "team": "Houston Rockets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Vassilis Spanoulis",
+          "team": "Houston Rockets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Novak",
+          "team": "Houston Rockets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Vassilis Spanoulis",
+          "team": "Houston Rockets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Vassilis Spanoulis",
+          "team": "Houston Rockets",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Novak",
+          "team": "Houston Rockets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Vassilis Spanoulis",
+          "team": "Houston Rockets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "Shawne Williams",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Shawne Williams",
+          "team": "Indiana Pacers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Shawne Williams",
+          "team": "Indiana Pacers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Shawne Williams",
+          "team": "Indiana Pacers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Shawne Williams",
+          "team": "Indiana Pacers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Shawne Williams",
+          "team": "Indiana Pacers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Shawne Williams",
+          "team": "Indiana Pacers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Shawne Williams",
+          "team": "Indiana Pacers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Paul Davis",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Paul Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Paul Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Paul Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Paul Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Paul Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Paul Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Paul Davis",
+          "team": "Los Angeles Clippers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tarence Kinsey",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Kyle Lowry",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Alexander Johnson",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tarence Kinsey",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Kyle Lowry",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Alexander Johnson",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tarence Kinsey",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Kyle Lowry",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Alexander Johnson",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tarence Kinsey",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Kyle Lowry",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Alexander Johnson",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tarence Kinsey",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Kyle Lowry",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Alexander Johnson",
+          "team": "Memphis Grizzlies",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tarence Kinsey",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Kyle Lowry",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Alexander Johnson",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tarence Kinsey",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Kyle Lowry",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Alexander Johnson",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "80",
+          "player_name": "Alexander Johnson",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tarence Kinsey",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Kyle Lowry",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Alexander Johnson",
+          "team": "Memphis Grizzlies",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Chris Quinn",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Chris Quinn",
+          "team": "Miami Heat",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Chris Quinn",
+          "team": "Miami Heat",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Chris Quinn",
+          "team": "Miami Heat",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Chris Quinn",
+          "team": "Miami Heat",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Chris Quinn",
+          "team": "Miami Heat",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Chris Quinn",
+          "team": "Miami Heat",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Chris Quinn",
+          "team": "Miami Heat",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Shaquille O'Neal",
+          "team": "Miami Heat",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Chris Quinn",
+          "team": "Miami Heat",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Bob Lanier",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Lynn Greer",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Noel",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Damir Markota",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Bob Lanier",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Lynn Greer",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Noel",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Damir Markota",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Bob Lanier",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Lynn Greer",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Noel",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Damir Markota",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Bob Lanier",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Lynn Greer",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Noel",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Damir Markota",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Bob Lanier",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Lynn Greer",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Noel",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Damir Markota",
+          "team": "Milwaukee Bucks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Bob Lanier",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Lynn Greer",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Noel",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Damir Markota",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Bob Lanier",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Lynn Greer",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Noel",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Damir Markota",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "76",
+          "player_name": "Damir Markota",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Bob Lanier",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Lynn Greer",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "David Noel",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Damir Markota",
+          "team": "Milwaukee Bucks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Craig Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Craig Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Craig Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Craig Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Craig Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Craig Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Craig Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "98",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Craig Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Boone",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Mile Ilic",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hassan Adams",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Marcus Williams",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Boone",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Mile Ilic",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hassan Adams",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Marcus Williams",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Boone",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Mile Ilic",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hassan Adams",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Marcus Williams",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Boone",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Mile Ilic",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hassan Adams",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Marcus Williams",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Boone",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Mile Ilic",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hassan Adams",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Marcus Williams",
+          "team": "New Jersey Nets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Boone",
+          "team": "New Jersey Nets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Mile Ilic",
+          "team": "New Jersey Nets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hassan Adams",
+          "team": "New Jersey Nets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Marcus Williams",
+          "team": "New Jersey Nets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Boone",
+          "team": "New Jersey Nets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Mile Ilic",
+          "team": "New Jersey Nets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hassan Adams",
+          "team": "New Jersey Nets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Marcus Williams",
+          "team": "New Jersey Nets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "79",
+          "player_name": "Mile Ilic",
+          "team": "New Jersey Nets",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hassan Adams",
+          "team": "New Jersey Nets",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Marcus Williams",
+          "team": "New Jersey Nets",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Josh Boone",
+          "team": "New Jersey Nets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Mile Ilic",
+          "team": "New Jersey Nets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Hassan Adams",
+          "team": "New Jersey Nets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Marcus Williams",
+          "team": "New Jersey Nets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Marcus Vinicius",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Hilton Armstrong",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Cedric Simmons",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Marcus Vinicius",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Hilton Armstrong",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Cedric Simmons",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Marcus Vinicius",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Hilton Armstrong",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Cedric Simmons",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Marcus Vinicius",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Hilton Armstrong",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Cedric Simmons",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Marcus Vinicius",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Hilton Armstrong",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Cedric Simmons",
+          "team": "New Orleans Hornets",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Marcus Vinicius",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Hilton Armstrong",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Cedric Simmons",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Marcus Vinicius",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Hilton Armstrong",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Cedric Simmons",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "74",
+          "player_name": "Marcus Vinicius",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Hilton Armstrong",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Cedric Simmons",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Marcus Vinicius",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Hilton Armstrong",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Cedric Simmons",
+          "team": "New Orleans Hornets",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mardy Collins",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Renaldo Balkman",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mardy Collins",
+          "team": "New York Knicks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Renaldo Balkman",
+          "team": "New York Knicks",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mardy Collins",
+          "team": "New York Knicks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Renaldo Balkman",
+          "team": "New York Knicks",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mardy Collins",
+          "team": "New York Knicks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Renaldo Balkman",
+          "team": "New York Knicks",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mardy Collins",
+          "team": "New York Knicks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Renaldo Balkman",
+          "team": "New York Knicks",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mardy Collins",
+          "team": "New York Knicks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Renaldo Balkman",
+          "team": "New York Knicks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mardy Collins",
+          "team": "New York Knicks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Renaldo Balkman",
+          "team": "New York Knicks",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "Renaldo Balkman",
+          "team": "New York Knicks",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Channing Frye",
+          "team": "New York Knicks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Mardy Collins",
+          "team": "New York Knicks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Renaldo Balkman",
+          "team": "New York Knicks",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "James Augustine",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "James Augustine",
+          "team": "Orlando Magic",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "James Augustine",
+          "team": "Orlando Magic",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "James Augustine",
+          "team": "Orlando Magic",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "James Augustine",
+          "team": "Orlando Magic",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "James Augustine",
+          "team": "Orlando Magic",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "James Augustine",
+          "team": "Orlando Magic",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "James Augustine",
+          "team": "Orlando Magic",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "James Augustine",
+          "team": "Orlando Magic",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "J.J. Redick",
+          "team": "Orlando Magic",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Bobby Jones",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rodney Carney",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Bobby Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rodney Carney",
+          "team": "Philadelphia 76ers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Bobby Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rodney Carney",
+          "team": "Philadelphia 76ers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Bobby Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rodney Carney",
+          "team": "Philadelphia 76ers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Bobby Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rodney Carney",
+          "team": "Philadelphia 76ers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Bobby Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rodney Carney",
+          "team": "Philadelphia 76ers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Bobby Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rodney Carney",
+          "team": "Philadelphia 76ers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rodney Carney",
+          "team": "Philadelphia 76ers",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Bobby Jones",
+          "team": "Philadelphia 76ers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Rodney Carney",
+          "team": "Philadelphia 76ers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sergio Rodriguez",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sergio Rodriguez",
+          "team": "Portland Trail Blazers",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sergio Rodriguez",
+          "team": "Portland Trail Blazers",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sergio Rodriguez",
+          "team": "Portland Trail Blazers",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sergio Rodriguez",
+          "team": "Portland Trail Blazers",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sergio Rodriguez",
+          "team": "Portland Trail Blazers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sergio Rodriguez",
+          "team": "Portland Trail Blazers",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sergio Rodriguez",
+          "team": "Portland Trail Blazers",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sergio Rodriguez",
+          "team": "Portland Trail Blazers",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Quincy Douby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Quincy Douby",
+          "team": "Sacramento Kings",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Quincy Douby",
+          "team": "Sacramento Kings",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Quincy Douby",
+          "team": "Sacramento Kings",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Quincy Douby",
+          "team": "Sacramento Kings",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Quincy Douby",
+          "team": "Sacramento Kings",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Quincy Douby",
+          "team": "Sacramento Kings",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Quincy Douby",
+          "team": "Sacramento Kings",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Quincy Douby",
+          "team": "Sacramento Kings",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "James White",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "James White",
+          "team": "San Antonio Spurs",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "James White",
+          "team": "San Antonio Spurs",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "James White",
+          "team": "San Antonio Spurs",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "James White",
+          "team": "San Antonio Spurs",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "James White",
+          "team": "San Antonio Spurs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "James White",
+          "team": "San Antonio Spurs",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "James White",
+          "team": "San Antonio Spurs",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mickael Gelabale",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Saer Sene",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mickael Gelabale",
+          "team": "Seattle SuperSonics",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Saer Sene",
+          "team": "Seattle SuperSonics",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mickael Gelabale",
+          "team": "Seattle SuperSonics",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Saer Sene",
+          "team": "Seattle SuperSonics",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mickael Gelabale",
+          "team": "Seattle SuperSonics",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Saer Sene",
+          "team": "Seattle SuperSonics",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mickael Gelabale",
+          "team": "Seattle SuperSonics",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Saer Sene",
+          "team": "Seattle SuperSonics",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mickael Gelabale",
+          "team": "Seattle SuperSonics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Saer Sene",
+          "team": "Seattle SuperSonics",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mickael Gelabale",
+          "team": "Seattle SuperSonics",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Saer Sene",
+          "team": "Seattle SuperSonics",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Mickael Gelabale",
+          "team": "Seattle SuperSonics",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Saer Sene",
+          "team": "Seattle SuperSonics",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jorge Garbajosa",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "P.J. Tucker",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jorge Garbajosa",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "P.J. Tucker",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jorge Garbajosa",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "P.J. Tucker",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jorge Garbajosa",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "P.J. Tucker",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jorge Garbajosa",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "P.J. Tucker",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jorge Garbajosa",
+          "team": "Toronto Raptors",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "P.J. Tucker",
+          "team": "Toronto Raptors",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jorge Garbajosa",
+          "team": "Toronto Raptors",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "P.J. Tucker",
+          "team": "Toronto Raptors",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "P.J. Tucker",
+          "team": "Toronto Raptors",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "T.J. Ford",
+          "team": "Toronto Raptors",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Jorge Garbajosa",
+          "team": "Toronto Raptors",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "P.J. Tucker",
+          "team": "Toronto Raptors",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Andrea Bargnani",
+          "team": "Toronto Raptors",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Dee Brown",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Dee Brown",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Dee Brown",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Dee Brown",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Dee Brown",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Dee Brown",
+          "team": "Utah Jazz",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Dee Brown",
+          "team": "Utah Jazz",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Refractors Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Dee Brown",
+          "team": "Utah Jazz",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Paul Millsap",
+          "team": "Utah Jazz",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Shawn Marion",
+          "team": "Washington Wizards",
+          "variation": "Press Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Shawn Marion",
+          "team": "Washington Wizards",
+          "variation": "Press Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Shawn Marion",
+          "team": "Washington Wizards",
+          "variation": "Press Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Shawn Marion",
+          "team": "Washington Wizards",
+          "variation": "Press Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Shawn Marion",
+          "team": "Washington Wizards",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Shawn Marion",
+          "team": "Washington Wizards",
+          "variation": "Refractors Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Gilbert Arenas",
+          "team": "Washington Wizards",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Shawn Marion",
+          "team": "Washington Wizards",
+          "variation": "Refractors Red",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Bowman"
+    }
+  ]
+}

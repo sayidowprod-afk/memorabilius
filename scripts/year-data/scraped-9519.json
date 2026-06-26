@@ -1,0 +1,2998 @@
+{
+  "year": 2008,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 9519,
+        "name": "2008-09 Upper Deck Radiance"
+      },
+      "unique": [
+        {
+          "card_number": "35",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-AH",
+          "player_name": "Al Horford",
+          "team": "Atlanta Hawks",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-DH",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-ANMH",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-FLY",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-AL",
+          "player_name": "Acie Law IV",
+          "team": "Atlanta Hawks",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-MB",
+          "player_name": "Mike Bibby",
+          "team": "Atlanta Hawks",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-DW",
+          "player_name": "Dominique Wilkins",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-JS",
+          "player_name": "Josh Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-SJ",
+          "player_name": "Solomon Jones",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-WE",
+          "player_name": "Spud Webb",
+          "team": "Atlanta Hawks",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MW",
+          "player_name": "Marvin Williams",
+          "team": "Atlanta Hawks",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Ray Allen",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-RR",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-JG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-RR",
+          "player_name": "Rajon Rondo",
+          "team": "Boston Celtics",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-JB",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-PG",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-BOS",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-LGD",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Boston Celtics",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-BSTN",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-PG",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-BW",
+          "player_name": "Bill Walker",
+          "team": "Boston Celtics",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-JG",
+          "player_name": "J.R. Giddens",
+          "team": "Boston Celtics",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-GD",
+          "player_name": "Glen Davis",
+          "team": "Boston Celtics",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-GP",
+          "player_name": "Gabe Pruitt",
+          "team": "Boston Celtics",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-JD",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-PG",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Jason Richardson",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Gerald Wallace",
+          "team": "Charlotte Bobcats",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-DA",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-RC2",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-AA",
+          "player_name": "Alexis Ajinca",
+          "team": "Charlotte Bobcats",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-DA",
+          "player_name": "D.J. Augustin",
+          "team": "Charlotte Bobcats",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SB",
+          "player_name": "Shannon Brown",
+          "team": "Charlotte Bobcats",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-DA",
+          "player_name": "Charlotte Bobcats",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-JD",
+          "player_name": "Charlotte Hornets",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Luol Deng",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Joakim Noah",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-AG",
+          "player_name": "Artis Gilmore",
+          "team": "Chicago Bulls",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-JE",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-RC1",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-UDE",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-CBDP",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RC1",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-STAR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-TT",
+          "player_name": "Tyrus Thomas",
+          "team": "Chicago Bulls",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-GR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-JR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-DR",
+          "player_name": "Derrick Rose",
+          "team": "Chicago Bulls",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BG",
+          "player_name": "Ben Gordon",
+          "team": "Chicago Bulls",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CS",
+          "player_name": "Cedric Simmons",
+          "team": "Chicago Bulls",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SK",
+          "player_name": "Steve Kerr",
+          "team": "Chicago Bulls",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-WR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ben Wallace",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Mo Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-BJ",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-UDE",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-MP",
+          "player_name": "Mark Price",
+          "team": "Cleveland Cavaliers",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-STAR",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-MW",
+          "player_name": "Mo Williams",
+          "team": "Cleveland Cavaliers",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-JW",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-JJ",
+          "player_name": "J.J. Hickson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-LJ",
+          "player_name": "LeBron James",
+          "team": "Cleveland Cavaliers",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-GI",
+          "player_name": "Daniel Gibson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Brandon Bass",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DI-JK",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Carmelo Anthony",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Chauncey Billups",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kenyon Martin",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-DT",
+          "player_name": "David Thompson",
+          "team": "Denver Nuggets",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-DNUJ",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-FLY",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-SM",
+          "player_name": "J.R. Smith",
+          "team": "Denver Nuggets",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-SW",
+          "player_name": "Denver Nuggets",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-DT",
+          "player_name": "David Thompson",
+          "team": "Denver Nuggets",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-SW",
+          "player_name": "Sonny Weems",
+          "team": "Denver Nuggets",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-KV",
+          "player_name": "Kiki Vandeweghe",
+          "team": "Denver Nuggets",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Allen Iverson",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Rodney Stuckey",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Rasheed Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-TP",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-CBDP",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-PG",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-UJDP",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-SA",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-WS",
+          "player_name": "Walter Sharpe",
+          "team": "Detroit Pistons",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-TP",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AA",
+          "player_name": "Arron Afflalo",
+          "team": "Detroit Pistons",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-AB",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-GS",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-LP",
+          "player_name": "Detroit Pistons",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Monta Ellis",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Stephen Jackson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Corey Maggette",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Brandan Wright",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Anthony Randolph",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-BE",
+          "player_name": "Marco Belinelli",
+          "team": "Golden State Warriors",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-RH",
+          "player_name": "Richard Hendrix",
+          "team": "Golden State Warriors",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-CW",
+          "player_name": "C.J. Watson",
+          "team": "Golden State Warriors",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CM",
+          "player_name": "Corey Maggette",
+          "team": "Golden State Warriors",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-AB",
+          "player_name": "Golden State Warriors",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ron Artest",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Luis Scola",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Joey Dorsey",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-CL",
+          "player_name": "Carl Landry",
+          "team": "Houston Rockets",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-YM",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-CL",
+          "player_name": "Carl Landry",
+          "team": "Houston Rockets",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-MGHR",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-AB",
+          "player_name": "Aaron Brooks",
+          "team": "Houston Rockets",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Houston Rockets",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-BH",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "T.J. Ford",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "104",
+          "player_name": "Brandon Rush",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-RH",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-MBIP",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-RH",
+          "player_name": "Roy Hibbert",
+          "team": "Indiana Pacers",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DG",
+          "player_name": "Danny Granger",
+          "team": "Indiana Pacers",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-GR",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-RC",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Marcus Camby",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Baron Davis",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-NEW",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-LAC",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RC2",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-EG",
+          "player_name": "Eric Gordon",
+          "team": "Los Angeles Clippers",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-MT",
+          "player_name": "Mike Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-AT",
+          "player_name": "Al Thornton",
+          "team": "Los Angeles Clippers",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Andrew Bynum",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-LW",
+          "player_name": "Luke Walton",
+          "team": "Los Angeles Lakers",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-JF",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-BF",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-BJ",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-JB",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-LGD",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-UDE",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-JO",
+          "player_name": "Magic Johnson",
+          "team": "Los Angeles Lakers",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-LAL",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-STAR",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-JF",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-BB",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-JF",
+          "player_name": "Jordan Farmar",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-WR",
+          "player_name": "Los Angeles Lakers",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Mike Conley",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Rudy Gay",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Darrell Arthur",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Marc Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-OM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-OM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-MB",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-RC1",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-JC",
+          "player_name": "Javaris Crittenton",
+          "team": "Memphis Grizzlies",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-MGHR",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RC1",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-GF",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-GM",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-OM",
+          "player_name": "O.J. Mayo",
+          "team": "Memphis Grizzlies",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Shawn Marion",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Dwyane Wade",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-MB",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-MB",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-MC",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-CC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-MB",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-RC1",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-MB",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-ANMH",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RC1",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-BE",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-CB",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-MB",
+          "player_name": "Michael Beasley",
+          "team": "Miami Heat",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-MC",
+          "player_name": "Mario Chalmers",
+          "team": "Miami Heat",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-RC",
+          "player_name": "Miami Heat",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Richard Jefferson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Michael Redd",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ramon Sessions",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-NEW",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "Milwaukee Bucks",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-MBIP",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RC2",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-JA",
+          "player_name": "Joe Alexander",
+          "team": "Milwaukee Bucks",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-LM",
+          "player_name": "Luc Richard Mbah A Moute",
+          "team": "Milwaukee Bucks",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "Milwaukee Bucks",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BO",
+          "player_name": "Andrew Bogut",
+          "team": "Milwaukee Bucks",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Al Jefferson",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Mike Miller",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DI-RF",
+          "player_name": "Randy Foye",
+          "team": "Minnesota Timberwolves",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RC2",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-KL",
+          "player_name": "Kevin Love",
+          "team": "Minnesota Timberwolves",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-LW",
+          "player_name": "Minnesota Timberwolves",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Devin Harris",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Yi Jianlian",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DI-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-FLY",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-SS",
+          "player_name": "Stromile Swift",
+          "team": "New Jersey Nets",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-VC",
+          "player_name": "Vince Carter",
+          "team": "New Jersey Nets",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-HA",
+          "player_name": "Devin Harris",
+          "team": "New Jersey Nets",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JB",
+          "player_name": "Josh Boone",
+          "team": "New Jersey Nets",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-LL",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Tyson Chandler",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-PG",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-WE",
+          "player_name": "David West",
+          "team": "New Orleans Hornets",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CP",
+          "player_name": "Chris Paul",
+          "team": "New Orleans Hornets",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Wilson Chandler",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Jamal Crawford",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Eddy Curry",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "David Lee",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FS-RC2",
+          "player_name": "New York Knicks",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-EC",
+          "player_name": "Eddy Curry",
+          "team": "New York Knicks",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-QR",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-DG",
+          "player_name": "Danilo Gallinari",
+          "team": "New York Knicks",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-QR",
+          "player_name": "Quentin Richardson",
+          "team": "New York Knicks",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-NR",
+          "player_name": "Nate Robinson",
+          "team": "New York Knicks",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Desmond Mason",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Chris Wilcox",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Kyle Weaver",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "110",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-KD",
+          "player_name": "Kevin Durant",
+          "team": "Oklahoma City Thunder",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-DH",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-RC2",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-DW",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-OCTB",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RC1",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-DW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-DW",
+          "player_name": "D.J. White",
+          "team": "Oklahoma City Thunder",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-RW",
+          "player_name": "Russell Westbrook",
+          "team": "Oklahoma City Thunder",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-DM",
+          "player_name": "Desmond Mason",
+          "team": "Oklahoma City Thunder",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-DA",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-LW",
+          "player_name": "Oklahoma City Thunder",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Hedo Turkoglu",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-FLY",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DH",
+          "player_name": "Dwight Howard",
+          "team": "Orlando Magic",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-BH",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Elton Brand",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Andre Iguodala",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Louis Williams",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Thaddeus Young",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Marreese Speights",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFD-JE",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Auto Focus Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-LGD",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-STAR",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-IS",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "Steve Nash",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Shaquille O'Neal",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Robin Lopez",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-TC",
+          "player_name": "Tom Chambers",
+          "team": "Phoenix Suns",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-SS",
+          "player_name": "Sean Singletary",
+          "team": "Phoenix Suns",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-LL",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Greg Oden",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Rudy Fernandez",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-BR",
+          "player_name": "Brandon Roy",
+          "team": "Portland Trail Blazers",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JB",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-RF",
+          "player_name": "Rudy Fernandez",
+          "team": "Portland Trail Blazers",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-RF",
+          "player_name": "Rudy Fernandez",
+          "team": "Portland Trail Blazers",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFT-RC2",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-CD",
+          "player_name": "Clyde Drexler",
+          "team": "Portland Trail Blazers",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-OCTB",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-PG",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-LA",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-GF",
+          "player_name": "Portland Trail Blazers",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-JB",
+          "player_name": "Jerryd Bayless",
+          "team": "Portland Trail Blazers",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-RF",
+          "player_name": "Rudy Fernandez",
+          "team": "Portland Trail Blazers",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-LA",
+          "player_name": "LaMarcus Aldridge",
+          "team": "Portland Trail Blazers",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Francisco Garcia",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Kevin Martin",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "107",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-DG",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-DG",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-GR",
+          "player_name": "Donte Greene",
+          "team": "Sacramento Kings",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-JT",
+          "player_name": "Jason Thompson",
+          "team": "Sacramento Kings",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BM",
+          "player_name": "Brad Miller",
+          "team": "Sacramento Kings",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Manu Ginobili",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-GG",
+          "player_name": "George Gervin",
+          "team": "San Antonio Spurs",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-DR",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-SPUR",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NT-GH",
+          "player_name": "George Hill",
+          "team": "San Antonio Spurs",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BB",
+          "player_name": "Bruce Bowen",
+          "team": "San Antonio Spurs",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-TP",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-GR",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WS-GS",
+          "player_name": "San Antonio Spurs",
+          "team": null,
+          "variation": "Writing Samples",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Chris Bosh",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jose Calderon",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jamario Moon",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AFT-NEW",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Auto Focus Triple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-AD",
+          "player_name": "Adrian Dantley",
+          "team": "Utah Jazz",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-MA",
+          "player_name": "Morris Almond",
+          "team": "Utah Jazz",
+          "variation": "AU Standard",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AF-DW",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Auto Focus",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DI-AD",
+          "player_name": "Adrian Dantley",
+          "team": "Utah Jazz",
+          "variation": "Diplomatic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-DNUJ",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-PG",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-UJDP",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Four Star Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-DE",
+          "player_name": "Deron Williams",
+          "team": "Utah Jazz",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "I-RB",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Inked",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DM-BW",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Marks Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SF-RB",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Signature Flight",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CB",
+          "player_name": "Carlos Boozer",
+          "team": "Utah Jazz",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MA",
+          "player_name": "Morris Almond",
+          "team": "Utah Jazz",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-RB",
+          "player_name": "Ronnie Brewer",
+          "team": "Utah Jazz",
+          "variation": "Sweet Shot Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Caron Butler",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Antawn Jamison",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NT-JM",
+          "player_name": "Javale McGee",
+          "team": "Washington Wizards",
+          "variation": "Name Tag Autographs",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

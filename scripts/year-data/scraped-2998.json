@@ -1,0 +1,5350 @@
+{
+  "year": 2002,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 2998,
+        "name": "2002-03 Fleer Authentix"
+      },
+      "unique": [
+        {
+          "card_number": "18",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Glenn Robinson",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Dan Dickau",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Glenn Robinson",
+          "team": "Atlanta Hawks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Dan Dickau",
+          "team": "Atlanta Hawks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Glenn Robinson",
+          "team": "Atlanta Hawks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Dan Dickau",
+          "team": "Atlanta Hawks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-GR",
+          "player_name": "Glenn Robinson",
+          "team": "Atlanta Hawks",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-SA",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EC-GR",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SA-DM",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EC-GR",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SA-DM",
+          "player_name": "Atlanta Hawks",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-GR",
+          "player_name": "Glenn Robinson",
+          "team": "Atlanta Hawks",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-SA",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Glenn Robinson",
+          "team": "Atlanta Hawks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Dan Dickau",
+          "team": "Atlanta Hawks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-AW",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-CW",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VC-PP",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-CW",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VC-PP",
+          "player_name": "Boston Celtics",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-AW",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-PP",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-EC",
+          "player_name": "Eddy Curry",
+          "team": "Charlotte Hornets",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jay Williams",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Roger Mason",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jay Williams",
+          "team": "Chicago Bulls",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Roger Mason",
+          "team": "Chicago Bulls",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jay Williams",
+          "team": "Chicago Bulls",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Roger Mason",
+          "team": "Chicago Bulls",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-EC",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EC-GR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EC-GR",
+          "player_name": "Chicago Bulls",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jalen Rose",
+          "team": "Chicago Bulls",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Jay Williams",
+          "team": "Chicago Bulls",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Roger Mason",
+          "team": "Chicago Bulls",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Lamond Murray",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Lamond Murray",
+          "team": "Cleveland Cavaliers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Lamond Murray",
+          "team": "Cleveland Cavaliers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-DM",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SA-DM",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SA-DM",
+          "player_name": "Cleveland Cavaliers",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Lamond Murray",
+          "team": "Cleveland Cavaliers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Darius Miles",
+          "team": "Cleveland Cavaliers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Dajuan Wagner",
+          "team": "Cleveland Cavaliers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Carlos Boozer",
+          "team": "Cleveland Cavaliers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Raef LaFrentz",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Raef LaFrentz",
+          "team": "Dallas Mavericks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Raef LaFrentz",
+          "team": "Dallas Mavericks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Raef LaFrentz",
+          "team": "Dallas Mavericks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Marcus Camby",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Juwan Howard",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Nikoloz Tskitishvili",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Nene Hilario",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Vincent Yarbrough",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Marcus Camby",
+          "team": "Denver Nuggets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Juwan Howard",
+          "team": "Denver Nuggets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Nikoloz Tskitishvili",
+          "team": "Denver Nuggets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Nene Hilario",
+          "team": "Denver Nuggets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Vincent Yarbrough",
+          "team": "Denver Nuggets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Marcus Camby",
+          "team": "Denver Nuggets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Juwan Howard",
+          "team": "Denver Nuggets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Nikoloz Tskitishvili",
+          "team": "Denver Nuggets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Nene Hilario",
+          "team": "Denver Nuggets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Vincent Yarbrough",
+          "team": "Denver Nuggets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Marcus Camby",
+          "team": "Denver Nuggets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Juwan Howard",
+          "team": "Denver Nuggets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Nikoloz Tskitishvili",
+          "team": "Denver Nuggets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Nene Hilario",
+          "team": "Denver Nuggets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Vincent Yarbrough",
+          "team": "Denver Nuggets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Clifford Robinson",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Clifford Robinson",
+          "team": "Detroit Pistons",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Clifford Robinson",
+          "team": "Detroit Pistons",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Clifford Robinson",
+          "team": "Detroit Pistons",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Richard Hamilton",
+          "team": "Detroit Pistons",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Tayshaun Prince",
+          "team": "Detroit Pistons",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Jiri Welsch",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Jiri Welsch",
+          "team": "Golden State Warriors",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Jiri Welsch",
+          "team": "Golden State Warriors",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Mike Dunleavy",
+          "team": "Golden State Warriors",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Jiri Welsch",
+          "team": "Golden State Warriors",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Bostjan Nachbar",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Bostjan Nachbar",
+          "team": "Houston Rockets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Bostjan Nachbar",
+          "team": "Houston Rockets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-SF",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-SF",
+          "player_name": "Houston Rockets",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Bostjan Nachbar",
+          "team": "Houston Rockets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Yao Ming",
+          "team": "Houston Rockets",
+          "variation": "Tip-Off Ticket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Fred Jones",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Fred Jones",
+          "team": "Indiana Pacers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Fred Jones",
+          "team": "Indiana Pacers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BD-RM",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BD-RM",
+          "player_name": "Indiana Pacers",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-RM",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Fred Jones",
+          "team": "Indiana Pacers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Andre Miller",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Melvin Ely",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Andre Miller",
+          "team": "Los Angeles Clippers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Clippers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Melvin Ely",
+          "team": "Los Angeles Clippers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Andre Miller",
+          "team": "Los Angeles Clippers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Clippers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Melvin Ely",
+          "team": "Los Angeles Clippers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-EB",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-LO",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Clippers",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-EB",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-LO",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-EB",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-LO",
+          "player_name": "Los Angeles Clippers",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-DM",
+          "player_name": "Darius Miles",
+          "team": "Los Angeles Clippers",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-EB",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-LO",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Clippers",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Andre Miller",
+          "team": "Los Angeles Clippers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Clippers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Melvin Ely",
+          "team": "Los Angeles Clippers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Chris Wilcox",
+          "team": "Los Angeles Clippers",
+          "variation": "Tip-Off Ticket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Rick Fox",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Derek Fisher",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Kareem Rush",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Rick Fox",
+          "team": "Los Angeles Lakers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Derek Fisher",
+          "team": "Los Angeles Lakers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Kareem Rush",
+          "team": "Los Angeles Lakers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Rick Fox",
+          "team": "Los Angeles Lakers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Derek Fisher",
+          "team": "Los Angeles Lakers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Kareem Rush",
+          "team": "Los Angeles Lakers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Rick Fox",
+          "team": "Los Angeles Lakers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Derek Fisher",
+          "team": "Los Angeles Lakers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Kareem Rush",
+          "team": "Los Angeles Lakers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Wesley Person",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Drew Gooden",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Robert Archibald",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Wesley Person",
+          "team": "Memphis Grizzlies",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Drew Gooden",
+          "team": "Memphis Grizzlies",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Robert Archibald",
+          "team": "Memphis Grizzlies",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Wesley Person",
+          "team": "Memphis Grizzlies",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Drew Gooden",
+          "team": "Memphis Grizzlies",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Robert Archibald",
+          "team": "Memphis Grizzlies",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-SS",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Memphis Grizzlies",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-SS",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Wesley Person",
+          "team": "Memphis Grizzlies",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Drew Gooden",
+          "team": "Memphis Grizzlies",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Robert Archibald",
+          "team": "Memphis Grizzlies",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Brian Grant",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Travis Best",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Rasual Butler",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Brian Grant",
+          "team": "Miami Heat",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Travis Best",
+          "team": "Miami Heat",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Rasual Butler",
+          "team": "Miami Heat",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Brian Grant",
+          "team": "Miami Heat",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Travis Best",
+          "team": "Miami Heat",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Rasual Butler",
+          "team": "Miami Heat",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Brian Grant",
+          "team": "Miami Heat",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Travis Best",
+          "team": "Miami Heat",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Rasual Butler",
+          "team": "Miami Heat",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Caron Butler",
+          "team": "Miami Heat",
+          "variation": "Tip-Off Ticket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Sam Cassell",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Toni Kukoc",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Marcus Haislip",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Dan Gadzuric",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Sam Cassell",
+          "team": "Milwaukee Bucks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Toni Kukoc",
+          "team": "Milwaukee Bucks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Marcus Haislip",
+          "team": "Milwaukee Bucks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Dan Gadzuric",
+          "team": "Milwaukee Bucks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Sam Cassell",
+          "team": "Milwaukee Bucks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Toni Kukoc",
+          "team": "Milwaukee Bucks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Marcus Haislip",
+          "team": "Milwaukee Bucks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Dan Gadzuric",
+          "team": "Milwaukee Bucks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-RA",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AJA-GR",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Jersey Authentix Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RA-SF",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RA-SF",
+          "player_name": "Milwaukee Bucks",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-RA",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Sam Cassell",
+          "team": "Milwaukee Bucks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Toni Kukoc",
+          "team": "Milwaukee Bucks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Marcus Haislip",
+          "team": "Milwaukee Bucks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Dan Gadzuric",
+          "team": "Milwaukee Bucks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dikembe Mutombo",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rodney Rogers",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Tamar Slay",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dikembe Mutombo",
+          "team": "New Jersey Nets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rodney Rogers",
+          "team": "New Jersey Nets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Tamar Slay",
+          "team": "New Jersey Nets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dikembe Mutombo",
+          "team": "New Jersey Nets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rodney Rogers",
+          "team": "New Jersey Nets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Tamar Slay",
+          "team": "New Jersey Nets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-DM",
+          "player_name": "Dikembe Mutombo",
+          "team": "New Jersey Nets",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-KM2",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JK-AI",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-LO",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RH-RJ",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JK-AI",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-LO",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RH-RJ",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "New Jersey Nets",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-DM",
+          "player_name": "Dikembe Mutombo",
+          "team": "New Jersey Nets",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-KM2",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-RJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Dikembe Mutombo",
+          "team": "New Jersey Nets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rodney Rogers",
+          "team": "New Jersey Nets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Tamar Slay",
+          "team": "New Jersey Nets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Courtney Alexander",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "David Wesley",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Courtney Alexander",
+          "team": "New Orleans Hornets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "David Wesley",
+          "team": "New Orleans Hornets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Courtney Alexander",
+          "team": "New Orleans Hornets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "David Wesley",
+          "team": "New Orleans Hornets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BD-RM",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BD-RM",
+          "player_name": "New Orleans Hornets",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-BD",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jamal Mashburn",
+          "team": "New Orleans Hornets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Courtney Alexander",
+          "team": "New Orleans Hornets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "David Wesley",
+          "team": "New Orleans Hornets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Baron Davis",
+          "team": "New Orleans Hornets",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Antonio McDyess",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Frank Williams",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Antonio McDyess",
+          "team": "New York Knicks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Frank Williams",
+          "team": "New York Knicks",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Antonio McDyess",
+          "team": "New York Knicks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Frank Williams",
+          "team": "New York Knicks",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Antonio McDyess",
+          "team": "New York Knicks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Frank Williams",
+          "team": "New York Knicks",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Darrell Armstrong",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Ryan Humphrey",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Darrell Armstrong",
+          "team": "Orlando Magic",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Ryan Humphrey",
+          "team": "Orlando Magic",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Darrell Armstrong",
+          "team": "Orlando Magic",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Ryan Humphrey",
+          "team": "Orlando Magic",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-GH",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-MM",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GH-GP",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-KV",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TM-SM",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GH-GP",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-KV",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TM-SM",
+          "player_name": "Orlando Magic",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-GH",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-MM",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Darrell Armstrong",
+          "team": "Orlando Magic",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Ryan Humphrey",
+          "team": "Orlando Magic",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Aaron McKie",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Keith Van Horn",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "John Salmons",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Sam Clancy",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Aaron McKie",
+          "team": "Philadelphia 76ers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Keith Van Horn",
+          "team": "Philadelphia 76ers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "John Salmons",
+          "team": "Philadelphia 76ers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Sam Clancy",
+          "team": "Philadelphia 76ers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Aaron McKie",
+          "team": "Philadelphia 76ers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Keith Van Horn",
+          "team": "Philadelphia 76ers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "John Salmons",
+          "team": "Philadelphia 76ers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Sam Clancy",
+          "team": "Philadelphia 76ers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-KV",
+          "player_name": "Keith Van Horn",
+          "team": "Philadelphia 76ers",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JK-AI",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-KV",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JK-AI",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-KV",
+          "player_name": "Philadelphia 76ers",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-KV",
+          "player_name": "Keith Van Horn",
+          "team": "Philadelphia 76ers",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Aaron McKie",
+          "team": "Philadelphia 76ers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Keith Van Horn",
+          "team": "Philadelphia 76ers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "John Salmons",
+          "team": "Philadelphia 76ers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Sam Clancy",
+          "team": "Philadelphia 76ers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Casey Jacobsen",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Casey Jacobsen",
+          "team": "Phoenix Suns",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Casey Jacobsen",
+          "team": "Phoenix Suns",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-SM",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-SM2",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-JS",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TM-SM",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-JS",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TM-SM",
+          "player_name": "Phoenix Suns",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-JK",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-SM",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-SM2",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Casey Jacobsen",
+          "team": "Phoenix Suns",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Amare Stoudemire",
+          "team": "Phoenix Suns",
+          "variation": "Tip-Off Ticket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Qyntel Woods",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Qyntel Woods",
+          "team": "Portland Trail Blazers",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Qyntel Woods",
+          "team": "Portland Trail Blazers",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Qyntel Woods",
+          "team": "Portland Trail Blazers",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Qyntel Woods",
+          "team": "Portland Trail Blazers",
+          "variation": "Tip-Off Ticket",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Bobby Jackson",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Keon Clark",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Corsley Edwards",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Bobby Jackson",
+          "team": "Sacramento Kings",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Keon Clark",
+          "team": "Sacramento Kings",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Corsley Edwards",
+          "team": "Sacramento Kings",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Bobby Jackson",
+          "team": "Sacramento Kings",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Keon Clark",
+          "team": "Sacramento Kings",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Corsley Edwards",
+          "team": "Sacramento Kings",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-CW",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-CW",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AW-CW",
+          "player_name": "Sacramento Kings",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-CW",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Bobby Jackson",
+          "team": "Sacramento Kings",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Keon Clark",
+          "team": "Sacramento Kings",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Corsley Edwards",
+          "team": "Sacramento Kings",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Steve Smith",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Steve Smith",
+          "team": "San Antonio Spurs",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Steve Smith",
+          "team": "San Antonio Spurs",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Steve Smith",
+          "team": "San Antonio Spurs",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Brent Barry",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Kenny Anderson",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Brent Barry",
+          "team": "Seattle SuperSonics",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Brent Barry",
+          "team": "Seattle SuperSonics",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-GP",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GH-GP",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GH-GP",
+          "player_name": "Seattle SuperSonics",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-GP",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Brent Barry",
+          "team": "Seattle SuperSonics",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AA-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Autographed Authentix",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VC-PP",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VC-PP",
+          "player_name": "Toronto Raptors",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "DeShawn Stevenson",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "DeShawn Stevenson",
+          "team": "Utah Jazz",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "DeShawn Stevenson",
+          "team": "Utah Jazz",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-KM",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-EB",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-JS",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "KM-EB",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SM-JS",
+          "player_name": "Utah Jazz",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-JS",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-KM",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "DeShawn Stevenson",
+          "team": "Utah Jazz",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Jared Jeffries",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Rod Grizzard",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Juan Dixon",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Jared Jeffries",
+          "team": "Washington Wizards",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Rod Grizzard",
+          "team": "Washington Wizards",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Juan Dixon",
+          "team": "Washington Wizards",
+          "variation": "Balcony",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Jared Jeffries",
+          "team": "Washington Wizards",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Rod Grizzard",
+          "team": "Washington Wizards",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Juan Dixon",
+          "team": "Washington Wizards",
+          "variation": "Club Box",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-RH",
+          "player_name": "Richard Hamilton",
+          "team": "Washington Wizards",
+          "variation": "Jersey Authentix",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RH-RJ",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Ripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RH-RJ",
+          "player_name": "Washington Wizards",
+          "team": null,
+          "variation": "Jersey Authentix Game of the Week Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "JA-RH",
+          "player_name": "Richard Hamilton",
+          "team": "Washington Wizards",
+          "variation": "Jersey Authentix Unripped",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jerry Stackhouse",
+          "team": "Washington Wizards",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Jared Jeffries",
+          "team": "Washington Wizards",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Rod Grizzard",
+          "team": "Washington Wizards",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Juan Dixon",
+          "team": "Washington Wizards",
+          "variation": "Standing Room Only",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}
