@@ -31,8 +31,21 @@ function SortableCard({ id, disabled, children, className, style, onClick }: {
       style={{ ...style, transform: CSS.Transform.toString(transform), transition, zIndex: isDragging ? 999 : undefined }}
       onClick={onClick}
       {...attributes}
-      {...(disabled ? {} : listeners)}
     >
+      {!disabled && (
+        <div
+          {...listeners}
+          style={{
+            position: 'absolute', bottom: 6, right: 6, zIndex: 10,
+            width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'rgba(0,0,0,0.45)', borderRadius: 6, cursor: 'grab',
+            touchAction: 'none', color: 'white', fontSize: 16, lineHeight: 1,
+            userSelect: 'none',
+          }}
+        >
+          ⠿
+        </div>
+      )}
       {children}
     </div>
   )
