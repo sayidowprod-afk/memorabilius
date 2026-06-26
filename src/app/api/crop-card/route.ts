@@ -6,6 +6,18 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+export async function GET(req: NextRequest) {
+  const apiKey = process.env.GEMINI_API_KEY
+  if (!apiKey) return NextResponse.json({ error: 'no key' }, { status: 500 })
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`)
+  const data = await res.json()
+  const imageModels = (data.models ?? []).filter((m: any) =>
+    m.supportedGenerationMethods?.includes('generateContent') &&
+    (m.name?.includes('imagen') || m.name?.includes('flash') || m.name?.includes('image'))
+  ).map((m: any) => m.name)
+  return NextResponse.json({ imageModels, total: data.models?.length })
+}
+
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent'
 
 const PROMPT = 'Recadre autour de la carte et supprime les reflets. Il me faut que la carte, pas de contour.'
