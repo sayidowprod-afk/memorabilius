@@ -12,11 +12,9 @@ interface Card {
 
 export async function GET(
   request: Request,
-  context: { params: Promise<{ userId: string }> | { userId: string } }
+  context: { params: Promise<{ userId: string }> }
 ) {
-  // Résolution sécurisée des paramètres pour éviter les blocages TypeScript au build
-  const resolvedParams = 'then' in context.params ? await context.params : context.params
-  const userId = resolvedParams?.userId
+  const { userId } = await context.params
 
   if (!userId) {
     return NextResponse.json({ error: 'User ID manquant' }, { status: 400 })
