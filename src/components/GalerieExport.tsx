@@ -340,7 +340,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
       c.patch ? 'Oui' : 'Non',
       ...(hasValues ? [cardValues.has(c.f) ? String(cardValues.get(c.f)) : ''] : []),
     ])
-    const csv = '﻿' + [headers, ...rows]
+    const csv = '﻿' + 'sep=,\r\n' + [headers, ...rows]
       .map(r => r.map(cell => `"${(cell || '').replace(/"/g, '""')}"`).join(','))
       .join('\r\n')
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
