@@ -840,10 +840,6 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
   const [dragging, setDragging] = useState<number | null>(null)
   const [applying, setApplying] = useState(false)
   const [rotation, setRotation] = useState(0)
-  const [aiPreview, setAiPreview] = useState<string | null>(null)
-  const [aiBlob,    setAiBlob]    = useState<Blob | null>(null)
-  const skipAI = useRef(false)
-
   // Zoom / pan — pan en coordonnées canvas (non-zoomées)
   const [zoom, setZoom] = useState(1)
   const [pan,  setPan]  = useState<Pt>({ x: 0, y: 0 })
@@ -884,43 +880,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     hasAdjusted.current = false
     setStatus('detecting')
 
-    // ── Fast path: Gemini crop-card (recadrage + suppression reflets) ────────
-    if (!skipAI.current) {
-      try {
-        const { b64 } = await imageToBase64(img, 1024)
-        const { data: { session } } = await supabase.auth.getSession()
-        const ctrl = new AbortController()
-        const timeoutId = setTimeout(() => ctrl.abort(), 20000)
-        try {
-          const res = await fetch('/api/crop-card', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
-            body: JSON.stringify({ imageBase64: b64, mimeType: 'image/jpeg' }),
-            signal: ctrl.signal,
-          })
-          if (res.ok) {
-            const { imageBase64: croppedB64 } = await res.json()
-            if (croppedB64) {
-              const blob = await (await fetch(`data:image/png;base64,${croppedB64}`)).blob()
-              const url = URL.createObjectURL(blob)
-              setAiPreview(url)
-              setAiBlob(blob)
-              setStatus('found')
-              return
-            } else {
-              console.warn('[crop-card] réponse ok mais pas de imageBase64')
-            }
-          } else {
-            const errText = await res.text()
-            console.warn('[crop-card] erreur API', res.status, errText)
-          }
-        } finally {
-          clearTimeout(timeoutId)
-        }
-      } catch (e) { console.warn('[crop-card] exception, fallback coins', e) }
-    }
-
-    // ── Fallback: détection de coins ─────────────────────────────────────────
+    // ── Détection de coins ───────────────────────────────────────────────────
     let detectedCorners: Pt[] | null = null
 
     if (frameRect) {
@@ -1206,65 +1166,6 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     if (!canvas) return
     setZoom(1)
     setPan({ x: canvas.width / 2, y: canvas.height / 2 })
-  }
-
-  // ── Écran de prévisualisation résultat IA ───────────────────────────────
-  if (aiPreview && aiBlob) {
-    const adjustOriginal = () => {
-      URL.revokeObjectURL(aiPreview)
-      setAiPreview(null)
-      setAiBlob(null)
-      skipAI.current = true
-      setStatus('detecting')
-      setTimeout(() => initCanvas(imgRef.current!), 0)
-    }
-    const adjustAiResult = () => {
-      const url = aiPreview
-      const img = new window.Image()
-      img.onload = () => {
-        origImgRef.current = img
-        imgRef.current = img
-        skipAI.current = true
-        setAiPreview(null)
-        setAiBlob(null)
-        setStatus('detecting')
-        setTimeout(() => {
-          initCanvas(img)
-          URL.revokeObjectURL(url)
-        }, 50)
-      }
-      img.src = url
-    }
-    return (
-      <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.96)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '12px 16px 20px' }}>
-        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, marginBottom: 12, textAlign: 'center' }}>
-          Vérifiez le résultat IA — acceptez ou recadrez manuellement
-        </p>
-        <img
-          src={aiPreview}
-          alt="Carte recadrée"
-          style={{ maxWidth: '100%', maxHeight: '52vh', borderRadius: 8, objectFit: 'contain', display: 'block' }}
-        />
-        <div style={{ display: 'flex', gap: 8, marginTop: 14, width: '100%', maxWidth: 420, flexWrap: 'wrap' }}>
-          <button onClick={onClose}
-            style={{ flex: '1 1 calc(50% - 4px)', padding: '12px 0', background: 'rgba(255,255,255,0.08)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-            Annuler
-          </button>
-          <button onClick={() => { onResult(aiBlob!); URL.revokeObjectURL(aiPreview) }}
-            style={{ flex: '1 1 calc(50% - 4px)', padding: '12px 0', background: 'white', color: '#111', border: 'none', borderRadius: 12, fontWeight: 800, cursor: 'pointer', fontSize: 13 }}>
-            Utiliser
-          </button>
-          <button onClick={adjustAiResult}
-            style={{ flex: '1 1 calc(50% - 4px)', padding: '12px 0', background: 'rgba(255,255,255,0.14)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-            Rogner ce résultat
-          </button>
-          <button onClick={adjustOriginal}
-            style={{ flex: '1 1 calc(50% - 4px)', padding: '12px 0', background: 'rgba(255,255,255,0.14)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-            Ajuster l'original
-          </button>
-        </div>
-      </div>
-    )
   }
 
   return (
