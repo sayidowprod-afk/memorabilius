@@ -7,11 +7,36 @@ import OnlineIndicator from '@/components/OnlineIndicator'
 import GalerieExport from '@/components/GalerieExport'
 import PublicWishlist from '@/components/PublicWishlist'
 import GalerieComments from '@/components/GalerieComments'
+import {
+  DndContext, closestCenter, PointerSensor, TouchSensor,
+  useSensor, useSensors, type DragEndEvent
+} from '@dnd-kit/core'
+import { SortableContext, useSortable, rectSortingStrategy, arrayMove } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 import { useLang } from '@/lib/LangContext'
 import { getSpeciality } from '@/lib/sportsTeams'
 import TeamBadge from '@/components/TeamBadge'
+
+function SortableCard({ id, disabled, children, className, style, onClick }: {
+  id: string; disabled: boolean; children: React.ReactNode
+  className?: string; style?: React.CSSProperties; onClick?: () => void
+}) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id, disabled })
+  return (
+    <div
+      ref={setNodeRef}
+      className={className}
+      style={{ ...style, transform: CSS.Transform.toString(transform), transition, zIndex: isDragging ? 999 : undefined }}
+      onClick={onClick}
+      {...attributes}
+      {...(disabled ? {} : listeners)}
+    >
+      {children}
+    </div>
+  )
+}
 
 const PAGE_SIZE = 48
 
@@ -65,7 +90,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [cardValues, setCardValues] = useState<Map<string, number>>(new Map())
   const [editMode, setEditMode] = useState(false)
   const [activeTab, setActiveTab] = useState<'collection' | 'wishlist' | 'comments'>('collection')
-  const [dragIdx, setDragIdx] = useState<number | null>(null)
+  const [activeDragId, setActiveDragId] = useState<string | null>(null)
   const [monthlyBadges, setMonthlyBadges] = useState<string[]>([])
   const [csvTags, setCsvTags] = useState<Map<string, string>>(new Map())
   const [grailCards, setGrailCards] = useState<{ card_key: string; position: number }[]>([])
@@ -98,7 +123,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         setCsvTags(tagsMap)
 
         supabase.from('profiles').select('*').eq('id', resolvedId).single().then(({ data }) => {
-          if (data) { setProfile(data); loadCSV(data.lien_csv ?? null, tagsMap) }
+          if (data) { setProfile(data); loadCSV(data.lien_csv ?? null, tagsMap, data.gallery_order || []) }
           else setLoaded(true)
         })
         supabase.from('badges').select('mois').eq('user_id', resolvedId).eq('type', 'collectionneur_du_mois').order('mois', { ascending: false }).limit(6).then(({ data }) => {
@@ -186,7 +211,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     }
   }
 
-  const loadCSV = async (url: string | null, tagsMap?: Map<string, string>) => {
+  const loadCSV = async (url: string | null, tagsMap?: Map<string, string>, galleryOrder: string[] = []) => {
     try {
       let parsed: Card[] = []
       if (url) {
@@ -224,9 +249,19 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         collection_tag: m.collection_tag || ''
       }))
 
-      // Trier les cartes manuelles par position sauvegardée
+      // Trier les cartes manuelles par position sauvegardée (fallback sans gallery_order)
       cartesM.sort((a, b) => (a.position ?? 9999) - (b.position ?? 9999))
       const allCards = [...parsed, ...cartesM]
+
+      // Appliquer l'ordre personnalisé global si défini
+      if (galleryOrder.length > 0) {
+        const orderMap = new Map(galleryOrder.map((key, idx) => [key, idx]))
+        allCards.sort((a, b) => {
+          const pa = orderMap.get(a.id_manuelle || a.f) ?? 99999
+          const pb = orderMap.get(b.id_manuelle || b.f) ?? 99999
+          return pa - pb
+        })
+      }
       setCards(allCards)
       setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
       setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
@@ -305,68 +340,29 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
   const toggleFilter = (k: keyof typeof activeFilters) => setActiveFilters(p => ({ ...p, [k]: !p[k] }))
 
-  const touchDragIdx = useRef<number | null>(null)
+  const getCardId = (c: Card) => c.id_manuelle || c.f
 
-  const reorder = (from: number, to: number) => {
-    if (from === to) return
-    setCards(prev => {
-      const arr = [...prev]
-      const [moved] = arr.splice(from, 1)
-      arr.splice(to, 0, moved)
-      return arr
-    })
-    setDragIdx(to)
-  }
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 200, tolerance: 5 } }),
+  )
 
-  const savePositions = async (cardList: Card[]) => {
-    const updates = cardList
-      .filter(c => c.isManuelle && c.id_manuelle)
-      .map((c, i) => supabase.from('cartes_manuelles').update({ position: i }).eq('id', c.id_manuelle!))
-    await Promise.all(updates)
+  const saveGalleryOrder = async (cardList: Card[]) => {
+    if (!isOwner) return
+    const order = cardList.map(getCardId)
+    await supabase.from('profiles').update({ gallery_order: order }).eq('id', userId)
   }
 
-  // Desktop drag & drop
-  const handleDragStart = (idx: number) => setDragIdx(idx)
-  const handleDragOver = (e: React.DragEvent, idx: number) => {
-    e.preventDefault()
-    if (dragIdx === null || dragIdx === idx) return
-    if (!displayed[idx]?.isManuelle) return
-    reorder(dragIdx, idx)
-  }
-  const handleDragEnd = async () => {
-    setDragIdx(null)
-    await savePositions(cards)
-  }
-
-  // Mobile touch drag & drop
-  const handleTouchStart = (idx: number) => {
-    if (!editMode || !isOwner) return
-    touchDragIdx.current = idx
-    setDragIdx(idx)
-  }
-  const handleTouchMove = (e: React.TouchEvent, containerRef: React.RefObject<HTMLDivElement | null>) => {
-    if (touchDragIdx.current === null) return
-    e.preventDefault()
-    const touch = e.touches[0]
-    const grid = containerRef.current
-    if (!grid) return
-    const children = Array.from(grid.children) as HTMLElement[]
-    for (let i = 0; i < children.length; i++) {
-      const rect = children[i].getBoundingClientRect()
-      if (touch.clientX >= rect.left && touch.clientX <= rect.right &&
-          touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
-        if (i !== touchDragIdx.current && displayed[i]?.isManuelle) {
-          reorder(touchDragIdx.current, i)
-          touchDragIdx.current = i
-        }
-        break
-      }
-    }
-  }
-  const handleTouchEnd = async () => {
-    touchDragIdx.current = null
-    setDragIdx(null)
-    await savePositions(cards)
+  const onDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event
+    setActiveDragId(null)
+    if (!over || active.id === over.id) return
+    const movedIdx = cards.findIndex(c => getCardId(c) === active.id)
+    const targetIdx = cards.findIndex(c => getCardId(c) === over.id)
+    if (movedIdx === -1 || targetIdx === -1) return
+    const newCards = arrayMove(cards, movedIdx, targetIdx)
+    setCards(newCards)
+    saveGalleryOrder(newCards)
   }
 
   const gridRef = useRef<HTMLDivElement>(null)
@@ -949,29 +945,30 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
         `}</style>
         
-        <div
-          ref={gridRef}
-          className="card-grid"
-          onTouchMove={e => editMode && isOwner ? handleTouchMove(e, gridRef) : undefined}
-          onTouchEnd={editMode && isOwner ? handleTouchEnd : undefined}
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragStart={e => setActiveDragId(e.active.id as string)}
+          onDragEnd={onDragEnd}
         >
-          {displayed.map((d, i) => (
-            <div
-              key={i} className="card-item"
+          <SortableContext items={displayed.map(getCardId)} strategy={rectSortingStrategy}>
+          <div ref={gridRef} className="card-grid">
+          {displayed.map((d) => (
+            <SortableCard
+              key={getCardId(d)}
+              id={getCardId(d)}
+              disabled={!editMode || !isOwner || sortBy !== 'default'}
+              className="card-item"
               onClick={() => !editMode && setPopup(d)}
-              draggable={editMode && isOwner && !!d.isManuelle}
-              onDragStart={() => handleDragStart(i)}
-              onDragOver={e => handleDragOver(e, i)}
-              onDragEnd={handleDragEnd}
-              onTouchStart={() => d.isManuelle && handleTouchStart(i)}
               style={{
               borderRadius: 8, padding: 8,
-              background: 'white', cursor: editMode && d.isManuelle ? 'grab' : editMode ? 'default' : 'pointer',
+              background: 'white',
+              cursor: editMode && isOwner && sortBy === 'default' ? 'grab' : editMode ? 'default' : 'pointer',
               ...((privateCards.has(d.f) && isOwner)
                 ? { border: '2px solid #e74c3c' }
                 : coloredBorder((d.collection_tag && tabSettings.get(d.collection_tag)?.color) || accent)),
               boxSizing: 'border-box',
-              opacity: dragIdx === i ? 0.4 : privateCards.has(d.f) && isOwner ? 0.7 : 1,
+              opacity: activeDragId === getCardId(d) ? 0.4 : privateCards.has(d.f) && isOwner ? 0.7 : 1,
               position: 'relative',
               transition: 'opacity 0.15s',
               overflow: 'visible',
@@ -1079,9 +1076,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   )
                 })()}
               </div>
-            </div>
+          </SortableCard>
           ))}
-        </div>
+          </div>
+          </SortableContext>
+        </DndContext>
 
         {/* Scroll infini */}
         {loaded && (
