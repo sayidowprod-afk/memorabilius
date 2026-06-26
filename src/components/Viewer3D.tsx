@@ -284,133 +284,161 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
 
                 return (
                   <div ref={cardRef} style={{ position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform' }}>
+                    {/* D = 18px slab depth */}
                     <style>{`
-                      /* ── SLAB CASE — clear acrylic effect ── */
-                      .slb-case {
-                        width: 260px;
-                        border-radius: 7px;
-                        overflow: hidden;
+                      /* ── 3D WRAPPER (no overflow:hidden — would flatten 3D) ── */
+                      .slb-wrap {
                         position: relative;
-                        /* Transparent acrylic tint */
+                        transform-style: preserve-3d;
+                        width: 252px;
+                      }
+                      @media(max-width:1200px){.slb-wrap{width:214px;}}
+                      @media(max-width:600px){.slb-wrap{width:162px;}}
+
+                      /* ── FRONT FACE — clear acrylic ── */
+                      .slb-front {
+                        position: relative;
+                        transform: translateZ(18px);
+                        transform-style: preserve-3d;
+                        border-radius: 6px;
+                        overflow: hidden;
+                        /* Clear acrylic — barely tinted transparent */
                         background: linear-gradient(158deg,
-                          rgba(230,242,255,0.42) 0%,
-                          rgba(212,228,252,0.26) 38%,
-                          rgba(222,236,254,0.34) 68%,
-                          rgba(210,226,250,0.28) 100%
+                          rgba(232,244,255,0.46) 0%,
+                          rgba(214,230,254,0.28) 38%,
+                          rgba(224,237,255,0.38) 68%,
+                          rgba(212,228,252,0.30) 100%
                         );
-                        /* Thick acrylic border — bright white inner edge → tinted plastic → darker outer edge */
+                        /* Front face: bright edge highlight + depth shadow */
                         box-shadow:
-                          0 0 0 1px   rgba(255,255,255,0.94),
-                          0 0 0 12px  rgba(208,224,246,0.80),
-                          0 0 0 13.5px rgba(180,202,232,0.62),
-                          0 0 0 15px  rgba(155,182,218,0.40),
-                          0 0 0 16px  rgba(135,165,205,0.22),
-                          /* depth drop shadow */
-                          0 30px 90px rgba(0,0,0,0.88),
-                          6px 12px 28px rgba(0,0,0,0.55),
-                          /* inner highlights simulating surface */
-                          inset 0  1px 0 rgba(255,255,255,0.70),
-                          inset 1px 0  0 rgba(255,255,255,0.40),
-                          inset -1px 0  0 rgba(0,0,0,0.10),
-                          inset 0 -1px 0 rgba(0,0,0,0.16);
-                        backdrop-filter: blur(3px);
+                          0 0 0 1px rgba(255,255,255,0.92),
+                          0 28px 80px rgba(0,0,0,0.80),
+                          5px 10px 24px rgba(0,0,0,0.50),
+                          inset 0  1px 0 rgba(255,255,255,0.72),
+                          inset 1px 0  0 rgba(255,255,255,0.42),
+                          inset -1px 0  0 rgba(0,0,0,0.08),
+                          inset 0 -1px 0 rgba(0,0,0,0.14);
+                        backdrop-filter: blur(4px);
                       }
-                      @media (max-width:1200px) { .slb-case { width:220px; } }
-                      @media (max-width:600px)  { .slb-case { width:168px; } }
-
-                      /* Diagonal gloss shine on the acrylic surface */
-                      .slb-case::before {
-                        content: ''; position: absolute; inset: 0; z-index: 2;
-                        pointer-events: none; border-radius: 7px;
-                        background: linear-gradient(118deg,
-                          rgba(255,255,255,0.22) 0%,
+                      /* Diagonal gloss — simulates polished acrylic surface */
+                      .slb-front::before {
+                        content: ''; position: absolute; inset: 0; z-index: 3;
+                        pointer-events: none; border-radius: 6px;
+                        background: linear-gradient(116deg,
+                          rgba(255,255,255,0.24) 0%,
                           rgba(255,255,255,0.10) 22%,
-                          rgba(255,255,255,0.03) 42%,
-                          transparent 56%,
-                          rgba(255,255,255,0.02) 78%,
-                          rgba(255,255,255,0.07) 100%
+                          rgba(255,255,255,0.02) 44%,
+                          transparent 58%,
+                          rgba(255,255,255,0.04) 80%
                         );
                       }
 
-                      /* top plastic area containing the label */
-                      .slb-top { padding: 12px 15px 12px; position: relative; z-index: 1; }
-
-                      /* sides + window */
+                      /* ── PLASTIC ZONES on front face ── */
+                      .slb-top { padding: 13px 15px 13px; position: relative; z-index: 1; }
                       .slb-mid { padding: 0 15px; position: relative; z-index: 1; }
+                      .slb-bot {
+                        padding: 11px 15px 15px; position: relative; z-index: 1;
+                        display: flex; flex-direction: column; align-items: center; gap: 7px;
+                      }
+
+                      /* ── CARD WINDOW — deeply recessed ── */
                       .slb-window {
                         position: relative; overflow: hidden; border-radius: 2px;
-                        /* inset shadow = card sits BEHIND the plastic surface */
                         box-shadow:
-                          0 0 0 1px rgba(0,0,0,0.88),
-                          inset 0 4px 14px rgba(0,0,0,0.80),
-                          inset 3px 0 10px rgba(0,0,0,0.50),
-                          inset -3px 0 10px rgba(0,0,0,0.50),
-                          inset 0 -4px 12px rgba(0,0,0,0.55);
+                          0 0 0 1px rgba(0,0,0,0.90),
+                          inset 0 5px 16px rgba(0,0,0,0.85),
+                          inset 4px 0 12px rgba(0,0,0,0.55),
+                          inset -4px 0 12px rgba(0,0,0,0.55),
+                          inset 0 -5px 14px rgba(0,0,0,0.60);
                       }
-                      .slb-window img {
-                        display: block; width: 100%; aspect-ratio: 5/7; object-fit: cover;
-                      }
-                      /* light catch on top edge of window */
+                      .slb-window img { display: block; width: 100%; aspect-ratio: 5/7; object-fit: cover; }
                       .slb-sheen {
                         position: absolute; inset: 0; pointer-events: none;
-                        background: linear-gradient(to bottom,
-                          rgba(255,255,255,0.06) 0%,
-                          transparent 18%
-                        );
+                        background: linear-gradient(to bottom, rgba(255,255,255,0.07) 0%, transparent 20%);
                       }
 
-                      /* bottom plastic */
-                      .slb-bot {
-                        padding: 10px 15px 14px; position: relative; z-index: 1;
-                        display: flex; flex-direction: column; align-items: center; gap: 6px;
-                      }
+                      /* ── GOLD ACCENT ── */
                       .slb-gold {
-                        width: 68%; height: 1.5px;
-                        background: linear-gradient(to right,
-                          transparent,
-                          rgba(218,178,55,0.72),
-                          rgba(240,200,65,0.95),
-                          rgba(218,178,55,0.72),
-                          transparent
+                        width: 65%; height: 1.5px;
+                        background: linear-gradient(to right, transparent, rgba(218,178,50,0.70), rgba(242,202,62,1), rgba(218,178,50,0.70), transparent);
+                      }
+                      .slb-dots { display: flex; gap: 5px; align-items: center; }
+                      .slb-dot  { width: 4px; height: 4px; border-radius: 50%; background: rgba(215,170,45,0.50); }
+
+                      /* ── 3D SIDE PANELS (visible when rotating) ── */
+                      /* Left — rotates around left edge, goes from z=0 to z=18 */
+                      .slb-el {
+                        position: absolute; left: 0; top: 0; bottom: 0; width: 18px;
+                        transform-origin: left center;
+                        transform: rotateY(-90deg);
+                        background: linear-gradient(to left,
+                          rgba(175,202,235,0.90) 0%,
+                          rgba(210,230,252,0.95) 55%,
+                          rgba(238,248,255,0.98) 100%
                         );
                       }
-                      .slb-dot-row { display: flex; gap: 5px; align-items: center; }
-                      .slb-dot {
-                        width: 4px; height: 4px; border-radius: 50%;
-                        background: rgba(215,172,48,0.48);
+                      /* Right */
+                      .slb-er {
+                        position: absolute; right: 0; top: 0; bottom: 0; width: 18px;
+                        transform-origin: right center;
+                        transform: rotateY(90deg);
+                        background: linear-gradient(to right,
+                          rgba(175,202,235,0.90) 0%,
+                          rgba(210,230,252,0.95) 55%,
+                          rgba(238,248,255,0.98) 100%
+                        );
+                      }
+                      /* Top */
+                      .slb-et {
+                        position: absolute; left: 0; right: 0; top: 0; height: 18px;
+                        transform-origin: top center;
+                        transform: rotateX(90deg);
+                        background: linear-gradient(to top,
+                          rgba(175,202,235,0.90) 0%,
+                          rgba(235,246,255,0.98) 100%
+                        );
+                      }
+                      /* Bottom */
+                      .slb-eb {
+                        position: absolute; left: 0; right: 0; bottom: 0; height: 18px;
+                        transform-origin: bottom center;
+                        transform: rotateX(-90deg);
+                        background: linear-gradient(to bottom,
+                          rgba(175,202,235,0.90) 0%,
+                          rgba(235,246,255,0.98) 100%
+                        );
                       }
 
-                      /* ── PSA LABEL ── */
-                      .psa2 { background:#f4f0e8; border-radius:3px; overflow:hidden; font-family:Arial,sans-serif; box-shadow:0 1px 4px rgba(0,0,0,0.4); }
-                      .psa2-body { padding:5px 8px 3px; display:flex; justify-content:space-between; align-items:stretch; }
+                      /* ── GRADING INSERTS (real paper label, no plastic) ── */
+                      /* PSA */
+                      .psa2 { background:#f5f2e6; border-radius:3px; overflow:hidden; font-family:Arial,sans-serif; box-shadow:0 1px 6px rgba(0,0,0,0.50),0 0 0 0.5px rgba(0,0,0,0.18); }
+                      .psa2-body { padding:5px 8px 4px; display:flex; justify-content:space-between; align-items:stretch; }
                       .psa2-left { flex:1; min-width:0; display:flex; flex-direction:column; justify-content:center; gap:1px; }
                       .psa2-set  { font-size:6.5px; font-weight:700; color:#444; letter-spacing:0.3px; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
                       .psa2-name { font-size:9.5px; font-weight:900; color:#111; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
                       .psa2-var  { font-size:6.5px; font-weight:600; color:#666; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-                      .psa2-right { display:flex; flex-direction:column; align-items:flex-end; justify-content:center; padding-left:6px; flex-shrink:0; }
-                      .psa2-gname { font-size:7px; font-weight:800; color:#333; letter-spacing:0.8px; text-transform:uppercase; }
-                      .psa2-gnum  { font-size:32px; font-weight:900; color:#111; line-height:1; }
-                      .psa2-bar  { background:#1a1a1a; display:flex; align-items:center; padding:3px 6px; gap:5px; }
-                      .psa2-badge { background:#c8102e; color:#fff; font-weight:900; font-size:9px; padding:1px 6px; border-radius:2px; letter-spacing:1px; flex-shrink:0; }
-                      .psa2-bc   { flex:1; font-family:monospace; font-size:14px; color:rgba(255,255,255,0.55); letter-spacing:-2.5px; text-align:center; overflow:hidden; }
-                      .psa2-cert { font-size:6.5px; color:rgba(255,255,255,0.6); font-weight:700; flex-shrink:0; }
-
-                      /* ── BGS LABEL ── */
-                      .bgs2 { background:#f0ede0; border-radius:3px; overflow:hidden; font-family:Arial,sans-serif; box-shadow:0 1px 4px rgba(0,0,0,0.4); display:flex; }
-                      .bgs2-side { width:30px; background:#1a1a1a; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-                      .bgs2-b { font-size:22px; font-weight:900; color:#d4a820; font-style:italic; line-height:1; }
+                      .psa2-right{ display:flex; flex-direction:column; align-items:flex-end; justify-content:center; padding-left:6px; flex-shrink:0; }
+                      .psa2-gname{ font-size:7px; font-weight:800; color:#333; letter-spacing:0.8px; text-transform:uppercase; }
+                      .psa2-gnum { font-size:34px; font-weight:900; color:#111; line-height:1; }
+                      .psa2-bar  { background:#1a1a1a; display:flex; align-items:center; padding:3px 7px; gap:5px; }
+                      .psa2-badge{ background:#c8102e; color:#fff; font-weight:900; font-size:9px; padding:1.5px 6px; border-radius:2px; letter-spacing:1px; flex-shrink:0; }
+                      .psa2-bc   { flex:1; font-family:monospace; font-size:14px; color:rgba(255,255,255,0.52); letter-spacing:-2.5px; text-align:center; overflow:hidden; }
+                      .psa2-cert { font-size:6.5px; color:rgba(255,255,255,0.62); font-weight:700; flex-shrink:0; letter-spacing:0.3px; }
+                      /* BGS */
+                      .bgs2 { background:#f0ede0; border-radius:3px; overflow:hidden; font-family:Arial,sans-serif; box-shadow:0 1px 6px rgba(0,0,0,0.50),0 0 0 0.5px rgba(0,0,0,0.18); display:flex; }
+                      .bgs2-side { width:30px; background:#111; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+                      .bgs2-b    { font-size:22px; font-weight:900; color:#d4a820; font-style:italic; line-height:1; }
                       .bgs2-body { flex:1; padding:5px 7px; display:flex; align-items:stretch; gap:3px; min-width:0; }
                       .bgs2-info { flex:1; min-width:0; display:flex; flex-direction:column; justify-content:center; gap:1px; }
                       .bgs2-set  { font-size:6px; font-weight:700; color:#555; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
                       .bgs2-name { font-size:9px; font-weight:900; color:#111; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
                       .bgs2-var  { font-size:6px; color:#666; text-transform:uppercase; }
                       .bgs2-cert { font-size:5.5px; color:#999; font-weight:700; margin-top:1px; }
-                      .bgs2-grade { display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; padding:0 4px; border-left:1px solid #d4c98a; }
-                      .bgs2-gnum  { font-size:26px; font-weight:900; color:#111; line-height:1; }
-                      .bgs2-gname { font-size:5.5px; font-weight:800; color:#555; letter-spacing:0.5px; text-transform:uppercase; text-align:center; }
-
-                      /* ── SGC LABEL ── */
-                      .sgc2 { background:#fff; border-radius:3px; overflow:hidden; font-family:Arial,sans-serif; box-shadow:0 1px 4px rgba(0,0,0,0.4); display:flex; }
+                      .bgs2-grade{ display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; padding:0 5px; border-left:1px solid #d4c98a; }
+                      .bgs2-gnum { font-size:26px; font-weight:900; color:#111; line-height:1; }
+                      .bgs2-gname{ font-size:5.5px; font-weight:800; color:#555; letter-spacing:0.5px; text-transform:uppercase; text-align:center; }
+                      /* SGC */
+                      .sgc2 { background:#fff; border-radius:3px; overflow:hidden; font-family:Arial,sans-serif; box-shadow:0 1px 6px rgba(0,0,0,0.50),0 0 0 0.5px rgba(0,0,0,0.18); display:flex; }
                       .sgc2-side { width:22px; background:#006633; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
                       .sgc2-txt  { font-size:8px; font-weight:900; color:#fff; letter-spacing:1px; writing-mode:vertical-rl; transform:rotate(180deg); }
                       .sgc2-body { flex:1; padding:4px 7px; display:flex; align-items:center; gap:4px; min-width:0; }
@@ -420,119 +448,127 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
                       .sgc2-var  { font-size:6px; color:#555; text-transform:uppercase; }
                       .sgc2-cert { font-size:6px; color:#aaa; font-weight:700; margin-top:1px; }
                       .sgc2-gbox { background:#006633; border-radius:2px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3px 8px; flex-shrink:0; }
-                      .sgc2-gnum  { font-size:26px; font-weight:900; color:#fff; line-height:1; }
-                      .sgc2-gname { font-size:5.5px; font-weight:800; color:rgba(255,255,255,0.8); text-transform:uppercase; }
-
-                      /* ── CGC LABEL ── */
-                      .cgc2 { background:#fff; border-radius:3px; overflow:hidden; font-family:Arial,sans-serif; box-shadow:0 1px 4px rgba(0,0,0,0.4); }
+                      .sgc2-gnum { font-size:26px; font-weight:900; color:#fff; line-height:1; }
+                      .sgc2-gname{ font-size:5.5px; font-weight:800; color:rgba(255,255,255,0.85); text-transform:uppercase; }
+                      /* CGC */
+                      .cgc2 { background:#fff; border-radius:3px; overflow:hidden; font-family:Arial,sans-serif; box-shadow:0 1px 6px rgba(0,0,0,0.50),0 0 0 0.5px rgba(0,0,0,0.18); }
                       .cgc2-top  { background:#003399; padding:3px 8px; display:flex; justify-content:space-between; align-items:center; }
-                      .cgc2-brand { font-size:11px; font-weight:900; color:#fff; letter-spacing:2px; }
-                      .cgc2-gnum  { font-size:18px; font-weight:900; color:#fff; line-height:1; }
-                      .cgc2-body  { padding:3px 8px; display:flex; justify-content:space-between; align-items:center; gap:4px; }
-                      .cgc2-info  { flex:1; min-width:0; display:flex; flex-direction:column; gap:1px; }
-                      .cgc2-set   { font-size:6.5px; font-weight:700; color:#333; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-                      .cgc2-name  { font-size:9.5px; font-weight:900; color:#111; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-                      .cgc2-var   { font-size:6px; color:#555; text-transform:uppercase; }
-                      .cgc2-right { display:flex; flex-direction:column; align-items:flex-end; gap:1px; flex-shrink:0; }
-                      .cgc2-gname { font-size:6.5px; font-weight:800; color:#003399; }
-                      .cgc2-cert  { font-size:5.5px; color:#aaa; font-weight:700; }
+                      .cgc2-brand{ font-size:11px; font-weight:900; color:#fff; letter-spacing:2px; }
+                      .cgc2-gnum { font-size:18px; font-weight:900; color:#fff; line-height:1; }
+                      .cgc2-body { padding:3px 8px; display:flex; justify-content:space-between; align-items:center; gap:4px; }
+                      .cgc2-info { flex:1; min-width:0; display:flex; flex-direction:column; gap:1px; }
+                      .cgc2-set  { font-size:6.5px; font-weight:700; color:#333; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+                      .cgc2-name { font-size:9.5px; font-weight:900; color:#111; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+                      .cgc2-var  { font-size:6px; color:#555; text-transform:uppercase; }
+                      .cgc2-right{ display:flex; flex-direction:column; align-items:flex-end; gap:1px; flex-shrink:0; }
+                      .cgc2-gname{ font-size:6.5px; font-weight:800; color:#003399; }
+                      .cgc2-cert { font-size:5.5px; color:#aaa; font-weight:700; }
                     `}</style>
 
-                    <div className="slb-case">
-                      {/* top plastic zone + label */}
-                      <div className="slb-top">
-                        {isPSA && (
-                          <div className="psa2">
-                            <div className="psa2-body">
-                              <div className="psa2-left">
-                                <span className="psa2-set">{setLine}</span>
-                                <span className="psa2-name">{popup.n.toUpperCase()}</span>
-                                {popup.v && <span className="psa2-var">{popup.v.toUpperCase()}</span>}
+                    <div className="slb-wrap">
+                      {/* ── FRONT FACE ── */}
+                      <div className="slb-front">
+                        {/* Label zone — plastic top */}
+                        <div className="slb-top">
+                          {isPSA && (
+                            <div className="psa2">
+                              <div className="psa2-body">
+                                <div className="psa2-left">
+                                  <span className="psa2-set">{setLine}</span>
+                                  <span className="psa2-name">{popup.n.toUpperCase()}</span>
+                                  {popup.v && <span className="psa2-var">{popup.v.toUpperCase()}</span>}
+                                </div>
+                                <div className="psa2-right">
+                                  <span className="psa2-gname">{gradeInfo.label}</span>
+                                  <span className="psa2-gnum">{gradeInfo.grade}</span>
+                                </div>
                               </div>
-                              <div className="psa2-right">
-                                <span className="psa2-gname">{gradeInfo.label}</span>
-                                <span className="psa2-gnum">{gradeInfo.grade}</span>
-                              </div>
-                            </div>
-                            <div className="psa2-bar">
-                              <span className="psa2-badge">PSA</span>
-                              <span className="psa2-bc">{'||||||||||||||||||||||||||||'}</span>
-                              <span className="psa2-cert">{certNum}</span>
-                            </div>
-                          </div>
-                        )}
-                        {isBGS && (
-                          <div className="bgs2">
-                            <div className="bgs2-side"><span className="bgs2-b">B</span></div>
-                            <div className="bgs2-body">
-                              <div className="bgs2-info">
-                                <span className="bgs2-set">{setLine}</span>
-                                <span className="bgs2-name">{popup.n.toUpperCase()}</span>
-                                {popup.v && <span className="bgs2-var">{popup.v.toUpperCase()}</span>}
-                                <span className="bgs2-cert">{certNum}</span>
-                              </div>
-                              <div className="bgs2-grade">
-                                <span className="bgs2-gnum">{gradeInfo.grade}</span>
-                                <span className="bgs2-gname">{gradeInfo.label}</span>
+                              <div className="psa2-bar">
+                                <span className="psa2-badge">PSA</span>
+                                <span className="psa2-bc">{'||||||||||||||||||||||||||||'}</span>
+                                <span className="psa2-cert">{certNum}</span>
                               </div>
                             </div>
-                          </div>
-                        )}
-                        {isSGC && (
-                          <div className="sgc2">
-                            <div className="sgc2-side"><span className="sgc2-txt">SGC</span></div>
-                            <div className="sgc2-body">
-                              <div className="sgc2-info">
-                                <span className="sgc2-set">{setLine}</span>
-                                <span className="sgc2-name">{popup.n.toUpperCase()}</span>
-                                {popup.v && <span className="sgc2-var">{popup.v.toUpperCase()}</span>}
-                                <span className="sgc2-cert">{certNum}</span>
-                              </div>
-                              <div className="sgc2-gbox">
-                                <span className="sgc2-gnum">{gradeInfo.grade}</span>
-                                <span className="sgc2-gname">{gradeInfo.label}</span>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                        {isCGC && (
-                          <div className="cgc2">
-                            <div className="cgc2-top">
-                              <span className="cgc2-brand">CGC</span>
-                              <span className="cgc2-gnum">{gradeInfo.grade}</span>
-                            </div>
-                            <div className="cgc2-body">
-                              <div className="cgc2-info">
-                                <span className="cgc2-set">{setLine}</span>
-                                <span className="cgc2-name">{popup.n.toUpperCase()}</span>
-                                {popup.v && <span className="cgc2-var">{popup.v.toUpperCase()}</span>}
-                              </div>
-                              <div className="cgc2-right">
-                                <span className="cgc2-gname">{gradeInfo.label}</span>
-                                <span className="cgc2-cert">{certNum}</span>
+                          )}
+                          {isBGS && (
+                            <div className="bgs2">
+                              <div className="bgs2-side"><span className="bgs2-b">B</span></div>
+                              <div className="bgs2-body">
+                                <div className="bgs2-info">
+                                  <span className="bgs2-set">{setLine}</span>
+                                  <span className="bgs2-name">{popup.n.toUpperCase()}</span>
+                                  {popup.v && <span className="bgs2-var">{popup.v.toUpperCase()}</span>}
+                                  <span className="bgs2-cert">{certNum}</span>
+                                </div>
+                                <div className="bgs2-grade">
+                                  <span className="bgs2-gnum">{gradeInfo.grade}</span>
+                                  <span className="bgs2-gname">{gradeInfo.label}</span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        )}
-                      </div>
+                          )}
+                          {isSGC && (
+                            <div className="sgc2">
+                              <div className="sgc2-side"><span className="sgc2-txt">SGC</span></div>
+                              <div className="sgc2-body">
+                                <div className="sgc2-info">
+                                  <span className="sgc2-set">{setLine}</span>
+                                  <span className="sgc2-name">{popup.n.toUpperCase()}</span>
+                                  {popup.v && <span className="sgc2-var">{popup.v.toUpperCase()}</span>}
+                                  <span className="sgc2-cert">{certNum}</span>
+                                </div>
+                                <div className="sgc2-gbox">
+                                  <span className="sgc2-gnum">{gradeInfo.grade}</span>
+                                  <span className="sgc2-gname">{gradeInfo.label}</span>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                          {isCGC && (
+                            <div className="cgc2">
+                              <div className="cgc2-top">
+                                <span className="cgc2-brand">CGC</span>
+                                <span className="cgc2-gnum">{gradeInfo.grade}</span>
+                              </div>
+                              <div className="cgc2-body">
+                                <div className="cgc2-info">
+                                  <span className="cgc2-set">{setLine}</span>
+                                  <span className="cgc2-name">{popup.n.toUpperCase()}</span>
+                                  {popup.v && <span className="cgc2-var">{popup.v.toUpperCase()}</span>}
+                                </div>
+                                <div className="cgc2-right">
+                                  <span className="cgc2-gname">{gradeInfo.label}</span>
+                                  <span className="cgc2-cert">{certNum}</span>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
 
-                      {/* card window */}
-                      <div className="slb-mid">
-                        <div className="slb-window">
-                          <img src={popup.f} draggable={false} alt={popup.n} />
-                          <div className="slb-sheen" />
+                        {/* Card window */}
+                        <div className="slb-mid">
+                          <div className="slb-window">
+                            <img src={popup.f} draggable={false} alt={popup.n} />
+                            <div className="slb-sheen" />
+                          </div>
+                        </div>
+
+                        {/* Bottom plastic + gold accent */}
+                        <div className="slb-bot">
+                          <div className="slb-gold" />
+                          <div className="slb-dots">
+                            <div className="slb-dot" />
+                            <div className="slb-dot" style={{opacity:0.65,width:'3px',height:'3px'}} />
+                            <div className="slb-dot" style={{opacity:0.38,width:'2.5px',height:'2.5px'}} />
+                          </div>
                         </div>
                       </div>
 
-                      {/* bottom plastic + gold accent */}
-                      <div className="slb-bot">
-                        <div className="slb-gold" />
-                        <div className="slb-dot-row">
-                          <div className="slb-dot" />
-                          <div className="slb-dot" style={{opacity:0.7,width:3,height:3}} />
-                          <div className="slb-dot" style={{opacity:0.4,width:2.5,height:2.5}} />
-                        </div>
-                      </div>
+                      {/* ── 3D SIDE PANELS — acrylic edges visible when rotating ── */}
+                      <div className="slb-el" />
+                      <div className="slb-er" />
+                      <div className="slb-et" />
+                      <div className="slb-eb" />
                     </div>
                   </div>
                 )
