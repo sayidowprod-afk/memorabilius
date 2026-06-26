@@ -309,11 +309,13 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
                           rgba(224,237,255,0.38) 68%,
                           rgba(212,228,252,0.30) 100%
                         );
-                        /* Front face: bright edge highlight + depth shadow */
+                        /* Front face: bright edge highlight + soft natural shadow */
                         box-shadow:
                           0 0 0 1px rgba(255,255,255,0.92),
-                          0 28px 80px rgba(0,0,0,0.80),
-                          5px 10px 24px rgba(0,0,0,0.50),
+                          0 6px 14px rgba(0,0,0,0.14),
+                          0 14px 36px rgba(0,0,0,0.12),
+                          0 28px 60px rgba(0,0,0,0.09),
+                          0 50px 90px rgba(0,0,0,0.06),
                           inset 0  1px 0 rgba(255,255,255,0.72),
                           inset 1px 0  0 rgba(255,255,255,0.42),
                           inset -1px 0  0 rgba(0,0,0,0.08),
@@ -409,60 +411,103 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
                         );
                       }
 
-                      /* ── GRADING INSERTS (real paper label, no plastic) ── */
-                      /* PSA */
-                      .psa2 { background:#f5f2e6; border-radius:3px; overflow:hidden; font-family:Arial,sans-serif; box-shadow:0 1px 6px rgba(0,0,0,0.50),0 0 0 0.5px rgba(0,0,0,0.18); }
-                      .psa2-body { padding:5px 8px 4px; display:flex; justify-content:space-between; align-items:stretch; }
-                      .psa2-left { flex:1; min-width:0; display:flex; flex-direction:column; justify-content:center; gap:1px; }
-                      .psa2-set  { font-size:6.5px; font-weight:700; color:#444; letter-spacing:0.3px; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-                      .psa2-name { font-size:9.5px; font-weight:900; color:#111; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-                      .psa2-var  { font-size:6.5px; font-weight:600; color:#666; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-                      .psa2-right{ display:flex; flex-direction:column; align-items:flex-end; justify-content:center; padding-left:6px; flex-shrink:0; }
-                      .psa2-gname{ font-size:7px; font-weight:800; color:#333; letter-spacing:0.8px; text-transform:uppercase; }
-                      .psa2-gnum { font-size:34px; font-weight:900; color:#111; line-height:1; }
-                      .psa2-bar  { background:#1a1a1a; display:flex; align-items:center; padding:3px 7px; gap:5px; }
-                      .psa2-badge{ background:#c8102e; color:#fff; font-weight:900; font-size:9px; padding:1.5px 6px; border-radius:2px; letter-spacing:1px; flex-shrink:0; }
-                      .psa2-bc   { flex:1; font-family:monospace; font-size:14px; color:rgba(255,255,255,0.52); letter-spacing:-2.5px; text-align:center; overflow:hidden; }
-                      .psa2-cert { font-size:6.5px; color:rgba(255,255,255,0.62); font-weight:700; flex-shrink:0; letter-spacing:0.3px; }
-                      /* BGS */
-                      .bgs2 { background:#f0ede0; border-radius:3px; overflow:hidden; font-family:Arial,sans-serif; box-shadow:0 1px 6px rgba(0,0,0,0.50),0 0 0 0.5px rgba(0,0,0,0.18); display:flex; }
-                      .bgs2-side { width:30px; background:#111; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-                      .bgs2-b    { font-size:22px; font-weight:900; color:#d4a820; font-style:italic; line-height:1; }
-                      .bgs2-body { flex:1; padding:5px 7px; display:flex; align-items:stretch; gap:3px; min-width:0; }
-                      .bgs2-info { flex:1; min-width:0; display:flex; flex-direction:column; justify-content:center; gap:1px; }
-                      .bgs2-set  { font-size:6px; font-weight:700; color:#555; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-                      .bgs2-name { font-size:9px; font-weight:900; color:#111; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-                      .bgs2-var  { font-size:6px; color:#666; text-transform:uppercase; }
-                      .bgs2-cert { font-size:5.5px; color:#999; font-weight:700; margin-top:1px; }
-                      .bgs2-grade{ display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; padding:0 5px; border-left:1px solid #d4c98a; }
-                      .bgs2-gnum { font-size:26px; font-weight:900; color:#111; line-height:1; }
-                      .bgs2-gname{ font-size:5.5px; font-weight:800; color:#555; letter-spacing:0.5px; text-transform:uppercase; text-align:center; }
-                      /* SGC */
-                      .sgc2 { background:#fff; border-radius:3px; overflow:hidden; font-family:Arial,sans-serif; box-shadow:0 1px 6px rgba(0,0,0,0.50),0 0 0 0.5px rgba(0,0,0,0.18); display:flex; }
-                      .sgc2-side { width:22px; background:#006633; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-                      .sgc2-txt  { font-size:8px; font-weight:900; color:#fff; letter-spacing:1px; writing-mode:vertical-rl; transform:rotate(180deg); }
-                      .sgc2-body { flex:1; padding:4px 7px; display:flex; align-items:center; gap:4px; min-width:0; }
-                      .sgc2-info { flex:1; min-width:0; display:flex; flex-direction:column; gap:1px; }
-                      .sgc2-set  { font-size:6.5px; font-weight:700; color:#333; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-                      .sgc2-name { font-size:9.5px; font-weight:900; color:#111; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-                      .sgc2-var  { font-size:6px; color:#555; text-transform:uppercase; }
-                      .sgc2-cert { font-size:6px; color:#aaa; font-weight:700; margin-top:1px; }
-                      .sgc2-gbox { background:#006633; border-radius:2px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:3px 8px; flex-shrink:0; }
-                      .sgc2-gnum { font-size:26px; font-weight:900; color:#fff; line-height:1; }
-                      .sgc2-gname{ font-size:5.5px; font-weight:800; color:rgba(255,255,255,0.85); text-transform:uppercase; }
-                      /* CGC */
-                      .cgc2 { background:#fff; border-radius:3px; overflow:hidden; font-family:Arial,sans-serif; box-shadow:0 1px 6px rgba(0,0,0,0.50),0 0 0 0.5px rgba(0,0,0,0.18); }
-                      .cgc2-top  { background:#003399; padding:3px 8px; display:flex; justify-content:space-between; align-items:center; }
-                      .cgc2-brand{ font-size:11px; font-weight:900; color:#fff; letter-spacing:2px; }
-                      .cgc2-gnum { font-size:18px; font-weight:900; color:#fff; line-height:1; }
-                      .cgc2-body { padding:3px 8px; display:flex; justify-content:space-between; align-items:center; gap:4px; }
-                      .cgc2-info { flex:1; min-width:0; display:flex; flex-direction:column; gap:1px; }
-                      .cgc2-set  { font-size:6.5px; font-weight:700; color:#333; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-                      .cgc2-name { font-size:9.5px; font-weight:900; color:#111; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-                      .cgc2-var  { font-size:6px; color:#555; text-transform:uppercase; }
-                      .cgc2-right{ display:flex; flex-direction:column; align-items:flex-end; gap:1px; flex-shrink:0; }
-                      .cgc2-gname{ font-size:6.5px; font-weight:800; color:#003399; }
-                      .cgc2-cert { font-size:5.5px; color:#aaa; font-weight:700; }
+                      /* ── GRADING INSERTS — paper labels, no plastic effect ── */
+
+                      /* ── PSA (blanc/crème, barre noire en bas, badge rouge) ── */
+                      .psa2 {
+                        background: #f8f5ec;
+                        border-radius: 3px; overflow: hidden;
+                        font-family: 'Arial Narrow', Arial, sans-serif;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.40), 0 0 0 0.5px rgba(0,0,0,0.15);
+                      }
+                      .psa2-body {
+                        padding: 6px 10px 5px;
+                        display: flex; justify-content: space-between; align-items: stretch;
+                        min-height: 60px;
+                      }
+                      .psa2-left {
+                        flex: 1; min-width: 0;
+                        display: flex; flex-direction: column; justify-content: space-between;
+                        padding-right: 4px;
+                      }
+                      .psa2-set  { font-size: 8px; font-weight: 700; color: #555; letter-spacing: 0.4px; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
+                      .psa2-name { font-size: 12px; font-weight: 900; color: #111; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; letter-spacing: 0.2px; }
+                      .psa2-var  { font-size: 8px; font-weight: 600; color: #777; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
+                      .psa2-right {
+                        display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end;
+                        padding-left: 8px; flex-shrink: 0;
+                      }
+                      .psa2-gname { font-size: 9px; font-weight: 800; color: #444; letter-spacing: 1px; text-transform: uppercase; line-height: 1.1; }
+                      .psa2-gnum  { font-size: 44px; font-weight: 900; color: #111; line-height: 1; letter-spacing: -1px; }
+                      .psa2-bar  {
+                        background: #111; display: flex; align-items: center;
+                        padding: 4px 8px; gap: 6px;
+                      }
+                      .psa2-badge {
+                        background: #c8102e; color: #fff; font-weight: 900; font-size: 10px;
+                        padding: 2px 7px; border-radius: 2px; letter-spacing: 1px; flex-shrink: 0;
+                        font-family: Arial, sans-serif;
+                      }
+                      .psa2-bc   {
+                        flex: 1; font-family: 'Libre Barcode 39', monospace;
+                        font-size: 20px; color: rgba(255,255,255,0.45);
+                        letter-spacing: -3px; text-align: center; overflow: hidden; line-height: 1;
+                      }
+                      .psa2-cert { font-size: 8px; color: rgba(255,255,255,0.65); font-weight: 700; flex-shrink: 0; letter-spacing: 0.5px; font-family: Arial, sans-serif; }
+
+                      /* ── BGS / BECKETT (crème, bande noire B à gauche, note sur droite) ── */
+                      .bgs2 {
+                        background: #f2eed8;
+                        border-radius: 3px; overflow: hidden;
+                        font-family: Arial, sans-serif;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.40), 0 0 0 0.5px rgba(0,0,0,0.15);
+                        display: flex; min-height: 60px;
+                        border: 0.5px solid #d8cf9a;
+                      }
+                      .bgs2-side { width: 34px; background: #111; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+                      .bgs2-b    { font-size: 26px; font-weight: 900; color: #d4a820; font-style: italic; line-height: 1; }
+                      .bgs2-body { flex: 1; padding: 5px 8px; display: flex; align-items: stretch; gap: 5px; min-width: 0; }
+                      .bgs2-info { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; }
+                      .bgs2-set  { font-size: 7px; font-weight: 700; color: #666; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.3px; }
+                      .bgs2-name { font-size: 11px; font-weight: 900; color: #111; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+                      .bgs2-sub  { display: grid; grid-template-columns: 1fr 1fr; gap: 1px 6px; }
+                      .bgs2-sub-item { font-size: 6.5px; color: #555; font-weight: 600; text-transform: uppercase; }
+                      .bgs2-cert { font-size: 6.5px; color: #999; font-weight: 700; letter-spacing: 0.3px; }
+                      .bgs2-grade {
+                        display: flex; flex-direction: column; align-items: center; justify-content: center;
+                        flex-shrink: 0; padding: 0 6px; border-left: 1px solid #c8b96a;
+                        min-width: 52px;
+                      }
+                      .bgs2-gnum  { font-size: 36px; font-weight: 900; color: #111; line-height: 1; }
+                      .bgs2-gname { font-size: 6.5px; font-weight: 800; color: #555; letter-spacing: 0.5px; text-transform: uppercase; text-align: center; margin-top: 2px; }
+
+                      /* ── SGC ── */
+                      .sgc2 { background: #fff; border-radius: 3px; overflow: hidden; font-family: Arial, sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.40), 0 0 0 0.5px rgba(0,0,0,0.15); display: flex; min-height: 60px; }
+                      .sgc2-side { width: 26px; background: #006633; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+                      .sgc2-txt  { font-size: 9px; font-weight: 900; color: #fff; letter-spacing: 1px; writing-mode: vertical-rl; transform: rotate(180deg); }
+                      .sgc2-body { flex: 1; padding: 5px 8px; display: flex; align-items: center; gap: 5px; min-width: 0; }
+                      .sgc2-info { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 2px; }
+                      .sgc2-set  { font-size: 7.5px; font-weight: 700; color: #444; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+                      .sgc2-name { font-size: 11px; font-weight: 900; color: #111; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+                      .sgc2-var  { font-size: 7px; color: #666; text-transform: uppercase; }
+                      .sgc2-cert { font-size: 7px; color: #bbb; font-weight: 700; }
+                      .sgc2-gbox { background: #006633; border-radius: 3px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 10px; flex-shrink: 0; min-width: 50px; }
+                      .sgc2-gnum { font-size: 34px; font-weight: 900; color: #fff; line-height: 1; }
+                      .sgc2-gname{ font-size: 6.5px; font-weight: 800; color: rgba(255,255,255,0.85); text-transform: uppercase; margin-top: 2px; }
+
+                      /* ── CGC ── */
+                      .cgc2 { background: #fff; border-radius: 3px; overflow: hidden; font-family: Arial, sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.40), 0 0 0 0.5px rgba(0,0,0,0.15); }
+                      .cgc2-top  { background: #0039a6; padding: 4px 10px; display: flex; justify-content: space-between; align-items: center; min-height: 28px; }
+                      .cgc2-brand{ font-size: 14px; font-weight: 900; color: #fff; letter-spacing: 2px; }
+                      .cgc2-gnum { font-size: 24px; font-weight: 900; color: #fff; line-height: 1; }
+                      .cgc2-body { padding: 5px 10px; display: flex; justify-content: space-between; align-items: center; gap: 4px; min-height: 32px; }
+                      .cgc2-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+                      .cgc2-set  { font-size: 7.5px; font-weight: 700; color: #444; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+                      .cgc2-name { font-size: 11px; font-weight: 900; color: #111; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+                      .cgc2-var  { font-size: 7px; color: #666; text-transform: uppercase; }
+                      .cgc2-right{ display: flex; flex-direction: column; align-items: flex-end; gap: 2px; flex-shrink: 0; }
+                      .cgc2-gname{ font-size: 8px; font-weight: 800; color: #0039a6; }
+                      .cgc2-cert { font-size: 6.5px; color: #bbb; font-weight: 700; }
                     `}</style>
 
                     <div className="slb-wrap">
@@ -497,7 +542,12 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
                                 <div className="bgs2-info">
                                   <span className="bgs2-set">{setLine}</span>
                                   <span className="bgs2-name">{popup.n.toUpperCase()}</span>
-                                  {popup.v && <span className="bgs2-var">{popup.v.toUpperCase()}</span>}
+                                  <div className="bgs2-sub">
+                                    <span className="bgs2-sub-item">CENTERING —</span>
+                                    <span className="bgs2-sub-item">CORNERS —</span>
+                                    <span className="bgs2-sub-item">EDGES —</span>
+                                    <span className="bgs2-sub-item">SURFACE —</span>
+                                  </div>
                                   <span className="bgs2-cert">{certNum}</span>
                                 </div>
                                 <div className="bgs2-grade">

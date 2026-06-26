@@ -106,6 +106,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [activeDragId, setActiveDragId] = useState<string | null>(null)
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set())
   const [shareCopied, setShareCopied] = useState(false)
+  const [bulkNewTag, setBulkNewTag] = useState('')
+  const [showBulkNewTag, setShowBulkNewTag] = useState(false)
   const [monthlyBadges, setMonthlyBadges] = useState<string[]>([])
   const [csvTags, setCsvTags] = useState<Map<string, string>>(new Map())
   const [grailCards, setGrailCards] = useState<{ card_key: string; position: number }[]>([])
@@ -1128,40 +1130,68 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, background: '#003DA6', color: 'white', borderRadius: 10, padding: '8px 14px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap' }}>
             <span style={{ flex: '1 1 120px' }}>{selectedCards.size} carte{selectedCards.size > 1 ? 's' : ''} sélectionnée{selectedCards.size > 1 ? 's' : ''}</span>
             {/* Assigner collection tag en masse */}
-            <select
-              defaultValue=""
-              onChange={async (e) => {
-                const tag = e.target.value
-                e.target.value = ''
-                if (!tag && tag !== '__none__') return
-                const applyTag = tag === '__none__' ? '' : tag
-                const ids = [...selectedCards]
-                await Promise.all(ids.map(async (id) => {
-                  const card = cards.find(c => (c.isManuelle ? c.id_manuelle : c.f) === id)
-                  if (!card) return
-                  if (card.isManuelle && card.id_manuelle) {
-                    await supabase.from('cartes_manuelles').update({ collection_tag: applyTag || null }).eq('id', card.id_manuelle)
-                  } else {
-                    if (applyTag) {
-                      await supabase.from('carte_tags').upsert({ user_id: currentUser!, card_key: card.f, collection_tag: applyTag }, { onConflict: 'user_id,card_key' })
+            {showBulkNewTag ? (
+              <input
+                autoFocus
+                value={bulkNewTag}
+                onChange={e => setBulkNewTag(e.target.value)}
+                onKeyDown={async (e) => {
+                  if (e.key === 'Escape') { setShowBulkNewTag(false); setBulkNewTag(''); return }
+                  if (e.key !== 'Enter') return
+                  const tag = bulkNewTag.trim()
+                  if (!tag) { setShowBulkNewTag(false); return }
+                  const ids = [...selectedCards]
+                  await Promise.all(ids.map(async (id) => {
+                    const card = cards.find(c => (c.isManuelle ? c.id_manuelle : c.f) === id)
+                    if (!card) return
+                    if (card.isManuelle && card.id_manuelle) {
+                      await supabase.from('cartes_manuelles').update({ collection_tag: tag }).eq('id', card.id_manuelle)
                     } else {
-                      await supabase.from('carte_tags').delete().eq('user_id', currentUser!).eq('card_key', card.f)
+                      await supabase.from('carte_tags').upsert({ user_id: currentUser!, card_key: card.f, collection_tag: tag }, { onConflict: 'user_id,card_key' })
                     }
-                  }
-                }))
-                setCards(prev => prev.map(c => {
-                  const id = c.isManuelle ? c.id_manuelle : c.f
-                  return id && selectedCards.has(id) ? { ...c, collection_tag: applyTag } : c
-                }))
-              }}
-              style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 6, color: 'white', padding: '4px 8px', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}
-            >
-              <option value="" style={{ color: '#333' }}>🏷 Assigner collection…</option>
-              <option value="__none__" style={{ color: '#333' }}>— Aucune —</option>
-              {collectionTags.map(tag => (
-                <option key={tag} value={tag} style={{ color: '#333' }}>{tag}</option>
-              ))}
-            </select>
+                  }))
+                  setCards(prev => prev.map(c => { const id = c.isManuelle ? c.id_manuelle : c.f; return id && selectedCards.has(id) ? { ...c, collection_tag: tag } : c }))
+                  if (!collectionTags.includes(tag)) setCollectionTags(prev => [...prev, tag].sort())
+                  setBulkNewTag(''); setShowBulkNewTag(false)
+                }}
+                onBlur={() => { setShowBulkNewTag(false); setBulkNewTag('') }}
+                placeholder="Nom de la collection… (Entrée)"
+                style={{ background: 'white', border: 'none', borderRadius: 6, color: '#111', padding: '5px 10px', fontSize: 12, fontWeight: 700, flexShrink: 0, width: 180, outline: 'none' }}
+              />
+            ) : (
+              <select
+                value=""
+                onChange={async (e) => {
+                  const tag = e.target.value
+                  if (!tag) return
+                  if (tag === '__new__') { setShowBulkNewTag(true); return }
+                  const applyTag = tag === '__none__' ? '' : tag
+                  const ids = [...selectedCards]
+                  await Promise.all(ids.map(async (id) => {
+                    const card = cards.find(c => (c.isManuelle ? c.id_manuelle : c.f) === id)
+                    if (!card) return
+                    if (card.isManuelle && card.id_manuelle) {
+                      await supabase.from('cartes_manuelles').update({ collection_tag: applyTag || null }).eq('id', card.id_manuelle)
+                    } else {
+                      if (applyTag) {
+                        await supabase.from('carte_tags').upsert({ user_id: currentUser!, card_key: card.f, collection_tag: applyTag }, { onConflict: 'user_id,card_key' })
+                      } else {
+                        await supabase.from('carte_tags').delete().eq('user_id', currentUser!).eq('card_key', card.f)
+                      }
+                    }
+                  }))
+                  setCards(prev => prev.map(c => { const id = c.isManuelle ? c.id_manuelle : c.f; return id && selectedCards.has(id) ? { ...c, collection_tag: applyTag } : c }))
+                }}
+                style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 6, color: 'white', padding: '4px 8px', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}
+              >
+                <option value="" style={{ color: '#333' }}>🏷 Collection…</option>
+                <option value="__new__" style={{ color: '#003DA6', fontWeight: 900 }}>✚ Créer une nouvelle…</option>
+                <option value="__none__" style={{ color: '#333' }}>— Aucune —</option>
+                {collectionTags.map(tag => (
+                  <option key={tag} value={tag} style={{ color: '#333' }}>{tag}</option>
+                ))}
+              </select>
+            )}
             <button onClick={() => setSelectedCards(new Set())} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
               ✕ Désélectionner
             </button>
