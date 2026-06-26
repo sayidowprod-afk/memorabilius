@@ -191,19 +191,9 @@ function AnnuaireContent() {
           cursor: default;
           line-height: 1;
           transition: transform 0.15s;
+          animation: holo-glow 3s linear infinite;
         }
         .sticker-holo:hover { transform: scale(1.2); }
-        .sticker-holo::before {
-          content: '';
-          position: absolute;
-          inset: -4px;
-          border-radius: 50%;
-          background: conic-gradient(#ff6b6b, #ffd93d, #6bcb77, #4d96ff, #c77dff, #ff6b6b);
-          animation: holo-spin 2s linear infinite;
-          opacity: 0.7;
-          z-index: -1;
-          filter: blur(3px);
-        }
         .sticker-holo::after {
           content: attr(data-label);
           position: absolute;
@@ -224,9 +214,14 @@ function AnnuaireContent() {
           font-family: inherit;
         }
         .sticker-holo:hover::after { opacity: 1; }
-        @keyframes holo-spin {
-          from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
+        @keyframes holo-glow {
+          0%   { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 6px #ff6b6b) drop-shadow(0 0 11px #ff6b6b); }
+          16%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 6px #ffd93d) drop-shadow(0 0 11px #ffd93d); }
+          33%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 6px #6bcb77) drop-shadow(0 0 11px #6bcb77); }
+          50%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 6px #4d96ff) drop-shadow(0 0 11px #4d96ff); }
+          66%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 6px #c77dff) drop-shadow(0 0 11px #c77dff); }
+          83%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 6px #ff6b9d) drop-shadow(0 0 11px #ff6b9d); }
+          100% { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 6px #ff6b6b) drop-shadow(0 0 11px #ff6b6b); }
         }
       `}</style>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24, flexWrap: 'wrap' }}>

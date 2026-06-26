@@ -1066,19 +1066,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             cursor: default;
             line-height: 1;
             transition: transform 0.15s;
+            animation: holo-glow 3s linear infinite;
           }
           .sticker-holo:hover { transform: scale(1.15); }
-          .sticker-holo::before {
-            content: '';
-            position: absolute;
-            inset: -5px;
-            border-radius: 50%;
-            background: conic-gradient(#ff6b6b, #ffd93d, #6bcb77, #4d96ff, #c77dff, #ff6b6b);
-            animation: holo-spin 2s linear infinite;
-            opacity: 0.75;
-            z-index: -1;
-            filter: blur(4px);
-          }
           .sticker-holo::after {
             content: attr(data-label);
             position: absolute;
@@ -1099,9 +1089,14 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             font-family: inherit;
           }
           .sticker-holo:hover::after { opacity: 1; }
-          @keyframes holo-spin {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
+          @keyframes holo-glow {
+            0%   { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #ff6b6b) drop-shadow(0 0 14px #ff6b6b); }
+            16%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #ffd93d) drop-shadow(0 0 14px #ffd93d); }
+            33%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #6bcb77) drop-shadow(0 0 14px #6bcb77); }
+            50%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #4d96ff) drop-shadow(0 0 14px #4d96ff); }
+            66%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #c77dff) drop-shadow(0 0 14px #c77dff); }
+            83%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #ff6b9d) drop-shadow(0 0 14px #ff6b9d); }
+            100% { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #ff6b6b) drop-shadow(0 0 14px #ff6b6b); }
           }
         `}</style>
         
