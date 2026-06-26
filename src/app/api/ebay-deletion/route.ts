@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const VERIFICATION_TOKEN = process.env.EBAY_VERIFICATION_TOKEN || 'a3f8c2d1-7e4b-4a9f-b6c3-2d8e1f5a9b7c'
 const ENDPOINT_URL = 'https://www.memorabilius.fr/api/ebay-deletion'
 
 // eBay envoie un GET pour valider l'endpoint
 export async function GET(req: NextRequest) {
+  const VERIFICATION_TOKEN = process.env.EBAY_VERIFICATION_TOKEN
+  if (!VERIFICATION_TOKEN) return NextResponse.json({ error: 'EBAY_VERIFICATION_TOKEN not configured' }, { status: 500 })
+
   const challengeCode = req.nextUrl.searchParams.get('challenge_code')
   if (!challengeCode) return NextResponse.json({ error: 'missing challenge_code' }, { status: 400 })
 

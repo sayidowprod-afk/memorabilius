@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
 
-const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent'
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
+
+// gemini-2.0-flash-lite : 2× moins cher que 2.5-flash, amplement suffisant pour localiser 4 coins
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent'
 
 const PROMPT = `You are a precise vision system. Locate the 4 outer corners of a physical trading card in this image.
 
@@ -18,6 +25,11 @@ Return ONLY valid JSON, no markdown, no explanation:
 {"topLeft":{"x":0.12,"y":0.08},"topRight":{"x":0.88,"y":0.06},"bottomRight":{"x":0.90,"y":0.94},"bottomLeft":{"x":0.10,"y":0.96},"confidence":0.95}`
 
 export async function POST(req: NextRequest) {
+  const token = req.headers.get('authorization')?.replace('Bearer ', '')
+  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const { data: { user } } = await supabase.auth.getUser(token)
+  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
   const apiKey = process.env.GEMINI_API_KEY
   if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY manquante' }, { status: 500 })
 
@@ -42,12 +54,10 @@ export async function POST(req: NextRequest) {
     })
 
     const text = await res.text()
-    console.log('[detect-corners] Gemini status:', res.status, text.slice(0, 300))
     if (!res.ok) return NextResponse.json({ error: 'gemini error' }, { status: 500 })
 
     const data = JSON.parse(text)
     const raw = data.candidates?.[0]?.content?.parts?.map((p: any) => p.text || '').join('') ?? ''
-    console.log('[detect-corners] raw:', raw.slice(0, 200))
 
     const match = raw.match(/\{[\s\S]*\}/)
     if (!match) return NextResponse.json({ error: 'pas de JSON' }, { status: 500 })

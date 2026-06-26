@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { supabase } from '@/lib/supabase'
 
 type Pt = { x: number; y: number }
 type Status = 'detecting' | 'found' | 'notfound'
@@ -671,9 +672,10 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
     const t = setTimeout(() => ctrl.abort(), 5000)
     let res: Response
     try {
+      const { data: { session } } = await supabase.auth.getSession()
       res = await fetch('/api/detect-corners', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
         body: JSON.stringify({ imageBase64: b64, mimeType: 'image/jpeg' }),
         signal: ctrl.signal,
       })

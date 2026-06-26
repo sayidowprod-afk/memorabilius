@@ -59,8 +59,8 @@ export async function GET(req: NextRequest) {
     })
   })
 
-  // Cartes CSV — max 20 profils, timeout 2.5s chacun
-  await Promise.all(profiles.filter(p => p.lien_csv).slice(0, 20).map(async (p) => {
+  // Cartes CSV — timeout 2.5s par profil, tous les profils avec CSV
+  await Promise.all(profiles.filter(p => p.lien_csv).map(async (p) => {
     try {
       const r = await fetch(p.lien_csv, { next: { revalidate: 3600 }, signal: AbortSignal.timeout(2500) })
       if (!r.ok) return
@@ -116,5 +116,5 @@ export async function GET(req: NextRequest) {
     return aExact - bExact
   })
 
-  return NextResponse.json({ cards: results.slice(0, 60), users })
+  return NextResponse.json({ cards: results, users })
 }

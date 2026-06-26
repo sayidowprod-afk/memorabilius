@@ -9,6 +9,7 @@ export default function Recherche() {
   const [users, setUsers] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
   const [searched, setSearched] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(40)
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
   const { t } = useLang()
 
@@ -27,6 +28,7 @@ export default function Recherche() {
       const data = await r.json()
       setCards(data.cards || [])
       setUsers(data.users || [])
+      setVisibleCount(40)
     } catch { setCards([]); setUsers([]) }
     setLoading(false)
   }
@@ -125,7 +127,7 @@ export default function Recherche() {
             </p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 16 }}>
-            {cards.map((card, i) => (
+            {cards.slice(0, visibleCount).map((card, i) => (
               <Link key={i} href={`/galerie/${card.collectorId}`} style={{ textDecoration: 'none', display: 'block' }}>
                 <div style={{
                   background: 'white', borderRadius: 12, overflow: 'hidden',
@@ -158,6 +160,16 @@ export default function Recherche() {
               </Link>
             ))}
           </div>
+          {cards.length > visibleCount && (
+            <div style={{ textAlign: 'center', marginTop: 32 }}>
+              <button
+                onClick={() => setVisibleCount(c => c + 40)}
+                style={{ background: '#003DA6', color: 'white', border: 'none', padding: '14px 36px', borderRadius: 50, fontWeight: 800, fontSize: 15, cursor: 'pointer' }}
+              >
+                Voir + ({cards.length - visibleCount} de plus)
+              </button>
+            </div>
+          )}
         </>
       )}
     </div>

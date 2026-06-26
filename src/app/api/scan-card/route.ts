@@ -231,9 +231,9 @@ export async function POST(req: NextRequest) {
           ],
         }],
         generationConfig: {
-          temperature: 0.1,
-          maxOutputTokens: 8192,
-          thinkingConfig: { thinkingBudget: 1024 },
+          temperature: 0,
+          maxOutputTokens: 1024,
+          thinkingConfig: { thinkingBudget: 0 },
         },
       }),
     })
