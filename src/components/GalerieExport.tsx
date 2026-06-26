@@ -340,10 +340,15 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
       c.patch ? 'Oui' : 'Non',
       ...(hasValues ? [cardValues.has(c.f) ? String(cardValues.get(c.f)) : ''] : []),
     ])
-    const csv = '﻿' + 'sep=,\r\n' + [headers, ...rows]
+    const csvStr = 'sep=,\r\n' + [headers, ...rows]
       .map(r => r.map(cell => `"${(cell || '').replace(/"/g, '""')}"`).join(','))
       .join('\r\n')
-    const blob = new Blob([new TextEncoder().encode(csv)], { type: 'text/csv;charset=utf-8' })
+    // UTF-16 LE + BOM (FF FE) — Excel respecte toujours ce BOM quelle que soit la locale
+    const buf = new ArrayBuffer(2 + csvStr.length * 2)
+    const view = new DataView(buf)
+    view.setUint8(0, 0xFF); view.setUint8(1, 0xFE)
+    for (let i = 0; i < csvStr.length; i++) view.setUint16(2 + i * 2, csvStr.charCodeAt(i), true)
+    const blob = new Blob([buf], { type: 'text/csv;charset=utf-16le' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url; a.download = `${profileName.replace(/\s+/g, '_')}_collection.csv`; a.click()
