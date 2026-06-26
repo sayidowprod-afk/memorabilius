@@ -413,47 +413,49 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
 
                       /* ── GRADING INSERTS — paper labels, no plastic effect ── */
 
-                      /* ── PSA (blanc/crème, barre noire en bas, badge rouge) ── */
+                      /* ── PSA — cadre rouge épais sur fond blanc, grade énorme ── */
                       .psa2 {
-                        background: #f8f5ec;
+                        border: 6px solid #cc1122;
                         border-radius: 3px; overflow: hidden;
-                        font-family: 'Arial Narrow', Arial, sans-serif;
-                        box-shadow: 0 2px 8px rgba(0,0,0,0.40), 0 0 0 0.5px rgba(0,0,0,0.15);
+                        background: #fff;
+                        font-family: Arial, Helvetica, sans-serif;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.28);
                       }
-                      .psa2-body {
-                        padding: 6px 10px 5px;
-                        display: flex; justify-content: space-between; align-items: stretch;
-                        min-height: 60px;
+                      .psa2-main {
+                        padding: 7px 10px 4px;
+                        display: flex; gap: 6px; align-items: flex-start;
                       }
                       .psa2-left {
                         flex: 1; min-width: 0;
-                        display: flex; flex-direction: column; justify-content: space-between;
-                        padding-right: 4px;
+                        display: flex; flex-direction: column; gap: 2px;
                       }
-                      .psa2-set  { font-size: 8px; font-weight: 700; color: #555; letter-spacing: 0.4px; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
-                      .psa2-name { font-size: 12px; font-weight: 900; color: #111; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; letter-spacing: 0.2px; }
-                      .psa2-var  { font-size: 8px; font-weight: 600; color: #777; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
+                      .psa2-set  { font-size: 8px; font-weight: 400; color: #111; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; }
+                      .psa2-name { font-size: 13px; font-weight: 900; color: #111; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
+                      .psa2-var  { font-size: 8px; color: #444; text-transform: uppercase; line-height: 1.3; }
                       .psa2-right {
-                        display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end;
-                        padding-left: 8px; flex-shrink: 0;
+                        display: flex; flex-direction: column;
+                        align-items: flex-end; flex-shrink: 0;
                       }
-                      .psa2-gname { font-size: 9px; font-weight: 800; color: #444; letter-spacing: 1px; text-transform: uppercase; line-height: 1.1; }
-                      .psa2-gnum  { font-size: 44px; font-weight: 900; color: #111; line-height: 1; letter-spacing: -1px; }
-                      .psa2-bar  {
-                        background: #111; display: flex; align-items: center;
-                        padding: 4px 8px; gap: 6px;
+                      .psa2-gname { font-size: 12px; font-weight: 800; color: #111; letter-spacing: 0.3px; line-height: 1.2; }
+                      .psa2-gnum  { font-size: 48px; font-weight: 900; color: #111; line-height: 0.92; letter-spacing: -2px; }
+                      .psa2-cert  { font-size: 9px; font-weight: 600; color: #111; letter-spacing: 0.3px; line-height: 1.3; }
+                      .psa2-bot {
+                        display: flex; align-items: center;
+                        padding: 2px 10px 6px; gap: 8px;
                       }
-                      .psa2-badge {
-                        background: #c8102e; color: #fff; font-weight: 900; font-size: 10px;
-                        padding: 2px 7px; border-radius: 2px; letter-spacing: 1px; flex-shrink: 0;
-                        font-family: Arial, sans-serif;
+                      .psa2-bc {
+                        flex: 1; font-family: monospace;
+                        font-size: 26px; letter-spacing: -4.5px;
+                        color: #111; line-height: 1; overflow: hidden;
                       }
-                      .psa2-bc   {
-                        flex: 1; font-family: 'Libre Barcode 39', monospace;
-                        font-size: 20px; color: rgba(255,255,255,0.45);
-                        letter-spacing: -3px; text-align: center; overflow: hidden; line-height: 1;
+                      .psa2-logo-box {
+                        background: linear-gradient(145deg, #ddd, #c4c4c4);
+                        border: 0.5px solid #aaa; border-radius: 2px;
+                        padding: 3px 7px; flex-shrink: 0;
+                        box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.18);
                       }
-                      .psa2-cert { font-size: 8px; color: rgba(255,255,255,0.65); font-weight: 700; flex-shrink: 0; letter-spacing: 0.5px; font-family: Arial, sans-serif; }
+                      .psa2-logo-p  { font-size: 15px; font-weight: 900; font-style: italic; color: #cc1122; }
+                      .psa2-logo-sa { font-size: 15px; font-weight: 900; font-style: italic; color: #003DA6; }
 
                       /* ── BGS / BECKETT (crème, bande noire B à gauche, note sur droite) ── */
                       .bgs2 {
@@ -517,7 +519,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
                         <div className="slb-top">
                           {isPSA && (
                             <div className="psa2">
-                              <div className="psa2-body">
+                              <div className="psa2-main">
                                 <div className="psa2-left">
                                   <span className="psa2-set">{setLine}</span>
                                   <span className="psa2-name">{popup.n.toUpperCase()}</span>
@@ -526,12 +528,14 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
                                 <div className="psa2-right">
                                   <span className="psa2-gname">{gradeInfo.label}</span>
                                   <span className="psa2-gnum">{gradeInfo.grade}</span>
+                                  <span className="psa2-cert">{certNum}</span>
                                 </div>
                               </div>
-                              <div className="psa2-bar">
-                                <span className="psa2-badge">PSA</span>
-                                <span className="psa2-bc">{'||||||||||||||||||||||||||||'}</span>
-                                <span className="psa2-cert">{certNum}</span>
+                              <div className="psa2-bot">
+                                <span className="psa2-bc">{'|||||||||||||||||||||||||||||||'}</span>
+                                <div className="psa2-logo-box">
+                                  <span className="psa2-logo-p">P</span><span className="psa2-logo-sa">SA</span>
+                                </div>
                               </div>
                             </div>
                           )}
