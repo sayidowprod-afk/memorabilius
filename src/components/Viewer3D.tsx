@@ -272,94 +272,188 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
           <div ref={wrapRef} style={{ willChange: 'transform' }}>
             {slabMode && gradeInfo ? (
               /* ── SLAB VIEW ── */
-              <div ref={cardRef} style={{
-                position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform',
-                width: 'var(--slab-w, 380px)',
-              }}>
-                <style>{`
-                  :root { --slab-w: 340px; --slab-card-h: 476px; }
-                  @media (max-width: 1200px) { :root { --slab-w: 280px; --slab-card-h: 392px; } }
-                  @media (max-width: 600px)  { :root { --slab-w: 210px; --slab-card-h: 294px; } }
-                  .slab-outer {
-                    width: var(--slab-w);
-                    border-radius: 6px;
-                    overflow: hidden;
-                    box-shadow:
-                      0 0 0 2px rgba(255,255,255,0.55),
-                      0 0 0 14px rgba(200,218,240,0.70),
-                      0 0 0 16px rgba(170,190,215,0.55),
-                      0 28px 80px rgba(0,0,0,0.65),
-                      inset 0 0 30px rgba(255,255,255,0.18);
-                    background: linear-gradient(145deg,
-                      rgba(230,240,255,0.55) 0%,
-                      rgba(210,225,245,0.45) 40%,
-                      rgba(195,215,240,0.50) 100%);
-                    backdrop-filter: blur(1px);
-                  }
-                  .slab-label {
-                    background: ${gradeInfo.color.top};
-                    display: flex; align-items: stretch;
-                    min-height: 62px;
-                    border-bottom: 3px solid rgba(0,0,0,0.25);
-                  }
-                  .slab-label-left {
-                    flex: 1; display: flex; flex-direction: column; justify-content: center;
-                    padding: 7px 10px; gap: 2px;
-                  }
-                  .slab-company { font-size: 20px; font-weight: 900; color: ${gradeInfo.color.text}; letter-spacing: 1px; line-height: 1; }
-                  .slab-grade-name { font-size: 9px; font-weight: 800; color: ${gradeInfo.color.text}; opacity: 0.85; letter-spacing: 1.5px; text-transform: uppercase; }
-                  .slab-card-info { font-size: 8px; color: ${gradeInfo.color.text}; opacity: 0.7; font-weight: 600; letter-spacing: 0.5px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
-                  .slab-grade-right {
-                    display: flex; align-items: center; justify-content: center;
-                    padding: 0 14px 0 8px;
-                    border-left: 2px solid rgba(255,255,255,0.2);
-                    min-width: 68px;
-                    background: rgba(0,0,0,0.18);
-                  }
-                  .slab-grade-num { font-size: 40px; font-weight: 900; color: ${gradeInfo.color.accent}; line-height: 1; }
-                  .slab-window {
-                    background: #111;
-                    padding: 8px;
-                    position: relative;
-                  }
-                  .slab-window-inner {
-                    width: 100%; height: var(--slab-card-h);
-                    overflow: hidden; border-radius: 2px;
-                    box-shadow: inset 0 0 10px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.4);
-                    background: #000;
-                  }
-                  .slab-window-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
-                  .slab-footer {
-                    background: rgba(0,0,0,0.5);
-                    padding: 5px 10px;
-                    display: flex; justify-content: space-between; align-items: center;
-                  }
-                  .slab-barcode { font-family: monospace; font-size: 8px; color: rgba(255,255,255,0.4); letter-spacing: 1px; }
-                  .slab-cert { font-size: 7px; color: rgba(255,255,255,0.35); font-weight: 700; letter-spacing: 0.5px; }
-                `}</style>
-                <div className="slab-outer">
-                  <div className="slab-label">
-                    <div className="slab-label-left">
-                      <span className="slab-company">{gradeInfo.company}</span>
-                      <span className="slab-grade-name">{gradeInfo.label}</span>
-                      <span className="slab-card-info">{[popup.y, popup.br, popup.s].filter(Boolean).join(' · ')}</span>
-                      <span className="slab-card-info">{popup.n}{popup.v ? ` · ${popup.v}` : ''}</span>
-                    </div>
-                    <div className="slab-grade-right">
-                      <span className="slab-grade-num">{gradeInfo.grade}</span>
+              (() => {
+                const isPSA = gradeInfo.company === 'PSA' || gradeInfo.company === 'GRADE'
+                const isBGS = gradeInfo.company === 'BGS' || gradeInfo.company === 'BVG'
+                const isSGC = gradeInfo.company === 'SGC'
+                const isCGC = gradeInfo.company === 'CGC'
+                // Deterministic cert number from card data
+                const certSeed = (popup.n + popup.y + popup.s).split('').reduce((a, c) => a + c.charCodeAt(0), 0)
+                const certNum = String((certSeed * 7919 + 10000000) % 90000000 + 10000000).slice(0, 8)
+                const setLine = [popup.y, popup.br, popup.s].filter(Boolean).join(' ').toUpperCase()
+
+                return (
+                  <div ref={cardRef} style={{ position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform' }}>
+                    <style>{`
+                      .slb-wrap {
+                        width: 300px;
+                        border-radius: 5px; overflow: hidden;
+                        box-shadow:
+                          0 0 0 2px rgba(255,255,255,0.6),
+                          0 0 0 14px rgba(200,218,242,0.75),
+                          0 0 0 16px rgba(165,190,220,0.5),
+                          0 30px 80px rgba(0,0,0,0.7),
+                          inset 0 0 20px rgba(255,255,255,0.15);
+                        background: linear-gradient(160deg,rgba(235,243,255,0.5) 0%,rgba(210,228,248,0.45) 60%,rgba(195,218,242,0.5) 100%);
+                      }
+                      @media (max-width:1200px) { .slb-wrap { width:250px; } }
+                      @media (max-width:600px)  { .slb-wrap { width:190px; } }
+                      .slb-win { background:#0a0a0a; padding:7px; }
+                      .slb-win-inner {
+                        width:100%; aspect-ratio:5/7; overflow:hidden; border-radius:2px;
+                        box-shadow:inset 0 0 12px rgba(0,0,0,0.7);
+                      }
+                      .slb-win-inner img { width:100%; height:100%; object-fit:cover; display:block; }
+
+                      /* ── PSA ── */
+                      .psa-lbl { background:#fff; border-bottom:1px solid #ddd; font-family:'Arial',sans-serif; }
+                      .psa-body { padding:6px 10px 4px 10px; display:flex; justify-content:space-between; align-items:stretch; }
+                      .psa-left { flex:1; display:flex; flex-direction:column; justify-content:center; gap:1px; min-width:0; }
+                      .psa-set  { font-size:7.5px; font-weight:700; color:#333; letter-spacing:0.4px; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+                      .psa-name { font-size:11px; font-weight:900; color:#111; text-transform:uppercase; letter-spacing:0.3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+                      .psa-var  { font-size:7.5px; font-weight:600; color:#555; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+                      .psa-right { display:flex; flex-direction:column; align-items:flex-end; justify-content:center; padding-left:8px; flex-shrink:0; }
+                      .psa-gname { font-size:8px; font-weight:800; color:#222; letter-spacing:1px; text-transform:uppercase; text-align:right; }
+                      .psa-gnum  { font-size:38px; font-weight:900; color:#111; line-height:1; text-align:right; }
+                      .psa-bar  { background:#1c1c1c; display:flex; align-items:center; justify-content:space-between; padding:4px 8px 4px 8px; gap:6px; }
+                      .psa-badge { background:#c8102e; color:#fff; font-weight:900; font-size:10px; padding:2px 7px; border-radius:2px; letter-spacing:1.5px; flex-shrink:0; }
+                      .psa-bc   { flex:1; font-family:monospace; font-size:18px; color:rgba(255,255,255,0.6); letter-spacing:-3px; overflow:hidden; text-align:center; }
+                      .psa-cert { font-size:7.5px; color:rgba(255,255,255,0.65); font-weight:700; letter-spacing:0.5px; flex-shrink:0; }
+
+                      /* ── BGS ── */
+                      .bgs-lbl { background:#f7f4ea; border-bottom:1px solid #d4c98a; font-family:'Arial',sans-serif; display:flex; align-items:stretch; }
+                      .bgs-b { width:38px; background:#1a1a1a; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+                      .bgs-b-letter { font-size:26px; font-weight:900; color:#e8c840; letter-spacing:-1px; font-style:italic; line-height:1; }
+                      .bgs-main { flex:1; padding:5px 8px; display:flex; align-items:stretch; gap:4px; min-width:0; }
+                      .bgs-info { flex:1; display:flex; flex-direction:column; justify-content:center; gap:1px; min-width:0; }
+                      .bgs-set  { font-size:7px; font-weight:700; color:#555; text-transform:uppercase; letter-spacing:0.3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+                      .bgs-name { font-size:10px; font-weight:900; color:#111; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+                      .bgs-var  { font-size:7px; font-weight:600; color:#666; text-transform:uppercase; }
+                      .bgs-cert { font-size:6.5px; font-weight:700; color:#888; letter-spacing:0.3px; margin-top:2px; }
+                      .bgs-grade { display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; padding:0 4px; border-left:1px solid #d4c98a; }
+                      .bgs-gnum { font-size:32px; font-weight:900; color:#1a1a1a; line-height:1; }
+                      .bgs-gname { font-size:6px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px; text-transform:uppercase; text-align:center; }
+
+                      /* ── SGC ── */
+                      .sgc-lbl { background:#fff; border-bottom:1px solid #ccc; font-family:'Arial',sans-serif; display:flex; align-items:stretch; }
+                      .sgc-side { width:36px; background:#006633; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+                      .sgc-logo { font-size:13px; font-weight:900; color:#fff; letter-spacing:1px; writing-mode:vertical-rl; text-orientation:mixed; transform:rotate(180deg); }
+                      .sgc-body { flex:1; padding:5px 8px; display:flex; justify-content:space-between; align-items:center; min-width:0; }
+                      .sgc-info { flex:1; min-width:0; }
+                      .sgc-set  { font-size:7.5px; font-weight:700; color:#333; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+                      .sgc-name { font-size:11px; font-weight:900; color:#111; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+                      .sgc-var  { font-size:7px; color:#555; text-transform:uppercase; }
+                      .sgc-cert { font-size:6.5px; color:#aaa; margin-top:2px; font-weight:700; }
+                      .sgc-gbox { background:#006633; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:4px 10px; flex-shrink:0; border-radius:3px; margin-left:6px; }
+                      .sgc-gnum { font-size:30px; font-weight:900; color:#fff; line-height:1; }
+                      .sgc-gname { font-size:6px; font-weight:800; color:rgba(255,255,255,0.8); text-transform:uppercase; letter-spacing:0.5px; }
+
+                      /* ── CGC ── */
+                      .cgc-lbl { background:#fff; border-bottom:2px solid #003399; font-family:'Arial',sans-serif; }
+                      .cgc-top { background:#003399; padding:4px 10px; display:flex; justify-content:space-between; align-items:center; }
+                      .cgc-brand { font-size:13px; font-weight:900; color:#fff; letter-spacing:2px; }
+                      .cgc-gnum  { font-size:22px; font-weight:900; color:#fff; line-height:1; }
+                      .cgc-body  { padding:4px 10px; display:flex; justify-content:space-between; align-items:center; }
+                      .cgc-info  { flex:1; min-width:0; }
+                      .cgc-set   { font-size:7.5px; font-weight:700; color:#333; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+                      .cgc-name  { font-size:11px; font-weight:900; color:#111; text-transform:uppercase; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+                      .cgc-var   { font-size:7px; color:#555; text-transform:uppercase; }
+                      .cgc-gname { font-size:8px; font-weight:800; color:#003399; text-align:right; }
+                      .cgc-cert  { font-size:6.5px; color:#aaa; font-weight:700; text-align:right; }
+                    `}</style>
+
+                    <div className="slb-wrap">
+                      {/* ── PSA label ── */}
+                      {isPSA && (
+                        <div className="psa-lbl">
+                          <div className="psa-body">
+                            <div className="psa-left">
+                              <span className="psa-set">{setLine}</span>
+                              <span className="psa-name">{popup.n.toUpperCase()}</span>
+                              {popup.v && <span className="psa-var">{popup.v.toUpperCase()}</span>}
+                            </div>
+                            <div className="psa-right">
+                              <span className="psa-gname">{gradeInfo.label}</span>
+                              <span className="psa-gnum">{gradeInfo.grade}</span>
+                            </div>
+                          </div>
+                          <div className="psa-bar">
+                            <span className="psa-badge">PSA</span>
+                            <span className="psa-bc">{'|'+'||'+'|||'+'||'+'|||||'+'||'+'|||'+'|'}</span>
+                            <span className="psa-cert">{certNum}</span>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* ── BGS/Beckett label ── */}
+                      {isBGS && (
+                        <div className="bgs-lbl">
+                          <div className="bgs-b"><span className="bgs-b-letter">B</span></div>
+                          <div className="bgs-main">
+                            <div className="bgs-info">
+                              <span className="bgs-set">{setLine}</span>
+                              <span className="bgs-name">{popup.n.toUpperCase()}</span>
+                              {popup.v && <span className="bgs-var">{popup.v.toUpperCase()}</span>}
+                              <span className="bgs-cert">{certNum}</span>
+                            </div>
+                            <div className="bgs-grade">
+                              <span className="bgs-gnum">{gradeInfo.grade}</span>
+                              <span className="bgs-gname">{gradeInfo.label}</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* ── SGC label ── */}
+                      {isSGC && (
+                        <div className="sgc-lbl">
+                          <div className="sgc-side"><span className="sgc-logo">SGC</span></div>
+                          <div className="sgc-body">
+                            <div className="sgc-info">
+                              <span className="sgc-set">{setLine}</span>
+                              <span className="sgc-name">{popup.n.toUpperCase()}</span>
+                              {popup.v && <span className="sgc-var">{popup.v.toUpperCase()}</span>}
+                              <div className="sgc-cert">{certNum}</div>
+                            </div>
+                            <div className="sgc-gbox">
+                              <span className="sgc-gnum">{gradeInfo.grade}</span>
+                              <span className="sgc-gname">{gradeInfo.label}</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* ── CGC label ── */}
+                      {isCGC && (
+                        <div className="cgc-lbl">
+                          <div className="cgc-top">
+                            <span className="cgc-brand">CGC</span>
+                            <span className="cgc-gnum">{gradeInfo.grade}</span>
+                          </div>
+                          <div className="cgc-body">
+                            <div className="cgc-info">
+                              <span className="cgc-set">{setLine}</span>
+                              <span className="cgc-name">{popup.n.toUpperCase()}</span>
+                              {popup.v && <span className="cgc-var">{popup.v.toUpperCase()}</span>}
+                            </div>
+                            <div style={{display:'flex',flexDirection:'column',alignItems:'flex-end',flexShrink:0,paddingLeft:6}}>
+                              <span className="cgc-gname">{gradeInfo.label}</span>
+                              <span className="cgc-cert">{certNum}</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* card window */}
+                      <div className="slb-win">
+                        <div className="slb-win-inner">
+                          <img src={popup.f} draggable={false} alt={popup.n} />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="slab-window">
-                    <div className="slab-window-inner">
-                      <img src={popup.f} draggable={false} alt={popup.n} />
-                    </div>
-                  </div>
-                  <div className="slab-footer">
-                    <span className="slab-barcode">{Math.floor(Math.random() * 90000000 + 10000000)}</span>
-                    <span className="slab-cert">CERTIFIED AUTHENTIC</span>
-                  </div>
-                </div>
-              </div>
+                )
+              })()
             ) : (
               /* ── CARD VIEW (original) ── */
               <div ref={cardRef} className="viewer-card" style={{
