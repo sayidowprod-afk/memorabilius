@@ -7,7 +7,8 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-const resend = new Resend(process.env.RESEND_API_KEY!)
+// Instantiated inside the handler to avoid build-time env var resolution
+function getResend() { return new Resend(process.env.RESEND_API_KEY!) }
 
 function monthName(date: Date) {
   return date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
@@ -233,7 +234,7 @@ export async function GET(req: NextRequest) {
     })
 
     try {
-      await resend.emails.send({
+      await getResend().emails.send({
         from: 'Memorabilius <contact@memorabilius.fr>',
         to: authUser.email,
         subject: `Ton Wrap ${monthLabel} 🏀 — Memorabilius`,
