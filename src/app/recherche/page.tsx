@@ -1,10 +1,13 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useLang } from '@/lib/LangContext'
 
 export default function Recherche() {
-  const [query, setQuery] = useState('')
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const [query, setQuery] = useState(searchParams.get('q') || '')
   const [cards, setCards] = useState<any[]>([])
   const [users, setUsers] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
@@ -12,6 +15,24 @@ export default function Recherche() {
   const [visibleCount, setVisibleCount] = useState(40)
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
   const { t } = useLang()
+
+  const updateUrl = (q: string) => {
+    const params = new URLSearchParams()
+    if (q) params.set('q', q)
+    router.replace(q ? `/recherche?${params.toString()}` : '/recherche', { scroll: false })
+  }
+
+  const handleQuery = (q: string) => {
+    setQuery(q)
+    updateUrl(q)
+  }
+
+  // Lance la recherche initiale si ?q= présent dans l'URL
+  useEffect(() => {
+    const q = searchParams.get('q') || ''
+    if (q.length >= 2) search(q)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (query.length < 2) { setCards([]); setUsers([]); setSearched(false); return }
@@ -62,7 +83,7 @@ export default function Recherche() {
         <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative' }}>
           <input
             value={query}
-            onChange={e => setQuery(e.target.value)}
+            onChange={e => handleQuery(e.target.value)}
             placeholder={t('search_placeholder')}
             autoFocus
             style={{
@@ -128,7 +149,7 @@ export default function Recherche() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 16 }}>
             {cards.slice(0, visibleCount).map((card, i) => (
-              <Link key={i} href={`/galerie/${card.collectorId}`} style={{ textDecoration: 'none', display: 'block' }}>
+              <Link key={i} href={`/galerie/${card.collectorId}?card=${encodeURIComponent(card.img)}`} style={{ textDecoration: 'none', display: 'block' }}>
                 <div style={{
                   background: 'white', borderRadius: 12, overflow: 'hidden',
                   border: `2px solid ${card.accent}`,
