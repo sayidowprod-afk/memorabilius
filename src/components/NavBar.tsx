@@ -90,11 +90,15 @@ export default function Navbar() {
           <Link href="/setlist" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>Setlist</Link>
           <Link href="/evenements" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>Events</Link>
           {user === undefined ? (
-            <div style={{ visibility: 'hidden', display: 'flex', gap: 20, alignItems: 'center' }}>
+            /* Réserve exactement la même largeur que l'état connecté pour éviter le CLS */
+            <div style={{ visibility: 'hidden', display: 'flex', gap: 20, alignItems: 'center', pointerEvents: 'none' }}>
               <span style={{ fontWeight: 600 }}>Ma galerie</span>
               <span style={{ fontWeight: 600 }}>Messages</span>
+              <span style={{ fontWeight: 600 }}>🔔</span>
               <span style={{ fontWeight: 600 }}>Profil</span>
-              <button className="btn-main btn-secondary" style={{ padding: '8px 16px', fontSize: 13 }}>Connexion</button>
+              <button style={{ background: 'none', border: '1px solid #ddd', borderRadius: 20, padding: '4px 10px', fontSize: 12, fontWeight: 700, width: 64 }}>FR</button>
+              <button style={{ background: 'none', border: '1px solid #ddd', borderRadius: 20, padding: '4px 12px', fontSize: 14, width: 46 }}>🌙</button>
+              <button className="btn-main btn-secondary" style={{ padding: '8px 16px', fontSize: 13 }}>Déconnexion</button>
             </div>
           ) : user ? (
             <>
