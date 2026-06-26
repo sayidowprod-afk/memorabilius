@@ -4,12 +4,10 @@ import { createContext, useContext, useEffect, useState } from 'react'
 const ThemeContext = createContext({ dark: false, toggle: () => {} })
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [dark, setDark] = useState(false)
-
-  useEffect(() => {
-    const saved = localStorage.getItem('theme')
-    if (saved === 'dark') setDark(true)
-  }, [])
+  // Initialisation synchrone côté client pour éviter le flash light→dark (CLS)
+  const [dark, setDark] = useState(() =>
+    typeof window !== 'undefined' && localStorage.getItem('theme') === 'dark'
+  )
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')

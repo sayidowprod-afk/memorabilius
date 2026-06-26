@@ -66,8 +66,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
       <body className={inter.className}>
+        {/* Lit le thème depuis localStorage AVANT le premier rendu React pour éviter le flash light→dark (CLS) */}
+        <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}` }} />
         <ThemeProvider>
           <LangProvider>
             <Navbar />
