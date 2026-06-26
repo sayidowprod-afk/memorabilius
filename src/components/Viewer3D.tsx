@@ -59,8 +59,29 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
   const rafRef = useRef<number>(0)
   const [showVideo, setShowVideo] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [slabMode, setSlabMode] = useState(false)
   const [addState, setAddState] = useState<'idle' | 'loading' | 'added' | 'duplicate'>(initialAddState ?? 'idle')
   const { lang } = useLang()
+
+  // Parse grade: "PSA 9" → { company: "PSA", grade: "9", label: "MINT" }
+  const gradeInfo = (() => {
+    const g = popup.g?.trim()
+    if (!g || g.toLowerCase() === 'raw') return null
+    const m = g.match(/^(PSA|BGS|SGC|CGC|BVG)\s*([\d.]+)$/i)
+    if (!m) return null
+    const company = m[1].toUpperCase()
+    const num = parseFloat(m[2])
+    const psaLabels: Record<number, string> = { 10: 'GEM MT', 9: 'MINT', 8: 'NM-MT', 7: 'NM', 6: 'EX-MT', 5: 'EX', 4: 'VG-EX', 3: 'VG', 2: 'GOOD', 1: 'POOR' }
+    const label = company === 'PSA' ? (psaLabels[num] || 'MINT') : company === 'BGS' ? 'PRISTINE' : 'AUTHENTIC'
+    const colors: Record<string, { top: string; text: string; accent: string }> = {
+      PSA: { top: '#c8102e', text: '#fff', accent: '#e8c840' },
+      BGS: { top: '#1a1a1a', text: '#e8c840', accent: '#e8c840' },
+      SGC: { top: '#006633', text: '#fff', accent: '#fff' },
+      CGC: { top: '#003399', text: '#fff', accent: '#fff' },
+      BVG: { top: '#1a1a1a', text: '#e8c840', accent: '#e8c840' },
+    }
+    return { company, grade: m[2], label, color: colors[company] || colors.PSA }
+  })()
 
   const handleShare = () => {
     if (!userId) return
@@ -221,17 +242,123 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
           onTouchStart={onTouchStart} onTouchMove={onTouchMove}
           onTouchEnd={() => { isDragging.current = false }}
         >
-          <div ref={wrapRef} style={{ willChange: 'transform' }}>
-            <div ref={cardRef} className="viewer-card" style={{
-              position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform',
+          {/* Slab mode toggle */}
+          {gradeInfo && (
+            <button onClick={(e) => { e.stopPropagation(); setSlabMode(s => !s) }} style={{
+              position: 'absolute', top: 12, left: 12, zIndex: 10,
+              background: slabMode ? gradeInfo.color.top : 'rgba(0,0,0,0.45)',
+              color: 'white', border: 'none', borderRadius: 20, padding: '6px 14px',
+              fontWeight: 800, fontSize: 11, cursor: 'pointer', backdropFilter: 'blur(4px)',
+              transition: '0.2s',
             }}>
-              <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
-                <img src={popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+              {slabMode ? '🃏 Carte seule' : `🏅 Slab ${gradeInfo.company}`}
+            </button>
+          )}
+
+          <div ref={wrapRef} style={{ willChange: 'transform' }}>
+            {slabMode && gradeInfo ? (
+              /* ── SLAB VIEW ── */
+              <div ref={cardRef} style={{
+                position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform',
+                width: 'var(--slab-w, 380px)',
+              }}>
+                <style>{`
+                  :root { --slab-w: 340px; --slab-card-h: 476px; }
+                  @media (max-width: 1200px) { :root { --slab-w: 280px; --slab-card-h: 392px; } }
+                  @media (max-width: 600px)  { :root { --slab-w: 210px; --slab-card-h: 294px; } }
+                  .slab-outer {
+                    width: var(--slab-w);
+                    border-radius: 6px;
+                    overflow: hidden;
+                    box-shadow:
+                      0 0 0 2px rgba(255,255,255,0.55),
+                      0 0 0 14px rgba(200,218,240,0.70),
+                      0 0 0 16px rgba(170,190,215,0.55),
+                      0 28px 80px rgba(0,0,0,0.65),
+                      inset 0 0 30px rgba(255,255,255,0.18);
+                    background: linear-gradient(145deg,
+                      rgba(230,240,255,0.55) 0%,
+                      rgba(210,225,245,0.45) 40%,
+                      rgba(195,215,240,0.50) 100%);
+                    backdrop-filter: blur(1px);
+                  }
+                  .slab-label {
+                    background: ${gradeInfo.color.top};
+                    display: flex; align-items: stretch;
+                    min-height: 62px;
+                    border-bottom: 3px solid rgba(0,0,0,0.25);
+                  }
+                  .slab-label-left {
+                    flex: 1; display: flex; flex-direction: column; justify-content: center;
+                    padding: 7px 10px; gap: 2px;
+                  }
+                  .slab-company { font-size: 20px; font-weight: 900; color: ${gradeInfo.color.text}; letter-spacing: 1px; line-height: 1; }
+                  .slab-grade-name { font-size: 9px; font-weight: 800; color: ${gradeInfo.color.text}; opacity: 0.85; letter-spacing: 1.5px; text-transform: uppercase; }
+                  .slab-card-info { font-size: 8px; color: ${gradeInfo.color.text}; opacity: 0.7; font-weight: 600; letter-spacing: 0.5px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
+                  .slab-grade-right {
+                    display: flex; align-items: center; justify-content: center;
+                    padding: 0 14px 0 8px;
+                    border-left: 2px solid rgba(255,255,255,0.2);
+                    min-width: 68px;
+                    background: rgba(0,0,0,0.18);
+                  }
+                  .slab-grade-num { font-size: 40px; font-weight: 900; color: ${gradeInfo.color.accent}; line-height: 1; }
+                  .slab-window {
+                    background: #111;
+                    padding: 8px;
+                    position: relative;
+                  }
+                  .slab-window-inner {
+                    width: 100%; height: var(--slab-card-h);
+                    overflow: hidden; border-radius: 2px;
+                    box-shadow: inset 0 0 10px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.4);
+                    background: #000;
+                  }
+                  .slab-window-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+                  .slab-footer {
+                    background: rgba(0,0,0,0.5);
+                    padding: 5px 10px;
+                    display: flex; justify-content: space-between; align-items: center;
+                  }
+                  .slab-barcode { font-family: monospace; font-size: 8px; color: rgba(255,255,255,0.4); letter-spacing: 1px; }
+                  .slab-cert { font-size: 7px; color: rgba(255,255,255,0.35); font-weight: 700; letter-spacing: 0.5px; }
+                `}</style>
+                <div className="slab-outer">
+                  <div className="slab-label">
+                    <div className="slab-label-left">
+                      <span className="slab-company">{gradeInfo.company}</span>
+                      <span className="slab-grade-name">{gradeInfo.label}</span>
+                      <span className="slab-card-info">{[popup.y, popup.br, popup.s].filter(Boolean).join(' · ')}</span>
+                      <span className="slab-card-info">{popup.n}{popup.v ? ` · ${popup.v}` : ''}</span>
+                    </div>
+                    <div className="slab-grade-right">
+                      <span className="slab-grade-num">{gradeInfo.grade}</span>
+                    </div>
+                  </div>
+                  <div className="slab-window">
+                    <div className="slab-window-inner">
+                      <img src={popup.f} draggable={false} alt={popup.n} />
+                    </div>
+                  </div>
+                  <div className="slab-footer">
+                    <span className="slab-barcode">{Math.floor(Math.random() * 90000000 + 10000000)}</span>
+                    <span className="slab-cert">CERTIFIED AUTHENTIC</span>
+                  </div>
+                </div>
               </div>
-              <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
-                <img src={popup.b} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+            ) : (
+              /* ── CARD VIEW (original) ── */
+              <div ref={cardRef} className="viewer-card" style={{
+                position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform',
+              }}>
+                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
+                  <img src={popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+                </div>
+                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
+                  <img src={popup.b} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <p className="viewer-hint" style={{ position: 'absolute', bottom: 8, left: '50%', transform: 'translateX(-50%)', fontSize: 10, color: '#bbb', whiteSpace: 'nowrap', pointerEvents: 'none' }}>
             Glisser · Scroll pour zoomer · Double-clic pour reset
