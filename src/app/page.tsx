@@ -20,39 +20,53 @@ async function fetchPepites(): Promise<Card[]> {
       .select('image_recto, nom, variation, annee, marque, rc, auto, patch, num, user_id')
       .not('image_recto', 'is', null)
       .order('created_at', { ascending: false })
-      .limit(40),
+      .limit(200),
     supabase.from('profiles').select('id, display_name'),
   ])
 
   const profileMap = new Map((profiles || []).map(p => [p.id, p.display_name]))
 
+  // Dédupliquer par image et ne garder que les cartes avec un profil connu
   const seen = new Set<string>()
+  const items = (manuelles || []).filter(m => {
+    if (!m.image_recto || !profileMap.get(m.user_id)) return false
+    if (seen.has(m.image_recto)) return false
+    seen.add(m.image_recto)
+    return true
+  }).map(m => ({
+    img: m.image_recto as string,
+    name: m.nom || '',
+    variant: m.variation || '',
+    year: m.annee || '',
+    brand: m.marque || '',
+    rc: m.rc || false,
+    auto: m.auto || false,
+    patch: m.patch || false,
+    num: m.num || '',
+    collector: profileMap.get(m.user_id) as string,
+    userId: m.user_id,
+  }))
+
+  // Passe 1 : max 1 carte par utilisateur pour la diversité
   const perUser = new Map<string, number>()
   const result: Card[] = []
-
-  for (const m of (manuelles || [])) {
-    const collector = profileMap.get(m.user_id)
-    if (!collector || !m.image_recto) continue
-    if (seen.has(m.image_recto)) continue
-    const count = perUser.get(m.user_id) ?? 0
-    if (count >= 1) continue
-    seen.add(m.image_recto)
-    perUser.set(m.user_id, count + 1)
-    result.push({
-      img: m.image_recto,
-      name: m.nom || '',
-      variant: m.variation || '',
-      year: m.annee || '',
-      brand: m.marque || '',
-      rc: m.rc || false,
-      auto: m.auto || false,
-      patch: m.patch || false,
-      num: m.num || '',
-      collector,
-      userId: m.user_id,
-    })
+  for (const item of items) {
+    if ((perUser.get(item.userId) ?? 0) >= 1) continue
+    perUser.set(item.userId, 1)
+    result.push(item)
     if (result.length >= 6) break
   }
+
+  // Passe 2 : compléter jusqu'à 6 en acceptant plusieurs cartes du même user
+  if (result.length < 6) {
+    const inResult = new Set(result.map(r => r.img))
+    for (const item of items) {
+      if (inResult.has(item.img)) continue
+      result.push(item)
+      if (result.length >= 6) break
+    }
+  }
+
   return result
 }
 

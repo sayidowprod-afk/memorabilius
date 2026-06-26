@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
+import { useLang } from '@/lib/LangContext'
 
 type Event = {
   id: number
@@ -22,6 +23,7 @@ const emptyForm = { title: '', description: '', date: '', city: '', country: 'Fr
 
 export default function Evenements() {
   const { dark } = useTheme()
+  const { t, lang } = useLang()
   const [events, setEvents] = useState<Event[]>([])
   const [userId, setUserId] = useState<string | null>(null)
   const [isAdmin, setIsAdmin] = useState(false)
@@ -96,7 +98,7 @@ export default function Evenements() {
     setTimeout(() => { setSubmitted(false); setShowPropose(false) }, 3000)
   }
 
-  const formatDate = (d: string) => new Date(d).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+  const formatDate = (d: string) => new Date(d).toLocaleDateString(lang === 'en' ? 'en-US' : 'fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
 
   const upcoming = events.filter(e => new Date(e.date) >= new Date(new Date().toDateString()))
   const past = events.filter(e => new Date(e.date) < new Date(new Date().toDateString()))
@@ -119,7 +121,7 @@ export default function Evenements() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32, flexWrap: 'wrap', gap: 12 }}>
           <div>
             <h1 style={{ color: text, margin: 0, fontSize: 28, fontWeight: 800 }}>📅 Events</h1>
-            <p style={{ color: sub, margin: '4px 0 0', fontSize: 14 }}>Card shows, conventions et rencontres de collectionneurs</p>
+            <p style={{ color: sub, margin: '4px 0 0', fontSize: 14 }}>{t('events_sub')}</p>
           </div>
           <div style={{ display: 'flex', gap: 10 }}>
             {isAdmin && (
@@ -129,25 +131,25 @@ export default function Evenements() {
             )}
             {userId && (
               <button onClick={() => setShowPropose(true)} style={{ padding: '10px 18px', borderRadius: 8, background: '#003DA6', color: 'white', fontWeight: 700, fontSize: 14, border: 'none', cursor: 'pointer' }}>
-                + Proposer un événement
+                {t('events_propose_btn')}
               </button>
             )}
           </div>
         </div>
 
-        {loading && <p style={{ color: sub, textAlign: 'center' }}>Chargement...</p>}
+        {loading && <p style={{ color: sub, textAlign: 'center' }}>{t('events_loading')}</p>}
 
         {!loading && events.length === 0 && (
           <div style={{ textAlign: 'center', padding: 60, color: sub }}>
             <div style={{ fontSize: 48, marginBottom: 12 }}>📭</div>
-            <p>Aucun événement pour le moment.</p>
-            {userId && <button onClick={() => setShowPropose(true)} style={{ marginTop: 12, padding: '10px 20px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>Proposer le premier</button>}
+            <p>{t('events_none')}</p>
+            {userId && <button onClick={() => setShowPropose(true)} style={{ marginTop: 12, padding: '10px 20px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, fontWeight: 700, cursor: 'pointer' }}>{t('events_propose_first')}</button>}
           </div>
         )}
 
         {upcoming.length > 0 && (
           <>
-            <h2 style={{ color: text, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>À venir</h2>
+            <h2 style={{ color: text, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>{t('events_upcoming')}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 40 }}>
               {upcoming.map(ev => <EventCard key={ev.id} ev={ev} dark={dark} text={text} sub={sub} card={card} border={border} onToggle={() => toggleAttend(ev)} userId={userId} formatDate={formatDate} />)}
             </div>
@@ -156,7 +158,7 @@ export default function Evenements() {
 
         {past.length > 0 && (
           <>
-            <h2 style={{ color: sub, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>Passés</h2>
+            <h2 style={{ color: sub, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>{t('events_past')}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16, opacity: 0.6 }}>
               {past.map(ev => <EventCard key={ev.id} ev={ev} dark={dark} text={text} sub={sub} card={card} border={border} onToggle={() => {}} userId={null} formatDate={formatDate} />)}
             </div>
@@ -168,23 +170,23 @@ export default function Evenements() {
       {showPropose && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }} onClick={() => setShowPropose(false)}>
           <div style={{ background: card, borderRadius: 16, padding: 28, width: '100%', maxWidth: 480, maxHeight: '90vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
-            <h2 style={{ color: text, margin: '0 0 20px', fontSize: 20, fontWeight: 800 }}>Proposer un événement</h2>
+            <h2 style={{ color: text, margin: '0 0 20px', fontSize: 20, fontWeight: 800 }}>{t('events_propose_title')}</h2>
             {submitted ? (
               <div style={{ textAlign: 'center', padding: '30px 0', color: '#27ae60' }}>
                 <div style={{ fontSize: 40, marginBottom: 10 }}>✅</div>
-                <p style={{ fontWeight: 700 }}>Demande envoyée ! Les admins vont l'examiner.</p>
+                <p style={{ fontWeight: 700 }}>{t('events_submitted')}</p>
               </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-                <input style={inp} placeholder="Nom de l'événement *" value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} />
-                <textarea style={{ ...inp, minHeight: 80, resize: 'vertical' }} placeholder="Description (optionnel)" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} />
+                <input style={inp} placeholder={t('events_event_name')} value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} />
+                <textarea style={{ ...inp, minHeight: 80, resize: 'vertical' }} placeholder={t('events_description')} value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} />
                 <input style={inp} type="date" value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))} />
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                  <input style={inp} placeholder="Ville *" value={form.city} onChange={e => setForm(f => ({ ...f, city: e.target.value }))} />
-                  <input style={inp} placeholder="Pays" value={form.country} onChange={e => setForm(f => ({ ...f, country: e.target.value }))} />
+                  <input style={inp} placeholder={t('events_city')} value={form.city} onChange={e => setForm(f => ({ ...f, city: e.target.value }))} />
+                  <input style={inp} placeholder={t('events_country')} value={form.country} onChange={e => setForm(f => ({ ...f, country: e.target.value }))} />
                 </div>
-                <input style={inp} placeholder="Lieu (ex: Parc des Expositions)" value={form.location_name} onChange={e => setForm(f => ({ ...f, location_name: e.target.value }))} />
-                <input style={inp} placeholder="Site web (optionnel)" value={form.website} onChange={e => setForm(f => ({ ...f, website: e.target.value }))} />
+                <input style={inp} placeholder={t('events_location')} value={form.location_name} onChange={e => setForm(f => ({ ...f, location_name: e.target.value }))} />
+                <input style={inp} placeholder={t('events_website')} value={form.website} onChange={e => setForm(f => ({ ...f, website: e.target.value }))} />
                 <div>
                   <input ref={imgInputRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={async e => {
                     const file = e.target.files?.[0]; if (!file) return
@@ -198,14 +200,14 @@ export default function Evenements() {
                     </div>
                   ) : (
                     <button type="button" onClick={() => imgInputRef.current?.click()} disabled={uploadingImg} style={{ width: '100%', padding: '10px', borderRadius: 8, border: `2px dashed ${border}`, background: 'none', color: sub, cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>
-                      {uploadingImg ? 'Upload...' : '🖼️ Ajouter une image (optionnel)'}
+                      {uploadingImg ? t('events_uploading') : t('events_add_image')}
                     </button>
                   )}
                 </div>
                 <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
-                  <button onClick={() => setShowPropose(false)} style={{ flex: 1, padding: '11px', borderRadius: 8, border: `1px solid ${border}`, background: 'none', color: text, fontWeight: 600, cursor: 'pointer' }}>Annuler</button>
+                  <button onClick={() => setShowPropose(false)} style={{ flex: 1, padding: '11px', borderRadius: 8, border: `1px solid ${border}`, background: 'none', color: text, fontWeight: 600, cursor: 'pointer' }}>{t('profile_cancel')}</button>
                   <button onClick={submitRequest} disabled={submitting || !form.title || !form.date || !form.city} style={{ flex: 2, padding: '11px', borderRadius: 8, background: '#003DA6', color: 'white', fontWeight: 700, border: 'none', cursor: 'pointer', opacity: submitting ? 0.7 : 1 }}>
-                    {submitting ? 'Envoi...' : 'Envoyer la demande'}
+                    {submitting ? t('events_submitting') : t('events_send')}
                   </button>
                 </div>
               </div>
@@ -218,6 +220,7 @@ export default function Evenements() {
 }
 
 function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, formatDate }: any) {
+  const { t } = useLang()
   const [showAttendees, setShowAttendees] = useState(false)
   const [attendees, setAttendees] = useState<any[]>([])
 
@@ -241,7 +244,7 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
           <p style={{ color: '#003DA6', margin: '0 0 4px', fontSize: 13, fontWeight: 700 }}>📅 {formatDate(ev.date)}</p>
           <p style={{ color: sub, margin: '0 0 4px', fontSize: 13 }}>📍 {ev.location_name ? `${ev.location_name}, ` : ''}{ev.city}{ev.country !== 'France' ? `, ${ev.country}` : ''}</p>
           {ev.description && <p style={{ color: sub, margin: '6px 0 0', fontSize: 13, lineHeight: 1.5 }}>{ev.description}</p>}
-          {ev.website && <a href={ev.website} target="_blank" rel="noopener noreferrer" style={{ color: '#003DA6', fontSize: 12, marginTop: 4, display: 'inline-block' }}>🔗 Site officiel</a>}
+          {ev.website && <a href={ev.website} target="_blank" rel="noopener noreferrer" style={{ color: '#003DA6', fontSize: 12, marginTop: 4, display: 'inline-block' }}>{t('events_official_site')}</a>}
         </div>
         {userId && (
           <button onClick={onToggle} style={{
@@ -249,13 +252,13 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
             background: ev.going ? '#27ae60' : 'transparent', color: ev.going ? 'white' : '#003DA6',
             fontWeight: 700, fontSize: 13, cursor: 'pointer', whiteSpace: 'nowrap', flexShrink: 0
           }}>
-            {ev.going ? '✅ J\'y vais' : '📌 J\'y vais ?'}
+            {ev.going ? t('events_going') : t('events_going_q')}
           </button>
         )}
       </div>
       <div style={{ marginTop: 14, paddingTop: 12, borderTop: `1px solid ${border}` }}>
         <button onClick={loadAttendees} style={{ background: 'none', border: 'none', cursor: 'pointer', color: sub, fontSize: 13, fontWeight: 600, padding: 0 }}>
-          👥 {ev.attendees} participant{ev.attendees !== 1 ? 's' : ''} {ev.attendees > 0 ? (showAttendees ? '▲' : '▼') : ''}
+          👥 {ev.attendees} {t(ev.attendees !== 1 ? 'events_attendee_other' : 'events_attendee_one')} {ev.attendees > 0 ? (showAttendees ? '▲' : '▼') : ''}
         </button>
         {showAttendees && attendees.length > 0 && (
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 10 }}>
@@ -265,7 +268,7 @@ function EventCard({ ev, dark, text, sub, card, border, onToggle, userId, format
                   ? <img src={p.avatar_url} style={{ width: 22, height: 22, borderRadius: '50%', objectFit: 'cover' }} />
                   : <div style={{ width: 22, height: 22, borderRadius: '50%', background: '#003DA6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, color: 'white', fontWeight: 700 }}>{(p.display_name || '?')[0].toUpperCase()}</div>
                 }
-                <span style={{ color: text, fontSize: 12, fontWeight: 600 }}>{p.display_name || 'Utilisateur'}</span>
+                <span style={{ color: text, fontSize: 12, fontWeight: 600 }}>{p.display_name || t('directory_collector')}</span>
               </a>
             ))}
           </div>

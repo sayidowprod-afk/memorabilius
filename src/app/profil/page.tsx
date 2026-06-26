@@ -94,13 +94,13 @@ export default function Profil() {
 
   const handlePasswordChange = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (newPassword !== confirmPassword) { setPasswordMsg({ ok: false, text: 'Les mots de passe ne correspondent pas.' }); return }
-    if (newPassword.length < 8) { setPasswordMsg({ ok: false, text: 'Le mot de passe doit faire au moins 8 caractères.' }); return }
+    if (newPassword !== confirmPassword) { setPasswordMsg({ ok: false, text: t('profile_password_mismatch') }); return }
+    if (newPassword.length < 8) { setPasswordMsg({ ok: false, text: t('profile_password_tooshort') }); return }
     setChangingPassword(true)
     const { error } = await supabase.auth.updateUser({ password: newPassword })
     setChangingPassword(false)
     if (error) { setPasswordMsg({ ok: false, text: error.message }); return }
-    setPasswordMsg({ ok: true, text: 'Mot de passe modifié avec succès !' })
+    setPasswordMsg({ ok: true, text: t('profile_password_success') })
     setNewPassword(''); setConfirmPassword('')
     setTimeout(() => { setShowPasswordForm(false); setPasswordMsg(null) }, 2500)
   }
@@ -189,7 +189,7 @@ export default function Profil() {
             </div>
           </div>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>Équipes favorites (max 5)</label>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>{t('profile_fav_teams')}</label>
             <TeamPicker value={favoriteTeams} onChange={setFavoriteTeams} max={5} />
           </div>
           <div>
@@ -203,7 +203,7 @@ export default function Profil() {
             <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
               <input type="checkbox" checked={!wrapOptOut} onChange={e => setWrapOptOut(!e.target.checked)} style={{ width: 16, height: 16 }} />
               <span style={{ fontSize: 13, color: '#555' }}>
-                Recevoir le <strong>Wrap mensuel</strong> par email (résumé de ta collection chaque 1er du mois)
+                {t('profile_wrap_before')}<strong>{t('profile_wrap_name')}</strong>{t('profile_wrap_after')}
               </span>
             </label>
           </div>
@@ -215,30 +215,30 @@ export default function Profil() {
 
       {/* Modifier le mot de passe */}
       <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
-        <h3 style={{ fontWeight: 800, marginBottom: 8 }}>Mot de passe</h3>
+        <h3 style={{ fontWeight: 800, marginBottom: 8 }}>{t('profile_password')}</h3>
         {!showPasswordForm ? (
           <button onClick={() => setShowPasswordForm(true)} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
-            Modifier le mot de passe
+            {t('profile_password_change')}
           </button>
         ) : (
           <form onSubmit={handlePasswordChange} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Nouveau mot de passe</label>
-              <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="Min. 8 caractères" autoComplete="new-password" />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('profile_password_new')}</label>
+              <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder={t('profile_password_min')} autoComplete="new-password" />
             </div>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Confirmer le mot de passe</label>
-              <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Répéter le mot de passe" autoComplete="new-password" />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('profile_password_confirm')}</label>
+              <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder={t('profile_password_repeat')} autoComplete="new-password" />
             </div>
             {passwordMsg && (
               <p style={{ fontSize: 13, color: passwordMsg.ok ? '#2ecc71' : '#e74c3c', fontWeight: 600 }}>{passwordMsg.text}</p>
             )}
             <div style={{ display: 'flex', gap: 10 }}>
               <button type="submit" disabled={changingPassword} style={{ background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-                {changingPassword ? 'En cours...' : 'Enregistrer'}
+                {changingPassword ? t('profile_password_saving') : t('profile_password_save')}
               </button>
               <button type="button" onClick={() => { setShowPasswordForm(false); setNewPassword(''); setConfirmPassword(''); setPasswordMsg(null) }} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-                Annuler
+                {t('profile_cancel')}
               </button>
             </div>
           </form>

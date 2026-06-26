@@ -2,6 +2,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
+import { useLang } from '@/lib/LangContext'
 
 interface CardSet {
   id: number
@@ -41,6 +42,7 @@ function seasonLabel(year: number) {
 }
 
 export default function SetlistPage() {
+  const { t } = useLang()
   const [sets, setSets] = useState<CardSet[]>([])
   const [loading, setLoading] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
@@ -511,7 +513,7 @@ export default function SetlistPage() {
       <div style={{ marginBottom: 28, display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
         <div>
           <h1 style={{ fontWeight: 900, fontSize: 32, marginBottom: 4 }}>Setlist NBA</h1>
-          <p style={{ color: '#888', fontSize: 15 }}>{loading ? '...' : `${sets.length} collections disponibles`}</p>
+          <p style={{ color: '#888', fontSize: 15 }}>{loading ? '...' : `${sets.length} ${t('setlist_collections_available')}`}</p>
         </div>
         {userId && (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 10 }}>
@@ -520,7 +522,7 @@ export default function SetlistPage() {
               disabled={syncing}
               style={{ padding: '11px 22px', borderRadius: 12, border: 'none', background: syncing ? '#ccc' : '#003DA6', color: syncing ? '#666' : 'white', fontWeight: 800, fontSize: 14, cursor: syncing ? 'default' : 'pointer' }}
             >
-              {syncing ? `Synchronisation... ${syncProgress}%` : '🔄 Synchroniser ma galerie'}
+              {syncing ? `${t('setlist_syncing')} ${syncProgress}%` : t('setlist_sync_btn')}
             </button>
             {syncing && (
               <div style={{ width: 240, height: 6, borderRadius: 3, background: '#f0f0f0', overflow: 'hidden' }}>
@@ -532,14 +534,14 @@ export default function SetlistPage() {
               <div style={{ background: '#f0f4ff', borderRadius: 12, padding: '12px 18px', fontSize: 14, display: 'flex', flexDirection: 'column', gap: 6, minWidth: 240 }}>
                 {syncDone && (
                   <div style={{ fontWeight: 800, color: '#2ecc71', marginBottom: 2 }}>
-                    ✅ {newMatchCount} nouvelle{newMatchCount !== 1 ? 's' : ''} carte{newMatchCount !== 1 ? 's' : ''} cochée{newMatchCount !== 1 ? 's' : ''}
+                    ✅ {newMatchCount} {t(newMatchCount !== 1 ? 'setlist_new_match_other' : 'setlist_new_match_one')}
                   </div>
                 )}
                 <div style={{ fontWeight: 700, color: '#003DA6' }}>
-                  {(totalSynced ?? totalOwnedAllSets).toLocaleString()} cartes synchronisées
+                  {(totalSynced ?? totalOwnedAllSets).toLocaleString()} {t('setlist_cards_synced')}
                 </div>
                 <div style={{ color: '#666', fontSize: 13 }}>
-                  dans {setsWithCards} setlist{setsWithCards !== 1 ? 's' : ''}
+                  {t('setlist_in')} {setsWithCards} setlist{setsWithCards !== 1 ? 's' : ''}
                 </div>
                 <button
                   onClick={async () => {
@@ -564,7 +566,7 @@ export default function SetlistPage() {
                   }}
                   style={{ marginTop: 4, padding: '7px 14px', borderRadius: 8, border: '1.5px solid #003DA6', background: 'white', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
                 >
-                  {syncDone ? `Voir les cartes non placées (${unmatchedCards.length})` : 'Voir les cartes non placées →'}
+                  {syncDone ? `${t('setlist_see_unplaced')} (${unmatchedCards.length})` : `${t('setlist_see_unplaced')} →`}
                 </button>
               </div>
             )}
@@ -584,22 +586,22 @@ export default function SetlistPage() {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
               <h2 style={{ fontWeight: 900, fontSize: 20, margin: 0 }}>
-                Cartes non placées dans un setlist
+                {t('setlist_unplaced_title')}
               </h2>
               <button onClick={() => setShowMissing(false)} style={{ background: 'none', border: 'none', fontSize: 22, cursor: 'pointer', color: '#aaa' }}>✕</button>
             </div>
             {!syncDone && unmatchedCards.length === 0 ? (
               <div style={{ textAlign: 'center', color: '#888', padding: '30px 0' }}>
-                Lance une synchronisation pour voir quelles cartes de ta galerie ne sont pas dans un setlist.
+                {t('setlist_sync_first')}
               </div>
             ) : unmatchedCards.length === 0 ? (
               <div style={{ textAlign: 'center', color: '#2ecc71', fontWeight: 700, padding: '30px 0', fontSize: 16 }}>
-                Toutes tes cartes sont placées dans un setlist 🎉
+                {t('setlist_all_placed')}
               </div>
             ) : (
               <>
                 <p style={{ color: '#888', fontSize: 13, marginBottom: 16 }}>
-                  {unmatchedCards.length} carte{unmatchedCards.length !== 1 ? 's' : ''} sans correspondance. Choisis un setlist pour la placer.
+                  {unmatchedCards.length} {t(unmatchedCards.length !== 1 ? 'setlist_cards_no_match' : 'setlist_card_no_match')}
                 </p>
                 {/* Ajout manuel d'une carte non trouvée */}
                 <div style={{ marginBottom: 16 }}>
@@ -608,7 +610,7 @@ export default function SetlistPage() {
                       onClick={() => setShowAddManual(true)}
                       style={{ fontSize: 13, padding: '7px 14px', borderRadius: 8, border: '1.5px dashed #ccc', background: 'white', color: '#888', cursor: 'pointer', width: '100%' }}
                     >
-                      + Ajouter une carte manuellement
+                      {t('setlist_add_manual')}
                     </button>
                   ) : (
                     <div style={{ background: '#f8f8f8', borderRadius: 10, padding: '14px 12px', display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -616,7 +618,7 @@ export default function SetlistPage() {
                         {(['nom', 'annee', 'marque', 'collection', 'variation'] as const).map(f => (
                           <input
                             key={f}
-                            placeholder={{ nom: 'Joueur *', annee: 'Année (ex: 2024-25)', marque: 'Marque', collection: 'Collection', variation: 'Variation' }[f]}
+                            placeholder={{ nom: t('setlist_player'), annee: t('setlist_year_ex'), marque: t('setlist_brand'), collection: 'Collection', variation: 'Variation' }[f]}
                             value={manualForm[f]}
                             onChange={e => setManualForm(p => ({ ...p, [f]: e.target.value }))}
                             style={{ fontSize: 12, padding: '7px 10px', borderRadius: 7, border: '1px solid #ddd', gridColumn: f === 'nom' ? '1 / -1' : undefined }}
@@ -640,9 +642,9 @@ export default function SetlistPage() {
                           }}
                           style={{ flex: 1, fontSize: 13, padding: '8px', borderRadius: 8, border: 'none', background: manualForm.nom.trim() ? '#003DA6' : '#ccc', color: 'white', fontWeight: 700, cursor: manualForm.nom.trim() ? 'pointer' : 'default' }}
                         >
-                          Ajouter
+                          {t('setlist_add')}
                         </button>
-                        <button onClick={() => setShowAddManual(false)} style={{ fontSize: 13, padding: '8px 12px', borderRadius: 8, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888' }}>Annuler</button>
+                        <button onClick={() => setShowAddManual(false)} style={{ fontSize: 13, padding: '8px 12px', borderRadius: 8, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888' }}>{t('profile_cancel')}</button>
                       </div>
                     </div>
                   )}
@@ -659,7 +661,7 @@ export default function SetlistPage() {
                       </div>
                     </div>
                     {placingIdx === i ? (
-                      <span style={{ fontSize: 12, color: '#003DA6', fontWeight: 700 }}>Placement...</span>
+                      <span style={{ fontSize: 12, color: '#003DA6', fontWeight: 700 }}>{t('setlist_placing')}</span>
                     ) : card.candidates && card.candidates.length > 0 && gotoPickerIdx !== i ? (
                       <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
                         <select
@@ -667,17 +669,17 @@ export default function SetlistPage() {
                           onChange={e => { const v = Number(e.target.value); if (v) placeCard(i, v) }}
                           style={{ fontSize: 13, padding: '7px 10px', borderRadius: 8, border: '1.5px solid #003DA6', color: '#003DA6', fontWeight: 600, background: 'white', cursor: 'pointer', maxWidth: 160 }}
                         >
-                          <option value="">Placer dans… ({card.candidates.length})</option>
+                          <option value="">{t('setlist_place_in')} ({card.candidates.length})</option>
                           {card.candidates.map(c => (
                             <option key={c.entryId} value={c.entryId}>{c.setName}</option>
                           ))}
                         </select>
                         <button
                           onClick={() => { setGotoPickerIdx(i); setGotoSetId('') }}
-                          title="Choisir un autre set"
+                          title={t('setlist_choose_set')}
                           style={{ fontSize: 11, padding: '5px 8px', borderRadius: 6, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888', whiteSpace: 'nowrap' }}
                         >
-                          Autre
+                          {t('setlist_other')}
                         </button>
                         <button
                           onClick={() => dismissCard(i)}
@@ -694,7 +696,7 @@ export default function SetlistPage() {
                           onChange={e => setGotoSetId(e.target.value)}
                           style={{ fontSize: 12, padding: '6px 8px', borderRadius: 8, border: '1.5px solid #888', maxWidth: 160 }}
                         >
-                          <option value="">Choisir un set…</option>
+                          <option value="">{t('setlist_choose_set')}</option>
                           {sets
                             .filter(s => gotoAllSets || !card.annee || String(s.year) === card.annee || `${s.year}-${String((s.year||0)+1).slice(2)}` === card.annee)
                             .sort((a, b) => (b.year || 0) - (a.year || 0) || a.name.localeCompare(b.name))
@@ -705,7 +707,7 @@ export default function SetlistPage() {
                           onClick={() => { setGotoAllSets(v => !v); setGotoSetId('') }}
                           style={{ fontSize: 11, padding: '5px 7px', borderRadius: 6, border: '1px solid #ccc', background: gotoAllSets ? '#eee' : 'white', cursor: 'pointer', color: '#666' }}
                         >
-                          {gotoAllSets ? 'Filtrés' : 'Tous'}
+                          {gotoAllSets ? t('setlist_filtered') : t('setlist_all_sets')}
                         </button>
                         {gotoSetId && (
                           <Link href={`/setlist/${gotoSetId}`} onClick={() => setShowMissing(false)} style={{ fontSize: 12, padding: '6px 10px', borderRadius: 8, background: '#003DA6', color: 'white', fontWeight: 700, textDecoration: 'none' }}>
@@ -720,14 +722,14 @@ export default function SetlistPage() {
                           onClick={() => { setGotoPickerIdx(i); setGotoSetId('') }}
                           style={{ fontSize: 11, color: '#555', fontWeight: 700, background: '#f5f5f5', border: '1.5px solid #ddd', borderRadius: 6, padding: '4px 9px', cursor: 'pointer', whiteSpace: 'nowrap' }}
                         >
-                          Voir le set
+                          {t('setlist_see_set')}
                         </button>
                         <button
                           onClick={() => dismissCard(i)}
                           title="Marquer comme traité"
                           style={{ fontSize: 11, color: '#2ecc71', fontWeight: 700, background: '#f0fdf4', border: '1.5px solid #2ecc71', borderRadius: 6, padding: '4px 9px', cursor: 'pointer', whiteSpace: 'nowrap' }}
                         >
-                          ✓ Fait
+                          {t('setlist_done')}
                         </button>
                       </div>
                     )}
@@ -807,20 +809,20 @@ export default function SetlistPage() {
       {activeSeason && !loading && (
         <div style={{ marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
           <div>
-            <span style={{ fontWeight: 900, fontSize: 20, color: '#111' }}>Saison {seasonLabel(activeSeason)}</span>
-            <span style={{ color: '#aaa', fontSize: 14, marginLeft: 10 }}>{seasonSets.length} collections · {totalCards.toLocaleString()} cartes</span>
+            <span style={{ fontWeight: 900, fontSize: 20, color: '#111' }}>{t('setlist_season')} {seasonLabel(activeSeason)}</span>
+            <span style={{ color: '#aaa', fontSize: 14, marginLeft: 10 }}>{seasonSets.length} collections · {totalCards.toLocaleString()} {t('setlist_cards')}</span>
           </div>
           {userId && totalCards > 0 && (
-            <span style={{ fontWeight: 900, fontSize: 16, color: seasonPct === 100 ? '#2ecc71' : '#003DA6' }}>{seasonPct}% complété</span>
+            <span style={{ fontWeight: 900, fontSize: 16, color: seasonPct === 100 ? '#2ecc71' : '#003DA6' }}>{seasonPct}% {t('setlist_completed')}</span>
           )}
         </div>
       )}
 
       {/* Grille des sets */}
       {loading ? (
-        <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>Chargement...</div>
+        <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlist_loading')}</div>
       ) : seasonSets.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>Aucune collection pour cette saison.</div>
+        <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlist_no_collection')}</div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 12 }}>
           {seasonSets.map(set => (
@@ -846,13 +848,13 @@ export default function SetlistPage() {
                       {set.brand}
                     </span>
                   )}
-                  <span style={{ fontSize: 11, color: '#aaa' }}>{set.total_cards.toLocaleString()} cartes</span>
+                  <span style={{ fontSize: 11, color: '#aaa' }}>{set.total_cards.toLocaleString()} {t('setlist_cards')}</span>
                 </div>
                 {userId && (
                   <>
                     <CompletionBar pct={set.pct || 0} />
                     <div style={{ fontSize: 11, color: '#999', marginTop: 4 }}>
-                      {(set.owned || 0).toLocaleString()} / {set.total_cards.toLocaleString()} possédées
+                      {(set.owned || 0).toLocaleString()} / {set.total_cards.toLocaleString()} {t('setlist_owned')}
                     </div>
                   </>
                 )}
