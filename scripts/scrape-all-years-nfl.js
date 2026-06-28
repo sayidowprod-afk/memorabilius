@@ -29,7 +29,7 @@ const args = Object.fromEntries(
   })
 )
 const FROM    = args.from  ? parseInt(args.from)  : 2026
-const TO      = args.to    ? parseInt(args.to)    : 1980
+const TO      = args.to    ? parseInt(args.to)    : 1948
 const DRY_RUN = !!args['dry-run']
 
 const rand    = (min, max) => Math.floor(Math.random() * (max - min)) + min
