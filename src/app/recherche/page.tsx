@@ -13,6 +13,8 @@ export default function Recherche() {
   const [loading, setLoading] = useState(false)
   const [searched, setSearched] = useState(false)
   const [visibleCount, setVisibleCount] = useState(40)
+  const [fYear, setFYear] = useState('')
+  const [fBrand, setFBrand] = useState('')
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
   const { t } = useLang()
 
@@ -53,6 +55,14 @@ export default function Recherche() {
     } catch { setCards([]); setUsers([]) }
     setLoading(false)
   }
+
+  // Filtrage côté client par année et marque
+  const filteredCards = cards.filter(c =>
+    (!fYear || c.year === fYear) &&
+    (!fBrand || c.brand === fBrand)
+  )
+  const availableYears = [...new Set(cards.map((c: any) => c.year).filter(Boolean))].sort().reverse() as string[]
+  const availableBrands = [...new Set(cards.map((c: any) => c.brand).filter(Boolean))].sort() as string[]
 
   const getNumTag = (num: string) => {
     const m = num.trim().match(/\/(\d+)$/)
@@ -142,13 +152,36 @@ export default function Recherche() {
 
       {cards.length > 0 && (
         <>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20, padding: '0 4px' }}>
-            <p style={{ fontWeight: 700, color: '#666', fontSize: 14 }}>
-              {cards.length} carte{cards.length > 1 ? 's' : ''} trouvée{cards.length > 1 ? 's' : ''} pour "<strong>{query}</strong>"
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center', marginBottom: 16, padding: '0 4px' }}>
+            <p style={{ fontWeight: 700, color: '#666', fontSize: 14, margin: 0, flex: '1 1 200px' }}>
+              {filteredCards.length !== cards.length
+                ? <>{filteredCards.length} / {cards.length} carte{cards.length > 1 ? 's' : ''} pour "<strong>{query}</strong>"</>
+                : <>{cards.length} carte{cards.length > 1 ? 's' : ''} pour "<strong>{query}</strong>"</>
+              }
             </p>
+            {availableYears.length > 1 && (
+              <select value={fYear} onChange={e => { setFYear(e.target.value); setVisibleCount(40) }}
+                style={{ border: '1.5px solid #ddd', borderRadius: 20, padding: '6px 12px', fontSize: 13, fontWeight: 700, background: fYear ? '#003DA6' : 'white', color: fYear ? 'white' : '#333', cursor: 'pointer' }}>
+                <option value="">Toutes les années</option>
+                {availableYears.map(y => <option key={y} value={y}>{y}</option>)}
+              </select>
+            )}
+            {availableBrands.length > 1 && (
+              <select value={fBrand} onChange={e => { setFBrand(e.target.value); setVisibleCount(40) }}
+                style={{ border: '1.5px solid #ddd', borderRadius: 20, padding: '6px 12px', fontSize: 13, fontWeight: 700, background: fBrand ? '#003DA6' : 'white', color: fBrand ? 'white' : '#333', cursor: 'pointer' }}>
+                <option value="">Toutes les marques</option>
+                {availableBrands.map(b => <option key={b} value={b}>{b}</option>)}
+              </select>
+            )}
+            {(fYear || fBrand) && (
+              <button onClick={() => { setFYear(''); setFBrand('') }}
+                style={{ border: 'none', background: '#eee', borderRadius: 20, padding: '6px 14px', fontSize: 13, fontWeight: 700, cursor: 'pointer', color: '#555' }}>
+                ✕ Effacer
+              </button>
+            )}
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 16 }}>
-            {cards.slice(0, visibleCount).map((card, i) => (
+            {filteredCards.slice(0, visibleCount).map((card, i) => (
               <Link key={i} href={`/galerie/${card.collectorId}?card=${encodeURIComponent(card.img)}`} style={{ textDecoration: 'none', display: 'block' }}>
                 <div style={{
                   background: 'white', borderRadius: 12, overflow: 'hidden',
@@ -181,13 +214,13 @@ export default function Recherche() {
               </Link>
             ))}
           </div>
-          {cards.length > visibleCount && (
+          {filteredCards.length > visibleCount && (
             <div style={{ textAlign: 'center', marginTop: 32 }}>
               <button
                 onClick={() => setVisibleCount(c => c + 40)}
                 style={{ background: '#003DA6', color: 'white', border: 'none', padding: '14px 36px', borderRadius: 50, fontWeight: 800, fontSize: 15, cursor: 'pointer' }}
               >
-                Voir + ({cards.length - visibleCount} de plus)
+                Voir + ({filteredCards.length - visibleCount} de plus)
               </button>
             </div>
           )}

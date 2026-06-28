@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState, useRef } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
 import OnlineIndicator from '@/components/OnlineIndicator'
@@ -64,6 +64,8 @@ interface Card {
 }
 
 export default function GalerieClient({ userId, initialCardUrl }: { userId: string; initialCardUrl?: string }) {
+  const searchParams = useSearchParams()
+  const router = useRouter()
   const [profile, setProfile] = useState<any>(null)
   const [cards, setCards] = useState<Card[]>([])
   const [filtered, setFiltered] = useState<Card[]>([])
@@ -71,12 +73,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [page, setPage] = useState(1)
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
   const [filterPrivate, setFilterPrivate] = useState(false)
-  const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc' | 'num_asc' | 'date_desc' | 'date_asc'>('default')
-  const [search, setSearch] = useState('')
-  const [fTeam, setFTeam] = useState('')
-  const [fBrand, setFBrand] = useState('')
-  const [fYear, setFYear] = useState('')
-  const [fCollectionTag, setFCollectionTag] = useState('')
+  const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc' | 'num_asc' | 'date_desc' | 'date_asc'>(searchParams.get('sort') as any || 'default')
+  const [search, setSearch] = useState(searchParams.get('q') || '')
+  const [fTeam, setFTeam] = useState(searchParams.get('team') || '')
+  const [fBrand, setFBrand] = useState(searchParams.get('brand') || '')
+  const [fYear, setFYear] = useState(searchParams.get('year') || '')
+  const [fCollectionTag, setFCollectionTag] = useState(searchParams.get('tag') || '')
   const [teams, setTeams] = useState<string[]>([])
   const [brands, setBrands] = useState<string[]>([])
   const [years, setYears] = useState<string[]>([])
@@ -118,7 +120,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
   const isOwner = currentUser === userId
   const { t, lang } = useLang()
-  const searchParams = useSearchParams()
   const cardParam = searchParams.get('card')
 
   useEffect(() => {
@@ -354,6 +355,35 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   useEffect(() => {
     setDisplayed(filtered.slice(0, page * PAGE_SIZE))
   }, [page, filtered])
+
+  useEffect(() => {
+    if (!loaded) return
+    const sp = new URLSearchParams()
+    if (search) sp.set('q', search)
+    if (fTeam) sp.set('team', fTeam)
+    if (fBrand) sp.set('brand', fBrand)
+    if (fYear) sp.set('year', fYear)
+    if (fCollectionTag) sp.set('tag', fCollectionTag)
+    if (sortBy !== 'default') sp.set('sort', sortBy)
+    const str = sp.toString()
+    router.replace(str ? `?${str}` : window.location.pathname, { scroll: false })
+  }, [loaded, search, fTeam, fBrand, fYear, fCollectionTag, sortBy])
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (!popup) return
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return
+      // Don't steal arrows from inputs
+      if ((e.target as HTMLElement)?.tagName === 'INPUT' || (e.target as HTMLElement)?.tagName === 'TEXTAREA') return
+      e.preventDefault()
+      const idx = filtered.findIndex(c => c.f === popup.f)
+      if (idx === -1) return
+      const next = e.key === 'ArrowRight' ? idx + 1 : idx - 1
+      if (next >= 0 && next < filtered.length) setPopup(filtered[next])
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [popup, filtered])
 
   const toggleFilter = (k: keyof typeof activeFilters) => setActiveFilters(p => ({ ...p, [k]: !p[k] }))
 
@@ -1131,6 +1161,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             <span style={{ flex: '1 1 120px' }}>{selectedCards.size} carte{selectedCards.size > 1 ? 's' : ''} sélectionnée{selectedCards.size > 1 ? 's' : ''}</span>
             {/* Assigner collection tag en masse */}
             {showBulkNewTag ? (
+              <>
               <input
                 autoFocus
                 value={bulkNewTag}
@@ -1154,10 +1185,15 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   if (!collectionTags.includes(tag)) setCollectionTags(prev => [...prev, tag].sort())
                   setBulkNewTag(''); setShowBulkNewTag(false)
                 }}
-                onBlur={() => { setShowBulkNewTag(false); setBulkNewTag('') }}
                 placeholder="Nom de la collection… (Entrée)"
                 style={{ background: 'white', border: 'none', borderRadius: 6, color: '#111', padding: '5px 10px', fontSize: 12, fontWeight: 700, flexShrink: 0, width: 180, outline: 'none' }}
               />
+              <button
+                onMouseDown={e => e.preventDefault()}
+                onClick={() => { setShowBulkNewTag(false); setBulkNewTag('') }}
+                style={{ background: 'rgba(255,255,255,0.25)', border: 'none', borderRadius: 4, color: 'white', padding: '4px 8px', fontSize: 11, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}
+              >✕</button>
+              </>
             ) : (
               <select
                 value=""

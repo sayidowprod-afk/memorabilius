@@ -82,7 +82,9 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
     if (withCompany) {
       const company = withCompany[1].toUpperCase()
       const num = parseFloat(withCompany[2])
-      const label = company === 'PSA' ? (psaLabels[num] || 'GRADED') : company === 'BGS' ? 'PRISTINE' : 'AUTHENTIC'
+      const bgsLabels: Record<number, string> = { 10: 'PRISTINE', 9.5: 'GEM MINT', 9: 'MINT PLUS', 8.5: 'NEAR MINT+', 8: 'NEAR MINT', 7: 'NEAR MINT', 6: 'EX-MT' }
+      const sgcLabels: Record<number, string> = { 10: 'PRISTINE', 9.5: 'MINT+', 9: 'MINT', 8.5: 'NM-MT+', 8: 'NM-MT', 7.5: 'NM+', 7: 'NM' }
+      const label = company === 'PSA' ? (psaLabels[num] || 'GRADED') : company === 'BGS' ? (bgsLabels[num] || 'GRADED') : company === 'SGC' ? (sgcLabels[num] || 'AUTHENTIC') : 'AUTHENTIC'
       return { company, grade: withCompany[2], label, color: colors[company] || colors.PSA }
     }
 
@@ -291,9 +293,31 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
                         position: relative;
                         transform-style: preserve-3d;
                         width: 252px;
+                        animation: slb-idle 4s ease-in-out infinite;
+                      }
+                      @keyframes slb-idle {
+                        0%, 100% { transform: rotateY(-4deg) rotateX(1.5deg); }
+                        50%       { transform: rotateY(4deg)  rotateX(1.5deg); }
                       }
                       @media(max-width:1200px){.slb-wrap{width:214px;}}
                       @media(max-width:600px){.slb-wrap{width:162px;}}
+                      @media(max-width:600px){
+                        .psa2 { border-width: 3px; }
+                        .psa2-main { padding: 3px 6px 2px; }
+                        .psa2-set  { font-size: 5.5px; }
+                        .psa2-name { font-size: 8px; }
+                        .psa2-gname{ font-size: 7px; }
+                        .psa2-gnum { font-size: 20px; }
+                        .psa2-cert { font-size: 6px; }
+                        .psa2-bot  { padding: 1px 6px 3px; }
+                        .psa2-bc   { font-size: 12px; letter-spacing: -2.5px; }
+                        .psa2-logo-p, .psa2-logo-sa { font-size: 8px; }
+                        .psa2-logo-box { padding: 1px 4px; }
+                        .bgs2-b    { font-size: 18px; }
+                        .bgs2-side { width: 22px; }
+                        .bgs2-name { font-size: 8px; }
+                        .bgs2-gnum { font-size: 24px; }
+                      }
 
                       /* ── FRONT FACE — clear acrylic ── */
                       .slb-front {
@@ -474,7 +498,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
                       .bgs2-set  { font-size: 7px; font-weight: 700; color: #666; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.3px; }
                       .bgs2-name { font-size: 11px; font-weight: 900; color: #111; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
                       .bgs2-sub  { display: grid; grid-template-columns: 1fr 1fr; gap: 1px 6px; }
-                      .bgs2-sub-item { font-size: 6.5px; color: #555; font-weight: 600; text-transform: uppercase; }
+                      .bgs2-sub-item { font-size: 6.5px; color: #666; font-style: italic; font-weight: 600; text-transform: uppercase; }
                       .bgs2-cert { font-size: 6.5px; color: #999; font-weight: 700; letter-spacing: 0.3px; }
                       .bgs2-grade {
                         display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -485,13 +509,13 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
                       .bgs2-gname { font-size: 6.5px; font-weight: 800; color: #555; letter-spacing: 0.5px; text-transform: uppercase; text-align: center; margin-top: 2px; }
 
                       /* ── SGC ── */
-                      .sgc2 { background: #fff; border-radius: 3px; overflow: hidden; font-family: Arial, sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.40), 0 0 0 0.5px rgba(0,0,0,0.15); display: flex; min-height: 60px; }
+                      .sgc2 { background: #fafafa; border-radius: 3px; overflow: hidden; font-family: Arial, sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.40), 0 0 0 0.5px rgba(0,0,0,0.15); display: flex; min-height: 60px; }
                       .sgc2-side { width: 26px; background: #006633; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
                       .sgc2-txt  { font-size: 9px; font-weight: 900; color: #fff; letter-spacing: 1px; writing-mode: vertical-rl; transform: rotate(180deg); }
                       .sgc2-body { flex: 1; padding: 5px 8px; display: flex; align-items: center; gap: 5px; min-width: 0; }
                       .sgc2-info { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 2px; }
                       .sgc2-set  { font-size: 7.5px; font-weight: 700; color: #444; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-                      .sgc2-name { font-size: 11px; font-weight: 900; color: #111; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+                      .sgc2-name { font-size: 11px; font-weight: 900; color: #111; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; letter-spacing: -0.3px; }
                       .sgc2-var  { font-size: 7px; color: #666; text-transform: uppercase; }
                       .sgc2-cert { font-size: 7px; color: #bbb; font-weight: 700; }
                       .sgc2-gbox { background: #006633; border-radius: 3px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 10px; flex-shrink: 0; min-width: 50px; }
