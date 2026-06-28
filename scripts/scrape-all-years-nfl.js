@@ -28,7 +28,7 @@ const args = Object.fromEntries(
     return [k, v ?? true]
   })
 )
-const FROM    = args.from  ? parseInt(args.from)  : 2024
+const FROM    = args.from  ? parseInt(args.from)  : 2026
 const TO      = args.to    ? parseInt(args.to)    : 1980
 const DRY_RUN = !!args['dry-run']
 
