@@ -16,6 +16,7 @@ export default function Recherche() {
   const [fYear, setFYear] = useState('')
   const [fBrand, setFBrand] = useState('')
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
+  const sentinelRef = useRef<HTMLDivElement>(null)
   const { t } = useLang()
 
   const updateUrl = (q: string) => {
@@ -63,6 +64,16 @@ export default function Recherche() {
   )
   const availableYears = [...new Set(cards.map((c: any) => c.year).filter(Boolean))].sort().reverse() as string[]
   const availableBrands = [...new Set(cards.map((c: any) => c.brand).filter(Boolean))].sort() as string[]
+
+  useEffect(() => {
+    const el = sentinelRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) setVisibleCount(c => c + 40)
+    }, { threshold: 0.1 })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [sentinelRef.current, filteredCards.length])
 
   const getNumTag = (num: string) => {
     const m = num.trim().match(/\/(\d+)$/)
@@ -215,14 +226,7 @@ export default function Recherche() {
             ))}
           </div>
           {filteredCards.length > visibleCount && (
-            <div style={{ textAlign: 'center', marginTop: 32 }}>
-              <button
-                onClick={() => setVisibleCount(c => c + 40)}
-                style={{ background: '#003DA6', color: 'white', border: 'none', padding: '14px 36px', borderRadius: 50, fontWeight: 800, fontSize: 15, cursor: 'pointer' }}
-              >
-                Voir + ({filteredCards.length - visibleCount} de plus)
-              </button>
-            </div>
+            <div ref={sentinelRef} style={{ height: 40, marginTop: 24 }} />
           )}
         </>
       )}

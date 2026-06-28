@@ -16,10 +16,12 @@ interface Card {
   booklet?: boolean; il?: string; ir?: string
 }
 
-export default function Viewer3D({ popup, accent, onClose, getTags, userId, userSlug, isOwner, onCollectionTagChange, onAddToMyGallery, initialAddState }: {
+export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, onCollectionTagChange, onAddToMyGallery, initialAddState }: {
   popup: Card
   accent: string
   onClose: () => void
+  onNext?: () => void
+  onPrev?: () => void
   getTags: (d: Card) => React.ReactNode
   userId?: string
   userSlug?: string
@@ -124,12 +126,20 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
     applyTransform()
   }, [applyTransform])
 
+  const pauseSlbAnim = useCallback(() => {
+    slbWrapRef.current?.style.setProperty('animation-play-state', 'paused')
+  }, [])
+  const resumeSlbAnim = useCallback(() => {
+    setTimeout(() => slbWrapRef.current?.style.setProperty('animation-play-state', 'running'), 500)
+  }, [])
+
   const onMouseDown = useCallback((e: React.MouseEvent) => {
     e.preventDefault()
     isDragging.current = true
     lastX.current = e.clientX
     lastY.current = e.clientY
-  }, [])
+    pauseSlbAnim()
+  }, [pauseSlbAnim])
 
   const onMouseMove = useCallback((e: React.MouseEvent) => {
     if (!isDragging.current) return
@@ -144,7 +154,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
     rafRef.current = requestAnimationFrame(applyTransform)
   }, [applyTransform])
 
-  const onMouseUp = useCallback(() => { isDragging.current = false }, [])
+  const onMouseUp = useCallback(() => { isDragging.current = false; resumeSlbAnim() }, [resumeSlbAnim])
 
   const onDoubleClick = useCallback(() => { reset() }, [reset])
 
@@ -157,6 +167,10 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
 
   const touch1 = useRef({ x: 0, y: 0 })
   const lastDist = useRef(0)
+  const swipeStartX = useRef(0)
+  const swipeStartY = useRef(0)
+  const swipeStartTime = useRef(0)
+  const slbWrapRef = useRef<HTMLDivElement>(null)
 
   const onTouchStart = useCallback((e: React.TouchEvent) => {
     e.preventDefault()
@@ -165,13 +179,17 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
       const now = Date.now()
       if (now - lastTap.current < 300) reset()
       lastTap.current = now
+      swipeStartX.current = e.touches[0].clientX
+      swipeStartY.current = e.touches[0].clientY
+      swipeStartTime.current = Date.now()
     } else if (e.touches.length === 2) {
       lastDist.current = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
       )
     }
-  }, [reset])
+    pauseSlbAnim()
+  }, [reset, pauseSlbAnim])
 
   const onTouchMove = useCallback((e: React.TouchEvent) => {
     e.preventDefault()
@@ -194,6 +212,19 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
       rafRef.current = requestAnimationFrame(applyTransform)
     }
   }, [applyTransform])
+
+  const onTouchEnd = useCallback(() => {
+    isDragging.current = false
+    resumeSlbAnim()
+    const dx = touch1.current.x - swipeStartX.current
+    const dy = touch1.current.y - swipeStartY.current
+    const dt = Date.now() - swipeStartTime.current
+    // Quick predominantly-horizontal swipe → navigate
+    if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 2 && dt < 400) {
+      if (dx < 0) onNext?.()
+      else onPrev?.()
+    }
+  }, [onNext, onPrev, resumeSlbAnim])
 
   useEffect(() => {
     const prevent = (e: Event) => { if (isDragging.current) e.preventDefault() }
@@ -256,7 +287,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
           onMouseUp={onMouseUp} onMouseLeave={onMouseUp}
           onDoubleClick={onDoubleClick} onWheel={onWheel}
           onTouchStart={onTouchStart} onTouchMove={onTouchMove}
-          onTouchEnd={() => { isDragging.current = false }}
+          onTouchEnd={onTouchEnd}
         >
           {/* Slab mode toggle */}
           {gradeInfo && (
@@ -269,6 +300,18 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
             }}>
               {slabMode ? '🃏 Carte seule' : `🏅 Slab ${gradeInfo.company}`}
             </button>
+          )}
+          {gradeInfo && !slabMode && (
+            <div style={{
+              position: 'absolute', bottom: 12, left: 12, zIndex: 10,
+              background: gradeInfo.color.top, color: gradeInfo.color.text,
+              borderRadius: 6, padding: '4px 10px',
+              fontFamily: 'Arial, sans-serif', fontWeight: 900, fontSize: 12,
+              letterSpacing: '0.5px', pointerEvents: 'none',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+            }}>
+              {gradeInfo.company} {gradeInfo.grade}
+            </div>
           )}
 
           <div ref={wrapRef} style={{ willChange: 'transform' }}>
@@ -537,7 +580,7 @@ export default function Viewer3D({ popup, accent, onClose, getTags, userId, user
                       .cgc2-cert { font-size: 6.5px; color: #bbb; font-weight: 700; }
                     `}</style>
 
-                    <div className="slb-wrap">
+                    <div ref={slbWrapRef} className="slb-wrap">
                       {/* ── FRONT FACE ── */}
                       <div className="slb-front">
                         {/* Label zone — plastic top */}

@@ -116,6 +116,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [grailSearch, setGrailSearch] = useState('')
   const [grailPickerOpen, setGrailPickerOpen] = useState(false)
   const [addedCards, setAddedCards] = useState<Set<string>>(new Set())
+  const [showBackToTop, setShowBackToTop] = useState(false)
   const loaderRef = useRef<HTMLDivElement>(null)
 
   const isOwner = currentUser === userId
@@ -384,6 +385,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [popup, filtered])
+
+  useEffect(() => {
+    const onScroll = () => setShowBackToTop(window.scrollY > 500)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const toggleFilter = (k: keyof typeof activeFilters) => setActiveFilters(p => ({ ...p, [k]: !p[k] }))
 
@@ -1412,6 +1419,16 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       {popup && (
         <Viewer3D popup={popup} accent={accent} onClose={() => setPopup(null)} getTags={getTags} userId={userId} userSlug={profile?.slug || userId}
           isOwner={isOwner} currentUserId={currentUser ?? undefined}
+          onNext={() => {
+            if (!popup) return
+            const idx = filtered.findIndex(c => c.f === popup.f)
+            if (idx < filtered.length - 1) setPopup(filtered[idx + 1])
+          }}
+          onPrev={() => {
+            if (!popup) return
+            const idx = filtered.findIndex(c => c.f === popup.f)
+            if (idx > 0) setPopup(filtered[idx - 1])
+          }}
           onAddToMyGallery={!isOwner && currentUser ? async () => {
             if (addedCards.has(popup.f)) return 'duplicate'
             let dupQuery = supabase.from('cartes_manuelles')
@@ -1451,6 +1468,21 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             setPopup(prev => prev ? { ...prev, collection_tag: tag } : null)
           }}
         />
+      )}
+
+      {showBackToTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          style={{
+            position: 'fixed', bottom: 24, right: 24, zIndex: 9000,
+            width: 44, height: 44, borderRadius: '50%',
+            background: accent, color: 'white', border: 'none',
+            fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+            transition: 'opacity 0.2s',
+          }}
+          aria-label="Retour en haut"
+        >↑</button>
       )}
     </>
   )
