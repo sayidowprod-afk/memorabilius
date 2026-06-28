@@ -488,7 +488,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             />
             <div style={{ minWidth: 200 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 8 }}>
-                <h1 style={{ fontSize: 24, fontWeight: 900, margin: 0 }}>{profile?.display_name || 'Collectionneur'}</h1>
+                <h1 className={profile?.is_donor ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.is_donor ? undefined : undefined }}>{profile?.display_name || 'Collectionneur'}</h1>
                 <OnlineIndicator lastSeen={profile?.last_seen} size={12} />
                 {monthlyBadges.length > 0 && (
                   <span className="sticker-badge" data-label={`Collectionneur du mois : ${monthlyBadges.join(', ')}`} style={{ fontSize: 26 }}>🏆</span>
@@ -1178,6 +1178,18 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             66%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #c77dff) drop-shadow(0 0 14px #c77dff); }
             83%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #ff6b9d) drop-shadow(0 0 14px #ff6b9d); }
             100% { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 3px white) drop-shadow(0 0 8px #ff6b6b) drop-shadow(0 0 14px #ff6b6b); }
+          }
+          .holo-name {
+            background: linear-gradient(90deg,#ff0080,#ff8c00,#ffee00,#00e676,#00b0ff,#e040fb,#ff0080);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: holo-text 4s linear infinite;
+          }
+          @keyframes holo-text {
+            0%   { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
           }
         `}</style>
         

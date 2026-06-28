@@ -58,7 +58,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     setTeam(teamData)
 
     const { data: m } = await supabase.from('team_members')
-      .select('*, profiles(id, display_name, avatar_url, lien_csv, couleur_bordure)')
+      .select('*, profiles(id, display_name, avatar_url, lien_csv, couleur_bordure, is_donor)')
       .eq('team_id', parseInt(teamId))
     setMembers(m || [])
 
@@ -380,6 +380,20 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '24px 16px', fontFamily: 'Inter, sans-serif' }}
       onClick={() => { setShowEmojiForMsg(null); setShowEmojiForPost(null) }}>
+      <style>{`
+        .holo-name {
+          background: linear-gradient(90deg,#ff0080,#ff8c00,#ffee00,#00e676,#00b0ff,#e040fb,#ff0080);
+          background-size: 300% 100%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: holo-text 4s linear infinite;
+        }
+        @keyframes holo-text {
+          0%   { background-position: 0% 50%; }
+          100% { background-position: 300% 50%; }
+        }
+      `}</style>
 
       {/* Header */}
       <div style={{ background: 'white', borderRadius: 16, padding: 28, marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
@@ -603,7 +617,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                         <img src={m.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(m.display_name || 'U')}&background=003DA6&color=fff`}
                           style={{ width: 34, height: 34, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${m.couleur_bordure || ACCENT}` }} alt="" />
-                        <Link href={`/galerie/${m.id}`} style={{ fontWeight: 800, color: '#111', textDecoration: 'none' }}>{m.display_name}</Link>
+                        <Link href={`/galerie/${m.id}`} className={m.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: m.is_donor ? undefined : '#111', textDecoration: 'none' }}>{m.display_name}</Link>
+                        {m.is_donor && <span title="Donateur Ko-fi" style={{ fontSize: 14, lineHeight: 1 }}>☕</span>}
                       </div>
                     </td>
                     <td style={{ padding: '12px 16px', borderBottom: '1px solid #f5f5f5' }}>

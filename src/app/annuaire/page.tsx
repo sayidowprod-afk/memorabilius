@@ -223,6 +223,18 @@ function AnnuaireContent() {
           83%  { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 6px #ff6b9d) drop-shadow(0 0 11px #ff6b9d); }
           100% { filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 6px #ff6b6b) drop-shadow(0 0 11px #ff6b6b); }
         }
+        .holo-name {
+          background: linear-gradient(90deg,#ff0080,#ff8c00,#ffee00,#00e676,#00b0ff,#e040fb,#ff0080);
+          background-size: 300% 100%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: holo-text 4s linear infinite;
+        }
+        @keyframes holo-text {
+          0%   { background-position: 0% 50%; }
+          100% { background-position: 300% 50%; }
+        }
       `}</style>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24, flexWrap: 'wrap' }}>
         <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>
@@ -281,7 +293,7 @@ function AnnuaireContent() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 15, minWidth: 0 }}>
                       <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: '2px solid #eee', objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
                       <div style={{ minWidth: 0 }}>
-                        <Link href={`/galerie/${c.id}`} style={{ fontWeight: 800, color: '#121212', fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>{c.display_name || 'Collectionneur'}</Link>
+                        <Link href={`/galerie/${c.id}`} className={c.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: c.is_donor ? undefined : '#121212', fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
                         {(() => {
                           const teams = c.favorite_teams || []
                           const spec = getSpeciality(c.stats)
