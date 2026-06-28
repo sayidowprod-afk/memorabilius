@@ -44,11 +44,16 @@ const DRY_RUN    = !!args['dry-run']
 const DEFAULT_TYPES = new Set(['expansion', 'core', 'masters', 'draft_innovation', 'commander', 'starter'])
 
 const sleep = ms => new Promise(r => setTimeout(r, ms))
-async function retry(fn, n = 4, d = 2000) {
+const rand  = (min, max) => Math.floor(Math.random() * (max - min)) + min
+async function retry(fn, n = 6, d = 2000) {
   for (let i = 0; i < n; i++) {
     try { return await fn() } catch (e) {
       if (i === n - 1) throw e
-      console.log(`  ⚠️  Retry ${i+1}: ${e.message}`); await sleep(d)
+      const is429 = e.response?.status === 429
+      const wait  = is429 ? 60000 + rand(0, 10000) : d * (i + 1)
+      if (is429) console.log(`  ⚠️  429 Rate limit — pause ${Math.round(wait/1000)}s...`)
+      else        console.log(`  ⚠️  Retry ${i+1}: ${e.message} (${Math.round(wait/1000)}s)`)
+      await sleep(wait)
     }
   }
 }
@@ -92,7 +97,7 @@ async function insertBatch(batch) {
 // Rate limit : max 10 req/s — on attend 110ms entre chaque appel
 
 async function scryfallGet(url) {
-  await sleep(110)  // respect rate limit
+  await sleep(200)  // respect rate limit Scryfall (~5 req/s)
   const { data } = await axios.get(url, {
     headers: { 'User-Agent': 'Memorabilius/1.0 (contact: kikibajkiki@gmail.com)' }
   })
