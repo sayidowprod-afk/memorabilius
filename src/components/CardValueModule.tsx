@@ -1,15 +1,8 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 
-interface Listing { price: number; title: string; url?: string }
-interface MarketData {
-  listings: Listing[]
-  median: number
-  min: number
-  max: number
-  count: number
-  currency: string
-}
+interface ActiveListing { price: number; title: string; url: string; img: string }
+interface SoldListing   { price: number; title: string; url: string; img: string; soldDate: string }
 
 interface Props {
   cardName: string
@@ -20,20 +13,31 @@ interface Props {
   rc?: boolean
   auto?: boolean
   patch?: boolean
+  grade?: string
   accent: string
   img?: string
 }
 
-export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, accent, img }: Props) {
-  const [data, setData] = useState<MarketData | null>(null)
+function median(prices: number[]) {
+  if (!prices.length) return 0
+  const s = [...prices].sort((a, b) => a - b)
+  const m = Math.floor(s.length / 2)
+  return s.length % 2 === 0 ? (s[m - 1] + s[m]) / 2 : s[m]
+}
+
+function fmtDate(iso: string) {
+  if (!iso) return ''
+  const d = new Date(iso)
+  return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })
+}
+
+export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, grade, accent, img }: Props) {
+  const [active, setActive]   = useState<ActiveListing[]>([])
+  const [sold, setSold]       = useState<SoldListing[]>([])
   const [loading, setLoading] = useState(true)
-  const [hovered, setHovered] = useState<number | null>(null)
-  const [hovered2, setHovered2] = useState<number | null>(null)
-  const svgRef = useRef<SVGSVGElement>(null)
-  const svgRef2 = useRef<SVGSVGElement>(null)
 
   const printRun = num?.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num
-  const ebayUrl = `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH'].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`
+  const ebaySearchUrl = `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`
 
   useEffect(() => {
     if (!cardName) { setLoading(false); return }
@@ -45,331 +49,137 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
     if (rc)      params.set('rc', 'true')
     if (auto)    params.set('auto', 'true')
     if (patch)   params.set('patch', 'true')
+    if (grade)   params.set('grade', grade)
     if (img)     params.set('img', img)
 
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 15000)
+    const timeout = setTimeout(() => controller.abort(), 20000)
 
     fetch(`/api/ebay-sold?${params}`, { signal: controller.signal })
       .then(r => r.json())
-      .then((json) => {
+      .then(json => {
         clearTimeout(timeout)
-        if (json.error || !json.items || json.items.length < 2) { setLoading(false); return }
-        // Annonces déjà triées par prix croissant côté API
-        const listings: Listing[] = json.items.map((i: any) => ({
+        const activeItems: ActiveListing[] = (json.items || []).map((i: any) => ({
           price: Math.round(i.price * 100) / 100,
           title: i.title || '',
           url: i.url || '',
+          img: i.img || '',
         }))
-        setData({
-          listings,
-          median: Math.round((json.median ?? 0) * 100) / 100,
-          min: Math.round((json.min ?? 0) * 100) / 100,
-          max: Math.round((json.max ?? 0) * 100) / 100,
-          count: json.count ?? listings.length,
-          currency: '€',
-        })
+        const soldItems: SoldListing[] = (json.sold || []).map((i: any) => ({
+          price: Math.round(i.price * 100) / 100,
+          title: i.title || '',
+          url: i.url || '',
+          img: i.img || '',
+          soldDate: i.soldDate || '',
+        }))
+        setActive(activeItems)
+        setSold(soldItems)
         setLoading(false)
       })
       .catch(() => { clearTimeout(timeout); setLoading(false) })
 
     return () => { clearTimeout(timeout); controller.abort() }
-  }, [cardName, set, year, num, variant, rc, auto, patch, img])
+  }, [cardName, set, year, num, variant, rc, auto, patch, grade, img])
 
-  const ar = parseInt(accent.slice(1, 3), 16)
-  const ag = parseInt(accent.slice(3, 5), 16)
-  const ab = parseInt(accent.slice(5, 7), 16)
+  const soldMedian   = Math.round(median(sold.map(i => i.price)) * 100) / 100
+  const activeMedian = Math.round(median(active.map(i => i.price)) * 100) / 100
 
   const ebayLink = (
-    <a href={ebayUrl} target="_blank" rel="noopener noreferrer"
-      style={{ fontSize: 11, fontWeight: 700, color: '#999', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4, border: '1px solid #e8e8e8', borderRadius: 20, padding: '4px 10px', transition: '0.15s' }}
+    <a href={ebaySearchUrl} target="_blank" rel="noopener noreferrer"
+      style={{ fontSize: 10, fontWeight: 700, color: '#999', textDecoration: 'none',
+        display: 'inline-flex', alignItems: 'center', gap: 3,
+        border: '1px solid #e8e8e8', borderRadius: 20, padding: '3px 9px', transition: '0.15s' }}
       onMouseEnter={e => (e.currentTarget.style.borderColor = '#bbb')}
       onMouseLeave={e => (e.currentTarget.style.borderColor = '#e8e8e8')}
     >
-      🔍 Annonces eBay ↗
+      eBay ↗
     </a>
   )
 
-  if (!data || data.listings.length === 0) {
-    return (
-      <div style={{ borderTop: '1px solid #eee', paddingTop: 12, marginTop: 14 }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: loading ? 8 : 0 }}>
-          <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1 }}>Annonces en vente</span>
-          {ebayLink}
-        </div>
-        {loading && (
-          <div style={{ height: 4, background: '#f0f0f0', borderRadius: 2, overflow: 'hidden', marginTop: 6 }}>
-            <div style={{ height: '100%', background: `linear-gradient(90deg, ${accent}33, ${accent}, ${accent}33)`, backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite' }} />
-          </div>
-        )}
-      </div>
-    )
-  }
-
-  const { listings, median, min, max, count, currency } = data
-  const prices = listings.map(l => l.price)
-  const minP = Math.min(...prices)
-  const maxP = Math.max(...prices)
-  const range = maxP - minP || 1
-
-  const W = 200, H = 52, PAD_X = 4, PAD_Y = 8
-  // X = annonce triée par prix (du - cher au + cher), Y = prix
-  const pts = listings.map((l, i) => ({
-    x: PAD_X + (listings.length === 1 ? 0.5 : i / (listings.length - 1)) * (W - PAD_X * 2),
-    y: PAD_Y + (1 - (l.price - minP) / range) * (H - PAD_Y * 2),
-  }))
-
-  // Courbe lissée via bezier cubique
-  const smooth = (pts: { x: number, y: number }[]) => {
-    if (pts.length < 2) return ''
-    let d = `M ${pts[0].x} ${pts[0].y}`
-    for (let i = 1; i < pts.length; i++) {
-      const prev = pts[i - 1], cur = pts[i]
-      const cpx = (prev.x + cur.x) / 2
-      d += ` C ${cpx} ${prev.y} ${cpx} ${cur.y} ${cur.x} ${cur.y}`
-    }
-    return d
-  }
-
-  const linePath = smooth(pts)
-  const areaPath = `${linePath} L ${pts[pts.length - 1].x} ${H + 2} L ${pts[0].x} ${H + 2} Z`
-
-  // Position Y de la médiane pour la ligne de repère
-  const medianY = PAD_Y + (1 - (median - minP) / range) * (H - PAD_Y * 2)
-
-  const hoveredListing = hovered !== null ? listings[hovered] : null
-  const hoveredPt       = hovered !== null ? pts[hovered]       : null
-
-  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
-    const svg = svgRef.current
-    if (!svg) return
-    const rect = svg.getBoundingClientRect()
-    const xRatio = (e.clientX - rect.left) / rect.width
-    const xSvg = xRatio * W
-    let closest = 0, minDist = Infinity
-    pts.forEach((p, i) => {
-      const d = Math.abs(p.x - xSvg)
-      if (d < minDist) { minDist = d; closest = i }
-    })
-    setHovered(closest)
-  }
-
-  // Titre eBay raccourci pour le tooltip
-  const shortTitle = (t: string) => t.length > 42 ? t.slice(0, 40) + '…' : t
-
-  const tooltipLeft = hovered !== null && hovered > listings.length / 2
-
-  // ----- 2e graphique (ancien) : courbe sur des dates réparties -----
-  const now = new Date()
-  const sales = listings.map((l, i) => {
-    const d = new Date(now)
-    d.setDate(d.getDate() - (listings.length - 1 - i) * Math.floor(30 / Math.max(listings.length - 1, 1)))
-    return { price: l.price, date: d.toISOString().slice(0, 10) }
-  })
-  const pts2 = sales.map((s, i) => ({
-    x: PAD_X + (sales.length === 1 ? 0.5 : i / (sales.length - 1)) * (W - PAD_X * 2),
-    y: PAD_Y + (1 - (s.price - minP) / range) * (H - PAD_Y * 2),
-  }))
-  const linePath2 = smooth(pts2)
-  const areaPath2 = `${linePath2} L ${pts2[pts2.length - 1].x} ${H + 2} L ${pts2[0].x} ${H + 2} Z`
-  const current = sales[sales.length - 1].price
-  const trend = sales[sales.length - 1].price - sales[0].price
-  const trendColor = trend >= 0 ? '#2e7d32' : '#c62828'
-  const trendSign = trend >= 0 ? '+' : ''
-  const hoveredSale = hovered2 !== null ? sales[hovered2] : null
-  const hoveredPt2   = hovered2 !== null ? pts2[hovered2]  : null
-  const tooltipLeft2 = hovered2 !== null && hovered2 > sales.length / 2
-  const fmtDate = (d: string) => new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })
-  const handleMouseMove2 = (e: React.MouseEvent<SVGSVGElement>) => {
-    const svg = svgRef2.current
-    if (!svg) return
-    const rect = svg.getBoundingClientRect()
-    const xSvg = ((e.clientX - rect.left) / rect.width) * W
-    let closest = 0, minDist = Infinity
-    pts2.forEach((p, i) => { const dd = Math.abs(p.x - xSvg); if (dd < minDist) { minDist = dd; closest = i } })
-    setHovered2(closest)
-  }
-
   return (
     <div style={{ borderTop: '1px solid #eee', paddingTop: 14, marginTop: 14 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-        <span style={{ fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase', letterSpacing: 1 }}>Annonces en vente</span>
-        {ebayLink}
-        <span style={{ marginLeft: 'auto', fontSize: 10, fontWeight: 700, color: '#aaa' }}>
-          {count} annonce{count !== 1 ? 's' : ''}
-        </span>
-      </div>
-
-      <div onMouseLeave={() => setHovered(null)}>
-      <div style={{ display: 'flex', gap: 12, alignItems: 'stretch' }}>
-        {/* Graphique : distribution des prix demandés */}
-        <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
-          <svg
-            ref={svgRef}
-            viewBox={`0 0 ${W} ${H}`}
-            style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible', cursor: 'crosshair' }}
-            onMouseMove={handleMouseMove}
-          >
-            <defs>
-              <linearGradient id="cvm-area" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={accent} stopOpacity="0.18" />
-                <stop offset="100%" stopColor={accent} stopOpacity="0" />
-              </linearGradient>
-            </defs>
-
-            <path d={areaPath} fill="url(#cvm-area)" />
-            <path d={linePath} fill="none" stroke={accent} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-
-            {/* Ligne de repère médiane */}
-            <line x1={PAD_X} y1={medianY} x2={W - PAD_X} y2={medianY}
-              stroke="#bbb" strokeWidth="0.5" strokeDasharray="2 2" />
-
-            {/* Ligne verticale au hover */}
-            {hoveredPt && (
-              <line x1={hoveredPt.x} y1={PAD_Y - 4} x2={hoveredPt.x} y2={H}
-                stroke={accent} strokeWidth="0.8" strokeOpacity="0.35" />
-            )}
-
-            {hovered !== null && hoveredPt && (
-              <circle cx={hoveredPt.x} cy={hoveredPt.y} r="3" fill={accent} />
-            )}
-
-            {/* Tooltip SVG au hover : prix uniquement (titre affiché en dessous) */}
-            {hoveredPt && hoveredListing && (() => {
-              const tx = tooltipLeft ? hoveredPt.x - 5 : hoveredPt.x + 5
-              const anchor = tooltipLeft ? 'end' : 'start'
-              const ty = Math.max(PAD_Y + 8, hoveredPt.y - 4)
-              return (
-                <text x={tx} y={ty - 4} textAnchor={anchor} fontSize="6.5" fontWeight="700" fill="#666">
-                  {hoveredListing.price}{currency}
-                </text>
-              )
-            })()}
-
-            {hovered === null && (
-              <circle cx={pts[pts.length - 1].x} cy={pts[pts.length - 1].y} r="2.5" fill={accent} />
-            )}
-          </svg>
-        </div>
-
-        {/* Valeurs : médiane mise en avant comme prix de marché représentatif */}
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minWidth: 72, textAlign: 'right' }}>
-          <div>
-            <div style={{ fontSize: 9, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', marginBottom: 2 }}>
-              {hoveredListing ? 'Annonce' : 'Médiane'}
-            </div>
-            <div style={{ fontSize: 22, fontWeight: 900, color: `rgb(${ar},${ag},${ab})`, lineHeight: 1, transition: '0.1s' }}>
-              {hoveredListing ? hoveredListing.price : median}{currency}
-            </div>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
-              <span style={{ fontSize: 9, fontWeight: 800, color: '#bbb', textTransform: 'uppercase' }}>Min</span>
-              <span style={{ fontSize: 12, fontWeight: 800, color: '#555' }}>{min}{currency}</span>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
-              <span style={{ fontSize: 9, fontWeight: 800, color: '#bbb', textTransform: 'uppercase' }}>Max</span>
-              <span style={{ fontSize: 12, fontWeight: 800, color: '#555' }}>{max}{currency}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Titre de l'annonce survolée (cliquable) + mention honnête */}
-      <div style={{ marginTop: 8, minHeight: 14 }}>
-        {hoveredListing ? (
-          hoveredListing.url ? (
-            <a href={hoveredListing.url} target="_blank" rel="noopener noreferrer"
-              style={{ fontSize: 10, color: '#888', textDecoration: 'none' }}>
-              {shortTitle(hoveredListing.title)} ↗
-            </a>
-          ) : (
-            <span style={{ fontSize: 10, color: '#888' }}>{shortTitle(hoveredListing.title)}</span>
-          )
-        ) : (
-          <span style={{ fontSize: 9, color: '#ccc' }}>Prix demandés des annonces actuelles · pas un historique de ventes</span>
+      {/* Header avec stats médiane */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12, flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1 }}>Marché</span>
+        {!loading && soldMedian > 0 && (
+          <span style={{ fontSize: 13, fontWeight: 900, color: '#2e7d32' }}>{soldMedian}$ <span style={{ fontSize: 9, fontWeight: 700, color: '#aaa' }}>vendu (méd.)</span></span>
         )}
-      </div>
+        {!loading && activeMedian > 0 && (
+          <span style={{ fontSize: 13, fontWeight: 900, color: accent }}>{activeMedian}$ <span style={{ fontSize: 9, fontWeight: 700, color: '#aaa' }}>demandé (méd.)</span></span>
+        )}
+        <span style={{ marginLeft: 'auto' }}>{ebayLink}</span>
       </div>
 
-      {/* ----- 2e graphique : courbe d'évolution (ancien rendu) ----- */}
-      <div style={{ borderTop: '1px solid #f4f4f4', paddingTop: 14, marginTop: 14 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-          <span style={{ fontSize: 10, fontWeight: 800, color: '#999', textTransform: 'uppercase', letterSpacing: 1 }}>Évolution</span>
-          <span style={{ marginLeft: 'auto', fontSize: 10, fontWeight: 700, color: trendColor }}>
-            {trendSign}{Math.round(trend * 100) / 100}{currency} fourchette
-          </span>
+      {loading && (
+        <div style={{ height: 4, background: '#f0f0f0', borderRadius: 2, overflow: 'hidden', marginBottom: 10 }}>
+          <div style={{ height: '100%', background: `linear-gradient(90deg,${accent}33,${accent},${accent}33)`,
+            backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite' }} />
         </div>
+      )}
 
-        <div style={{ display: 'flex', gap: 12, alignItems: 'stretch' }}>
-          <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
-            <svg
-              ref={svgRef2}
-              viewBox={`0 0 ${W} ${H}`}
-              style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible', cursor: 'crosshair' }}
-              onMouseMove={handleMouseMove2}
-              onMouseLeave={() => setHovered2(null)}
-            >
-              <defs>
-                <linearGradient id="cvm-area2" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor={accent} stopOpacity="0.18" />
-                  <stop offset="100%" stopColor={accent} stopOpacity="0" />
-                </linearGradient>
-              </defs>
+      {!loading && sold.length === 0 && active.length === 0 && (
+        <p style={{ fontSize: 11, color: '#ccc', margin: 0 }}>Aucune annonce trouvée</p>
+      )}
 
-              <path d={areaPath2} fill="url(#cvm-area2)" />
-              <path d={linePath2} fill="none" stroke={accent} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
-
-              {hoveredPt2 && (
-                <line x1={hoveredPt2.x} y1={PAD_Y - 4} x2={hoveredPt2.x} y2={H}
-                  stroke={accent} strokeWidth="0.8" strokeOpacity="0.35" />
-              )}
-              {hovered2 !== null && hoveredPt2 && (
-                <circle cx={hoveredPt2.x} cy={hoveredPt2.y} r="3" fill={accent} />
-              )}
-              {hoveredPt2 && hoveredSale && (() => {
-                const tx = tooltipLeft2 ? hoveredPt2.x - 5 : hoveredPt2.x + 5
-                const anchor = tooltipLeft2 ? 'end' : 'start'
-                const ty = Math.max(PAD_Y + 10, hoveredPt2.y - 4)
-                return (
-                  <g>
-                    <text x={tx} y={ty - 8} textAnchor={anchor} fontSize="6.5" fontWeight="600" fill="#666">
-                      {hoveredSale.price}{currency}
-                    </text>
-                    <text x={tx} y={ty - 0.5} textAnchor={anchor} fontSize="5.5" fill="#ccc">
-                      {fmtDate(hoveredSale.date)}
-                    </text>
-                  </g>
-                )
-              })()}
-              {hovered2 === null && (
-                <circle cx={pts2[pts2.length - 1].x} cy={pts2[pts2.length - 1].y} r="2.5" fill={accent} />
-              )}
-            </svg>
+      {/* Ventes conclues */}
+      {sold.length > 0 && (
+        <div style={{ marginBottom: 12 }}>
+          <div style={{ fontSize: 9, fontWeight: 800, color: '#aaa', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
+            Ventes conclues ({sold.length})
           </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minWidth: 72, textAlign: 'right' }}>
-            <div>
-              <div style={{ fontSize: 9, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', marginBottom: 2 }}>
-                {hoveredSale ? fmtDate(hoveredSale.date) : 'Actuel'}
-              </div>
-              <div style={{ fontSize: 22, fontWeight: 900, color: `rgb(${ar},${ag},${ab})`, lineHeight: 1, transition: '0.1s' }}>
-                {hoveredSale ? hoveredSale.price : current}{currency}
-              </div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
-                <span style={{ fontSize: 9, fontWeight: 800, color: '#bbb', textTransform: 'uppercase' }}>Min</span>
-                <span style={{ fontSize: 12, fontWeight: 800, color: '#555' }}>{min}{currency}</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
-                <span style={{ fontSize: 9, fontWeight: 800, color: '#bbb', textTransform: 'uppercase' }}>Max</span>
-                <span style={{ fontSize: 12, fontWeight: 800, color: '#555' }}>{max}{currency}</span>
-              </div>
-            </div>
+          <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 4 }}>
+            {sold.map((item, i) => (
+              <a key={i} href={item.url} target="_blank" rel="noopener noreferrer"
+                style={{ textDecoration: 'none', flexShrink: 0, width: 70 }}>
+                <div style={{ borderRadius: 6, overflow: 'hidden', border: '1.5px solid #e8e8e8',
+                  background: 'white', transition: '0.15s' }}
+                  onMouseEnter={e => (e.currentTarget.style.borderColor = '#2e7d32')}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = '#e8e8e8')}
+                >
+                  {item.img
+                    ? <img src={item.img} alt="" style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', display: 'block', background: '#f5f5f5' }} />
+                    : <div style={{ width: '100%', aspectRatio: '1', background: '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🃏</div>
+                  }
+                  <div style={{ padding: '4px 5px 5px' }}>
+                    <div style={{ fontWeight: 900, fontSize: 12, color: '#2e7d32', lineHeight: 1.1 }}>{item.price}$</div>
+                    <div style={{ fontSize: 9, color: '#aaa', marginTop: 1 }}>{fmtDate(item.soldDate)}</div>
+                  </div>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
-      </div>
+      )}
+
+      {/* Annonces actives */}
+      {active.length > 0 && (
+        <div>
+          <div style={{ fontSize: 9, fontWeight: 800, color: '#aaa', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
+            En vente ({active.length})
+          </div>
+          <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 4 }}>
+            {active.map((item, i) => (
+              <a key={i} href={item.url} target="_blank" rel="noopener noreferrer"
+                style={{ textDecoration: 'none', flexShrink: 0, width: 70 }}>
+                <div style={{ borderRadius: 6, overflow: 'hidden', border: `1.5px solid ${accent}44`,
+                  background: 'white', transition: '0.15s' }}
+                  onMouseEnter={e => (e.currentTarget.style.borderColor = accent)}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = `${accent}44`)}
+                >
+                  {item.img
+                    ? <img src={item.img} alt="" style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', display: 'block', background: '#f5f5f5' }} />
+                    : <div style={{ width: '100%', aspectRatio: '1', background: '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🃏</div>
+                  }
+                  <div style={{ padding: '4px 5px 5px' }}>
+                    <div style={{ fontWeight: 900, fontSize: 12, color: accent, lineHeight: 1.1 }}>{item.price}$</div>
+                    <div style={{ fontSize: 9, color: '#aaa', marginTop: 1 }}>En vente</div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

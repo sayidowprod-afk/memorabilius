@@ -799,6 +799,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             rc={popup.rc}
             auto={popup.auto}
             patch={popup.patch}
+            grade={popup.g}
             accent={accent}
             img={popup.f}
           />

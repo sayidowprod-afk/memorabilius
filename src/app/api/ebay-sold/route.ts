@@ -47,6 +47,7 @@ function processItems(rawItems: any[], mustTerms: string[], mustSetWord: string,
       title: item.title || '',
       price: parseFloat(item.price?.value || '0'),
       url: item.itemWebUrl || '',
+      img: item.thumbnailImages?.[0]?.imageUrl || item.image?.imageUrl || '',
     }))
     .filter((i) => i.price > 0)
     .filter((i) => titleMatchesCard(i.title, mustTerms, isGraded))
@@ -61,7 +62,55 @@ function processItems(rawItems: any[], mustTerms: string[], mustSetWord: string,
       : items[mid].price
     items = items.filter((i) => i.price >= median * 0.15 && i.price <= median * 5)
   }
-  return items.slice(0, 24)
+  return items.slice(0, 20)
+}
+
+async function fetchSoldItems(
+  keywords: string,
+  mustTerms: string[],
+  mustSetWord: string,
+  isGraded: boolean,
+  appId: string,
+): Promise<Array<{ title: string; price: number; url: string; img: string; soldDate: string }>> {
+  try {
+    const params = new URLSearchParams({
+      'OPERATION-NAME': 'findCompletedItems',
+      'SECURITY-APPNAME': appId,
+      'RESPONSE-DATA-FORMAT': 'JSON',
+      'keywords': keywords,
+      'itemFilter(0).name': 'SoldItemsOnly',
+      'itemFilter(0).value': 'true',
+      'paginationInput.entriesPerPage': '40',
+      'sortOrder': 'EndTimeSoonest',
+    })
+    const res = await fetch(`https://svcs.ebay.com/services/search/FindingService/v1?${params}`, {
+      cache: 'no-store',
+      signal: AbortSignal.timeout(12000),
+    })
+    const data = await res.json()
+    const rawItems: any[] = data?.findCompletedItemsResponse?.[0]?.searchResult?.[0]?.item || []
+
+    const mapped = rawItems.map((item: any) => ({
+      title: item.title?.[0] || '',
+      price: parseFloat(item.sellingStatus?.[0]?.convertedCurrentPrice?.[0]?.__value__ || '0'),
+      url: item.viewItemURL?.[0] || '',
+      img: item.galleryURL?.[0] || '',
+      soldDate: item.listingInfo?.[0]?.endTime?.[0] || '',
+    }))
+    .filter(i => i.price > 0 && titleMatchesCard(i.title, mustTerms, isGraded))
+    .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
+
+    // Outlier filter
+    if (mapped.length >= 4) {
+      const prices = [...mapped].map(i => i.price).sort((a, b) => a - b)
+      const mid = Math.floor(prices.length / 2)
+      const med = prices.length % 2 === 0 ? (prices[mid - 1] + prices[mid]) / 2 : prices[mid]
+      return mapped.filter(i => i.price >= med * 0.15 && i.price <= med * 5).slice(0, 20)
+    }
+    return mapped.slice(0, 20)
+  } catch {
+    return []
+  }
 }
 
 function median(prices: number[]): number {
@@ -119,7 +168,12 @@ export async function GET(req: NextRequest) {
 
   try {
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 20000)
+    const timeout = setTimeout(() => controller.abort(), 22000)
+
+    // Annonces actives (Browse API) + ventes conclues (Finding API) en parallèle
+    const [soldItems] = await Promise.all([
+      fetchSoldItems(keywords, mustTerms, mustSetWord, isGraded, appId),
+    ])
 
     let rawItems: any[] = []
 
@@ -142,13 +196,13 @@ export async function GET(req: NextRequest) {
     // 2. Si recherche par image insuffisante (<3 résultats après filtrage), compléter par texte
     const imgFiltered = processItems(rawItems, mustTerms, mustSetWord, isGraded)
     if (imgFiltered.length < 3) {
-      const params = new URLSearchParams({
+      const browseParams = new URLSearchParams({
         q: keywords,
         filter: 'buyingOptions:{FIXED_PRICE|BEST_OFFER}',
         limit: '30',
         sort: 'price',
       })
-      const textRes = await fetch(`https://api.ebay.com/buy/browse/v1/item_summary/search?${params}`, {
+      const textRes = await fetch(`https://api.ebay.com/buy/browse/v1/item_summary/search?${browseParams}`, {
         headers,
         signal: controller.signal,
         cache: 'no-store',
@@ -156,26 +210,27 @@ export async function GET(req: NextRequest) {
       const textData = await textRes.json()
       const textItems = textData?.itemSummaries || []
 
-      // Fusion : items image en premier (plus pertinents), puis texte si pas déjà présents
       const seen = new Set(rawItems.map((i: any) => i.itemId))
       rawItems = [...rawItems, ...textItems.filter((i: any) => !seen.has(i.itemId))]
     }
 
     clearTimeout(timeout)
 
-    // Annonces actives triées par prix croissant (distribution du marché actuel).
-    // NB : la Browse API ne donne PAS les ventes conclues — ce sont des prix demandés.
     const items = processItems(rawItems, mustTerms, mustSetWord, isGraded)
     const prices = items.map(i => i.price)
+    const soldPrices = soldItems.map(i => i.price)
 
     return NextResponse.json({
-      items,                       // [{ title, price, url }] triés par prix croissant
+      items,
+      sold: soldItems,
       count: items.length,
       median: median(prices),
       min: prices.length ? Math.min(...prices) : 0,
       max: prices.length ? Math.max(...prices) : 0,
+      soldMedian: median(soldPrices),
+      soldCount: soldItems.length,
     })
   } catch {
-    return NextResponse.json({ items: [] })
+    return NextResponse.json({ items: [], sold: [] })
   }
 }
