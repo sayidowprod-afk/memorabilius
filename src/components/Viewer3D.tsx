@@ -315,13 +315,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             </div>
           )}
 
-          <style>{`
-            .card-idle { transform-style: preserve-3d; animation: card-idle 4s ease-in-out infinite; }
-            @keyframes card-idle {
-              0%, 100% { transform: rotateY(-4deg) rotateX(1.5deg); }
-              50%       { transform: rotateY(4deg)  rotateX(1.5deg); }
-            }
-          `}</style>
+          <style>{`.card-idle { transform-style: preserve-3d; }`}</style>
           <div ref={wrapRef} style={{ willChange: 'transform' }}>
             <div ref={idleRef} className="card-idle">
             {slabMode && gradeInfo ? (
