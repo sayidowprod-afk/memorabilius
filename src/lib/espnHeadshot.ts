@@ -58,8 +58,19 @@ const SPORT_MAP: Record<string, string> = {
   nba: 'basketball', nfl: 'football', nhl: 'hockey', mlb: 'baseball', football: 'soccer',
 }
 
+// Normalise pour comparaison insensible aux accents, ponctuation et casse
+// "O.G. Anunoby" → "og anunoby" | "Nikola Jokić" → "nikola jokic"
+function norm(s: string): string {
+  return s.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9 ]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
 async function fetchEspnMap(query: string, sport = 'nba'): Promise<Map<string, string>> {
   const espnSport = SPORT_MAP[sport] || 'basketball'
+  // Map double : clé exacte lowercase ET clé normalisée → même URL
   const result = new Map<string, string>()
   try {
     const url = `https://site.api.espn.com/apis/search/v2?query=${encodeURIComponent(query)}&limit=20&type=player&sport=${espnSport}`
@@ -69,7 +80,11 @@ async function fetchEspnMap(query: string, sport = 'nba'): Promise<Map<string, s
     for (const section of data.results ?? []) {
       for (const a of section.contents ?? []) {
         const photo: string | undefined = a.image?.default
-        if (a.displayName && photo) result.set((a.displayName as string).toLowerCase(), photo)
+        if (a.displayName && photo) {
+          const name = a.displayName as string
+          result.set(name.toLowerCase(), photo)
+          result.set(norm(name), photo) // clé normalisée en plus
+        }
       }
     }
   } catch { /* ESPN unavailable */ }
@@ -104,8 +119,7 @@ export async function fetchEspnHeadshots(
 export async function fetchEspnHeadshot(name: string, sport = 'nba'): Promise<string | null> {
   // ESPN d'abord (headshots propres pour joueurs actuels)
   const espnMap = await fetchEspnMap(name, sport)
-  const lower = name.toLowerCase()
-  const espnHit = espnMap.get(lower) ?? null
+  const espnHit = espnMap.get(name.toLowerCase()) ?? espnMap.get(norm(name)) ?? null
   if (espnHit) return espnHit
 
   // Fallback NBA CDN pour les retraités (Jordan, Kobe…)

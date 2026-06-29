@@ -146,8 +146,9 @@ export async function GET(req: NextRequest) {
 
     players = players.map(p => {
       const lower = p.name.toLowerCase()
-      // Exact match uniquement — évite faux positifs (Jordan Smith ≠ Michael Jordan)
-      const photo = combined.get(lower) || null
+      // Exact match, puis normalized (gère accents, ponctuation: "O.G." vs "OG", "Jokić" vs "Jokic")
+      const normName = lower.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
+      const photo = combined.get(lower) || combined.get(normName) || null
       return { ...p, photo }
     })
   }
