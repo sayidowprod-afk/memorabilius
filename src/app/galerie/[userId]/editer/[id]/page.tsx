@@ -424,7 +424,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Caractéristiques' : 'Features'}</label>
-            <div style={{ display: 'flex', gap: 10 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
               {[
                 { key: 'rc', label: 'RC', activeBg: '#e67e22' },
                 { key: 'auto', label: 'AUTO', activeBg: '#2e7d32' },
