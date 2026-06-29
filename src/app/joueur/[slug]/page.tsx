@@ -1,0 +1,185 @@
+import { createClient } from '@supabase/supabase-js'
+import type { Metadata } from 'next'
+import Link from 'next/link'
+
+export const revalidate = 3600
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
+
+export function playerSlug(name: string) {
+  return name.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+}
+
+function slugToName(slug: string) {
+  return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+}
+
+function seasonLabel(year: number, sport = 'nba') {
+  return ['nfl', 'baseball', 'pokemon', 'mtg'].includes(sport)
+    ? String(year)
+    : `${year}-${String(year + 1).slice(2)}`
+}
+
+async function fetchPlayer(slug: string) {
+  const playerName = slugToName(slug)
+
+  // Cherche les entries pour ce joueur — la requête .ilike est case-insensitive
+  const { data: entries } = await supabase
+    .from('card_set_entries')
+    .select('set_id, variation, is_rc, card_sets(id, name, year, brand, sport)')
+    .ilike('player_name', playerName)
+
+  // Dédupliquer par set
+  const setsMap = new Map<number, any>()
+  for (const e of entries || []) {
+    const cs = (e as any).card_sets
+    if (!cs) continue
+    if (!setsMap.has(cs.id)) setsMap.set(cs.id, { ...cs, isRc: false, variations: [] })
+    const s = setsMap.get(cs.id)!
+    if (e.is_rc) s.isRc = true
+    if (e.variation && !s.variations.includes(e.variation)) s.variations.push(e.variation)
+  }
+  const sets = [...setsMap.values()].sort((a, b) => (b.year || 0) - (a.year || 0))
+
+  // Cartes de la communauté — recherche par nom de famille (dernier mot)
+  const lastName = playerName.split(' ').slice(-1)[0]
+  const { data: communityCards } = await supabase
+    .from('cartes_manuelles')
+    .select('id, nom, annee, marque, collection, variation, image_recto, is_horizontal, user_id, profiles(display_name, avatar_url)')
+    .ilike('nom', `%${lastName}%`)
+    .not('image_recto', 'is', null)
+    .order('created_at', { ascending: false })
+    .limit(24)
+
+  return { playerName, sets, communityCards: communityCards || [], rcYear: sets.find((s: any) => s.isRc)?.year }
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const { playerName, sets, communityCards } = await fetchPlayer(slug)
+
+  const title = `${playerName} — Cartes de collection | Memorabilius`
+  const desc = `Retrouvez toutes les cartes ${playerName} sur Memorabilius : ${sets.length} sets, ${communityCards.length} cartes en communauté. Prizm, Hoops, Select et bien plus.`
+
+  return {
+    title,
+    description: desc,
+    openGraph: { title, description: desc },
+    twitter: { card: 'summary', title, description: desc },
+  }
+}
+
+const ACCENT = '#003DA6'
+
+export default async function JoueurPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const { playerName, sets, communityCards, rcYear } = await fetchPlayer(slug)
+
+  const sports = [...new Set(sets.map((s: any) => s.sport as string))]
+
+  if (sets.length === 0 && communityCards.length === 0) {
+    return (
+      <div style={{ maxWidth: 700, margin: '0 auto', padding: '80px 16px', textAlign: 'center', fontFamily: 'Inter, sans-serif' }}>
+        <h1 style={{ fontSize: 28, fontWeight: 900, color: '#111', marginBottom: 12 }}>{playerName}</h1>
+        <p style={{ color: '#999', fontSize: 15, marginBottom: 24 }}>Aucune carte trouvée pour ce joueur dans notre base.</p>
+        <Link href="/setlist" style={{ color: ACCENT, fontWeight: 700, textDecoration: 'none' }}>← Voir le Setlist</Link>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 16px', fontFamily: 'Inter, sans-serif' }}>
+      {/* Header */}
+      <div style={{ marginBottom: 32 }}>
+        <div style={{ fontSize: 11, color: ACCENT, fontWeight: 700, textTransform: 'uppercase', marginBottom: 6, letterSpacing: '0.08em' }}>
+          {sports.map(s => s.toUpperCase()).join(' · ')}
+        </div>
+        <h1 style={{ fontSize: 36, fontWeight: 900, margin: '0 0 12px', color: '#111' }}>{playerName}</h1>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          {rcYear && (
+            <span style={{ fontSize: 12, background: '#e67e22', color: 'white', padding: '3px 10px', borderRadius: 4, fontWeight: 700 }}>
+              RC {rcYear}
+            </span>
+          )}
+          <span style={{ fontSize: 12, background: '#f0f4ff', color: ACCENT, padding: '3px 10px', borderRadius: 4, fontWeight: 700 }}>
+            {sets.length} set{sets.length > 1 ? 's' : ''}
+          </span>
+          {communityCards.length > 0 && (
+            <span style={{ fontSize: 12, background: '#f0f0f0', color: '#555', padding: '3px 10px', borderRadius: 4, fontWeight: 700 }}>
+              {communityCards.length} carte{communityCards.length > 1 ? 's' : ''} en communauté
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Cartes de la communauté */}
+      {communityCards.length > 0 && (
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 16, color: '#111' }}>
+            Dans les collections ({communityCards.length})
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: 12 }}>
+            {communityCards.map((card: any) => (
+              <Link key={card.id} href={`/galerie/${card.user_id}`} style={{ textDecoration: 'none' }}>
+                <div style={{ borderRadius: 10, overflow: 'hidden', background: 'white', border: '1px solid #eee', transition: '0.15s' }}>
+                  <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
+                    <img
+                      src={card.image_recto}
+                      alt={card.nom}
+                      style={card.is_horizontal ? {
+                        position: 'absolute', width: '140%', height: '71.43%',
+                        left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover',
+                      } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                  </div>
+                  <div style={{ padding: '8px 10px' }}>
+                    <div style={{ fontSize: 11, fontWeight: 800, color: '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.nom}</div>
+                    <div style={{ fontSize: 10, color: '#999', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      {card.annee} {card.marque}
+                    </div>
+                    <div style={{ fontSize: 10, color: '#bbb', marginTop: 2, display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <img
+                        src={(card.profiles as any)?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent((card.profiles as any)?.display_name || 'U')}&background=003DA6&color=fff&size=20`}
+                        style={{ width: 12, height: 12, borderRadius: '50%' }} alt="" />
+                      {(card.profiles as any)?.display_name}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Sets */}
+      {sets.length > 0 && (
+        <section>
+          <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 16, color: '#111' }}>
+            Sets ({sets.length})
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 8 }}>
+            {sets.map((set: any) => (
+              <Link key={set.id} href={`/setlist/${set.id}`} style={{ textDecoration: 'none' }}>
+                <div style={{ background: 'white', borderRadius: 10, padding: '12px 16px', border: '1px solid #eee', transition: '0.15s' }}>
+                  <div style={{ fontWeight: 800, fontSize: 13, color: '#111', marginBottom: 3 }}>{set.name}</div>
+                  <div style={{ fontSize: 11, color: '#999' }}>
+                    {set.year ? seasonLabel(set.year, set.sport) : ''}{set.brand ? ` · ${set.brand}` : ''} · {(set.sport || '').toUpperCase()}
+                  </div>
+                  <div style={{ marginTop: 6, display: 'flex', gap: 5, flexWrap: 'wrap' }}>
+                    {set.isRc && <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 6px', borderRadius: 3, fontWeight: 700 }}>RC</span>}
+                    {set.variations.filter((v: string) => v !== 'Base').slice(0, 3).map((v: string) => (
+                      <span key={v} style={{ fontSize: 9, background: '#f0f4ff', color: ACCENT, padding: '2px 6px', borderRadius: 3, fontWeight: 700 }}>{v}</span>
+                    ))}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  )
+}

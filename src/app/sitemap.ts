@@ -19,22 +19,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/tuto`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
   ]
 
-  // Galeries des collectionneurs
   try {
-    const { data: profiles } = await supabase
-      .from('profiles')
-      .select('id, updated_at')
-      .not('lien_csv', 'is', null)
-      .neq('lien_csv', '')
+    const [{ data: profiles }, { data: sets }] = await Promise.all([
+      supabase.from('profiles').select('id, updated_at').not('lien_csv', 'is', null).neq('lien_csv', ''),
+      supabase.from('card_sets').select('id, updated_at').order('id'),
+    ])
 
     const galeries: MetadataRoute.Sitemap = (profiles || []).map(p => ({
       url: `${base}/galerie/${p.id}`,
-      lastModified: new Date(p.updated_at || new Date()),
+      lastModified: new Date((p as any).updated_at || new Date()),
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     }))
 
-    return [...staticPages, ...galeries]
+    const setPages: MetadataRoute.Sitemap = (sets || []).map(s => ({
+      url: `${base}/setlist/${s.id}`,
+      lastModified: new Date((s as any).updated_at || new Date()),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    }))
+
+    return [...staticPages, ...galeries, ...setPages]
   } catch {
     return staticPages
   }
