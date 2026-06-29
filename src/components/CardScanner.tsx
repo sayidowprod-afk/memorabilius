@@ -765,14 +765,11 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
   const avgW = (Math.hypot(tr.x - tl.x, tr.y - tl.y) + Math.hypot(br.x - bl.x, br.y - bl.y)) / 2
   const avgH = (Math.hypot(bl.x - tl.x, bl.y - tl.y) + Math.hypot(br.x - tr.x, br.y - tr.y)) / 2
 
-  const OUT_W = 600, OUT_H = 840
   const isLandscape = avgW > avgH
+  const OUT_W = isLandscape ? 840 : 600
+  const OUT_H = isLandscape ? 600 : 840
 
-  // Destination toujours portrait 600×840.
-  // Paysage → pivote 90° CW : TL→(600,0) TR→(600,840) BR→(0,840) BL→(0,0)
-  const dst: Pt[] = isLandscape
-    ? [{ x: OUT_W, y: 0 }, { x: OUT_W, y: OUT_H }, { x: 0, y: OUT_H }, { x: 0, y: 0 }]
-    : [{ x: 0, y: 0 }, { x: OUT_W, y: 0 }, { x: OUT_W, y: OUT_H }, { x: 0, y: OUT_H }]
+  const dst: Pt[] = [{ x: 0, y: 0 }, { x: OUT_W, y: 0 }, { x: OUT_W, y: OUT_H }, { x: 0, y: OUT_H }]
 
   // Limiter la source à 1500px max — évite OOM + freeze sur mobile
   const MAX_SRC = 1500
