@@ -124,10 +124,29 @@ export async function GET(req: NextRequest) {
     if (e.is_rc) p.isRc = true
     p.sports.add(sport)
   }
-  const players = [...playersMap.values()]
+  let players = [...playersMap.values()]
     .sort((a, b) => a.name.toLowerCase().startsWith(query) ? -1 : b.name.toLowerCase().startsWith(query) ? 1 : 0)
-    .slice(0, 10)
+    .slice(0, 20)
     .map(p => ({ name: p.name, isRc: p.isRc, sports: [...p.sports] }))
+
+  // Batch photo: first community card image for each player (by last name)
+  if (players.length > 0) {
+    const lastNames = players.map(p => p.name.split(' ').slice(-1)[0]).filter(Boolean)
+    const orFilter = lastNames.map(n => `nom.ilike.%${n}%`).join(',')
+    const { data: photos } = await supabase
+      .from('cartes_manuelles')
+      .select('nom, image_recto')
+      .not('image_recto', 'is', null)
+      .or(orFilter)
+      .limit(200)
+
+    const photosData = photos || []
+    players = players.map(p => {
+      const lastName = p.name.split(' ').slice(-1)[0].toLowerCase()
+      const match = photosData.find(ph => ph.nom?.toLowerCase().includes(lastName))
+      return { ...p, photo: match?.image_recto || null }
+    })
+  }
 
   results.sort((a, b) => {
     const aExact = a.name.toLowerCase().startsWith(query) ? 0 : 1

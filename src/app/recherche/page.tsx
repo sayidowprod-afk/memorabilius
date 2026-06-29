@@ -3,7 +3,8 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useLang } from '@/lib/LangContext'
-import { playerSlug } from '@/lib/playerSlug'
+import { playerSlug, teamSlug } from '@/lib/playerSlug'
+import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
 
 export default function Recherche() {
   const searchParams = useSearchParams()
@@ -12,6 +13,7 @@ export default function Recherche() {
   const [cards, setCards] = useState<any[]>([])
   const [users, setUsers] = useState<any[]>([])
   const [players, setPlayers] = useState<any[]>([])
+  const [teams, setTeams] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
   const [searched, setSearched] = useState(false)
   const [visibleCount, setVisibleCount] = useState(40)
@@ -44,6 +46,12 @@ export default function Recherche() {
     if (debounceRef.current) clearTimeout(debounceRef.current)
     debounceRef.current = setTimeout(() => search(query), 600)
     return () => { if (debounceRef.current) clearTimeout(debounceRef.current) }
+  }, [query])
+
+  useEffect(() => {
+    if (query.length < 2) { setTeams([]); return }
+    const q = query.toLowerCase()
+    setTeams(SPORTS_TEAMS.filter(t => t.name.toLowerCase().includes(q)).slice(0, 8))
   }, [query])
 
   const search = async (q: string) => {
@@ -125,11 +133,43 @@ export default function Recherche() {
       </div>
 
       {/* Résultats */}
-      {searched && !loading && cards.length === 0 && users.length === 0 && players.length === 0 && (
+      {searched && !loading && cards.length === 0 && users.length === 0 && players.length === 0 && teams.length === 0 && (
         <div style={{ textAlign: 'center', padding: '60px 20px', color: '#bbb' }}>
           <div style={{ fontSize: 48, marginBottom: 16 }}>🃏</div>
           <p style={{ fontSize: 18, fontWeight: 700 }}>Aucun résultat pour "{query}"</p>
           <p style={{ fontSize: 14, marginTop: 8 }}>{t('search_none_sub')}</p>
+        </div>
+      )}
+
+      {/* Section équipes */}
+      {teams.length > 0 && (
+        <div style={{ marginBottom: 36 }}>
+          <h2 style={{ fontWeight: 800, fontSize: 16, marginBottom: 14, color: '#555' }}>
+            Équipes ({teams.length})
+          </h2>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {teams.map((team, i) => (
+              <Link key={i} href={`/equipe/${teamSlug(team.name)}`} style={{ textDecoration: 'none' }}>
+                <div style={{
+                  display: 'flex', alignItems: 'center', gap: 8,
+                  background: 'white', border: `2px solid ${team.color}`,
+                  borderRadius: 50, padding: '5px 16px 5px 5px',
+                  transition: '0.2s', cursor: 'pointer',
+                }}
+                  onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
+                  onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                >
+                  <img
+                    src={teamLogoUrl(team)}
+                    style={{ width: 28, height: 28, objectFit: 'contain' }}
+                    alt={team.name}
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
+                  />
+                  <span style={{ fontWeight: 800, fontSize: 13, color: '#121212' }}>{team.name}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       )}
 
@@ -145,14 +185,17 @@ export default function Recherche() {
                 <div style={{
                   display: 'flex', alignItems: 'center', gap: 7,
                   background: 'white', border: '2px solid #003DA6',
-                  borderRadius: 50, padding: '6px 16px 6px 12px',
+                  borderRadius: 50, padding: '5px 16px 5px 5px',
                   transition: '0.2s', cursor: 'pointer',
                 }}
                   onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
                   onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
                 >
-                  <span style={{ fontSize: 18 }}>🏀</span>
-                  <span style={{ fontWeight: 800, fontSize: 14, color: '#121212' }}>{p.name}</span>
+                  {p.photo
+                    ? <img src={p.photo} style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top' }} alt={p.name} />
+                    : <span style={{ fontSize: 18 }}>🏀</span>
+                  }
+                  <span style={{ fontWeight: 800, fontSize: 13, color: '#121212' }}>{p.name}</span>
                   {p.isRc && <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 700 }}>RC</span>}
                 </div>
               </Link>
