@@ -217,11 +217,14 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     if (!confirmation) return
 
     try {
-      // 1. Suppression de la table des cartes manuelles
+      // 1. Mise à jour classement mensuel + stats_total (avant suppression pour lire created_at)
+      fetch('/api/card-added', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId, cardId: idManuelle }) }).catch(() => {})
+
+      // 2. Suppression de la table des cartes manuelles
       const { error } = await supabase.from('cartes_manuelles').delete().eq('id', idManuelle).eq('user_id', userId)
       if (error) throw error
 
-      // 2. Nettoyage de sa visibilité si elle était en mode privé
+      // 3. Nettoyage de sa visibilité si elle était en mode privé
       await supabase.from('cartes_privees').delete().eq('user_id', userId).eq('card_key', cardKey)
       
       // 3. Mise à jour de l'état local pour faire disparaître l'élément instantanément

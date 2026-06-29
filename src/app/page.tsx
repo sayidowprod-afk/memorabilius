@@ -77,7 +77,7 @@ async function fetchPodium() {
 
   const counts = new Map<string, { displayName: string; avatarUrl: string | null; count: number }>()
 
-  // Source 1 : monthly_additions (CSV + manuelles, table optionnelle)
+  // Source 1 : monthly_additions — tenu à jour en temps réel (synchro CSV + ajouts manuels via /api/card-added)
   try {
     const { data } = await supabase
       .from('monthly_additions')
@@ -90,20 +90,29 @@ async function fetchPodium() {
   } catch {}
 
   // Source 2 : cartes_manuelles pour les users absents de monthly_additions
-  const { data: manual } = await supabase
-    .from('cartes_manuelles')
-    .select('user_id, profiles(display_name, avatar_url)')
-    .gte('created_at', startOfMonth)
-    .limit(500)
-
+  // (cards ajoutées avant le déploiement du système temps-réel, ou sans synchro)
+  // On pagine par 1000 pour éviter la troncature sur les grosses collections
+  let manualPage = 0
   const manualCounts = new Map<string, { displayName: string; avatarUrl: string | null; count: number }>()
-  for (const row of (manual || []) as any[]) {
-    if (!row.profiles?.display_name) continue
-    const e = manualCounts.get(row.user_id)
-    if (!e) manualCounts.set(row.user_id, { displayName: row.profiles.display_name, avatarUrl: row.profiles.avatar_url || null, count: 1 })
-    else e.count++
+  while (true) {
+    const { data: manual } = await supabase
+      .from('cartes_manuelles')
+      .select('user_id, profiles(display_name, avatar_url)')
+      .gte('created_at', startOfMonth)
+      .range(manualPage * 1000, manualPage * 1000 + 999)
+    if (!manual || manual.length === 0) break
+    for (const row of manual as any[]) {
+      if (!row.profiles?.display_name) continue
+      const e = manualCounts.get(row.user_id)
+      if (!e) manualCounts.set(row.user_id, { displayName: row.profiles.display_name, avatarUrl: row.profiles.avatar_url || null, count: 1 })
+      else e.count++
+    }
+    if (manual.length < 1000) break
+    manualPage++
   }
-  // Fusionner : si l'utilisateur est dans les deux sources, prendre le max
+
+  // Fusionner : monthly_additions est prioritaire (inclut CSV + manuelles syncées).
+  // Pour les users non encore dans monthly_additions ce mois, utiliser cartes_manuelles.
   for (const [uid, v] of manualCounts) {
     const existing = counts.get(uid)
     if (!existing) counts.set(uid, v)

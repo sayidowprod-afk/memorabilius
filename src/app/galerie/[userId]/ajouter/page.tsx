@@ -328,6 +328,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
     if (error) { alert('Erreur : ' + error.message); setSaving(false); return }
 
+    // Incrémenter le classement mensuel immédiatement (sans attendre la prochaine synchro CSV)
+    fetch('/api/card-added', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: user.id }) }).catch(() => {})
+
     // Notifier les users qui ont cette carte dans leur wishlist
     supabase.auth.getSession().then(({ data: { session } }) => {
       fetch('/api/wishlist-notify', {
