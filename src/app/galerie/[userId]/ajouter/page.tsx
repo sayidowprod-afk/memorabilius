@@ -531,7 +531,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
       {cameraModal && (
         <CameraCapture
-          ratio={(cameraModal === 'il' || cameraModal === 'ir') ? 3.5 / 2.5 : undefined}
+          ratio={(cameraModal === 'il' || cameraModal === 'ir' || form.is_horizontal) ? 3.5 / 2.5 : undefined}
           onCapture={(blob, frameRect) => {
             const url = URL.createObjectURL(blob)
             setCameraModal(null)

@@ -87,8 +87,13 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
     const dw = video.clientWidth
     const dh = video.clientHeight
 
-    // Cadre overlay : min(78vw, 56vh) × ratio carte — centré
-    let frameW = Math.min(dw * 0.78, dh * 0.56 * CARD_RATIO)
+    // Cadre overlay — doit correspondre exactement à OverlayMask
+    // Portrait : width = min(78vw, 56vh)
+    // Paysage  : width = min(ratio*44vh, 78vw)
+    const isLandscape = CARD_RATIO > 1
+    let frameW = isLandscape
+      ? Math.min(CARD_RATIO * dh * 0.44, dw * 0.78)
+      : Math.min(dw * 0.78, dh * 0.56)
     let frameH = frameW / CARD_RATIO
     const frameX = (dw - frameW) / 2
     const frameY = (dh - frameH) / 2
@@ -215,14 +220,17 @@ export default function CameraCapture({ onCapture, onClose, ratio }: Props) {
 }
 
 function OverlayMask({ cardRatio }: { cardRatio: number }) {
-  // Calcule la taille du cadre en CSS pur (sans JS) via aspect-ratio
-  // Le cadre prend 80% de la largeur ou 70% de la hauteur (le plus petit)
+  // Portrait (ratio < 1) : largeur contrainte → min(78vw, 56vh)
+  // Paysage (ratio > 1) : hauteur contrainte → width = ratio * min(44vh, 78vw/ratio)
+  const isLandscape = cardRatio > 1
+  const frameWidth = isLandscape ? `min(${(cardRatio * 44).toFixed(1)}vh, 78vw)` : 'min(78vw, 56vh)'
+
   return (
     <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       {/* Fond sombre via box-shadow géant sur le cadre */}
       <div style={{
         position: 'relative',
-        width: 'min(78vw, 56vh)',
+        width: frameWidth,
         aspectRatio: `${cardRatio}`,
         borderRadius: 10,
         boxShadow: '0 0 0 200vmax rgba(0,0,0,0.60)',
