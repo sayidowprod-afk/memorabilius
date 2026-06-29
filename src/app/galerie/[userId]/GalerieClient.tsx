@@ -697,8 +697,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900,
                         }}>✕</button>
                       )}
-                      <div style={{ aspectRatio: card.is_horizontal ? '3.5/2.5' : '2.5/3.5', overflow: 'hidden' }}>
-                        <img src={card.f} alt={card.n} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
+                        <img src={card.f} alt={card.n} loading="lazy" style={card.is_horizontal ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                       </div>
                       <div style={{ padding: '6px 8px' }}>
                         <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</p>
@@ -777,8 +777,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                                 onMouseEnter={e => { if (!isGradient(tabColor)) e.currentTarget.style.borderColor = tabColor }}
                                 onMouseLeave={e => { if (!isGradient(tabColor)) e.currentTarget.style.borderColor = tabColor + '55' }}
                               >
-                                <div style={{ aspectRatio: card.is_horizontal ? '3.5/2.5' : '2.5/3.5', overflow: 'hidden' }}>
-                                  <img src={card.f} alt={card.n} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                                <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
+                                  <img src={card.f} alt={card.n} loading="lazy" style={card.is_horizontal ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                                 </div>
                                 <div style={{ padding: '4px 6px', background: 'white' }}>
                                   <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</p>
@@ -1356,8 +1356,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   </div>
                 </div>
               )}
-              <div style={{ width: '100%', aspectRatio: d.is_horizontal ? '3.5/2.5' : '2.5/3.5', marginBottom: 8, overflow: 'hidden', position: 'relative' }}>
-                <img src={d.f} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={d.n} />
+              <div style={{ width: '100%', aspectRatio: '2.5/3.5', marginBottom: 8, overflow: 'hidden', position: 'relative' }}>
+                <img src={d.f} loading="lazy" style={d.is_horizontal ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={d.n} />
               </div>
               {getTags(d)}
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4 }}>
