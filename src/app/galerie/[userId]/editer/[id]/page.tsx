@@ -235,8 +235,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     outCtx.scale(imgTransform.scale * pixelScale, imgTransform.scale * pixelScale)
     outCtx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2)
     const finalCanvas = document.createElement('canvas')
-    finalCanvas.width = 600; finalCanvas.height = 840
-    finalCanvas.getContext('2d')!.drawImage(outCanvas, 0, 0, 600, 840)
+    finalCanvas.width = isHorizontalRef.current ? 840 : 600
+    finalCanvas.height = isHorizontalRef.current ? 600 : 840
+    finalCanvas.getContext('2d')!.drawImage(outCanvas, 0, 0, finalCanvas.width, finalCanvas.height)
     setCropModal(null)
     finalCanvas.toBlob(async (blob) => {
       if (!blob) { setUploadingRecto(false); setUploadingVerso(false); return }
