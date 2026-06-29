@@ -89,6 +89,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [colorPickerTag, setColorPickerTag] = useState<string | null>(null)
   const [cardLikes, setCardLikes] = useState<Map<string, { count: number; liked: boolean }>>(new Map())
   const [deleteTagConfirm, setDeleteTagConfirm] = useState<string | null>(null)
+  const [renameValue, setRenameValue] = useState('')
   const isGradient = (c: string) => c.startsWith('linear-gradient')
   // Retourne les styles de bordure corrects pour couleur unie ou dégradé
   const coloredBorder = (color: string, width = 2): React.CSSProperties => {
@@ -994,17 +995,37 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                         </button>
                         {isOwner && (
                           <button
-                            onClick={(e) => { e.stopPropagation(); setColorPickerTag(colorPickerTag === tag ? null : tag) }}
+                            onClick={(e) => { e.stopPropagation(); setColorPickerTag(colorPickerTag === tag ? null : tag); setRenameValue(tag); setDeleteTagConfirm(null) }}
                             title="Couleur"
                             style={{ position: 'absolute', top: -6, right: -6, width: 16, height: 16, borderRadius: '50%', background: tabColor, border: '2px solid white', cursor: 'pointer', padding: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.3)', zIndex: 1 }}
                           />
                         )}
                         {colorPickerTag === tag && (
                           <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', top: '110%', left: 0, background: 'white', borderRadius: 12, padding: 10, boxShadow: '0 8px 30px rgba(0,0,0,0.18)', zIndex: 100, width: 220 }}>
-                            {/* Preview */}
-                            <div style={{ marginBottom: 8, padding: '5px 10px', borderRadius: 8, border: `2.5px solid ${isGradient(tabColor) ? 'transparent' : tabColor}`, background: isGradient(tabColor) ? 'white' : 'white', backgroundImage: isGradient(tabColor) ? tabColor : 'none', backgroundOrigin: isGradient(tabColor) ? 'border-box' : 'initial', fontSize: 11, fontWeight: 700, color: '#333', textAlign: 'center' }}>
-                              {tag}
-                            </div>
+                            {/* Nom éditable */}
+                            <input
+                              value={renameValue}
+                              onChange={e => setRenameValue(e.target.value)}
+                              onKeyDown={async e => {
+                                if (e.key === 'Escape') { setColorPickerTag(null); return }
+                                if (e.key !== 'Enter') return
+                                const newName = renameValue.trim()
+                                if (!newName || newName === tag) { setColorPickerTag(null); return }
+                                await Promise.all([
+                                  supabase.from('cartes_manuelles').update({ collection_tag: newName }).eq('user_id', userId).eq('collection_tag', tag),
+                                  supabase.from('carte_tags').update({ collection_tag: newName }).eq('user_id', userId).eq('collection_tag', tag),
+                                ])
+                                const cur = tabSettings.get(tag)
+                                await supabase.from('collection_tab_settings').delete().eq('user_id', userId).eq('tag', tag)
+                                if (cur) await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag: newName, ...cur }, { onConflict: 'user_id,tag' })
+                                setTabSettings(prev => { const m = new Map(prev); if (cur) m.set(newName, cur); m.delete(tag); return m })
+                                setCollectionTags(prev => prev.map(t => t === tag ? newName : t).sort())
+                                setCards(prev => prev.map(c => c.collection_tag === tag ? { ...c, collection_tag: newName } : c))
+                                if (fCollectionTag === tag) setFCollectionTag(newName)
+                                setColorPickerTag(null)
+                              }}
+                              style={{ width: '100%', marginBottom: 8, padding: '5px 10px', borderRadius: 8, border: `2.5px solid ${isGradient(tabColor) ? 'transparent' : tabColor}`, fontSize: 11, fontWeight: 700, color: '#333', textAlign: 'center', outline: 'none', boxSizing: 'border-box', fontFamily: 'Inter, sans-serif', background: 'white' }}
+                            />
                             {/* Couleurs unies */}
                             <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
                               {TAB_COLORS.map(c => (
