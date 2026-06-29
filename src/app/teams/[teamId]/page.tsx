@@ -28,6 +28,15 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const [hasCandidature, setHasCandidature] = useState(false)
   const [activeTab, setActiveTab] = useState<'feed' | 'membres' | 'galerie' | 'chat' | 'candidatures'>('feed')
   const [loading, setLoading] = useState(true)
+  const [copied, setCopied] = useState(false)
+
+  const shareTeam = () => {
+    const url = `${window.location.origin}/teams/${teamId}`
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
 
   // Chat
   const [newMsg, setNewMsg] = useState('')
@@ -421,7 +430,10 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               </div>
             ))}
           </div>
-          <div style={{ display: 'flex', gap: 8 }}>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <button onClick={shareTeam} style={{ background: copied ? '#e8f5e9' : '#f0f0f0', color: copied ? '#2e7d32' : '#555', border: 'none', borderRadius: 8, padding: '8px 14px', fontWeight: 700, cursor: 'pointer', fontSize: 13, transition: 'all 0.2s' }}>
+              {copied ? '✓ Copié !' : '🔗 Partager'}
+            </button>
             {!isMember && !hasCandidature && currentUser && (
               <button onClick={postuler} style={{ background: ACCENT, color: 'white', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer' }}>{t('teams_join')}</button>
             )}
