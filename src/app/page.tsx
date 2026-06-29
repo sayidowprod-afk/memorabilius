@@ -103,9 +103,11 @@ async function fetchPodium() {
     if (!e) manualCounts.set(row.user_id, { displayName: row.profiles.display_name, avatarUrl: row.profiles.avatar_url || null, count: 1 })
     else e.count++
   }
-  // N'ajouter depuis cartes_manuelles que les users non couverts par monthly_additions
+  // Fusionner : si l'utilisateur est dans les deux sources, prendre le max
   for (const [uid, v] of manualCounts) {
-    if (!counts.has(uid)) counts.set(uid, v)
+    const existing = counts.get(uid)
+    if (!existing) counts.set(uid, v)
+    else if (v.count > existing.count) existing.count = v.count
   }
 
   return [...counts.entries()]

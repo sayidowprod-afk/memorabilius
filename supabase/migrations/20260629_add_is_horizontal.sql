@@ -1,0 +1,2 @@
+ALTER TABLE cartes_manuelles
+  ADD COLUMN IF NOT EXISTS is_horizontal BOOLEAN NOT NULL DEFAULT FALSE;

@@ -27,7 +27,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
     grade: 'Raw', num: '', card_number: '', rc: false, auto: false, patch: false,
     image_recto: '', image_verso: '', collection_tag: '',
-    booklet: false, image_interieur_gauche: '', image_interieur_droite: '',
+    booklet: false, is_horizontal: false, image_interieur_gauche: '', image_interieur_droite: '',
   })
 
   const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
@@ -53,6 +53,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         image_recto: data.image_recto || '', image_verso: data.image_verso || '',
         collection_tag: data.collection_tag || '',
         booklet: data.booklet || false,
+        is_horizontal: data.is_horizontal || false,
         image_interieur_gauche: data.image_interieur_gauche || '',
         image_interieur_droite: data.image_interieur_droite || '',
       })
@@ -254,7 +255,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       num: form.num || null, card_number: form.card_number || null, rc: form.rc, auto: form.auto, patch: form.patch,
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
       collection_tag: form.collection_tag || null,
-      booklet: form.booklet,
+      booklet: form.booklet, is_horizontal: form.is_horizontal,
       image_interieur_gauche: form.image_interieur_gauche || null,
       image_interieur_droite: form.image_interieur_droite || null,
     }).eq('id', id).eq('user_id', user.id)
@@ -429,6 +430,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
                 { key: 'auto', label: 'AUTO', activeBg: '#2e7d32' },
                 { key: 'patch', label: 'PATCH', activeBg: '#1976d2' },
                 { key: 'booklet', label: '📖 BOOKLET', activeBg: '#7b1fa2' },
+                { key: 'is_horizontal', label: '↔ HORIZONTALE', activeBg: '#0097a7' },
               ].map(tag => (
                 <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })}
                   style={{ padding: '10px 20px', border: 'none', borderRadius: 20, cursor: 'pointer', fontWeight: 900, fontSize: 13, transition: '0.2s',

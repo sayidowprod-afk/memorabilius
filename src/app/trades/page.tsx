@@ -247,7 +247,7 @@ export default function Trades() {
       {/* Popup */}
       {popup && (
         <div onClick={() => setPopup(null)} style={{
-          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)',
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.6)',
           zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
         }}>
           <div onClick={e => e.stopPropagation()} style={{

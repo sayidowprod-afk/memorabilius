@@ -25,7 +25,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [uploadingIR, setUploadingIR] = useState(false)
   const [form, setForm] = useState({
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
-    grade: 'Raw', num: '', card_number: '', rc: false, auto: false, patch: false, booklet: false, collection_tag: '',
+    grade: 'Raw', num: '', card_number: '', rc: false, auto: false, patch: false, booklet: false, is_horizontal: false, collection_tag: '',
     image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
   })
 
@@ -319,7 +319,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       user_id: user.id, nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
       marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, grade: form.grade,
       num: form.num || null, card_number: form.card_number || null,
-      rc: form.rc, auto: form.auto, patch: form.patch, booklet: form.booklet,
+      rc: form.rc, auto: form.auto, patch: form.patch, booklet: form.booklet, is_horizontal: form.is_horizontal,
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
       image_interieur_gauche: form.image_interieur_gauche || null,
       image_interieur_droite: form.image_interieur_droite || null,
@@ -505,6 +505,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                 { key: 'auto', label: 'AUTO', activeBg: '#2e7d32' },
                 { key: 'patch', label: 'PATCH', activeBg: '#1976d2' },
                 { key: 'booklet', label: '📖 BOOKLET', activeBg: '#7b1fa2' },
+                { key: 'is_horizontal', label: '↔ HORIZONTALE', activeBg: '#0097a7' },
               ].map(tag => (
                 <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })}
                   style={{

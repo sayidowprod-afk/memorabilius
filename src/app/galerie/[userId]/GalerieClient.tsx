@@ -59,7 +59,7 @@ interface Card {
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string
   auto: boolean; rc: boolean; patch: boolean; g: string
-  booklet?: boolean; il?: string; ir?: string
+  booklet?: boolean; is_horizontal?: boolean; il?: string; ir?: string
   isManuelle?: boolean
   created_at?: string; position?: number; collection_tag?: string;
 }
@@ -264,7 +264,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         br: m.marque || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', card_number: m.card_number || '', auto: m.auto || false, rc: m.rc || false,
         patch: m.patch || false, g: m.grade || 'Raw', isManuelle: true,
-        booklet: m.booklet || false,
+        booklet: m.booklet || false, is_horizontal: m.is_horizontal || false,
         il: m.image_interieur_gauche || '', ir: m.image_interieur_droite || '',
         created_at: m.created_at || '', position: m.position ?? 9999,
         collection_tag: m.collection_tag || ''
@@ -694,7 +694,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900,
                         }}>✕</button>
                       )}
-                      <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
+                      <div style={{ aspectRatio: card.is_horizontal ? '3.5/2.5' : '2.5/3.5', overflow: 'hidden' }}>
                         <img src={card.f} alt={card.n} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                       </div>
                       <div style={{ padding: '6px 8px' }}>
@@ -774,7 +774,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                                 onMouseEnter={e => { if (!isGradient(tabColor)) e.currentTarget.style.borderColor = tabColor }}
                                 onMouseLeave={e => { if (!isGradient(tabColor)) e.currentTarget.style.borderColor = tabColor + '55' }}
                               >
-                                <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
+                                <div style={{ aspectRatio: card.is_horizontal ? '3.5/2.5' : '2.5/3.5', overflow: 'hidden' }}>
                                   <img src={card.f} alt={card.n} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                                 </div>
                                 <div style={{ padding: '4px 6px', background: 'white' }}>
@@ -1353,7 +1353,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   </div>
                 </div>
               )}
-              <div style={{ width: '100%', aspectRatio: '2.5/3.5', marginBottom: 8, overflow: 'hidden', position: 'relative' }}>
+              <div style={{ width: '100%', aspectRatio: d.is_horizontal ? '3.5/2.5' : '2.5/3.5', marginBottom: 8, overflow: 'hidden', position: 'relative' }}>
                 <img src={d.f} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={d.n} />
               </div>
               {getTags(d)}

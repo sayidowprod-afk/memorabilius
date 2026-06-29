@@ -13,7 +13,7 @@ interface Card {
   br: string; s: string; v: string; num: string; card_number?: string
   auto: boolean; rc: boolean; patch: boolean; g: string
   isManuelle?: boolean; id_manuelle?: string; collection_tag?: string
-  booklet?: boolean; il?: string; ir?: string
+  booklet?: boolean; is_horizontal?: boolean; il?: string; ir?: string
 }
 
 export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, onCollectionTagChange, onAddToMyGallery, initialAddState }: {
@@ -171,6 +171,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const swipeStartX = useRef(0)
   const swipeStartY = useRef(0)
   const swipeStartTime = useRef(0)
+  const swipeAccumX = useRef(0)
   const slbWrapRef = useRef<HTMLDivElement>(null)
 
   const onTouchStart = useCallback((e: React.TouchEvent) => {
@@ -183,6 +184,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
       swipeStartX.current = e.touches[0].clientX
       swipeStartY.current = e.touches[0].clientY
       swipeStartTime.current = Date.now()
+      swipeAccumX.current = 0
     } else if (e.touches.length === 2) {
       lastDist.current = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
@@ -197,6 +199,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     if (e.touches.length === 1) {
       const dx = e.touches[0].clientX - touch1.current.x
       const dy = e.touches[0].clientY - touch1.current.y
+      swipeAccumX.current += Math.abs(dx)
       touch1.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
       rotY.current += dx * 0.4
       rotX.current -= dy * 0.4
@@ -220,8 +223,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     const dx = touch1.current.x - swipeStartX.current
     const dy = touch1.current.y - swipeStartY.current
     const dt = Date.now() - swipeStartTime.current
-    // Quick predominantly-horizontal swipe → navigate
-    if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 2 && dt < 400) {
+    // Quick straight horizontal swipe → navigate (skip if user was rotating back-and-forth)
+    const netDx = Math.abs(dx)
+    const accumX = swipeAccumX.current
+    const isStraight = accumX > 0 && netDx / accumX > 0.55
+    if (netDx > 70 && netDx > Math.abs(dy) * 2 && dt < 300 && isStraight) {
       if (dx < 0) onNext?.()
       else onPrev?.()
     }
@@ -254,13 +260,15 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         .viewer-zone { flex: 1.2; position: relative; overflow: hidden; background: ${zoneBg}; display: flex; align-items: center; justify-content: center; perspective: 2000px; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; }
         .viewer-info { flex: 0.8; padding: 30px; display: flex; flex-direction: column; justify-content: center; background: ${infoBg}; overflow-y: auto; color: ${textColor}; }
         .viewer-card { width: 560px; height: 784px; }
-        @media (max-width: 1200px) { .viewer-card { width: 420px; height: 588px; } }
+        .viewer-card--horizontal { width: 784px !important; height: 560px !important; max-width: 90% !important; }
+        @media (max-width: 1200px) { .viewer-card { width: 420px; height: 588px; } .viewer-card--horizontal { width: 588px !important; height: 420px !important; } }
         @media (max-width: 600px) {
           .viewer-layout { flex-direction: column; }
           .viewer-zone { flex: 0 0 65% !important; width: 100% !important; }
           .viewer-info { flex: 1 !important; width: 100% !important; padding: 10px 14px !important; justify-content: flex-start !important; }
           .viewer-info h2 { font-size: 1rem !important; margin: 2px 0 !important; }
           .viewer-card { width: 240px !important; height: 336px !important; }
+          .viewer-card--horizontal { width: 300px !important; height: 214px !important; }
           .viewer-hint { display: none !important; }
         }
       `}</style>
@@ -695,7 +703,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               })()
             ) : (
               /* ── CARD VIEW (original) ── */
-              <div ref={cardRef} className="viewer-card" style={{
+              <div ref={cardRef} className={`viewer-card${popup.is_horizontal ? ' viewer-card--horizontal' : ''}`} style={{
                 position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform',
               }}>
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
