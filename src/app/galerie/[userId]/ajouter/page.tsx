@@ -57,7 +57,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const cw = container.clientWidth
     const ch = container.clientHeight
 
-    const frameW = Math.min(cw * 0.82, ch * 0.9 * cropRatioRef.current)
+    const frameW = cropRatioRef.current > 1
+      ? Math.min(cw * 0.90, ch * 0.82 * cropRatioRef.current)
+      : Math.min(cw * 0.82, ch * 0.90 * cropRatioRef.current)
     const frameH = frameW / cropRatioRef.current
 
     const angleRad = (rotationRef.current * Math.PI) / 180
@@ -263,8 +265,10 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const container = containerRef.current
     const cw = container.clientWidth
     const ch = container.clientHeight
-
-    const frameW = Math.min(cw * 0.82, ch * cropRatio * 0.9)
+    const isH = cropRatio > 1
+    const frameW = isH
+      ? Math.min(cw * 0.90, ch * 0.82 * cropRatio)
+      : Math.min(cw * 0.82, ch * 0.90 * cropRatio)
     const frameH = frameW / cropRatio
 
     const img = imgRef.current
@@ -295,7 +299,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     outCtx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2)
 
     const finalCanvas = document.createElement('canvas')
-    const isLandscape = side === 'il' || side === 'ir'
+    const isLandscape = side === 'il' || side === 'ir' || isHorizontalRef.current
     finalCanvas.width = isLandscape ? 840 : 600
     finalCanvas.height = isLandscape ? 600 : 840
     const finalCtx = finalCanvas.getContext('2d')!
