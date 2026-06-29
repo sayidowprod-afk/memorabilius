@@ -24,7 +24,7 @@ function seasonLabel(year: number, sport = 'nba') {
 
 async function fetchPlayer(slug: string) {
   const playerName = slugToName(slug)
-  const lastName = playerName.split(' ').slice(-1)[0]
+  const lowerFull = playerName.toLowerCase()
 
   const [entriesRes, manuRes, profilesRes] = await Promise.all([
     supabase
@@ -34,7 +34,7 @@ async function fetchPlayer(slug: string) {
     supabase
       .from('cartes_manuelles')
       .select('id, nom, annee, marque, collection, variation, image_recto, is_horizontal, user_id, profiles(display_name, avatar_url, couleur_bordure)')
-      .ilike('nom', `%${lastName}%`)
+      .ilike('nom', `%${playerName}%`)
       .not('image_recto', 'is', null)
       .order('created_at', { ascending: false })
       .limit(5000),
@@ -71,11 +71,10 @@ async function fetchPlayer(slug: string) {
     source: 'manuel' as const,
   }))
 
-  // Cartes CSV de la communauté
+  // Cartes CSV de la communauté — filtre par nom complet
   const csvAll = await fetchCsvCardsForProfiles(profilesRes.data || [])
-  const lowerLast = lastName.toLowerCase()
   const csvCards = csvAll
-    .filter(c => c.name.toLowerCase().includes(lowerLast))
+    .filter(c => c.name.toLowerCase().includes(lowerFull))
     .map(c => ({
       id: `csv-${c.user_id}-${c.img}`,
       img: c.img,

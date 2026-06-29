@@ -146,9 +146,8 @@ export async function GET(req: NextRequest) {
 
     players = players.map(p => {
       const lower = p.name.toLowerCase()
-      const photo = combined.get(lower)
-        || [...combined.entries()].find(([k]) => k.includes(lower) || lower.includes(k))?.[1]
-        || null
+      // Exact match uniquement — évite faux positifs (Jordan Smith ≠ Michael Jordan)
+      const photo = combined.get(lower) || null
       return { ...p, photo }
     })
   }

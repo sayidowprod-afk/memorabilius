@@ -114,5 +114,11 @@ export async function fetchEspnHeadshot(name: string, sport = 'nba'): Promise<st
   }
   const map = await fetchEspnMap(name, sport)
   const lower = name.toLowerCase()
-  return map.get(lower) ?? [...map.entries()].find(([k]) => k.includes(lower) || lower.includes(k))?.[1] ?? null
+  // Exact match d'abord, puis commence-par, puis contient
+  return (
+    map.get(lower) ??
+    [...map.entries()].find(([k]) => k === lower)?.[1] ??
+    [...map.entries()].find(([k]) => k.startsWith(lower) || lower.startsWith(k))?.[1] ??
+    null
+  )
 }
