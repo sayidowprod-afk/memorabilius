@@ -108,47 +108,94 @@ export async function GET(req: NextRequest) {
     .filter(p => p.display_name?.toLowerCase().includes(query))
     .map(p => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url, accent: p.couleur_bordure || '#003DA6' }))
 
-  // Joueurs (card_set_entries — dédupliqués par nom)
-  const { data: playerEntries } = await supabase
-    .from('card_set_entries')
-    .select('player_name, is_rc, card_sets(sport)')
-    .ilike('player_name', `%${query}%`)
-    .limit(200)
+  // ── Joueurs ────────────────────────────────────────────────────────────────
+  // Normalise un nom pour comparaison insensible aux accents/ponctuation
+  const normStr = (s: string) => s.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
 
-  const playersMap = new Map<string, { name: string; isRc: boolean; sports: Set<string> }>()
-  for (const e of playerEntries || []) {
+  // Source 1 : card_set_entries (joueurs avec sets dans la DB)
+  // Source 2 : ESPN search (tous les joueurs, anciens inclus) — en parallèle
+  const ESPN_SPORTS = ['basketball', 'football', 'hockey', 'baseball']
+  const [playerEntriesRes, ...espnSearchResults] = await Promise.all([
+    supabase
+      .from('card_set_entries')
+      .select('player_name, is_rc, card_sets(sport)')
+      .ilike('player_name', `%${query}%`)
+      .limit(200),
+    ...ESPN_SPORTS.map(sport =>
+      fetch(
+        `https://site.api.espn.com/apis/search/v2?query=${encodeURIComponent(query)}&limit=10&type=player&sport=${sport}`,
+        { signal: AbortSignal.timeout(3000), next: { revalidate: 3600 } } as RequestInit
+      ).then(r => r.ok ? r.json() : null).catch(() => null)
+    ),
+  ])
+
+  type PEntry = { name: string; isRc: boolean; sports: Set<string>; photo: string | null }
+  const playersMap = new Map<string, PEntry>()
+
+  // Intègre les joueurs de la DB
+  for (const e of playerEntriesRes.data || []) {
     const name = e.player_name
     if (!name) continue
     const sport = (e as any).card_sets?.sport || 'nba'
-    if (!playersMap.has(name)) playersMap.set(name, { name, isRc: false, sports: new Set() })
+    if (!playersMap.has(name)) playersMap.set(name, { name, isRc: false, sports: new Set(), photo: null })
     const p = playersMap.get(name)!
     if (e.is_rc) p.isRc = true
     p.sports.add(sport)
   }
-  let players = [...playersMap.values()]
-    .sort((a, b) => a.name.toLowerCase().startsWith(query) ? -1 : b.name.toLowerCase().startsWith(query) ? 1 : 0)
-    .slice(0, 20)
-    .map(p => ({ name: p.name, isRc: p.isRc, sports: [...p.sports] }))
 
-  // Headshots ESPN — une requête par sport dominant
-  if (players.length > 0) {
-    const sportGroups = new Map<string, string[]>()
-    for (const p of players) {
-      const sport = p.sports[0] || 'nba'
-      if (!sportGroups.has(sport)) sportGroups.set(sport, [])
+  // Intègre les joueurs ESPN (avec leur photo directement dans la réponse)
+  const ESPN_SPORT_LABEL: Record<string, string> = {
+    basketball: 'nba', football: 'nfl', hockey: 'nhl', baseball: 'mlb',
+  }
+  for (let i = 0; i < espnSearchResults.length; i++) {
+    const data = espnSearchResults[i]
+    if (!data) continue
+    const sportLabel = ESPN_SPORT_LABEL[ESPN_SPORTS[i]] || 'nba'
+    for (const section of data.results || []) {
+      for (const a of section.contents || []) {
+        if (!a.displayName) continue
+        const normA = normStr(a.displayName)
+        // Cherche si ce joueur est déjà dans la map (par nom normalisé)
+        const existing = [...playersMap.entries()].find(([k]) => normStr(k) === normA)
+        if (existing) {
+          // Complète la photo si manquante
+          if (!existing[1].photo && a.image?.default) existing[1].photo = a.image.default
+        } else {
+          // Nouveau joueur (retraité ou absent de la DB)
+          playersMap.set(a.displayName, {
+            name: a.displayName,
+            isRc: false,
+            sports: new Set([sportLabel]),
+            photo: a.image?.default || null,
+          })
+        }
+      }
     }
-    // Fetch ESPN pour chaque sport présent (en parallèle)
-    const espnMaps = await Promise.all(
-      [...sportGroups.keys()].map(async sport => ({ sport, map: await fetchEspnHeadshots(query, sport) }))
-    )
-    const combined = new Map<string, string>()
-    for (const { map } of espnMaps) map.forEach((v, k) => combined.set(k, v))
+  }
 
+  // Trie : commence par le query > contient > reste
+  let players = [...playersMap.values()]
+    .sort((a, b) => {
+      const al = a.name.toLowerCase(), bl = b.name.toLowerCase()
+      if (al.startsWith(query) && !bl.startsWith(query)) return -1
+      if (!al.startsWith(query) && bl.startsWith(query)) return 1
+      return 0
+    })
+    .slice(0, 20)
+    .map(p => ({ name: p.name, isRc: p.isRc, sports: [...p.sports], photo: p.photo }))
+
+  // Pour les joueurs encore sans photo, fallback via NBA CDN (retraités absents ESPN)
+  const stillMissingPhoto = players.filter(p => !p.photo && p.sports[0] === 'nba')
+  if (stillMissingPhoto.length > 0) {
+    const { fetchEspnHeadshots } = await import('@/lib/espnHeadshot')
+    const nbaMap = await fetchEspnHeadshots(query, 'nba')
     players = players.map(p => {
+      if (p.photo) return p
       const lower = p.name.toLowerCase()
-      // Exact match, puis normalized (gère accents, ponctuation: "O.G." vs "OG", "Jokić" vs "Jokic")
-      const normName = lower.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
-      const photo = combined.get(lower) || combined.get(normName) || null
+      const normN = normStr(p.name)
+      const photo = nbaMap.get(lower) || nbaMap.get(normN) || null
       return { ...p, photo }
     })
   }
