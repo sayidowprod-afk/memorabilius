@@ -39,7 +39,7 @@ async function fetchTeamData(slug: string) {
       .ilike('equipe', `%${teamLastWord}%`)
       .not('image_recto', 'is', null)
       .order('created_at', { ascending: false })
-      .limit(48),
+      .limit(5000),
     supabase
       .from('profiles')
       .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
@@ -80,7 +80,6 @@ async function fetchTeamData(slug: string) {
   const lowerTeam = teamLastWord.toLowerCase()
   const csvCards = csvAll
     .filter(c => c.team.toLowerCase().includes(lowerTeam))
-    .slice(0, 48)
     .map(c => ({
       id: `csv-${c.user_id}-${c.img}`,
       img: c.img,
@@ -100,7 +99,7 @@ async function fetchTeamData(slug: string) {
     if (seen.has(c.img)) return false
     seen.add(c.img)
     return true
-  }).slice(0, 48)
+  })
 
   return { team, sets, communityCards, players }
 }

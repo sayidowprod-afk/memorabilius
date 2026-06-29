@@ -37,7 +37,7 @@ async function fetchPlayer(slug: string) {
       .ilike('nom', `%${lastName}%`)
       .not('image_recto', 'is', null)
       .order('created_at', { ascending: false })
-      .limit(48),
+      .limit(5000),
     supabase
       .from('profiles')
       .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
@@ -76,7 +76,6 @@ async function fetchPlayer(slug: string) {
   const lowerLast = lastName.toLowerCase()
   const csvCards = csvAll
     .filter(c => c.name.toLowerCase().includes(lowerLast))
-    .slice(0, 48)
     .map(c => ({
       id: `csv-${c.user_id}-${c.img}`,
       img: c.img,
@@ -91,13 +90,13 @@ async function fetchPlayer(slug: string) {
       source: 'csv' as const,
     }))
 
-  // Dédupliquer manuelles + CSV par img URL, limiter à 48
+  // Dédupliquer manuelles + CSV par img URL
   const seen = new Set<string>()
   const communityCards = [...manuellesCards, ...csvCards].filter(c => {
     if (seen.has(c.img)) return false
     seen.add(c.img)
     return true
-  }).slice(0, 48)
+  })
 
   const primarySport = sets[0]?.sport || 'nba'
   const headshot = await fetchEspnHeadshot(playerName, primarySport)
