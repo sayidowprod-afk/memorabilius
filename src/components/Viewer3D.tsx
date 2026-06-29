@@ -707,10 +707,10 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                 position: 'relative', transformStyle: 'preserve-3d', willChange: 'transform',
               }}>
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
-                  <img src={popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: popup.is_horizontal ? 'contain' : 'cover', display: 'block' }} alt={popup.n} />
+                  <img src={popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
                 </div>
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
-                  <img src={popup.b} draggable={false} style={{ width: '100%', height: '100%', objectFit: popup.is_horizontal ? 'contain' : 'cover', display: 'block' }} alt={popup.n} />
+                  <img src={popup.b} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
                 </div>
               </div>
             )}

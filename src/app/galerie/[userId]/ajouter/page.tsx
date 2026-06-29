@@ -47,6 +47,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const rotationRef = useRef(rotation)
   useEffect(() => { rotationRef.current = rotation }, [rotation])
   const cropRatioRef = useRef(CARD_RATIO)
+  const isHorizontalRef = useRef(false)
+  useEffect(() => { isHorizontalRef.current = form.is_horizontal }, [form.is_horizontal])
 
   const resetTransform = useCallback(() => {
     if (!imgRef.current || !containerRef.current) return
@@ -83,7 +85,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
   useEffect(() => {
     if (cropModal) {
-      cropRatioRef.current = (cropModal.side === 'il' || cropModal.side === 'ir') ? 3.5 / 2.5 : CARD_RATIO
+      cropRatioRef.current = (cropModal.side === 'il' || cropModal.side === 'ir' || isHorizontalRef.current) ? 3.5 / 2.5 : CARD_RATIO
       setImgTransform({ x: 0, y: 0, scale: 1 })
     }
   }, [cropModal])
@@ -257,7 +259,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const applyCropAndUpload = async () => {
     if (!cropModal || !containerRef.current || !imgRef.current) return
     const side = cropModal.side
-    const cropRatio = (side === 'il' || side === 'ir') ? 3.5 / 2.5 : CARD_RATIO
+    const cropRatio = (side === 'il' || side === 'ir' || isHorizontalRef.current) ? 3.5 / 2.5 : CARD_RATIO
     const container = containerRef.current
     const cw = container.clientWidth
     const ch = container.clientHeight
@@ -413,8 +415,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
         {/* Photos couvertures */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: form.booklet ? 16 : 24 }}>
-          <ImageUploader side="recto" label={lang === 'fr' ? (form.booklet ? 'Couverture avant *' : 'Photo Recto *') : (form.booklet ? 'Front cover *' : 'Front Photo *')} preview={previewRecto} uploading={uploadingRecto} />
-          <ImageUploader side="verso" label={lang === 'fr' ? (form.booklet ? 'Couverture arrière' : 'Photo Verso') : (form.booklet ? 'Back cover' : 'Back Photo')} preview={previewVerso} uploading={uploadingVerso} />
+          <ImageUploader side="recto" label={lang === 'fr' ? (form.booklet ? 'Couverture avant *' : 'Photo Recto *') : (form.booklet ? 'Front cover *' : 'Front Photo *')} preview={previewRecto} uploading={uploadingRecto} aspect={form.is_horizontal ? '3.5/2.5' : undefined} />
+          <ImageUploader side="verso" label={lang === 'fr' ? (form.booklet ? 'Couverture arrière' : 'Photo Verso') : (form.booklet ? 'Back cover' : 'Back Photo')} preview={previewVerso} uploading={uploadingVerso} aspect={form.is_horizontal ? '3.5/2.5' : undefined} />
         </div>
 
         {/* Photos intérieures (booklet seulement) */}
@@ -606,8 +608,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             {/* Cadre fixe centré — juste les coins, pas de bordure pleine */}
             {(() => {
               const isInt = cropModal.side === 'il' || cropModal.side === 'ir'
-              const ar = isInt ? '3.5/2.5' : '2.5/3.5'
-              const w = isInt ? `min(90%, calc(82vh * ${3.5/2.5}))` : `min(82%, calc(90vh * ${CARD_RATIO}))`
+              const isH = isInt || isHorizontalRef.current
+              const ar = isH ? '3.5/2.5' : '2.5/3.5'
+              const w = isH ? `min(90%, calc(82vh * ${3.5/2.5}))` : `min(82%, calc(90vh * ${CARD_RATIO}))`
               return (
             <div style={{
               position: 'absolute',

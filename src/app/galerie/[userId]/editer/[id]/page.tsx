@@ -41,6 +41,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const isDragging = useRef(false)
   const rotationRef = useRef(rotation)
   useEffect(() => { rotationRef.current = rotation }, [rotation])
+  const isHorizontalRef = useRef(false)
+  useEffect(() => { isHorizontalRef.current = form.is_horizontal }, [form.is_horizontal])
 
   useEffect(() => {
     supabase.from('cartes_manuelles').select('*').eq('id', id).single().then(({ data, error }) => {
@@ -71,8 +73,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     const container = containerRef.current
     const cw = container.clientWidth
     const ch = container.clientHeight
-    const frameW = Math.min(cw * 0.82, ch * 0.9 * CARD_RATIO)
-    const frameH = frameW / CARD_RATIO
+    const ratio = isHorizontalRef.current ? 3.5 / 2.5 : CARD_RATIO
+    const frameW = Math.min(cw * 0.82, ch * 0.9 * ratio)
+    const frameH = frameW / ratio
     const angleRad = (rotationRef.current * Math.PI) / 180
     const absCos = Math.abs(Math.cos(angleRad))
     const absSin = Math.abs(Math.sin(angleRad))
@@ -208,7 +211,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const applyCropAndUpload = async () => {
     if (!cropModal || !containerRef.current || !imgRef.current) return
     const side = cropModal.side
-    const cropRatio = CARD_RATIO
+    const cropRatio = isHorizontalRef.current ? 3.5 / 2.5 : CARD_RATIO
     const container = containerRef.current
     const cw = container.clientWidth; const ch = container.clientHeight
     const frameW = Math.min(cw * 0.82, ch * cropRatio * 0.9)
@@ -341,8 +344,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 }}>
-          <ImageUploader side="recto" label={lang === 'fr' ? 'Couverture Avant' : 'Front Cover'} preview={previewRecto} uploading={uploadingRecto} />
-          <ImageUploader side="verso" label={lang === 'fr' ? 'Couverture Arrière' : 'Back Cover'} preview={previewVerso} uploading={uploadingVerso} />
+          <ImageUploader side="recto" label={lang === 'fr' ? 'Couverture Avant' : 'Front Cover'} preview={previewRecto} uploading={uploadingRecto} aspect={form.is_horizontal ? '3.5/2.5' : undefined} />
+          <ImageUploader side="verso" label={lang === 'fr' ? 'Couverture Arrière' : 'Back Cover'} preview={previewVerso} uploading={uploadingVerso} aspect={form.is_horizontal ? '3.5/2.5' : undefined} />
         </div>
 
         {form.booklet && (
@@ -463,7 +466,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             style={{ position: 'relative', width: '100%', flex: 1, overflow: 'hidden', cursor: isDragging.current ? 'grabbing' : 'grab', touchAction: 'none', userSelect: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <img ref={imgRef} src={cropModal.src} alt="To crop" onLoad={resetTransform} draggable={false}
               style={{ position: 'absolute', maxWidth: 'none', transform: `translate(${imgTransform.x}px, ${imgTransform.y}px) scale(${imgTransform.scale}) rotate(${rotation}deg)`, transformOrigin: 'center center', pointerEvents: 'none', transition: 'none' }} />
-            <div style={{ position: 'absolute', pointerEvents: 'none', width: `min(82%, calc(90vh * ${CARD_RATIO}))`, aspectRatio: '2.5/3.5', boxShadow: '0 0 0 9999px rgba(0,0,0,0.55)', borderRadius: 6 }}>
+            <div style={{ position: 'absolute', pointerEvents: 'none', width: isHorizontalRef.current ? `min(90%, calc(82vh * ${3.5/2.5}))` : `min(82%, calc(90vh * ${CARD_RATIO}))`, aspectRatio: isHorizontalRef.current ? '3.5/2.5' : '2.5/3.5', boxShadow: '0 0 0 9999px rgba(0,0,0,0.55)', borderRadius: 6 }}>
               {[
                 { top: -2, left: -2, borderTop: '3px solid white', borderLeft: '3px solid white', borderRadius: '4px 0 0 0' },
                 { top: -2, right: -2, borderTop: '3px solid white', borderRight: '3px solid white', borderRadius: '0 4px 0 0' },
