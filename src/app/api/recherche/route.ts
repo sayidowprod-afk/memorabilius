@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { fetchEspnHeadshots } from '@/lib/espnHeadshot'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -129,26 +130,26 @@ export async function GET(req: NextRequest) {
     .slice(0, 20)
     .map(p => ({ name: p.name, isRc: p.isRc, sports: [...p.sports] }))
 
-  // Photo: cherche la première image de carte pour chaque joueur
+  // Headshots ESPN — une requête par sport dominant
   if (players.length > 0) {
-    // Une seule requête: cartes dont le nom contient le query (les résultats sont déjà filtrés par ce query)
-    const { data: photos } = await supabase
-      .from('cartes_manuelles')
-      .select('nom, image_recto')
-      .not('image_recto', 'is', null)
-      .ilike('nom', `%${query}%`)
-      .order('created_at', { ascending: false })
-      .limit(100)
+    const sportGroups = new Map<string, string[]>()
+    for (const p of players) {
+      const sport = p.sports[0] || 'nba'
+      if (!sportGroups.has(sport)) sportGroups.set(sport, [])
+    }
+    // Fetch ESPN pour chaque sport présent (en parallèle)
+    const espnMaps = await Promise.all(
+      [...sportGroups.keys()].map(async sport => ({ sport, map: await fetchEspnHeadshots(query, sport) }))
+    )
+    const combined = new Map<string, string>()
+    for (const { map } of espnMaps) map.forEach((v, k) => combined.set(k, v))
 
-    const photosData = photos || []
     players = players.map(p => {
-      const lastName = p.name.split(' ').slice(-1)[0].toLowerCase()
-      const firstName = p.name.split(' ')[0].toLowerCase()
-      const match = photosData.find(ph => {
-        const nom = ph.nom?.toLowerCase() || ''
-        return nom.includes(lastName) || nom.includes(firstName)
-      })
-      return { ...p, photo: match?.image_recto || null }
+      const lower = p.name.toLowerCase()
+      const photo = combined.get(lower)
+        || [...combined.entries()].find(([k]) => k.includes(lower) || lower.includes(k))?.[1]
+        || null
+      return { ...p, photo }
     })
   }
 

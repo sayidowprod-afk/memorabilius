@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
+import { fetchEspnHeadshot } from '@/lib/espnHeadshot'
 
 export const revalidate = 3600
 
@@ -98,7 +99,10 @@ async function fetchPlayer(slug: string) {
     return true
   }).slice(0, 48)
 
-  return { playerName, sets, communityCards, rcYear: sets.find((s: any) => s.isRc)?.year }
+  const primarySport = sets[0]?.sport || 'nba'
+  const headshot = await fetchEspnHeadshot(playerName, primarySport)
+
+  return { playerName, sets, communityCards, rcYear: sets.find((s: any) => s.isRc)?.year, headshot }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -120,7 +124,7 @@ const ACCENT = '#003DA6'
 
 export default async function JoueurPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const { playerName, sets, communityCards, rcYear } = await fetchPlayer(slug)
+  const { playerName, sets, communityCards, rcYear, headshot } = await fetchPlayer(slug)
 
   const sports = [...new Set(sets.map((s: any) => s.sport as string))]
 
@@ -137,25 +141,34 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 16px', fontFamily: 'Inter, sans-serif' }}>
       {/* Header */}
-      <div style={{ marginBottom: 32 }}>
-        <div style={{ fontSize: 11, color: ACCENT, fontWeight: 700, textTransform: 'uppercase', marginBottom: 6, letterSpacing: '0.08em' }}>
-          {sports.map(s => s.toUpperCase()).join(' · ')}
-        </div>
-        <h1 style={{ fontSize: 36, fontWeight: 900, margin: '0 0 12px', color: '#111' }}>{playerName}</h1>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          {rcYear && (
-            <span style={{ fontSize: 12, background: '#e67e22', color: 'white', padding: '3px 10px', borderRadius: 4, fontWeight: 700 }}>
-              RC {rcYear}
+      <div style={{ marginBottom: 32, display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
+        {headshot && (
+          <img
+            src={headshot}
+            alt={playerName}
+            style={{ width: 110, height: 110, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', border: '3px solid #f0f0f0', flexShrink: 0 }}
+          />
+        )}
+        <div>
+          <div style={{ fontSize: 11, color: ACCENT, fontWeight: 700, textTransform: 'uppercase', marginBottom: 6, letterSpacing: '0.08em' }}>
+            {sports.map(s => s.toUpperCase()).join(' · ')}
+          </div>
+          <h1 style={{ fontSize: 36, fontWeight: 900, margin: '0 0 12px', color: '#111' }}>{playerName}</h1>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {rcYear && (
+              <span style={{ fontSize: 12, background: '#e67e22', color: 'white', padding: '3px 10px', borderRadius: 4, fontWeight: 700 }}>
+                RC {rcYear}
+              </span>
+            )}
+            <span style={{ fontSize: 12, background: '#f0f4ff', color: ACCENT, padding: '3px 10px', borderRadius: 4, fontWeight: 700 }}>
+              {sets.length} set{sets.length > 1 ? 's' : ''}
             </span>
-          )}
-          <span style={{ fontSize: 12, background: '#f0f4ff', color: ACCENT, padding: '3px 10px', borderRadius: 4, fontWeight: 700 }}>
-            {sets.length} set{sets.length > 1 ? 's' : ''}
-          </span>
-          {communityCards.length > 0 && (
-            <span style={{ fontSize: 12, background: '#f0f0f0', color: '#555', padding: '3px 10px', borderRadius: 4, fontWeight: 700 }}>
-              {communityCards.length} carte{communityCards.length > 1 ? 's' : ''} en communauté
-            </span>
-          )}
+            {communityCards.length > 0 && (
+              <span style={{ fontSize: 12, background: '#f0f0f0', color: '#555', padding: '3px 10px', borderRadius: 4, fontWeight: 700 }}>
+                {communityCards.length} carte{communityCards.length > 1 ? 's' : ''} en communauté
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
