@@ -74,7 +74,11 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     const cw = container.clientWidth
     const ch = container.clientHeight
     const ratio = isHorizontalRef.current ? 3.5 / 2.5 : CARD_RATIO
-    const frameW = Math.min(cw * 0.82, ch * 0.9 * ratio)
+    // Portrait : contrainte largeur (82vw) ou hauteur (90vh)
+    // Paysage  : contrainte largeur (90vw) ou hauteur (82vh) — doit correspondre au CSS du cadre
+    const frameW = isHorizontalRef.current
+      ? Math.min(cw * 0.90, ch * 0.82 * ratio)
+      : Math.min(cw * 0.82, ch * 0.90 * ratio)
     const frameH = frameW / ratio
     const angleRad = (rotationRef.current * Math.PI) / 180
     const absCos = Math.abs(Math.cos(angleRad))
@@ -214,7 +218,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     const cropRatio = isHorizontalRef.current ? 3.5 / 2.5 : CARD_RATIO
     const container = containerRef.current
     const cw = container.clientWidth; const ch = container.clientHeight
-    const frameW = Math.min(cw * 0.82, ch * cropRatio * 0.9)
+    const frameW = isHorizontalRef.current
+      ? Math.min(cw * 0.90, ch * 0.82 * cropRatio)
+      : Math.min(cw * 0.82, ch * 0.90 * cropRatio)
     const frameH = frameW / cropRatio
     const img = imgRef.current
     const angleRad = (rotation * Math.PI) / 180
