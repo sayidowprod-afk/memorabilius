@@ -18,6 +18,7 @@ import { CSS } from '@dnd-kit/utilities'
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 import { useLang } from '@/lib/LangContext'
 import { getSpeciality, getTeamById } from '@/lib/sportsTeams'
+import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
 
 function SortableCard({ id, disabled, children, className, style, onClick }: {
@@ -54,12 +55,41 @@ function SortableCard({ id, disabled, children, className, style, onClick }: {
 
 const PAGE_SIZE = 48
 
+function renderCardImage(card: { f: string; n: string; format?: string; is_horizontal?: boolean }) {
+  const fmt = getFormat(card.format)
+  const horiz = isHorizontalFormat(card.format, card.is_horizontal)
+  const ratio = cardDisplayRatio(card.format, card.is_horizontal)
+
+  if (fmt.isSlab) {
+    return (
+      <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative', background: '#111', borderRadius: 2 }}>
+        <img src={card.f} alt={card.n} loading="lazy"
+          style={{ display: 'block', objectFit: 'cover', margin: '5px 5px 0', width: 'calc(100% - 10px)', height: 'calc(100% - 24px)' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 19,
+          background: 'linear-gradient(135deg, #c8a84b 0%, #f5d67a 45%, #c8a84b 100%)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 7, fontWeight: 900, letterSpacing: '0.12em', color: '#1a1a1a' }}>SLAB</span>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative' }}>
+      <img src={card.f} alt={card.n} loading="lazy"
+        style={horiz
+          ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' }
+          : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+    </div>
+  )
+}
+
 interface Card {
   id_manuelle?: string;
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string
   auto: boolean; rc: boolean; patch: boolean; g: string
-  booklet?: boolean; is_horizontal?: boolean; il?: string; ir?: string
+  booklet?: boolean; is_horizontal?: boolean; format?: string; il?: string; ir?: string
   isManuelle?: boolean
   created_at?: string; position?: number; collection_tag?: string;
 }
@@ -268,7 +298,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         br: m.marque || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', card_number: m.card_number || '', auto: m.auto || false, rc: m.rc || false,
         patch: m.patch || false, g: m.grade || 'Raw', isManuelle: true,
-        booklet: m.booklet || false, is_horizontal: m.is_horizontal || false,
+        booklet: m.booklet || false, is_horizontal: m.is_horizontal || false, format: m.format || (m.is_horizontal ? 'horizontal' : 'standard'),
         il: m.image_interieur_gauche || '', ir: m.image_interieur_droite || '',
         created_at: m.created_at || '', position: m.position ?? 9999,
         collection_tag: m.collection_tag || ''
@@ -698,9 +728,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900,
                         }}>✕</button>
                       )}
-                      <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
-                        <img src={card.f} alt={card.n} loading="lazy" style={card.is_horizontal ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                      </div>
+                      {renderCardImage(card)}
                       <div style={{ padding: '6px 8px' }}>
                         <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</p>
                         <p style={{ fontSize: 9, color: resolvedColor, fontWeight: 700, margin: '1px 0 0', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.v || card.s}</p>
@@ -778,9 +806,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                                 onMouseEnter={e => { if (!isGradient(tabColor)) e.currentTarget.style.borderColor = tabColor }}
                                 onMouseLeave={e => { if (!isGradient(tabColor)) e.currentTarget.style.borderColor = tabColor + '55' }}
                               >
-                                <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
-                                  <img src={card.f} alt={card.n} loading="lazy" style={card.is_horizontal ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                                </div>
+                                {renderCardImage(card)}
                                 <div style={{ padding: '4px 6px', background: 'white' }}>
                                   <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</p>
                                   <p style={{ fontSize: 9, color: '#999', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.s}</p>
@@ -1377,9 +1403,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   </div>
                 </div>
               )}
-              <div style={{ width: '100%', aspectRatio: '2.5/3.5', marginBottom: 8, overflow: 'hidden', position: 'relative' }}>
-                <img src={d.f} loading="lazy" style={d.is_horizontal ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={d.n} />
-              </div>
+              <div style={{ width: '100%', marginBottom: 8 }}>{renderCardImage(d)}</div>
               {getTags(d)}
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4, marginTop: 4 }}>
                 <div style={{ minWidth: 0 }}>

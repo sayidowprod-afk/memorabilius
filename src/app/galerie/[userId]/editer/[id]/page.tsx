@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import CardScanner from '@/components/CardScanner'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
+import { CARD_FORMATS, getFormat } from '@/lib/cardFormats'
 
 const CARD_RATIO = 2.5 / 3.5
 
@@ -27,7 +28,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
     grade: 'Raw', num: '', card_number: '', rc: false, auto: false, patch: false,
     image_recto: '', image_verso: '', collection_tag: '',
-    booklet: false, is_horizontal: false, image_interieur_gauche: '', image_interieur_droite: '',
+    booklet: false, is_horizontal: false, format: 'standard',
+    image_interieur_gauche: '', image_interieur_droite: '',
   })
 
   const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
@@ -42,7 +44,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const rotationRef = useRef(rotation)
   useEffect(() => { rotationRef.current = rotation }, [rotation])
   const isHorizontalRef = useRef(false)
-  useEffect(() => { isHorizontalRef.current = form.is_horizontal }, [form.is_horizontal])
+  useEffect(() => { isHorizontalRef.current = form.format === 'horizontal' || form.is_horizontal }, [form.format, form.is_horizontal])
 
   useEffect(() => {
     supabase.from('cartes_manuelles').select('*').eq('id', id).single().then(({ data, error }) => {
@@ -56,6 +58,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         collection_tag: data.collection_tag || '',
         booklet: data.booklet || false,
         is_horizontal: data.is_horizontal || false,
+        format: data.format || (data.is_horizontal ? 'horizontal' : 'standard'),
         image_interieur_gauche: data.image_interieur_gauche || '',
         image_interieur_droite: data.image_interieur_droite || '',
       })
@@ -215,7 +218,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const applyCropAndUpload = async () => {
     if (!cropModal || !containerRef.current || !imgRef.current) return
     const side = cropModal.side
-    const cropRatio = isHorizontalRef.current ? 3.5 / 2.5 : CARD_RATIO
+    const cropRatio = getFormat(form.format).cropRatio
     const container = containerRef.current
     const cw = container.clientWidth; const ch = container.clientHeight
     const frameW = isHorizontalRef.current
@@ -265,7 +268,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       num: form.num || null, card_number: form.card_number || null, rc: form.rc, auto: form.auto, patch: form.patch,
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
       collection_tag: form.collection_tag || null,
-      booklet: form.booklet, is_horizontal: form.is_horizontal,
+      format: form.format || 'standard',
+      booklet: form.booklet, is_horizontal: form.format === 'horizontal',
       image_interieur_gauche: form.image_interieur_gauche || null,
       image_interieur_droite: form.image_interieur_droite || null,
     }).eq('id', id).eq('user_id', user.id)
@@ -433,6 +437,25 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           </div>
 
           <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {CARD_FORMATS.map(fmt => (
+                <button key={fmt.id} type="button" onClick={() => setForm({ ...form, format: fmt.id })}
+                  style={{
+                    padding: '8px 14px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 12, transition: '0.15s',
+                    border: form.format === fmt.id ? '2px solid #003DA6' : '2px solid #e0e0e0',
+                    background: form.format === fmt.id ? '#003DA6' : 'white',
+                    color: form.format === fmt.id ? 'white' : '#333',
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, minWidth: 64,
+                  }}>
+                  <span style={{ fontSize: 18, lineHeight: 1 }}>{fmt.icon}</span>
+                  <span>{fmt.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Caractéristiques' : 'Features'}</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
               {[
@@ -440,7 +463,6 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
                 { key: 'auto', label: 'AUTO', activeBg: '#2e7d32' },
                 { key: 'patch', label: 'PATCH', activeBg: '#1976d2' },
                 { key: 'booklet', label: '📖 BOOKLET', activeBg: '#7b1fa2' },
-                { key: 'is_horizontal', label: '↔ HORIZONTALE', activeBg: '#0097a7' },
               ].map(tag => (
                 <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })}
                   style={{ padding: '10px 20px', border: 'none', borderRadius: 20, cursor: 'pointer', fontWeight: 900, fontSize: 13, transition: '0.2s',

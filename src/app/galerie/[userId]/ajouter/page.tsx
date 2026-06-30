@@ -7,6 +7,7 @@ import { useLang } from '@/lib/LangContext'
 import CardScanner from '@/components/CardScanner'
 import CameraCapture from '@/components/CameraCapture'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
+import { CARD_FORMATS, getFormat } from '@/lib/cardFormats'
 
 const CARD_RATIO = 2.5 / 3.5
 
@@ -25,7 +26,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [uploadingIR, setUploadingIR] = useState(false)
   const [form, setForm] = useState({
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
-    grade: 'Raw', num: '', card_number: '', rc: false, auto: false, patch: false, booklet: false, is_horizontal: false, collection_tag: '',
+    grade: 'Raw', num: '', card_number: '', rc: false, auto: false, patch: false, booklet: false,
+    is_horizontal: false, format: 'standard', collection_tag: '',
     image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
   })
 
@@ -48,7 +50,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   useEffect(() => { rotationRef.current = rotation }, [rotation])
   const cropRatioRef = useRef(CARD_RATIO)
   const isHorizontalRef = useRef(false)
-  useEffect(() => { isHorizontalRef.current = form.is_horizontal }, [form.is_horizontal])
+  useEffect(() => { isHorizontalRef.current = form.format === 'horizontal' || form.is_horizontal }, [form.format, form.is_horizontal])
 
   const resetTransform = useCallback(() => {
     if (!imgRef.current || !containerRef.current) return
@@ -87,7 +89,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
   useEffect(() => {
     if (cropModal) {
-      cropRatioRef.current = (cropModal.side === 'il' || cropModal.side === 'ir' || isHorizontalRef.current) ? 3.5 / 2.5 : CARD_RATIO
+      cropRatioRef.current = (cropModal.side === 'il' || cropModal.side === 'ir') ? 3.5 / 2.5 : getFormat(form.format).cropRatio
       setImgTransform({ x: 0, y: 0, scale: 1 })
     }
   }, [cropModal])
@@ -320,7 +322,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       user_id: uid, nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
       marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, grade: form.grade,
       num: form.num || null, card_number: form.card_number || null,
-      rc: form.rc, auto: form.auto, patch: form.patch, booklet: form.booklet, is_horizontal: form.is_horizontal,
+      rc: form.rc, auto: form.auto, patch: form.patch, booklet: form.booklet,
+      format: form.format || 'standard',
+      is_horizontal: form.format === 'horizontal',
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
       image_interieur_gauche: form.image_interieur_gauche || null,
       image_interieur_droite: form.image_interieur_droite || null,
@@ -433,8 +437,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
         {/* Photos couvertures */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: form.booklet ? 16 : 24 }}>
-          <ImageUploader side="recto" label={lang === 'fr' ? (form.booklet ? 'Couverture avant *' : 'Photo Recto *') : (form.booklet ? 'Front cover *' : 'Front Photo *')} preview={previewRecto} uploading={uploadingRecto} aspect={form.is_horizontal ? '3.5/2.5' : undefined} />
-          <ImageUploader side="verso" label={lang === 'fr' ? (form.booklet ? 'Couverture arrière' : 'Photo Verso') : (form.booklet ? 'Back cover' : 'Back Photo')} preview={previewVerso} uploading={uploadingVerso} aspect={form.is_horizontal ? '3.5/2.5' : undefined} />
+          <ImageUploader side="recto" label={lang === 'fr' ? (form.booklet ? 'Couverture avant *' : 'Photo Recto *') : (form.booklet ? 'Front cover *' : 'Front Photo *')} preview={previewRecto} uploading={uploadingRecto} aspect={getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined} />
+          <ImageUploader side="verso" label={lang === 'fr' ? (form.booklet ? 'Couverture arrière' : 'Photo Verso') : (form.booklet ? 'Back cover' : 'Back Photo')} preview={previewVerso} uploading={uploadingVerso} aspect={getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined} />
         </div>
 
         {/* Photos intérieures (booklet seulement) */}
@@ -521,6 +525,25 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           </div>
 
           <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {CARD_FORMATS.map(fmt => (
+                <button key={fmt.id} type="button" onClick={() => setForm({ ...form, format: fmt.id })}
+                  style={{
+                    padding: '8px 14px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 12, transition: '0.15s',
+                    border: form.format === fmt.id ? '2px solid #003DA6' : '2px solid #e0e0e0',
+                    background: form.format === fmt.id ? '#003DA6' : 'white',
+                    color: form.format === fmt.id ? 'white' : '#333',
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, minWidth: 64,
+                  }}>
+                  <span style={{ fontSize: 18, lineHeight: 1 }}>{fmt.icon}</span>
+                  <span>{fmt.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Caractéristiques' : 'Features'}</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
               {[
@@ -528,7 +551,6 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                 { key: 'auto', label: 'AUTO', activeBg: '#2e7d32' },
                 { key: 'patch', label: 'PATCH', activeBg: '#1976d2' },
                 { key: 'booklet', label: '📖 BOOKLET', activeBg: '#7b1fa2' },
-                { key: 'is_horizontal', label: '↔ HORIZONTALE', activeBg: '#0097a7' },
               ].map(tag => (
                 <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })}
                   style={{
