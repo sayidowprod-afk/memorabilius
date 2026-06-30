@@ -22,17 +22,26 @@ export async function POST(req: NextRequest) {
   if (!isChef && !isAdmin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   if (action === 'accept') {
-    await supabase.from('team_candidatures').update({ statut: 'accepte' }).eq('id', candidatureId)
-    const { error } = await supabase.from('team_members').insert({ team_id: teamId, user_id: userId })
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-    // Notification au candidat
+    // L'ajout au team_members doit réussir AVANT de marquer la candidature comme acceptée,
+    // sinon on se retrouve avec une candidature "acceptée" mais personne n'est membre.
+    const { error: memberError } = await supabase.from('team_members').insert({ team_id: teamId, user_id: userId })
+    // 23505 = violation de contrainte unique → déjà membre, on continue (idempotent)
+    if (memberError && memberError.code !== '23505') {
+      return NextResponse.json({ error: memberError.message }, { status: 500 })
+    }
+
+    const { error: candError } = await supabase.from('team_candidatures').update({ statut: 'accepte' }).eq('id', candidatureId)
+    if (candError) return NextResponse.json({ error: candError.message }, { status: 500 })
+
+    // Notification au candidat (best-effort, ne bloque pas la réponse)
     await supabase.from('notifications').insert({
       user_id: userId, type: 'team_join', lu: false,
       message: 'Votre candidature a été acceptée ! Vous êtes maintenant membre de la team.',
       lien: `/teams/${teamId}`,
     })
   } else {
-    await supabase.from('team_candidatures').update({ statut: 'refuse' }).eq('id', candidatureId)
+    const { error: candError } = await supabase.from('team_candidatures').update({ statut: 'refuse' }).eq('id', candidatureId)
+    if (candError) return NextResponse.json({ error: candError.message }, { status: 500 })
     await supabase.from('notifications').insert({
       user_id: userId, type: 'system', lu: false,
       message: 'Votre candidature à la team n\'a pas été retenue.',

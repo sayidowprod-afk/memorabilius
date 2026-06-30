@@ -348,16 +348,26 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
   const accepterCandidature = async (cand: any) => {
     const { data: { session } } = await supabase.auth.getSession()
-    await fetch('/api/team-accept', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
+    const res = await fetch('/api/team-accept', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
       body: JSON.stringify({ candidatureId: cand.id, teamId: parseInt(teamId), userId: cand.user_id, action: 'accept' }) })
+    if (!res.ok) {
+      const { error } = await res.json().catch(() => ({ error: 'Erreur inconnue' }))
+      alert(lang === 'fr' ? `Erreur lors de l'acceptation : ${error}` : `Error accepting: ${error}`)
+      return
+    }
     setCandidatures(prev => prev.filter(c => c.id !== cand.id))
     init()
   }
 
   const refuserCandidature = async (cand: any) => {
     const { data: { session } } = await supabase.auth.getSession()
-    await fetch('/api/team-accept', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
+    const res = await fetch('/api/team-accept', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
       body: JSON.stringify({ candidatureId: cand.id, teamId: parseInt(teamId), userId: cand.user_id, action: 'refuse' }) })
+    if (!res.ok) {
+      const { error } = await res.json().catch(() => ({ error: 'Erreur inconnue' }))
+      alert(lang === 'fr' ? `Erreur : ${error}` : `Error: ${error}`)
+      return
+    }
     setCandidatures(prev => prev.filter(c => c.id !== cand.id))
   }
 
