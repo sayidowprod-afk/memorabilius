@@ -353,13 +353,21 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const { data: { user } } = await supabase.auth.getUser()
     if (!user || user.id !== userId) { router.push('/connexion'); return }
 
-    // Vérifier les doublons potentiels (même nom + même année ou même marque)
-    const { data: dups } = await supabase
-      .from('cartes_manuelles')
-      .select('id, nom, annee, marque, image_recto')
-      .eq('user_id', user.id)
-      .ilike('nom', form.nom.trim())
-      .limit(5)
+    // Doublon = même nom + même année + même marque (les 3 doivent matcher)
+    // Si l'un des champs est vide, on ne peut pas conclure → on laisse passer
+    let dups: DupCard[] | null = null
+    if (form.nom.trim() && form.annee && form.marque.trim()) {
+      const q = supabase
+        .from('cartes_manuelles')
+        .select('id, nom, annee, marque, image_recto')
+        .eq('user_id', user.id)
+        .ilike('nom', form.nom.trim())
+        .eq('annee', parseInt(form.annee))
+        .ilike('marque', form.marque.trim())
+        .limit(5)
+      const { data } = await q
+      dups = data as DupCard[] | null
+    }
 
     if (dups && dups.length > 0) {
       setDupWarning({ cards: dups as DupCard[], userId: user.id })
