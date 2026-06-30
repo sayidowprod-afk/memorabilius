@@ -133,7 +133,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
   const [scanning, setScanning] = useState(false)
   const [scanError, setScanError] = useState<string | null>(null)
-  type DupCard = { id: string; nom: string; annee: number | null; marque: string | null; image_recto: string | null }
+  type DupCard = { id: string; nom: string; annee: number | null; marque: string | null; num: string | null; image_recto: string | null }
   const [dupWarning, setDupWarning] = useState<{ cards: DupCard[]; userId: string } | null>(null)
   const rectoBase64Ref = useRef<string | null>(null)
 
@@ -353,19 +353,19 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const { data: { user } } = await supabase.auth.getUser()
     if (!user || user.id !== userId) { router.push('/connexion'); return }
 
-    // Doublon = même nom + même année + même marque (les 3 doivent matcher)
-    // Si l'un des champs est vide, on ne peut pas conclure → on laisse passer
+    // Doublon = nom + année + marque + numérotation identiques (tout doit matcher, ex: 3/25 ≠ 5/25)
+    // Si nom/année/marque est vide, on ne peut pas conclure → on laisse passer
     let dups: DupCard[] | null = null
     if (form.nom.trim() && form.annee && form.marque.trim()) {
-      const q = supabase
+      let q = supabase
         .from('cartes_manuelles')
-        .select('id, nom, annee, marque, image_recto')
+        .select('id, nom, annee, marque, num, image_recto')
         .eq('user_id', user.id)
         .ilike('nom', form.nom.trim())
         .eq('annee', parseInt(form.annee))
         .ilike('marque', form.marque.trim())
-        .limit(5)
-      const { data } = await q
+      q = form.num.trim() ? q.eq('num', form.num.trim()) : q.is('num', null)
+      const { data } = await q.limit(5)
       dups = data as DupCard[] | null
     }
 
@@ -605,7 +605,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                     : <div style={{ width: 72, height: 100, background: '#f0f0f0', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>🃏</div>
                   }
                   <div style={{ fontSize: 10, color: '#999', marginTop: 4, maxWidth: 72, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {c.annee}{c.marque ? ` · ${c.marque}` : ''}
+                    {c.annee}{c.marque ? ` · ${c.marque}` : ''}{c.num ? ` · ${c.num}` : ''}
                   </div>
                 </div>
               ))}
