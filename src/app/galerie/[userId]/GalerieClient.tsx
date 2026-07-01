@@ -58,7 +58,11 @@ const PAGE_SIZE = 48
 function renderCardImage(card: { f: string; n: string; format?: string; is_horizontal?: boolean }) {
   const fmt = getFormat(card.format)
   const horiz = isHorizontalFormat(card.format, card.is_horizontal)
-  const ratio = cardDisplayRatio(card.format, card.is_horizontal)
+  // La grille utilise des emplacements uniformément portrait (2.5/3.5) pour
+  // garder l'alignement des colonnes ; les cartes horizontales sont pivotées
+  // à l'intérieur plutôt que d'élargir leur emplacement (sinon incohérent
+  // avec la rotation ci-dessous, qui est calculée pour un cadre portrait fixe)
+  const ratio = fmt.isSlab ? cardDisplayRatio(card.format, card.is_horizontal) : '2.5/3.5'
 
   if (fmt.isSlab) {
     return (

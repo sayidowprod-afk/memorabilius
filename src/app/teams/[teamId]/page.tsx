@@ -4,9 +4,118 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
+import { teamSlug as toTeamSlug } from '@/lib/playerSlug'
 
 const ACCENT = '#003DA6'
 const EMOJIS = ['👍', '❤️', '🔥', '😂', '😮', '🏀', '💎', '🐐']
+
+// ── Liens dans le chat : détection URL + aperçu riche pour les liens Memorabilius ──
+const URL_REGEX = /(https?:\/\/[^\s]+)/g
+const SITE_HOSTS = ['memorabilius.fr', 'www.memorabilius.fr']
+
+type ParsedMemoLink =
+  | { type: 'carte'; userId: string; card: string }
+  | { type: 'galerie'; userId: string }
+  | { type: 'joueur'; slug: string }
+  | { type: 'equipe'; slug: string }
+  | { type: 'setlist'; id: string }
+  | { type: 'teams'; id: string }
+
+function parseMemorabiliusLink(url: string): ParsedMemoLink | null {
+  try {
+    const u = new URL(url)
+    if (!SITE_HOSTS.includes(u.hostname) && !u.hostname.endsWith('.vercel.app') && u.hostname !== 'localhost') return null
+    const parts = u.pathname.split('/').filter(Boolean)
+    if (parts[0] === 'galerie' && parts[1]) {
+      const card = u.searchParams.get('card')
+      return card ? { type: 'carte', userId: parts[1], card } : { type: 'galerie', userId: parts[1] }
+    }
+    if (parts[0] === 'joueur' && parts[1]) return { type: 'joueur', slug: parts[1] }
+    if (parts[0] === 'equipe' && parts[1]) return { type: 'equipe', slug: parts[1] }
+    if (parts[0] === 'setlist' && parts[1]) return { type: 'setlist', id: parts[1] }
+    if (parts[0] === 'teams' && parts[1]) return { type: 'teams', id: parts[1] }
+    return null
+  } catch { return null }
+}
+
+function slugToLabel(slug: string) {
+  return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+}
+
+function MemoLinkPreview({ url }: { url: string }) {
+  const parsed = parseMemorabiliusLink(url)
+  const [data, setData] = useState<{ title: string; subtitle?: string; img?: string | null; icon: string; round?: boolean } | null | undefined>(undefined)
+
+  useEffect(() => {
+    if (!parsed) return
+    let cancelled = false
+    ;(async () => {
+      if (parsed.type === 'carte') {
+        const { data: c } = await supabase.from('cartes_manuelles').select('nom, image_recto, annee, marque')
+          .eq('user_id', parsed.userId).eq('image_recto', parsed.card).maybeSingle()
+        if (!cancelled) setData(c ? { title: c.nom, subtitle: [c.annee, c.marque].filter(Boolean).join(' · '), img: c.image_recto, icon: '🃏' } : null)
+      } else if (parsed.type === 'galerie') {
+        const { data: p } = await supabase.from('profiles').select('display_name, avatar_url').eq('id', parsed.userId).single()
+        if (!cancelled) setData(p ? { title: p.display_name, subtitle: 'Collectionneur', img: p.avatar_url, icon: '👤', round: true } : null)
+      } else if (parsed.type === 'setlist') {
+        const { data: s } = await supabase.from('card_sets').select('name, year, brand').eq('id', parsed.id).single()
+        if (!cancelled) setData(s ? { title: s.name, subtitle: [s.year, s.brand].filter(Boolean).join(' · '), icon: '📋' } : null)
+      } else if (parsed.type === 'teams') {
+        const { data: t } = await supabase.from('teams').select('name, avatar_url').eq('id', parsed.id).single()
+        if (!cancelled) setData(t ? { title: t.name, subtitle: 'Team', img: t.avatar_url, icon: '🛡️', round: true } : null)
+      } else if (parsed.type === 'joueur') {
+        if (!cancelled) setData({ title: slugToLabel(parsed.slug), subtitle: 'Joueur', icon: '🏀' })
+      } else if (parsed.type === 'equipe') {
+        const team = SPORTS_TEAMS.find(t => toTeamSlug(t.name) === parsed.slug)
+        if (!cancelled) setData(team ? { title: team.name, subtitle: team.sport.toUpperCase(), img: teamLogoUrl(team), icon: '🏟️' } : null)
+      }
+    })()
+    return () => { cancelled = true }
+  }, [url])
+
+  if (!parsed) {
+    return <a href={url} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline', wordBreak: 'break-all' }}>{url}</a>
+  }
+  if (data === undefined) return <span style={{ opacity: 0.6 }}>{url}</span>
+  if (data === null) return <a href={url} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline', wordBreak: 'break-all' }}>{url}</a>
+
+  const href = parsed.type === 'carte' ? `/galerie/${parsed.userId}?card=${encodeURIComponent(parsed.card)}`
+    : parsed.type === 'galerie' ? `/galerie/${parsed.userId}`
+    : parsed.type === 'joueur' ? `/joueur/${parsed.slug}`
+    : parsed.type === 'equipe' ? `/equipe/${parsed.slug}`
+    : parsed.type === 'setlist' ? `/setlist/${parsed.id}`
+    : `/teams/${parsed.id}`
+
+  return (
+    <Link href={href} style={{ textDecoration: 'none', display: 'block', marginTop: 4 }} onClick={e => e.stopPropagation()}>
+      <div style={{ background: 'rgba(0,0,0,0.06)', borderRadius: 8, padding: 6, display: 'flex', gap: 8, alignItems: 'center' }}>
+        {data.img
+          ? <img src={data.img} style={{ width: 36, height: 36, borderRadius: data.round ? '50%' : 4, objectFit: 'cover', flexShrink: 0 }} alt="" />
+          : <span style={{ fontSize: 20, flexShrink: 0 }}>{data.icon}</span>}
+        <div style={{ minWidth: 0 }}>
+          <div style={{ fontWeight: 800, fontSize: 12.5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{data.title}</div>
+          {data.subtitle && <div style={{ fontSize: 10.5, opacity: 0.7 }}>{data.subtitle}</div>}
+        </div>
+      </div>
+    </Link>
+  )
+}
+
+function LinkifiedText({ text }: { text: string }) {
+  // Regex globale : ne pas réutiliser .test() dessus (lastIndex partagé, résultats
+  // alternants faux) — split() suffit, on vérifie ensuite chaque part isolément
+  const parts = text.split(URL_REGEX)
+  return (
+    <>
+      {parts.map((part, i) =>
+        /^https?:\/\//.test(part)
+          ? <MemoLinkPreview key={i} url={part} />
+          : <span key={i}>{part}</span>
+      )}
+    </>
+  )
+}
 
 export default function TeamPage({ params }: { params: Promise<{ teamId: string }> }) {
   const { teamId } = use(params)
@@ -557,7 +666,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                 )}
               </div>
               {/* Contenu */}
-              {post.content && <p style={{ fontSize: 15, color: '#222', margin: '0 0 12px', lineHeight: 1.6 }}>{post.content}</p>}
+              {post.content && <p style={{ fontSize: 15, color: '#222', margin: '0 0 12px', lineHeight: 1.6 }}><LinkifiedText text={post.content} /></p>}
               {post.card_ids?.length > 0 && <PostCardsPreview cardIds={post.card_ids} userId={post.user_id} />}
               {post.card_key && post.card_user_id && !post.card_ids?.length && <CardPreview cardKey={post.card_key} userId={post.card_user_id} />}
               {/* Réactions */}
@@ -738,7 +847,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                   <div style={{ maxWidth: '72%' }}>
                     {!isMe && <p style={{ fontSize: 11, color: '#999', margin: '0 0 3px', fontWeight: 700 }}>{msg.profiles?.display_name}</p>}
                     <div style={{ background: isMe ? ACCENT : '#f0f0f0', color: isMe ? 'white' : '#121212', padding: '10px 14px', borderRadius: isMe ? '16px 16px 4px 16px' : '16px 16px 16px 4px', fontSize: 14, lineHeight: 1.5 }}>
-                      {msg.contenu && <span>{msg.contenu}</span>}
+                      {msg.contenu && <LinkifiedText text={msg.contenu} />}
                       {msg.card_key && msg.card_user_id && <CardPreview cardKey={msg.card_key} userId={msg.card_user_id} compact />}
                     </div>
                     {/* Réactions sur messages */}
