@@ -42,13 +42,9 @@ async function getNbaPlayerMap(): Promise<Map<string, number>> {
 async function fetchNbaHeadshot(name: string): Promise<string | null> {
   const map = await getNbaPlayerMap()
   if (map.size === 0) return null
-  const lower = name.toLowerCase()
-  let id = map.get(lower)
-  if (!id) {
-    for (const [k, v] of map) {
-      if (k.includes(lower) || lower.includes(k)) { id = v; break }
-    }
-  }
+  // Match exact uniquement — le fuzzy substring matchait parfois le mauvais joueur
+  // (ex: Anthony Edwards → photo d'un joueur historique au nom proche)
+  const id = map.get(name.toLowerCase())
   if (!id) return null
   return `https://cdn.nba.com/headshots/nba/latest/1040x760/${id}.png`
 }
@@ -57,6 +53,12 @@ async function fetchNbaHeadshot(name: string): Promise<string | null> {
 const SPORT_MAP: Record<string, string> = {
   nba: 'basketball', nfl: 'football', nhl: 'hockey', mlb: 'baseball', football: 'soccer',
 }
+
+// Ligue ESPN attendue par sport interne — sert à écarter les homonymes d'autres
+// sports/ligues que l'API de recherche ESPN renvoie parfois (ex: chercher
+// "Michael Jordan" en NBA retourne aussi un joueur de football universitaire
+// du même nom ; "defaultLeagueSlug" permet de les distinguer précisément)
+const LEAGUE_MAP: Record<string, string> = { nba: 'nba', nfl: 'nfl', nhl: 'nhl', mlb: 'mlb' }
 
 // Normalise pour comparaison insensible aux accents, ponctuation et casse
 // "O.G. Anunoby" → "og anunoby" | "Nikola Jokić" → "nikola jokic"
@@ -70,6 +72,7 @@ function norm(s: string): string {
 
 async function fetchEspnMap(query: string, sport = 'nba'): Promise<Map<string, string>> {
   const espnSport = SPORT_MAP[sport] || 'basketball'
+  const expectedLeague = LEAGUE_MAP[sport]
   // Map double : clé exacte lowercase ET clé normalisée → même URL
   const result = new Map<string, string>()
   try {
@@ -79,6 +82,9 @@ async function fetchEspnMap(query: string, sport = 'nba'): Promise<Map<string, s
     const data = await r.json()
     for (const section of data.results ?? []) {
       for (const a of section.contents ?? []) {
+        // Écarte les homonymes d'une autre ligue (ex: "Michael Jordan" NFL/NCAA
+        // renvoyé par ESPN à côté du vrai joueur NBA du même nom)
+        if (expectedLeague && a.defaultLeagueSlug && a.defaultLeagueSlug !== expectedLeague) continue
         const photo: string | undefined = a.image?.default
         if (a.displayName && photo) {
           const name = a.displayName as string
@@ -131,7 +137,6 @@ export async function fetchEspnHeadshot(name: string, sport = 'nba'): Promise<st
 }
 
 // ── Bio ESPN (date de naissance, lieu, historique d'équipes) ──────────────────
-const LEAGUE_MAP: Record<string, string> = { nba: 'nba', nfl: 'nfl', nhl: 'nhl', mlb: 'mlb' }
 
 export interface EspnPlayerBio {
   birthDate: string | null
@@ -141,20 +146,26 @@ export interface EspnPlayerBio {
 
 async function findEspnAthleteId(name: string, sport: string): Promise<string | null> {
   const espnSport = SPORT_MAP[sport] || 'basketball'
+  const expectedLeague = LEAGUE_MAP[sport]
   try {
     const url = `https://site.api.espn.com/apis/search/v2?query=${encodeURIComponent(name)}&limit=20&type=player&sport=${espnSport}`
     const r = await fetch(url, { signal: AbortSignal.timeout(3000), next: { revalidate: 86400 } } as RequestInit)
     if (!r.ok) return null
     const data = await r.json()
     const target = norm(name)
+    let fallback: string | null = null
     for (const section of data.results ?? []) {
       for (const a of section.contents ?? []) {
-        if (a.displayName && norm(a.displayName) === target && a.uid) {
-          const m = /a:(\d+)/.exec(a.uid)
-          if (m) return m[1]
-        }
+        if (!a.displayName || norm(a.displayName) !== target || !a.uid) continue
+        const m = /a:(\d+)/.exec(a.uid)
+        if (!m) continue
+        // Priorité à la ligue attendue ; sinon on garde en réserve (cas LeBron
+        // James parfois classé "fiba" par ESPN malgré son profil NBA principal)
+        if (expectedLeague && a.defaultLeagueSlug === expectedLeague) return m[1]
+        if (!fallback) fallback = m[1]
       }
     }
+    return fallback
   } catch { /* ESPN unavailable */ }
   return null
 }
