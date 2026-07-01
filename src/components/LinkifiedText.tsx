@@ -5,6 +5,8 @@ import { supabase } from '@/lib/supabase'
 import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
 import { teamSlug as toTeamSlug } from '@/lib/playerSlug'
 
+const ACCENT = '#003DA6'
+
 // ── Liens dans le chat/messages : détection URL + aperçu riche pour les liens Memorabilius ──
 // Capture les URLs complètes (http/https) ET les liens memorabilius.fr tapés/collés
 // sans protocole (ex: "memorabilius.fr/teams/3" ou "www.memorabilius.fr/...")
@@ -44,38 +46,47 @@ function slugToLabel(slug: string) {
   return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
 }
 
+type ChipData = { kind: 'chip'; title: string; subtitle?: string; img?: string | null; icon: string; round?: boolean }
+type CarteData = {
+  kind: 'carte'; nom: string; variation: string | null; annee: string | null; marque: string | null
+  collection: string | null; num: string | null; rc: boolean; auto: boolean; patch: boolean
+  img: string; isHorizontal: boolean
+}
+type PreviewData = ChipData | CarteData
+
 function MemoLinkPreview({ url }: { url: string }) {
   const parsed = parseMemorabiliusLink(url)
-  const [data, setData] = useState<{ title: string; subtitle?: string; img?: string | null; icon: string; round?: boolean } | null | undefined>(undefined)
+  const [data, setData] = useState<PreviewData | null | undefined>(undefined)
 
   useEffect(() => {
     if (!parsed) return
     let cancelled = false
     ;(async () => {
       if (parsed.type === 'carte') {
-        const { data: c } = await supabase.from('cartes_manuelles').select('nom, image_recto, annee, marque')
+        const { data: c } = await supabase.from('cartes_manuelles')
+          .select('nom, image_recto, annee, marque, collection, variation, num, rc, auto, patch, is_horizontal')
           .eq('user_id', parsed.userId).eq('image_recto', parsed.card).maybeSingle()
         if (cancelled) return
         // Si la fiche n'existe plus en DB (supprimée/modifiée depuis le partage du
         // lien), on affiche quand même la miniature de l'image (le fichier peut
         // encore exister) plutôt qu'un lien nu sans aucun aperçu
         setData(c
-          ? { title: c.nom, subtitle: [c.annee, c.marque].filter(Boolean).join(' · '), img: c.image_recto, icon: '🃏' }
-          : { title: 'Carte', subtitle: undefined, img: parsed.card, icon: '🃏' })
+          ? { kind: 'carte', nom: c.nom, variation: c.variation, annee: c.annee, marque: c.marque, collection: c.collection, num: c.num, rc: !!c.rc, auto: !!c.auto, patch: !!c.patch, img: c.image_recto, isHorizontal: !!c.is_horizontal }
+          : { kind: 'carte', nom: 'Carte', variation: null, annee: null, marque: null, collection: null, num: null, rc: false, auto: false, patch: false, img: parsed.card, isHorizontal: false })
       } else if (parsed.type === 'galerie') {
         const { data: p } = await supabase.from('profiles').select('display_name, avatar_url').eq('id', parsed.userId).single()
-        if (!cancelled) setData(p ? { title: p.display_name, subtitle: 'Collectionneur', img: p.avatar_url, icon: '👤', round: true } : null)
+        if (!cancelled) setData(p ? { kind: 'chip', title: p.display_name, subtitle: 'Collectionneur', img: p.avatar_url, icon: '👤', round: true } : null)
       } else if (parsed.type === 'setlist') {
         const { data: s } = await supabase.from('card_sets').select('name, year, brand').eq('id', parsed.id).single()
-        if (!cancelled) setData(s ? { title: s.name, subtitle: [s.year, s.brand].filter(Boolean).join(' · '), icon: '📋' } : null)
+        if (!cancelled) setData(s ? { kind: 'chip', title: s.name, subtitle: [s.year, s.brand].filter(Boolean).join(' · '), icon: '📋' } : null)
       } else if (parsed.type === 'teams') {
         const { data: t } = await supabase.from('teams').select('name, avatar_url').eq('id', parsed.id).single()
-        if (!cancelled) setData(t ? { title: t.name, subtitle: 'Team', img: t.avatar_url, icon: '🛡️', round: true } : null)
+        if (!cancelled) setData(t ? { kind: 'chip', title: t.name, subtitle: 'Team', img: t.avatar_url, icon: '🛡️', round: true } : null)
       } else if (parsed.type === 'joueur') {
-        if (!cancelled) setData({ title: slugToLabel(parsed.slug), subtitle: 'Joueur', icon: '🏀' })
+        if (!cancelled) setData({ kind: 'chip', title: slugToLabel(parsed.slug), subtitle: 'Joueur', icon: '🏀' })
       } else if (parsed.type === 'equipe') {
         const team = SPORTS_TEAMS.find(t => toTeamSlug(t.name) === parsed.slug)
-        if (!cancelled) setData(team ? { title: team.name, subtitle: team.sport.toUpperCase(), img: teamLogoUrl(team), icon: '🏟️' } : null)
+        if (!cancelled) setData(team ? { kind: 'chip', title: team.name, subtitle: team.sport.toUpperCase(), img: teamLogoUrl(team), icon: '🏟️' } : null)
       }
     })()
     return () => { cancelled = true }
@@ -93,6 +104,44 @@ function MemoLinkPreview({ url }: { url: string }) {
     : parsed.type === 'equipe' ? `/equipe/${parsed.slug}`
     : parsed.type === 'setlist' ? `/setlist/${parsed.id}`
     : `/teams/${parsed.id}`
+
+  if (data.kind === 'carte') {
+    const badges = [
+      data.rc && { label: 'RC', bg: '#e67e22' },
+      data.auto && { label: 'AUTO', bg: '#2e7d32' },
+      data.patch && { label: 'PATCH', bg: '#1976d2' },
+    ].filter(Boolean) as { label: string; bg: string }[]
+
+    return (
+      <Link href={href} style={{ textDecoration: 'none', display: 'block', marginTop: 4, maxWidth: 220 }} onClick={e => e.stopPropagation()}>
+        <div style={{ background: 'rgba(0,0,0,0.04)', borderRadius: 12, padding: 10 }}>
+          <div style={{ width: '100%', aspectRatio: '2.5/3.5', borderRadius: 8, overflow: 'hidden', position: 'relative', background: '#eee' }}>
+            <img src={data.img} alt={data.nom}
+              style={data.isHorizontal
+                ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' }
+                : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          </div>
+          <div style={{ marginTop: 8 }}>
+            <div style={{ fontWeight: 900, fontSize: 14, color: '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{data.nom}</div>
+            {data.variation && <div style={{ fontSize: 12, fontStyle: 'italic', color: ACCENT, fontWeight: 700, marginTop: 1 }}>{data.variation}</div>}
+            {(data.annee || data.marque || data.collection) && (
+              <div style={{ fontSize: 11, color: '#888', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {[data.annee, data.marque, data.collection].filter(Boolean).join(' · ')}
+              </div>
+            )}
+            {(data.num || badges.length > 0) && (
+              <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginTop: 6 }}>
+                {data.num && <span style={{ fontSize: 10, fontWeight: 800, color: '#555', background: '#f0f0f0', borderRadius: 4, padding: '2px 6px' }}>#{data.num}</span>}
+                {badges.map(b => (
+                  <span key={b.label} style={{ fontSize: 10, fontWeight: 900, color: 'white', background: b.bg, borderRadius: 4, padding: '2px 6px' }}>{b.label}</span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </Link>
+    )
+  }
 
   return (
     <Link href={href} style={{ textDecoration: 'none', display: 'block', marginTop: 4 }} onClick={e => e.stopPropagation()}>
