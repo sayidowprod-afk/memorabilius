@@ -241,13 +241,15 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     if (!currentUser) return
     const existing = msgReactions[msgId]?.find(r => r.emoji === emoji && r.mine)
     if (existing) {
-      await supabase.from('team_message_reactions').delete()
+      const { error } = await supabase.from('team_message_reactions').delete()
         .eq('message_id', msgId).eq('user_id', currentUser).eq('emoji', emoji)
+      if (error) { console.error('[toggleMsgReaction delete]', error); return }
     } else {
-      await supabase.from('team_message_reactions').upsert(
+      const { error } = await supabase.from('team_message_reactions').upsert(
         { message_id: msgId, user_id: currentUser, emoji },
         { onConflict: 'message_id,user_id,emoji' }
       )
+      if (error) { console.error('[toggleMsgReaction upsert]', error); return }
     }
     setMsgReactions(prev => {
       const cur = prev[msgId] || []
@@ -279,13 +281,15 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     if (!currentUser) return
     const existing = postReactions[postId]?.find(r => r.emoji === emoji && r.mine)
     if (existing) {
-      await supabase.from('team_post_reactions').delete()
+      const { error } = await supabase.from('team_post_reactions').delete()
         .eq('post_id', postId).eq('user_id', currentUser).eq('emoji', emoji)
+      if (error) { console.error('[togglePostReaction delete]', error); return }
     } else {
-      await supabase.from('team_post_reactions').upsert(
+      const { error } = await supabase.from('team_post_reactions').upsert(
         { post_id: postId, user_id: currentUser, emoji },
         { onConflict: 'post_id,user_id,emoji' }
       )
+      if (error) { console.error('[togglePostReaction upsert]', error); return }
     }
     setPostReactions(prev => {
       const cur = prev[postId] || []
@@ -325,12 +329,14 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const addComment = async (postId: number) => {
     const content = newComment[postId]?.trim()
     if (!content || !currentUser) return
-    const { data } = await supabase.from('team_post_comments').insert({
+    const { data, error } = await supabase.from('team_post_comments').insert({
       post_id: postId, user_id: currentUser, content
     }).select('*').single()
+    if (error) { console.error('[addComment]', error); alert(lang === 'fr' ? 'Erreur lors de l\'envoi du commentaire' : 'Error sending comment'); return }
     if (data) {
       const [enriched] = await enrichWithProfiles([data])
       setComments(prev => ({ ...prev, [postId]: [...(prev[postId] || []), enriched] }))
+      setPosts(prev => prev.map(p => p.id === postId ? { ...p, commentCount: (p.commentCount || 0) + 1 } : p))
     }
     setNewComment(prev => ({ ...prev, [postId]: '' }))
   }
