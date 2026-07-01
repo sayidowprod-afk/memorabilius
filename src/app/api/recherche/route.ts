@@ -117,6 +117,10 @@ export async function GET(req: NextRequest) {
   // Source 1 : card_set_entries (joueurs avec sets dans la DB)
   // Source 2 : ESPN search (tous les joueurs, anciens inclus) — en parallèle
   const ESPN_SPORTS = ['basketball', 'football', 'hockey', 'baseball']
+  // Ligue ESPN attendue par index — écarte les homonymes d'autres ligues que
+  // l'API de recherche ESPN renvoie parfois (ex: chercher en "basketball" peut
+  // aussi renvoyer un joueur de football universitaire du même nom)
+  const ESPN_LEAGUES = ['nba', 'nfl', 'nhl', 'mlb']
   const [playerEntriesRes, ...espnSearchResults] = await Promise.all([
     supabase
       .from('card_set_entries')
@@ -156,6 +160,7 @@ export async function GET(req: NextRequest) {
     for (const section of data.results || []) {
       for (const a of section.contents || []) {
         if (!a.displayName) continue
+        if (a.defaultLeagueSlug && a.defaultLeagueSlug !== ESPN_LEAGUES[i]) continue
         const normA = normStr(a.displayName)
         // Cherche si ce joueur est déjà dans la map (par nom normalisé)
         const existing = [...playersMap.entries()].find(([k]) => normStr(k) === normA)
@@ -186,18 +191,17 @@ export async function GET(req: NextRequest) {
     .slice(0, 20)
     .map(p => ({ name: p.name, isRc: p.isRc, sports: [...p.sports], photo: p.photo }))
 
-  // Pour les joueurs encore sans photo, fallback via NBA CDN (retraités absents ESPN)
-  const stillMissingPhoto = players.filter(p => !p.photo && p.sports[0] === 'nba')
+  // Pour les joueurs encore sans photo, fallback complet par joueur
+  // (CDN NBA pour les retraités NBA, puis Wikipedia pour les très vieux
+  // joueurs de tout sport) — ciblé, donc peu coûteux même en toutes ligues
+  const stillMissingPhoto = players.filter(p => !p.photo)
   if (stillMissingPhoto.length > 0) {
-    const { fetchEspnHeadshots } = await import('@/lib/espnHeadshot')
-    const nbaMap = await fetchEspnHeadshots(query, 'nba')
-    players = players.map(p => {
-      if (p.photo) return p
-      const lower = p.name.toLowerCase()
-      const normN = normStr(p.name)
-      const photo = nbaMap.get(lower) || nbaMap.get(normN) || null
-      return { ...p, photo }
-    })
+    const { fetchEspnHeadshot } = await import('@/lib/espnHeadshot')
+    const resolved = await Promise.all(
+      stillMissingPhoto.map(p => fetchEspnHeadshot(p.name, p.sports[0] || 'nba'))
+    )
+    const photoByName = new Map(stillMissingPhoto.map((p, i) => [p.name, resolved[i]]))
+    players = players.map(p => p.photo ? p : { ...p, photo: photoByName.get(p.name) || null })
   }
 
   results.sort((a, b) => {
