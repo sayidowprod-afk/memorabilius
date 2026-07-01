@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
+import LinkifiedText from '@/components/LinkifiedText'
 
 // Préfixe marqueur pour les messages contenant une image (évite une migration de schéma)
 const IMG_PREFIX = '[[img]]'
@@ -298,7 +299,7 @@ function MessagesContent() {
                             color: isMe ? 'white' : bubbleThemText,
                             fontSize: 13, lineHeight: 1.5,
                           }}>
-                            <p style={{ margin: 0 }}>{msg.contenu}</p>
+                            <p style={{ margin: 0 }}><LinkifiedText text={msg.contenu} /></p>
                             <p style={{ margin: '4px 0 0', fontSize: 10, opacity: 0.6, textAlign: 'right' }}>
                               {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
                             </p>
