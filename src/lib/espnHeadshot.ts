@@ -122,6 +122,37 @@ export async function fetchEspnHeadshots(
   return fetchEspnMap(query, sport)
 }
 
+// ── Wikipedia (dernier recours pour les très vieux joueurs absents ────────────
+// des bases ESPN/NBA modernes — ex: George Mikan, Dolph Schayes, Bill Russell)
+const WIKI_SPORT_KEYWORDS: Record<string, string[]> = {
+  nba: ['basketball'],
+  nfl: ['american football', 'gridiron football'],
+  nhl: ['ice hockey'],
+  mlb: ['baseball'],
+}
+
+async function fetchWikipediaHeadshot(name: string, sport: string): Promise<string | null> {
+  try {
+    const title = encodeURIComponent(name.trim().replace(/\s+/g, '_'))
+    const r = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${title}`, {
+      signal: AbortSignal.timeout(3000),
+      next: { revalidate: 86400 },
+      headers: { 'User-Agent': 'Memorabilius/1.0 (card collection app)' },
+    } as RequestInit)
+    if (!r.ok) return null
+    const data = await r.json()
+    if (data.type === 'disambiguation') return null
+    // Vérifie que la description Wikipedia correspond bien au sport attendu,
+    // pour éviter d'afficher la photo d'un homonyme non-sportif
+    const keywords = WIKI_SPORT_KEYWORDS[sport]
+    const desc = (data.description || data.extract || '').toLowerCase()
+    if (keywords && !keywords.some(k => desc.includes(k))) return null
+    return data.thumbnail?.source || data.originalimage?.source || null
+  } catch {
+    return null
+  }
+}
+
 export async function fetchEspnHeadshot(name: string, sport = 'nba'): Promise<string | null> {
   // ESPN d'abord (headshots propres pour joueurs actuels)
   const espnMap = await fetchEspnMap(name, sport)
@@ -133,6 +164,12 @@ export async function fetchEspnHeadshot(name: string, sport = 'nba'): Promise<st
     const nba = await fetchNbaHeadshot(name)
     if (nba) return nba
   }
+
+  // Dernier recours : Wikipedia, pour les légendes trop anciennes pour
+  // avoir une fiche ESPN/NBA avec photo (ère pré-1990)
+  const wiki = await fetchWikipediaHeadshot(name, sport)
+  if (wiki) return wiki
+
   return null
 }
 
