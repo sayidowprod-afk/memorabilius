@@ -245,11 +245,12 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         .eq('message_id', msgId).eq('user_id', currentUser).eq('emoji', emoji)
       if (error) { console.error('[toggleMsgReaction delete]', error); return }
     } else {
-      const { error } = await supabase.from('team_message_reactions').upsert(
-        { message_id: msgId, user_id: currentUser, emoji },
-        { onConflict: 'message_id,user_id,emoji' }
+      // insert simple plutôt qu'upsert : évite de dépendre d'une contrainte
+      // unique (message_id,user_id,emoji) qui peut ne pas exister en DB
+      const { error } = await supabase.from('team_message_reactions').insert(
+        { message_id: msgId, user_id: currentUser, emoji }
       )
-      if (error) { console.error('[toggleMsgReaction upsert]', error); return }
+      if (error && error.code !== '23505') { console.error('[toggleMsgReaction insert]', error); alert(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
     }
     setMsgReactions(prev => {
       const cur = prev[msgId] || []
@@ -285,11 +286,12 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         .eq('post_id', postId).eq('user_id', currentUser).eq('emoji', emoji)
       if (error) { console.error('[togglePostReaction delete]', error); return }
     } else {
-      const { error } = await supabase.from('team_post_reactions').upsert(
-        { post_id: postId, user_id: currentUser, emoji },
-        { onConflict: 'post_id,user_id,emoji' }
+      // insert simple plutôt qu'upsert : évite de dépendre d'une contrainte
+      // unique (post_id,user_id,emoji) qui peut ne pas exister en DB
+      const { error } = await supabase.from('team_post_reactions').insert(
+        { post_id: postId, user_id: currentUser, emoji }
       )
-      if (error) { console.error('[togglePostReaction upsert]', error); return }
+      if (error && error.code !== '23505') { console.error('[togglePostReaction insert]', error); alert(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
     }
     setPostReactions(prev => {
       const cur = prev[postId] || []
