@@ -66,7 +66,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   // État du feuilletage : direction, angle courant, page affichée dans l'élément
   // qui tourne, et si l'angle doit être animé (transition CSS) ou suivre la souris 1:1
   const [flip, setFlip] = useState<{ dir: 'next' | 'prev'; angle: number; contentPage: number; anim: boolean } | null>(null)
-  const dragRef = useRef<{ dir: 'next' | 'prev'; startX: number } | null>(null)
+  const dragRef = useRef<{ dir: 'next' | 'prev'; startX: number; active: boolean; angle: number; pointerId: number; el: HTMLElement } | null>(null)
   const spreadRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => { loadBinders() }, [userId])
@@ -144,7 +144,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setFlip({ dir, angle: midAngle, contentPage: dir === 'next' ? pageIndex + 1 : pageIndex, anim: true })
     requestAnimationFrame(() => setFlip(s => s && { ...s, angle: farAngle }))
     setTimeout(() => {
-      const newContentPage = dir === 'next' ? pageIndex + 3 : pageIndex - 2
+      // Contenu qui « atterrit » de l'autre côté : page qui devient la nouvelle
+      // page opposée (next → nouvelle page de gauche, prev → nouvelle page de droite)
+      const newContentPage = dir === 'next' ? pageIndex + 2 : pageIndex - 1
       setFlip({ dir, angle: midAngle, contentPage: newContentPage, anim: false })
       requestAnimationFrame(() => setFlip(s => s && { ...s, angle: 0, anim: true }))
       setTimeout(() => {
@@ -166,31 +168,38 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     finishFlip(dir)
   }
 
-  // Glisser à la souris / au doigt pour tourner la page
-  const onDragStart = (dir: 'next' | 'prev') => (e: React.PointerEvent) => {
+  // Glisser à la souris / au doigt pour tourner la page.
+  // On ne capture le pointeur (et ne démarre le feuilletage) qu'au-delà d'un
+  // petit seuil de déplacement : un simple clic reste un clic et atteint la
+  // pochette en dessous (ajout de carte / ouverture Viewer3D).
+  const beginDrag = (dir: 'next' | 'prev') => (e: React.PointerEvent) => {
     if (!selected || flip) return
     if (dir === 'next' && pageIndex + 2 >= selected.page_count) return
     if (dir === 'prev' && pageIndex <= 0) return
-    dragRef.current = { dir, startX: e.clientX }
-    setFlip({ dir, angle: 0, contentPage: dir === 'next' ? pageIndex + 1 : pageIndex, anim: false })
-    e.currentTarget.setPointerCapture(e.pointerId)
+    dragRef.current = { dir, startX: e.clientX, active: false, angle: 0, pointerId: e.pointerId, el: e.currentTarget as HTMLElement }
   }
 
-  const onDragMove = (e: React.PointerEvent) => {
+  const moveDrag = (e: React.PointerEvent) => {
     const d = dragRef.current
     if (!d) return
     const dx = e.clientX - d.startX
+    if (!d.active) {
+      if (Math.abs(dx) < 6) return // pas encore un vrai glissé → laisse le clic passer
+      d.active = true
+      try { d.el.setPointerCapture(d.pointerId) } catch {}
+      setFlip({ dir: d.dir, angle: 0, contentPage: d.dir === 'next' ? pageIndex + 1 : pageIndex, anim: false })
+    }
     const progress = Math.max(0, Math.min(1, (d.dir === 'next' ? -dx : dx) / PAGE_W))
-    setFlip(s => s && { ...s, angle: (d.dir === 'next' ? -90 : 90) * progress })
+    d.angle = (d.dir === 'next' ? -90 : 90) * progress
+    setFlip(s => s && { ...s, angle: d.angle })
   }
 
-  const onDragEnd = () => {
+  const endDrag = () => {
     const d = dragRef.current
     if (!d) return
-    const current = flip
     dragRef.current = null
-    const progress = current ? Math.abs(current.angle) / 90 : 0
-    if (progress > 0.35) finishFlip(d.dir)
+    if (!d.active) return // simple tap : le clic sur la pochette suit son cours
+    if (Math.abs(d.angle) / 90 > 0.3) finishFlip(d.dir)
     else cancelFlip()
   }
 
@@ -382,14 +391,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       )}
 
       <div style={{ background: '#f7f7f7', borderRadius: 16, padding: '36px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div ref={spreadRef} style={{ display: 'flex', position: 'relative', perspective: 1800, touchAction: 'pan-y' }}>
-          {/* Page gauche */}
-          <div style={{ ...pageShellStyle('left'), visibility: flippingLeft ? 'hidden' : 'visible' }}
-            onPointerDown={pageIndex > 0 ? onDragStart('prev') : undefined}
-            onPointerMove={dragRef.current?.dir === 'prev' ? onDragMove : undefined}
-            onPointerUp={dragRef.current?.dir === 'prev' ? onDragEnd : undefined}
+        <div ref={spreadRef} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerLeave={endDrag}
+          style={{ display: 'flex', position: 'relative', perspective: 1800, touchAction: 'pan-y' }}>
+          {/* Page gauche — pendant un feuilletage "prev", montre déjà la page révélée dessous */}
+          <div style={pageShellStyle('left')}
+            onPointerDown={beginDrag('prev')}
           >
-            {renderPocketGrid(pageIndex)}
+            {renderPocketGrid(flippingLeft ? pageIndex - 2 : pageIndex)}
             <PlasticSheen />
           </div>
 
@@ -397,21 +405,17 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <div style={{ position: 'absolute', top: -10, bottom: -10, left: -2, width: 4, background: 'linear-gradient(90deg, #ccc, #ddd, #ccc)', borderRadius: 2 }} />
           </div>
 
-          {/* Page droite */}
-          <div style={{ ...pageShellStyle('right'), visibility: flippingRight ? 'hidden' : 'visible' }}
-            onPointerDown={pageIndex + 2 < selected.page_count ? onDragStart('next') : undefined}
-            onPointerMove={dragRef.current?.dir === 'next' ? onDragMove : undefined}
-            onPointerUp={dragRef.current?.dir === 'next' ? onDragEnd : undefined}
+          {/* Page droite — pendant un feuilletage "next", montre déjà la page révélée dessous */}
+          <div style={pageShellStyle('right')}
+            onPointerDown={beginDrag('next')}
           >
-            {renderPocketGrid(pageIndex + 1)}
+            {renderPocketGrid(flippingRight ? pageIndex + 3 : pageIndex + 1)}
             <PlasticSheen />
           </div>
 
           {/* Page en train de tourner (gauche ou droite selon la direction) */}
           {flip && (
             <div
-              onPointerMove={onDragMove}
-              onPointerUp={onDragEnd}
               style={{
                 position: 'absolute', top: 0,
                 left: flip.dir === 'next' ? PAGE_W : 0,
