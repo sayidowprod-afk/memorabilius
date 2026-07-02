@@ -358,6 +358,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     }, FLIP_MS)
   }
 
+  const cancelFlip = () => {
+    setFlip(s => s && { ...s, angle: 0, anim: true })
+    setTimeout(() => setFlip(null), FLIP_MS)
+  }
+
   const clickFlip = (dir: 'next' | 'prev') => {
     if (!selected || flip) return
     if (dir === 'next' && !canNext) return
@@ -365,6 +370,45 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     // Démarre à plat (0°) puis anime jusqu'au bout au frame suivant
     setFlip({ dir, angle: 0, anim: false })
     requestAnimationFrame(() => finishFlip(dir))
+  }
+
+  // ── Swipe pour tourner la page : UN seul détecteur sur toute la scène ──
+  // Ne démarre que sur un glissé nettement horizontal (> vertical), ce qui le
+  // distingue d'un tap sur pochette. Les cartes pleines gèrent leur propre glissé
+  // (stopPropagation) et ne déclenchent donc pas le swipe de page.
+  const swipeRef = useRef<{ startX: number; startY: number; active: boolean; dir: 'next' | 'prev' | null; pointerId: number; angle: number } | null>(null)
+
+  const spreadPointerDown = (e: React.PointerEvent) => {
+    if (flip || pendingCard) return
+    swipeRef.current = { startX: e.clientX, startY: e.clientY, active: false, dir: null, pointerId: e.pointerId, angle: 0 }
+  }
+  const spreadPointerMove = (e: React.PointerEvent) => {
+    const s = swipeRef.current
+    if (!s) return
+    const dx = e.clientX - s.startX, dy = e.clientY - s.startY
+    if (!s.active) {
+      // exige un mouvement franchement horizontal avant de considérer un swipe
+      if (Math.abs(dx) < 14 || Math.abs(dx) < Math.abs(dy) * 1.3) return
+      const dir: 'next' | 'prev' = dx < 0 ? 'next' : 'prev'
+      if (dir === 'next' && !canNext) { swipeRef.current = null; return }
+      if (dir === 'prev' && !canPrev) { swipeRef.current = null; return }
+      s.active = true
+      s.dir = dir
+      suppressClickUntil.current = Date.now() + 100000
+      try { openSpreadRef.current?.setPointerCapture(s.pointerId) } catch {}
+      setFlip({ dir, angle: 0, anim: false })
+    }
+    const progress = Math.max(0, Math.min(1, (s.dir === 'next' ? -dx : dx) / (pageW * 0.6)))
+    s.angle = (s.dir === 'next' ? -180 : 180) * progress
+    setFlip(f => f && { ...f, angle: s.angle })
+  }
+  const spreadPointerUp = () => {
+    const s = swipeRef.current
+    swipeRef.current = null
+    if (!s || !s.active || !s.dir) return
+    suppressClickUntil.current = Date.now() + 400
+    if (Math.abs(s.angle) > 55) finishFlip(s.dir)
+    else cancelFlip()
   }
 
   // Bande de reliure perforée (façon pochette Ultra Pro), sur le bord intérieur
@@ -719,7 +763,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           </div>
         ) : (
           /* ── Classeur ouvert : deux feuilles plastique + rabats de couverture ── */
-          <div ref={openSpreadRef} style={{ display: 'flex', position: 'relative', perspective: 2200, filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.22))' }}>
+          <div ref={openSpreadRef}
+            onPointerDown={spreadPointerDown} onPointerMove={spreadPointerMove} onPointerUp={spreadPointerUp}
+            style={{ display: 'flex', position: 'relative', perspective: 2200, touchAction: 'pan-y', filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.22))' }}>
             {/* rabats de couverture (le classeur ouvert à plat) */}
             <div style={{ position: 'absolute', left: -wing, top: -6, bottom: -6, width: wing + 8, background: `linear-gradient(90deg, ${coverColor}, rgba(0,0,0,0.25))`, borderRadius: '8px 0 0 8px', zIndex: 1 }} />
             <div style={{ position: 'absolute', left: 2 * pageW - 8, top: -6, bottom: -6, width: wing + 8, background: `linear-gradient(90deg, rgba(0,0,0,0.25), ${coverColor})`, borderRadius: '0 8px 8px 0', zIndex: 1 }} />
