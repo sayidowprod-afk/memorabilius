@@ -22,6 +22,8 @@ interface Slot {
 
 const LAYOUTS = [4, 6, 9, 12, 16]
 const COLS: Record<number, number> = { 4: 2, 6: 2, 9: 3, 12: 3, 16: 4 }
+const BINDER_COLORS = ['#c0392b', '#e2b13c', '#1a1a1a', '#e8dcc4', '#1f3a5f', '#2c2c2c', '#6b2737', '#3d5a3d']
+const SHELF_ROW_SIZE = 8
 
 function slotKey(page: number, idx: number) { return `${page}:${idx}` }
 
@@ -40,6 +42,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [showCreate, setShowCreate] = useState(false)
   const [newName, setNewName] = useState('')
   const [newLayout, setNewLayout] = useState(9)
+  const [newColor, setNewColor] = useState(BINDER_COLORS[0])
   const [pickerTarget, setPickerTarget] = useState<{ page: number; idx: number } | null>(null)
   const [justInserted, setJustInserted] = useState<string | null>(null)
   const [flipping, setFlipping] = useState(false)
@@ -68,7 +71,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const createBinder = async () => {
     if (!newName.trim()) return
     const { data, error } = await supabase.from('binders').insert({
-      user_id: userId, name: newName.trim(), layout: newLayout, color: accent, position: binders.length,
+      user_id: userId, name: newName.trim(), layout: newLayout, color: newColor, position: binders.length,
     }).select().single()
     if (error) { alert('Erreur : ' + error.message); return }
     setShowCreate(false)
@@ -202,34 +205,51 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <span style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>Choisis un classeur pour ranger « {pendingCard.nom} »</span>
           </div>
         )}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 16 }}>
-          {binders.map(b => (
-            <div key={b.id} onClick={() => openBinder(b)} style={{
-              cursor: 'pointer', borderRadius: 12, overflow: 'hidden', border: '1px solid #eee',
-              background: 'white', boxShadow: '0 2px 10px rgba(0,0,0,0.05)', transition: '0.15s',
-            }}
-              onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px)')}
-              onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
-            >
-              <div style={{ height: 90, background: b.color || accent, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontSize: 32 }}>📔</span>
-              </div>
-              <div style={{ padding: '10px 12px' }}>
-                <div style={{ fontWeight: 800, fontSize: 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{b.name}</div>
-                <div style={{ fontSize: 11, color: '#999', marginTop: 2 }}>{b.layout} pochettes · {b.page_count} pages</div>
-              </div>
+        {(() => {
+          const items: (Binder | 'new')[] = [...binders]
+          if (isOwner) items.push('new')
+          const rows: (Binder | 'new')[][] = []
+          for (let i = 0; i < items.length; i += SHELF_ROW_SIZE) rows.push(items.slice(i, i + SHELF_ROW_SIZE))
+          if (rows.length === 0) rows.push([])
+          return (
+            <div style={{ background: 'linear-gradient(180deg, #2b1d14, #1c130d)', borderRadius: 12, padding: '18px 18px 0' }}>
+              {rows.map((row, ri) => (
+                <div key={ri} style={{
+                  display: 'flex', alignItems: 'flex-end', gap: 3, paddingBottom: 14,
+                  borderBottom: '10px solid #4a2f1f', marginBottom: 18,
+                  boxShadow: '0 6px 8px -4px rgba(0,0,0,0.5)',
+                }}>
+                  {row.map(b => b === 'new' ? (
+                    <div key="new" onClick={() => setShowCreate(true)} title="Nouveau classeur" style={{
+                      width: 46, height: 200, cursor: 'pointer', border: '2px dashed #6b5544', borderRadius: '3px 3px 0 0',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      flexShrink: 0,
+                    }}>
+                      <span style={{ fontSize: 22, color: '#9c8770' }}>+</span>
+                    </div>
+                  ) : (
+                    <div key={b.id} onClick={() => openBinder(b)} title={`${b.name} — ${b.layout} pochettes, ${b.page_count} pages`} style={{
+                      width: Math.min(70, 34 + b.page_count * 2), height: 200, cursor: 'pointer', flexShrink: 0,
+                      background: b.color || accent, borderRadius: '3px 3px 0 0',
+                      boxShadow: 'inset 3px 0 0 rgba(255,255,255,0.15), inset -3px 0 0 rgba(0,0,0,0.25), 2px 0 4px rgba(0,0,0,0.35)',
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 10,
+                      transition: 'transform 0.15s', position: 'relative',
+                    }}
+                      onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-8px)')}
+                      onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                    >
+                      <span style={{
+                        writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 11, fontWeight: 800,
+                        color: 'rgba(255,255,255,0.92)', maxHeight: 150, overflow: 'hidden', textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap', letterSpacing: '0.03em',
+                      }}>{b.name}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
-          ))}
-          {isOwner && (
-            <div onClick={() => setShowCreate(true)} style={{
-              cursor: 'pointer', borderRadius: 12, border: '2px dashed #ddd', display: 'flex',
-              flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6, minHeight: 140, color: '#999',
-            }}>
-              <span style={{ fontSize: 28 }}>+</span>
-              <span style={{ fontSize: 12, fontWeight: 700 }}>Nouveau classeur</span>
-            </div>
-          )}
-        </div>
+          )
+        })()}
 
         {binders.length === 0 && !isOwner && (
           <p style={{ textAlign: 'center', color: '#bbb', padding: 40 }}>Aucun classeur pour l'instant.</p>
@@ -252,6 +272,18 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                       border: newLayout === n ? `2px solid ${accent}` : '2px solid #e0e0e0',
                       background: newLayout === n ? accent : 'white', color: newLayout === n ? 'white' : '#333',
                     }}>{n}</button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Couleur</label>
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                  {BINDER_COLORS.map(c => (
+                    <button key={c} onClick={() => setNewColor(c)} style={{
+                      width: 30, height: 30, borderRadius: '50%', cursor: 'pointer', background: c,
+                      border: newColor === c ? '3px solid #003DA6' : '3px solid transparent',
+                      boxShadow: newColor === c ? 'none' : '0 0 0 1px #ddd',
+                    }} />
                   ))}
                 </div>
               </div>
