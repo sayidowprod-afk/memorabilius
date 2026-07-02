@@ -41,7 +41,7 @@ function PlasticSheen() {
   return (
     <div style={{
       position: 'absolute', inset: 0, pointerEvents: 'none', borderRadius: 'inherit',
-      background: 'linear-gradient(115deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 22%, rgba(255,255,255,0) 78%, rgba(255,255,255,0.22) 100%)',
+      background: 'linear-gradient(115deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 82%, rgba(255,255,255,0.08) 100%)',
     }} />
   )
 }
@@ -67,6 +67,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   // Glisser-déplacer d'une carte d'une pochette à une autre
   const [cardDrag, setCardDrag] = useState<{ img: string; x: number; y: number } | null>(null)
   const cardDragRef = useRef<{ page: number; idx: number; slot: Slot; startX: number; startY: number; active: boolean; pointerId: number; el: HTMLElement } | null>(null)
+  const openSpreadRef = useRef<HTMLDivElement>(null)
+  const flipCooldownRef = useRef(0)
 
   // Formulaire création/édition partagé. null = fermé, 'create' = nouveau, number = id à éditer
   const [formOpen, setFormOpen] = useState<null | 'create' | number>(null)
@@ -171,49 +173,51 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setSelected(null)
   }
 
-  // Réorganisation des classeurs sur l'étagère par glisser-déposer
-  const reorderRef = useRef<{ id: number; active: boolean; pointerId: number; el: HTMLElement } | null>(null)
+  // Réorganisation des classeurs par glisser-déposer.
+  // On ne réordonne PAS le tableau pendant le glissé (sinon React re-render les
+  // tranches et la capture du pointeur se perd → blocage). Aperçu flottant, puis
+  // réorganisation uniquement au relâchement, sur la tranche survolée.
+  const reorderRef = useRef<{ binder: Binder; startX: number; startY: number; active: boolean; pointerId: number; el: HTMLElement } | null>(null)
   const [reorderingId, setReorderingId] = useState<number | null>(null)
+  const [reorderDrag, setReorderDrag] = useState<{ binder: Binder; x: number; y: number } | null>(null)
 
-  const shelfPointerDown = (id: number) => (e: React.PointerEvent) => {
+  const shelfPointerDown = (b: Binder) => (e: React.PointerEvent) => {
     if (!isOwner) return
-    reorderRef.current = { id, active: false, pointerId: e.pointerId, el: e.currentTarget as HTMLElement }
+    reorderRef.current = { binder: b, startX: e.clientX, startY: e.clientY, active: false, pointerId: e.pointerId, el: e.currentTarget as HTMLElement }
   }
   const shelfPointerMove = (e: React.PointerEvent) => {
     const r = reorderRef.current
     if (!r) return
     if (!r.active) {
-      // seuil avant de considérer que c'est un glissé (sinon c'est un clic → ouvrir)
-      if (Math.abs(e.movementX) + Math.abs(e.movementY) < 1) return
+      if (Math.hypot(e.clientX - r.startX, e.clientY - r.startY) < 6) return
       r.active = true
       suppressClickUntil.current = Date.now() + 100000
-      setReorderingId(r.id)
+      setReorderingId(r.binder.id)
       try { r.el.setPointerCapture(r.pointerId) } catch {}
     }
-    const targetEl = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-binder-spine]') as HTMLElement | null
-    const overId = targetEl ? Number(targetEl.dataset.binderSpine) : NaN
-    if (!Number.isNaN(overId) && overId !== r.id) {
-      setBinders(prev => {
-        const from = prev.findIndex(b => b.id === r.id)
-        const to = prev.findIndex(b => b.id === overId)
-        if (from < 0 || to < 0) return prev
-        const next = [...prev]
-        const [moved] = next.splice(from, 1)
-        next.splice(to, 0, moved)
-        return next
-      })
-    }
+    setReorderDrag({ binder: r.binder, x: e.clientX, y: e.clientY })
   }
-  const shelfPointerUp = async () => {
+  const shelfPointerUp = (e: React.PointerEvent) => {
     const r = reorderRef.current
     reorderRef.current = null
     if (!r) return
+    setReorderDrag(null)
+    setReorderingId(null)
     if (!r.active) return
     suppressClickUntil.current = Date.now() + 300
-    setReorderingId(null)
-    // Persiste le nouvel ordre
-    const updates = binders.map((b, i) => ({ id: b.id, position: i }))
-    for (const u of updates) await supabase.from('binders').update({ position: u.position }).eq('id', u.id)
+    const targetEl = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-binder-spine]') as HTMLElement | null
+    const overId = targetEl ? Number(targetEl.dataset.binderSpine) : NaN
+    if (Number.isNaN(overId) || overId === r.binder.id) return
+    setBinders(prev => {
+      const from = prev.findIndex(b => b.id === r.binder.id)
+      const to = prev.findIndex(b => b.id === overId)
+      if (from < 0 || to < 0) return prev
+      const next = [...prev]
+      const [moved] = next.splice(from, 1)
+      next.splice(to, 0, moved)
+      next.forEach((b, i) => { supabase.from('binders').update({ position: i }).eq('id', b.id) })
+      return next
+    })
   }
 
   const placeCard = async (page: number, idx: number, card: PickableCard) => {
@@ -318,6 +322,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     }
     e.stopPropagation()
     setCardDrag({ img: c.slot.img, x: e.clientX, y: e.clientY })
+    // Près d'un bord → tourne la page pour pouvoir déposer sur une autre page
+    const rect = openSpreadRef.current?.getBoundingClientRect()
+    if (rect && !flip && Date.now() > flipCooldownRef.current) {
+      if (e.clientX > rect.right - 28 && canNext) { flipCooldownRef.current = Date.now() + 800; clickFlip('next') }
+      else if (e.clientX < rect.left + 28 && canPrev) { flipCooldownRef.current = Date.now() + 800; clickFlip('prev') }
+    }
   }
   const cardPointerUp = (e: React.PointerEvent) => {
     const c = cardDragRef.current
@@ -564,7 +574,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 ) : (
                   <div key={b.id} data-binder-spine={b.id}
                     onClick={() => { if (clickSuppressed()) return; openBinder(b) }}
-                    onPointerDown={shelfPointerDown(b.id)}
+                    onPointerDown={shelfPointerDown(b)}
                     onPointerMove={shelfPointerMove}
                     onPointerUp={shelfPointerUp}
                     title={isOwner ? `${b.name} — glisser pour réorganiser` : b.name}
@@ -606,6 +616,21 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           <p style={{ textAlign: 'center', color: '#bbb', padding: 40 }}>Aucun classeur pour l'instant.</p>
         )}
 
+        {/* Aperçu flottant de la tranche pendant la réorganisation */}
+        {reorderDrag && createPortal(
+          <div style={{
+            position: 'fixed', left: reorderDrag.x, top: reorderDrag.y, width: 40, height: 150,
+            transform: 'translate(-50%, -50%) rotate(-3deg)', zIndex: 3000, pointerEvents: 'none',
+            background: reorderDrag.binder.color || accent, borderRadius: '4px 4px 0 0',
+            boxShadow: '0 12px 28px rgba(0,0,0,0.45)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 10,
+          }}>
+            <div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 2, padding: '8px 2px', maxHeight: 100 }}>
+              <span style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 9, fontWeight: 800, color: '#333', whiteSpace: 'nowrap' }}>{reorderDrag.binder.name}</span>
+            </div>
+          </div>,
+          document.body
+        )}
+
         {binderForm}
       </div>
     )
@@ -638,15 +663,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     </div>
   )
 
-  // Ouvre le classeur avec une animation de couverture qui pivote vers la gauche
+  // Ouvre le classeur : la couverture fermée pivote comme un vrai plat de classeur,
+  // puis on affiche les pages.
   const openTheBinder = () => {
     if (isOpen || coverAnimating) return
     setPageIndex(1)
-    setIsOpen(true)
-    setCoverAngle(0)
     setCoverAnimating(true)
-    requestAnimationFrame(() => requestAnimationFrame(() => setCoverAngle(-172)))
-    setTimeout(() => setCoverAnimating(false), 650)
+    requestAnimationFrame(() => requestAnimationFrame(() => setCoverAngle(-115)))
+    setTimeout(() => { setIsOpen(true); setCoverAnimating(false); setCoverAngle(0) }, 520)
   }
 
   return (
@@ -674,17 +698,18 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         </div>
       )}
 
-      <div ref={stageRef} style={{ background: 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: 16, padding: '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: coverH + 40 }}>
+      <div ref={stageRef} style={{ background: 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: 16, padding: '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: coverH + 40, perspective: 1600 }}>
         {!isOpen ? (
-          /* ── Classeur fermé : on voit la couverture ── */
+          /* ── Classeur fermé : on voit la couverture (pivote à l'ouverture) ── */
           <div onClick={openTheBinder} title="Ouvrir le classeur" style={{
             width: coverW, height: coverH, cursor: 'pointer', position: 'relative', display: 'flex',
             borderRadius: '6px 10px 10px 6px', overflow: 'hidden',
-            boxShadow: '0 14px 30px rgba(0,0,0,0.3)', transition: 'transform 0.15s',
-          }}
-            onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
-            onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
-          >
+            boxShadow: '0 14px 30px rgba(0,0,0,0.3)',
+            transformOrigin: 'left center', transformStyle: 'preserve-3d',
+            transform: coverAnimating ? `rotateY(${coverAngle}deg)` : 'none',
+            opacity: coverAnimating ? 0.9 : 1,
+            transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s',
+          }}>
             {/* tranche/reliure à gauche */}
             <div style={{ width: 20, flexShrink: 0, background: `linear-gradient(90deg, rgba(0,0,0,0.35), ${coverColor})`, display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center' }}>
               {[0, 1, 2].map(i => <div key={i} style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.5)' }} />)}
@@ -694,7 +719,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           </div>
         ) : (
           /* ── Classeur ouvert : deux feuilles plastique + rabats de couverture ── */
-          <div style={{ display: 'flex', position: 'relative', perspective: 2200, filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.22))' }}>
+          <div ref={openSpreadRef} style={{ display: 'flex', position: 'relative', perspective: 2200, filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.22))' }}>
             {/* rabats de couverture (le classeur ouvert à plat) */}
             <div style={{ position: 'absolute', left: -wing, top: -6, bottom: -6, width: wing + 8, background: `linear-gradient(90deg, ${coverColor}, rgba(0,0,0,0.25))`, borderRadius: '8px 0 0 8px', zIndex: 1 }} />
             <div style={{ position: 'absolute', left: 2 * pageW - 8, top: -6, bottom: -6, width: wing + 8, background: `linear-gradient(90deg, rgba(0,0,0,0.25), ${coverColor})`, borderRadius: '0 8px 8px 0', zIndex: 1 }} />
@@ -705,18 +730,6 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <div style={{ ...pageShellStyle('right'), zIndex: 2 }}>
               {renderPocketGrid(flippingRight ? pageIndex + 3 : pageIndex + 1, 'right')}
             </div>
-
-            {/* Couverture qui s'ouvre en pivotant vers la gauche */}
-            {coverAnimating && (
-              <div style={{
-                position: 'absolute', left: 0, top: 0, width: pageW, height: pageH, zIndex: 40,
-                transformOrigin: 'left center', transform: `rotateY(${coverAngle}deg)`,
-                transition: 'transform 0.62s cubic-bezier(0.33,0,0.30,1)', backfaceVisibility: 'hidden',
-                borderRadius: '6px 8px 8px 6px', overflow: 'hidden', boxShadow: '2px 0 12px rgba(0,0,0,0.3)',
-              }}>
-                {coverFace}
-              </div>
-            )}
 
             {/* creux central */}
             <div style={{ position: 'absolute', left: pageW - 3, top: 0, bottom: 0, width: 6, background: 'linear-gradient(90deg, rgba(0,0,0,0.14), transparent, rgba(0,0,0,0.14))', zIndex: 14, pointerEvents: 'none' }} />
