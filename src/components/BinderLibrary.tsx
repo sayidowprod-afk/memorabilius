@@ -1,7 +1,10 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { supabase } from '@/lib/supabase'
 import CardPicker, { PickableCard } from './CardPicker'
+
+const Viewer3D = dynamic(() => import('./Viewer3D'), { ssr: false })
 
 interface Binder {
   id: number
@@ -24,8 +27,21 @@ const LAYOUTS = [4, 6, 9, 12, 16]
 const COLS: Record<number, number> = { 4: 2, 6: 2, 9: 3, 12: 3, 16: 4 }
 const BINDER_COLORS = ['#c0392b', '#e2b13c', '#1a1a1a', '#e8dcc4', '#1f3a5f', '#2c2c2c', '#6b2737', '#3d5a3d']
 const SHELF_ROW_SIZE = 12
+const PAGE_W = 230
+const PAGE_H = 310
+const FLIP_MS = 500
 
 function slotKey(page: number, idx: number) { return `${page}:${idx}` }
+
+// Effet feuille plastique : léger reflet diagonal, comme les vraies pochettes brillantes
+function PlasticSheen() {
+  return (
+    <div style={{
+      position: 'absolute', inset: 0, pointerEvents: 'none', borderRadius: 'inherit',
+      background: 'linear-gradient(115deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 22%, rgba(255,255,255,0) 78%, rgba(255,255,255,0.22) 100%)',
+    }} />
+  )
+}
 
 export default function BinderLibrary({ userId, isOwner, accent, pendingCard, onPlaced }: {
   userId: string; isOwner: boolean; accent: string
@@ -45,11 +61,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [newColor, setNewColor] = useState(BINDER_COLORS[0])
   const [pickerTarget, setPickerTarget] = useState<{ page: number; idx: number } | null>(null)
   const [justInserted, setJustInserted] = useState<string | null>(null)
-  const [flipping, setFlipping] = useState(false)
+  const [viewerSlot, setViewerSlot] = useState<Slot | null>(null)
 
-  const wrapRef = useRef<HTMLDivElement>(null)
-  const shadowRef = useRef<HTMLDivElement>(null)
-  const dropShadowRef = useRef<HTMLDivElement>(null)
+  // État du feuilletage : direction, angle courant, page affichée dans l'élément
+  // qui tourne, et si l'angle doit être animé (transition CSS) ou suivre la souris 1:1
+  const [flip, setFlip] = useState<{ dir: 'next' | 'prev'; angle: number; contentPage: number; anim: boolean } | null>(null)
+  const dragRef = useRef<{ dir: 'next' | 'prev'; startX: number } | null>(null)
+  const spreadRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => { loadBinders() }, [userId])
 
@@ -116,40 +134,64 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newCount } : b))
   }
 
-  const flip = (direction: 'next' | 'prev') => {
-    if (!selected || flipping) return
-    const wrap = wrapRef.current, shadow = shadowRef.current, drop = dropShadowRef.current
-    if (!wrap || !shadow || !drop) return
-    setFlipping(true)
-    const ease = 'cubic-bezier(0.45,0.05,0.55,0.95)'
-    if (direction === 'next') {
-      wrap.style.transition = `transform 0.9s ${ease}`
-      shadow.style.transition = `opacity 0.9s ${ease}`
-      drop.style.transition = `opacity 0.9s ${ease}`
-      wrap.style.transform = 'rotateY(-180deg)'
-      shadow.style.opacity = '1'
-      drop.style.opacity = '1'
-      setTimeout(() => { shadow.style.opacity = '0'; drop.style.opacity = '0' }, 450)
+  // Termine un feuilletage démarré à mi-course (clic ou glissé relâché après le seuil) :
+  // continue la rotation, échange le contenu au point mort (± 90°, page vue de tranche),
+  // puis referme sur le nouveau contenu et valide le changement de page.
+  const finishFlip = (dir: 'next' | 'prev') => {
+    if (!selected) return
+    const midAngle = dir === 'next' ? -90 : 90
+    const farAngle = dir === 'next' ? -179 : 179
+    setFlip({ dir, angle: midAngle, contentPage: dir === 'next' ? pageIndex + 1 : pageIndex, anim: true })
+    requestAnimationFrame(() => setFlip(s => s && { ...s, angle: farAngle }))
+    setTimeout(() => {
+      const newContentPage = dir === 'next' ? pageIndex + 3 : pageIndex - 2
+      setFlip({ dir, angle: midAngle, contentPage: newContentPage, anim: false })
+      requestAnimationFrame(() => setFlip(s => s && { ...s, angle: 0, anim: true }))
       setTimeout(() => {
-        wrap.style.transition = 'none'; shadow.style.transition = 'none'; drop.style.transition = 'none'
-        wrap.style.transform = 'rotateY(0deg)'
-        setPageIndex(p => p + 2)
-        setFlipping(false)
-      }, 900)
-    } else {
-      setPageIndex(p => Math.max(0, p - 2))
-      wrap.style.transition = 'none'; shadow.style.transition = 'none'; drop.style.transition = 'none'
-      wrap.style.transform = 'rotateY(-180deg)'
-      shadow.style.opacity = '1'
-      drop.style.opacity = '1'
-      requestAnimationFrame(() => {
-        wrap.style.transition = `transform 0.9s ${ease}`
-        shadow.style.transition = `opacity 0.9s ${ease}`
-        drop.style.transition = `opacity 0.9s ${ease}`
-        wrap.style.transform = 'rotateY(0deg)'
-        setTimeout(() => { shadow.style.opacity = '0'; drop.style.opacity = '0'; setFlipping(false) }, 900)
-      })
-    }
+        setPageIndex(p => dir === 'next' ? p + 2 : Math.max(0, p - 2))
+        setFlip(null)
+      }, FLIP_MS / 2)
+    }, FLIP_MS / 2)
+  }
+
+  const cancelFlip = () => {
+    setFlip(s => s && { ...s, angle: 0, anim: true })
+    setTimeout(() => setFlip(null), FLIP_MS / 2)
+  }
+
+  const clickFlip = (dir: 'next' | 'prev') => {
+    if (!selected || flip) return
+    if (dir === 'next' && pageIndex + 2 >= selected.page_count) return
+    if (dir === 'prev' && pageIndex <= 0) return
+    finishFlip(dir)
+  }
+
+  // Glisser à la souris / au doigt pour tourner la page
+  const onDragStart = (dir: 'next' | 'prev') => (e: React.PointerEvent) => {
+    if (!selected || flip) return
+    if (dir === 'next' && pageIndex + 2 >= selected.page_count) return
+    if (dir === 'prev' && pageIndex <= 0) return
+    dragRef.current = { dir, startX: e.clientX }
+    setFlip({ dir, angle: 0, contentPage: dir === 'next' ? pageIndex + 1 : pageIndex, anim: false })
+    e.currentTarget.setPointerCapture(e.pointerId)
+  }
+
+  const onDragMove = (e: React.PointerEvent) => {
+    const d = dragRef.current
+    if (!d) return
+    const dx = e.clientX - d.startX
+    const progress = Math.max(0, Math.min(1, (d.dir === 'next' ? -dx : dx) / PAGE_W))
+    setFlip(s => s && { ...s, angle: (d.dir === 'next' ? -90 : 90) * progress })
+  }
+
+  const onDragEnd = () => {
+    const d = dragRef.current
+    if (!d) return
+    const current = flip
+    dragRef.current = null
+    const progress = current ? Math.abs(current.angle) / 90 : 0
+    if (progress > 0.35) finishFlip(d.dir)
+    else cancelFlip()
   }
 
   const renderPocketGrid = (page: number) => {
@@ -158,7 +200,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const n = selected.layout
     const cols = COLS[n] || 3
     return (
-      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 6, height: '100%', paddingTop: 14 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 7, height: '100%', paddingTop: 14 }}>
         {Array.from({ length: n }).map((_, idx) => {
           const k = slotKey(page, idx)
           const slot = slots.get(k)
@@ -166,10 +208,23 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             return (
               <div key={idx} className={`binder-slot-card${justInserted === k ? ' binder-slot-card-enter' : ''}`}
                 style={{ aspectRatio: '2.5/3.5', borderRadius: 4, overflow: 'hidden' }}
-                onClick={() => isOwner && removeCard(page, idx)}
-                title={isOwner ? 'Cliquer pour retirer' : slot.nom || ''}
+                onClick={() => setViewerSlot(slot)}
+                title={slot.nom || ''}
               >
                 <img src={slot.img} alt={slot.nom || ''} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: 4 }} />
+                <PlasticSheen />
+                {isOwner && (
+                  <button
+                    onClick={e => { e.stopPropagation(); removeCard(page, idx) }}
+                    title="Retirer du classeur"
+                    style={{
+                      position: 'absolute', top: 3, right: 3, width: 18, height: 18, borderRadius: '50%',
+                      background: 'rgba(0,0,0,0.55)', color: 'white', border: 'none', fontSize: 11, lineHeight: 1,
+                      cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0,
+                    }}
+                    className="binder-slot-remove"
+                  >✕</button>
+                )}
               </div>
             )
           }
@@ -193,6 +248,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       </div>
     )
   }
+
+  const pageShellStyle = (side: 'left' | 'right'): React.CSSProperties => ({
+    width: PAGE_W, height: PAGE_H, background: 'white',
+    border: '1px solid #e5e5e5', boxSizing: 'border-box', padding: 12,
+    borderRadius: side === 'left' ? '8px 0 0 8px' : '0 8px 8px 0',
+    position: 'relative', overflow: 'hidden',
+  })
 
   if (loading) return <p style={{ textAlign: 'center', padding: 40, color: '#999' }}>Chargement...</p>
 
@@ -280,7 +342,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                   {BINDER_COLORS.map(c => (
                     <button key={c} onClick={() => setNewColor(c)} style={{
                       width: 30, height: 30, borderRadius: '50%', cursor: 'pointer', background: c,
-                      border: newColor === c ? '3px solid #003DA6' : '3px solid transparent',
+                      border: newColor === c ? `3px solid ${accent}` : '3px solid transparent',
                       boxShadow: newColor === c ? 'none' : '0 0 0 1px #ddd',
                     }} />
                   ))}
@@ -294,10 +356,16 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     )
   }
 
+  const flippingLeft = flip?.dir === 'prev'
+  const flippingRight = flip?.dir === 'next'
+  const shadowOpacity = flip ? Math.min(1, Math.abs(flip.angle) / 90) : 0
+
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-        <button onClick={() => setSelected(null)} style={{ background: 'none', border: 'none', color: accent, fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>← Retour {pendingCard ? 'aux classeurs' : 'à la bibliothèque'}</button>
+        <button onClick={() => setSelected(null)} className="btn-main btn-secondary" style={{ padding: '8px 16px', fontSize: 13 }}>
+          ← Retour {pendingCard ? 'aux classeurs' : 'à la bibliothèque'}
+        </button>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{ fontWeight: 900, fontSize: 15 }}>📔 {selected.name}</span>
           {isOwner && !pendingCard && (
@@ -313,37 +381,86 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         </div>
       )}
 
-      <div style={{ background: '#f0f0f0', borderRadius: 16, padding: '32px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: 2400 }}>
-        <div style={{ display: 'flex', position: 'relative' }}>
-          <div style={{ width: 240, minHeight: 320, background: 'white', border: '1px solid #e5e5e5', borderRadius: '8px 0 0 8px', padding: 12, boxSizing: 'border-box' }}>
+      <div style={{ background: '#f7f7f7', borderRadius: 16, padding: '36px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div ref={spreadRef} style={{ display: 'flex', position: 'relative', perspective: 1800, touchAction: 'pan-y' }}>
+          {/* Page gauche */}
+          <div style={{ ...pageShellStyle('left'), visibility: flippingLeft ? 'hidden' : 'visible' }}
+            onPointerDown={pageIndex > 0 ? onDragStart('prev') : undefined}
+            onPointerMove={dragRef.current?.dir === 'prev' ? onDragMove : undefined}
+            onPointerUp={dragRef.current?.dir === 'prev' ? onDragEnd : undefined}
+          >
             {renderPocketGrid(pageIndex)}
+            <PlasticSheen />
           </div>
-          <div style={{ width: 0, position: 'relative', zIndex: 6 }}>
-            <div style={{ position: 'absolute', top: -8, bottom: -8, left: -2, width: 4, background: '#ccc', borderRadius: 2 }} />
+
+          <div style={{ width: 0, position: 'relative', zIndex: 20 }}>
+            <div style={{ position: 'absolute', top: -10, bottom: -10, left: -2, width: 4, background: 'linear-gradient(90deg, #ccc, #ddd, #ccc)', borderRadius: 2 }} />
           </div>
-          <div ref={wrapRef} style={{ width: 240, minHeight: 320, position: 'relative', transformStyle: 'preserve-3d' }}>
-            <div style={{ position: 'absolute', inset: 0, background: 'white', border: '1px solid #e5e5e5', borderRadius: '0 8px 8px 0', padding: 12, boxSizing: 'border-box', backfaceVisibility: 'hidden', transformOrigin: 'left center' }}>
-              {renderPocketGrid(pageIndex + 1)}
+
+          {/* Page droite */}
+          <div style={{ ...pageShellStyle('right'), visibility: flippingRight ? 'hidden' : 'visible' }}
+            onPointerDown={pageIndex + 2 < selected.page_count ? onDragStart('next') : undefined}
+            onPointerMove={dragRef.current?.dir === 'next' ? onDragMove : undefined}
+            onPointerUp={dragRef.current?.dir === 'next' ? onDragEnd : undefined}
+          >
+            {renderPocketGrid(pageIndex + 1)}
+            <PlasticSheen />
+          </div>
+
+          {/* Page en train de tourner (gauche ou droite selon la direction) */}
+          {flip && (
+            <div
+              onPointerMove={onDragMove}
+              onPointerUp={onDragEnd}
+              style={{
+                position: 'absolute', top: 0,
+                left: flip.dir === 'next' ? PAGE_W : 0,
+                width: PAGE_W, height: PAGE_H,
+                transformOrigin: flip.dir === 'next' ? 'left center' : 'right center',
+                transform: `rotateY(${flip.angle}deg)`,
+                transition: flip.anim ? `transform ${FLIP_MS / 2}ms cubic-bezier(0.45,0.05,0.55,0.95)` : 'none',
+                zIndex: 30,
+              }}
+            >
+              <div style={{ ...pageShellStyle(flip.dir === 'next' ? 'right' : 'left'), width: '100%', height: '100%' }}>
+                {renderPocketGrid(flip.contentPage)}
+                <PlasticSheen />
+                <div style={{
+                  position: 'absolute', inset: 0, background: flip.dir === 'next' ? 'linear-gradient(to left, rgba(0,0,0,0.3), transparent 60%)' : 'linear-gradient(to right, rgba(0,0,0,0.3), transparent 60%)',
+                  opacity: shadowOpacity, pointerEvents: 'none',
+                }} />
+              </div>
             </div>
-            <div style={{ position: 'absolute', inset: 0, background: 'white', border: '1px solid #e5e5e5', borderRadius: '8px 0 0 8px', padding: 12, boxSizing: 'border-box', backfaceVisibility: 'hidden', transformOrigin: 'left center', transform: 'rotateY(180deg)' }}>
-              {renderPocketGrid(pageIndex + 2)}
-            </div>
-            <div ref={shadowRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(to right, rgba(0,0,0,0.35), transparent 55%)', opacity: 0, borderRadius: '0 8px 8px 0' }} />
-          </div>
-          <div ref={dropShadowRef} style={{ position: 'absolute', left: 240, top: 6, bottom: -10, width: 240, boxShadow: '-18px 0 30px -12px rgba(0,0,0,0.35)', opacity: 0, pointerEvents: 'none', borderRadius: '0 8px 8px 0' }} />
+          )}
+
+          {/* Ombre portée sur la page statique pendant le feuilletage */}
+          {flip && (
+            <div style={{
+              position: 'absolute', top: 0,
+              left: flip.dir === 'next' ? 0 : PAGE_W, width: PAGE_W, height: PAGE_H,
+              background: flip.dir === 'next' ? 'linear-gradient(to right, transparent 60%, rgba(0,0,0,0.25))' : 'linear-gradient(to left, transparent 60%, rgba(0,0,0,0.25))',
+              opacity: shadowOpacity, pointerEvents: 'none', borderRadius: flip.dir === 'next' ? '8px 0 0 8px' : '0 8px 8px 0',
+            }} />
+          )}
         </div>
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 14 }}>
-        <button onClick={() => flip('prev')} disabled={pageIndex <= 0 || flipping} style={{ opacity: pageIndex <= 0 ? 0.4 : 1 }}>← Page précédente</button>
+        <button onClick={() => clickFlip('prev')} disabled={pageIndex <= 0 || !!flip} className="btn-main btn-secondary"
+          style={{ padding: '8px 16px', fontSize: 13, opacity: pageIndex <= 0 ? 0.4 : 1 }}>
+          ← Page précédente
+        </button>
         <span style={{ fontSize: 12, color: '#999' }}>
           Pages {Math.max(1, pageIndex)}–{Math.min(selected.page_count, pageIndex + 2)} / {selected.page_count}
         </span>
         <div style={{ display: 'flex', gap: 8 }}>
           {isOwner && pageIndex + 2 >= selected.page_count && (
-            <button onClick={addPage} style={{ fontSize: 12 }}>+ Ajouter une page</button>
+            <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: '8px 14px', fontSize: 12 }}>+ Ajouter une page</button>
           )}
-          <button onClick={() => flip('next')} disabled={pageIndex + 2 >= selected.page_count || flipping} style={{ opacity: pageIndex + 2 >= selected.page_count ? 0.4 : 1 }}>Page suivante →</button>
+          <button onClick={() => clickFlip('next')} disabled={pageIndex + 2 >= selected.page_count || !!flip} className="btn-main btn-primary"
+            style={{ padding: '8px 16px', fontSize: 13, opacity: pageIndex + 2 >= selected.page_count ? 0.4 : 1 }}>
+            Page suivante →
+          </button>
         </div>
       </div>
 
@@ -353,6 +470,18 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           excludeKeys={new Set([...slots.values()].map(s => s.card_key))}
           onClose={() => setPickerTarget(null)}
           onSelect={card => placeCard(pickerTarget.page, pickerTarget.idx, card)}
+        />
+      )}
+
+      {viewerSlot && (
+        <Viewer3D
+          popup={{
+            f: viewerSlot.img, b: viewerSlot.img, n: viewerSlot.nom || '', t: '', y: '',
+            br: '', s: '', v: '', num: '', auto: false, rc: false, patch: false, g: 'Raw',
+          }}
+          accent={accent}
+          onClose={() => setViewerSlot(null)}
+          getTags={() => null}
         />
       )}
     </div>
