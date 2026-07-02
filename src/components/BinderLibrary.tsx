@@ -9,8 +9,10 @@ const Viewer3D = dynamic(() => import('./Viewer3D'), { ssr: false })
 interface Binder {
   id: number
   name: string
+  subtitle: string | null
   layout: number
   color: string | null
+  cover_img: string | null
   page_count: number
   position: number
 }
@@ -45,13 +47,8 @@ function PlasticSheen() {
 
 export default function BinderLibrary({ userId, isOwner, accent, pendingCard, onPlaced, onOpenCard }: {
   userId: string; isOwner: boolean; accent: string
-  // Mode placement : une carte vient d'être ajoutée, on choisit juste où la ranger
-  // (clic sur une pochette vide = placement direct, pas de sélecteur de carte)
   pendingCard?: PickableCard | null
   onPlaced?: () => void
-  // Ouverture d'une carte : si fourni (depuis la galerie), délègue au Viewer3D
-  // complet de la galerie (avec toutes les infos + tags) via l'image de la carte.
-  // Sinon, on retombe sur un Viewer3D minimal interne.
   onOpenCard?: (img: string) => boolean
 }) {
   const [binders, setBinders] = useState<Binder[]>([])
@@ -59,14 +56,20 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [selected, setSelected] = useState<Binder | null>(null)
   const [slots, setSlots] = useState<Map<string, Slot>>(new Map())
   const [pageIndex, setPageIndex] = useState(0)
-  const [showCreate, setShowCreate] = useState(false)
-  const [newName, setNewName] = useState('')
-  const [newLayout, setNewLayout] = useState(9)
-  const [newColor, setNewColor] = useState(BINDER_COLORS[0])
   const [pickerTarget, setPickerTarget] = useState<{ page: number; idx: number } | null>(null)
   const [justInserted, setJustInserted] = useState<string | null>(null)
   const [viewerSlot, setViewerSlot] = useState<Slot | null>(null)
-  // Dimensions d'une page calculées pour tenir la double-page dans la largeur dispo
+
+  // Formulaire création/édition partagé. null = fermé, 'create' = nouveau, number = id à éditer
+  const [formOpen, setFormOpen] = useState<null | 'create' | number>(null)
+  const [fName, setFName] = useState('')
+  const [fSubtitle, setFSubtitle] = useState('')
+  const [fLayout, setFLayout] = useState(9)
+  const [fColor, setFColor] = useState(BINDER_COLORS[0])
+  const [fCover, setFCover] = useState<string | null>(null)
+  const [uploadingCover, setUploadingCover] = useState(false)
+  const coverInputRef = useRef<HTMLInputElement>(null)
+
   const [pageW, setPageW] = useState(PAGE_MAX_W)
   const stageRef = useRef<HTMLDivElement>(null)
   const pageH = Math.round(pageW * PAGE_RATIO)
@@ -75,7 +78,6 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const el = stageRef.current
     if (!el) return
     const measure = () => {
-      // Deux pages + marges internes de la scène (16px de chaque côté)
       const avail = el.clientWidth - 32
       setPageW(Math.max(120, Math.min(PAGE_MAX_W, Math.floor(avail / 2))))
     }
@@ -85,8 +87,6 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     return () => ro.disconnect()
   }, [selected])
 
-  // État du feuilletage : direction, angle courant, page affichée dans l'élément
-  // qui tourne, et si l'angle doit être animé (transition CSS) ou suivre la souris 1:1
   const [flip, setFlip] = useState<{ dir: 'next' | 'prev'; angle: number; contentPage: number; anim: boolean } | null>(null)
   const dragRef = useRef<{ dir: 'next' | 'prev'; startX: number; active: boolean; angle: number; pointerId: number; el: HTMLElement } | null>(null)
   const spreadRef = useRef<HTMLDivElement>(null)
@@ -108,16 +108,46 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setSlots(map)
   }
 
-  const createBinder = async () => {
-    if (!newName.trim()) return
-    const { data, error } = await supabase.from('binders').insert({
-      user_id: userId, name: newName.trim(), layout: newLayout, color: newColor, position: binders.length,
-    }).select().single()
-    if (error) { alert('Erreur : ' + error.message); return }
-    setShowCreate(false)
-    setNewName('')
-    setBinders(prev => [...prev, data])
-    openBinder(data)
+  const openCreateForm = () => {
+    setFName(''); setFSubtitle(''); setFLayout(9); setFColor(BINDER_COLORS[0]); setFCover(null)
+    setFormOpen('create')
+  }
+  const openEditForm = (b: Binder) => {
+    setFName(b.name); setFSubtitle(b.subtitle || ''); setFLayout(b.layout); setFColor(b.color || BINDER_COLORS[0]); setFCover(b.cover_img)
+    setFormOpen(b.id)
+  }
+
+  const uploadCover = async (file: File) => {
+    if (file.size > 4 * 1024 * 1024) { alert('Image trop lourde (max 4 Mo)'); return }
+    setUploadingCover(true)
+    const ext = (file.name.split('.').pop() || 'jpg').toLowerCase()
+    const path = `binders/${userId}/${Date.now()}.${ext}`
+    const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
+    if (error) { alert('Erreur upload : ' + error.message); setUploadingCover(false); return }
+    const { data } = supabase.storage.from('avatars').getPublicUrl(path)
+    setFCover(data.publicUrl)
+    setUploadingCover(false)
+  }
+
+  const saveForm = async () => {
+    if (!fName.trim()) return
+    const payload = { name: fName.trim(), subtitle: fSubtitle.trim() || null, color: fColor, cover_img: fCover }
+    if (formOpen === 'create') {
+      const { data, error } = await supabase.from('binders').insert({
+        user_id: userId, layout: fLayout, position: binders.length, ...payload,
+      }).select().single()
+      if (error) { alert('Erreur : ' + error.message); return }
+      setBinders(prev => [...prev, data])
+      setFormOpen(null)
+      openBinder(data)
+    } else {
+      const id = formOpen as number
+      const { error } = await supabase.from('binders').update(payload).eq('id', id)
+      if (error) { alert('Erreur : ' + error.message); return }
+      setBinders(prev => prev.map(b => b.id === id ? { ...b, ...payload } : b))
+      setSelected(s => s && s.id === id ? { ...s, ...payload } : s)
+      setFormOpen(null)
+    }
   }
 
   const deleteBinder = async (id: number) => {
@@ -156,9 +186,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newCount } : b))
   }
 
-  // Termine un feuilletage démarré à mi-course (clic ou glissé relâché après le seuil) :
-  // continue la rotation, échange le contenu au point mort (± 90°, page vue de tranche),
-  // puis referme sur le nouveau contenu et valide le changement de page.
+  // Bornes de navigation (page 0 = couverture avant, page_count+1 = couverture arrière)
+  const coverBack = selected ? selected.page_count + 1 : 0
+  const canNext = selected ? pageIndex < selected.page_count : false
+  const canPrev = pageIndex > 0
+
   const finishFlip = (dir: 'next' | 'prev') => {
     if (!selected) return
     const midAngle = dir === 'next' ? -90 : 90
@@ -166,8 +198,6 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setFlip({ dir, angle: midAngle, contentPage: dir === 'next' ? pageIndex + 1 : pageIndex, anim: true })
     requestAnimationFrame(() => setFlip(s => s && { ...s, angle: farAngle }))
     setTimeout(() => {
-      // Contenu qui « atterrit » de l'autre côté : page qui devient la nouvelle
-      // page opposée (next → nouvelle page de gauche, prev → nouvelle page de droite)
       const newContentPage = dir === 'next' ? pageIndex + 2 : pageIndex - 1
       setFlip({ dir, angle: midAngle, contentPage: newContentPage, anim: false })
       requestAnimationFrame(() => setFlip(s => s && { ...s, angle: 0, anim: true }))
@@ -185,19 +215,15 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   const clickFlip = (dir: 'next' | 'prev') => {
     if (!selected || flip) return
-    if (dir === 'next' && pageIndex + 2 >= selected.page_count) return
-    if (dir === 'prev' && pageIndex <= 0) return
+    if (dir === 'next' && !canNext) return
+    if (dir === 'prev' && !canPrev) return
     finishFlip(dir)
   }
 
-  // Glisser à la souris / au doigt pour tourner la page.
-  // On ne capture le pointeur (et ne démarre le feuilletage) qu'au-delà d'un
-  // petit seuil de déplacement : un simple clic reste un clic et atteint la
-  // pochette en dessous (ajout de carte / ouverture Viewer3D).
   const beginDrag = (dir: 'next' | 'prev') => (e: React.PointerEvent) => {
     if (!selected || flip) return
-    if (dir === 'next' && pageIndex + 2 >= selected.page_count) return
-    if (dir === 'prev' && pageIndex <= 0) return
+    if (dir === 'next' && !canNext) return
+    if (dir === 'prev' && !canPrev) return
     dragRef.current = { dir, startX: e.clientX, active: false, angle: 0, pointerId: e.pointerId, el: e.currentTarget as HTMLElement }
   }
 
@@ -206,7 +232,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     if (!d) return
     const dx = e.clientX - d.startX
     if (!d.active) {
-      if (Math.abs(dx) < 6) return // pas encore un vrai glissé → laisse le clic passer
+      if (Math.abs(dx) < 6) return
       d.active = true
       try { d.el.setPointerCapture(d.pointerId) } catch {}
       setFlip({ dir: d.dir, angle: 0, contentPage: d.dir === 'next' ? pageIndex + 1 : pageIndex, anim: false })
@@ -220,9 +246,40 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const d = dragRef.current
     if (!d) return
     dragRef.current = null
-    if (!d.active) return // simple tap : le clic sur la pochette suit son cours
+    if (!d.active) return
     if (Math.abs(d.angle) / 90 > 0.3) finishFlip(d.dir)
     else cancelFlip()
+  }
+
+  // ── Rendu d'une page : couverture avant/arrière ou grille de pochettes ──
+  const renderCover = (kind: 'front' | 'back') => {
+    const b = selected!
+    const col = b.color || accent
+    const small = pageW < 180
+    return (
+      <div style={{ position: 'absolute', inset: 0, borderRadius: 'inherit', overflow: 'hidden' }}>
+        {b.cover_img
+          ? <img src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          : <div style={{ width: '100%', height: '100%', background: col }} />}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.08) 35%, rgba(0,0,0,0.55))' }} />
+        <div style={{ position: 'absolute', left: 12, right: 12, bottom: '13%', textAlign: 'center' }}>
+          <div style={{ display: 'inline-block', maxWidth: '92%', background: 'rgba(255,255,255,0.95)', color: '#111', borderRadius: 6, padding: small ? '6px 10px' : '10px 14px', boxShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>
+            <div style={{ fontWeight: 900, fontSize: small ? 13 : 17, lineHeight: 1.15, wordBreak: 'break-word' }}>{b.name}</div>
+            {b.subtitle && <div style={{ fontSize: small ? 10 : 12, color: '#666', marginTop: 2 }}>{b.subtitle}</div>}
+          </div>
+        </div>
+        <div style={{ position: 'absolute', top: 10, left: 0, right: 0, textAlign: 'center', color: 'rgba(255,255,255,0.75)', fontSize: 9, letterSpacing: '0.18em', fontWeight: 700 }}>
+          {kind === 'front' ? 'MEMORABILIUS' : ''}
+        </div>
+        <PlasticSheen />
+      </div>
+    )
+  }
+
+  const renderPage = (num: number) => {
+    if (!selected) return null
+    if (num === 0 || num === coverBack) return renderCover(num === 0 ? 'front' : 'back')
+    return renderPocketGrid(num)
   }
 
   const renderPocketGrid = (page: number) => {
@@ -230,8 +287,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     if (page < 1 || page > selected.page_count) return <div style={{ visibility: 'hidden' }} />
     const n = selected.layout
     const cols = COLS[n] || 3
+    const small = pageW < 180
     return (
-      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: pageW < 180 ? 4 : 7, height: '100%', paddingTop: pageW < 180 ? 6 : 14 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: small ? 4 : 7, height: '100%', paddingTop: small ? 6 : 14 }}>
         {Array.from({ length: n }).map((_, idx) => {
           const k = slotKey(page, idx)
           const slot = slots.get(k)
@@ -283,13 +341,89 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const pageShellStyle = (side: 'left' | 'right'): React.CSSProperties => ({
     width: pageW, height: pageH, background: 'white',
     border: '1px solid #e5e5e5', boxSizing: 'border-box', padding: pageW < 180 ? 8 : 12,
-    borderRadius: side === 'left' ? '8px 0 0 8px' : '0 8px 8px 0',
+    borderRadius: side === 'left' ? '10px 0 0 10px' : '0 10px 10px 0',
     position: 'relative', overflow: 'hidden',
   })
 
+  // ── Formulaire création / édition (partagé) ──
+  const binderForm = formOpen !== null && (
+    <div onClick={() => setFormOpen(null)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: 'white', borderRadius: 16, padding: 24, width: '100%', maxWidth: 380, maxHeight: '88vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>📔 {formOpen === 'create' ? 'Nouveau classeur' : 'Modifier le classeur'}</h3>
+
+        {/* Aperçu couverture */}
+        <div style={{ display: 'flex', gap: 14, alignItems: 'stretch' }}>
+          <div style={{ width: 90, height: 122, borderRadius: 8, overflow: 'hidden', flexShrink: 0, position: 'relative', background: fColor, boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>
+            {fCover && <img src={fCover} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 45%, rgba(0,0,0,0.5))' }} />
+            <div style={{ position: 'absolute', left: 4, right: 4, bottom: 6, textAlign: 'center' }}>
+              <span style={{ display: 'inline-block', maxWidth: '92%', background: 'rgba(255,255,255,0.95)', color: '#111', borderRadius: 4, padding: '3px 5px', fontSize: 9, fontWeight: 900, lineHeight: 1.1, wordBreak: 'break-word' }}>{fName || 'Nom'}</span>
+            </div>
+          </div>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8, justifyContent: 'center' }}>
+            <button onClick={() => coverInputRef.current?.click()} className="btn-main btn-secondary" style={{ padding: '8px 12px', fontSize: 12 }}>
+              {uploadingCover ? '...' : fCover ? '🖼️ Changer la couverture' : '🖼️ Ajouter une couverture'}
+            </button>
+            {fCover && (
+              <button onClick={() => setFCover(null)} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12, textAlign: 'left' }}>Retirer l'image</button>
+            )}
+            <input ref={coverInputRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={e => { const f = e.target.files?.[0]; if (f) uploadCover(f); e.target.value = '' }} />
+          </div>
+        </div>
+
+        <div>
+          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Nom</label>
+          <input value={fName} onChange={e => setFName(e.target.value)} placeholder="Ex : Rookies 2024" autoFocus />
+        </div>
+        <div>
+          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Sous-titre (optionnel)</label>
+          <input value={fSubtitle} onChange={e => setFSubtitle(e.target.value)} placeholder="Ex : Panini Prizm" />
+        </div>
+
+        {formOpen === 'create' && (
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Pochettes par page</label>
+            <div style={{ display: 'flex', gap: 6 }}>
+              {LAYOUTS.map(n => (
+                <button key={n} onClick={() => setFLayout(n)} style={{
+                  flex: 1, padding: '8px 0', borderRadius: 8, cursor: 'pointer', fontWeight: 800, fontSize: 13,
+                  border: fLayout === n ? `2px solid ${accent}` : '2px solid #e0e0e0',
+                  background: fLayout === n ? accent : 'white', color: fLayout === n ? 'white' : '#333',
+                }}>{n}</button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div>
+          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Couleur</label>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {BINDER_COLORS.map(c => (
+              <button key={c} onClick={() => setFColor(c)} style={{
+                width: 30, height: 30, borderRadius: '50%', cursor: 'pointer', background: c,
+                border: fColor === c ? `3px solid ${accent}` : '3px solid transparent',
+                boxShadow: fColor === c ? 'none' : '0 0 0 1px #ddd',
+              }} />
+            ))}
+          </div>
+        </div>
+
+        <button onClick={saveForm} disabled={!fName.trim()} className="btn-main btn-primary">
+          {formOpen === 'create' ? 'Créer' : 'Enregistrer'}
+        </button>
+      </div>
+    </div>
+  )
+
   if (loading) return <p style={{ textAlign: 'center', padding: 40, color: '#999' }}>Chargement...</p>
 
+  // ── Vue étagère ──
   if (!selected) {
+    const items: (Binder | 'new')[] = [...binders]
+    if (isOwner) items.push('new')
+    const rows: (Binder | 'new')[][] = []
+    for (let i = 0; i < items.length; i += SHELF_ROW_SIZE) rows.push(items.slice(i, i + SHELF_ROW_SIZE))
+    if (rows.length === 0) rows.push([])
     return (
       <div>
         {pendingCard && (
@@ -298,110 +432,83 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <span style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>Choisis un classeur pour ranger « {pendingCard.nom} »</span>
           </div>
         )}
-        {(() => {
-          const items: (Binder | 'new')[] = [...binders]
-          if (isOwner) items.push('new')
-          const rows: (Binder | 'new')[][] = []
-          for (let i = 0; i < items.length; i += SHELF_ROW_SIZE) rows.push(items.slice(i, i + SHELF_ROW_SIZE))
-          if (rows.length === 0) rows.push([])
-          return (
-            <div style={{ background: 'white', border: '1px solid #eee', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', padding: '20px 16px 6px' }}>
-              {rows.map((row, ri) => (
-                <div key={ri} style={{
-                  display: 'flex', alignItems: 'flex-end', gap: 2, paddingBottom: 10,
-                  borderBottom: '5px solid #f0f0f0', marginBottom: 16,
-                  overflowX: 'auto', WebkitOverflowScrolling: 'touch',
-                }}>
-                  {row.map(b => b === 'new' ? (
-                    <div key="new" onClick={() => setShowCreate(true)} title="Nouveau classeur" style={{
-                      width: 32, height: 170, cursor: 'pointer', border: '1.5px dashed #ddd', borderRadius: '3px 3px 0 0',
-                      background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      flexShrink: 0,
-                    }}>
-                      <span style={{ fontSize: 16, color: '#bbb' }}>+</span>
+        <div style={{ background: 'white', border: '1px solid #eee', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', padding: '22px 16px 8px' }}>
+          {rows.map((row, ri) => (
+            <div key={ri} style={{
+              display: 'flex', alignItems: 'flex-end', gap: 3, paddingBottom: 12,
+              borderBottom: '6px solid #ece9e2', marginBottom: 18,
+              overflowX: 'auto', WebkitOverflowScrolling: 'touch',
+            }}>
+              {row.map(b => b === 'new' ? (
+                <div key="new" onClick={openCreateForm} title="Nouveau classeur" style={{
+                  width: 36, height: 178, cursor: 'pointer', border: '1.5px dashed #d5d0c6', borderRadius: '4px 4px 0 0',
+                  background: '#faf9f6', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0, color: '#b8b2a4', fontSize: 18,
+                }}>+</div>
+              ) : (
+                <div key={b.id} onClick={() => openBinder(b)} title={`${b.name} — ${b.layout} pochettes, ${b.page_count} pages`} style={{
+                  width: 36, height: 178, cursor: 'pointer', flexShrink: 0,
+                  background: b.color || accent, borderRadius: '4px 4px 0 0',
+                  boxShadow: 'inset 3px 0 0 rgba(255,255,255,0.18), inset -3px 0 0 rgba(0,0,0,0.22), 1px 0 3px rgba(0,0,0,0.25)',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center',
+                  transition: 'transform 0.15s', position: 'relative', overflow: 'hidden',
+                }}
+                  onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-10px)')}
+                  onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                >
+                  {b.cover_img && (
+                    <div style={{ width: '100%', height: 42, flexShrink: 0, overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.15)' }}>
+                      <img src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
-                  ) : (
-                    <div key={b.id} onClick={() => openBinder(b)} title={`${b.name} — ${b.layout} pochettes, ${b.page_count} pages`} style={{
-                      width: 32, height: 170, cursor: 'pointer', flexShrink: 0,
-                      background: b.color || accent, borderRadius: '3px 3px 0 0',
-                      boxShadow: 'inset 2px 0 0 rgba(255,255,255,0.12), inset -2px 0 0 rgba(0,0,0,0.15)',
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 8,
-                      transition: 'transform 0.15s', position: 'relative',
-                    }}
-                      onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-8px)')}
-                      onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
-                    >
-                      <span style={{
-                        writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 10, fontWeight: 800,
-                        color: 'rgba(255,255,255,0.92)', maxHeight: 130, overflow: 'hidden', textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap', letterSpacing: '0.02em',
-                      }}>{b.name}</span>
-                    </div>
-                  ))}
+                  )}
+                  <div style={{ flex: 1 }} />
+                  {/* étiquette blanche imprimée comme sur les vrais classeurs */}
+                  <div style={{ background: 'rgba(255,255,255,0.94)', borderRadius: 2, margin: '0 3px 12px', padding: '8px 2px', boxShadow: '0 1px 2px rgba(0,0,0,0.2)', display: 'flex', justifyContent: 'center', maxHeight: 118 }}>
+                    <span style={{
+                      writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 9, fontWeight: 800,
+                      color: '#333', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                      maxHeight: 100, letterSpacing: '0.02em',
+                    }}>{b.name}</span>
+                  </div>
                 </div>
               ))}
             </div>
-          )
-        })()}
+          ))}
+        </div>
 
         {binders.length === 0 && !isOwner && (
           <p style={{ textAlign: 'center', color: '#bbb', padding: 40 }}>Aucun classeur pour l'instant.</p>
         )}
 
-        {showCreate && (
-          <div onClick={() => setShowCreate(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
-            <div onClick={e => e.stopPropagation()} style={{ background: 'white', borderRadius: 16, padding: 24, width: '100%', maxWidth: 360, display: 'flex', flexDirection: 'column', gap: 14 }}>
-              <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>📔 Nouveau classeur</h3>
-              <div>
-                <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Nom</label>
-                <input value={newName} onChange={e => setNewName(e.target.value)} placeholder="Ex : Rookies 2024" autoFocus />
-              </div>
-              <div>
-                <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Pochettes par page</label>
-                <div style={{ display: 'flex', gap: 6 }}>
-                  {LAYOUTS.map(n => (
-                    <button key={n} onClick={() => setNewLayout(n)} style={{
-                      flex: 1, padding: '8px 0', borderRadius: 8, cursor: 'pointer', fontWeight: 800, fontSize: 13,
-                      border: newLayout === n ? `2px solid ${accent}` : '2px solid #e0e0e0',
-                      background: newLayout === n ? accent : 'white', color: newLayout === n ? 'white' : '#333',
-                    }}>{n}</button>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Couleur</label>
-                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                  {BINDER_COLORS.map(c => (
-                    <button key={c} onClick={() => setNewColor(c)} style={{
-                      width: 30, height: 30, borderRadius: '50%', cursor: 'pointer', background: c,
-                      border: newColor === c ? `3px solid ${accent}` : '3px solid transparent',
-                      boxShadow: newColor === c ? 'none' : '0 0 0 1px #ddd',
-                    }} />
-                  ))}
-                </div>
-              </div>
-              <button onClick={createBinder} disabled={!newName.trim()} className="btn-main btn-primary">Créer</button>
-            </div>
-          </div>
-        )}
+        {binderForm}
       </div>
     )
   }
 
+  // ── Vue classeur ouvert ──
   const flippingLeft = flip?.dir === 'prev'
   const flippingRight = flip?.dir === 'next'
   const shadowOpacity = flip ? Math.min(1, Math.abs(flip.angle) / 90) : 0
 
+  const spreadLabel = () => {
+    const L = pageIndex, R = pageIndex + 1
+    const part = (num: number) => num === 0 ? 'Couv.' : num === coverBack ? 'Dos' : (num >= 1 && num <= selected.page_count) ? String(num) : ''
+    return [part(L), part(R)].filter(Boolean).join(' – ')
+  }
+
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
         <button onClick={() => setSelected(null)} className="btn-main btn-secondary" style={{ padding: '8px 16px', fontSize: 13 }}>
           ← Retour {pendingCard ? 'aux classeurs' : 'à la bibliothèque'}
         </button>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontWeight: 900, fontSize: 15 }}>📔 {selected.name}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <span style={{ fontWeight: 900, fontSize: 15 }}>{selected.name}</span>
           {isOwner && !pendingCard && (
-            <button onClick={() => deleteBinder(selected.id)} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12 }}>🗑️ Supprimer</button>
+            <>
+              <button onClick={() => openEditForm(selected)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>✏️ Modifier</button>
+              <button onClick={() => deleteBinder(selected.id)} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12 }}>🗑️</button>
+            </>
           )}
         </div>
       </div>
@@ -413,45 +520,33 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         </div>
       )}
 
-      <div ref={stageRef} style={{ background: '#f7f7f7', borderRadius: 16, padding: '28px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div ref={stageRef} style={{ background: 'linear-gradient(180deg, #efefef, #e6e6e6)', borderRadius: 16, padding: '30px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div ref={spreadRef} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerLeave={endDrag}
-          style={{ display: 'flex', position: 'relative', perspective: 1800, touchAction: 'pan-y' }}>
-          {/* Page gauche — pendant un feuilletage "prev", montre déjà la page révélée dessous */}
-          <div style={pageShellStyle('left')}
-            onPointerDown={beginDrag('prev')}
-          >
-            {renderPocketGrid(flippingLeft ? pageIndex - 2 : pageIndex)}
-            <PlasticSheen />
+          style={{ display: 'flex', position: 'relative', perspective: 1800, touchAction: 'pan-y', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.18))' }}>
+          <div style={pageShellStyle('left')} onPointerDown={beginDrag('prev')}>
+            {renderPage(flippingLeft ? pageIndex - 2 : pageIndex)}
           </div>
 
           <div style={{ width: 0, position: 'relative', zIndex: 20 }}>
-            <div style={{ position: 'absolute', top: -10, bottom: -10, left: -2, width: 4, background: 'linear-gradient(90deg, #ccc, #ddd, #ccc)', borderRadius: 2 }} />
+            <div style={{ position: 'absolute', top: -10, bottom: -10, left: -2, width: 4, background: 'linear-gradient(90deg, #bbb, #ddd, #bbb)', borderRadius: 2 }} />
           </div>
 
-          {/* Page droite — pendant un feuilletage "next", montre déjà la page révélée dessous */}
-          <div style={pageShellStyle('right')}
-            onPointerDown={beginDrag('next')}
-          >
-            {renderPocketGrid(flippingRight ? pageIndex + 3 : pageIndex + 1)}
-            <PlasticSheen />
+          <div style={pageShellStyle('right')} onPointerDown={beginDrag('next')}>
+            {renderPage(flippingRight ? pageIndex + 3 : pageIndex + 1)}
           </div>
 
-          {/* Page en train de tourner (gauche ou droite selon la direction) */}
           {flip && (
-            <div
-              style={{
-                position: 'absolute', top: 0,
-                left: flip.dir === 'next' ? pageW : 0,
-                width: pageW, height: pageH,
-                transformOrigin: flip.dir === 'next' ? 'left center' : 'right center',
-                transform: `rotateY(${flip.angle}deg)`,
-                transition: flip.anim ? `transform ${FLIP_MS / 2}ms cubic-bezier(0.45,0.05,0.55,0.95)` : 'none',
-                zIndex: 30,
-              }}
-            >
+            <div style={{
+              position: 'absolute', top: 0,
+              left: flip.dir === 'next' ? pageW : 0,
+              width: pageW, height: pageH,
+              transformOrigin: flip.dir === 'next' ? 'left center' : 'right center',
+              transform: `rotateY(${flip.angle}deg)`,
+              transition: flip.anim ? `transform ${FLIP_MS / 2}ms cubic-bezier(0.45,0.05,0.55,0.95)` : 'none',
+              zIndex: 30,
+            }}>
               <div style={{ ...pageShellStyle(flip.dir === 'next' ? 'right' : 'left'), width: '100%', height: '100%' }}>
-                {renderPocketGrid(flip.contentPage)}
-                <PlasticSheen />
+                {renderPage(flip.contentPage)}
                 <div style={{
                   position: 'absolute', inset: 0, background: flip.dir === 'next' ? 'linear-gradient(to left, rgba(0,0,0,0.3), transparent 60%)' : 'linear-gradient(to right, rgba(0,0,0,0.3), transparent 60%)',
                   opacity: shadowOpacity, pointerEvents: 'none',
@@ -460,34 +555,31 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             </div>
           )}
 
-          {/* Ombre portée sur la page statique pendant le feuilletage */}
           {flip && (
             <div style={{
               position: 'absolute', top: 0,
               left: flip.dir === 'next' ? 0 : pageW, width: pageW, height: pageH,
               background: flip.dir === 'next' ? 'linear-gradient(to right, transparent 60%, rgba(0,0,0,0.25))' : 'linear-gradient(to left, transparent 60%, rgba(0,0,0,0.25))',
-              opacity: shadowOpacity, pointerEvents: 'none', borderRadius: flip.dir === 'next' ? '8px 0 0 8px' : '0 8px 8px 0',
+              opacity: shadowOpacity, pointerEvents: 'none', borderRadius: flip.dir === 'next' ? '10px 0 0 10px' : '0 10px 10px 0',
             }} />
           )}
         </div>
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginTop: 14, flexWrap: 'wrap' }}>
-        <button onClick={() => clickFlip('prev')} disabled={pageIndex <= 0 || !!flip} className="btn-main btn-secondary"
-          style={{ padding: '8px 14px', fontSize: 13, opacity: pageIndex <= 0 ? 0.4 : 1 }} aria-label="Page précédente">
+        <button onClick={() => clickFlip('prev')} disabled={!canPrev || !!flip} className="btn-main btn-secondary"
+          style={{ padding: '8px 14px', fontSize: 13, opacity: !canPrev ? 0.4 : 1 }} aria-label="Page précédente">
           ←<span className="binder-nav-label"> Page précédente</span>
         </button>
-        <span style={{ fontSize: 12, color: '#999', whiteSpace: 'nowrap' }}>
-          {Math.max(1, pageIndex)}–{Math.min(selected.page_count, pageIndex + 2)} / {selected.page_count}
-        </span>
+        <span style={{ fontSize: 12, color: '#999', whiteSpace: 'nowrap' }}>{spreadLabel()}</span>
         <div style={{ display: 'flex', gap: 8 }}>
-          {isOwner && pageIndex + 2 >= selected.page_count && (
+          {isOwner && pageIndex >= selected.page_count && (
             <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: '8px 12px', fontSize: 12 }} aria-label="Ajouter une page">
               +<span className="binder-nav-label"> Ajouter une page</span>
             </button>
           )}
-          <button onClick={() => clickFlip('next')} disabled={pageIndex + 2 >= selected.page_count || !!flip} className="btn-main btn-primary"
-            style={{ padding: '8px 14px', fontSize: 13, opacity: pageIndex + 2 >= selected.page_count ? 0.4 : 1 }} aria-label="Page suivante">
+          <button onClick={() => clickFlip('next')} disabled={!canNext || !!flip} className="btn-main btn-primary"
+            style={{ padding: '8px 14px', fontSize: 13, opacity: !canNext ? 0.4 : 1 }} aria-label="Page suivante">
             <span className="binder-nav-label">Page suivante </span>→
           </button>
         </div>
@@ -513,6 +605,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           getTags={() => null}
         />
       )}
+
+      {binderForm}
     </div>
   )
 }
