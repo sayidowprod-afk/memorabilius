@@ -108,6 +108,20 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   useEffect(() => { loadBinders() }, [userId])
 
+  // Filet de sécurité : si un pointeur est relâché/annulé n'importe où et que le
+  // garde-fou anti-clic est resté « à l'infini » sans glissé actif, on le réarme.
+  useEffect(() => {
+    const reset = () => {
+      const anyActive = swipeRef.current?.active || cardDragRef.current?.active || reorderRef.current?.active
+      if (!anyActive && suppressClickUntil.current > Date.now() + 50000) {
+        suppressClickUntil.current = Date.now() + 200
+      }
+    }
+    window.addEventListener('pointerup', reset)
+    window.addEventListener('pointercancel', reset)
+    return () => { window.removeEventListener('pointerup', reset); window.removeEventListener('pointercancel', reset) }
+  }, [])
+
   const loadBinders = async () => {
     const { data } = await supabase.from('binders').select('*').eq('user_id', userId).order('position').order('id')
     setBinders(data || [])
@@ -344,6 +358,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       }
     }
   }
+  const cardPointerCancel = () => {
+    const c = cardDragRef.current
+    cardDragRef.current = null
+    setCardDrag(null)
+    suppressClickUntil.current = Date.now() + (c?.active ? 400 : 50)
+  }
 
   // Bornes de navigation : pages 1..page_count en double-feuillets [g, g+1]
   const canNext = selected ? pageIndex + 2 <= selected.page_count : false
@@ -387,8 +407,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     if (!s) return
     const dx = e.clientX - s.startX, dy = e.clientY - s.startY
     if (!s.active) {
-      // exige un mouvement franchement horizontal avant de considérer un swipe
-      if (Math.abs(dx) < 14 || Math.abs(dx) < Math.abs(dy) * 1.3) return
+      // exige un mouvement horizontal dominant avant de considérer un swipe
+      if (Math.abs(dx) < 12 || Math.abs(dx) <= Math.abs(dy)) return
       const dir: 'next' | 'prev' = dx < 0 ? 'next' : 'prev'
       if (dir === 'next' && !canNext) { swipeRef.current = null; return }
       if (dir === 'prev' && !canPrev) { swipeRef.current = null; return }
@@ -402,12 +422,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     s.angle = (s.dir === 'next' ? -180 : 180) * progress
     setFlip(f => f && { ...f, angle: s.angle })
   }
-  const spreadPointerUp = () => {
+  // Fin du swipe — appelé par pointerup ET pointercancel (sinon geste resté « bloqué »
+  // quand le navigateur annule le pointeur, ce qui figeait la page et tous les clics)
+  const endSwipe = () => {
     const s = swipeRef.current
     swipeRef.current = null
-    if (!s || !s.active || !s.dir) return
+    if (!s || !s.active || !s.dir) { suppressClickUntil.current = Date.now() + 50; return }
     suppressClickUntil.current = Date.now() + 400
-    if (Math.abs(s.angle) > 55) finishFlip(s.dir)
+    if (Math.abs(s.angle) > 45) finishFlip(s.dir)
     else cancelFlip()
   }
 
@@ -453,6 +475,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 onPointerDown={cardPointerDown(page, idx, slot)}
                 onPointerMove={cardPointerMove}
                 onPointerUp={cardPointerUp}
+                onPointerCancel={cardPointerCancel}
                 onClick={() => {
                   if (clickSuppressed()) return
                   if (!onOpenCard || !onOpenCard(slot.img)) setViewerSlot(slot)
@@ -764,8 +787,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         ) : (
           /* ── Classeur ouvert : deux feuilles plastique + rabats de couverture ── */
           <div ref={openSpreadRef}
-            onPointerDown={spreadPointerDown} onPointerMove={spreadPointerMove} onPointerUp={spreadPointerUp}
-            style={{ display: 'flex', position: 'relative', perspective: 2200, touchAction: 'pan-y', filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.22))' }}>
+            onPointerDown={spreadPointerDown} onPointerMove={spreadPointerMove} onPointerUp={endSwipe} onPointerCancel={endSwipe}
+            style={{ display: 'flex', position: 'relative', perspective: 2200, touchAction: 'none', filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.22))' }}>
             {/* rabats de couverture (le classeur ouvert à plat) */}
             <div style={{ position: 'absolute', left: -wing, top: -6, bottom: -6, width: wing + 8, background: `linear-gradient(90deg, ${coverColor}, rgba(0,0,0,0.25))`, borderRadius: '8px 0 0 8px', zIndex: 1 }} />
             <div style={{ position: 'absolute', left: 2 * pageW - 8, top: -6, bottom: -6, width: wing + 8, background: `linear-gradient(90deg, rgba(0,0,0,0.25), ${coverColor})`, borderRadius: '0 8px 8px 0', zIndex: 1 }} />
