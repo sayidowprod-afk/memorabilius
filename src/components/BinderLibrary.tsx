@@ -27,8 +27,8 @@ const LAYOUTS = [4, 6, 9, 12, 16]
 const COLS: Record<number, number> = { 4: 2, 6: 2, 9: 3, 12: 3, 16: 4 }
 const BINDER_COLORS = ['#c0392b', '#e2b13c', '#1a1a1a', '#e8dcc4', '#1f3a5f', '#2c2c2c', '#6b2737', '#3d5a3d']
 const SHELF_ROW_SIZE = 12
-const PAGE_W = 230
-const PAGE_H = 310
+const PAGE_MAX_W = 230
+const PAGE_RATIO = 310 / 230 // hauteur / largeur d'une page
 const FLIP_MS = 500
 
 function slotKey(page: number, idx: number) { return `${page}:${idx}` }
@@ -66,6 +66,24 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [pickerTarget, setPickerTarget] = useState<{ page: number; idx: number } | null>(null)
   const [justInserted, setJustInserted] = useState<string | null>(null)
   const [viewerSlot, setViewerSlot] = useState<Slot | null>(null)
+  // Dimensions d'une page calculées pour tenir la double-page dans la largeur dispo
+  const [pageW, setPageW] = useState(PAGE_MAX_W)
+  const stageRef = useRef<HTMLDivElement>(null)
+  const pageH = Math.round(pageW * PAGE_RATIO)
+
+  useEffect(() => {
+    const el = stageRef.current
+    if (!el) return
+    const measure = () => {
+      // Deux pages + marges internes de la scène (16px de chaque côté)
+      const avail = el.clientWidth - 32
+      setPageW(Math.max(120, Math.min(PAGE_MAX_W, Math.floor(avail / 2))))
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [selected])
 
   // État du feuilletage : direction, angle courant, page affichée dans l'élément
   // qui tourne, et si l'angle doit être animé (transition CSS) ou suivre la souris 1:1
@@ -193,7 +211,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       try { d.el.setPointerCapture(d.pointerId) } catch {}
       setFlip({ dir: d.dir, angle: 0, contentPage: d.dir === 'next' ? pageIndex + 1 : pageIndex, anim: false })
     }
-    const progress = Math.max(0, Math.min(1, (d.dir === 'next' ? -dx : dx) / PAGE_W))
+    const progress = Math.max(0, Math.min(1, (d.dir === 'next' ? -dx : dx) / pageW))
     d.angle = (d.dir === 'next' ? -90 : 90) * progress
     setFlip(s => s && { ...s, angle: d.angle })
   }
@@ -213,7 +231,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const n = selected.layout
     const cols = COLS[n] || 3
     return (
-      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: 7, height: '100%', paddingTop: 14 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: pageW < 180 ? 4 : 7, height: '100%', paddingTop: pageW < 180 ? 6 : 14 }}>
         {Array.from({ length: n }).map((_, idx) => {
           const k = slotKey(page, idx)
           const slot = slots.get(k)
@@ -263,8 +281,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }
 
   const pageShellStyle = (side: 'left' | 'right'): React.CSSProperties => ({
-    width: PAGE_W, height: PAGE_H, background: 'white',
-    border: '1px solid #e5e5e5', boxSizing: 'border-box', padding: 12,
+    width: pageW, height: pageH, background: 'white',
+    border: '1px solid #e5e5e5', boxSizing: 'border-box', padding: pageW < 180 ? 8 : 12,
     borderRadius: side === 'left' ? '8px 0 0 8px' : '0 8px 8px 0',
     position: 'relative', overflow: 'hidden',
   })
@@ -287,11 +305,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           for (let i = 0; i < items.length; i += SHELF_ROW_SIZE) rows.push(items.slice(i, i + SHELF_ROW_SIZE))
           if (rows.length === 0) rows.push([])
           return (
-            <div style={{ background: 'white', border: '1px solid #eee', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', padding: '20px 20px 6px' }}>
+            <div style={{ background: 'white', border: '1px solid #eee', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', padding: '20px 16px 6px' }}>
               {rows.map((row, ri) => (
                 <div key={ri} style={{
                   display: 'flex', alignItems: 'flex-end', gap: 2, paddingBottom: 10,
                   borderBottom: '5px solid #f0f0f0', marginBottom: 16,
+                  overflowX: 'auto', WebkitOverflowScrolling: 'touch',
                 }}>
                   {row.map(b => b === 'new' ? (
                     <div key="new" onClick={() => setShowCreate(true)} title="Nouveau classeur" style={{
@@ -394,7 +413,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         </div>
       )}
 
-      <div style={{ background: '#f7f7f7', borderRadius: 16, padding: '36px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div ref={stageRef} style={{ background: '#f7f7f7', borderRadius: 16, padding: '28px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div ref={spreadRef} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerLeave={endDrag}
           style={{ display: 'flex', position: 'relative', perspective: 1800, touchAction: 'pan-y' }}>
           {/* Page gauche — pendant un feuilletage "prev", montre déjà la page révélée dessous */}
@@ -422,8 +441,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <div
               style={{
                 position: 'absolute', top: 0,
-                left: flip.dir === 'next' ? PAGE_W : 0,
-                width: PAGE_W, height: PAGE_H,
+                left: flip.dir === 'next' ? pageW : 0,
+                width: pageW, height: pageH,
                 transformOrigin: flip.dir === 'next' ? 'left center' : 'right center',
                 transform: `rotateY(${flip.angle}deg)`,
                 transition: flip.anim ? `transform ${FLIP_MS / 2}ms cubic-bezier(0.45,0.05,0.55,0.95)` : 'none',
@@ -445,7 +464,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           {flip && (
             <div style={{
               position: 'absolute', top: 0,
-              left: flip.dir === 'next' ? 0 : PAGE_W, width: PAGE_W, height: PAGE_H,
+              left: flip.dir === 'next' ? 0 : pageW, width: pageW, height: pageH,
               background: flip.dir === 'next' ? 'linear-gradient(to right, transparent 60%, rgba(0,0,0,0.25))' : 'linear-gradient(to left, transparent 60%, rgba(0,0,0,0.25))',
               opacity: shadowOpacity, pointerEvents: 'none', borderRadius: flip.dir === 'next' ? '8px 0 0 8px' : '0 8px 8px 0',
             }} />
@@ -453,21 +472,23 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 14 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginTop: 14, flexWrap: 'wrap' }}>
         <button onClick={() => clickFlip('prev')} disabled={pageIndex <= 0 || !!flip} className="btn-main btn-secondary"
-          style={{ padding: '8px 16px', fontSize: 13, opacity: pageIndex <= 0 ? 0.4 : 1 }}>
-          ← Page précédente
+          style={{ padding: '8px 14px', fontSize: 13, opacity: pageIndex <= 0 ? 0.4 : 1 }} aria-label="Page précédente">
+          ←<span className="binder-nav-label"> Page précédente</span>
         </button>
-        <span style={{ fontSize: 12, color: '#999' }}>
-          Pages {Math.max(1, pageIndex)}–{Math.min(selected.page_count, pageIndex + 2)} / {selected.page_count}
+        <span style={{ fontSize: 12, color: '#999', whiteSpace: 'nowrap' }}>
+          {Math.max(1, pageIndex)}–{Math.min(selected.page_count, pageIndex + 2)} / {selected.page_count}
         </span>
         <div style={{ display: 'flex', gap: 8 }}>
           {isOwner && pageIndex + 2 >= selected.page_count && (
-            <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: '8px 14px', fontSize: 12 }}>+ Ajouter une page</button>
+            <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: '8px 12px', fontSize: 12 }} aria-label="Ajouter une page">
+              +<span className="binder-nav-label"> Ajouter une page</span>
+            </button>
           )}
           <button onClick={() => clickFlip('next')} disabled={pageIndex + 2 >= selected.page_count || !!flip} className="btn-main btn-primary"
-            style={{ padding: '8px 16px', fontSize: 13, opacity: pageIndex + 2 >= selected.page_count ? 0.4 : 1 }}>
-            Page suivante →
+            style={{ padding: '8px 14px', fontSize: 13, opacity: pageIndex + 2 >= selected.page_count ? 0.4 : 1 }} aria-label="Page suivante">
+            <span className="binder-nav-label">Page suivante </span>→
           </button>
         </div>
       </div>

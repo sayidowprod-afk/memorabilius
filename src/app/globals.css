@@ -267,6 +267,7 @@ section { contain: layout style; }
 .binder-slot-card { transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s; cursor: pointer; }
 .binder-slot-card:hover { transform: translateY(-14px); box-shadow: 0 12px 18px -8px rgba(0,0,0,0.4); z-index: 10; position: relative; }
 .binder-slot-card:hover .binder-slot-remove { opacity: 1 !important; }
+@media (max-width: 560px) { .binder-nav-label { display: none; } }
 @keyframes binderCardIn { 0% { transform: translateY(-130%) rotate(-3deg); opacity: 0; } 70% { transform: translateY(4%) rotate(0deg); opacity: 1; } 100% { transform: translateY(0) rotate(0deg); opacity: 1; } }
 .binder-slot-card-enter { animation: binderCardIn 0.5s cubic-bezier(0.22,0.61,0.36,1); }
 
