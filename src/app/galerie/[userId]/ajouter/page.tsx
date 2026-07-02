@@ -481,47 +481,47 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
               {lang === 'fr' ? 'Nom du joueur *' : 'Player name *'}
             </label>
-            <input required value={form.nom} onChange={e => setForm({ ...form, nom: e.target.value })} placeholder="LeBron James" />
+            <input required value={form.nom} onChange={e => setForm({ ...form, nom: e.target.value })} placeholder={lang === 'fr' ? 'Ex : LeBron James' : 'Ex: LeBron James'} />
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Équipe' : 'Team'}</label>
-              <input value={form.equipe} onChange={e => setForm({ ...form, equipe: e.target.value })} placeholder="Lakers" />
+              <input value={form.equipe} onChange={e => setForm({ ...form, equipe: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Lakers' : 'Ex: Lakers'} />
             </div>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Année' : 'Year'}</label>
-              <input value={form.annee} onChange={e => setForm({ ...form, annee: e.target.value })} placeholder="2023-24" />
+              <input value={form.annee} onChange={e => setForm({ ...form, annee: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 2023-24' : 'Ex: 2023-24'} />
             </div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Marque' : 'Brand'}</label>
-              <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder="Panini, Topps…" />
+              <input value={form.marque} onChange={e => setForm({ ...form, marque: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Panini, Topps…' : 'Ex: Panini, Topps…'} />
             </div>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Collection' : 'Set'}</label>
-              <input value={form.collection} onChange={e => setForm({ ...form, collection: e.target.value })} placeholder="Prizm, Chrome…" />
+              <input value={form.collection} onChange={e => setForm({ ...form, collection: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Prizm, Chrome…' : 'Ex: Prizm, Chrome…'} />
             </div>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Variation' : 'Variant'}</label>
-              <input value={form.variation} onChange={e => setForm({ ...form, variation: e.target.value })} placeholder="Silver Prizm" />
+              <input value={form.variation} onChange={e => setForm({ ...form, variation: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Silver Prizm' : 'Ex: Silver Prizm'} />
             </div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Grade</label>
-              <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })} placeholder="Raw, PSA 10, BGS 9.5…" />
+              <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Raw, PSA 10, BGS 9.5…' : 'Ex: Raw, PSA 10, BGS 9.5…'} />
             </div>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'N° de carte' : 'Card #'}</label>
-              <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder="48, HTR-IFS, EC-1…" />
+              <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48, HTR-IFS, EC-1…' : 'Ex: 48, HTR-IFS, EC-1…'} />
             </div>
             <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Numérotation (ex: 48/99)' : 'Numbering (ex: 48/99)'}</label>
-              <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder="48/99" />
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Numérotation' : 'Numbering'}</label>
+              <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48/99' : 'Ex: 48/99'} />
             </div>
           </div>
 
