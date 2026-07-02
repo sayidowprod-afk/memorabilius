@@ -139,9 +139,22 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
           )}
         </div>
 
-        <div style={{ fontSize: 11, color: '#999' }}>{filtered.length} carte{filtered.length > 1 ? 's' : ''}</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+          <span style={{ fontSize: 11, color: '#999' }}>{filtered.length} carte{filtered.length > 1 ? 's' : ''}{multi && picked.length ? ` · ${picked.length} sélectionnée${picked.length > 1 ? 's' : ''}` : ''}</span>
+          {multi && filtered.length > 0 && (() => {
+            const allSel = filtered.every(c => pickedKeys.has(c.key))
+            return (
+              <button onClick={() => {
+                if (allSel) { const fk = new Set(filtered.map(c => c.key)); setPicked(prev => prev.filter(p => !fk.has(p.key))) }
+                else setPicked(prev => { const have = new Set(prev.map(p => p.key)); return [...prev, ...filtered.filter(c => !have.has(c.key))] })
+              }} style={{ padding: '5px 12px', borderRadius: 20, border: `1.5px solid ${ACCENT}`, background: allSel ? ACCENT : 'white', color: allSel ? 'white' : ACCENT, cursor: 'pointer', fontWeight: 800, fontSize: 11 }}>
+                {allSel ? 'Tout désélectionner' : `Tout sélectionner (${filtered.length})`}
+              </button>
+            )
+          })()}
+        </div>
 
-        <div style={{ overflowY: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))', gap: 10 }}>
+        <div style={{ overflowY: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(105px, 1fr))', gap: 10 }}>
           {loading ? (
             <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#999', padding: 20 }}>Chargement...</p>
           ) : filtered.length === 0 ? (
@@ -158,8 +171,8 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
                 onMouseEnter={e => { if (!sel) e.currentTarget.style.borderColor = ACCENT }}
                 onMouseLeave={e => { if (!sel) e.currentTarget.style.borderColor = '#eee' }}
               >
-                <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden' }}>
-                  <img src={c.img} alt={c.nom} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', background: '#f2f2f2' }}>
+                  <img src={c.img} alt={c.nom} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
                 </div>
                 {(c.rc || c.auto || c.patch) && (
                   <div style={{ position: 'absolute', top: 3, left: 3, display: 'flex', gap: 2 }}>

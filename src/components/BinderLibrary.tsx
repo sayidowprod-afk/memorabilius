@@ -60,6 +60,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [isOpen, setIsOpen] = useState(false)   // classeur ouvert (pages) ou fermé (couverture)
   const [pickerTarget, setPickerTarget] = useState<{ page: number; idx: number } | null>(null)
   const [multiPicker, setMultiPicker] = useState(false)
+  const [coverAnimating, setCoverAnimating] = useState(false)
+  const [coverAngle, setCoverAngle] = useState(0)
   const [justInserted, setJustInserted] = useState<string | null>(null)
   const [viewerSlot, setViewerSlot] = useState<Slot | null>(null)
   // Glisser-déplacer d'une carte d'une pochette à une autre
@@ -96,7 +98,6 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   // Feuilletage à deux faces : la feuille tourne en continu de 0 à ±180°.
   // Face avant = page qui part, face arrière (pré-retournée) = page qui arrive.
   const [flip, setFlip] = useState<{ dir: 'next' | 'prev'; angle: number; anim: boolean } | null>(null)
-  const dragRef = useRef<{ dir: 'next' | 'prev'; startX: number; active: boolean; angle: number; pointerId: number; el: HTMLElement } | null>(null)
   // Fenêtre pendant laquelle les clics de pochette sont ignorés (juste après un glissé).
   // Plus fiable qu'un booléen : couvre le clic « fantôme » qui arrive après un feuilletage.
   const suppressClickUntil = useRef(0)
@@ -168,6 +169,51 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     await supabase.from('binders').delete().eq('id', id)
     setBinders(prev => prev.filter(b => b.id !== id))
     setSelected(null)
+  }
+
+  // Réorganisation des classeurs sur l'étagère par glisser-déposer
+  const reorderRef = useRef<{ id: number; active: boolean; pointerId: number; el: HTMLElement } | null>(null)
+  const [reorderingId, setReorderingId] = useState<number | null>(null)
+
+  const shelfPointerDown = (id: number) => (e: React.PointerEvent) => {
+    if (!isOwner) return
+    reorderRef.current = { id, active: false, pointerId: e.pointerId, el: e.currentTarget as HTMLElement }
+  }
+  const shelfPointerMove = (e: React.PointerEvent) => {
+    const r = reorderRef.current
+    if (!r) return
+    if (!r.active) {
+      // seuil avant de considérer que c'est un glissé (sinon c'est un clic → ouvrir)
+      if (Math.abs(e.movementX) + Math.abs(e.movementY) < 1) return
+      r.active = true
+      suppressClickUntil.current = Date.now() + 100000
+      setReorderingId(r.id)
+      try { r.el.setPointerCapture(r.pointerId) } catch {}
+    }
+    const targetEl = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-binder-spine]') as HTMLElement | null
+    const overId = targetEl ? Number(targetEl.dataset.binderSpine) : NaN
+    if (!Number.isNaN(overId) && overId !== r.id) {
+      setBinders(prev => {
+        const from = prev.findIndex(b => b.id === r.id)
+        const to = prev.findIndex(b => b.id === overId)
+        if (from < 0 || to < 0) return prev
+        const next = [...prev]
+        const [moved] = next.splice(from, 1)
+        next.splice(to, 0, moved)
+        return next
+      })
+    }
+  }
+  const shelfPointerUp = async () => {
+    const r = reorderRef.current
+    reorderRef.current = null
+    if (!r) return
+    if (!r.active) return
+    suppressClickUntil.current = Date.now() + 300
+    setReorderingId(null)
+    // Persiste le nouvel ordre
+    const updates = binders.map((b, i) => ({ id: b.id, position: i }))
+    for (const u of updates) await supabase.from('binders').update({ position: u.position }).eq('id', u.id)
   }
 
   const placeCard = async (page: number, idx: number, card: PickableCard) => {
@@ -302,11 +348,6 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     }, FLIP_MS)
   }
 
-  const cancelFlip = () => {
-    setFlip(s => s && { ...s, angle: 0, anim: true })
-    setTimeout(() => setFlip(null), FLIP_MS)
-  }
-
   const clickFlip = (dir: 'next' | 'prev') => {
     if (!selected || flip) return
     if (dir === 'next' && !canNext) return
@@ -314,40 +355,6 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     // Démarre à plat (0°) puis anime jusqu'au bout au frame suivant
     setFlip({ dir, angle: 0, anim: false })
     requestAnimationFrame(() => finishFlip(dir))
-  }
-
-  const beginDrag = (dir: 'next' | 'prev') => (e: React.PointerEvent) => {
-    if (!selected || flip) return
-    if (dir === 'next' && !canNext) return
-    if (dir === 'prev' && !canPrev) return
-    dragRef.current = { dir, startX: e.clientX, active: false, angle: 0, pointerId: e.pointerId, el: e.currentTarget as HTMLElement }
-  }
-
-  const moveDrag = (e: React.PointerEvent) => {
-    const d = dragRef.current
-    if (!d) return
-    const dx = e.clientX - d.startX
-    if (!d.active) {
-      if (Math.abs(dx) < 8) return
-      d.active = true
-      suppressClickUntil.current = Date.now() + 100000 // pendant le glissé
-      try { d.el.setPointerCapture(d.pointerId) } catch {}
-      setFlip({ dir: d.dir, angle: 0, anim: false })
-    }
-    // Glissé plus réactif : une demi-largeur de page suffit pour un tour complet
-    const progress = Math.max(0, Math.min(1, (d.dir === 'next' ? -dx : dx) / (pageW * 0.6)))
-    d.angle = (d.dir === 'next' ? -180 : 180) * progress
-    setFlip(s => s && { ...s, angle: d.angle })
-  }
-
-  const endDrag = () => {
-    const d = dragRef.current
-    if (!d) return
-    dragRef.current = null
-    if (!d.active) return
-    suppressClickUntil.current = Date.now() + 400 // fenêtre après le glissé pour ignorer le clic fantôme
-    if (Math.abs(d.angle) > 55) finishFlip(d.dir)
-    else cancelFlip()
   }
 
   // Bande de reliure perforée (façon pochette Ultra Pro), sur le bord intérieur
@@ -555,14 +562,21 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                     flexShrink: 0, color: 'rgba(255,255,255,0.6)', fontSize: 20,
                   }}>+</div>
                 ) : (
-                  <div key={b.id} onClick={() => openBinder(b)} title={`${b.name} — ${b.layout} pochettes, ${b.page_count} pages`} style={{
-                    width: 40, height: 184, cursor: 'pointer', flexShrink: 0,
-                    background: b.color || accent, borderRadius: '4px 4px 0 0',
-                    boxShadow: 'inset 4px 0 0 rgba(255,255,255,0.2), inset -4px 0 0 rgba(0,0,0,0.28), 2px 2px 5px rgba(0,0,0,0.4)',
-                    display: 'flex', flexDirection: 'column', alignItems: 'center',
-                    transition: 'transform 0.15s', position: 'relative', overflow: 'hidden',
-                  }}
-                    onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-12px)')}
+                  <div key={b.id} data-binder-spine={b.id}
+                    onClick={() => { if (clickSuppressed()) return; openBinder(b) }}
+                    onPointerDown={shelfPointerDown(b.id)}
+                    onPointerMove={shelfPointerMove}
+                    onPointerUp={shelfPointerUp}
+                    title={isOwner ? `${b.name} — glisser pour réorganiser` : b.name}
+                    style={{
+                      width: 40, height: 184, cursor: isOwner ? 'grab' : 'pointer', flexShrink: 0,
+                      background: b.color || accent, borderRadius: '4px 4px 0 0',
+                      boxShadow: 'inset 4px 0 0 rgba(255,255,255,0.2), inset -4px 0 0 rgba(0,0,0,0.28), 2px 2px 5px rgba(0,0,0,0.4)',
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', touchAction: isOwner ? 'none' : 'auto',
+                      transition: 'transform 0.15s', position: 'relative', overflow: 'hidden',
+                      opacity: reorderingId === b.id ? 0.4 : 1,
+                    }}
+                    onMouseEnter={e => { if (!reorderingId) e.currentTarget.style.transform = 'translateY(-12px)' }}
                     onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
                   >
                     {b.cover_img && (
@@ -608,6 +622,33 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const coverW = Math.round(pageW * 1.12)
   const coverH = Math.round(pageH * 1.04)
 
+  // Contenu de la couverture (réutilisé pour le classeur fermé et l'animation d'ouverture)
+  const coverFace = (
+    <div style={{ width: '100%', height: '100%', position: 'relative', background: coverColor }}>
+      {selected.cover_img && <img src={selected.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.06) 35%, rgba(0,0,0,0.5))' }} />
+      <div style={{ position: 'absolute', top: 12, left: 0, right: 0, textAlign: 'center', color: 'rgba(255,255,255,0.8)', fontSize: 10, letterSpacing: '0.2em', fontWeight: 700 }}>MEMORABILIUS</div>
+      <div style={{ position: 'absolute', left: 14, right: 14, bottom: '14%', textAlign: 'center' }}>
+        <div style={{ display: 'inline-block', maxWidth: '90%', background: 'rgba(255,255,255,0.96)', color: '#111', borderRadius: 8, padding: pageW < 200 ? '8px 12px' : '12px 16px', boxShadow: '0 3px 12px rgba(0,0,0,0.35)' }}>
+          <div style={{ fontWeight: 900, fontSize: pageW < 200 ? 15 : 19, lineHeight: 1.15, wordBreak: 'break-word' }}>{selected.name}</div>
+          {selected.subtitle && <div style={{ fontSize: pageW < 200 ? 11 : 13, color: '#666', marginTop: 3 }}>{selected.subtitle}</div>}
+        </div>
+      </div>
+      <PlasticSheen />
+    </div>
+  )
+
+  // Ouvre le classeur avec une animation de couverture qui pivote vers la gauche
+  const openTheBinder = () => {
+    if (isOpen || coverAnimating) return
+    setPageIndex(1)
+    setIsOpen(true)
+    setCoverAngle(0)
+    setCoverAnimating(true)
+    requestAnimationFrame(() => requestAnimationFrame(() => setCoverAngle(-172)))
+    setTimeout(() => setCoverAnimating(false), 650)
+  }
+
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
@@ -636,7 +677,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       <div ref={stageRef} style={{ background: 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: 16, padding: '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: coverH + 40 }}>
         {!isOpen ? (
           /* ── Classeur fermé : on voit la couverture ── */
-          <div onClick={() => setIsOpen(true)} title="Ouvrir le classeur" style={{
+          <div onClick={openTheBinder} title="Ouvrir le classeur" style={{
             width: coverW, height: coverH, cursor: 'pointer', position: 'relative', display: 'flex',
             borderRadius: '6px 10px 10px 6px', overflow: 'hidden',
             boxShadow: '0 14px 30px rgba(0,0,0,0.3)', transition: 'transform 0.15s',
@@ -649,33 +690,33 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
               {[0, 1, 2].map(i => <div key={i} style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.5)' }} />)}
             </div>
             {/* plat de couverture */}
-            <div style={{ flex: 1, position: 'relative', background: coverColor }}>
-              {selected.cover_img && <img src={selected.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.06) 35%, rgba(0,0,0,0.5))' }} />
-              <div style={{ position: 'absolute', top: 14, left: 0, right: 0, textAlign: 'center', color: 'rgba(255,255,255,0.8)', fontSize: 10, letterSpacing: '0.2em', fontWeight: 700 }}>MEMORABILIUS</div>
-              <div style={{ position: 'absolute', left: 16, right: 16, bottom: '14%', textAlign: 'center' }}>
-                <div style={{ display: 'inline-block', maxWidth: '90%', background: 'rgba(255,255,255,0.96)', color: '#111', borderRadius: 8, padding: '12px 16px', boxShadow: '0 3px 12px rgba(0,0,0,0.35)' }}>
-                  <div style={{ fontWeight: 900, fontSize: 19, lineHeight: 1.15, wordBreak: 'break-word' }}>{selected.name}</div>
-                  {selected.subtitle && <div style={{ fontSize: 13, color: '#666', marginTop: 3 }}>{selected.subtitle}</div>}
-                </div>
-              </div>
-              <PlasticSheen />
-            </div>
+            <div style={{ flex: 1, position: 'relative' }}>{coverFace}</div>
           </div>
         ) : (
           /* ── Classeur ouvert : deux feuilles plastique + rabats de couverture ── */
-          <div ref={spreadRef} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerLeave={endDrag}
-            style={{ display: 'flex', position: 'relative', perspective: 2200, touchAction: 'pan-y', filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.22))' }}>
+          <div style={{ display: 'flex', position: 'relative', perspective: 2200, filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.22))' }}>
             {/* rabats de couverture (le classeur ouvert à plat) */}
             <div style={{ position: 'absolute', left: -wing, top: -6, bottom: -6, width: wing + 8, background: `linear-gradient(90deg, ${coverColor}, rgba(0,0,0,0.25))`, borderRadius: '8px 0 0 8px', zIndex: 1 }} />
             <div style={{ position: 'absolute', left: 2 * pageW - 8, top: -6, bottom: -6, width: wing + 8, background: `linear-gradient(90deg, rgba(0,0,0,0.25), ${coverColor})`, borderRadius: '0 8px 8px 0', zIndex: 1 }} />
 
-            <div style={{ ...pageShellStyle('left'), zIndex: 2 }} onPointerDown={beginDrag('prev')}>
+            <div style={{ ...pageShellStyle('left'), zIndex: 2 }}>
               {renderPocketGrid(flippingLeft ? pageIndex - 2 : pageIndex, 'left')}
             </div>
-            <div style={{ ...pageShellStyle('right'), zIndex: 2 }} onPointerDown={beginDrag('next')}>
+            <div style={{ ...pageShellStyle('right'), zIndex: 2 }}>
               {renderPocketGrid(flippingRight ? pageIndex + 3 : pageIndex + 1, 'right')}
             </div>
+
+            {/* Couverture qui s'ouvre en pivotant vers la gauche */}
+            {coverAnimating && (
+              <div style={{
+                position: 'absolute', left: 0, top: 0, width: pageW, height: pageH, zIndex: 40,
+                transformOrigin: 'left center', transform: `rotateY(${coverAngle}deg)`,
+                transition: 'transform 0.62s cubic-bezier(0.33,0,0.30,1)', backfaceVisibility: 'hidden',
+                borderRadius: '6px 8px 8px 6px', overflow: 'hidden', boxShadow: '2px 0 12px rgba(0,0,0,0.3)',
+              }}>
+                {coverFace}
+              </div>
+            )}
 
             {/* creux central */}
             <div style={{ position: 'absolute', left: pageW - 3, top: 0, bottom: 0, width: 6, background: 'linear-gradient(90deg, rgba(0,0,0,0.14), transparent, rgba(0,0,0,0.14))', zIndex: 14, pointerEvents: 'none' }} />
@@ -710,7 +751,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         {!isOpen ? (
           <>
             <span />
-            <button onClick={() => setIsOpen(true)} className="btn-main btn-primary" style={{ padding: '8px 18px', fontSize: 13 }}>📖 Ouvrir le classeur</button>
+            <button onClick={openTheBinder} className="btn-main btn-primary" style={{ padding: '8px 18px', fontSize: 13 }}>📖 Ouvrir le classeur</button>
             <span />
           </>
         ) : (
