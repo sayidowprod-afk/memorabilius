@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -244,8 +245,11 @@ export default function Trades() {
         )
       )}
 
-      {/* Popup */}
-      {popup && (
+      {/* Popup — rendu via portal dans document.body : évite que le "contain:
+          layout" (optimisation LCP sur main > *:first-child, voir globals.css)
+          ne redéfinisse le containing block du position:fixed et ne colle la
+          popup en haut de la page au lieu de la centrer plein écran */}
+      {popup && createPortal(
         <div onClick={() => setPopup(null)} style={{
           position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.6)',
           zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20,
@@ -369,7 +373,8 @@ export default function Trades() {
             </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   )
