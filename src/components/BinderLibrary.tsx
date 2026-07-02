@@ -377,7 +377,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     cardDragRef.current = null
     if (c) clearTimeout(c.timer)
     setCardDrag(null)
-    suppressClickUntil.current = Date.now() + (c?.active ? 400 : 50)
+    if (c?.active) suppressClickUntil.current = Date.now() + 400
   }
 
   // Bornes de navigation : pages 1..page_count en double-feuillets [g, g+1]
@@ -444,7 +444,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const endSwipe = () => {
     const s = swipeRef.current
     swipeRef.current = null
-    if (!s || !s.active || !s.dir) { suppressClickUntil.current = Date.now() + 50; return }
+    if (!s || !s.active || !s.dir) return // simple tap → laisse le clic ouvrir la carte
     suppressClickUntil.current = Date.now() + 400
     if (Math.abs(s.angle) > 45) finishFlip(s.dir)
     else cancelFlip()
