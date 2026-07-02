@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import dynamic from 'next/dynamic'
 import { supabase } from '@/lib/supabase'
 import CardPicker, { PickableCard } from './CardPicker'
@@ -60,6 +61,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [pickerTarget, setPickerTarget] = useState<{ page: number; idx: number } | null>(null)
   const [justInserted, setJustInserted] = useState<string | null>(null)
   const [viewerSlot, setViewerSlot] = useState<Slot | null>(null)
+  // Glisser-déplacer d'une carte d'une pochette à une autre
+  const [cardDrag, setCardDrag] = useState<{ img: string; x: number; y: number } | null>(null)
+  const cardDragRef = useRef<{ page: number; idx: number; slot: Slot; startX: number; startY: number; active: boolean; pointerId: number; el: HTMLElement } | null>(null)
 
   // Formulaire création/édition partagé. null = fermé, 'create' = nouveau, number = id à éditer
   const [formOpen, setFormOpen] = useState<null | 'create' | number>(null)
@@ -191,6 +195,65 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newCount } : b))
   }
 
+  // Déplace une carte d'une pochette vers une autre (échange si la cible est occupée)
+  const moveSlot = async (fromPage: number, fromIdx: number, toPage: number, toIdx: number) => {
+    if (!selected) return
+    const fromKey = slotKey(fromPage, fromIdx), toKey = slotKey(toPage, toIdx)
+    const fromSlot = slots.get(fromKey)
+    if (!fromSlot) return
+    const toSlot = slots.get(toKey)
+
+    // Mise à jour optimiste locale
+    setSlots(prev => {
+      const m = new Map(prev)
+      m.set(toKey, { ...fromSlot, page_number: toPage, slot_index: toIdx })
+      if (toSlot) m.set(fromKey, { ...toSlot, page_number: fromPage, slot_index: fromIdx })
+      else m.delete(fromKey)
+      return m
+    })
+
+    // Persistance : on supprime puis réinsère les lignes concernées (contrainte unique)
+    await supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', fromPage).eq('slot_index', fromIdx)
+    if (toSlot) await supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', toPage).eq('slot_index', toIdx)
+    const rows = [{ binder_id: selected.id, page_number: toPage, slot_index: toIdx, card_key: fromSlot.card_key, img: fromSlot.img, nom: fromSlot.nom }]
+    if (toSlot) rows.push({ binder_id: selected.id, page_number: fromPage, slot_index: fromIdx, card_key: toSlot.card_key, img: toSlot.img, nom: toSlot.nom })
+    const { error } = await supabase.from('binder_slots').insert(rows)
+    if (error) { alert('Erreur : ' + error.message); openBinder(selected) }
+  }
+
+  // Poignées de glisser-déplacer d'une carte (souris + tactile)
+  const cardPointerDown = (page: number, idx: number, slot: Slot) => (e: React.PointerEvent) => {
+    if (!isOwner || pendingCard) return
+    e.stopPropagation() // n'active pas le feuilletage de page
+    cardDragRef.current = { page, idx, slot, startX: e.clientX, startY: e.clientY, active: false, pointerId: e.pointerId, el: e.currentTarget as HTMLElement }
+  }
+  const cardPointerMove = (e: React.PointerEvent) => {
+    const c = cardDragRef.current
+    if (!c) return
+    if (!c.active) {
+      if (Math.hypot(e.clientX - c.startX, e.clientY - c.startY) < 8) return
+      c.active = true
+      justDraggedRef.current = true
+      try { c.el.setPointerCapture(c.pointerId) } catch {}
+    }
+    e.stopPropagation()
+    setCardDrag({ img: c.slot.img, x: e.clientX, y: e.clientY })
+  }
+  const cardPointerUp = (e: React.PointerEvent) => {
+    const c = cardDragRef.current
+    cardDragRef.current = null
+    if (!c) return
+    if (!c.active) return
+    setCardDrag(null)
+    const target = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-pocket]') as HTMLElement | null
+    if (target) {
+      const tPage = Number(target.dataset.page), tIdx = Number(target.dataset.idx)
+      if (!Number.isNaN(tPage) && !Number.isNaN(tIdx) && !(tPage === c.page && tIdx === c.idx)) {
+        moveSlot(c.page, c.idx, tPage, tIdx)
+      }
+    }
+  }
+
   // Bornes de navigation : pages 1..page_count en double-feuillets [g, g+1]
   const canNext = selected ? pageIndex + 2 <= selected.page_count : false
   const canPrev = pageIndex > 1
@@ -288,15 +351,19 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           const slot = slots.get(k)
           if (slot) {
             return (
-              <div key={idx} className={`binder-slot-card${justInserted === k ? ' binder-slot-card-enter' : ''}`}
-                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', boxShadow: '0 0 0 1px rgba(150,165,180,0.4)' }}
+              <div key={idx} data-pocket data-page={page} data-idx={idx}
+                className={`binder-slot-card${justInserted === k ? ' binder-slot-card-enter' : ''}`}
+                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', boxShadow: '0 0 0 1px rgba(150,165,180,0.4)', touchAction: 'none', opacity: cardDrag && cardDragRef.current?.page === page && cardDragRef.current?.idx === idx ? 0.35 : 1 }}
+                onPointerDown={cardPointerDown(page, idx, slot)}
+                onPointerMove={cardPointerMove}
+                onPointerUp={cardPointerUp}
                 onClick={() => {
                   if (justDraggedRef.current) { justDraggedRef.current = false; return }
                   if (!onOpenCard || !onOpenCard(slot.img)) setViewerSlot(slot)
                 }}
-                title={slot.nom || ''}
+                title={isOwner ? 'Glisser pour déplacer · cliquer pour ouvrir' : (slot.nom || '')}
               >
-                <img src={slot.img} alt={slot.nom || ''} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img src={slot.img} alt={slot.nom || ''} loading="lazy" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', pointerEvents: 'none' }} />
                 <PlasticSheen />
                 {isOwner && (
                   <button
@@ -315,7 +382,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           }
           // Pochette plastique vide : cellule translucide avec soudure
           return (
-            <div key={idx}
+            <div key={idx} data-pocket data-page={page} data-idx={idx}
               onClick={async () => {
                 if (!isOwner) return
                 if (justDraggedRef.current) { justDraggedRef.current = false; return }
@@ -655,6 +722,18 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           onClose={() => setViewerSlot(null)}
           getTags={() => null}
         />
+      )}
+
+      {/* Aperçu de la carte pendant le glisser-déplacer, collé au pointeur */}
+      {cardDrag && createPortal(
+        <div style={{
+          position: 'fixed', left: cardDrag.x, top: cardDrag.y, width: 74, aspectRatio: '2.5/3.5',
+          transform: 'translate(-50%, -50%) rotate(-4deg)', zIndex: 3000, pointerEvents: 'none',
+          boxShadow: '0 12px 28px rgba(0,0,0,0.4)', overflow: 'hidden', borderRadius: 2,
+        }}>
+          <img src={cardDrag.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>,
+        document.body
       )}
 
       {binderForm}
