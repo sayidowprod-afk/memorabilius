@@ -51,7 +51,21 @@ export default function Recherche() {
   useEffect(() => {
     if (query.length < 2) { setTeams([]); return }
     const q = query.toLowerCase()
-    setTeams(SPORTS_TEAMS.filter(t => t.name.toLowerCase().includes(q)).slice(0, 8))
+    // Trie par pertinence : exact > commence par > mot entier commence par > reste
+    // (avant, la troncature à 8 pouvait cacher l'équipe recherchée derrière des
+    // correspondances moins pertinentes selon l'ordre arbitraire de la liste)
+    const rankMatch = (name: string) => {
+      const n = name.toLowerCase()
+      if (n === q) return 0
+      if (n.startsWith(q)) return 1
+      if (n.split(' ').some(w => w.startsWith(q))) return 2
+      return 3
+    }
+    setTeams(
+      SPORTS_TEAMS.filter(t => t.name.toLowerCase().includes(q))
+        .sort((a, b) => rankMatch(a.name) - rankMatch(b.name) || a.name.localeCompare(b.name))
+        .slice(0, 8)
+    )
   }, [query])
 
   const search = async (q: string) => {

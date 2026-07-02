@@ -180,14 +180,16 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  // Trie : commence par le query > contient > reste
+  // Trie par pertinence : exact > commence par la requête > mot entier commence par > reste
+  const rankMatch = (name: string) => {
+    const n = name.toLowerCase()
+    if (n === query) return 0
+    if (n.startsWith(query)) return 1
+    if (n.split(' ').some(w => w.startsWith(query))) return 2
+    return 3
+  }
   let players = [...playersMap.values()]
-    .sort((a, b) => {
-      const al = a.name.toLowerCase(), bl = b.name.toLowerCase()
-      if (al.startsWith(query) && !bl.startsWith(query)) return -1
-      if (!al.startsWith(query) && bl.startsWith(query)) return 1
-      return 0
-    })
+    .sort((a, b) => rankMatch(a.name) - rankMatch(b.name) || a.name.localeCompare(b.name))
     .slice(0, 20)
     .map(p => ({ name: p.name, isRc: p.isRc, sports: [...p.sports], photo: p.photo }))
 
