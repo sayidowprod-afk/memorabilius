@@ -831,12 +831,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           )
         })()}
 
-        {/* Onglets Collection / Wishlist / Commentaires */}
-        <div style={{ display: 'flex', gap: 4, marginBottom: 16, background: '#f0f0f0', borderRadius: 10, padding: 4, width: 'fit-content' }}>
+        {/* Onglets Collection / Wishlist / Commentaires / Bibliothèque — scrollable sur mobile */}
+        <div style={{ display: 'flex', gap: 4, marginBottom: 16, background: '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {(['collection', 'wishlist', 'comments', 'library'] as const).map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)} style={{
-              padding: '8px 20px', border: 'none', borderRadius: 8, cursor: 'pointer',
-              fontWeight: 800, fontSize: 13,
+              padding: '8px 16px', border: 'none', borderRadius: 8, cursor: 'pointer',
+              fontWeight: 800, fontSize: 13, whiteSpace: 'nowrap', flexShrink: 0,
               background: activeTab === tab ? 'white' : 'transparent',
               color: activeTab === tab ? accent : '#999',
               boxShadow: activeTab === tab ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',

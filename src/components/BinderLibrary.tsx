@@ -29,9 +29,9 @@ const LAYOUTS = [4, 6, 9, 12, 16]
 const COLS: Record<number, number> = { 4: 2, 6: 2, 9: 3, 12: 3, 16: 4 }
 const BINDER_COLORS = ['#c0392b', '#e2b13c', '#1a1a1a', '#e8dcc4', '#1f3a5f', '#2c2c2c', '#6b2737', '#3d5a3d']
 const SHELF_ROW_SIZE = 12
-const PAGE_MAX_W = 230
+const PAGE_MAX_W = 300
 const PAGE_RATIO = 310 / 230 // hauteur / largeur d'une page
-const FLIP_MS = 500
+const FLIP_MS = 620
 
 function slotKey(page: number, idx: number) { return `${page}:${idx}` }
 
@@ -87,7 +87,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     return () => ro.disconnect()
   }, [selected])
 
-  const [flip, setFlip] = useState<{ dir: 'next' | 'prev'; angle: number; contentPage: number; anim: boolean } | null>(null)
+  // Feuilletage à deux faces : la feuille tourne en continu de 0 à ±180°.
+  // Face avant = page qui part, face arrière (pré-retournée) = page qui arrive.
+  const [flip, setFlip] = useState<{ dir: 'next' | 'prev'; angle: number; anim: boolean } | null>(null)
   const dragRef = useRef<{ dir: 'next' | 'prev'; startX: number; active: boolean; angle: number; pointerId: number; el: HTMLElement } | null>(null)
   const spreadRef = useRef<HTMLDivElement>(null)
 
@@ -191,33 +193,27 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const canNext = selected ? pageIndex < selected.page_count : false
   const canPrev = pageIndex > 0
 
+  // Termine le feuilletage : rotation continue jusqu'à ±180° puis validation
   const finishFlip = (dir: 'next' | 'prev') => {
-    if (!selected) return
-    const midAngle = dir === 'next' ? -90 : 90
-    const farAngle = dir === 'next' ? -179 : 179
-    setFlip({ dir, angle: midAngle, contentPage: dir === 'next' ? pageIndex + 1 : pageIndex, anim: true })
-    requestAnimationFrame(() => setFlip(s => s && { ...s, angle: farAngle }))
+    setFlip(s => ({ dir, angle: dir === 'next' ? -180 : 180, anim: true, ...(s ? {} : {}) }))
     setTimeout(() => {
-      const newContentPage = dir === 'next' ? pageIndex + 2 : pageIndex - 1
-      setFlip({ dir, angle: midAngle, contentPage: newContentPage, anim: false })
-      requestAnimationFrame(() => setFlip(s => s && { ...s, angle: 0, anim: true }))
-      setTimeout(() => {
-        setPageIndex(p => dir === 'next' ? p + 2 : Math.max(0, p - 2))
-        setFlip(null)
-      }, FLIP_MS / 2)
-    }, FLIP_MS / 2)
+      setPageIndex(p => dir === 'next' ? p + 2 : Math.max(0, p - 2))
+      setFlip(null)
+    }, FLIP_MS)
   }
 
   const cancelFlip = () => {
     setFlip(s => s && { ...s, angle: 0, anim: true })
-    setTimeout(() => setFlip(null), FLIP_MS / 2)
+    setTimeout(() => setFlip(null), FLIP_MS)
   }
 
   const clickFlip = (dir: 'next' | 'prev') => {
     if (!selected || flip) return
     if (dir === 'next' && !canNext) return
     if (dir === 'prev' && !canPrev) return
-    finishFlip(dir)
+    // Démarre à plat (0°) puis anime jusqu'au bout au frame suivant
+    setFlip({ dir, angle: 0, anim: false })
+    requestAnimationFrame(() => finishFlip(dir))
   }
 
   const beginDrag = (dir: 'next' | 'prev') => (e: React.PointerEvent) => {
@@ -235,10 +231,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       if (Math.abs(dx) < 6) return
       d.active = true
       try { d.el.setPointerCapture(d.pointerId) } catch {}
-      setFlip({ dir: d.dir, angle: 0, contentPage: d.dir === 'next' ? pageIndex + 1 : pageIndex, anim: false })
+      setFlip({ dir: d.dir, angle: 0, anim: false })
     }
     const progress = Math.max(0, Math.min(1, (d.dir === 'next' ? -dx : dx) / pageW))
-    d.angle = (d.dir === 'next' ? -90 : 90) * progress
+    d.angle = (d.dir === 'next' ? -180 : 180) * progress
     setFlip(s => s && { ...s, angle: d.angle })
   }
 
@@ -247,7 +243,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     if (!d) return
     dragRef.current = null
     if (!d.active) return
-    if (Math.abs(d.angle) / 90 > 0.3) finishFlip(d.dir)
+    if (Math.abs(d.angle) > 90) finishFlip(d.dir)
     else cancelFlip()
   }
 
@@ -296,11 +292,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           if (slot) {
             return (
               <div key={idx} className={`binder-slot-card${justInserted === k ? ' binder-slot-card-enter' : ''}`}
-                style={{ aspectRatio: '2.5/3.5', borderRadius: 4, overflow: 'hidden' }}
+                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden' }}
                 onClick={() => { if (!onOpenCard || !onOpenCard(slot.img)) setViewerSlot(slot) }}
                 title={slot.nom || ''}
               >
-                <img src={slot.img} alt={slot.nom || ''} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: 4 }} />
+                <img src={slot.img} alt={slot.nom || ''} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 <PlasticSheen />
                 {isOwner && (
                   <button
@@ -325,7 +321,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 else setPickerTarget({ page, idx })
               }}
               style={{
-                aspectRatio: '2.5/3.5', borderRadius: 4, background: '#fafafa',
+                aspectRatio: '2.5/3.5', background: '#fafafa',
                 border: '1px dashed #ccc', display: 'flex', alignItems: 'center', justifyContent: 'center',
                 cursor: isOwner ? 'pointer' : 'default', color: '#bbb', fontSize: 18,
               }}
@@ -432,46 +428,49 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <span style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>Choisis un classeur pour ranger « {pendingCard.nom} »</span>
           </div>
         )}
-        <div style={{ background: 'white', border: '1px solid #eee', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', padding: '22px 16px 8px' }}>
+        <div style={{ background: 'linear-gradient(180deg, #6b4a32, #4e3623)', borderRadius: 16, boxShadow: '0 6px 24px rgba(0,0,0,0.18)', padding: '18px 14px 4px' }}>
           {rows.map((row, ri) => (
-            <div key={ri} style={{
-              display: 'flex', alignItems: 'flex-end', gap: 3, paddingBottom: 12,
-              borderBottom: '6px solid #ece9e2', marginBottom: 18,
-              overflowX: 'auto', WebkitOverflowScrolling: 'touch',
-            }}>
-              {row.map(b => b === 'new' ? (
-                <div key="new" onClick={openCreateForm} title="Nouveau classeur" style={{
-                  width: 36, height: 178, cursor: 'pointer', border: '1.5px dashed #d5d0c6', borderRadius: '4px 4px 0 0',
-                  background: '#faf9f6', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  flexShrink: 0, color: '#b8b2a4', fontSize: 18,
-                }}>+</div>
-              ) : (
-                <div key={b.id} onClick={() => openBinder(b)} title={`${b.name} — ${b.layout} pochettes, ${b.page_count} pages`} style={{
-                  width: 36, height: 178, cursor: 'pointer', flexShrink: 0,
-                  background: b.color || accent, borderRadius: '4px 4px 0 0',
-                  boxShadow: 'inset 3px 0 0 rgba(255,255,255,0.18), inset -3px 0 0 rgba(0,0,0,0.22), 1px 0 3px rgba(0,0,0,0.25)',
-                  display: 'flex', flexDirection: 'column', alignItems: 'center',
-                  transition: 'transform 0.15s', position: 'relative', overflow: 'hidden',
-                }}
-                  onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-10px)')}
-                  onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
-                >
-                  {b.cover_img && (
-                    <div style={{ width: '100%', height: 42, flexShrink: 0, overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.15)' }}>
-                      <img src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div key={ri} style={{ marginBottom: 16 }}>
+              <div style={{
+                display: 'flex', alignItems: 'flex-end', gap: 4, padding: '0 6px 10px',
+                overflowX: 'auto', WebkitOverflowScrolling: 'touch', minHeight: 190,
+              }}>
+                {row.map(b => b === 'new' ? (
+                  <div key="new" onClick={openCreateForm} title="Nouveau classeur" style={{
+                    width: 40, height: 184, cursor: 'pointer', border: '2px dashed rgba(255,255,255,0.35)', borderRadius: '4px 4px 0 0',
+                    background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0, color: 'rgba(255,255,255,0.6)', fontSize: 20,
+                  }}>+</div>
+                ) : (
+                  <div key={b.id} onClick={() => openBinder(b)} title={`${b.name} — ${b.layout} pochettes, ${b.page_count} pages`} style={{
+                    width: 40, height: 184, cursor: 'pointer', flexShrink: 0,
+                    background: b.color || accent, borderRadius: '4px 4px 0 0',
+                    boxShadow: 'inset 4px 0 0 rgba(255,255,255,0.2), inset -4px 0 0 rgba(0,0,0,0.28), 2px 2px 5px rgba(0,0,0,0.4)',
+                    display: 'flex', flexDirection: 'column', alignItems: 'center',
+                    transition: 'transform 0.15s', position: 'relative', overflow: 'hidden',
+                  }}
+                    onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-12px)')}
+                    onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                  >
+                    {b.cover_img && (
+                      <div style={{ width: '100%', height: 46, flexShrink: 0, overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.2)' }}>
+                        <img src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      </div>
+                    )}
+                    <div style={{ flex: 1 }} />
+                    {/* étiquette blanche imprimée comme sur les vrais classeurs */}
+                    <div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 2, margin: '0 4px 14px', padding: '10px 2px', boxShadow: '0 1px 3px rgba(0,0,0,0.25)', display: 'flex', justifyContent: 'center', maxHeight: 120 }}>
+                      <span style={{
+                        writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 10, fontWeight: 800,
+                        color: '#333', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                        maxHeight: 100, letterSpacing: '0.02em',
+                      }}>{b.name}</span>
                     </div>
-                  )}
-                  <div style={{ flex: 1 }} />
-                  {/* étiquette blanche imprimée comme sur les vrais classeurs */}
-                  <div style={{ background: 'rgba(255,255,255,0.94)', borderRadius: 2, margin: '0 3px 12px', padding: '8px 2px', boxShadow: '0 1px 2px rgba(0,0,0,0.2)', display: 'flex', justifyContent: 'center', maxHeight: 118 }}>
-                    <span style={{
-                      writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 9, fontWeight: 800,
-                      color: '#333', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-                      maxHeight: 100, letterSpacing: '0.02em',
-                    }}>{b.name}</span>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              {/* planche en bois de l'étagère */}
+              <div style={{ height: 12, background: 'linear-gradient(180deg, #3a281a, #2a1d12)', borderRadius: 2, boxShadow: '0 4px 8px rgba(0,0,0,0.4)' }} />
             </div>
           ))}
         </div>
@@ -488,7 +487,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   // ── Vue classeur ouvert ──
   const flippingLeft = flip?.dir === 'prev'
   const flippingRight = flip?.dir === 'next'
-  const shadowOpacity = flip ? Math.min(1, Math.abs(flip.angle) / 90) : 0
+  // Ombrage de la feuille qui tourne : nul à plat, max de profil (90°), nul retourné (180°)
+  const shadowOpacity = flip ? Math.sin(Math.min(Math.abs(flip.angle), 180) * Math.PI / 180) * 0.7 : 0
 
   const spreadLabel = () => {
     const L = pageIndex, R = pageIndex + 1
@@ -520,49 +520,50 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         </div>
       )}
 
-      <div ref={stageRef} style={{ background: 'linear-gradient(180deg, #efefef, #e6e6e6)', borderRadius: 16, padding: '30px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div ref={stageRef} style={{ background: 'linear-gradient(180deg, #e9e7e2, #dedbd3)', borderRadius: 16, padding: '34px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div ref={spreadRef} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerLeave={endDrag}
-          style={{ display: 'flex', position: 'relative', perspective: 1800, touchAction: 'pan-y', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.18))' }}>
+          style={{ display: 'flex', position: 'relative', perspective: 2200, touchAction: 'pan-y', filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.22))' }}>
+          {/* Page gauche (statique) — révèle la page dessous pendant un "prev" */}
           <div style={pageShellStyle('left')} onPointerDown={beginDrag('prev')}>
             {renderPage(flippingLeft ? pageIndex - 2 : pageIndex)}
           </div>
 
-          <div style={{ width: 0, position: 'relative', zIndex: 20 }}>
-            <div style={{ position: 'absolute', top: -10, bottom: -10, left: -2, width: 4, background: 'linear-gradient(90deg, #bbb, #ddd, #bbb)', borderRadius: 2 }} />
-          </div>
-
+          {/* Page droite (statique) — révèle la page dessous pendant un "next" */}
           <div style={pageShellStyle('right')} onPointerDown={beginDrag('next')}>
             {renderPage(flippingRight ? pageIndex + 3 : pageIndex + 1)}
           </div>
 
+          {/* Feuille qui tourne — deux faces, rotation continue 0 → ±180° */}
           {flip && (
             <div style={{
               position: 'absolute', top: 0,
               left: flip.dir === 'next' ? pageW : 0,
               width: pageW, height: pageH,
+              transformStyle: 'preserve-3d',
               transformOrigin: flip.dir === 'next' ? 'left center' : 'right center',
               transform: `rotateY(${flip.angle}deg)`,
-              transition: flip.anim ? `transform ${FLIP_MS / 2}ms cubic-bezier(0.45,0.05,0.55,0.95)` : 'none',
+              transition: flip.anim ? `transform ${FLIP_MS}ms cubic-bezier(0.33,0,0.30,1)` : 'none',
               zIndex: 30,
             }}>
-              <div style={{ ...pageShellStyle(flip.dir === 'next' ? 'right' : 'left'), width: '100%', height: '100%' }}>
-                {renderPage(flip.contentPage)}
-                <div style={{
-                  position: 'absolute', inset: 0, background: flip.dir === 'next' ? 'linear-gradient(to left, rgba(0,0,0,0.3), transparent 60%)' : 'linear-gradient(to right, rgba(0,0,0,0.3), transparent 60%)',
-                  opacity: shadowOpacity, pointerEvents: 'none',
-                }} />
+              {/* Face avant : la page qui part */}
+              <div style={{ ...pageShellStyle(flip.dir === 'next' ? 'right' : 'left'), position: 'absolute', inset: 0, width: '100%', height: '100%', backfaceVisibility: 'hidden' }}>
+                {renderPage(flip.dir === 'next' ? pageIndex + 1 : pageIndex)}
+                <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'rgba(0,0,0,0.28)', opacity: shadowOpacity }} />
+              </div>
+              {/* Face arrière : la page qui arrive (pré-retournée pour lire à l'endroit) */}
+              <div style={{ ...pageShellStyle(flip.dir === 'next' ? 'left' : 'right'), position: 'absolute', inset: 0, width: '100%', height: '100%', backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                {renderPage(flip.dir === 'next' ? pageIndex + 2 : pageIndex - 1)}
+                <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'rgba(0,0,0,0.28)', opacity: shadowOpacity }} />
               </div>
             </div>
           )}
 
-          {flip && (
-            <div style={{
-              position: 'absolute', top: 0,
-              left: flip.dir === 'next' ? 0 : pageW, width: pageW, height: pageH,
-              background: flip.dir === 'next' ? 'linear-gradient(to right, transparent 60%, rgba(0,0,0,0.25))' : 'linear-gradient(to left, transparent 60%, rgba(0,0,0,0.25))',
-              opacity: shadowOpacity, pointerEvents: 'none', borderRadius: flip.dir === 'next' ? '10px 0 0 10px' : '0 10px 10px 0',
-            }} />
-          )}
+          {/* Anneaux du classeur, centrés sur la reliure */}
+          <div style={{ position: 'absolute', left: pageW - 8, top: 0, bottom: 0, width: 16, zIndex: 15, display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', pointerEvents: 'none' }}>
+            {[0, 1, 2].map(i => (
+              <div key={i} style={{ width: pageW < 200 ? 12 : 16, height: pageW < 200 ? 12 : 16, borderRadius: '50%', border: '2.5px solid #a9a9a9', background: 'linear-gradient(135deg, #fff, #d9d9d9)', boxShadow: '0 1px 2px rgba(0,0,0,0.3)' }} />
+            ))}
+          </div>
         </div>
       </div>
 
