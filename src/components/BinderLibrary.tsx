@@ -331,6 +331,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       const c = cardDragRef.current
       if (!c || c.active) return
       if (swipeRef.current?.active) { cardDragRef.current = null; return } // un swipe a démarré → pas de saisie
+      swipeRef.current = null // annule le candidat swipe : ce geste est une saisie de carte
       c.active = true
       suppressClickUntil.current = Date.now() + 100000
       try { el.setPointerCapture(pointerId) } catch {}
@@ -420,6 +421,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     swipeRef.current = { startX: e.clientX, startY: e.clientY, active: false, dir: null, pointerId: e.pointerId, angle: 0 }
   }
   const spreadPointerMove = (e: React.PointerEvent) => {
+    if (cardDragRef.current?.active) return // une carte est en cours de déplacement → pas de swipe
     const s = swipeRef.current
     if (!s) return
     const dx = e.clientX - s.startX, dy = e.clientY - s.startY
@@ -488,7 +490,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             return (
               <div key={idx} data-pocket data-page={page} data-idx={idx}
                 className={`binder-slot-card${justInserted === k ? ' binder-slot-card-enter' : ''}`}
-                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', boxShadow: '0 0 0 1px rgba(150,165,180,0.4)', opacity: cardDrag && cardDragRef.current?.active && cardDragRef.current?.page === page && cardDragRef.current?.idx === idx ? 0.35 : 1 }}
+                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', boxShadow: '0 0 0 1px rgba(150,165,180,0.4)', touchAction: 'none', opacity: cardDrag && cardDragRef.current?.active && cardDragRef.current?.page === page && cardDragRef.current?.idx === idx ? 0.35 : 1 }}
                 onPointerDown={cardPointerDown(page, idx, slot)}
                 onPointerMove={cardPointerMove}
                 onPointerUp={cardPointerUp}
