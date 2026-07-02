@@ -23,7 +23,7 @@ interface Slot {
 const LAYOUTS = [4, 6, 9, 12, 16]
 const COLS: Record<number, number> = { 4: 2, 6: 2, 9: 3, 12: 3, 16: 4 }
 const BINDER_COLORS = ['#c0392b', '#e2b13c', '#1a1a1a', '#e8dcc4', '#1f3a5f', '#2c2c2c', '#6b2737', '#3d5a3d']
-const SHELF_ROW_SIZE = 8
+const SHELF_ROW_SIZE = 12
 
 function slotKey(page: number, idx: number) { return `${page}:${idx}` }
 
@@ -212,36 +212,35 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           for (let i = 0; i < items.length; i += SHELF_ROW_SIZE) rows.push(items.slice(i, i + SHELF_ROW_SIZE))
           if (rows.length === 0) rows.push([])
           return (
-            <div style={{ background: 'linear-gradient(180deg, #2b1d14, #1c130d)', borderRadius: 12, padding: '18px 18px 0' }}>
+            <div style={{ background: 'white', border: '1px solid #eee', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', padding: '20px 20px 6px' }}>
               {rows.map((row, ri) => (
                 <div key={ri} style={{
-                  display: 'flex', alignItems: 'flex-end', gap: 3, paddingBottom: 14,
-                  borderBottom: '10px solid #4a2f1f', marginBottom: 18,
-                  boxShadow: '0 6px 8px -4px rgba(0,0,0,0.5)',
+                  display: 'flex', alignItems: 'flex-end', gap: 2, paddingBottom: 10,
+                  borderBottom: '5px solid #f0f0f0', marginBottom: 16,
                 }}>
                   {row.map(b => b === 'new' ? (
                     <div key="new" onClick={() => setShowCreate(true)} title="Nouveau classeur" style={{
-                      width: 46, height: 200, cursor: 'pointer', border: '2px dashed #6b5544', borderRadius: '3px 3px 0 0',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      width: 32, height: 170, cursor: 'pointer', border: '1.5px dashed #ddd', borderRadius: '3px 3px 0 0',
+                      background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center',
                       flexShrink: 0,
                     }}>
-                      <span style={{ fontSize: 22, color: '#9c8770' }}>+</span>
+                      <span style={{ fontSize: 16, color: '#bbb' }}>+</span>
                     </div>
                   ) : (
                     <div key={b.id} onClick={() => openBinder(b)} title={`${b.name} — ${b.layout} pochettes, ${b.page_count} pages`} style={{
-                      width: Math.min(70, 34 + b.page_count * 2), height: 200, cursor: 'pointer', flexShrink: 0,
+                      width: 32, height: 170, cursor: 'pointer', flexShrink: 0,
                       background: b.color || accent, borderRadius: '3px 3px 0 0',
-                      boxShadow: 'inset 3px 0 0 rgba(255,255,255,0.15), inset -3px 0 0 rgba(0,0,0,0.25), 2px 0 4px rgba(0,0,0,0.35)',
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 10,
+                      boxShadow: 'inset 2px 0 0 rgba(255,255,255,0.12), inset -2px 0 0 rgba(0,0,0,0.15)',
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 8,
                       transition: 'transform 0.15s', position: 'relative',
                     }}
                       onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-8px)')}
                       onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
                     >
                       <span style={{
-                        writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 11, fontWeight: 800,
-                        color: 'rgba(255,255,255,0.92)', maxHeight: 150, overflow: 'hidden', textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap', letterSpacing: '0.03em',
+                        writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 10, fontWeight: 800,
+                        color: 'rgba(255,255,255,0.92)', maxHeight: 130, overflow: 'hidden', textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap', letterSpacing: '0.02em',
                       }}>{b.name}</span>
                     </div>
                   ))}
