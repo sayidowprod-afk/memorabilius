@@ -632,7 +632,18 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           onCapture={(blob, frameRect) => {
             const url = URL.createObjectURL(blob)
             setCameraModal(null)
-            setScannerModal({ side: cameraModal, src: url, frameRect })
+            // La détection auto (OpenCV/Gemini) suppose un ratio carte standard (~2.5:3.5).
+            // Pour les formats dont le ratio réel diffère trop (carré, panorama, tobacco),
+            // elle échoue systématiquement et déclenche à chaque fois le pipeline IA lourd
+            // pour rien — on saute donc directement au recadrage manuel pour ces formats.
+            const skipAutoDetect = ['square', 'panorama', 'tobacco'].includes(form.format)
+            if (skipAutoDetect) {
+              setCropModal({ side: cameraModal, src: url })
+              setRotation(0)
+              setImgTransform({ x: 0, y: 0, scale: 1 })
+            } else {
+              setScannerModal({ side: cameraModal, src: url, frameRect })
+            }
           }}
           onClose={() => setCameraModal(null)}
         />

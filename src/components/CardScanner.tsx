@@ -878,54 +878,73 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     setStatus('detecting')
 
     // ── Détection de coins ───────────────────────────────────────────────────
-    let detectedCorners: Pt[] | null = null
+    // Filet de sécurité global : quoi qu'il arrive dans le pipeline ci-dessous
+    // (JS / OpenCV / Gemini), l'UI ne doit jamais rester bloquée indéfiniment
+    // sur "Analyse en cours" — on force une résolution après 16s max.
+    const detectPipeline = async (): Promise<Pt[] | null> => {
+      let result: Pt[] | null = null
 
-    if (frameRect) {
-      // Essai 1 : JS pur depuis le cadre overlay (rapide, pas de serveur)
-      detectedCorners = detectCardFromFrame(img, frameRect)
+      if (frameRect) {
+        // Essai 1 : JS pur depuis le cadre overlay (rapide, pas de serveur)
+        result = detectCardFromFrame(img, frameRect)
 
-      // Essai 2 : OpenCV sur le crop du cadre si JS échoue
-      if (!detectedCorners) {
+        // Essai 2 : OpenCV sur le crop du cadre si JS échoue
+        if (!result) {
+          try {
+            const cv = await Promise.race([loadOpenCV(), new Promise<null>(r => setTimeout(() => r(null), 3500))])
+            if (cv) {
+              const PAD = 0.12
+              const cx2 = Math.max(0, frameRect.x - frameRect.w * PAD)
+              const cy2 = Math.max(0, frameRect.y - frameRect.h * PAD)
+              const cw2 = Math.min(img.naturalWidth  - cx2, frameRect.w * (1 + PAD * 2))
+              const ch2 = Math.min(img.naturalHeight - cy2, frameRect.h * (1 + PAD * 2))
+              // Plafonner à 800px pour éviter OOM sur mobile
+              const cropScale = Math.min(1, 800 / Math.max(cw2, ch2))
+              const ccW = Math.round(cw2 * cropScale), ccH = Math.round(ch2 * cropScale)
+              const cc  = document.createElement('canvas')
+              cc.width = ccW; cc.height = ccH
+              cc.getContext('2d')!.drawImage(img, cx2, cy2, cw2, ch2, 0, 0, ccW, ccH)
+              const ci  = new Image()
+              ci.src = cc.toDataURL('image/jpeg', 0.92)
+              await new Promise(r => { ci.onload = r })
+              const cropCorners = await detectCardInCrop(ci, cv)
+              if (cropCorners) result = cropCorners.map(p => ({
+                x: p.x / cropScale + cx2,
+                y: p.y / cropScale + cy2,
+              }))
+            }
+          } catch {}
+        }
+
+        // Essai 3 : Gemini sur l'image complète (JS + OpenCV ont tous les deux échoué)
+        if (!result) {
+          try {
+            result = await Promise.race([
+              detectCard(img),
+              new Promise<null>(r => setTimeout(() => r(null), 8000)),
+            ])
+          } catch {}
+        }
+      } else {
         try {
-          const cv = await Promise.race([loadOpenCV(), new Promise<null>(r => setTimeout(() => r(null), 3500))])
-          if (cv) {
-            const PAD = 0.12
-            const cx2 = Math.max(0, frameRect.x - frameRect.w * PAD)
-            const cy2 = Math.max(0, frameRect.y - frameRect.h * PAD)
-            const cw2 = Math.min(img.naturalWidth  - cx2, frameRect.w * (1 + PAD * 2))
-            const ch2 = Math.min(img.naturalHeight - cy2, frameRect.h * (1 + PAD * 2))
-            // Plafonner à 800px pour éviter OOM sur mobile
-            const cropScale = Math.min(1, 800 / Math.max(cw2, ch2))
-            const ccW = Math.round(cw2 * cropScale), ccH = Math.round(ch2 * cropScale)
-            const cc  = document.createElement('canvas')
-            cc.width = ccW; cc.height = ccH
-            cc.getContext('2d')!.drawImage(img, cx2, cy2, cw2, ch2, 0, 0, ccW, ccH)
-            const ci  = new Image()
-            ci.src = cc.toDataURL('image/jpeg', 0.92)
-            await new Promise(r => { ci.onload = r })
-            const cropCorners = await detectCardInCrop(ci, cv)
-            if (cropCorners) detectedCorners = cropCorners.map(p => ({
-              x: p.x / cropScale + cx2,
-              y: p.y / cropScale + cy2,
-            }))
-          }
-        } catch {}
-      }
-
-      // Essai 3 : Gemini sur l'image complète (JS + OpenCV ont tous les deux échoué)
-      if (!detectedCorners) {
-        try {
-          detectedCorners = await Promise.race([
+          result = await Promise.race([
             detectCard(img),
-            new Promise<null>(r => setTimeout(() => r(null), 8000)),
+            new Promise<null>(r => setTimeout(() => r(null), 7000)),
           ])
         } catch {}
       }
-    } else {
+
+      return result
+    }
+
+    let detectedCorners: Pt[] | null = null
+    try {
       detectedCorners = await Promise.race([
-        detectCard(img),
-        new Promise<null>(r => setTimeout(() => r(null), 7000)),
+        detectPipeline(),
+        new Promise<null>(r => setTimeout(() => r(null), 16000)),
       ])
+    } catch {
+      detectedCorners = null
     }
 
     // Fallback corners : rectangle du cadre ou defaultCorners (status 'notfound')
