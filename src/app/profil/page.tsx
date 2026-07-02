@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import TeamPicker from '@/components/TeamPicker'
+import { subscribePush } from '@/components/PWAInstall'
 
 export default function Profil() {
   const router = useRouter()
@@ -26,6 +27,9 @@ export default function Profil() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [changingPassword, setChangingPassword] = useState(false)
   const [passwordMsg, setPasswordMsg] = useState<{ ok: boolean; text: string } | null>(null)
+  const [pushSupported, setPushSupported] = useState(false)
+  const [pushPermission, setPushPermission] = useState<NotificationPermission | null>(null)
+  const [pushLoading, setPushLoading] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -44,7 +48,46 @@ export default function Profil() {
       }
       setLoading(false)
     })
+    if (typeof window !== 'undefined' && 'Notification' in window && 'serviceWorker' in navigator) {
+      setPushSupported(true)
+      setPushPermission(Notification.permission)
+    }
   }, [])
+
+  const handleEnablePush = async () => {
+    setPushLoading(true)
+    try {
+      // PWAInstall (qui enregistre normalement le SW) n'est pas monté sur cette
+      // page — on s'assure ici que le service worker est bien enregistré avant
+      // de tenter l'abonnement, sinon navigator.serviceWorker.ready ne résout jamais
+      await navigator.serviceWorker.register('/sw.js')
+      const perm = await Notification.requestPermission()
+      setPushPermission(perm)
+      if (perm === 'granted') await subscribePush()
+    } finally {
+      setPushLoading(false)
+    }
+  }
+
+  const handleDisablePush = async () => {
+    setPushLoading(true)
+    try {
+      await navigator.serviceWorker.register('/sw.js')
+      const sw = await navigator.serviceWorker.ready
+      const sub = await sw.pushManager.getSubscription()
+      if (sub) {
+        const { data: { session } } = await supabase.auth.getSession()
+        await fetch('/api/push-subscribe', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
+          body: JSON.stringify({ endpoint: sub.endpoint }),
+        })
+        await sub.unsubscribe()
+      }
+    } finally {
+      setPushLoading(false)
+    }
+  }
 
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -207,6 +250,36 @@ export default function Profil() {
             {saved ? t('profile_saved') : t('profile_save')}
           </button>
         </form>
+      </div>
+
+      {/* Notifications push */}
+      <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+        <h3 style={{ fontWeight: 800, marginBottom: 8 }}>🔔 Notifications</h3>
+        {!pushSupported ? (
+          <p style={{ fontSize: 13, color: '#999' }}>
+            Non disponible sur ce navigateur. Sur iPhone, ajoutez d'abord Memorabilius à l'écran d'accueil (Partager → Sur l'écran d'accueil).
+          </p>
+        ) : pushPermission === 'denied' ? (
+          <p style={{ fontSize: 13, color: '#e74c3c' }}>
+            Bloquées dans les réglages de votre navigateur. Autorisez les notifications pour ce site pour les recevoir.
+          </p>
+        ) : pushPermission === 'granted' ? (
+          <div>
+            <p style={{ fontSize: 13, color: '#2ecc71', fontWeight: 700, marginBottom: 12 }}>✓ Notifications activées</p>
+            <button onClick={handleDisablePush} disabled={pushLoading} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+              {pushLoading ? '...' : 'Désactiver'}
+            </button>
+          </div>
+        ) : (
+          <div>
+            <p style={{ fontSize: 13, color: '#666', marginBottom: 12 }}>
+              Recevez une alerte pour les messages, likes et cartes de votre wishlist trouvées.
+            </p>
+            <button onClick={handleEnablePush} disabled={pushLoading} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+              {pushLoading ? '...' : 'Activer les notifications'}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Modifier le mot de passe */}
