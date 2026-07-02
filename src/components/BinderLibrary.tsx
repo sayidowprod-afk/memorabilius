@@ -323,7 +323,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   // swipe de page, surtout sur mobile où les cartes remplissent la page).
   // Un glissé horizontal avant l'appui long → c'est un swipe de page (géré par la scène).
   const cardPointerDown = (page: number, idx: number, slot: Slot) => (e: React.PointerEvent) => {
-    if (!isOwner || pendingCard) return
+    if (!isOwner || pendingCard || flip) return
     // PAS de stopPropagation : la scène doit aussi voir le geste pour un éventuel swipe
     const el = e.currentTarget as HTMLElement
     const pointerId = e.pointerId
@@ -402,7 +402,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     if (!selected || flip) return
     if (dir === 'next' && !canNext) return
     if (dir === 'prev' && !canPrev) return
-    // Démarre à plat (0°) puis anime jusqu'au bout au frame suivant
+    // Neutralise les clics pendant toute l'animation (sinon on sélectionne une
+    // carte de la page révélée dessous en cours de feuilletage)
+    suppressClickUntil.current = Date.now() + FLIP_MS + 150
     setFlip({ dir, angle: 0, anim: false })
     requestAnimationFrame(() => finishFlip(dir))
   }
@@ -492,7 +494,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 onPointerUp={cardPointerUp}
                 onPointerCancel={cardPointerCancel}
                 onClick={() => {
-                  if (clickSuppressed()) return
+                  if (flip || clickSuppressed()) return
                   if (!onOpenCard || !onOpenCard(slot.img)) setViewerSlot(slot)
                 }}
                 title={isOwner ? 'Appui long pour déplacer · clic pour ouvrir' : (slot.nom || '')}
@@ -519,7 +521,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <div key={idx} data-pocket data-page={page} data-idx={idx}
               onClick={async () => {
                 if (!isOwner) return
-                if (clickSuppressed()) return
+                if (flip || clickSuppressed()) return
                 if (pendingCard) { await placeCard(page, idx, pendingCard); onPlaced?.() }
                 else setPickerTarget({ page, idx })
               }}
