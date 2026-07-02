@@ -16,13 +16,12 @@ export async function POST(req: NextRequest) {
 
     const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
 
-    // CSV, cartes manuelles et ancien total sont indépendants → en parallèle
-    const [csvText, manuellesRes, prevRes] = await Promise.all([
+    // CSV et cartes manuelles sont indépendants → en parallèle
+    const [csvText, manuellesRes] = await Promise.all([
       csvUrl
         ? fetch(csvUrl, { cache: 'no-store' }).then(r => r.ok ? r.text() : null).catch(() => null)
         : Promise.resolve(null),
       supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId),
-      supabase.from('profiles').select('stats_total').eq('id', userId).single(),
     ])
 
     if (csvText) {
@@ -48,8 +47,13 @@ export async function POST(req: NextRequest) {
       })
     }
 
-    const prevTotal = prevRes.data?.stats_total || 0
-    const delta = Math.max(0, stats.total - prevTotal)
+    // Le compteur mensuel (monthly_additions) n'est PAS mis à jour ici.
+    // Un CSV n'a pas de date d'ajout par ligne : comparer le total actuel à
+    // l'ancien stats_total ne dit pas QUAND ces cartes ont été ajoutées — juste
+    // que le compte a changé (première synchro CSV, lien CSV modifié, etc.).
+    // Ça avait déjà causé un faux "+358 ce mois-ci" pour un compte dont le CSV
+    // n'avait jamais été comptabilisé avant. Seul /api/card-added (ajout manuel
+    // en temps réel, horodatage fiable) alimente le classement mensuel.
 
     await supabase.from('profiles').update({
       stats_total: stats.total,
@@ -59,16 +63,6 @@ export async function POST(req: NextRequest) {
       stats_patch: stats.patch,
       stats_updated_at: new Date().toISOString(),
     }).eq('id', userId)
-
-    // Incrémenter le compteur mensuel si des cartes ont été ajoutées
-    if (delta > 0) {
-      const month = new Date().toISOString().slice(0, 7)
-      const { data: existing } = await supabase.from('monthly_additions').select('count').eq('user_id', userId).eq('month', month).single()
-      await supabase.from('monthly_additions').upsert(
-        { user_id: userId, month, count: (existing?.count || 0) + delta },
-        { onConflict: 'user_id,month' }
-      )
-    }
 
     return NextResponse.json({ ok: true, stats })
   } catch (err) {

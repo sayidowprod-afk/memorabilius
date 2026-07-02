@@ -43,10 +43,11 @@ export async function GET(req: NextRequest) {
         if (c[8]?.trim()) stats.num++
       })
 
-      const { data: prev } = await supabase.from('profiles').select('stats_total').eq('id', p.id).single()
-      const prevTotal = prev?.stats_total || 0
-      const delta = Math.max(0, stats.total - prevTotal)
-
+      // monthly_additions n'est pas touché ici : un CSV n'a pas de date d'ajout
+      // par ligne, donc comparer à l'ancien stats_total ne dit pas QUAND ces
+      // cartes ont été ajoutées (a déjà causé un faux "+358 ce mois-ci" pour un
+      // compte dont le CSV n'avait jamais été comptabilisé avant). Seul
+      // /api/card-added (ajout manuel en temps réel) alimente le classement mensuel.
       await supabase.from('profiles').update({
         stats_total: stats.total,
         stats_rc: stats.rc,
@@ -55,15 +56,6 @@ export async function GET(req: NextRequest) {
         stats_patch: stats.patch,
         stats_updated_at: new Date().toISOString(),
       }).eq('id', p.id)
-
-      if (delta > 0) {
-        const month = new Date().toISOString().slice(0, 7)
-        const { data: existing } = await supabase.from('monthly_additions').select('count').eq('user_id', p.id).eq('month', month).single()
-        await supabase.from('monthly_additions').upsert(
-          { user_id: p.id, month, count: (existing?.count || 0) + delta },
-          { onConflict: 'user_id,month' }
-        )
-      }
 
       results.push({ id: p.id, stats })
     } catch (e) {
