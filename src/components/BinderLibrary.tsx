@@ -337,7 +337,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       try { el.setPointerCapture(pointerId) } catch {}
       setCardDrag({ img: c.slot.img, x: c.startX, y: c.startY })
       try { (navigator as any).vibrate?.(15) } catch {}
-    }, 280)
+    }, 160)
     cardDragRef.current = { page, idx, slot, startX: e.clientX, startY: e.clientY, active: false, pointerId, el, timer }
   }
   const cardPointerMove = (e: React.PointerEvent) => {
