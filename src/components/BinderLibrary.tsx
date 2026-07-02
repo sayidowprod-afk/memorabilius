@@ -66,7 +66,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [viewerSlot, setViewerSlot] = useState<Slot | null>(null)
   // Glisser-déplacer d'une carte d'une pochette à une autre
   const [cardDrag, setCardDrag] = useState<{ img: string; x: number; y: number } | null>(null)
-  const cardDragRef = useRef<{ page: number; idx: number; slot: Slot; startX: number; startY: number; active: boolean; pointerId: number; el: HTMLElement } | null>(null)
+  const cardDragRef = useRef<{ page: number; idx: number; slot: Slot; startX: number; startY: number; active: boolean; pointerId: number; el: HTMLElement; timer: number } | null>(null)
   const openSpreadRef = useRef<HTMLDivElement>(null)
   const flipCooldownRef = useRef(0)
 
@@ -319,20 +319,33 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     if (error) { alert('Erreur : ' + error.message); openBinder(selected) }
   }
 
-  // Poignées de glisser-déplacer d'une carte (souris + tactile)
+  // Déplacer une carte = APPUI LONG puis glisser (pour ne pas confondre avec le
+  // swipe de page, surtout sur mobile où les cartes remplissent la page).
+  // Un glissé horizontal avant l'appui long → c'est un swipe de page (géré par la scène).
   const cardPointerDown = (page: number, idx: number, slot: Slot) => (e: React.PointerEvent) => {
     if (!isOwner || pendingCard) return
-    e.stopPropagation() // n'active pas le feuilletage de page
-    cardDragRef.current = { page, idx, slot, startX: e.clientX, startY: e.clientY, active: false, pointerId: e.pointerId, el: e.currentTarget as HTMLElement }
+    // PAS de stopPropagation : la scène doit aussi voir le geste pour un éventuel swipe
+    const el = e.currentTarget as HTMLElement
+    const pointerId = e.pointerId
+    const timer = window.setTimeout(() => {
+      const c = cardDragRef.current
+      if (!c || c.active) return
+      if (swipeRef.current?.active) { cardDragRef.current = null; return } // un swipe a démarré → pas de saisie
+      c.active = true
+      suppressClickUntil.current = Date.now() + 100000
+      try { el.setPointerCapture(pointerId) } catch {}
+      setCardDrag({ img: c.slot.img, x: c.startX, y: c.startY })
+      try { (navigator as any).vibrate?.(15) } catch {}
+    }, 280)
+    cardDragRef.current = { page, idx, slot, startX: e.clientX, startY: e.clientY, active: false, pointerId, el, timer }
   }
   const cardPointerMove = (e: React.PointerEvent) => {
     const c = cardDragRef.current
     if (!c) return
     if (!c.active) {
-      if (Math.hypot(e.clientX - c.startX, e.clientY - c.startY) < 8) return
-      c.active = true
-      suppressClickUntil.current = Date.now() + 100000
-      try { c.el.setPointerCapture(c.pointerId) } catch {}
+      // bougé avant l'appui long → ce n'est pas une saisie de carte (swipe/scroll)
+      if (Math.hypot(e.clientX - c.startX, e.clientY - c.startY) > 8) { clearTimeout(c.timer); cardDragRef.current = null }
+      return
     }
     e.stopPropagation()
     setCardDrag({ img: c.slot.img, x: e.clientX, y: e.clientY })
@@ -347,7 +360,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const c = cardDragRef.current
     cardDragRef.current = null
     if (!c) return
-    if (!c.active) return
+    clearTimeout(c.timer)
+    if (!c.active) return // appui simple → l'onClick ouvre la carte
     suppressClickUntil.current = Date.now() + 400
     setCardDrag(null)
     const target = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-pocket]') as HTMLElement | null
@@ -361,6 +375,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const cardPointerCancel = () => {
     const c = cardDragRef.current
     cardDragRef.current = null
+    if (c) clearTimeout(c.timer)
     setCardDrag(null)
     suppressClickUntil.current = Date.now() + (c?.active ? 400 : 50)
   }
@@ -471,7 +486,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             return (
               <div key={idx} data-pocket data-page={page} data-idx={idx}
                 className={`binder-slot-card${justInserted === k ? ' binder-slot-card-enter' : ''}`}
-                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', boxShadow: '0 0 0 1px rgba(150,165,180,0.4)', touchAction: 'none', opacity: cardDrag && cardDragRef.current?.page === page && cardDragRef.current?.idx === idx ? 0.35 : 1 }}
+                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', boxShadow: '0 0 0 1px rgba(150,165,180,0.4)', opacity: cardDrag && cardDragRef.current?.active && cardDragRef.current?.page === page && cardDragRef.current?.idx === idx ? 0.35 : 1 }}
                 onPointerDown={cardPointerDown(page, idx, slot)}
                 onPointerMove={cardPointerMove}
                 onPointerUp={cardPointerUp}
@@ -480,7 +495,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                   if (clickSuppressed()) return
                   if (!onOpenCard || !onOpenCard(slot.img)) setViewerSlot(slot)
                 }}
-                title={isOwner ? 'Glisser pour déplacer · cliquer pour ouvrir' : (slot.nom || '')}
+                title={isOwner ? 'Appui long pour déplacer · clic pour ouvrir' : (slot.nom || '')}
               >
                 <img src={slot.img} alt={slot.nom || ''} loading="lazy" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', pointerEvents: 'none' }} />
                 <PlasticSheen />
