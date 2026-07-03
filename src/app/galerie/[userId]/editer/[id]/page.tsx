@@ -495,6 +495,23 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
       {cropModal && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.92)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          {/* Sélecteur de format — ajuste la forme du cadre en direct */}
+          <div style={{ width: '100%', background: '#1a1a1a', padding: '10px 12px', boxSizing: 'border-box', display: 'flex', gap: 6, overflowX: 'auto', justifyContent: 'flex-start', WebkitOverflowScrolling: 'touch' }}>
+            {CARD_FORMATS.map(f => {
+              const active = (form.format || 'standard') === f.id
+              return (
+                <button key={f.id} type="button"
+                  onClick={() => {
+                    setForm(prev => ({ ...prev, format: f.id, is_horizontal: f.id === 'horizontal' }))
+                    isHorizontalRef.current = f.id === 'horizontal'
+                    requestAnimationFrame(resetTransform)
+                  }}
+                  style={{ flexShrink: 0, padding: '7px 11px', borderRadius: 8, border: active ? '2px solid #fff' : '2px solid rgba(255,255,255,0.15)', background: active ? 'rgba(255,255,255,0.18)' : 'transparent', color: 'white', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                  {f.icon} {f.label}
+                </button>
+              )
+            })}
+          </div>
           <div ref={containerRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp}
             onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}
             style={{ position: 'relative', width: '100%', flex: 1, overflow: 'hidden', cursor: isDragging.current ? 'grabbing' : 'grab', touchAction: 'none', userSelect: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

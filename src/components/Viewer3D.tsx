@@ -267,8 +267,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
         .viewer-info { flex: 0.8; padding: 30px; display: flex; flex-direction: column; justify-content: center; background: ${infoBg}; overflow-y: auto; color: ${textColor}; }
         .viewer-card { width: 560px; height: 784px; }
         .viewer-card--horizontal { width: min(784px, 54vw) !important; height: min(560px, 38.6vw) !important; }
-        .viewer-card--slab { width: 485px !important; height: 784px !important; }
-        @media (max-width: 1200px) { .viewer-card { width: 420px; height: 588px; } .viewer-card--horizontal { width: min(560px, 54vw) !important; height: min(400px, 38.6vw) !important; } .viewer-card--slab { width: 364px !important; height: 588px !important; } }
+        .viewer-card--slab { width: 478px !important; height: 784px !important; }
+        @media (max-width: 1200px) { .viewer-card { width: 420px; height: 588px; } .viewer-card--horizontal { width: min(560px, 54vw) !important; height: min(400px, 38.6vw) !important; } .viewer-card--slab { width: 359px !important; height: 588px !important; } }
         @media (max-width: 600px) {
           .viewer-layout { flex-direction: column; }
           .viewer-zone { flex: 0 0 65% !important; width: 100% !important; }
@@ -276,7 +276,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           .viewer-info h2 { font-size: 1rem !important; margin: 2px 0 !important; }
           .viewer-card { width: 240px !important; height: 336px !important; }
           .viewer-card--horizontal { width: min(260px, 80vw) !important; height: min(186px, 57vw) !important; }
-          .viewer-card--slab { width: 208px !important; height: 336px !important; }
+          .viewer-card--slab { width: 205px !important; height: 336px !important; }
           .viewer-hint { display: none !important; }
         }
       `}</style>
