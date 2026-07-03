@@ -1,5 +1,6 @@
 export interface CsvCard {
   img: string
+  back: string
   name: string
   team: string
   year: string
@@ -32,6 +33,7 @@ export async function fetchCsvCardsForProfiles(
           if (!c[0]?.includes('http')) return
           all.push({
             img:    c[0]?.trim(),
+            back:   (c[1]?.trim() || ''),
             name:   (c[2] || '').replace(/^"|"$/g, ''),
             team:   (c[3] || '').replace(/^"|"$/g, ''),
             year:   (c[4] || '').replace(/^"|"$/g, ''),

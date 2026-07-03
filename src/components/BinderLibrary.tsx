@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom'
 import dynamic from 'next/dynamic'
 import { supabase } from '@/lib/supabase'
 import CardPicker, { PickableCard } from './CardPicker'
+import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 
 const Viewer3D = dynamic(() => import('./Viewer3D'), { ssr: false })
 
@@ -150,10 +151,21 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     // URLs longues, qui dépassait la limite de longueur de requête et n'en renvoyait qu'une partie.
     const needsBack = [...map.values()].some(s => !s.img_back)
     if (needsBack) {
-      const { data: cards } = await supabase.from('cartes_manuelles')
-        .select('image_recto, image_verso').eq('user_id', userId).not('image_verso', 'is', null)
-      if (cards && cards.length) {
-        const versoByRecto = new Map(cards.map((c: any) => [c.image_recto, c.image_verso]))
+      const versoByRecto = new Map<string, string>()
+      // Cartes manuelles : image_verso
+      const [{ data: cards }, { data: profile }] = await Promise.all([
+        supabase.from('cartes_manuelles').select('image_recto, image_verso').eq('user_id', userId).not('image_verso', 'is', null),
+        supabase.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').eq('id', userId).single(),
+      ])
+      for (const c of (cards || []) as any[]) if (c.image_verso) versoByRecto.set(c.image_recto, c.image_verso)
+      // Cartes CSV (Google Sheet) : colonne verso déjà présente
+      if (profile?.lien_csv) {
+        try {
+          const csvCards = await fetchCsvCardsForProfiles([profile as any])
+          for (const c of csvCards) if (c.back && c.back !== c.img) versoByRecto.set(c.img, c.back)
+        } catch { /* CSV injoignable */ }
+      }
+      if (versoByRecto.size) {
         setSlots(prev => {
           const m = new Map(prev)
           for (const [k, s] of m) {

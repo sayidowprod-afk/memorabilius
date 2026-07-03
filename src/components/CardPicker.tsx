@@ -70,7 +70,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
           if (!c.img || seen.has(c.img)) continue
           seen.add(c.img)
           list.push({
-            key: c.img, img: c.img, nom: c.name || '',
+            key: c.img, img: c.img, back: c.back || undefined, nom: c.name || '',
             team: c.team || '', year: c.year || '', brand: c.brand || '', variant: c.variant || '',
             rc: !!c.rc, auto: !!c.auto, patch: !!c.patch, num: !!(c.num && String(c.num).trim()),
           })
