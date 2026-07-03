@@ -141,6 +141,25 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const map = new Map<string, Slot>()
     for (const s of data || []) map.set(slotKey(s.page_number, s.slot_index), { ...s, img_back: s.img_back ?? null })
     setSlots(map)
+
+    // Complète le dos (image_verso) pour les cartes rangées avant l'ajout de la colonne,
+    // en le récupérant depuis la collection à partir du recto (card_key = image_recto).
+    const missing = [...map.values()].filter(s => !s.img_back).map(s => s.card_key)
+    if (missing.length) {
+      const { data: cards } = await supabase.from('cartes_manuelles')
+        .select('image_recto, image_verso').in('image_recto', missing).not('image_verso', 'is', null)
+      if (cards && cards.length) {
+        const versoByRecto = new Map(cards.map((c: any) => [c.image_recto, c.image_verso]))
+        setSlots(prev => {
+          const m = new Map(prev)
+          for (const [k, s] of m) {
+            const v = versoByRecto.get(s.card_key)
+            if (!s.img_back && v) m.set(k, { ...s, img_back: v })
+          }
+          return m
+        })
+      }
+    }
   }
 
   const openCreateForm = () => {
@@ -864,14 +883,17 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     return renderPocketGrid(desc.page, side, desc.face)
   }
 
-  // Ouvre le classeur : la couverture fermée pivote comme un vrai plat de classeur,
-  // puis on affiche les pages.
+  // Ouvre le classeur : les pages sont affichées immédiatement en dessous, et la
+  // couverture (posée sur la page de droite) pivote autour de la reliure pour
+  // révéler la page 1, puis vient se poser en 2e de couverture à gauche.
   const openTheBinder = () => {
     if (isOpen || coverAnimating) return
     setPageIndex(0)
+    setIsOpen(true)
     setCoverAnimating(true)
-    requestAnimationFrame(() => requestAnimationFrame(() => setCoverAngle(-115)))
-    setTimeout(() => { setIsOpen(true); setCoverAnimating(false); setCoverAngle(0) }, 520)
+    setCoverAngle(0)
+    requestAnimationFrame(() => requestAnimationFrame(() => setCoverAngle(-180)))
+    setTimeout(() => { setCoverAnimating(false); setCoverAngle(0) }, 660)
   }
 
   return (
@@ -952,6 +974,25 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 <div style={{ ...pageShellStyle(flip.dir === 'next' ? 'left' : 'right'), position: 'absolute', inset: 0, width: '100%', height: '100%', backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
                   {renderFlipFace(flip.dir === 'next' ? leftFace(pageIndex + 2) : rightFace(pageIndex - 2), flip.dir === 'next' ? 'left' : 'right')}
                   <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'rgba(0,0,0,0.28)', opacity: shadowOpacity }} />
+                </div>
+              </div>
+            )}
+
+            {/* Couverture qui s'ouvre : posée sur la page de droite, pivote autour de
+                la reliure (centre) et se retourne en 2e de couverture à gauche. */}
+            {coverAnimating && (
+              <div style={{
+                position: 'absolute', top: 0, left: pageW, width: pageW, height: pageH,
+                transformStyle: 'preserve-3d', transformOrigin: 'left center',
+                transform: `rotateY(${coverAngle}deg)`,
+                transition: 'transform 0.66s cubic-bezier(0.4,0,0.2,1)',
+                zIndex: 40,
+              }}>
+                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', overflow: 'hidden', borderRadius: '2px 6px 6px 2px', boxShadow: '0 10px 26px rgba(0,0,0,0.35)' }}>
+                  {coverFace}
+                </div>
+                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                  {insideCoverFace('left')}
                 </div>
               </div>
             )}
