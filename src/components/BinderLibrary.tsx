@@ -231,23 +231,43 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   // On ne réordonne PAS le tableau pendant le glissé (sinon React re-render les
   // tranches et la capture du pointeur se perd → blocage). Aperçu flottant, puis
   // réorganisation uniquement au relâchement, sur la tranche survolée.
-  const reorderRef = useRef<{ binder: Binder; startX: number; startY: number; active: boolean; pointerId: number; el: HTMLElement } | null>(null)
+  const reorderRef = useRef<{ binder: Binder; startX: number; startY: number; active: boolean; pointerId: number; el: HTMLElement; touch: boolean; timer: number } | null>(null)
   const [reorderingId, setReorderingId] = useState<number | null>(null)
   const [reorderDrag, setReorderDrag] = useState<{ binder: Binder; x: number; y: number } | null>(null)
 
+  // Active réellement la saisie d'un classeur (capture du pointeur + aperçu flottant)
+  const activateReorder = (r: NonNullable<typeof reorderRef.current>) => {
+    r.active = true
+    suppressClickUntil.current = Date.now() + 100000
+    setReorderingId(r.binder.id)
+    try { r.el.setPointerCapture(r.pointerId) } catch {}
+    setReorderDrag({ binder: r.binder, x: r.startX, y: r.startY })
+    try { (navigator as any).vibrate?.(15) } catch {}
+  }
+
   const shelfPointerDown = (b: Binder) => (e: React.PointerEvent) => {
     if (!isOwner) return
-    reorderRef.current = { binder: b, startX: e.clientX, startY: e.clientY, active: false, pointerId: e.pointerId, el: e.currentTarget as HTMLElement }
+    const touch = e.pointerType === 'touch'
+    // Sur tactile : appui long pour saisir (sinon un glissé horizontal = défilement de l'étagère).
+    const timer = touch ? window.setTimeout(() => {
+      const r = reorderRef.current
+      if (r && !r.active) activateReorder(r)
+    }, 240) : 0
+    reorderRef.current = { binder: b, startX: e.clientX, startY: e.clientY, active: false, pointerId: e.pointerId, el: e.currentTarget as HTMLElement, touch, timer }
   }
   const shelfPointerMove = (e: React.PointerEvent) => {
     const r = reorderRef.current
     if (!r) return
     if (!r.active) {
-      if (Math.hypot(e.clientX - r.startX, e.clientY - r.startY) < 6) return
-      r.active = true
-      suppressClickUntil.current = Date.now() + 100000
-      setReorderingId(r.binder.id)
-      try { r.el.setPointerCapture(r.pointerId) } catch {}
+      const moved = Math.hypot(e.clientX - r.startX, e.clientY - r.startY)
+      if (r.touch) {
+        // Bougé avant la fin de l'appui long → c'est un défilement, on abandonne la saisie.
+        if (moved > 8) { clearTimeout(r.timer); reorderRef.current = null }
+        return
+      }
+      // Souris : saisie immédiate dès un petit déplacement.
+      if (moved < 6) return
+      activateReorder(r)
     }
     setReorderDrag({ binder: r.binder, x: e.clientX, y: e.clientY })
   }
@@ -255,6 +275,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const r = reorderRef.current
     reorderRef.current = null
     if (!r) return
+    clearTimeout(r.timer)
     setReorderDrag(null)
     setReorderingId(null)
     if (!r.active) return
@@ -784,12 +805,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                     onPointerDown={shelfPointerDown(b)}
                     onPointerMove={shelfPointerMove}
                     onPointerUp={shelfPointerUp}
-                    title={isOwner ? `${b.name} — glisser pour réorganiser` : b.name}
+                    onPointerCancel={() => { const r = reorderRef.current; if (r) { clearTimeout(r.timer); reorderRef.current = null } setReorderDrag(null); setReorderingId(null) }}
+                    title={isOwner ? `${b.name} — appui long pour réorganiser` : b.name}
                     style={{
                       width: 40, height: 184, cursor: isOwner ? 'grab' : 'pointer', flexShrink: 0,
                       background: b.color || accent, borderRadius: '4px 4px 0 0',
                       boxShadow: 'inset 4px 0 0 rgba(255,255,255,0.2), inset -4px 0 0 rgba(0,0,0,0.28), 2px 2px 5px rgba(0,0,0,0.4)',
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', touchAction: isOwner ? 'none' : 'auto',
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', touchAction: 'pan-x',
                       transition: 'transform 0.15s', position: 'relative', overflow: 'hidden',
                       opacity: reorderingId === b.id ? 0.4 : 1,
                     }}
