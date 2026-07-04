@@ -70,6 +70,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         {/* Lit le thème depuis localStorage AVANT le premier rendu React pour éviter le flash light→dark (CLS) */}
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}` }} />
+        {process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview' && (
+          <div style={{ background: '#b8860b', color: 'white', textAlign: 'center', fontSize: 12, fontWeight: 800, padding: '4px 8px', letterSpacing: '0.05em' }}>
+            🧪 VERSION DE TEST — base potentiellement partagée avec la production
+          </div>
+        )}
         <ThemeProvider>
           <LangProvider>
             <Navbar />
