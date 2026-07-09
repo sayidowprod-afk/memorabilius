@@ -8,7 +8,7 @@ import { useLang } from '@/lib/LangContext'
 import CardScanner from '@/components/CardScanner'
 import CameraCapture from '@/components/CameraCapture'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
-import { CARD_FORMATS, getFormat } from '@/lib/cardFormats'
+import { SELECTABLE_FORMATS, getFormat } from '@/lib/cardFormats'
 import BinderLibrary from '@/components/BinderLibrary'
 
 const CARD_RATIO = 2.5 / 3.5
@@ -554,7 +554,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {CARD_FORMATS.map(fmt => (
+              {SELECTABLE_FORMATS.map(fmt => (
                 <button key={fmt.id} type="button" onClick={() => setForm({ ...form, format: fmt.id })}
                   style={{
                     padding: '8px 14px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 12, transition: '0.15s',
@@ -733,7 +733,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           {/* Sélecteur de format — ajuste la forme du cadre en direct (pas pour les pages internes d'un booklet) */}
           {cropModal.side !== 'il' && cropModal.side !== 'ir' && (
             <div style={{ width: '100%', background: '#1a1a1a', padding: '10px 12px', boxSizing: 'border-box', display: 'flex', gap: 6, overflowX: 'auto', justifyContent: 'flex-start', WebkitOverflowScrolling: 'touch' }}>
-              {CARD_FORMATS.map(f => {
+              {SELECTABLE_FORMATS.map(f => {
                 const active = (form.format || 'standard') === f.id
                 return (
                   <button key={f.id} type="button"

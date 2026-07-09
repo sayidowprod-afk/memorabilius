@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import CardScanner from '@/components/CardScanner'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
-import { CARD_FORMATS, getFormat } from '@/lib/cardFormats'
+import { SELECTABLE_FORMATS, getFormat } from '@/lib/cardFormats'
 
 export default function EditerCarte({ params }: { params: Promise<{ userId: string; id: string }> }) {
   const { userId, id } = use(params)
@@ -444,7 +444,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {CARD_FORMATS.map(fmt => (
+              {SELECTABLE_FORMATS.map(fmt => (
                 <button key={fmt.id} type="button" onClick={() => setForm({ ...form, format: fmt.id })}
                   style={{
                     padding: '8px 14px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 12, transition: '0.15s',
@@ -497,7 +497,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.92)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
           {/* Sélecteur de format — ajuste la forme du cadre en direct */}
           <div style={{ width: '100%', background: '#1a1a1a', padding: '10px 12px', boxSizing: 'border-box', display: 'flex', gap: 6, overflowX: 'auto', justifyContent: 'flex-start', WebkitOverflowScrolling: 'touch' }}>
-            {CARD_FORMATS.map(f => {
+            {SELECTABLE_FORMATS.map(f => {
               const active = (form.format || 'standard') === f.id
               return (
                 <button key={f.id} type="button"
