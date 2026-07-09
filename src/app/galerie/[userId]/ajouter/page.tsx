@@ -337,8 +337,12 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       collection_tag: form.collection_tag || null,
     })
     if (error) { alert('Erreur : ' + error.message); setSaving(false); return }
-    fetch('/api/card-added', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: uid }) }).catch(() => {})
     supabase.auth.getSession().then(({ data: { session } }) => {
+      fetch('/api/card-added', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
+        body: JSON.stringify({ userId: uid }),
+      }).catch(() => {})
       fetch('/api/wishlist-notify', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },

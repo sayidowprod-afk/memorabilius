@@ -256,7 +256,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
     try {
       // 1. Mise à jour classement mensuel + stats_total (avant suppression pour lire created_at)
-      fetch('/api/card-added', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId, cardId: idManuelle }) }).catch(() => {})
+      const { data: { session } } = await supabase.auth.getSession()
+      fetch('/api/card-added', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
+        body: JSON.stringify({ userId, cardId: idManuelle }),
+      }).catch(() => {})
 
       // 2. Suppression de la table des cartes manuelles
       const { error } = await supabase.from('cartes_manuelles').delete().eq('id', idManuelle).eq('user_id', userId)
