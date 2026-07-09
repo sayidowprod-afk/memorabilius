@@ -90,6 +90,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState<Binder | null>(null)
   const [showComments, setShowComments] = useState(false)
+  const [commentCount, setCommentCount] = useState(0)
   const [slots, setSlots] = useState<Map<string, Slot>>(new Map())
   // Page gauche du double-feuillet, PAIRE (0, 2, 4…). Comme un vrai classeur :
   // 0 = intérieur de couverture (gauche) + page 1 seule à droite, puis 2–3, 4–5…
@@ -176,10 +177,16 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setLoading(false)
   }
 
+  const loadCommentCount = async (binderId: number) => {
+    const { count } = await supabase.from('galerie_comments').select('*', { count: 'exact', head: true }).eq('binder_id', binderId)
+    setCommentCount(count || 0)
+  }
+
   const openBinder = async (binder: Binder) => {
     setSelected(binder)
     setPageIndex(0)
     setIsOpen(false)
+    loadCommentCount(binder.id)
     const { data } = await supabase.from('binder_slots').select('*').eq('binder_id', binder.id)
     const map = new Map<string, Slot>()
     for (const s of data || []) map.set(slotKey(s.page_number, s.slot_index), { ...s, img_back: s.img_back ?? null })
@@ -1006,7 +1013,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           {!pendingCard && <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} />}
           {!pendingCard && (
             <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '6px 12px', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: '#666' }}>
-              💬 Commentaires
+              💬 Commentaires{commentCount > 0 ? ` (${commentCount})` : ''}
             </button>
           )}
           {isOwner && !pendingCard && (
@@ -1184,7 +1191,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       {showComments && selected && (
         <CommentsModal
           title={`Classeur « ${selected.name} »`}
-          onClose={() => setShowComments(false)}
+          onClose={() => { setShowComments(false); loadCommentCount(selected.id) }}
           galerieUserId={userId}
           binderId={selected.id}
           accent={accent}

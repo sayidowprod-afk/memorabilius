@@ -279,6 +279,13 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
     return data?.display_name || 'Quelqu\'un'
   }
 
+  // Renvoie directement sur la carte/le classeur commenté, pas juste l'onglet commentaires général
+  const commentLink = () => {
+    if (binderId) return `/galerie/${galerieUserId}?tab=library&binder=${binderId}`
+    if (cardKey) return `/galerie/${galerieUserId}?card=${encodeURIComponent(cardKey)}`
+    return `/galerie/${galerieUserId}?tab=comments`
+  }
+
   const send = async () => {
     if (!message.trim() || !currentUserId) return
     setSending(true)
@@ -294,7 +301,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
       await supabase.from('notifications').insert({
         user_id: target, type: 'comment', lu: false,
         message: `${name} a commenté ${what} : "${message.trim().slice(0, 60)}${message.length > 60 ? '…' : ''}"`,
-        lien: `/galerie/${galerieUserId}?tab=comments`,
+        lien: commentLink(),
       })
     }
     setMessage('')
@@ -333,7 +340,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
       await supabase.from('notifications').insert({
         user_id: parentComment.author_id, type: 'comment', lu: false,
         message: `${name} a répondu à votre commentaire : "${msg.slice(0, 60)}${msg.length > 60 ? '…' : ''}"`,
-        lien: `/galerie/${galerieUserId}?tab=comments`,
+        lien: commentLink(),
       })
     }
     load()

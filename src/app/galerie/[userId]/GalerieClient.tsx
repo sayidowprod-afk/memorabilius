@@ -122,6 +122,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [colorPickerTag, setColorPickerTag] = useState<string | null>(null)
   const [cardLikes, setCardLikes] = useState<Map<string, { count: number; liked: boolean }>>(new Map())
   const [commentCard, setCommentCard] = useState<Card | null>(null)
+  const [commentCounts, setCommentCounts] = useState<Map<string, number>>(new Map())
   const [deleteTagConfirm, setDeleteTagConfirm] = useState<string | null>(null)
   const [renameValue, setRenameValue] = useState('')
   const isGradient = (c: string) => c.startsWith('linear-gradient')
@@ -209,6 +210,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             setCardLikes(map)
           }
         })
+        loadCommentCounts(resolvedId)
       } catch (e) {
         console.error('Gallery init error', e)
         setLoaded(true)
@@ -227,6 +229,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         if (data) setCardValues(new Map(data.map((d: any) => [d.card_key, d.valeur])))
       })
   }, [userId])
+
+  const loadCommentCounts = async (galleryUserId: string) => {
+    const { data } = await supabase.from('galerie_comments').select('card_key').eq('galerie_user_id', galleryUserId).not('card_key', 'is', null)
+    const map = new Map<string, number>()
+    for (const row of data || []) map.set(row.card_key, (map.get(row.card_key) || 0) + 1)
+    setCommentCounts(map)
+  }
 
   const togglePrivate = async (cardKey: string) => {
     if (!currentUser || currentUser !== userId) return
@@ -1421,6 +1430,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '2px 4px', flexShrink: 0 }}
                     >
                       <span style={{ fontSize: 16, lineHeight: 1 }}>💬</span>
+                      {(commentCounts.get(d.f) || 0) > 0 && <span style={{ fontSize: 9, fontWeight: 800, color: '#bbb' }}>{commentCounts.get(d.f)}</span>}
                     </button>
                     <button
                       onClick={async (e) => {
@@ -1439,13 +1449,22 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           // Notifier le propriétaire de la carte (pas soi-même)
                           if (currentUser !== userId) {
                             const { data: liker } = await supabase.from('profiles').select('display_name').eq('id', currentUser).single()
+                            const likerName = liker?.display_name || 'Quelqu\'un'
                             await supabase.from('notifications').insert({
                               user_id: userId,
                               type: 'like',
-                              message: `${liker?.display_name || 'Quelqu\'un'} a aimé votre carte`,
-                              lien: `/galerie/${userId}`,
+                              message: `${likerName} a aimé votre carte`,
+                              lien: `/galerie/${userId}?card=${encodeURIComponent(d.f)}`,
                               lu: false,
                             })
+                            const { data: { session } } = await supabase.auth.getSession()
+                            if (session?.access_token) {
+                              fetch('/api/like-notify', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
+                                body: JSON.stringify({ toUserId: userId, likerName }),
+                              }).catch(() => {})
+                            }
                           }
                         }
                       }}
@@ -1505,7 +1524,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       {commentCard && (
         <CommentsModal
           title={commentCard.n}
-          onClose={() => setCommentCard(null)}
+          onClose={() => { setCommentCard(null); loadCommentCounts(userId) }}
           galerieUserId={userId}
           cardKey={commentCard.f}
           accent={accent}
