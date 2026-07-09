@@ -9,7 +9,6 @@ import type { User } from '@supabase/supabase-js'
 
 export default function Navbar() {
   const [user, setUser] = useState<User | null | undefined>(undefined)
-  const [unread, setUnread] = useState(0)
   const [notifs, setNotifs] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
   const router = useRouter()
@@ -31,7 +30,7 @@ export default function Navbar() {
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       setUser(data.user ?? null)
-      if (data.user) { loadUnread(data.user.id); loadNotifs(data.user.id); updateLastSeen(data.user.id) }
+      if (data.user) { loadNotifs(data.user.id); updateLastSeen(data.user.id) }
     })
     const { data: listener } = supabase.auth.onAuthStateChange((e, session) => {
       // Filet de sécurité : un lien de réinitialisation de mot de passe établit une
@@ -43,24 +42,19 @@ export default function Navbar() {
         return
       }
       setUser(session?.user ?? null)
-      if (session?.user) { loadUnread(session.user.id); loadNotifs(session.user.id) }
-      else { setUnread(0); setNotifs(0) }
+      if (session?.user) loadNotifs(session.user.id)
+      else setNotifs(0)
     })
     return () => listener.subscription.unsubscribe()
   }, [])
 
   useEffect(() => {
-    if (user) { loadUnread(user.id); loadNotifs(user.id); updateLastSeen(user.id) }
+    if (user) { loadNotifs(user.id); updateLastSeen(user.id) }
     setMenuOpen(false)
   }, [pathname])
 
   const updateLastSeen = async (uid: string) => {
     await supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', uid)
-  }
-
-  const loadUnread = async (uid: string) => {
-    const { count } = await supabase.from('messages').select('*', { count: 'exact', head: true }).eq('to_user_id', uid).eq('lu', false)
-    setUnread(count || 0)
   }
 
   const loadNotifs = async (uid: string) => {
@@ -149,9 +143,7 @@ export default function Navbar() {
           {user ? (
             <>
               <Link href={`/galerie/${user.id}`} style={ls} onClick={() => setMenuOpen(false)}>{t('nav_galerie')}</Link>
-              <Link href="/messages" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_messages')} <Badge count={unread} /></Link>
               <Link href="/notifications" style={ls} onClick={() => setMenuOpen(false)}>Notifications <Badge count={notifs} /></Link>
-              <Link href="/mes-likes" style={ls} onClick={() => setMenuOpen(false)}>❤️ Cartes aimées</Link>
               <Link href="/profil" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_profil')}</Link>
               <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 8 }}>
                 <button onClick={toggle} style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 14, color: dark ? '#ddd' : '#333', fontWeight: 600 }}>{dark ? '☀️' : '🌙'}</button>

@@ -119,7 +119,7 @@ export default function ChatBubble() {
       <button
         onClick={toggleOpen}
         style={{
-          position: 'fixed', bottom: 24, left: 24, zIndex: 9500,
+          position: 'fixed', bottom: 24, right: 24, zIndex: 9500,
           width: 52, height: 52, borderRadius: '50%',
           background: '#003DA6', color: 'white', border: 'none',
           fontSize: 22, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -140,8 +140,8 @@ export default function ChatBubble() {
       {/* Panneau */}
       {open && (
         <div style={{
-          position: 'fixed', bottom: 88, left: 24, zIndex: 9500,
-          width: 320, height: 440, maxHeight: 'calc(100vh - 120px)',
+          position: 'fixed', bottom: 88, right: 16, zIndex: 9500,
+          width: 'min(320px, calc(100vw - 32px))', height: 440, maxHeight: 'calc(100vh - 120px)',
           background: bg, borderRadius: 16, boxShadow: '0 8px 40px rgba(0,0,0,0.3)',
           border: `1px solid ${border}`, display: 'flex', flexDirection: 'column', overflow: 'hidden',
         }}>
