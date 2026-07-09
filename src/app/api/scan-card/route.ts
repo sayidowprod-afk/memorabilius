@@ -6,7 +6,7 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent'
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent'
 
 const PROMPT = `Tu es un expert en cartes de collection sportives (NBA, NFL, MLB, NHL, soccer) et TCG (Pokémon, Magic, etc.) avec une connaissance exhaustive des sets, parallèles et variations.
 
