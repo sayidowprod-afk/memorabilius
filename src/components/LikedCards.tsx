@@ -60,7 +60,7 @@ export default function LikedCards({ userId }: { userId: string }) {
           background: 'white', borderRadius: 12, overflow: 'hidden',
           boxShadow: '0 2px 10px rgba(0,0,0,0.06)', border: '1px solid #f0f0f0',
         }}>
-          <Link href={`/galerie/${item.gallery_user_id}`} style={{ display: 'block' }}>
+          <Link href={`/galerie/${item.gallery_user_id}?card=${encodeURIComponent(item.card_key)}`} style={{ display: 'block' }}>
             <img src={item.card_key} alt="" style={{ width: '100%', aspectRatio: '2.5/3.5', objectFit: 'cover', display: 'block', background: '#f5f5f5' }} />
           </Link>
           <div style={{ padding: '8px 10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 6 }}>

@@ -16,7 +16,7 @@ export default function PepitesSection({ cards }: { cards: Card[] }) {
   return (
     <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 20, marginBottom: 60 }}>
       {cards.map((card, i) => (
-        <Link key={i} href={`/galerie/${card.userId}`} style={{ background: 'white', borderRadius: 12, overflow: 'hidden', border: '1px solid #eee', textDecoration: 'none', display: 'block', transition: '0.3s' }}>
+        <Link key={i} href={`/galerie/${card.userId}?card=${encodeURIComponent(card.img)}`} style={{ background: 'white', borderRadius: 12, overflow: 'hidden', border: '1px solid #eee', textDecoration: 'none', display: 'block', transition: '0.3s' }}>
           <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
             <img src={card.img} alt={card.name} loading={i === 0 ? 'eager' : 'lazy'} fetchPriority={i === 0 ? 'high' : 'auto'}
               style={card.isHorizontal ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' } : { width: '100%', height: '100%', objectFit: 'cover' }} />
