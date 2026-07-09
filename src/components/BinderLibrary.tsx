@@ -39,6 +39,18 @@ const PAGE_MAX_W = 620
 const PAGE_RATIO = 310 / 230 // hauteur / largeur d'une page
 const FLIP_MS = 620
 
+// Détecte l'orientation réelle de l'image (fiable pour toutes les sources : cartes
+// manuelles, CSV... contrairement au champ `format` en base qui n'existe pas pour
+// les cartes CSV et peut être absent/incorrect pour d'anciennes cartes manuelles).
+function detectIsHorizontal(src: string): Promise<boolean> {
+  return new Promise(resolve => {
+    const img = new Image()
+    img.onload = () => resolve(img.naturalWidth > img.naturalHeight)
+    img.onerror = () => resolve(false)
+    img.src = src
+  })
+}
+
 // Style de l'image d'une carte dans une pochette (aspect 2.5/3.5 fixe). Pour une
 // carte horizontale, on pré-pivote une boîte aux dimensions inversées (140% ×
 // 71.43% = l'exact inverse du ratio 2.5/3.5) puis on la fait tourner de 90° :
@@ -322,16 +334,34 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   const placeCard = async (page: number, idx: number, card: PickableCard) => {
     if (!selected) return
+    const isHorizontal = await detectIsHorizontal(card.img)
     const { error } = await supabase.from('binder_slots').insert({
       binder_id: selected.id, page_number: page, slot_index: idx,
-      card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: !!card.is_horizontal,
+      card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal,
     })
     if (error) { alert('Erreur : ' + error.message); return }
     const k = slotKey(page, idx)
-    setSlots(prev => new Map(prev).set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: !!card.is_horizontal }))
+    setSlots(prev => new Map(prev).set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal }))
     setJustInserted(k)
     setTimeout(() => setJustInserted(null), 550)
     setPickerTarget(null)
+  }
+
+  // Auto-correction : si une pochette existante (insérée avant ce fix, ou via une
+  // source sans info d'orientation comme le CSV) a un is_horizontal faux, on le
+  // corrige dès que le navigateur charge l'image réelle et voit ses vraies dimensions.
+  const fixOrientationIfLoaded = (page: number, idx: number, slot: Slot) => (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget
+    const actual = img.naturalWidth > img.naturalHeight
+    if (actual === !!slot.is_horizontal || !selected) return
+    const k = slotKey(page, idx)
+    setSlots(prev => {
+      const cur = prev.get(k)
+      if (!cur) return prev
+      return new Map(prev).set(k, { ...cur, is_horizontal: actual })
+    })
+    supabase.from('binder_slots').update({ is_horizontal: actual })
+      .eq('binder_id', selected.id).eq('page_number', page).eq('slot_index', idx)
   }
 
   const removeCard = async (page: number, idx: number) => {
@@ -352,6 +382,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   // Ajoute plusieurs cartes d'un coup dans les premières pochettes vides (crée des pages si besoin)
   const placeMany = async (cards: PickableCard[]) => {
     if (!selected || !cards.length) return
+    const orientations = new Map<string, boolean>(
+      await Promise.all(cards.map(async c => [c.key, await detectIsHorizontal(c.img)] as [string, boolean]))
+    )
     const remaining = [...cards]
     const inserts: any[] = []
     const localAdds = new Map<string, Slot>()
@@ -363,9 +396,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         const k = slotKey(page, idx)
         if (slots.has(k) || localAdds.has(k)) continue
         const card = remaining.shift()!
-        const row = { binder_id: selected.id, page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: !!card.is_horizontal }
+        const isHorizontal = orientations.get(card.key) ?? false
+        const row = { binder_id: selected.id, page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal }
         inserts.push(row)
-        localAdds.set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: !!card.is_horizontal })
+        localAdds.set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal })
       }
       page++
     }
@@ -624,7 +658,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 title={slot.nom || ''}
               >
                 {slot.img_back
-                  ? <img src={slot.img_back} alt={slot.nom || ''} loading="lazy" draggable={false} style={cardImgStyle(slot.is_horizontal)} />
+                  ? <img src={slot.img_back} alt={slot.nom || ''} loading="lazy" draggable={false} style={cardImgStyle(slot.is_horizontal)} onLoad={fixOrientationIfLoaded(page, idx, slot)} />
                   : cardBackPlaceholder}
                 <PlasticSheen />
               </div>
@@ -647,7 +681,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 }}
                 title={isOwner ? 'Appui long pour déplacer · clic pour ouvrir' : (slot.nom || '')}
               >
-                <img src={slot.img} alt={slot.nom || ''} loading="lazy" draggable={false} style={cardImgStyle(slot.is_horizontal)} />
+                <img src={slot.img} alt={slot.nom || ''} loading="lazy" draggable={false} style={cardImgStyle(slot.is_horizontal)} onLoad={fixOrientationIfLoaded(page, idx, slot)} />
                 <PlasticSheen />
                 {isOwner && (
                   <button
