@@ -29,7 +29,9 @@ export default function Profil() {
   const [passwordMsg, setPasswordMsg] = useState<{ ok: boolean; text: string } | null>(null)
   const [pushSupported, setPushSupported] = useState(false)
   const [pushPermission, setPushPermission] = useState<NotificationPermission | null>(null)
+  const [pushSubscribed, setPushSubscribed] = useState(false)
   const [pushLoading, setPushLoading] = useState(false)
+  const [pushError, setPushError] = useState('')
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -51,11 +53,21 @@ export default function Profil() {
     if (typeof window !== 'undefined' && 'Notification' in window && 'serviceWorker' in navigator) {
       setPushSupported(true)
       setPushPermission(Notification.permission)
+      // La permission navigateur ne peut pas être révoquée par JS et reste
+      // 'granted' pour toujours : l'état réel à afficher est l'abonnement push.
+      if (Notification.permission === 'granted') {
+        navigator.serviceWorker.register('/sw.js')
+          .then(() => navigator.serviceWorker.ready)
+          .then(sw => sw.pushManager.getSubscription())
+          .then(sub => setPushSubscribed(!!sub))
+          .catch(() => setPushSubscribed(false))
+      }
     }
   }, [])
 
   const handleEnablePush = async () => {
     setPushLoading(true)
+    setPushError('')
     try {
       // PWAInstall (qui enregistre normalement le SW) n'est pas monté sur cette
       // page — on s'assure ici que le service worker est bien enregistré avant
@@ -63,7 +75,11 @@ export default function Profil() {
       await navigator.serviceWorker.register('/sw.js')
       const perm = await Notification.requestPermission()
       setPushPermission(perm)
-      if (perm === 'granted') await subscribePush()
+      if (perm === 'granted') {
+        const ok = await subscribePush()
+        setPushSubscribed(ok)
+        if (!ok) setPushError("Échec de l'activation, réessayez.")
+      }
     } finally {
       setPushLoading(false)
     }
@@ -71,6 +87,7 @@ export default function Profil() {
 
   const handleDisablePush = async () => {
     setPushLoading(true)
+    setPushError('')
     try {
       await navigator.serviceWorker.register('/sw.js')
       const sw = await navigator.serviceWorker.ready
@@ -84,6 +101,7 @@ export default function Profil() {
         })
         await sub.unsubscribe()
       }
+      setPushSubscribed(false)
     } finally {
       setPushLoading(false)
     }
@@ -263,7 +281,7 @@ export default function Profil() {
           <p style={{ fontSize: 13, color: '#e74c3c' }}>
             Bloquées dans les réglages de votre navigateur. Autorisez les notifications pour ce site pour les recevoir.
           </p>
-        ) : pushPermission === 'granted' ? (
+        ) : pushPermission === 'granted' && pushSubscribed ? (
           <div>
             <p style={{ fontSize: 13, color: '#2ecc71', fontWeight: 700, marginBottom: 12 }}>✓ Notifications activées</p>
             <button onClick={handleDisablePush} disabled={pushLoading} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
@@ -275,6 +293,7 @@ export default function Profil() {
             <p style={{ fontSize: 13, color: '#666', marginBottom: 12 }}>
               Recevez une alerte pour les messages, likes et cartes de votre wishlist trouvées.
             </p>
+            {pushError && <p style={{ fontSize: 13, color: '#e74c3c', marginBottom: 12 }}>{pushError}</p>}
             <button onClick={handleEnablePush} disabled={pushLoading} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
               {pushLoading ? '...' : 'Activer les notifications'}
             </button>

@@ -33,7 +33,15 @@ export default function Navbar() {
       setUser(data.user ?? null)
       if (data.user) { loadUnread(data.user.id); loadNotifs(data.user.id); updateLastSeen(data.user.id) }
     })
-    const { data: listener } = supabase.auth.onAuthStateChange((_e, session) => {
+    const { data: listener } = supabase.auth.onAuthStateChange((e, session) => {
+      // Filet de sécurité : un lien de réinitialisation de mot de passe établit une
+      // session (comportement normal Supabase), mais si l'email atterrit sur une page
+      // autre que /reset-password (redirect URL mal configurée côté dashboard, etc.),
+      // l'utilisateur se retrouverait connecté sans jamais changer son mot de passe.
+      if (e === 'PASSWORD_RECOVERY' && pathname !== '/reset-password') {
+        router.replace('/reset-password')
+        return
+      }
       setUser(session?.user ?? null)
       if (session?.user) { loadUnread(session.user.id); loadNotifs(session.user.id) }
       else { setUnread(0); setNotifs(0) }
@@ -147,6 +155,7 @@ export default function Navbar() {
               <Link href={`/galerie/${user.id}`} style={ls} onClick={() => setMenuOpen(false)}>{t('nav_galerie')}</Link>
               <Link href="/messages" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_messages')} <Badge count={unread} /></Link>
               <Link href="/notifications" style={ls} onClick={() => setMenuOpen(false)}>Notifications <Badge count={notifs} /></Link>
+              <Link href="/mes-likes" style={ls} onClick={() => setMenuOpen(false)}>❤️ Cartes aimées</Link>
               <Link href="/profil" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_profil')}</Link>
               <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 8 }}>
                 <button onClick={toggle} style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 14, color: dark ? '#ddd' : '#333', fontWeight: 600 }}>{dark ? '☀️' : '🌙'}</button>

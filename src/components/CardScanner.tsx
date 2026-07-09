@@ -823,7 +823,7 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
 // ── Composant ────────────────────────────────────────────────────────────
 
 const HANDLE_COLORS = ['#ff5252', '#ffeb3b', '#69f0ae', '#40c4ff']
-const HANDLE_R = 18
+const HANDLE_R = 10
 
 export default function CardScanner({ src, onResult, onFallback, onClose, frameRect }: Props) {
   const canvasRef     = useRef<HTMLCanvasElement>(null)
@@ -941,7 +941,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     try {
       detectedCorners = await Promise.race([
         detectPipeline(),
-        new Promise<null>(r => setTimeout(() => r(null), 16000)),
+        new Promise<null>(r => setTimeout(() => r(null), 11000)),
       ])
     } catch {
       detectedCorners = null

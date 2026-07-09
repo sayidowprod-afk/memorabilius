@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { supabase } from '@/lib/supabase'
 import CardPicker, { PickableCard } from './CardPicker'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
+import ShareButton from './ShareButton'
 
 const Viewer3D = dynamic(() => import('./Viewer3D'), { ssr: false })
 
@@ -27,6 +28,7 @@ interface Slot {
   img: string
   img_back: string | null
   nom: string | null
+  is_horizontal?: boolean
 }
 
 const LAYOUTS = [4, 6, 9, 12, 16]
@@ -36,6 +38,21 @@ const SHELF_ROW_SIZE = 12
 const PAGE_MAX_W = 620
 const PAGE_RATIO = 310 / 230 // hauteur / largeur d'une page
 const FLIP_MS = 620
+
+// Style de l'image d'une carte dans une pochette (aspect 2.5/3.5 fixe). Pour une
+// carte horizontale, on pré-pivote une boîte aux dimensions inversées (140% ×
+// 71.43% = l'exact inverse du ratio 2.5/3.5) puis on la fait tourner de 90° :
+// le rendu final occupe alors toute la pochette, à la verticale.
+function cardImgStyle(isHorizontal?: boolean): React.CSSProperties {
+  const base: React.CSSProperties = { objectFit: 'cover', display: 'block', pointerEvents: 'none' }
+  if (!isHorizontal) return { ...base, width: '100%', height: '100%' }
+  return {
+    ...base,
+    position: 'absolute', top: '50%', left: '50%',
+    width: '140%', height: '71.4286%',
+    transform: 'translate(-50%, -50%) rotate(90deg)',
+  }
+}
 
 function slotKey(page: number, idx: number) { return `${page}:${idx}` }
 
@@ -49,11 +66,12 @@ function PlasticSheen() {
   )
 }
 
-export default function BinderLibrary({ userId, isOwner, accent, pendingCard, onPlaced, onOpenCard }: {
+export default function BinderLibrary({ userId, isOwner, accent, pendingCard, onPlaced, onOpenCard, initialBinderId }: {
   userId: string; isOwner: boolean; accent: string
   pendingCard?: PickableCard | null
   onPlaced?: () => void
   onOpenCard?: (img: string) => boolean
+  initialBinderId?: number | null
 }) {
   const [binders, setBinders] = useState<Binder[]>([])
   const [loading, setLoading] = useState(true)
@@ -116,6 +134,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const spreadRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => { loadBinders() }, [userId])
+
+  // Ouverture directe d'un classeur partagé via lien (?binder=<id>)
+  useEffect(() => {
+    if (!initialBinderId || !binders.length || selected) return
+    const b = binders.find(bi => bi.id === initialBinderId)
+    if (b) openBinder(b)
+  }, [initialBinderId, binders])
 
   // Filet de sécurité : si un pointeur est relâché/annulé n'importe où et que le
   // garde-fou anti-clic est resté « à l'infini » sans glissé actif, on le réarme.
@@ -299,11 +324,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     if (!selected) return
     const { error } = await supabase.from('binder_slots').insert({
       binder_id: selected.id, page_number: page, slot_index: idx,
-      card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom,
+      card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: !!card.is_horizontal,
     })
     if (error) { alert('Erreur : ' + error.message); return }
     const k = slotKey(page, idx)
-    setSlots(prev => new Map(prev).set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom }))
+    setSlots(prev => new Map(prev).set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: !!card.is_horizontal }))
     setJustInserted(k)
     setTimeout(() => setJustInserted(null), 550)
     setPickerTarget(null)
@@ -338,9 +363,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         const k = slotKey(page, idx)
         if (slots.has(k) || localAdds.has(k)) continue
         const card = remaining.shift()!
-        const row = { binder_id: selected.id, page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom }
+        const row = { binder_id: selected.id, page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: !!card.is_horizontal }
         inserts.push(row)
-        localAdds.set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom })
+        localAdds.set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: !!card.is_horizontal })
       }
       page++
     }
@@ -374,8 +399,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     // Persistance : on supprime puis réinsère les lignes concernées (contrainte unique)
     await supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', fromPage).eq('slot_index', fromIdx)
     if (toSlot) await supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', toPage).eq('slot_index', toIdx)
-    const rows = [{ binder_id: selected.id, page_number: toPage, slot_index: toIdx, card_key: fromSlot.card_key, img: fromSlot.img, img_back: fromSlot.img_back, nom: fromSlot.nom }]
-    if (toSlot) rows.push({ binder_id: selected.id, page_number: fromPage, slot_index: fromIdx, card_key: toSlot.card_key, img: toSlot.img, img_back: toSlot.img_back, nom: toSlot.nom })
+    const rows = [{ binder_id: selected.id, page_number: toPage, slot_index: toIdx, card_key: fromSlot.card_key, img: fromSlot.img, img_back: fromSlot.img_back, nom: fromSlot.nom, is_horizontal: !!fromSlot.is_horizontal }]
+    if (toSlot) rows.push({ binder_id: selected.id, page_number: fromPage, slot_index: fromIdx, card_key: toSlot.card_key, img: toSlot.img, img_back: toSlot.img_back, nom: toSlot.nom, is_horizontal: !!toSlot.is_horizontal })
     const { error } = await supabase.from('binder_slots').insert(rows)
     if (error) { alert('Erreur : ' + error.message); openBinder(selected) }
   }
@@ -599,7 +624,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 title={slot.nom || ''}
               >
                 {slot.img_back
-                  ? <img src={slot.img_back} alt={slot.nom || ''} loading="lazy" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', pointerEvents: 'none' }} />
+                  ? <img src={slot.img_back} alt={slot.nom || ''} loading="lazy" draggable={false} style={cardImgStyle(slot.is_horizontal)} />
                   : cardBackPlaceholder}
                 <PlasticSheen />
               </div>
@@ -611,7 +636,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             return (
               <div key={idx} data-pocket data-page={page} data-idx={idx}
                 className={`binder-slot-card${justInserted === k ? ' binder-slot-card-enter' : ''}`}
-                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', boxShadow: '0 0 0 1px rgba(150,165,180,0.4)', touchAction: 'none', opacity: cardDrag && cardDragRef.current?.active && cardDragRef.current?.page === page && cardDragRef.current?.idx === idx ? 0.35 : 1 }}
+                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', boxShadow: '0 0 0 1px rgba(150,165,180,0.4)', touchAction: 'none', opacity: cardDrag && cardDragRef.current?.active && cardDragRef.current?.page === page && cardDragRef.current?.idx === idx ? 0.35 : 1 }}
                 onPointerDown={cardPointerDown(page, idx, slot)}
                 onPointerMove={cardPointerMove}
                 onPointerUp={cardPointerUp}
@@ -622,7 +647,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 }}
                 title={isOwner ? 'Appui long pour déplacer · clic pour ouvrir' : (slot.nom || '')}
               >
-                <img src={slot.img} alt={slot.nom || ''} loading="lazy" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', pointerEvents: 'none' }} />
+                <img src={slot.img} alt={slot.nom || ''} loading="lazy" draggable={false} style={cardImgStyle(slot.is_horizontal)} />
                 <PlasticSheen />
                 {isOwner && (
                   <button
@@ -942,6 +967,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         </button>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <span style={{ fontWeight: 900, fontSize: 15 }}>{selected.name}</span>
+          {!pendingCard && <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} />}
           {isOwner && !pendingCard && (
             <>
               <button onClick={() => setMultiPicker(true)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>＋ Ajouter des cartes</button>
@@ -1106,6 +1132,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           popup={{
             f: viewerSlot.img, b: viewerSlot.img, n: viewerSlot.nom || '', t: '', y: '',
             br: '', s: '', v: '', num: '', auto: false, rc: false, patch: false, g: 'Raw',
+            is_horizontal: viewerSlot.is_horizontal,
           }}
           accent={accent}
           onClose={() => setViewerSlot(null)}

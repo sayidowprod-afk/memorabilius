@@ -18,9 +18,9 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const [members, setMembers] = useState<any[]>([])
   const [membersStats, setMembersStats] = useState<any[]>([])
   const [messages, setMessages] = useState<any[]>([])
-  const [msgReactions, setMsgReactions] = useState<Record<number, { emoji: string; count: number; mine: boolean }[]>>({})
+  const [msgReactions, setMsgReactions] = useState<Record<number, { emoji: string; count: number; mine: boolean; names: string[] }[]>>({})
   const [posts, setPosts] = useState<any[]>([])
-  const [postReactions, setPostReactions] = useState<Record<number, { emoji: string; count: number; mine: boolean }[]>>({})
+  const [postReactions, setPostReactions] = useState<Record<number, { emoji: string; count: number; mine: boolean; names: string[] }[]>>({})
   const [candidatures, setCandidatures] = useState<any[]>([])
   const [galerieCards, setGalerieCards] = useState<any[]>([])
   const [currentUser, setCurrentUser] = useState<string | null>(null)
@@ -115,8 +115,17 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       const ids = msgs.map((m: any) => m.id)
       const { data: reacts } = await supabase.from('team_message_reactions')
         .select('*').in('message_id', ids)
-      buildReactions(reacts || [], ids, uid, setMsgReactions)
+      const names = await loadReactorNames(reacts || [])
+      buildReactions(reacts || [], ids, uid, names, setMsgReactions)
     }
+  }
+
+  // Les tables de réactions n'ont pas de FK vers profiles → on résout les noms séparément
+  const loadReactorNames = async (reacts: any[]): Promise<Record<string, string>> => {
+    const userIds = [...new Set(reacts.map(r => r.user_id))]
+    if (!userIds.length) return {}
+    const { data: profs } = await supabase.from('profiles').select('id, display_name').in('id', userIds)
+    return Object.fromEntries((profs || []).map((p: any) => [p.id, p.display_name || 'Quelqu\'un']))
   }
 
   const loadPosts = async (uid: string | null) => {
@@ -144,7 +153,8 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     const ids = ps.map((p: any) => p.id)
     const { data: reacts } = await supabase.from('team_post_reactions')
       .select('*').in('post_id', ids)
-    buildPostReactions(reacts || [], ids, uid)
+    const names = await loadReactorNames(reacts || [])
+    buildPostReactions(reacts || [], ids, uid, names)
   }
 
   const loadGalerie = async (membersList: any[]) => {
@@ -180,30 +190,32 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     setMembersStats(stats.filter(Boolean).sort((a, b) => (b.stats?.total || 0) - (a.stats?.total || 0)))
   }
 
-  function buildReactions(reacts: any[], ids: number[], uid: string | null, setter: any) {
-    const map: Record<number, { emoji: string; count: number; mine: boolean }[]> = {}
+  function buildReactions(reacts: any[], ids: number[], uid: string | null, names: Record<string, string>, setter: any) {
+    const map: Record<number, { emoji: string; count: number; mine: boolean; names: string[] }[]> = {}
     for (const id of ids) {
       const rForMsg = reacts.filter(r => r.message_id === id)
-      const byEmoji: Record<string, { count: number; mine: boolean }> = {}
+      const byEmoji: Record<string, { count: number; mine: boolean; names: string[] }> = {}
       for (const r of rForMsg) {
-        if (!byEmoji[r.emoji]) byEmoji[r.emoji] = { count: 0, mine: false }
+        if (!byEmoji[r.emoji]) byEmoji[r.emoji] = { count: 0, mine: false, names: [] }
         byEmoji[r.emoji].count++
         if (r.user_id === uid) byEmoji[r.emoji].mine = true
+        byEmoji[r.emoji].names.push(names[r.user_id] || 'Quelqu\'un')
       }
       map[id] = Object.entries(byEmoji).map(([emoji, v]) => ({ emoji, ...v }))
     }
     setter(map)
   }
 
-  function buildPostReactions(reacts: any[], ids: number[], uid: string | null) {
-    const map: Record<number, { emoji: string; count: number; mine: boolean }[]> = {}
+  function buildPostReactions(reacts: any[], ids: number[], uid: string | null, names: Record<string, string>) {
+    const map: Record<number, { emoji: string; count: number; mine: boolean; names: string[] }[]> = {}
     for (const id of ids) {
       const rForPost = reacts.filter(r => r.post_id === id)
-      const byEmoji: Record<string, { count: number; mine: boolean }> = {}
+      const byEmoji: Record<string, { count: number; mine: boolean; names: string[] }> = {}
       for (const r of rForPost) {
-        if (!byEmoji[r.emoji]) byEmoji[r.emoji] = { count: 0, mine: false }
+        if (!byEmoji[r.emoji]) byEmoji[r.emoji] = { count: 0, mine: false, names: [] }
         byEmoji[r.emoji].count++
         if (r.user_id === uid) byEmoji[r.emoji].mine = true
+        byEmoji[r.emoji].names.push(names[r.user_id] || 'Quelqu\'un')
       }
       map[id] = Object.entries(byEmoji).map(([emoji, v]) => ({ emoji, ...v }))
     }
@@ -253,13 +265,14 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       )
       if (error && error.code !== '23505') { console.error('[toggleMsgReaction insert]', error); alert(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
     }
+    const myName = members.find((x: any) => x.user_id === currentUser)?.profiles?.display_name || 'Vous'
     setMsgReactions(prev => {
       const cur = prev[msgId] || []
       const updated = existing
-        ? cur.map(r => r.emoji === emoji ? { ...r, count: r.count - 1, mine: false } : r).filter(r => r.count > 0)
+        ? cur.map(r => r.emoji === emoji ? { ...r, count: r.count - 1, mine: false, names: r.names.filter(n => n !== myName) } : r).filter(r => r.count > 0)
         : cur.find(r => r.emoji === emoji)
-          ? cur.map(r => r.emoji === emoji ? { ...r, count: r.count + 1, mine: true } : r)
-          : [...cur, { emoji, count: 1, mine: true }]
+          ? cur.map(r => r.emoji === emoji ? { ...r, count: r.count + 1, mine: true, names: [...r.names, myName] } : r)
+          : [...cur, { emoji, count: 1, mine: true, names: [myName] }]
       return { ...prev, [msgId]: updated }
     })
     setShowEmojiForMsg(null)
@@ -294,13 +307,14 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       )
       if (error && error.code !== '23505') { console.error('[togglePostReaction insert]', error); alert(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
     }
+    const myName = members.find((x: any) => x.user_id === currentUser)?.profiles?.display_name || 'Vous'
     setPostReactions(prev => {
       const cur = prev[postId] || []
       const updated = existing
-        ? cur.map(r => r.emoji === emoji ? { ...r, count: r.count - 1, mine: false } : r).filter(r => r.count > 0)
+        ? cur.map(r => r.emoji === emoji ? { ...r, count: r.count - 1, mine: false, names: r.names.filter(n => n !== myName) } : r).filter(r => r.count > 0)
         : cur.find(r => r.emoji === emoji)
-          ? cur.map(r => r.emoji === emoji ? { ...r, count: r.count + 1, mine: true } : r)
-          : [...cur, { emoji, count: 1, mine: true }]
+          ? cur.map(r => r.emoji === emoji ? { ...r, count: r.count + 1, mine: true, names: [...r.names, myName] } : r)
+          : [...cur, { emoji, count: 1, mine: true, names: [myName] }]
       return { ...prev, [postId]: updated }
     })
     setShowEmojiForPost(null)
@@ -565,6 +579,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 12, alignItems: 'center' }}>
                 {(postReactions[post.id] || []).map(r => (
                   <button key={r.emoji} onClick={e => { e.stopPropagation(); togglePostReaction(post.id, r.emoji) }}
+                    title={r.names.join(', ')}
                     style={{ padding: '4px 10px', borderRadius: 20, border: `1.5px solid ${r.mine ? ACCENT : '#e0e0e0'}`, background: r.mine ? '#f0f4ff' : 'white', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: r.mine ? ACCENT : '#333' }}>
                     {r.emoji} {r.count}
                   </button>
@@ -746,6 +761,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                     <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginTop: 4, justifyContent: isMe ? 'flex-end' : 'flex-start' }}>
                       {(msgReactions[msg.id] || []).map(r => (
                         <button key={r.emoji} onClick={e => { e.stopPropagation(); toggleMsgReaction(msg.id, r.emoji) }}
+                          title={r.names.join(', ')}
                           style={{ padding: '2px 8px', borderRadius: 12, border: `1.5px solid ${r.mine ? ACCENT : '#e0e0e0'}`, background: r.mine ? '#f0f4ff' : 'white', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
                           {r.emoji} {r.count}
                         </button>

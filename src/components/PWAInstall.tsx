@@ -10,7 +10,7 @@ function urlBase64ToUint8Array(base64: string): Uint8Array {
   return Uint8Array.from([...raw].map(c => c.charCodeAt(0)))
 }
 
-async function subscribePush() {
+async function subscribePush(): Promise<boolean> {
   try {
     const sw = await navigator.serviceWorker.ready
     const existing = await sw.pushManager.getSubscription()
@@ -20,13 +20,16 @@ async function subscribePush() {
     })
     const json = sub.toJSON()
     const { data: { session } } = await supabase.auth.getSession()
-    if (!session?.access_token) return
-    await fetch('/api/push-subscribe', {
+    if (!session?.access_token) return false
+    const res = await fetch('/api/push-subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
       body: JSON.stringify({ endpoint: json.endpoint, p256dh: json.keys?.p256dh, auth: json.keys?.auth }),
     })
-  } catch {}
+    return res.ok
+  } catch {
+    return false
+  }
 }
 
 export default function PWAInstall() {

@@ -17,6 +17,7 @@ export interface PickableCard {
   auto?: boolean
   patch?: boolean
   num?: boolean
+  is_horizontal?: boolean
 }
 
 const ACCENT = '#003DA6'
@@ -50,7 +51,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
   useEffect(() => {
     (async () => {
       const [{ data: manuelles }, { data: profile }] = await Promise.all([
-        supabase.from('cartes_manuelles').select('nom, image_recto, image_verso, equipe, annee, marque, variation, rc, auto, patch, num').eq('user_id', userId).not('image_recto', 'is', null),
+        supabase.from('cartes_manuelles').select('nom, image_recto, image_verso, equipe, annee, marque, variation, rc, auto, patch, num, format, is_horizontal').eq('user_id', userId).not('image_recto', 'is', null),
         supabase.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').eq('id', userId).single(),
       ])
       const seen = new Set<string>()
@@ -62,6 +63,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
           key: m.image_recto, img: m.image_recto, back: m.image_verso || undefined, nom: m.nom || '',
           team: m.equipe || '', year: (m.annee || '').toString(), brand: m.marque || '', variant: m.variation || '',
           rc: !!m.rc, auto: !!m.auto, patch: !!m.patch, num: !!(m.num && String(m.num).trim()),
+          is_horizontal: m.format === 'horizontal' || (!m.format && !!m.is_horizontal),
         })
       }
       if (profile?.lien_csv) {

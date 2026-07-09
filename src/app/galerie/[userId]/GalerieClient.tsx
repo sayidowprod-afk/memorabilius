@@ -137,7 +137,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [privateCards, setPrivateCards] = useState<Set<string>>(new Set())
   const [cardValues, setCardValues] = useState<Map<string, number>>(new Map())
   const [editMode, setEditMode] = useState(false)
-  const [activeTab, setActiveTab] = useState<'collection' | 'wishlist' | 'comments' | 'library'>('collection')
+  const [activeTab, setActiveTab] = useState<'collection' | 'wishlist' | 'comments' | 'library'>(
+    (searchParams.get('tab') as any) || 'collection'
+  )
+  const initialBinderId = searchParams.get('binder') ? parseInt(searchParams.get('binder')!, 10) : null
   const [activeDragId, setActiveDragId] = useState<string | null>(null)
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set())
   const [shareCopied, setShareCopied] = useState(false)
@@ -845,7 +848,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
         {activeTab === 'wishlist' && <PublicWishlist userId={userId} accent={accent} isOwner={isOwner} />}
         {activeTab === 'comments' && <GalerieComments galerieUserId={userId} accent={accent} isOwner={isOwner} />}
-        {activeTab === 'library' && <BinderLibrary userId={userId} isOwner={isOwner} accent={accent}
+        {activeTab === 'library' && <BinderLibrary userId={userId} isOwner={isOwner} accent={accent} initialBinderId={initialBinderId}
           onOpenCard={(img) => {
             // Retrouve la carte complète de la collection par son image, pour ouvrir
             // le vrai Viewer3D de la galerie (toutes les infos + tags), pas une version minimale
