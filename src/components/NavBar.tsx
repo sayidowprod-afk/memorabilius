@@ -101,7 +101,6 @@ export default function Navbar() {
             /* Réserve exactement la même largeur que l'état connecté pour éviter le CLS */
             <div style={{ visibility: 'hidden', display: 'flex', gap: 20, alignItems: 'center', pointerEvents: 'none' }}>
               <span style={{ fontWeight: 600 }}>Ma galerie</span>
-              <span style={{ fontWeight: 600 }}>Messages</span>
               <span style={{ fontWeight: 600 }}>🔔</span>
               <span style={{ fontWeight: 600 }}>Profil</span>
               <button style={{ background: 'none', border: '1px solid #ddd', borderRadius: 20, padding: '4px 10px', fontSize: 12, fontWeight: 700, width: 64 }}>FR</button>
@@ -111,9 +110,6 @@ export default function Navbar() {
           ) : user ? (
             <>
               <Link href={`/galerie/${user.id}`} style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>{t('nav_galerie')}</Link>
-              <Link href="/messages" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
-                {t('nav_messages')} <Badge count={unread} />
-              </Link>
               <Link href="/notifications" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
                 🔔 <Badge count={notifs} />
               </Link>

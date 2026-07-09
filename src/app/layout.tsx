@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/NavBar'
 import Footer from '@/components/Footer'
+import ChatBubble from '@/components/ChatBubble'
 import { ThemeProvider } from '@/lib/ThemeContext'
 import { LangProvider } from '@/lib/LangContext'
 import { Analytics } from '@vercel/analytics/react'
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {children}
             </main>
             <Footer />
+            <ChatBubble />
           </LangProvider>
         </ThemeProvider>
         <Analytics />
