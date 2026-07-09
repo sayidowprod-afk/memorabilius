@@ -8,6 +8,7 @@ import GalerieExport from '@/components/GalerieExport'
 import CollectionStats from '@/components/CollectionStats'
 import PublicWishlist from '@/components/PublicWishlist'
 import GalerieComments from '@/components/GalerieComments'
+import CommentsModal from '@/components/CommentsModal'
 import BinderLibrary from '@/components/BinderLibrary'
 import {
   DndContext, closestCenter, PointerSensor, TouchSensor,
@@ -119,6 +120,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [draggedTag, setDraggedTag] = useState<string | null>(null)
   const [colorPickerTag, setColorPickerTag] = useState<string | null>(null)
   const [cardLikes, setCardLikes] = useState<Map<string, { count: number; liked: boolean }>>(new Map())
+  const [commentCard, setCommentCard] = useState<Card | null>(null)
   const [deleteTagConfirm, setDeleteTagConfirm] = useState<string | null>(null)
   const [renameValue, setRenameValue] = useState('')
   const isGradient = (c: string) => c.startsWith('linear-gradient')
@@ -224,17 +226,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         if (data) setCardValues(new Map(data.map((d: any) => [d.card_key, d.valeur])))
       })
   }, [userId])
-
-  const updateCardValue = async (cardKey: string, val: number | null) => {
-    if (!currentUser || currentUser !== userId) return
-    if (val === null || isNaN(val)) {
-      await supabase.from('card_values').delete().eq('user_id', userId).eq('card_key', cardKey)
-      setCardValues(prev => { const m = new Map(prev); m.delete(cardKey); return m })
-    } else {
-      await supabase.from('card_values').upsert({ user_id: userId, card_key: cardKey, valeur: val }, { onConflict: 'user_id,card_key' })
-      setCardValues(prev => new Map(prev).set(cardKey, val))
-    }
-  }
 
   const togglePrivate = async (cardKey: string) => {
     if (!currentUser || currentUser !== userId) return
@@ -1379,7 +1370,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 </div>
               )}
 
-              {/* Actions du mode édition (Confidentialité + Valeur + Suppression) */}
+              {/* Actions du mode édition (Confidentialité + Suppression) */}
               {editMode && isOwner && (
                 <div style={{ position: 'absolute', top: 4, left: 0, right: 0, zIndex: 2, display: 'flex', flexDirection: 'column', gap: 4, padding: '0 4px' }}>
                   <div style={{ display: 'flex', gap: 4 }}>
@@ -1405,17 +1396,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       </button>
                     </>)}
                   </div>
-                  {/* Valeur estimée (privée) */}
-                  <div onClick={e => e.stopPropagation()} style={{ display: 'flex', alignItems: 'center', background: 'rgba(0,0,0,0.75)', borderRadius: 6, padding: '3px 6px', gap: 4 }}>
-                    <span style={{ color: '#ffd700', fontSize: 10, fontWeight: 800, flexShrink: 0 }}>€</span>
-                    <input
-                      type="number" min="0" step="0.01" placeholder="valeur"
-                      defaultValue={cardValues.get(d.f) ?? ''}
-                      onBlur={e => updateCardValue(d.f, e.target.value === '' ? null : parseFloat(e.target.value))}
-                      onClick={e => e.stopPropagation()}
-                      style={{ width: '100%', background: 'transparent', border: 'none', outline: 'none', color: 'white', fontSize: 11, fontWeight: 700 }}
-                    />
-                  </div>
                 </div>
               )}
               <div style={{ width: '100%', marginBottom: 8 }}>{renderCardImage(d)}</div>
@@ -1429,10 +1409,17 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                     {d.card_number && <span style={{ flexShrink: 0, fontWeight: 800, color: '#555', background: '#f0f0f0', borderRadius: 4, padding: '1px 5px', fontSize: 9 }}>#{d.card_number}</span>}
                   </p>
                 </div>
-                {/* Bouton like */}
+                {/* Boutons like + commentaires */}
                 {!editMode && (() => {
                   const likeInfo = cardLikes.get(d.f) || { count: 0, liked: false }
                   return (
+                  <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+                    <button
+                      onClick={e => { e.stopPropagation(); setCommentCard(d) }}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '2px 4px', flexShrink: 0 }}
+                    >
+                      <span style={{ fontSize: 16, lineHeight: 1 }}>💬</span>
+                    </button>
                     <button
                       onClick={async (e) => {
                         e.stopPropagation()
@@ -1471,6 +1458,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       </span>
                       {likeInfo.count > 0 && <span style={{ fontSize: 9, fontWeight: 800, color: likeInfo.liked ? '#e53935' : '#bbb' }}>{likeInfo.count}</span>}
                     </button>
+                  </div>
                   )
                 })()}
               </div>
@@ -1511,6 +1499,18 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         )}
         </>}
       </div>
+
+      {commentCard && (
+        <CommentsModal
+          title={commentCard.n}
+          onClose={() => setCommentCard(null)}
+          galerieUserId={userId}
+          cardKey={commentCard.f}
+          accent={accent}
+          isOwner={isOwner}
+          emptyLabel="Soyez le premier à commenter cette carte"
+        />
+      )}
 
       {popup && (
         <Viewer3D popup={popup} accent={accent} onClose={() => setPopup(null)} getTags={getTags} userId={userId} userSlug={profile?.slug || userId}

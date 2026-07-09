@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import CardPicker, { PickableCard } from './CardPicker'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import ShareButton from './ShareButton'
+import CommentsModal from './CommentsModal'
 
 const Viewer3D = dynamic(() => import('./Viewer3D'), { ssr: false })
 
@@ -88,6 +89,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [binders, setBinders] = useState<Binder[]>([])
   const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState<Binder | null>(null)
+  const [showComments, setShowComments] = useState(false)
   const [slots, setSlots] = useState<Map<string, Slot>>(new Map())
   // Page gauche du double-feuillet, PAIRE (0, 2, 4…). Comme un vrai classeur :
   // 0 = intérieur de couverture (gauche) + page 1 seule à droite, puis 2–3, 4–5…
@@ -1002,6 +1004,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <span style={{ fontWeight: 900, fontSize: 15 }}>{selected.name}</span>
           {!pendingCard && <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} />}
+          {!pendingCard && (
+            <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '6px 12px', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: '#666' }}>
+              💬 Commentaires
+            </button>
+          )}
           {isOwner && !pendingCard && (
             <>
               <button onClick={() => setMultiPicker(true)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>＋ Ajouter des cartes</button>
@@ -1171,6 +1178,18 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           accent={accent}
           onClose={() => setViewerSlot(null)}
           getTags={() => null}
+        />
+      )}
+
+      {showComments && selected && (
+        <CommentsModal
+          title={`Classeur « ${selected.name} »`}
+          onClose={() => setShowComments(false)}
+          galerieUserId={userId}
+          binderId={selected.id}
+          accent={accent}
+          isOwner={isOwner}
+          emptyLabel="Soyez le premier à commenter ce classeur"
         />
       )}
 
