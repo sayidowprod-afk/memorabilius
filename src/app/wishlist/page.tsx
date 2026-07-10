@@ -18,6 +18,7 @@ export default function WishlistPage() {
   const [userId, setUserId] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
   const [showForm, setShowForm] = useState(false)
+  const [loading, setLoading] = useState(true)
   const router = useRouter()
   const { lang } = useLang()
 
@@ -26,7 +27,7 @@ export default function WishlistPage() {
       if (!data.user) { router.push('/connexion'); return }
       setUserId(data.user.id)
       supabase.from('wishlist').select('*').eq('user_id', data.user.id).order('created_at', { ascending: false })
-        .then(({ data: d }) => setItems(d || []))
+        .then(({ data: d }) => { setItems(d || []); setLoading(false) })
     })
   }, [])
 
@@ -41,6 +42,7 @@ export default function WishlistPage() {
   }
 
   const remove = async (id: string) => {
+    if (!window.confirm(lang === 'fr' ? 'Retirer cette carte de votre wishlist ?' : 'Remove this card from your wishlist?')) return
     await supabase.from('wishlist').delete().eq('id', id)
     setItems(prev => prev.filter(i => i.id !== id))
   }
@@ -122,7 +124,8 @@ export default function WishlistPage() {
       )}
 
       {/* Liste */}
-      {items.length === 0 && !showForm && (
+      {loading && <p style={{ textAlign: 'center', padding: 40, color: '#999' }}>Chargement...</p>}
+      {!loading && items.length === 0 && !showForm && (
         <div style={{ textAlign: 'center', padding: '60px 20px', color: '#bbb' }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>🎯</div>
           <p style={{ fontWeight: 700, fontSize: 16 }}>Aucune carte dans votre wishlist</p>

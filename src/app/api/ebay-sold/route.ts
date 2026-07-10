@@ -248,7 +248,8 @@ export async function GET(req: NextRequest) {
       min: prices.length ? Math.min(...prices) : 0,
       max: prices.length ? Math.max(...prices) : 0,
     })
-  } catch {
+  } catch (err) {
+    console.error('[ebay-sold]', err)
     return NextResponse.json({ items: [] })
   }
 }

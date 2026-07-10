@@ -175,7 +175,6 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       .eq('user_id', uid)
       .order('created_at', { ascending: false })
       .limit(100)
-    console.log('[loadMyCards]', { uid, count: data?.length, error })
     setMyCards(data || [])
   }
 
@@ -286,7 +285,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       content: newPost.trim() || null,
       card_ids: postCards.map(c => c.id),
     })
-    console.log('[createPost error]', error)
+    if (error) { alert(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
     setNewPost('')
     setPostCards([])
     loadPosts(currentUser)

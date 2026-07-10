@@ -160,9 +160,6 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
             return cy === yearStr || cy === yearNext || cy === yearPrev
           })
 
-          const mogboEntries = allEntries.filter(e => e.player_name?.toLowerCase().includes('mogbo'))
-          console.log('[debug] mogbo entries in setlist:', mogboEntries.map(e => `id:${e.id} name:"${e.player_name}" var:"${e.variation}" alreadyDone:${completedEntryIds.has(e.id)}`))
-
           for (const e of allEntries) {
             if (completedEntryIds.has(e.id)) continue
 

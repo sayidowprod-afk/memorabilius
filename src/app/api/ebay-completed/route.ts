@@ -95,7 +95,8 @@ export async function GET(req: NextRequest) {
 
     const soldPrices = sold.map(i => i.price)
     return NextResponse.json({ sold, soldMedian: medianOf(soldPrices), soldCount: sold.length })
-  } catch {
+  } catch (err) {
+    console.error('[ebay-completed]', err)
     return NextResponse.json({ sold: [] })
   }
 }
