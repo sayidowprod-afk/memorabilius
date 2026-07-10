@@ -150,6 +150,19 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [binderPrompt, setBinderPrompt] = useState<{ userId: string; img: string; nom: string } | null>(null)
   const [showBinderPicker, setShowBinderPicker] = useState(false)
 
+  // Détecte l'orientation réelle de l'image (fiable quelle que soit la source : recadrage
+  // manuel avec le toggle dédié, ou scan auto par CardScanner où les coins ajustés par
+  // l'utilisateur peuvent produire un rendu à l'horizontale sans passer par ce toggle).
+  const detectBlobOrientation = (blob: Blob): Promise<boolean> => {
+    return new Promise(resolve => {
+      const url = URL.createObjectURL(blob)
+      const img = new Image()
+      img.onload = () => { URL.revokeObjectURL(url); resolve(img.naturalWidth > img.naturalHeight) }
+      img.onerror = () => { URL.revokeObjectURL(url); resolve(false) }
+      img.src = url
+    })
+  }
+
   const uploadBlob = async (blob: Blob, side: 'recto' | 'verso' | 'il' | 'ir') => {
     if (side === 'recto') setUploadingRecto(true)
     else if (side === 'verso') setUploadingVerso(true)
@@ -172,7 +185,11 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const { data } = supabase.storage.from('avatars').getPublicUrl(path)
     const url = data.publicUrl
     if (side === 'recto') { setForm(f => ({ ...f, image_recto: url })); setPreviewRecto(url); setUploadingRecto(false); analyzeCard(blob, false) }
-    else if (side === 'verso') { setForm(f => ({ ...f, image_verso: url })); setPreviewVerso(url); setUploadingVerso(false); analyzeCard(blob, true, rectoBase64Ref.current) }
+    else if (side === 'verso') {
+      const versoHorizontal = await detectBlobOrientation(blob)
+      setForm(f => ({ ...f, image_verso: url, verso_is_horizontal: versoHorizontal }))
+      setPreviewVerso(url); setUploadingVerso(false); analyzeCard(blob, true, rectoBase64Ref.current)
+    }
     else if (side === 'il') { setForm(f => ({ ...f, image_interieur_gauche: url })); setPreviewIL(url); setUploadingIL(false) }
     else { setForm(f => ({ ...f, image_interieur_droite: url })); setPreviewIR(url); setUploadingIR(false) }
   }
