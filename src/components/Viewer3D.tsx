@@ -16,7 +16,25 @@ interface Card {
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; g: string
   isManuelle?: boolean; id_manuelle?: string; collection_tag?: string
-  booklet?: boolean; is_horizontal?: boolean; format?: string; il?: string; ir?: string
+  booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
+}
+
+// Le container .viewer-card a une forme fixe (déterminée par le recto, is_horizontal).
+// Si le verso a une orientation différente (ex: recto vertical, verso à l'horizontale),
+// on pré-pivote l'image du verso pour qu'elle remplisse quand même toute la boîte, comme
+// pour la rotation des cartes horizontales dans les classeurs.
+function backFaceImgStyle(boxIsHorizontal: boolean, backIsHorizontal: boolean): React.CSSProperties {
+  const base: React.CSSProperties = { objectFit: 'cover', display: 'block' }
+  if (boxIsHorizontal === backIsHorizontal) return { ...base, width: '100%', height: '100%' }
+  // La boîte a un ratio W:H ; l'image doit être pré-pivotée dans une boîte à ratio inversé
+  const swapped = boxIsHorizontal
+    ? { width: '71.4286%', height: '140%' }   // boîte paysage → image portrait pivotée
+    : { width: '140%', height: '71.4286%' }   // boîte portrait → image paysage pivotée
+  return {
+    ...base, ...swapped,
+    position: 'absolute', top: '50%', left: '50%',
+    transform: 'translate(-50%, -50%) rotate(90deg)',
+  }
 }
 
 export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, onCollectionTagChange, onAddToMyGallery, initialAddState }: {
@@ -66,6 +84,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [showVideo, setShowVideo] = useState(false)
   const [copied, setCopied] = useState(false)
   const [slabMode, setSlabMode] = useState(false)
+  const [flip90, setFlip90] = useState(false)
+  const flip90Ref = useRef(false)
   // Format "slab" = photo réelle du slab entier (déjà recadrée aux proportions du boîtier)
   const cardFmt = getFormat(popup.format)
   const isSlabFmt = cardFmt.isSlab
@@ -119,12 +139,19 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
   const applyTransform = useCallback(() => {
     if (cardRef.current) {
-      cardRef.current.style.transform = `rotateX(${rotX.current}deg) rotateY(${rotY.current}deg)`
+      const flip = flip90Ref.current ? ' rotateZ(90deg)' : ''
+      cardRef.current.style.transform = `rotateX(${rotX.current}deg) rotateY(${rotY.current}deg)${flip}`
     }
     if (wrapRef.current) {
       wrapRef.current.style.transform = `scale(${scale.current})`
     }
   }, [])
+
+  const toggleFlip90 = useCallback(() => {
+    flip90Ref.current = !flip90Ref.current
+    setFlip90(flip90Ref.current)
+    applyTransform()
+  }, [applyTransform])
 
   const reset = useCallback(() => {
     rotX.current = 0
@@ -732,7 +759,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   <img src={popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
                 </div>
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: `rotateY(180deg)${half ? ` translateZ(${half}px)` : ''}`, boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
-                  <img src={popup.b} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+                  <img src={popup.b} draggable={false} style={backFaceImgStyle(!!popup.is_horizontal, popup.verso_is_horizontal ?? !!popup.is_horizontal)} alt={popup.n} />
                 </div>
               </div>
                 )
@@ -786,6 +813,16 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
           {/* Boutons actions */}
           <div style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {!popup.booklet && (
+              <button onClick={toggleFlip90} title={lang === 'fr' ? 'Pivoter la carte à 90°' : 'Rotate card 90°'} style={{
+                background: flip90 ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: flip90 ? 'white' : (dark ? '#eee' : '#333'),
+                border: 'none', borderRadius: 10, padding: '12px 14px',
+                fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
+                transition: '0.2s',
+              }}>
+                🔄 {lang === 'fr' ? 'Rotation 90°' : 'Rotate 90°'}
+              </button>
+            )}
             <button onClick={() => setShowVideo(true)} style={{
               flex: 1, background: '#0d0d1f', color: 'white', border: 'none',
               borderRadius: 10, padding: '12px', fontWeight: 800, cursor: 'pointer', fontSize: 14,

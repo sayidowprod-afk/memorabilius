@@ -28,6 +28,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     image_recto: '', image_verso: '', collection_tag: '',
     booklet: false, is_horizontal: false, format: 'standard',
     image_interieur_gauche: '', image_interieur_droite: '',
+    verso_is_horizontal: null as boolean | null, // null = même orientation que le recto
   })
 
   const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
@@ -57,6 +58,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         booklet: data.booklet || false,
         is_horizontal: data.is_horizontal || false,
         format: data.format || (data.is_horizontal ? 'horizontal' : 'standard'),
+        verso_is_horizontal: data.verso_is_horizontal ?? null,
         image_interieur_gauche: data.image_interieur_gauche || '',
         image_interieur_droite: data.image_interieur_droite || '',
       })
@@ -89,7 +91,13 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     setImgTransform({ x: 0, y: 0, scale: Math.min(scaleW, scaleH) })
   }, [])
 
-  useEffect(() => { if (cropModal) setImgTransform({ x: 0, y: 0, scale: 1 }) }, [cropModal])
+  useEffect(() => {
+    if (cropModal) {
+      const rectoHorizontal = form.format === 'horizontal' || form.is_horizontal
+      isHorizontalRef.current = cropModal.side === 'verso' ? (form.verso_is_horizontal ?? rectoHorizontal) : rectoHorizontal
+      setImgTransform({ x: 0, y: 0, scale: 1 })
+    }
+  }, [cropModal])
   useEffect(() => { if (cropModal && imgRef.current?.complete) resetTransform() }, [cropModal, resetTransform])
 
   useEffect(() => {
@@ -216,7 +224,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const applyCropAndUpload = async () => {
     if (!cropModal || !containerRef.current || !imgRef.current) return
     const side = cropModal.side
-    const cropRatio = getFormat(form.format).cropRatio
+    const cropRatio = isHorizontalRef.current ? 3.5 / 2.5 : getFormat(form.format).cropRatio
     const container = containerRef.current
     const cw = container.clientWidth; const ch = container.clientHeight
     const frameW = isHorizontalRef.current
@@ -268,6 +276,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       collection_tag: form.collection_tag || null,
       format: form.format || 'standard',
       booklet: form.booklet, is_horizontal: form.format === 'horizontal',
+      verso_is_horizontal: form.verso_is_horizontal,
       image_interieur_gauche: form.image_interieur_gauche || null,
       image_interieur_droite: form.image_interieur_droite || null,
     }).eq('id', id).eq('user_id', user.id)
@@ -354,7 +363,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 }}>
           <ImageUploader side="recto" label={lang === 'fr' ? 'Couverture Avant' : 'Front Cover'} preview={previewRecto} uploading={uploadingRecto} aspect={form.is_horizontal ? '3.5/2.5' : undefined} />
-          <ImageUploader side="verso" label={lang === 'fr' ? 'Couverture Arrière' : 'Back Cover'} preview={previewVerso} uploading={uploadingVerso} aspect={form.is_horizontal ? '3.5/2.5' : undefined} />
+          <ImageUploader side="verso" label={lang === 'fr' ? 'Couverture Arrière' : 'Back Cover'} preview={previewVerso} uploading={uploadingVerso} aspect={(form.verso_is_horizontal ?? form.is_horizontal) ? '3.5/2.5' : undefined} />
         </div>
 
         {form.booklet && (
@@ -495,23 +504,45 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
       {cropModal && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.92)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-          {/* Sélecteur de format — ajuste la forme du cadre en direct */}
-          <div style={{ width: '100%', background: '#1a1a1a', padding: '10px 12px', boxSizing: 'border-box', display: 'flex', gap: 6, overflowX: 'auto', justifyContent: 'flex-start', WebkitOverflowScrolling: 'touch' }}>
-            {SELECTABLE_FORMATS.map(f => {
-              const active = (form.format || 'standard') === f.id
-              return (
-                <button key={f.id} type="button"
+          {/* Sélecteur de format — ajuste la forme du cadre en direct (recto uniquement : le
+              format détermine la forme physique de la carte, la même pour les deux faces) */}
+          {cropModal.side === 'recto' && (
+            <div style={{ width: '100%', background: '#1a1a1a', padding: '10px 12px', boxSizing: 'border-box', display: 'flex', gap: 6, overflowX: 'auto', justifyContent: 'flex-start', WebkitOverflowScrolling: 'touch' }}>
+              {SELECTABLE_FORMATS.map(f => {
+                const active = (form.format || 'standard') === f.id
+                return (
+                  <button key={f.id} type="button"
+                    onClick={() => {
+                      setForm(prev => ({ ...prev, format: f.id, is_horizontal: f.id === 'horizontal' }))
+                      isHorizontalRef.current = f.id === 'horizontal'
+                      requestAnimationFrame(resetTransform)
+                    }}
+                    style={{ flexShrink: 0, padding: '7px 11px', borderRadius: 8, border: active ? '2px solid #fff' : '2px solid rgba(255,255,255,0.15)', background: active ? 'rgba(255,255,255,0.18)' : 'transparent', color: 'white', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                    {f.icon} {f.label}
+                  </button>
+                )
+              })}
+            </div>
+          )}
+          {/* Orientation du verso, indépendante du recto */}
+          {cropModal.side === 'verso' && (() => {
+            const rectoHorizontal = form.format === 'horizontal' || form.is_horizontal
+            const versoHorizontal = form.verso_is_horizontal ?? rectoHorizontal
+            return (
+              <div style={{ width: '100%', background: '#1a1a1a', padding: '10px 12px', boxSizing: 'border-box', display: 'flex', justifyContent: 'center' }}>
+                <button type="button"
                   onClick={() => {
-                    setForm(prev => ({ ...prev, format: f.id, is_horizontal: f.id === 'horizontal' }))
-                    isHorizontalRef.current = f.id === 'horizontal'
+                    const next = !versoHorizontal
+                    setForm(prev => ({ ...prev, verso_is_horizontal: next }))
+                    isHorizontalRef.current = next
                     requestAnimationFrame(resetTransform)
                   }}
-                  style={{ flexShrink: 0, padding: '7px 11px', borderRadius: 8, border: active ? '2px solid #fff' : '2px solid rgba(255,255,255,0.15)', background: active ? 'rgba(255,255,255,0.18)' : 'transparent', color: 'white', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                  {f.icon} {f.label}
+                  style={{ padding: '7px 14px', borderRadius: 8, border: versoHorizontal ? '2px solid #fff' : '2px solid rgba(255,255,255,0.15)', background: versoHorizontal ? 'rgba(255,255,255,0.18)' : 'transparent', color: 'white', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                  🔄 {lang === 'fr' ? 'Verso à l\'horizontale' : 'Horizontal back'} {versoHorizontal ? '✓' : ''}
                 </button>
-              )
-            })}
-          </div>
+              </div>
+            )
+          })()}
           <div ref={containerRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp}
             onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}
             style={{ position: 'relative', width: '100%', flex: 1, overflow: 'hidden', cursor: isDragging.current ? 'grabbing' : 'grab', touchAction: 'none', userSelect: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

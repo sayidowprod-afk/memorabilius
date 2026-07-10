@@ -32,6 +32,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, booklet: false,
     is_horizontal: false, format: 'standard', collection_tag: '',
     image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
+    verso_is_horizontal: null as boolean | null, // null = même orientation que le recto
   })
 
   type Side = 'recto' | 'verso' | 'il' | 'ir'
@@ -92,7 +93,13 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
   useEffect(() => {
     if (cropModal) {
-      cropRatioRef.current = (cropModal.side === 'il' || cropModal.side === 'ir') ? 3.5 / 2.5 : getFormat(form.format).cropRatio
+      const side = cropModal.side
+      const rectoHorizontal = form.format === 'horizontal' || form.is_horizontal
+      const wantHorizontal = side === 'il' || side === 'ir' ? true
+        : side === 'verso' ? (form.verso_is_horizontal ?? rectoHorizontal)
+        : rectoHorizontal
+      isHorizontalRef.current = wantHorizontal
+      cropRatioRef.current = (side === 'il' || side === 'ir' || wantHorizontal) ? 3.5 / 2.5 : getFormat(form.format).cropRatio
       setImgTransform({ x: 0, y: 0, scale: 1 })
     }
   }, [cropModal])
@@ -271,7 +278,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const applyCropAndUpload = async () => {
     if (!cropModal || !containerRef.current || !imgRef.current) return
     const side = cropModal.side
-    const cropRatio = (side === 'il' || side === 'ir') ? 3.5 / 2.5 : (isHorizontalRef.current ? 3.5 / 2.5 : getFormat(form.format).cropRatio)
+    const cropRatio = cropRatioRef.current
     const container = containerRef.current
     const cw = container.clientWidth
     const ch = container.clientHeight
@@ -331,6 +338,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       rc: form.rc, auto: form.auto, patch: form.patch, booklet: form.booklet,
       format: form.format || 'standard',
       is_horizontal: form.format === 'horizontal',
+      verso_is_horizontal: form.verso_is_horizontal,
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
       image_interieur_gauche: form.image_interieur_gauche || null,
       image_interieur_droite: form.image_interieur_droite || null,
@@ -461,7 +469,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         {/* Photos couvertures */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: form.booklet ? 16 : 24 }}>
           <ImageUploader side="recto" label={lang === 'fr' ? (form.booklet ? 'Couverture avant *' : 'Photo Recto *') : (form.booklet ? 'Front cover *' : 'Front Photo *')} preview={previewRecto} uploading={uploadingRecto} aspect={getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined} />
-          <ImageUploader side="verso" label={lang === 'fr' ? (form.booklet ? 'Couverture arrière' : 'Photo Verso') : (form.booklet ? 'Back cover' : 'Back Photo')} preview={previewVerso} uploading={uploadingVerso} aspect={getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined} />
+          <ImageUploader side="verso" label={lang === 'fr' ? (form.booklet ? 'Couverture arrière' : 'Photo Verso') : (form.booklet ? 'Back cover' : 'Back Photo')} preview={previewVerso} uploading={uploadingVerso} aspect={(form.verso_is_horizontal ?? (form.format === 'horizontal' || form.is_horizontal)) ? '3.5/2.5' : (getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined)} />
         </div>
 
         {/* Photos intérieures (booklet seulement) */}
@@ -696,7 +704,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
       {cameraModal && (
         <CameraCapture
-          ratio={(cameraModal === 'il' || cameraModal === 'ir' || form.is_horizontal) ? 3.5 / 2.5 : undefined}
+          ratio={(cameraModal === 'il' || cameraModal === 'ir' || (cameraModal === 'verso' ? (form.verso_is_horizontal ?? form.is_horizontal) : form.is_horizontal)) ? 3.5 / 2.5 : undefined}
           onCapture={(blob, frameRect) => {
             const url = URL.createObjectURL(blob)
             setCameraModal(null)
@@ -734,8 +742,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
       {cropModal && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.92)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-          {/* Sélecteur de format — ajuste la forme du cadre en direct (pas pour les pages internes d'un booklet) */}
-          {cropModal.side !== 'il' && cropModal.side !== 'ir' && (
+          {/* Sélecteur de format — ajuste la forme du cadre en direct (recto uniquement : le format
+              détermine la forme physique de la carte, la même pour les deux faces) */}
+          {cropModal.side === 'recto' && (
             <div style={{ width: '100%', background: '#1a1a1a', padding: '10px 12px', boxSizing: 'border-box', display: 'flex', gap: 6, overflowX: 'auto', justifyContent: 'flex-start', WebkitOverflowScrolling: 'touch' }}>
               {SELECTABLE_FORMATS.map(f => {
                 const active = (form.format || 'standard') === f.id
@@ -754,6 +763,26 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               })}
             </div>
           )}
+          {/* Orientation du verso, indépendante du recto (ex: recto vertical, verso à l'horizontale) */}
+          {cropModal.side === 'verso' && (() => {
+            const rectoHorizontal = form.format === 'horizontal' || form.is_horizontal
+            const versoHorizontal = form.verso_is_horizontal ?? rectoHorizontal
+            return (
+              <div style={{ width: '100%', background: '#1a1a1a', padding: '10px 12px', boxSizing: 'border-box', display: 'flex', justifyContent: 'center' }}>
+                <button type="button"
+                  onClick={() => {
+                    const next = !versoHorizontal
+                    setForm(prev => ({ ...prev, verso_is_horizontal: next }))
+                    isHorizontalRef.current = next
+                    cropRatioRef.current = next ? 3.5 / 2.5 : getFormat(form.format).cropRatio
+                    requestAnimationFrame(resetTransform)
+                  }}
+                  style={{ padding: '7px 14px', borderRadius: 8, border: versoHorizontal ? '2px solid #fff' : '2px solid rgba(255,255,255,0.15)', background: versoHorizontal ? 'rgba(255,255,255,0.18)' : 'transparent', color: 'white', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                  🔄 {lang === 'fr' ? 'Verso à l\'horizontale' : 'Horizontal back'} {versoHorizontal ? '✓' : ''}
+                </button>
+              </div>
+            )
+          })()}
           {/* Zone d'interaction : image mobile sous cadre fixe */}
           <div
             ref={containerRef}

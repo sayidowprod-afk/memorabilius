@@ -92,7 +92,7 @@ interface Card {
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; g: string
-  booklet?: boolean; is_horizontal?: boolean; format?: string; il?: string; ir?: string
+  booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
   isManuelle?: boolean
   created_at?: string; position?: number; collection_tag?: string;
 }
@@ -310,7 +310,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         br: m.marque || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', card_number: m.card_number || '', cert_number: m.cert_number || '', auto: m.auto || false, rc: m.rc || false,
         patch: m.patch || false, g: m.grade || 'Raw', isManuelle: true,
-        booklet: m.booklet || false, is_horizontal: m.is_horizontal || false, format: m.format || (m.is_horizontal ? 'horizontal' : 'standard'),
+        booklet: m.booklet || false, is_horizontal: m.is_horizontal || false, verso_is_horizontal: m.verso_is_horizontal ?? null, format: m.format || (m.is_horizontal ? 'horizontal' : 'standard'),
         il: m.image_interieur_gauche || '', ir: m.image_interieur_droite || '',
         created_at: m.created_at || '', position: m.position ?? 9999,
         collection_tag: m.collection_tag || ''
