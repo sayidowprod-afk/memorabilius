@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { fetchCsvCapped, parseCardStats } from '@/lib/csvParse'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -26,22 +27,10 @@ export async function GET(req: NextRequest) {
 
   for (const p of profiles) {
     try {
-      const r = await fetch(p.lien_csv, { cache: 'no-store' })
-      if (!r.ok) { results.push({ id: p.id, error: 'fetch failed' }); continue }
+      const text = await fetchCsvCapped(p.lien_csv)
+      if (!text) { results.push({ id: p.id, error: 'fetch failed' }); continue }
 
-      const text = await r.text()
-      const lines = text.split(/\r?\n/).slice(1)
-      const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
-
-      lines.forEach(line => {
-        const c = line.split(',')
-        if (!c[0] || c[0].length < 10) return
-        stats.total++
-        if (c[10]?.toLowerCase().includes('oui')) stats.rc++
-        if (c[9]?.toLowerCase().includes('oui')) stats.auto++
-        if (c[11]?.toLowerCase().includes('oui')) stats.patch++
-        if (c[8]?.trim()) stats.num++
-      })
+      const stats = parseCardStats(text)
 
       // monthly_additions n'est pas touché ici : un CSV n'a pas de date d'ajout
       // par ligne, donc comparer à l'ancien stats_total ne dit pas QUAND ces

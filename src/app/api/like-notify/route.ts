@@ -16,6 +16,13 @@ export async function POST(req: NextRequest) {
   const { toUserId, likerName } = await req.json()
   if (!toUserId) return NextResponse.json({ error: 'Missing toUserId' }, { status: 400 })
 
+  // Exige la preuve qu'un like a vraiment été posé à l'instant vers ce destinataire,
+  // sinon n'importe quel compte authentifié pourrait spammer des notifs vers n'importe qui.
+  const since = new Date(Date.now() - 30_000).toISOString()
+  const { data: recentLike } = await supabaseAdmin.from('card_likes')
+    .select('card_key').eq('liker_user_id', user.id).eq('gallery_user_id', toUserId).gte('created_at', since).limit(1).maybeSingle()
+  if (!recentLike) return NextResponse.json({ error: 'No recent like found' }, { status: 403 })
+
   await sendPushToUser(toUserId, {
     title: '❤️ Nouveau like',
     body: `${likerName || 'Quelqu\'un'} a aimé votre carte`,

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { fetchCsvCapped, parseCardStats } from '@/lib/csvParse'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -24,23 +25,17 @@ export async function POST(req: NextRequest) {
 
     // CSV et cartes manuelles sont indépendants → en parallèle
     const [csvText, manuellesRes] = await Promise.all([
-      csvUrl
-        ? fetch(csvUrl, { cache: 'no-store' }).then(r => r.ok ? r.text() : null).catch(() => null)
-        : Promise.resolve(null),
+      csvUrl ? fetchCsvCapped(csvUrl) : Promise.resolve(null),
       supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId),
     ])
 
     if (csvText) {
-      const lines = csvText.split(/\r?\n/).slice(4)
-      lines.forEach(line => {
-        const c = line.split(',')
-        if (!c[0] || !c[0].includes('http')) return
-        stats.total++
-        if (c[10]?.toLowerCase().includes('oui')) stats.rc++
-        if (c[9]?.toLowerCase().includes('oui')) stats.auto++
-        if (c[11]?.toLowerCase().includes('oui')) stats.patch++
-        if (c[8]?.trim()) stats.num++
-      })
+      const csvStats = parseCardStats(csvText)
+      stats.total += csvStats.total
+      stats.rc += csvStats.rc
+      stats.auto += csvStats.auto
+      stats.num += csvStats.num
+      stats.patch += csvStats.patch
     }
 
     if (manuellesRes.data) {
