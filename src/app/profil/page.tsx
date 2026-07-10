@@ -191,13 +191,13 @@ export default function Profil() {
 
       {csvLinked ? (
         <div style={{ background: '#eef2f7', borderLeft: '4px solid #2ecc71', padding: 15, borderRadius: 8, marginBottom: 24 }}>
-          <strong style={{ color: '#2ecc71' }}>Statut :</strong> Collection synchronisée 🟢
-          {userId && <Link href={`/galerie/${userId}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13, marginLeft: 12 }}>Voir ma galerie →</Link>}
+          <strong style={{ color: '#2ecc71' }}>{t('profile_status_label')}</strong> {t('profile_status_synced')}
+          {userId && <Link href={`/galerie/${userId}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13, marginLeft: 12 }}>{t('profile_view_gallery')}</Link>}
         </div>
       ) : (
         <div style={{ background: '#fff5f5', borderLeft: '4px solid #e74c3c', padding: 15, borderRadius: 8, marginBottom: 24 }}>
-          <strong style={{ color: '#e74c3c' }}>Statut :</strong> Aucune collection liée 🔴
-          <p style={{ margin: '5px 0 0', fontSize: 12, color: '#666' }}>Ajoutez votre lien CSV ci-dessous pour activer votre galerie.</p>
+          <strong style={{ color: '#e74c3c' }}>{t('profile_status_label')}</strong> {t('profile_status_none')}
+          <p style={{ margin: '5px 0 0', fontSize: 12, color: '#666' }}>{t('profile_status_hint')}</p>
         </div>
       )}
 
@@ -212,7 +212,7 @@ export default function Profil() {
           </div>
           <div>
             <button onClick={() => fileRef.current?.click()} disabled={uploading} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer', display: 'block', marginBottom: 6 }}>
-              {uploading ? (lang === 'fr' ? 'Upload en cours...' : 'Uploading...') : t('profile_change_photo')}
+              {uploading ? t('profile_uploading') : t('profile_change_photo')}
             </button>
             <p style={{ fontSize: 11, color: '#999', margin: 0 }}>JPG, PNG ou WEBP · Max 2 Mo</p>
           </div>
@@ -228,14 +228,14 @@ export default function Profil() {
             <input value={form.display_name} onChange={e => setForm({ ...form, display_name: e.target.value })} placeholder="Votre pseudo" />
           </div>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Bio</label>
-            <textarea value={form.bio} onChange={e => setForm({ ...form, bio: e.target.value })} placeholder="Décrivez votre collection en quelques mots..." maxLength={200} rows={3} style={{ resize: 'vertical', fontFamily: 'inherit', fontSize: 14 }} />
-            <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>{form.bio.length}/200 caractères</p>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('profile_bio_label')}</label>
+            <textarea value={form.bio} onChange={e => setForm({ ...form, bio: e.target.value })} placeholder={t('profile_bio_placeholder')} maxLength={200} rows={3} style={{ resize: 'vertical', fontFamily: 'inherit', fontSize: 14 }} />
+            <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>{form.bio.length}/200 {t('profile_bio_chars')}</p>
           </div>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('profile_csv_label')}</label>
             <input value={form.lien_csv} onChange={e => setForm({ ...form, lien_csv: e.target.value })} placeholder="https://docs.google.com/spreadsheets/d/..." />
-            <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>Fichier &gt; Partager &gt; Publier sur le web &gt; CSV</p>
+            <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>{t('profile_csv_hint')}</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>

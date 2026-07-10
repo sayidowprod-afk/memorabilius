@@ -245,7 +245,7 @@ function AnnuaireContent() {
         </h1>
         {teamName && (
           <button onClick={() => handleTeamChange('')} style={{ fontSize: 12, color: '#999', background: 'none', border: '1px solid #ddd', borderRadius: 6, padding: '4px 10px', cursor: 'pointer' }}>
-            ← Toutes les teams
+            {t('directory_back_all_teams')}
           </button>
         )}
       </div>
@@ -254,7 +254,7 @@ function AnnuaireContent() {
         <input
           value={search}
           onChange={e => setSearch(e.target.value)}
-          placeholder={lang === 'fr' ? 'Rechercher un collectionneur…' : 'Search collector…'}
+          placeholder={t('directory_search_placeholder')}
           style={{ flex: '1 1 200px', minWidth: 180 }}
         />
         <select value={teamFilter} onChange={e => handleTeamChange(e.target.value)} style={{ flex: '1 1 160px', minWidth: 140 }}>
@@ -262,7 +262,7 @@ function AnnuaireContent() {
           {teams.map(t => <option key={t.id} value={String(t.id)}>{t.name}</option>)}
         </select>
         <select value={nbaFilter} onChange={e => setNbaFilter(e.target.value)} style={{ flex: '1 1 160px', minWidth: 140 }}>
-          <option value="">🏀 Toutes les équipes NBA</option>
+          <option value="">{t('directory_all_nba')}</option>
           {SPORTS_TEAMS.map(t => <option key={t.id} value={t.id}>{t.name} ({t.sport.toUpperCase()})</option>)}
         </select>
       </div>

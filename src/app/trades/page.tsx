@@ -164,7 +164,7 @@ export default function Trades() {
         </div>
         {/* Ligne 2 : sports + tags */}
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-          <span style={{ fontSize: 12, fontWeight: 700, color: '#888' }}>Sport :</span>
+          <span style={{ fontSize: 12, fontWeight: 700, color: '#888' }}>{t('trades_sport_label')}</span>
           {Object.entries(SPORTS).map(([key, emoji]) => {
             const labels: Record<string, string> = { basket: 'Basket', foot: 'Football', football_us: 'Football US', baseball: 'Baseball', hockey: 'Hockey', pokemon: 'Pokémon', tcg: 'TCG' }
             return (
