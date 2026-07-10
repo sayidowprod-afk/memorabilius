@@ -2,7 +2,7 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
-import { playerSlug } from '@/lib/playerSlug'
+import { playerSlug, cardSlug } from '@/lib/playerSlug'
 import { useTheme } from '@/lib/ThemeContext'
 import CardVideoExport from '@/components/CardVideoExport'
 import CardValueModule from '@/components/CardValueModule'
@@ -130,7 +130,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
   const handleShare = () => {
     if (!userId) return
-    const url = `${window.location.origin}/galerie/${userId}?card=${encodeURIComponent(popup.f)}`
+    // Vers la fiche publique indexable (SEO) plutôt que le lien profond ?card= interne à
+    // l'app : chaque partage (Discord, forums...) devient une porte d'entrée découvrable
+    // par les moteurs de recherche au lieu d'un lien qui ne veut rien dire hors contexte.
+    const slug = cardSlug(popup.n, popup.y, popup.br, popup.s)
+    const url = `${window.location.origin}/galerie/${userSlug || userId}/${slug}?src=${encodeURIComponent(popup.f)}`
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)

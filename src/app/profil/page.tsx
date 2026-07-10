@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import TeamPicker from '@/components/TeamPicker'
 import { subscribePush } from '@/components/PWAInstall'
+import ShowcaseWidget from '@/components/ShowcaseWidget'
 
 export default function Profil() {
   const router = useRouter()
@@ -276,6 +277,9 @@ export default function Profil() {
           </button>
         </form>
       </div>
+
+      {/* Bannière Showcase (embed) */}
+      {userId && <ShowcaseWidget userId={userId} />}
 
       {/* Notifications push */}
       <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
