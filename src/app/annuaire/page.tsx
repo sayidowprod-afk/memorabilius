@@ -158,7 +158,6 @@ function AnnuaireContent() {
           justify-content: center;
           cursor: default;
           line-height: 1;
-          filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 3px white);
           transition: transform 0.15s;
         }
         .sticker-badge-sm:hover { transform: scale(1.2); }

@@ -16,7 +16,7 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
       title={team.name}
       width={size}
       height={size}
-      style={{ borderRadius: '50%', objectFit: 'contain', flexShrink: 0, display: 'block' }}
+      style={{ objectFit: 'contain', flexShrink: 0, display: 'block' }}
       onError={(e) => {
         const el = e.currentTarget
         el.style.display = 'none'

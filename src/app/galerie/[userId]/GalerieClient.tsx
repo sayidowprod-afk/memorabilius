@@ -1157,7 +1157,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             justify-content: center;
             cursor: default;
             line-height: 1;
-            filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 4px white);
             transition: transform 0.15s;
           }
           .sticker-badge:hover { transform: scale(1.15); }
@@ -1186,7 +1185,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             position: relative;
             display: inline-flex;
             cursor: default;
-            filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 4px white);
             transition: transform 0.15s;
           }
           .sticker-team:hover { transform: scale(1.15); }
