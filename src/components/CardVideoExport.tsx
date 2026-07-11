@@ -47,6 +47,9 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   vfmtRef.current = vfmt
 
   const previewImgs = useRef<{ f?: HTMLImageElement; b?: HTMLImageElement }>({})
+  // Fond statique pré-rendu (base + halo + dégradé) : on le blit à chaque frame
+  // au lieu de refaire 3 remplissages plein écran → énorme gain de fluidité mobile.
+  const bgCache = useRef<{ key: string; canvas: HTMLCanvasElement } | null>(null)
 
   // Sync canvas size + dessine un aperçu statique du rendu
   useEffect(() => {
@@ -97,18 +100,24 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const textMain = isDark ? '#ffffff' : '#111111'
     const textSub  = isDark ? 'rgba(255,255,255,0.52)' : 'rgba(0,0,0,0.48)'
 
-    // ── Fond : base sombre + halo accent en coin haut-droit ────────────────
-    ctx.fillStyle = bgBase; ctx.fillRect(0, 0, W, H)
-    // Halo accent rayonnant depuis le coin haut-droit
-    const halo = ctx.createRadialGradient(W * 0.85, H * 0.08, 0, W * 0.85, H * 0.08, W * 1.1)
-    halo.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.28 : 0.14})`)
-    halo.addColorStop(0.5, `rgba(${ar},${ag},${ab},${isDark ? 0.07 : 0.04})`)
-    halo.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.fillStyle = halo; ctx.fillRect(0, 0, W, H)
-    // Dégradé vertical subtil vers le bas
-    const bgGrad = ctx.createLinearGradient(0, 0, 0, H)
-    bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, bgBot + '99')
-    ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, W, H)
+    // ── Fond statique (mis en cache) : base + halo accent + dégradé vertical ─
+    const bgKey = `${W}x${H}-${isDark}-${accent}`
+    if (!bgCache.current || bgCache.current.key !== bgKey) {
+      const oc = document.createElement('canvas')
+      oc.width = W; oc.height = H
+      const octx = oc.getContext('2d')!
+      octx.fillStyle = bgBase; octx.fillRect(0, 0, W, H)
+      const halo = octx.createRadialGradient(W * 0.85, H * 0.08, 0, W * 0.85, H * 0.08, W * 1.1)
+      halo.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.28 : 0.14})`)
+      halo.addColorStop(0.5, `rgba(${ar},${ag},${ab},${isDark ? 0.07 : 0.04})`)
+      halo.addColorStop(1, 'rgba(0,0,0,0)')
+      octx.fillStyle = halo; octx.fillRect(0, 0, W, H)
+      const bgGrad = octx.createLinearGradient(0, 0, 0, H)
+      bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, bgBot + '99')
+      octx.fillStyle = bgGrad; octx.fillRect(0, 0, W, H)
+      bgCache.current = { key: bgKey, canvas: oc }
+    }
+    ctx.drawImage(bgCache.current.canvas, 0, 0)
 
     // ── Particules ─────────────────────────────────────────────────────────
     PARTICLES.forEach(({ x, y, r, speed, phase }) => {
@@ -131,10 +140,13 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
 
     // ── Spotlight ──────────────────────────────────────────────────────────
     const pulse = 1 + 0.07 * Math.sin(p * Math.PI * 3)
-    const spot = ctx.createRadialGradient(W / 2, CARD_CY, 0, W / 2, CARD_CY, BASE_W * 0.9 * pulse)
+    const spotR = BASE_W * 0.9 * pulse
+    const spot = ctx.createRadialGradient(W / 2, CARD_CY, 0, W / 2, CARD_CY, spotR)
     spot.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.18 : 0.10})`)
     spot.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.fillStyle = spot; ctx.fillRect(0, 0, W, H)
+    // Remplissage borné au disque du spot (pas plein écran) → moins coûteux
+    ctx.fillStyle = spot
+    ctx.fillRect(W / 2 - spotR, CARD_CY - spotR, spotR * 2, spotR * 2)
 
     // ── Animation carte — présente le recto, retourne, présente le verso ────
     // Rotation avec paliers (dwell) + easing plutôt qu'une rotation continue :
@@ -175,10 +187,10 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       reflFade.addColorStop(0, 'rgba(0,0,0,0)'); reflFade.addColorStop(1, bgBot)
       ctx.fillStyle = reflFade; ctx.fillRect(0, floorY, W, cardH * 0.5)
 
-      // Ombre portée douce sous la carte
+      // Ombre portée sous la carte — blur réduit sur mobile (shadowBlur est coûteux)
       ctx.save()
       ctx.shadowColor = `rgba(0,0,0,${isDark ? 0.6 : 0.35})`
-      ctx.shadowBlur = BASE_W * 0.11
+      ctx.shadowBlur = BASE_W * (IS_MOBILE ? 0.05 : 0.11)
       ctx.shadowOffsetY = BASE_H * 0.03
       ctx.fillStyle = '#000'
       ctx.fillRect(cardX, cardTop, cardW, cardH)
@@ -335,21 +347,31 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     }
     recorder.start()
 
-    // Boucle rendu en temps réel basée sur l'horloge (fluide quel que soit le device)
+    // Boucle rendu en temps réel basée sur l'horloge. On maintient la face
+    // recto affichée HOLD ms après la fin de l'animation → la vidéo ne se coupe
+    // plus trop tôt et la boucle recto↔recto reste parfaite.
+    const HOLD = 700
+    const frameInterval = 1000 / FPS
     const start = performance.now()
+    let lastDraw = -1
     await new Promise<void>(resolve => {
-      const tick = () => {
-        const elapsed = performance.now() - start
-        const p = Math.min(elapsed / DURATION, 1)
-        drawFrame(ctx, frontImg, backImg, p >= 1 ? 0.999 : p)
-        setProgress(Math.round(p * 100))
-        if (elapsed >= DURATION) { resolve(); return }
+      const tick = (now: number) => {
+        // Throttle au FPS cible : évite de sur-dessiner (écrans 60/120 Hz) et
+        // de saturer le CPU mobile, cause principale des saccades.
+        if (lastDraw < 0 || now - lastDraw >= frameInterval - 1) {
+          lastDraw = now
+          const elapsed = now - start
+          const p = Math.min(elapsed / DURATION, 1)
+          drawFrame(ctx, frontImg, backImg, p >= 1 ? 0.999 : p)
+          setProgress(Math.round(Math.min(elapsed / (DURATION + HOLD), 1) * 100))
+          if (elapsed >= DURATION + HOLD) { resolve(); return }
+        }
         requestAnimationFrame(tick)
       }
       requestAnimationFrame(tick)
     })
-    // Laisse le dernier frame être capturé avant d'arrêter
-    await new Promise(r => setTimeout(r, 250))
+    // Laisse les derniers frames être capturés avant d'arrêter
+    await new Promise(r => setTimeout(r, 200))
     recorder.stop()
   }
 
