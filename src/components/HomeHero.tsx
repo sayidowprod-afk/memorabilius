@@ -56,9 +56,18 @@ const heroCSS = `
   .mb-card-1 { left: -7%; opacity: 0.45; }
   .mb-card-3 { right: -7%; opacity: 0.45; }
   .mb-hero-inner { padding: 70px 18px; }
+  /* Mobile : cartes statiques (pas de flottement/transition) pour éviter
+     tout tremblement sur les navigateurs tactiles. */
+  .mb-card, .mb-card-shine { animation: none !important; }
+  .mb-card { transition: none !important; }
+}
+/* Écrans tactiles : aucune animation de carte, quelle que soit la largeur */
+@media (hover: none), (pointer: coarse) {
+  .mb-card, .mb-card-shine { animation: none !important; }
+  .mb-card { transition: none !important; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mb-card-inner, .mb-card-shine { animation: none; }
+  .mb-card, .mb-card-shine { animation: none; }
   .mb-card { transition: none; }
 }
 `
@@ -107,6 +116,8 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
   const onMove = (e: React.MouseEvent) => {
     const el = cardsRef.current
     if (!el) return
+    // Pas de parallaxe sur écran tactile (source de tremblements sur mobile)
+    if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return
     const r = el.getBoundingClientRect()
     const nx = (e.clientX - r.left) / r.width - 0.5
     const ny = (e.clientY - r.top) / r.height - 0.5
