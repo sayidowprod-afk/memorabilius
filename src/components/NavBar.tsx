@@ -79,7 +79,20 @@ export default function Navbar() {
     <>
       <nav style={{ background: dark ? '#1a1a1a' : 'white', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#eee'}`, padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 60, position: 'sticky', top: 0, zIndex: 200 }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-          <img src="/memorabilius-logo.png" alt="Memorabilius" width={150} height={30} style={{ height: 30, width: 'auto', filter: dark ? 'brightness(0) invert(1)' : 'none' }} />
+          <img
+            src={dark ? '/memorabilius-logo-white.png' : '/memorabilius-logo.png'}
+            alt="Memorabilius" width={150} height={30}
+            style={{ height: 30, width: 'auto' }}
+            onError={(e) => {
+              // Si le logo blanc n'est pas encore présent, on retombe sur le logo
+              // couleur « blanchi » par filtre CSS (rendu de secours).
+              if (dark && !e.currentTarget.dataset.fallback) {
+                e.currentTarget.dataset.fallback = '1'
+                e.currentTarget.src = '/memorabilius-logo.png'
+                e.currentTarget.style.filter = 'brightness(0) invert(1)'
+              }
+            }}
+          />
         </Link>
 
         {/* Desktop */}
