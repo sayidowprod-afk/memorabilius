@@ -39,11 +39,93 @@ function downscaleToDataURL(file: File, maxDim = 1600): Promise<string> {
   })
 }
 
+// Marques connues (pour séparer marque / collection dans une désignation Beckett).
+// Ordre : les libellés les plus longs d'abord pour matcher « Upper Deck » avant « UD ».
+const KNOWN_BRANDS: { match: RegExp; brand: string }[] = [
+  { match: /^upper\s+deck/i, brand: 'Upper Deck' },
+  { match: /^ud\b/i,          brand: 'Upper Deck' },
+  { match: /^o-?pee-?chee/i,  brand: 'O-Pee-Chee' },
+  { match: /^panini/i,        brand: 'Panini' },
+  { match: /^topps/i,         brand: 'Topps' },
+  { match: /^bowman/i,        brand: 'Bowman' },
+  { match: /^donruss/i,       brand: 'Donruss' },
+  { match: /^fleer/i,         brand: 'Fleer' },
+  { match: /^score/i,         brand: 'Score' },
+  { match: /^leaf/i,          brand: 'Leaf' },
+  { match: /^sage/i,          brand: 'Sage' },
+  { match: /^futera/i,        brand: 'Futera' },
+  { match: /^pinnacle/i,      brand: 'Pinnacle' },
+  { match: /^sp\b/i,          brand: 'SP' },
+]
+
+// Décompose une désignation type Beckett en champs.
+// Ex : « 2007-08 UD Black 50th Anniversary Autographs #BR Bill Russell »
+//   → année 2007-08 · marque Upper Deck · collection « Black 50th Anniversary Autographs »
+//   · n° BR · joueur Bill Russell · auto ✓
+function parseDesignation(raw: string) {
+  const out: {
+    annee?: string; marque?: string; collection?: string; nom?: string
+    card_number?: string; num?: string; auto?: boolean; rc?: boolean; patch?: boolean
+  } = {}
+  let s = ` ${raw.trim().replace(/\s+/g, ' ')} `
+
+  // Numérotation (ex : 25/99)
+  const numMatch = s.match(/\b(\d{1,5}\/\d{1,5})\b/)
+  if (numMatch) { out.num = numMatch[1]; s = s.replace(numMatch[0], ' ') }
+
+  // N° de carte (#BR, #1, #HTR-IFS…)
+  const cardMatch = s.match(/#\s*([A-Za-z0-9][A-Za-z0-9-]*)/)
+  let hashIndex = -1
+  if (cardMatch) { out.card_number = cardMatch[1]; hashIndex = cardMatch.index ?? -1 }
+
+  // Année en tête (2023, 2007-08, 2007-2008)
+  const yearMatch = s.match(/\b((?:19|20)\d{2}(?:-\d{2,4})?)\b/)
+  let afterYearIndex = 0
+  if (yearMatch) { out.annee = yearMatch[1]; afterYearIndex = (yearMatch.index ?? 0) + yearMatch[0].length }
+
+  // Caractéristiques
+  if (/\bauto(?:graph)?s?\b/i.test(s)) out.auto = true
+  if (/\brookie\b|\brc\b|\byrc\b/i.test(s)) out.rc = true
+  if (/\bpatch\b/i.test(s)) out.patch = true
+
+  // Bloc « marque + collection » : entre l'année et le #
+  const midEnd = hashIndex >= 0 ? hashIndex : s.length
+  let mid = s.slice(afterYearIndex, midEnd).replace(/#.*/, '').trim()
+  // Retire une numérotation résiduelle du bloc
+  mid = mid.replace(/\b\d{1,5}\/\d{1,5}\b/g, '').trim()
+
+  for (const b of KNOWN_BRANDS) {
+    if (b.match.test(mid)) {
+      out.marque = b.brand
+      const rest = mid.replace(b.match, '').trim()
+      if (rest) out.collection = rest
+      break
+    }
+  }
+  if (!out.marque && mid) out.collection = mid
+
+  // Joueur : texte après le # (hors n° de carte). Beckett place le joueur en fin.
+  if (hashIndex >= 0 && cardMatch) {
+    const afterHash = s.slice(hashIndex + cardMatch[0].length)
+    let player = afterHash
+      .replace(/\b\d{1,5}\/\d{1,5}\b/g, '')
+      .replace(/\b(auto(?:graph)?s?|rookie|rc|yrc|patch|mem|relic|serial|numbered)\b/gi, '')
+      .replace(/\s+/g, ' ').trim()
+    // Garde jusqu'à ~4 mots (nom + prénom, éventuel Jr./III)
+    if (player) out.nom = player.split(' ').slice(0, 4).join(' ')
+  }
+
+  return out
+}
+
 export default function AjouterCarte({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = use(params)
   const router = useRouter()
   const { lang } = useLang()
   const [saving, setSaving] = useState(false)
+  const [showDesignation, setShowDesignation] = useState(false)
+  const [designation, setDesignation] = useState('')
+  const [designationDone, setDesignationDone] = useState(false)
   const [uploadingRecto, setUploadingRecto] = useState(false)
   const [uploadingVerso, setUploadingVerso] = useState(false)
   const [previewRecto, setPreviewRecto] = useState<string | null>(null)
@@ -533,6 +615,61 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         )}
 
         <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', display: 'flex', flexDirection: 'column', gap: 18 }}>
+          {/* Saisie rapide par désignation (façon Beckett) */}
+          <div style={{ border: '1.5px dashed #cbd5e1', borderRadius: 12, padding: showDesignation ? 16 : 0, background: '#f8faff' }}>
+            <button type="button" onClick={() => setShowDesignation(v => !v)}
+              style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: showDesignation ? '0 0 12px' : '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#003DA6', fontWeight: 800, fontSize: 13 }}>
+              <span>⚡ {lang === 'fr' ? 'Remplir depuis une désignation (Beckett…)' : 'Fill from a designation (Beckett…)'}</span>
+              <span style={{ fontSize: 16 }}>{showDesignation ? '▲' : '▼'}</span>
+            </button>
+            {showDesignation && (
+              <>
+                <textarea
+                  value={designation}
+                  onChange={e => { setDesignation(e.target.value); setDesignationDone(false) }}
+                  rows={2}
+                  placeholder={lang === 'fr'
+                    ? 'Ex : 2007-08 UD Black 50th Anniversary Autographs #BR Bill Russell'
+                    : 'Ex: 2007-08 UD Black 50th Anniversary Autographs #BR Bill Russell'}
+                  style={{ width: '100%', boxSizing: 'border-box', borderRadius: 8, border: '1.5px solid #cbd5e1', padding: '10px 12px', fontSize: 13, fontFamily: 'inherit', resize: 'vertical' }}
+                />
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 8 }}>
+                  <button type="button"
+                    onClick={() => {
+                      const parsed = parseDesignation(designation)
+                      if (!designation.trim()) return
+                      setForm(f => ({
+                        ...f,
+                        nom:         parsed.nom         ?? f.nom,
+                        annee:       parsed.annee       ?? f.annee,
+                        marque:      parsed.marque      ?? f.marque,
+                        collection:  parsed.collection  ?? f.collection,
+                        card_number: parsed.card_number ?? f.card_number,
+                        num:         parsed.num         ?? f.num,
+                        rc:    f.rc    || !!parsed.rc,
+                        auto:  f.auto  || !!parsed.auto,
+                        patch: f.patch || !!parsed.patch,
+                      }))
+                      setDesignationDone(true)
+                    }}
+                    style={{ background: '#003DA6', color: '#fff', border: 'none', borderRadius: 8, padding: '9px 16px', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}>
+                    {lang === 'fr' ? 'Remplir les champs' : 'Fill the fields'}
+                  </button>
+                  {designationDone && (
+                    <span style={{ fontSize: 12, color: '#2e7d32', fontWeight: 700 }}>
+                      ✓ {lang === 'fr' ? 'Champs remplis — vérifiez ci-dessous' : 'Fields filled — check below'}
+                    </span>
+                  )}
+                </div>
+                <p style={{ fontSize: 11, color: '#94a3b8', margin: '8px 0 0', lineHeight: 1.4 }}>
+                  {lang === 'fr'
+                    ? 'Format : Année · Marque/Collection · #Numéro · Joueur. Les champs restent modifiables.'
+                    : 'Format: Year · Brand/Set · #Number · Player. Fields stay editable.'}
+                </p>
+              </>
+            )}
+          </div>
+
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
               {lang === 'fr' ? 'Nom du joueur *' : 'Player name *'}
