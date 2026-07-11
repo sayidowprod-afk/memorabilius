@@ -91,7 +91,7 @@ interface Card {
   id_manuelle?: string;
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
-  auto: boolean; rc: boolean; patch: boolean; g: string
+  auto: boolean; rc: boolean; patch: boolean; printing_plate?: boolean; g: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
   isManuelle?: boolean
   created_at?: string; position?: number; collection_tag?: string;
@@ -309,7 +309,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         n: m.nom || '', t: m.equipe || '', y: m.annee || '',
         br: m.marque || '', s: m.collection || '', v: m.variation || '',
         num: m.num || '', card_number: m.card_number || '', cert_number: m.cert_number || '', auto: m.auto || false, rc: m.rc || false,
-        patch: m.patch || false, g: m.grade || 'Raw', isManuelle: true,
+        patch: m.patch || false, printing_plate: m.printing_plate || false, g: m.grade || 'Raw', isManuelle: true,
         booklet: m.booklet || false, is_horizontal: m.is_horizontal || false, verso_is_horizontal: m.verso_is_horizontal ?? null, format: m.format || (m.is_horizontal ? 'horizontal' : 'standard'),
         il: m.image_interieur_gauche || '', ir: m.image_interieur_droite || '',
         created_at: m.created_at || '', position: m.position ?? 9999,
@@ -513,6 +513,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         {oon && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', color: '#3d2800', textShadow: '0 1px 0 rgba(255,255,255,0.4)', display: 'inline-block', animation: 'oon-anim 1.8s ease-in-out infinite', willChange: 'transform' }}>{d.num}</span>}
         {low && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#555,#c0c0c0,#fff,#c0c0c0,#555)', color: '#111', display: 'inline-block', animation: 'low-anim 2.2s ease-in-out infinite', willChange: 'transform' }}>{d.num}</span>}
         {d.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#1976d2', color: 'white' }}>PATCH</span>}
+        {d.printing_plate && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#111827', color: 'white' }}>PLATE</span>}
       </div>
     )
   }

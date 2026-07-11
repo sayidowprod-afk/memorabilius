@@ -65,7 +65,7 @@ const KNOWN_BRANDS: { match: RegExp; brand: string }[] = [
 function parseDesignation(raw: string) {
   const out: {
     annee?: string; marque?: string; collection?: string; nom?: string
-    card_number?: string; num?: string; auto?: boolean; rc?: boolean; patch?: boolean
+    card_number?: string; num?: string; auto?: boolean; rc?: boolean; patch?: boolean; printing_plate?: boolean
   } = {}
   let s = ` ${raw.trim().replace(/\s+/g, ' ')} `
 
@@ -87,6 +87,7 @@ function parseDesignation(raw: string) {
   if (/\bauto(?:graph)?s?\b/i.test(s)) out.auto = true
   if (/\brookie\b|\brc\b|\byrc\b/i.test(s)) out.rc = true
   if (/\bpatch\b/i.test(s)) out.patch = true
+  if (/\bprinting\s+plate\b|\bprint\s+plate\b|\bplate\b/i.test(s)) out.printing_plate = true
 
   // Bloc « marque + collection » : entre l'année et le #
   const midEnd = hashIndex >= 0 ? hashIndex : s.length
@@ -109,7 +110,8 @@ function parseDesignation(raw: string) {
     const afterHash = s.slice(hashIndex + cardMatch[0].length)
     let player = afterHash
       .replace(/\b\d{1,5}\/\d{1,5}\b/g, '')
-      .replace(/\b(auto(?:graph)?s?|rookie|rc|yrc|patch|mem|relic|serial|numbered)\b/gi, '')
+      .replace(/\bprinting\s+plate\b|\bprint\s+plate\b/gi, '')
+      .replace(/\b(auto(?:graph)?s?|rookie|rc|yrc|patch|plate|mem|relic|serial|numbered)\b/gi, '')
       .replace(/\s+/g, ' ').trim()
     // Garde jusqu'à ~4 mots (nom + prénom, éventuel Jr./III)
     if (player) out.nom = player.split(' ').slice(0, 4).join(' ')
@@ -136,7 +138,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [uploadingIR, setUploadingIR] = useState(false)
   const [form, setForm] = useState({
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
-    grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, booklet: false,
+    grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
     is_horizontal: false, format: 'standard', collection_tag: '',
     image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
     verso_is_horizontal: null as boolean | null, // null = même orientation que le recto
@@ -459,7 +461,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       user_id: uid, nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
       marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, grade: form.grade,
       num: form.num || null, card_number: form.card_number || null, cert_number: form.cert_number || null,
-      rc: form.rc, auto: form.auto, patch: form.patch, booklet: form.booklet,
+      rc: form.rc, auto: form.auto, patch: form.patch, printing_plate: form.printing_plate, booklet: form.booklet,
       format: form.format || 'standard',
       is_horizontal: form.format === 'horizontal',
       verso_is_horizontal: form.verso_is_horizontal,
@@ -649,6 +651,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                         rc:    f.rc    || !!parsed.rc,
                         auto:  f.auto  || !!parsed.auto,
                         patch: f.patch || !!parsed.patch,
+                        printing_plate: f.printing_plate || !!parsed.printing_plate,
                       }))
                       setDesignationDone(true)
                     }}
@@ -772,6 +775,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                 { key: 'rc', label: 'RC', activeBg: '#e67e22' },
                 { key: 'auto', label: 'AUTO', activeBg: '#2e7d32' },
                 { key: 'patch', label: 'PATCH', activeBg: '#1976d2' },
+                { key: 'printing_plate', label: 'PRINTING PLATE', activeBg: '#111827' },
               ].map(tag => (
                 <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })}
                   style={{

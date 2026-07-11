@@ -1299,6 +1299,15 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           {applying ? 'Traitement…' : 'Utiliser'}
         </button>
       </div>
+
+      {/* Accès au recadrage manuel (rogner à la main : glisser / zoomer un cadre fixe),
+          en plus de la détection auto + ajustement des coins ci-dessus. */}
+      {!applying && (
+        <button onClick={onFallback}
+          style={{ marginTop: 12, background: 'none', border: 'none', color: 'rgba(255,255,255,0.55)', fontSize: 13, fontWeight: 700, cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+          ✂️ Rogner à la main
+        </button>
+      )}
     </div>
   )
 }
