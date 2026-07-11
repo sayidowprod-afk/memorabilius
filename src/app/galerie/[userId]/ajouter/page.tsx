@@ -14,6 +14,31 @@ import BinderLibrary from '@/components/BinderLibrary'
 const CARD_RATIO = 2.5 / 3.5
 const ACCENT = '#003DA6'
 
+// Réduit une photo importée à ~1600px max avant de la manipuler. Une photo de
+// téléphone (12 Mpx) décodée en plusieurs bitmaps pleine résolution (scanner +
+// OpenCV + Gemini) saturait la mémoire et faisait crasher le navigateur mobile
+// vers la 3e photo. 1600px suffit largement pour la détection et le recadrage.
+function downscaleToDataURL(file: File, maxDim = 1600): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file)
+    const img = new Image()
+    img.onload = () => {
+      URL.revokeObjectURL(url)
+      const scale = Math.min(1, maxDim / Math.max(img.naturalWidth, img.naturalHeight))
+      const w = Math.max(1, Math.round(img.naturalWidth * scale))
+      const h = Math.max(1, Math.round(img.naturalHeight * scale))
+      const c = document.createElement('canvas')
+      c.width = w; c.height = h
+      c.getContext('2d')!.drawImage(img, 0, 0, w, h)
+      const dataUrl = c.toDataURL('image/jpeg', 0.9)
+      c.width = 0; c.height = 0 // libère le backing store
+      resolve(dataUrl)
+    }
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('image illisible')) }
+    img.src = url
+  })
+}
+
 export default function AjouterCarte({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = use(params)
   const router = useRouter()
@@ -123,22 +148,22 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     return () => el.removeEventListener('wheel', onWheel)
   }, [cropModal])
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, side: 'recto' | 'verso' | 'il' | 'ir') => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>, side: 'recto' | 'verso' | 'il' | 'ir') => {
     const file = e.target.files?.[0]
+    e.target.value = ''
     if (!file) return
-    const reader = new FileReader()
-    reader.onload = () => {
-      if (!reader.result) return
+    try {
+      const src = await downscaleToDataURL(file)
       if (side === 'il' || side === 'ir') {
-        setCropModal({ side, src: reader.result as string })
+        setCropModal({ side, src })
         setRotation(0)
         setImgTransform({ x: 0, y: 0, scale: 1 })
       } else {
-        setScannerModal({ side, src: reader.result as string })
+        setScannerModal({ side, src })
       }
+    } catch {
+      alert(lang === 'fr' ? 'Image illisible, réessayez.' : 'Unreadable image, please retry.')
     }
-    reader.readAsDataURL(file)
-    e.target.value = ''
   }
 
   const [scanning, setScanning] = useState(false)
@@ -474,15 +499,6 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       </h1>
 
       <form onSubmit={handleSubmit}>
-        {/* Toggle Booklet */}
-        <div style={{ marginBottom: 16, display: 'flex', alignItems: 'center', gap: 10 }}>
-          <button type="button" onClick={() => setForm(f => ({ ...f, booklet: !f.booklet }))}
-            style={{ padding: '8px 18px', border: 'none', borderRadius: 20, fontWeight: 800, fontSize: 13, cursor: 'pointer', background: form.booklet ? '#7b1fa2' : '#f0f0f0', color: form.booklet ? 'white' : '#555', transition: '0.2s' }}>
-            📖 Booklet
-          </button>
-          {form.booklet && <span style={{ fontSize: 12, color: '#888' }}>{lang === 'fr' ? '4 photos requises (2 couvertures + 2 intérieurs)' : '4 photos required (2 covers + 2 interiors)'}</span>}
-        </div>
-
         {/* Photos couvertures */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: form.booklet ? 16 : 24 }}>
           <ImageUploader side="recto" label={lang === 'fr' ? (form.booklet ? 'Couverture avant *' : 'Photo Recto *') : (form.booklet ? 'Front cover *' : 'Front Photo *')} preview={previewRecto} uploading={uploadingRecto} aspect={getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined} />
@@ -584,19 +600,32 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {SELECTABLE_FORMATS.map(fmt => (
-                <button key={fmt.id} type="button" onClick={() => setForm({ ...form, format: fmt.id })}
+                <button key={fmt.id} type="button" onClick={() => setForm({ ...form, format: fmt.id, booklet: false })}
                   style={{
                     padding: '8px 14px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 12, transition: '0.15s',
-                    border: form.format === fmt.id ? '2px solid #003DA6' : '2px solid #e0e0e0',
-                    background: form.format === fmt.id ? '#003DA6' : 'white',
-                    color: form.format === fmt.id ? 'white' : '#333',
+                    border: (!form.booklet && form.format === fmt.id) ? '2px solid #003DA6' : '2px solid #e0e0e0',
+                    background: (!form.booklet && form.format === fmt.id) ? '#003DA6' : 'white',
+                    color: (!form.booklet && form.format === fmt.id) ? 'white' : '#333',
                     display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, minWidth: 64,
                   }}>
                   <span style={{ fontSize: 18, lineHeight: 1 }}>{fmt.icon}</span>
                   <span>{fmt.label}</span>
                 </button>
               ))}
+              {/* Booklet = type de carte à part (carte multi-pages), placé avec les formats */}
+              <button type="button" onClick={() => setForm(f => ({ ...f, booklet: !f.booklet }))}
+                style={{
+                  padding: '8px 14px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 12, transition: '0.15s',
+                  border: form.booklet ? '2px solid #7b1fa2' : '2px solid #e0e0e0',
+                  background: form.booklet ? '#7b1fa2' : 'white',
+                  color: form.booklet ? 'white' : '#333',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, minWidth: 64,
+                }}>
+                <span style={{ fontSize: 18, lineHeight: 1 }}>📖</span>
+                <span>Booklet</span>
+              </button>
             </div>
+            {form.booklet && <p style={{ fontSize: 12, color: '#888', margin: '8px 0 0' }}>{lang === 'fr' ? '4 photos requises (2 couvertures + 2 intérieurs)' : '4 photos required (2 covers + 2 interiors)'}</p>}
           </div>
 
           <div>
@@ -606,7 +635,6 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                 { key: 'rc', label: 'RC', activeBg: '#e67e22' },
                 { key: 'auto', label: 'AUTO', activeBg: '#2e7d32' },
                 { key: 'patch', label: 'PATCH', activeBg: '#1976d2' },
-                { key: 'booklet', label: '📖 BOOKLET', activeBg: '#7b1fa2' },
               ].map(tag => (
                 <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })}
                   style={{

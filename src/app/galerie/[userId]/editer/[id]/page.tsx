@@ -8,6 +8,29 @@ import CardScanner from '@/components/CardScanner'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
 import { SELECTABLE_FORMATS, getFormat } from '@/lib/cardFormats'
 
+// Réduit une photo importée à ~1600px avant traitement (évite les crashs mémoire
+// mobile causés par les photos 12 Mpx décodées en plusieurs bitmaps pleine résolution).
+function downscaleToDataURL(file: File, maxDim = 1600): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file)
+    const img = new Image()
+    img.onload = () => {
+      URL.revokeObjectURL(url)
+      const scale = Math.min(1, maxDim / Math.max(img.naturalWidth, img.naturalHeight))
+      const w = Math.max(1, Math.round(img.naturalWidth * scale))
+      const h = Math.max(1, Math.round(img.naturalHeight * scale))
+      const c = document.createElement('canvas')
+      c.width = w; c.height = h
+      c.getContext('2d')!.drawImage(img, 0, 0, w, h)
+      const dataUrl = c.toDataURL('image/jpeg', 0.9)
+      c.width = 0; c.height = 0
+      resolve(dataUrl)
+    }
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('image illisible')) }
+    img.src = url
+  })
+}
+
 export default function EditerCarte({ params }: { params: Promise<{ userId: string; id: string }> }) {
   const { userId, id } = use(params)
   const router = useRouter()
@@ -112,25 +135,22 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     return () => el.removeEventListener('wheel', onWheel)
   }, [cropModal])
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, side: 'recto' | 'verso' | 'il' | 'ir') => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>, side: 'recto' | 'verso' | 'il' | 'ir') => {
     const file = e.target.files?.[0]
+    e.target.value = ''
     if (!file) return
-    if (side === 'il' || side === 'ir') {
-      const reader = new FileReader()
-      reader.onload = async () => {
-        const dataUrl = reader.result as string
+    try {
+      const dataUrl = await downscaleToDataURL(file)
+      if (side === 'il' || side === 'ir') {
         const res = await fetch(dataUrl)
         const blob = await res.blob()
         await uploadBlob(blob, side)
+      } else {
+        setScannerModal({ side: side as 'recto' | 'verso', src: dataUrl })
       }
-      reader.readAsDataURL(file)
-      e.target.value = ''
-      return
+    } catch {
+      alert(lang === 'fr' ? 'Image illisible, réessayez.' : 'Unreadable image, please retry.')
     }
-    const reader = new FileReader()
-    reader.onload = () => { if (reader.result) setScannerModal({ side: side as 'recto' | 'verso', src: reader.result as string }) }
-    reader.readAsDataURL(file)
-    e.target.value = ''
   }
 
   const [scanning, setScanning] = useState(false)
