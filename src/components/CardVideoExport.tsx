@@ -142,10 +142,11 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2)
     const seg = (t: number, a: number, b: number) => Math.max(0, Math.min(1, (t - a) / (b - a)))
     let rot: number
-    if (p < 0.34)      rot = 0
-    else if (p < 0.50) rot = Math.PI * easeInOut(seg(p, 0.34, 0.50))
-    else if (p < 0.84) rot = Math.PI
-    else               rot = Math.PI + Math.PI * easeInOut(seg(p, 0.84, 1))
+    if (p < 0.32)      rot = 0
+    else if (p < 0.48) rot = Math.PI * easeInOut(seg(p, 0.32, 0.48))
+    else if (p < 0.78) rot = Math.PI
+    else if (p < 0.92) rot = Math.PI + Math.PI * easeInOut(seg(p, 0.78, 0.92))
+    else               rot = 0   // palier recto en fin de vidéo → boucle parfaite avec le début
 
     const scaleX = Math.cos(rot)
     const showBack = scaleX < 0
