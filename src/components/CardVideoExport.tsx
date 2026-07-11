@@ -40,19 +40,39 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
   const DURATION = 6000
-  const FPS = isMobile ? 20 : 30
+  const FPS = isMobile ? 30 : 60
   const themeRef = useRef(theme)
   const vfmtRef = useRef(vfmt)
   themeRef.current = theme
   vfmtRef.current = vfmt
 
-  // Sync canvas size to selected format
+  const previewImgs = useRef<{ f?: HTMLImageElement; b?: HTMLImageElement }>({})
+
+  // Sync canvas size + dessine un aperçu statique du rendu
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const { w, h } = VIDEO_FORMATS[vfmt]
     canvas.width = w; canvas.height = h
-  }, [vfmt])
+    if (recording) return
+    let cancelled = false
+    const paint = (fImg: HTMLImageElement, bImg: HTMLImageElement) => {
+      if (cancelled) return
+      const ctx = canvas.getContext('2d')!
+      ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high'
+      drawFrame(ctx, fImg, bImg, 0.1)
+    }
+    const cached = previewImgs.current
+    if (cached.f && cached.b) { paint(cached.f, cached.b) }
+    else {
+      Promise.all([loadImage(card.f), loadImage(card.b || card.f)]).then(([f, b]) => {
+        previewImgs.current = { f, b }
+        paint(f, b)
+      })
+    }
+    return () => { cancelled = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [vfmt, theme, recording])
 
   const loadImage = (src: string): Promise<HTMLImageElement> =>
     new Promise(resolve => {
@@ -116,34 +136,87 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     spot.addColorStop(1, 'rgba(0,0,0,0)')
     ctx.fillStyle = spot; ctx.fillRect(0, 0, W, H)
 
-    // ── Animation carte ────────────────────────────────────────────────────
-    const angle  = p * Math.PI * 2
-    const scaleX = Math.cos(angle)
+    // ── Animation carte — présente le recto, retourne, présente le verso ────
+    // Rotation avec paliers (dwell) + easing plutôt qu'une rotation continue :
+    // rendu bien plus élégant qu'un simple spin.
+    const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2)
+    const seg = (t: number, a: number, b: number) => Math.max(0, Math.min(1, (t - a) / (b - a)))
+    let rot: number
+    if (p < 0.34)      rot = 0
+    else if (p < 0.50) rot = Math.PI * easeInOut(seg(p, 0.34, 0.50))
+    else if (p < 0.84) rot = Math.PI
+    else               rot = Math.PI + Math.PI * easeInOut(seg(p, 0.84, 1))
+
+    const scaleX = Math.cos(rot)
     const showBack = scaleX < 0
-    const zoom   = 1 + 0.04 * Math.sin(p * Math.PI)
-    const cardW  = BASE_W * Math.abs(scaleX) * zoom
-    const cardH  = BASE_H * zoom
+    const face = showBack ? backImg : frontImg
+    const bob  = Math.sin(p * Math.PI * 2) * H * 0.006   // léger flottement
+    const zoom = 1 + 0.03 * Math.sin(p * Math.PI * 2)
+    const cardW = BASE_W * Math.abs(scaleX) * zoom
+    const cardH = BASE_H * zoom
+    const cardCY = CARD_CY + bob
+    const cardX = W / 2 - cardW / 2
+    const cardTop = cardCY - cardH / 2
 
     if (cardW > 2) {
-      // Reflet au sol
-      const floorY = CARD_CY + BASE_H * zoom / 2
+      // Reflet au sol (coins droits)
+      const floorY = cardCY + cardH / 2
       ctx.save()
+      ctx.beginPath()
+      ctx.rect(cardX, floorY, cardW, cardH)
+      ctx.clip()
       ctx.translate(W / 2, floorY)
-      ctx.transform(Math.abs(scaleX) * zoom, 0, 0, -zoom, 0, 0)
-      ctx.globalAlpha = 0.16 * Math.abs(scaleX)
-      ctx.drawImage(showBack ? backImg : frontImg, -BASE_W / 2, 0, BASE_W, BASE_H)
+      ctx.scale(1, -1)
+      ctx.globalAlpha = 0.14 * Math.abs(scaleX)
+      ctx.drawImage(face, -cardW / 2, 0, cardW, cardH)
       ctx.restore()
-      // Fondu reflet
-      const reflFade = ctx.createLinearGradient(0, floorY, 0, floorY + BASE_H * 0.4 * zoom)
+      const reflFade = ctx.createLinearGradient(0, floorY, 0, floorY + cardH * 0.5)
       reflFade.addColorStop(0, 'rgba(0,0,0,0)'); reflFade.addColorStop(1, bgBot)
-      ctx.fillStyle = reflFade; ctx.fillRect(0, floorY, W, BASE_H * 0.4 * zoom)
+      ctx.fillStyle = reflFade; ctx.fillRect(0, floorY, W, cardH * 0.5)
 
-      // Carte principale
+      // Ombre portée douce sous la carte
       ctx.save()
-      ctx.translate(W / 2, CARD_CY)
-      // Ombre portée
-      ctx.drawImage(showBack ? backImg : frontImg, -cardW / 2, -cardH / 2, cardW, cardH)
+      ctx.shadowColor = `rgba(0,0,0,${isDark ? 0.6 : 0.35})`
+      ctx.shadowBlur = BASE_W * 0.11
+      ctx.shadowOffsetY = BASE_H * 0.03
+      ctx.fillStyle = '#000'
+      ctx.fillRect(cardX, cardTop, cardW, cardH)
       ctx.restore()
+
+      // Carte (image, coins droits)
+      ctx.drawImage(face, cardX, cardTop, cardW, cardH)
+
+      // Reflet glossy diagonal qui balaie la carte
+      ctx.save()
+      ctx.beginPath()
+      ctx.rect(cardX, cardTop, cardW, cardH)
+      ctx.clip()
+      const sweep = ((p * 1.6) % 1) * 2 - 0.5
+      const gloss = ctx.createLinearGradient(
+        cardX + sweep * cardW - cardW * 0.25, cardTop,
+        cardX + sweep * cardW + cardW * 0.25, cardCY + cardH / 2)
+      gloss.addColorStop(0,   'rgba(255,255,255,0)')
+      gloss.addColorStop(0.5, `rgba(255,255,255,${0.16 * Math.abs(scaleX)})`)
+      gloss.addColorStop(1,   'rgba(255,255,255,0)')
+      ctx.fillStyle = gloss
+      ctx.fillRect(cardX, cardTop, cardW, cardH)
+      ctx.restore()
+
+      // Liseré lumineux sur le bord de la carte
+      ctx.lineWidth = Math.max(1, W * 0.0022)
+      ctx.strokeStyle = `rgba(255,255,255,${0.10 + 0.14 * (1 - Math.abs(scaleX))})`
+      ctx.strokeRect(cardX, cardTop, cardW, cardH)
+
+      // Éclat quand la carte est de profil (la lumière accroche le bord)
+      if (Math.abs(scaleX) < 0.28) {
+        const glint = 1 - Math.abs(scaleX) / 0.28
+        const gg = ctx.createLinearGradient(W / 2 - 4, 0, W / 2 + 4, 0)
+        gg.addColorStop(0, 'rgba(255,255,255,0)')
+        gg.addColorStop(0.5, `rgba(255,255,255,${0.5 * glint})`)
+        gg.addColorStop(1, 'rgba(255,255,255,0)')
+        ctx.fillStyle = gg
+        ctx.fillRect(W / 2 - Math.max(2, cardW), cardTop, Math.max(4, cardW * 2), cardH)
+      }
     }
 
     // ── Zone infos ─────────────────────────────────────────────────────────
@@ -233,50 +306,49 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const ctx = canvas.getContext('2d')!
     const [frontImg, backImg] = await Promise.all([loadImage(card.f), loadImage(card.b || card.f)])
 
-    const totalFrames = Math.ceil((DURATION / 1000) * FPS)
-    const frameDur = DURATION / totalFrames
+    // Meilleur rendu texte
+    ctx.imageSmoothingEnabled = true
+    ctx.imageSmoothingQuality = 'high'
 
-    // ── Phase 1 : pré-rendu → ImageBitmaps en mémoire ─────────────────────
-    // p va de 0 à (totalFrames-1)/totalFrames : rotation de 0 à ~360° sans
-    // dupliquer le frame de départ (évite la "pause" visible en fin de vidéo)
-    const bitmaps: ImageBitmap[] = []
-    for (let i = 0; i < totalFrames; i++) {
-      drawFrame(ctx, frontImg, backImg, i / totalFrames)
-      const blob = await new Promise<Blob>(res =>
-        canvas.toBlob(b => res(b!), 'image/jpeg', 0.88)
-      )
-      bitmaps.push(await createImageBitmap(blob))
-      setProgress(Math.round(i / totalFrames * 60))
-      await new Promise(r => setTimeout(r, 0))
-    }
-
-    // ── Phase 2 : captureStream(FPS) auto + setInterval ────────────────────
-    // captureStream(FPS) : le browser capture à FPS régulier sans requestFrame
-    // setInterval : met à jour le canvas au même rythme → timing natif du browser
-    const mimeType = codec === 'mp4' && MediaRecorder.isTypeSupported('video/mp4')
-      ? 'video/mp4' : 'video/webm;codecs=vp9'
+    // ── Rendu direct pendant la capture (aucune compression JPEG, peu de
+    //    mémoire → sûr sur mobile). On dessine chaque frame en temps réel et
+    //    captureStream échantillonne le canvas à FPS.
+    const mimeType =
+      codec === 'mp4' && MediaRecorder.isTypeSupported('video/mp4') ? 'video/mp4'
+      : MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9'
+      : 'video/webm'
+    // Débit adapté à la résolution : ~beaucoup plus élevé qu'avant pour un
+    // rendu net, plafonné plus bas sur mobile pour rester fluide.
+    const pixels = w * h
+    const bitrate = Math.round(pixels * (isMobile ? 9 : 14)) // ~ bits/pixel/s équivalent
     const stream = canvas.captureStream(FPS)
-    const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 6_000_000 })
+    const recorder = new MediaRecorder(stream, {
+      mimeType,
+      videoBitsPerSecond: Math.min(isMobile ? 12_000_000 : 24_000_000, Math.max(6_000_000, bitrate)),
+    })
     const chunks: Blob[] = []
     recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data) }
     recorder.onstop = () => {
-      bitmaps.forEach(b => b.close())
       setVideoUrl(URL.createObjectURL(new Blob(chunks, { type: mimeType })))
       setDone(true); setRecording(false)
     }
     recorder.start()
 
-    let fi = 0
+    // Boucle rendu en temps réel basée sur l'horloge (fluide quel que soit le device)
+    const start = performance.now()
     await new Promise<void>(resolve => {
-      const id = setInterval(() => {
-        ctx.drawImage(bitmaps[fi], 0, 0, canvas.width, canvas.height)
-        setProgress(60 + Math.round(fi / bitmaps.length * 40))
-        fi++
-        if (fi >= bitmaps.length) { clearInterval(id); resolve() }
-      }, frameDur)
+      const tick = () => {
+        const elapsed = performance.now() - start
+        const p = Math.min(elapsed / DURATION, 1)
+        drawFrame(ctx, frontImg, backImg, p >= 1 ? 0.999 : p)
+        setProgress(Math.round(p * 100))
+        if (elapsed >= DURATION) { resolve(); return }
+        requestAnimationFrame(tick)
+      }
+      requestAnimationFrame(tick)
     })
-    // Attendre que le dernier frame soit bien capturé avant d'arrêter
-    await new Promise(r => setTimeout(r, frameDur * 3))
+    // Laisse le dernier frame être capturé avant d'arrêter
+    await new Promise(r => setTimeout(r, 250))
     recorder.stop()
   }
 
