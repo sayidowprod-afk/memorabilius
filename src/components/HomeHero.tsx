@@ -30,17 +30,14 @@ const heroCSS = `
 }
 .mb-hero-cards { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .mb-card {
-  position: absolute; width: 150px; height: 210px;
-  background: linear-gradient(135deg, #0a1230, #14224e);
+  position: absolute; width: 148px; height: 207px;
   box-shadow: 0 24px 50px rgba(0,0,0,0.42);
-  overflow: hidden; opacity: 0.92;
+  overflow: hidden; opacity: 0.92; background: #0a1230;
   transition: transform 0.25s cubic-bezier(.2,.7,.3,1);
-  will-change: transform;
+  will-change: transform, translate;
+  animation: mbFloat 9s ease-in-out infinite; /* toute la carte flotte */
 }
-.mb-card > .mb-card-inner {
-  position: absolute; inset: 0;
-  animation: mbFloat 9s ease-in-out infinite;
-}
+.mb-card > .mb-card-inner { position: absolute; inset: 0; }
 .mb-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .mb-card-shine {
   position: absolute; top: -60%; left: -30%; width: 70%; height: 220%;
@@ -48,15 +45,11 @@ const heroCSS = `
   transform: rotate(18deg); filter: blur(6px); z-index: 2;
   animation: mbSweep 5.5s ease-in-out infinite;
 }
-.mb-card-1 { top: 11%;  left: 4%;   transform: rotate(-15deg); }
-.mb-card-1 .mb-card-inner { animation-delay: 0s; }
-.mb-card-2 { bottom: 5%; left: 14%;  transform: rotate(9deg);  width: 122px; height: 171px; opacity: 0.78; }
-.mb-card-2 .mb-card-inner { animation-delay: 0.6s; }
-.mb-card-3 { top: 13%;  right: 5%;   transform: rotate(14deg); }
-.mb-card-3 .mb-card-inner { animation-delay: 1.1s; }
-.mb-card-4 { bottom: 7%; right: 15%; transform: rotate(-8deg);  width: 122px; height: 171px; opacity: 0.78; }
-.mb-card-4 .mb-card-inner { animation-delay: 0.3s; }
-@keyframes mbFloat { 0%,100% { translate: 0 0; } 50% { translate: 0 -16px; } }
+.mb-card-1 { top: 14%;  left: 4%;   transform: rotate(-15deg); animation-delay: 0s;   }
+.mb-card-2 { bottom: 9%; left: 14%;  transform: rotate(9deg);  width: 120px; height: 168px; opacity: 0.78; animation-delay: 0.6s; }
+.mb-card-3 { top: 15%;  right: 5%;   transform: rotate(14deg); animation-delay: 1.1s; }
+.mb-card-4 { bottom: 11%; right: 15%; transform: rotate(-8deg);  width: 120px; height: 168px; opacity: 0.78; animation-delay: 0.3s; }
+@keyframes mbFloat { 0%,100% { translate: 0 0; } 50% { translate: 0 -12px; } }
 @keyframes mbSweep { 0% { left: -40%; } 55%,100% { left: 130%; } }
 @media (max-width: 820px) {
   .mb-card-2, .mb-card-4 { display: none; }
