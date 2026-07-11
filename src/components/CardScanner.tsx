@@ -56,6 +56,22 @@ function cornersInsideImage(pts: Pt[], W: number, H: number): boolean {
   )
 }
 
+// Valide des coins détectés avant de les afficher : coordonnées finies, à peu près
+// dans l'image, et quadrilatère non dégénéré. Sans ce garde-fou, une détection qui
+// « réussit » mais renvoie des coordonnées aberrantes (Gemini qui hallucine, etc.)
+// affichait des poignées hors écran ou effondrées → l'utilisateur voyait la carte
+// « détectée » mais aucun point à déplacer.
+function cornersValid(pts: Pt[] | null, W: number, H: number): boolean {
+  if (!pts || pts.length !== 4) return false
+  for (const p of pts) {
+    if (!Number.isFinite(p.x) || !Number.isFinite(p.y)) return false
+    if (p.x < -W * 0.1 || p.x > W * 1.1 || p.y < -H * 0.1 || p.y > H * 1.1) return false
+  }
+  const [tl, tr, br, bl] = pts
+  const area = Math.abs((tr.x - tl.x) * (bl.y - tl.y) - (bl.x - tl.x) * (tr.y - tl.y))
+  return area > W * H * 0.04 // au moins 4% de la surface = quad exploitable
+}
+
 const yieldThread = () => new Promise<void>(r => setTimeout(r, 0))
 
 async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | null> {
@@ -852,13 +868,26 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
 
   // ── Chargement & détection ─────────────────────────────────────────────
   useEffect(() => {
+    let cancelled = false
     const img = new Image()
     img.onload = async () => {
+      if (cancelled) return
       origImgRef.current = img
       imgRef.current = img
+      // Attendre que le <canvas> soit réellement monté avant d'initialiser. Sans ça,
+      // quand l'image (data URL en cache) se charge avant la peinture du canvas,
+      // initCanvas sortait en silence et rien ne s'affichait → il fallait recharger
+      // la photo une 2e fois. On réessaie sur quelques frames.
+      let tries = 0
+      while (!canvasRef.current && tries < 30 && !cancelled) {
+        await new Promise(r => requestAnimationFrame(r)); tries++
+      }
+      if (cancelled) return
       await initCanvas(img)
     }
+    img.onerror = () => { if (!cancelled) onFallback() }
     img.src = src
+    return () => { cancelled = true }
   }, [src])
 
   const initCanvas = async (img: HTMLImageElement) => {
@@ -947,17 +976,22 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       detectedCorners = null
     }
 
+    // On ne fait confiance à une détection que si les coins sont réellement
+    // exploitables (finis, dans l'image, quad non dégénéré). Sinon on retombe sur
+    // un rectangle par défaut bien visible et déplaçable, plutôt que d'afficher des
+    // poignées invisibles ou hors écran.
+    const valid = cornersValid(detectedCorners, img.naturalWidth, img.naturalHeight)
     // Fallback corners : rectangle du cadre ou defaultCorners (status 'notfound')
     const fallbackNatural: Pt[] | null = frameRect
       ? [{ x: frameRect.x, y: frameRect.y }, { x: frameRect.x + frameRect.w, y: frameRect.y },
          { x: frameRect.x + frameRect.w, y: frameRect.y + frameRect.h }, { x: frameRect.x, y: frameRect.y + frameRect.h }]
       : null
-    const naturalCorners = detectedCorners ?? fallbackNatural
+    const naturalCorners = valid ? detectedCorners : fallbackNatural
     const display = naturalCorners
       ? naturalCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
       : defaultCorners(canvas)
     setCorners(display)
-    setStatus(detectedCorners ? 'found' : 'notfound')
+    setStatus(valid ? 'found' : 'notfound')
   }
 
   // Tourne l'image depuis l'original (évite la dégradation par compressions successives)
@@ -992,11 +1026,14 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     await initCanvas(newImg)
   }
 
+  // Rectangle par défaut centré sur l'image, avec une marge confortable pour que les
+  // 4 poignées soient bien visibles et attrapables (pas collées aux bords/arrondis).
   const defaultCorners = (canvas: HTMLCanvasElement): Pt[] => {
-    const p = Math.round(Math.min(canvas.width, canvas.height) * 0.07)
+    const mx = Math.round(canvas.width * 0.14)
+    const my = Math.round(canvas.height * 0.10)
     return [
-      { x: p, y: p }, { x: canvas.width - p, y: p },
-      { x: canvas.width - p, y: canvas.height - p }, { x: p, y: canvas.height - p },
+      { x: mx, y: my }, { x: canvas.width - mx, y: my },
+      { x: canvas.width - mx, y: canvas.height - my }, { x: mx, y: canvas.height - my },
     ]
   }
 
@@ -1245,7 +1282,15 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           style={{ flex: 1, padding: '13px 0', background: 'rgba(255,255,255,0.08)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
           Annuler
         </button>
-        <button onClick={onFallback} disabled={applying}
+        <button onClick={() => {
+            // Manuel = replace les 4 coins au centre de l'image, bien visibles, dans
+            // cette même interface (glisser les coins) — plus fiable que l'ancien outil
+            // de recadrage pan/zoom où l'on n'arrivait pas à cadrer la carte.
+            const canvas = canvasRef.current
+            if (canvas) { setCorners(defaultCorners(canvas)); resetZoom() }
+            hasAdjusted.current = true
+            setStatus('notfound')
+          }} disabled={applying}
           style={{ flex: 1, padding: '13px 0', background: 'rgba(255,255,255,0.14)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
           Manuel
         </button>
