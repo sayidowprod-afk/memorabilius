@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
@@ -30,47 +30,105 @@ const heroCSS = `
 }
 .mb-hero-cards { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .mb-card {
-  position: absolute; width: 150px; height: 210px; border-radius: 12px;
-  background: linear-gradient(135deg, #003DA6, #0a63d6 25%, #00e5ff 45%, #7b1fa2 70%, #003DA6);
-  background-size: 300% 300%;
-  box-shadow: 0 24px 50px rgba(0,0,0,0.38), inset 0 0 0 2px rgba(255,255,255,0.14);
-  overflow: hidden; opacity: 0.9;
-  animation: mbHolo 7s ease-in-out infinite, mbFloat 9s ease-in-out infinite;
+  position: absolute; width: 150px; height: 210px;
+  background: linear-gradient(135deg, #0a1230, #14224e);
+  box-shadow: 0 24px 50px rgba(0,0,0,0.42);
+  overflow: hidden; opacity: 0.92;
+  transition: transform 0.25s cubic-bezier(.2,.7,.3,1);
+  will-change: transform;
 }
+.mb-card > .mb-card-inner {
+  position: absolute; inset: 0;
+  animation: mbFloat 9s ease-in-out infinite;
+}
+.mb-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .mb-card-shine {
   position: absolute; top: -60%; left: -30%; width: 70%; height: 220%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
-  transform: rotate(18deg); filter: blur(6px);
-  animation: mbSweep 5s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+  transform: rotate(18deg); filter: blur(6px); z-index: 2;
+  animation: mbSweep 5.5s ease-in-out infinite;
 }
-.mb-card-1 { top: 12%;  left: 5%;   transform: rotate(-16deg); animation-delay: 0s,   0s;   }
-.mb-card-2 { bottom: 6%; left: 15%;  transform: rotate(10deg);  width: 120px; height: 168px; opacity: 0.75; animation-delay: 1.2s, 0.6s; }
-.mb-card-3 { top: 14%;  right: 6%;   transform: rotate(15deg);  animation-delay: 0.6s, 1.1s; }
-.mb-card-4 { bottom: 8%; right: 16%; transform: rotate(-9deg);  width: 120px; height: 168px; opacity: 0.75; animation-delay: 1.8s, 0.3s; }
-@keyframes mbHolo { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.mb-card-1 { top: 11%;  left: 4%;   transform: rotate(-15deg); }
+.mb-card-1 .mb-card-inner { animation-delay: 0s; }
+.mb-card-2 { bottom: 5%; left: 14%;  transform: rotate(9deg);  width: 122px; height: 171px; opacity: 0.78; }
+.mb-card-2 .mb-card-inner { animation-delay: 0.6s; }
+.mb-card-3 { top: 13%;  right: 5%;   transform: rotate(14deg); }
+.mb-card-3 .mb-card-inner { animation-delay: 1.1s; }
+.mb-card-4 { bottom: 7%; right: 15%; transform: rotate(-8deg);  width: 122px; height: 171px; opacity: 0.78; }
+.mb-card-4 .mb-card-inner { animation-delay: 0.3s; }
 @keyframes mbFloat { 0%,100% { translate: 0 0; } 50% { translate: 0 -16px; } }
 @keyframes mbSweep { 0% { left: -40%; } 55%,100% { left: 130%; } }
 @media (max-width: 820px) {
   .mb-card-2, .mb-card-4 { display: none; }
-  .mb-card-1 { left: -6%; opacity: 0.5; }
-  .mb-card-3 { right: -6%; opacity: 0.5; }
+  .mb-card-1 { left: -7%; opacity: 0.45; }
+  .mb-card-3 { right: -7%; opacity: 0.45; }
   .mb-hero-inner { padding: 70px 18px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mb-card, .mb-card-shine { animation: none; }
+  .mb-card-inner, .mb-card-shine { animation: none; }
+  .mb-card { transition: none; }
 }
 `
+
+// Rotation de base par carte (doit matcher le CSS) — réutilisée par le parallax
+// pour composer transform = rotate(base) translate(parallax).
+const CARD_BASE_ROT = [-15, 9, 14, -8]
+const CARD_DEPTH = [26, 16, 24, 16]
 
 export default function HomeHero({ total, totalCartes }: { total: number; totalCartes: number }) {
   const { t, lang } = useLang()
   const { dark } = useTheme()
   const [galerieHref, setGalerieHref] = useState('/sinscrire')
+  const [cardImgs, setCardImgs] = useState<string[]>([])
+  const cardsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       if (data.user) setGalerieHref(`/galerie/${data.user.id}/ajouter`)
     })
   }, [])
+
+  // Récupère quelques vraies cartes récentes (recto) pour décorer le hero
+  useEffect(() => {
+    supabase
+      .from('cartes_manuelles')
+      .select('image_recto')
+      .not('image_recto', 'is', null)
+      .eq('is_horizontal', false)
+      .order('created_at', { ascending: false })
+      .limit(40)
+      .then(({ data }) => {
+        const urls = (data || []).map((r: any) => r.image_recto).filter(Boolean)
+        // Mélange léger puis garde 4 cartes distinctes
+        const seen = new Set<string>(); const pick: string[] = []
+        for (const u of urls.sort(() => Math.random() - 0.5)) {
+          if (!seen.has(u)) { seen.add(u); pick.push(u) }
+          if (pick.length >= 4) break
+        }
+        setCardImgs(pick)
+      })
+  }, [])
+
+  // Parallaxe : décale chaque carte selon la position du curseur (profondeurs
+  // différentes) en composant avec sa rotation de base.
+  const onMove = (e: React.MouseEvent) => {
+    const el = cardsRef.current
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    const nx = (e.clientX - r.left) / r.width - 0.5
+    const ny = (e.clientY - r.top) / r.height - 0.5
+    el.querySelectorAll<HTMLElement>('.mb-card').forEach((card: HTMLElement, i: number) => {
+      const d = CARD_DEPTH[i] ?? 18
+      card.style.transform = `rotate(${CARD_BASE_ROT[i] ?? 0}deg) translate(${(-nx * d).toFixed(1)}px, ${(-ny * d).toFixed(1)}px)`
+    })
+  }
+  const onLeave = () => {
+    const el = cardsRef.current
+    if (!el) return
+    el.querySelectorAll<HTMLElement>('.mb-card').forEach((card: HTMLElement, i: number) => {
+      card.style.transform = `rotate(${CARD_BASE_ROT[i] ?? 0}deg)`
+    })
+  }
 
   const steps = lang === 'fr' ? [
     { n: 1, title: 'Crée ton compte', desc: "Inscris-toi gratuitement en quelques secondes. Ton profil devient ta vitrine de collectionneur.", link: '/sinscrire', linkText: "Créer mon compte →" },
@@ -91,13 +149,17 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
           ? 'radial-gradient(1000px 500px at 80% -10%, rgba(0,120,255,0.28), transparent 60%), radial-gradient(800px 500px at 0% 110%, rgba(123,31,162,0.22), transparent 55%), linear-gradient(135deg, #070a16 0%, #0d1230 100%)'
           : 'radial-gradient(1000px 500px at 80% -10%, rgba(0,61,166,0.16), transparent 60%), radial-gradient(800px 500px at 0% 110%, rgba(0,180,255,0.14), transparent 55%), linear-gradient(135deg, #f4f7ff 0%, #e6ecff 100%)',
         border: dark ? '1px solid rgba(120,150,255,0.14)' : '1px solid rgba(0,61,166,0.10)',
-      }}>
-        {/* Cartes holographiques flottantes (décor) */}
-        <div className="mb-hero-cards" aria-hidden="true">
-          <div className="mb-card mb-card-1"><span className="mb-card-shine" /></div>
-          <div className="mb-card mb-card-2"><span className="mb-card-shine" /></div>
-          <div className="mb-card mb-card-3"><span className="mb-card-shine" /></div>
-          <div className="mb-card mb-card-4"><span className="mb-card-shine" /></div>
+      }} onMouseMove={onMove} onMouseLeave={onLeave}>
+        {/* Vraies cartes de sport flottantes (décor + parallaxe) */}
+        <div className="mb-hero-cards" aria-hidden="true" ref={cardsRef}>
+          {[0, 1, 2, 3].map(i => (
+            <div key={i} className={`mb-card mb-card-${i + 1}`}>
+              <div className="mb-card-inner">
+                {cardImgs[i] && <img src={cardImgs[i]} alt="" loading="lazy" />}
+                <span className="mb-card-shine" />
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="mb-hero-inner">
