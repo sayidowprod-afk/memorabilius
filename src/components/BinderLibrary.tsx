@@ -20,7 +20,10 @@ interface Binder {
   page_count: number
   position: number
   binder_type: 'portfolio' | 'rings'
+  folder_id: number | null
 }
+
+interface Folder { id: number; name: string; position: number }
 
 interface Slot {
   page_number: number
@@ -87,6 +90,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   initialBinderId?: number | null
 }) {
   const [binders, setBinders] = useState<Binder[]>([])
+  const [folders, setFolders] = useState<Folder[]>([])
+  const [currentFolder, setCurrentFolder] = useState<Folder | null>(null)
   const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState<Binder | null>(null)
   const [showComments, setShowComments] = useState(false)
@@ -115,6 +120,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [fLayout, setFLayout] = useState(9)
   const [fType, setFType] = useState<'portfolio' | 'rings'>('portfolio')
   const [fColor, setFColor] = useState(BINDER_COLORS[0])
+  const [fFolderId, setFFolderId] = useState<number | null>(null)
   const [fCover, setFCover] = useState<string | null>(null)
   const [uploadingCover, setUploadingCover] = useState(false)
   const coverInputRef = useRef<HTMLInputElement>(null)
@@ -172,9 +178,37 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }, [])
 
   const loadBinders = async () => {
-    const { data } = await supabase.from('binders').select('*').eq('user_id', userId).order('position').order('id')
+    const [{ data }, { data: fdata }] = await Promise.all([
+      supabase.from('binders').select('*').eq('user_id', userId).order('position').order('id'),
+      supabase.from('binder_folders').select('*').eq('user_id', userId).order('position').order('id'),
+    ])
     setBinders(data || [])
+    setFolders(fdata || [])
     setLoading(false)
+  }
+
+  const createFolder = async () => {
+    const name = prompt('Nom du dossier :')?.trim()
+    if (!name) return
+    const { data, error } = await supabase.from('binder_folders').insert({ user_id: userId, name, position: folders.length }).select().single()
+    if (error) { alert('Erreur : ' + error.message); return }
+    setFolders(prev => [...prev, data])
+  }
+
+  const renameFolder = async (folder: Folder) => {
+    const name = prompt('Renommer le dossier :', folder.name)?.trim()
+    if (!name || name === folder.name) return
+    await supabase.from('binder_folders').update({ name }).eq('id', folder.id)
+    setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, name } : f))
+    setCurrentFolder(c => c && c.id === folder.id ? { ...c, name } : c)
+  }
+
+  const deleteFolder = async (folder: Folder) => {
+    if (!confirm(`Supprimer le dossier « ${folder.name} » ? Les classeurs qu'il contient repasseront à la racine.`)) return
+    await supabase.from('binder_folders').delete().eq('id', folder.id)
+    setFolders(prev => prev.filter(f => f.id !== folder.id))
+    setBinders(prev => prev.map(b => b.folder_id === folder.id ? { ...b, folder_id: null } : b))
+    setCurrentFolder(null)
   }
 
   const loadCommentCount = async (binderId: number) => {
@@ -226,10 +260,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   const openCreateForm = () => {
     setFName(''); setFSubtitle(''); setFLayout(9); setFType('portfolio'); setFColor(BINDER_COLORS[0]); setFCover(null)
+    setFFolderId(currentFolder?.id ?? null)
     setFormOpen('create')
   }
   const openEditForm = (b: Binder) => {
     setFName(b.name); setFSubtitle(b.subtitle || ''); setFLayout(b.layout); setFType(b.binder_type || 'portfolio'); setFColor(b.color || BINDER_COLORS[0]); setFCover(b.cover_img)
+    setFFolderId(b.folder_id ?? null)
     setFormOpen(b.id)
   }
 
@@ -247,7 +283,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   const saveForm = async () => {
     if (!fName.trim()) return
-    const payload = { name: fName.trim(), subtitle: fSubtitle.trim() || null, color: fColor, cover_img: fCover, binder_type: fType }
+    const payload = { name: fName.trim(), subtitle: fSubtitle.trim() || null, color: fColor, cover_img: fCover, binder_type: fType, folder_id: fFolderId }
     if (formOpen === 'create') {
       const { data, error } = await supabase.from('binders').insert({
         user_id: userId, layout: fLayout, position: binders.length, ...payload,
@@ -830,6 +866,15 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           </div>
         </div>
 
+        <div>
+          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Dossier (sous-bibliothèque)</label>
+          <select value={fFolderId ?? ''} onChange={e => setFFolderId(e.target.value ? Number(e.target.value) : null)}
+            style={{ width: '100%', padding: '9px 10px', borderRadius: 8, border: '1.5px solid #ddd', fontSize: 13, fontWeight: 600, background: 'white', color: '#333', boxSizing: 'border-box' }}>
+            <option value="">— Aucun (racine) —</option>
+            {folders.map(f => <option key={f.id} value={f.id}>📁 {f.name}</option>)}
+          </select>
+        </div>
+
         <button onClick={saveForm} disabled={!fName.trim()} className="btn-main btn-primary">
           {formOpen === 'create' ? 'Créer' : 'Enregistrer'}
         </button>
@@ -841,7 +886,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   // ── Vue étagère ──
   if (!selected) {
-    const items: (Binder | 'new')[] = [...binders]
+    const displayedBinders = binders.filter(b => (b.folder_id ?? null) === (currentFolder?.id ?? null))
+    const items: (Binder | 'new')[] = [...displayedBinders]
     if (isOwner) items.push('new')
     const rows: (Binder | 'new')[][] = []
     for (let i = 0; i < items.length; i += SHELF_ROW_SIZE) rows.push(items.slice(i, i + SHELF_ROW_SIZE))
@@ -854,6 +900,38 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <span style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>Choisis un classeur pour ranger « {pendingCard.nom} »</span>
           </div>
         )}
+        {/* Navigation dossiers / sous-bibliothèques */}
+        {currentFolder ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12, flexWrap: 'wrap' }}>
+            <button onClick={() => setCurrentFolder(null)} style={{ background: '#f0f0f0', border: 'none', borderRadius: 8, padding: '7px 12px', fontWeight: 700, fontSize: 13, cursor: 'pointer', color: '#333' }}>← Bibliothèque</button>
+            <span style={{ fontWeight: 900, fontSize: 16 }}>📁 {currentFolder.name}</span>
+            {isOwner && (
+              <>
+                <button onClick={() => renameFolder(currentFolder)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#003DA6', fontWeight: 700 }}>Renommer</button>
+                <button onClick={() => deleteFolder(currentFolder)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#e74c3c', fontWeight: 700 }}>Supprimer</button>
+              </>
+            )}
+          </div>
+        ) : (folders.length > 0 || isOwner) && (
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12 }}>
+            {folders.map(f => {
+              const count = binders.filter(b => b.folder_id === f.id).length
+              return (
+                <button key={f.id} onClick={() => setCurrentFolder(f)}
+                  style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#fff', border: '1.5px solid #e0e0e0', borderRadius: 12, padding: '8px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 13, color: '#333' }}>
+                  📁 {f.name} <span style={{ fontSize: 11, color: '#999' }}>({count})</span>
+                </button>
+              )
+            })}
+            {isOwner && (
+              <button onClick={createFolder}
+                style={{ background: 'none', border: '1.5px dashed #ccc', borderRadius: 12, padding: '8px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 13, color: '#888' }}>
+                + Nouveau dossier
+              </button>
+            )}
+          </div>
+        )}
+
         <div style={{ background: 'linear-gradient(180deg, #6b4a32, #4e3623)', borderRadius: 16, boxShadow: '0 6px 24px rgba(0,0,0,0.18)', padding: '18px 14px 4px' }}>
           {rows.map((row, ri) => (
             <div key={ri} style={{ marginBottom: 16 }}>
