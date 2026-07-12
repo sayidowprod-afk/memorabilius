@@ -84,8 +84,7 @@ export default function Navbar() {
             alt="Memorabilius" width={150} height={30}
             style={{
               height: 30, width: 'auto',
-              filter: dark ? 'invert(1)' : 'none',
-              mixBlendMode: dark ? 'lighten' : 'multiply',
+              filter: dark ? 'url(#rm-white) invert(1)' : 'url(#rm-white)',
             }}
           />
         </Link>

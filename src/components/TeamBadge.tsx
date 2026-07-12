@@ -1,6 +1,5 @@
 'use client'
 import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
-import { useTheme } from '@/lib/ThemeContext'
 
 interface Props {
   teamId: string
@@ -8,7 +7,6 @@ interface Props {
 }
 
 export default function TeamBadge({ teamId, size = 28 }: Props) {
-  const { dark } = useTheme()
   const team = getTeamById(teamId)
   if (!team) return null
   return (
@@ -18,7 +16,7 @@ export default function TeamBadge({ teamId, size = 28 }: Props) {
       title={team.name}
       width={size}
       height={size}
-      style={{ objectFit: 'contain', flexShrink: 0, display: 'block', mixBlendMode: dark ? 'normal' : 'multiply' }}
+      style={{ objectFit: 'contain', flexShrink: 0, display: 'block', filter: 'url(#rm-white)' }}
       onError={(e) => {
         const el = e.currentTarget
         el.style.display = 'none'
