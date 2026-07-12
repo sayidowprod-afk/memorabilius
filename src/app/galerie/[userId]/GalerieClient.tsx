@@ -192,7 +192,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         supabase.from('badges').select('mois').eq('user_id', resolvedId).eq('type', 'collectionneur_du_mois').order('mois', { ascending: false }).limit(6).then(({ data }) => {
           if (data) setMonthlyBadges(data.map((b: any) => b.mois))
         })
-        supabase.from('collection_tab_settings').select('tag, color, position').eq('user_id', resolvedId).then(({ data }) => {
+        supabase.from('collection_tab_settings').select('tag, color, position, parent').eq('user_id', resolvedId).then(({ data }) => {
           if (data) setTabSettings(new Map(data.map((r: any) => [r.tag, { color: r.color, position: r.position, parent: r.parent ?? null }])))
         })
         supabase.from('grail_cards').select('card_key, position').eq('user_id', resolvedId).order('position').then(({ data }) => {
