@@ -394,13 +394,17 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setReorderingId(null)
     if (!r.active) return
     suppressClickUntil.current = Date.now() + 300
-    // Déposé sur un dossier (ou la racine) → ranger le classeur dedans
+    // Déposé sur un dossier (ou la racine) → ranger le classeur dedans.
+    // La zone de drop couvre toute la section (pas seulement l'en-tête).
     const folderEl = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-folder-drop]') as HTMLElement | null
     if (folderEl) {
       const raw = folderEl.dataset.folderDrop
       const fid = raw === 'root' ? null : Number(raw)
-      if ((r.binder.folder_id ?? null) !== (fid ?? null)) moveBinderToFolder(r.binder.id, fid)
-      return
+      if ((r.binder.folder_id ?? null) !== (fid ?? null)) {
+        moveBinderToFolder(r.binder.id, fid)
+        return
+      }
+      // Même dossier → continuer vers la logique de réordonnancement
     }
     const targetEl = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-binder-spine]') as HTMLElement | null
     const overId = targetEl ? Number(targetEl.dataset.binderSpine) : NaN
@@ -1007,10 +1011,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             const shelfColor = section.folder?.color || FOLDER_SHELF_COLORS[0]
 
             return (
-              <div key={section.key} style={{ marginBottom: si < sections.length - 1 ? 20 : 0 }}>
+              <div key={section.key}
+                data-folder-drop={section.folder ? section.folder.id : 'root'}
+                style={{ marginBottom: si < sections.length - 1 ? 20 : 0 }}>
                 {section.folder ? (
                   /* En-tête coloré du dossier */
-                  <div data-folder-drop={section.folder.id} style={{
+                  <div style={{
                     background: shelfColor,
                     borderRadius: '8px 8px 0 0',
                     padding: '6px 10px',
@@ -1050,7 +1056,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                   </div>
                 ) : (folders.length > 0 || binders.some(b => b.folder_id === null)) ? (
                   /* Label de la bibliothèque racine */
-                  <div data-folder-drop="root" style={{
+                  <div style={{
                     borderRadius: '8px 8px 0 0', padding: '5px 10px',
                     background: 'rgba(255,255,255,0.07)',
                     display: 'flex', alignItems: 'center', gap: 6,
