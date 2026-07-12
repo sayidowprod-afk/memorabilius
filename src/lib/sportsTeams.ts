@@ -11,13 +11,16 @@ export interface SportsTeam {
   logoUrl?: string  // override ESPN CDN (used for football)
 }
 
-// ESPN CDN logo URL — accepts a team object or (sport, abbr)
+// Logo URL — football-data.org SVGs sont déjà transparents.
+// Les logos ESPN sont proxifiés via /api/team-logo qui supprime le fond blanc côté serveur.
 export function teamLogoUrl(teamOrSport: SportsTeam | Sport, abbr?: string): string {
   if (typeof teamOrSport === 'object') {
-    return teamOrSport.logoUrl
-      || `https://a.espncdn.com/i/teamlogos/${teamOrSport.sport}/500/${teamOrSport.abbr.toLowerCase()}.png`
+    if (teamOrSport.logoUrl) return teamOrSport.logoUrl
+    const espn = `https://a.espncdn.com/i/teamlogos/${teamOrSport.sport}/500/${teamOrSport.abbr.toLowerCase()}.png`
+    return `/api/team-logo?url=${encodeURIComponent(espn)}`
   }
-  return `https://a.espncdn.com/i/teamlogos/${teamOrSport}/500/${abbr!.toLowerCase()}.png`
+  const espn = `https://a.espncdn.com/i/teamlogos/${teamOrSport}/500/${abbr!.toLowerCase()}.png`
+  return `/api/team-logo?url=${encodeURIComponent(espn)}`
 }
 
 // football-data.org crests — free, reliable, SVG (works in all modern browsers)

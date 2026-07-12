@@ -9,10 +9,11 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-const PLACEHOLDER = 'https://placehold.co/200x280/e0e0e0/999?text=+'
+const W = 900
+const H = 300
 
-// Bannière "carte de visite" embarquable (forums, signatures, blogs) : <img src="/api/showcase/{id}">
-// Publicité gratuite et virale — chaque partage ramène du trafic vers Memorabilius.
+const PLACEHOLDER = 'https://placehold.co/120x168/0d1a3e/1e3a7a?text=+'
+
 export async function GET(req: NextRequest, { params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params
 
@@ -23,56 +24,120 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ user
     if (p) resolvedId = p.id
   }
 
-  const [{ data: profile }, { data: cards }] = await Promise.all([
+  const [{ data: profile }, { data: cards }, { count: cardCount }] = await Promise.all([
     supabase.from('profiles').select('display_name, avatar_url, couleur_bordure').eq('id', resolvedId).single(),
-    supabase.from('cartes_manuelles').select('image_recto').eq('user_id', resolvedId).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(4),
+    supabase.from('cartes_manuelles').select('image_recto').eq('user_id', resolvedId).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(5),
+    supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('user_id', resolvedId),
   ])
 
   if (!profile) {
     return new ImageResponse(
-      (<div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f0f0f0', fontFamily: 'sans-serif', fontSize: 24, color: '#999' }}>Collector not found</div>),
-      { width: 800, height: 200 }
+      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0c1942', fontFamily: 'sans-serif', fontSize: 18, color: '#555' }}>
+        Collector not found
+      </div>,
+      { width: W, height: H }
     )
   }
 
   const accent = profile.couleur_bordure || '#003DA6'
   const name = profile.display_name || 'Collector'
-  const thumbs = [0, 1, 2, 3].map(i => (cards || [])[i]?.image_recto || PLACEHOLDER)
+  const thumbs = Array.from({ length: 5 }, (_, i) => (cards || [])[i]?.image_recto || PLACEHOLDER)
+  const avatarUrl = profile.avatar_url
+    || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0c1942&color=ffffff&size=128`
+
+  const countLabel = cardCount != null
+    ? `${cardCount} carte${cardCount > 1 ? 's' : ''}`
+    : 'Collection'
+
+  const CARD_W = 100
+  const CARD_H = 140
+  const rotations = [-10, -5, 0, 5, 10]
+  const yOffsets = [14, 6, 0, 6, 14]
+  const zIndexes = [1, 3, 5, 3, 1]
 
   return new ImageResponse(
     (
       <div style={{
-        width: '100%', height: '100%', display: 'flex', alignItems: 'center',
-        background: `linear-gradient(135deg, ${accent} 0%, #0a0a1a 100%)`,
-        fontFamily: 'sans-serif', padding: '0 32px', gap: 24,
+        width: '100%', height: '100%',
+        background: 'linear-gradient(145deg, #04091a 0%, #0b1840 55%, #060d22 100%)',
+        display: 'flex', flexDirection: 'row', alignItems: 'stretch',
+        fontFamily: 'system-ui, -apple-system, sans-serif',
+        overflow: 'hidden', position: 'relative',
       }}>
-        {/* Avatar + nom */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
-          <img src={profile.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=fff&color=003DA6&size=128`}
-            width={72} height={72} style={{ borderRadius: '50%', border: '3px solid white', objectFit: 'cover' }} />
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: 2 }}>Collection by</div>
-            <div style={{ fontSize: 28, fontWeight: 900, color: 'white' }}>{name}</div>
+        {/* Glow central */}
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+          background: 'radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 100%)',
+          display: 'flex',
+        }} />
+
+        {/* Gauche : identité */}
+        <div style={{
+          display: 'flex', flexDirection: 'column', justifyContent: 'center',
+          padding: '0 28px', gap: 12, flexShrink: 0, width: 220,
+          borderRight: '1px solid rgba(255,255,255,0.06)',
+          position: 'relative', zIndex: 5,
+        }}>
+          {/* Logo texte */}
+          <div style={{
+            fontSize: 9, fontWeight: 900, letterSpacing: 4,
+            color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase',
+            display: 'flex', marginBottom: 4,
+          }}>
+            MEMORABILIUS
+          </div>
+
+          {/* Avatar */}
+          <img
+            src={avatarUrl}
+            width={56} height={56}
+            style={{ borderRadius: '50%', objectFit: 'cover', border: `2.5px solid ${accent}`, display: 'block' }}
+          />
+
+          {/* Nom */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <div style={{ fontSize: 20, fontWeight: 900, color: '#ffffff', lineHeight: 1, letterSpacing: -0.5, display: 'flex' }}>
+              {name}
+            </div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.38)', display: 'flex', gap: 4, alignItems: 'center' }}>
+              <span style={{ display: 'inline-flex', background: accent, borderRadius: 4, padding: '2px 6px', fontSize: 10, fontWeight: 700, color: 'white' }}>
+                {countLabel}
+              </span>
+              <span style={{ display: 'flex' }}>memorabilius.fr</span>
+            </div>
           </div>
         </div>
 
-        {/* Cartes miniatures */}
-        <div style={{ display: 'flex', gap: 10, flex: 1, justifyContent: 'center' }}>
+        {/* Droite : cartes en éventail */}
+        <div style={{
+          flex: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+          paddingBottom: 0, paddingTop: 10,
+          position: 'relative', zIndex: 2,
+        }}>
           {thumbs.map((src, i) => (
-            <img key={i} src={src} width={100} height={140} style={{
-              borderRadius: 8, objectFit: 'cover', border: '2px solid rgba(255,255,255,0.5)',
-              transform: `rotate(${(i - 1.5) * 4}deg)`,
-            }} />
+            <div
+              key={i}
+              style={{
+                transform: `rotate(${rotations[i]}deg) translateY(${yOffsets[i]}px)`,
+                borderRadius: 7,
+                overflow: 'hidden',
+                border: i === 2 ? `2px solid ${accent}` : '1px solid rgba(255,255,255,0.1)',
+                flexShrink: 0,
+                zIndex: zIndexes[i],
+                marginLeft: i === 0 ? 0 : -18,
+                display: 'flex',
+              }}
+            >
+              <img src={src} width={CARD_W} height={CARD_H} style={{ display: 'block', objectFit: 'cover' }} />
+            </div>
           ))}
-        </div>
-
-        {/* Branding */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0 }}>
-          <div style={{ fontSize: 22, fontWeight: 900, color: 'white' }}>MEMORABILIUS</div>
-          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)' }}>memorabilius.fr</div>
         </div>
       </div>
     ),
-    { width: 800, height: 200, headers: { 'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400' } }
+    {
+      width: W,
+      height: H,
+      headers: { 'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400' },
+    }
   )
 }

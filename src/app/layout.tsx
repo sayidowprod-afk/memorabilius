@@ -63,15 +63,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {/* Lit le thème depuis localStorage AVANT le premier rendu React pour éviter le flash light→dark (CLS) */}
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}` }} />
-        {/* Filtre SVG global : supprime les fonds blancs des PNGs sans transparence.
-            alpha = -R -G -B + 3 → blanc (1,1,1)→0, noir/couleurs→opaque */}
-        <svg width={0} height={0} style={{ position: 'absolute' }} aria-hidden="true">
-          <defs>
-            <filter id="rm-white" colorInterpolationFilters="sRGB" x="0" y="0" width="1" height="1">
-              <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  -1 -1 -1 3 0" />
-            </filter>
-          </defs>
-        </svg>
         <ThemeProvider>
           <LangProvider>
             <Navbar />
