@@ -16,6 +16,8 @@ const PLACEHOLDER = 'https://placehold.co/120x168/0d1a3e/1e3a7a?text=+'
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params
+  const origin = new URL(req.url).origin
+  const logoWhiteUrl = `${origin}/memorabilius-logo-white.png`
 
   const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
   let resolvedId = userId
@@ -78,14 +80,12 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ user
           borderRight: '1px solid rgba(255,255,255,0.06)',
           position: 'relative', zIndex: 5,
         }}>
-          {/* Logo texte */}
-          <div style={{
-            fontSize: 9, fontWeight: 900, letterSpacing: 4,
-            color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase',
-            display: 'flex', marginBottom: 4,
-          }}>
-            MEMORABILIUS
-          </div>
+          {/* Logo image */}
+          <img
+            src={logoWhiteUrl}
+            width={140} height={28}
+            style={{ display: 'block', objectFit: 'contain', marginBottom: 4, opacity: 0.85 }}
+          />
 
           {/* Avatar */}
           <img
