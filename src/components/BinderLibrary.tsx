@@ -34,7 +34,7 @@ interface Binder {
   folder_id: number | null
 }
 
-interface Folder { id: number; name: string; position: number; icon?: string | null }
+interface Folder { id: number; name: string; position: number; icon?: string | null; color?: string | null }
 
 interface Slot {
   page_number: number
@@ -49,6 +49,7 @@ interface Slot {
 const LAYOUTS = [4, 6, 9, 12, 16]
 const COLS: Record<number, number> = { 4: 2, 6: 2, 9: 3, 12: 3, 16: 4 }
 const BINDER_COLORS = ['#c0392b', '#e2b13c', '#1a1a1a', '#e8dcc4', '#1f3a5f', '#2c2c2c', '#6b2737', '#3d5a3d']
+const FOLDER_SHELF_COLORS = ['#4a6741', '#1f3a5f', '#6b2737', '#7a5c00', '#374a6b', '#4a3d6b', '#2d4a4a', '#3d3d3d']
 const SHELF_ROW_SIZE = 12
 const PAGE_MAX_W = 620
 const PAGE_RATIO = 310 / 230 // hauteur / largeur d'une page
@@ -213,6 +214,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     await supabase.from('binder_folders').update({ name }).eq('id', folder.id)
     setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, name } : f))
     setCurrentFolder(c => c && c.id === folder.id ? { ...c, name } : c)
+  }
+
+  const saveFolderColor = async (folder: Folder, color: string) => {
+    await supabase.from('binder_folders').update({ color }).eq('id', folder.id)
+    setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, color } : f))
   }
 
   const saveFolderIcon = async (folder: Folder, icon: string) => {
@@ -920,12 +926,61 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   // ── Vue étagère ──
   if (!selected) {
-    const displayedBinders = binders.filter(b => (b.folder_id ?? null) === (currentFolder?.id ?? null))
-    const items: (Binder | 'new')[] = [...displayedBinders]
-    if (isOwner) items.push('new')
-    const rows: (Binder | 'new')[][] = []
-    for (let i = 0; i < items.length; i += SHELF_ROW_SIZE) rows.push(items.slice(i, i + SHELF_ROW_SIZE))
-    if (rows.length === 0) rows.push([])
+    // Un groupe par dossier (dans l'ordre) + groupe racine en dernier
+    const sections = [
+      ...folders.map(f => ({
+        folder: f as Folder | null,
+        key: `f-${f.id}`,
+        binderItems: binders.filter(b => b.folder_id === f.id) as (Binder | 'new')[],
+      })),
+      {
+        folder: null as Folder | null,
+        key: 'root',
+        binderItems: [...binders.filter(b => b.folder_id === null), ...(isOwner ? ['new' as const] : [])] as (Binder | 'new')[],
+      },
+    ]
+
+    const renderSpine = (b: Binder | 'new') => b === 'new' ? (
+      <div key="new" onClick={openCreateForm} title="Nouveau classeur" style={{
+        width: 40, height: 184, cursor: 'pointer', border: '2px dashed rgba(255,255,255,0.35)', borderRadius: '4px 4px 0 0',
+        background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        flexShrink: 0, color: 'rgba(255,255,255,0.6)', fontSize: 20,
+      }}>+</div>
+    ) : (
+      <div key={b.id} data-binder-spine={b.id}
+        onClick={() => { if (clickSuppressed()) return; openBinder(b) }}
+        onPointerDown={shelfPointerDown(b)}
+        onPointerMove={shelfPointerMove}
+        onPointerUp={shelfPointerUp}
+        onPointerCancel={() => { const r = reorderRef.current; if (r) { clearTimeout(r.timer); reorderRef.current = null } setReorderDrag(null); setReorderingId(null) }}
+        title={isOwner ? `${b.name} — appui long pour réorganiser` : b.name}
+        style={{
+          width: 40, height: 184, cursor: isOwner ? 'grab' : 'pointer', flexShrink: 0,
+          background: b.color || accent, borderRadius: '4px 4px 0 0',
+          boxShadow: 'inset 4px 0 0 rgba(255,255,255,0.2), inset -4px 0 0 rgba(0,0,0,0.28), 2px 2px 5px rgba(0,0,0,0.4)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', touchAction: 'pan-x',
+          transition: 'transform 0.15s', position: 'relative', overflow: 'hidden',
+          opacity: reorderingId === b.id ? 0.4 : 1,
+        }}
+        onMouseEnter={e => { if (!reorderingId) e.currentTarget.style.transform = 'translateY(-12px)' }}
+        onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+      >
+        {b.cover_img && (
+          <div style={{ width: '100%', height: 46, flexShrink: 0, overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.2)' }}>
+            <img src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
+        )}
+        <div style={{ flex: 1 }} />
+        <div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 2, margin: '0 4px 14px', padding: '10px 2px', boxShadow: '0 1px 3px rgba(0,0,0,0.25)', display: 'flex', justifyContent: 'center', maxHeight: 120 }}>
+          <span style={{
+            writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 10, fontWeight: 800,
+            color: '#333', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+            maxHeight: 100, letterSpacing: '0.02em',
+          }}>{b.name}</span>
+        </div>
+      </div>
+    )
+
     return (
       <div>
         {pendingCard && (
@@ -934,93 +989,90 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <span style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>Choisis un classeur pour ranger « {pendingCard.nom} »</span>
           </div>
         )}
-        {/* Navigation dossiers / sous-bibliothèques */}
-        {currentFolder ? (
-          <div data-folder-drop="root" style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12, flexWrap: 'wrap' }}>
-            <button onClick={() => setCurrentFolder(null)} data-folder-drop="root" style={{ background: '#f0f0f0', border: 'none', borderRadius: 8, padding: '7px 12px', fontWeight: 700, fontSize: 13, cursor: 'pointer', color: '#333' }}>← Bibliothèque</button>
-            <span style={{ fontWeight: 900, fontSize: 16, display: 'inline-flex', alignItems: 'center', gap: 6 }}><FolderIcon icon={currentFolder.icon} size={20} /> {currentFolder.name}</span>
-            {isOwner && (
-              <>
-                <button onClick={() => setIconPickerFolder(currentFolder)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#003DA6', fontWeight: 700 }}>Icône</button>
-                <button onClick={() => renameFolder(currentFolder)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#003DA6', fontWeight: 700 }}>Renommer</button>
-                <button onClick={() => deleteFolder(currentFolder)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#e74c3c', fontWeight: 700 }}>Supprimer</button>
-              </>
-            )}
-          </div>
-        ) : (folders.length > 0 || isOwner) && (
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12, alignItems: 'center' }}>
-            {isOwner && folders.length > 0 && <span style={{ fontSize: 11, color: '#aaa', fontWeight: 700, width: '100%' }}>Glisse un classeur sur un dossier pour l'y ranger</span>}
-            {folders.map(f => {
-              const count = binders.filter(b => b.folder_id === f.id).length
-              return (
-                <button key={f.id} onClick={() => setCurrentFolder(f)} data-folder-drop={f.id}
-                  style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#fff', border: '1.5px solid #e0e0e0', borderRadius: 12, padding: '8px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 13, color: '#333' }}>
-                  <FolderIcon icon={f.icon} /> {f.name} <span style={{ fontSize: 11, color: '#999' }}>({count})</span>
-                </button>
-              )
-            })}
-            {isOwner && (
-              <button onClick={createFolder}
-                style={{ background: 'none', border: '1.5px dashed #ccc', borderRadius: 12, padding: '8px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 13, color: '#888' }}>
-                + Nouveau dossier
-              </button>
-            )}
+
+        {isOwner && (
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+            <button onClick={createFolder}
+              style={{ background: 'none', border: '1.5px dashed #ccc', borderRadius: 10, padding: '6px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 12, color: '#888' }}>
+              + Nouvelle bibliothèque
+            </button>
           </div>
         )}
 
-        <div style={{ background: 'linear-gradient(180deg, #6b4a32, #4e3623)', borderRadius: 16, boxShadow: '0 6px 24px rgba(0,0,0,0.18)', padding: '18px 14px 4px' }}>
-          {rows.map((row, ri) => (
-            <div key={ri} style={{ marginBottom: 16 }}>
-              <div style={{
-                display: 'flex', alignItems: 'flex-end', gap: 4, padding: '0 6px 10px',
-                overflowX: 'auto', WebkitOverflowScrolling: 'touch', minHeight: 190,
-              }}>
-                {row.map(b => b === 'new' ? (
-                  <div key="new" onClick={openCreateForm} title="Nouveau classeur" style={{
-                    width: 40, height: 184, cursor: 'pointer', border: '2px dashed rgba(255,255,255,0.35)', borderRadius: '4px 4px 0 0',
-                    background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0, color: 'rgba(255,255,255,0.6)', fontSize: 20,
-                  }}>+</div>
-                ) : (
-                  <div key={b.id} data-binder-spine={b.id}
-                    onClick={() => { if (clickSuppressed()) return; openBinder(b) }}
-                    onPointerDown={shelfPointerDown(b)}
-                    onPointerMove={shelfPointerMove}
-                    onPointerUp={shelfPointerUp}
-                    onPointerCancel={() => { const r = reorderRef.current; if (r) { clearTimeout(r.timer); reorderRef.current = null } setReorderDrag(null); setReorderingId(null) }}
-                    title={isOwner ? `${b.name} — appui long pour réorganiser` : b.name}
-                    style={{
-                      width: 40, height: 184, cursor: isOwner ? 'grab' : 'pointer', flexShrink: 0,
-                      background: b.color || accent, borderRadius: '4px 4px 0 0',
-                      boxShadow: 'inset 4px 0 0 rgba(255,255,255,0.2), inset -4px 0 0 rgba(0,0,0,0.28), 2px 2px 5px rgba(0,0,0,0.4)',
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', touchAction: 'pan-x',
-                      transition: 'transform 0.15s', position: 'relative', overflow: 'hidden',
-                      opacity: reorderingId === b.id ? 0.4 : 1,
-                    }}
-                    onMouseEnter={e => { if (!reorderingId) e.currentTarget.style.transform = 'translateY(-12px)' }}
-                    onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
-                  >
-                    {b.cover_img && (
-                      <div style={{ width: '100%', height: 46, flexShrink: 0, overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.2)' }}>
-                        <img src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                      </div>
+        <div style={{ background: 'linear-gradient(180deg, #6b4a32, #4e3623)', borderRadius: 16, boxShadow: '0 6px 24px rgba(0,0,0,0.18)', padding: '14px 14px 4px' }}>
+          {sections.map((section, si) => {
+            const rows: (Binder | 'new')[][] = []
+            for (let i = 0; i < section.binderItems.length; i += SHELF_ROW_SIZE) rows.push(section.binderItems.slice(i, i + SHELF_ROW_SIZE))
+            if (rows.length === 0) rows.push([])
+            const shelfColor = section.folder?.color || FOLDER_SHELF_COLORS[0]
+
+            return (
+              <div key={section.key} style={{ marginBottom: si < sections.length - 1 ? 20 : 0 }}>
+                {section.folder ? (
+                  /* En-tête coloré du dossier */
+                  <div data-folder-drop={section.folder.id} style={{
+                    background: shelfColor,
+                    borderRadius: '8px 8px 0 0',
+                    padding: '6px 10px',
+                    display: 'flex', alignItems: 'center', gap: 7, flexWrap: 'wrap',
+                  }}>
+                    <FolderIcon icon={section.folder.icon} size={14} />
+                    <span style={{ color: 'white', fontWeight: 900, fontSize: 13, letterSpacing: 0.3, flex: 1, minWidth: 60 }}>
+                      {section.folder.name}
+                    </span>
+                    <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 10 }}>
+                      {section.binderItems.length} classeur{section.binderItems.length !== 1 ? 's' : ''}
+                    </span>
+                    {isOwner && (
+                      <>
+                        {FOLDER_SHELF_COLORS.map(c => (
+                          <div key={c} onClick={() => saveFolderColor(section.folder!, c)} title={c}
+                            style={{
+                              width: 13, height: 13, borderRadius: '50%', background: c, cursor: 'pointer', flexShrink: 0,
+                              border: c === (section.folder!.color || FOLDER_SHELF_COLORS[0]) ? '2px solid white' : '2px solid rgba(255,255,255,0.2)',
+                            }}
+                          />
+                        ))}
+                        <button onClick={() => setIconPickerFolder(section.folder!)} title="Icône"
+                          style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 5, padding: '2px 7px', cursor: 'pointer', fontSize: 11, color: 'white', fontWeight: 700 }}>
+                          icône
+                        </button>
+                        <button onClick={() => renameFolder(section.folder!)} title="Renommer"
+                          style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 5, padding: '2px 7px', cursor: 'pointer', fontSize: 11, color: 'white', fontWeight: 700 }}>
+                          ✏️
+                        </button>
+                        <button onClick={() => deleteFolder(section.folder!)} title="Supprimer"
+                          style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: 5, padding: '2px 7px', cursor: 'pointer', fontSize: 11, color: 'rgba(255,160,160,1)', fontWeight: 700 }}>
+                          🗑️
+                        </button>
+                      </>
                     )}
-                    <div style={{ flex: 1 }} />
-                    {/* étiquette blanche imprimée comme sur les vrais classeurs */}
-                    <div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 2, margin: '0 4px 14px', padding: '10px 2px', boxShadow: '0 1px 3px rgba(0,0,0,0.25)', display: 'flex', justifyContent: 'center', maxHeight: 120 }}>
-                      <span style={{
-                        writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 10, fontWeight: 800,
-                        color: '#333', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-                        maxHeight: 100, letterSpacing: '0.02em',
-                      }}>{b.name}</span>
+                  </div>
+                ) : (folders.length > 0 || binders.some(b => b.folder_id === null)) ? (
+                  /* Label de la bibliothèque racine */
+                  <div data-folder-drop="root" style={{
+                    borderRadius: '8px 8px 0 0', padding: '5px 10px',
+                    background: 'rgba(255,255,255,0.07)',
+                    display: 'flex', alignItems: 'center', gap: 6,
+                  }}>
+                    <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 11, fontWeight: 700 }}>📚 Bibliothèque principale</span>
+                  </div>
+                ) : null}
+
+                {rows.map((row, ri) => (
+                  <div key={ri} style={{ marginBottom: 4 }}>
+                    <div style={{
+                      display: 'flex', alignItems: 'flex-end', gap: 4, padding: '0 6px 10px',
+                      overflowX: 'auto', WebkitOverflowScrolling: 'touch', minHeight: 190,
+                    }}>
+                      {row.map(renderSpine)}
                     </div>
+                    <div style={{ height: 12, background: 'linear-gradient(180deg, #3a281a, #2a1d12)', borderRadius: 2, boxShadow: '0 4px 8px rgba(0,0,0,0.4)' }} />
                   </div>
                 ))}
               </div>
-              {/* planche en bois de l'étagère */}
-              <div style={{ height: 12, background: 'linear-gradient(180deg, #3a281a, #2a1d12)', borderRadius: 2, boxShadow: '0 4px 8px rgba(0,0,0,0.4)' }} />
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {binders.length === 0 && !isOwner && (
