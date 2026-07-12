@@ -93,7 +93,7 @@ interface Card {
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; printing_plate?: boolean; g: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
-  isManuelle?: boolean
+  isManuelle?: boolean; disponible_vente?: boolean
   created_at?: string; position?: number; collection_tag?: string; collections?: string[];
 }
 
@@ -356,7 +356,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         booklet: m.booklet || false, is_horizontal: m.is_horizontal || false, verso_is_horizontal: m.verso_is_horizontal ?? null, format: m.format || (m.is_horizontal ? 'horizontal' : 'standard'),
         il: m.image_interieur_gauche || '', ir: m.image_interieur_droite || '',
         created_at: m.created_at || '', position: m.position ?? 9999,
-        collection_tag: m.collection_tag || ''
+        collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false
       }))
 
       // Appartenance multi-collections (table card_collections) → Map<card_key, string[]>
@@ -1477,6 +1477,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               {isOwner && privateCards.has(d.f) && (
                 <div style={{ position: 'absolute', top: 6, left: 6, background: '#e74c3c', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2 }}>
                   {t('gallery_private')}
+                </div>
+              )}
+              {d.disponible_vente && (
+                <div title={lang === 'fr' ? 'Disponible à la vente / trade' : 'Available for sale / trade'} style={{ position: 'absolute', top: 6, right: 6, background: '#2e7d32', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2, letterSpacing: 0.3 }}>
+                  🏷️ {lang === 'fr' ? 'Vente/Trade' : 'For Sale'}
                 </div>
               )}
               {editMode && isOwner && selectedCards.has(getCardId(d)) && (
