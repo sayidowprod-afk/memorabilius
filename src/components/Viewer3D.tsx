@@ -8,6 +8,7 @@ import CardVideoExport from '@/components/CardVideoExport'
 import CardValueModule from '@/components/CardValueModule'
 import SameCardCollectors from '@/components/SameCardCollectors'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
+import CollectionMultiSelect from '@/components/CollectionMultiSelect'
 import BookletViewer from '@/components/BookletViewer'
 import { getFormat } from '@/lib/cardFormats'
 
@@ -15,7 +16,7 @@ interface Card {
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; g: string
-  isManuelle?: boolean; id_manuelle?: string; collection_tag?: string
+  isManuelle?: boolean; id_manuelle?: string; collection_tag?: string; collections?: string[]
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
 }
 
@@ -37,7 +38,7 @@ function backFaceImgStyle(boxIsHorizontal: boolean, backIsHorizontal: boolean): 
   }
 }
 
-export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, onCollectionTagChange, onAddToMyGallery, initialAddState }: {
+export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, onCollectionTagChange, onCollectionsChange, allCollectionTags, onAddToMyGallery, initialAddState }: {
   popup: Card
   accent: string
   onClose: () => void
@@ -49,6 +50,8 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   isOwner?: boolean
   currentUserId?: string
   onCollectionTagChange?: (card: Card, tag: string) => void
+  onCollectionsChange?: (card: Card, next: string[]) => void
+  allCollectionTags?: string[]
   onAddToMyGallery?: () => Promise<'added' | 'duplicate'>
   initialAddState?: 'idle' | 'added' | 'duplicate'
 }) {
@@ -796,22 +799,27 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             ))}
           </div>
 
-          {/* Ma collection (tag) — owner seulement */}
-          {isOwner && onCollectionTagChange && userId && (
+          {/* Ma collection — owner seulement. Une carte peut appartenir à plusieurs collections. */}
+          {isOwner && userId && (onCollectionsChange || onCollectionTagChange) && (
             <div style={{ marginTop: 10, borderTop: `1px solid ${borderColor}`, paddingTop: 10 }}>
-              <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase', marginBottom: 5 }}>
-                Ma collection
+              <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase', marginBottom: 6 }}>
+                Mes collections
               </label>
-              <CollectionTagSelect
-                userId={userId}
-                value={tagInput}
-                onChange={async (tag) => {
-                  setTagInput(tag)
-                  setTagSaving(true)
-                  await onCollectionTagChange(popup, tag)
-                  setTagSaving(false)
-                }}
-              />
+              {onCollectionsChange ? (
+                <CollectionMultiSelect
+                  userId={userId}
+                  cardKey={popup.f}
+                  value={popup.collections || []}
+                  allTags={allCollectionTags || []}
+                  onChange={(next) => onCollectionsChange(popup, next)}
+                />
+              ) : (
+                <CollectionTagSelect
+                  userId={userId}
+                  value={tagInput}
+                  onChange={async (tag) => { setTagInput(tag); setTagSaving(true); await onCollectionTagChange!(popup, tag); setTagSaving(false) }}
+                />
+              )}
             </div>
           )}
 

@@ -94,7 +94,7 @@ interface Card {
   auto: boolean; rc: boolean; patch: boolean; printing_plate?: boolean; g: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
   isManuelle?: boolean
-  created_at?: string; position?: number; collection_tag?: string;
+  created_at?: string; position?: number; collection_tag?: string; collections?: string[];
 }
 
 export default function GalerieClient({ userId, initialCardUrl }: { userId: string; initialCardUrl?: string }) {
@@ -278,6 +278,48 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     }
   }
 
+  // Ajoute les cartes sélectionnées à une collection (appartenance multiple)
+  const addSelectedToCollection = async (tag: string) => {
+    if (!currentUser || !tag) return
+    const rows: { user_id: string; card_key: string; collection: string }[] = []
+    for (const id of selectedCards) {
+      const card = cards.find(c => (c.isManuelle ? c.id_manuelle : c.f) === id)
+      if (card) rows.push({ user_id: currentUser, card_key: card.f, collection: tag })
+    }
+    if (rows.length === 0) return
+    await supabase.from('card_collections').upsert(rows, { onConflict: 'user_id,card_key,collection' })
+    setCards(prev => prev.map(c => {
+      const id = c.isManuelle ? c.id_manuelle : c.f
+      if (!id || !selectedCards.has(id)) return c
+      const cols = [...new Set([...(c.collections || []), tag])]
+      return { ...c, collections: cols, collection_tag: cols[0] || '' }
+    }))
+    if (!collectionTags.includes(tag)) setCollectionTags(prev => [...prev, tag].sort())
+  }
+
+  // Retire les cartes sélectionnées de TOUTES leurs collections
+  const removeSelectedFromAllCollections = async () => {
+    if (!currentUser) return
+    const keys: string[] = []
+    for (const id of selectedCards) {
+      const card = cards.find(c => (c.isManuelle ? c.id_manuelle : c.f) === id)
+      if (card) keys.push(card.f)
+    }
+    if (keys.length === 0) return
+    await supabase.from('card_collections').delete().eq('user_id', currentUser).in('card_key', keys)
+    // Nettoie aussi l'ancien champ (cartes manuelles + carte_tags) pour éviter la ré-union au reload
+    for (const id of selectedCards) {
+      const card = cards.find(c => (c.isManuelle ? c.id_manuelle : c.f) === id)
+      if (!card) continue
+      if (card.isManuelle && card.id_manuelle) await supabase.from('cartes_manuelles').update({ collection_tag: null }).eq('id', card.id_manuelle)
+      else await supabase.from('carte_tags').delete().eq('user_id', currentUser).eq('card_key', card.f)
+    }
+    setCards(prev => prev.map(c => {
+      const id = c.isManuelle ? c.id_manuelle : c.f
+      return id && selectedCards.has(id) ? { ...c, collections: [], collection_tag: '' } : c
+    }))
+  }
+
   const loadCSV = async (url: string | null, tagsMap?: Map<string, string>, galleryOrder: string[] = []) => {
     try {
       let parsed: Card[] = []
@@ -316,6 +358,24 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         collection_tag: m.collection_tag || ''
       }))
 
+      // Appartenance multi-collections (table card_collections) → Map<card_key, string[]>
+      const { data: ccData } = await supabase.from('card_collections').select('card_key, collection').eq('user_id', userId)
+      const ccMap = new Map<string, string[]>()
+      for (const r of ccData || []) {
+        const arr = ccMap.get(r.card_key) || []
+        arr.push(r.collection); ccMap.set(r.card_key, arr)
+      }
+      // Attache collections[] (union card_collections + ancien collection_tag) et
+      // fixe collection_tag = 1re collection (utilisé pour la couleur de bordure)
+      const attachCollections = (card: Card) => {
+        const legacy = card.collection_tag ? [card.collection_tag] : []
+        const cols = [...new Set([...(ccMap.get(card.f) || []), ...legacy])]
+        card.collections = cols
+        card.collection_tag = cols[0] || ''
+      }
+      parsed.forEach(attachCollections)
+      cartesM.forEach(attachCollections)
+
       // Trier les cartes manuelles par position sauvegardée (fallback sans gallery_order)
       cartesM.sort((a, b) => (a.position ?? 9999) - (b.position ?? 9999))
       const allCards = [...parsed, ...cartesM]
@@ -333,7 +393,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       setTeams([...new Set(allCards.map(d => d.t).filter(Boolean))].sort())
       setBrands([...new Set(allCards.map(d => d.s).filter(Boolean))].sort())
       setYears([...new Set(allCards.map(d => d.y).filter(Boolean))].sort())
-      setCollectionTags([...new Set(allCards.map(d => d.collection_tag).filter(Boolean) as string[])].sort())
+      setCollectionTags([...new Set(allCards.flatMap(d => d.collections || []).filter(Boolean) as string[])].sort())
       setLoaded(true)
       // Auto-ouvre la carte depuis ?card= ou depuis initialCardUrl (route /[cardSlug])
       const target = initialCardUrl || (cardParam ? decodeURIComponent(cardParam) : null)
@@ -352,7 +412,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         (!fTeam || d.t === fTeam) &&
         (!fBrand || d.s === fBrand) &&
         (!fYear || d.y === fYear) &&
-        (!fCollectionTag || d.collection_tag === fCollectionTag) &&
+        (!fCollectionTag || (d.collections || []).includes(fCollectionTag)) &&
         (!activeFilters.rc || d.rc) &&
         (!activeFilters.auto || d.auto) &&
         (!activeFilters.patch || d.patch) &&
@@ -1061,6 +1121,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                                 const newName = renameValue.trim()
                                 if (!newName || newName === tag) { setColorPickerTag(null); return }
                                 await Promise.all([
+                                  supabase.from('card_collections').update({ collection: newName }).eq('user_id', userId).eq('collection', tag),
                                   supabase.from('cartes_manuelles').update({ collection_tag: newName }).eq('user_id', userId).eq('collection_tag', tag),
                                   supabase.from('carte_tags').update({ collection_tag: newName }).eq('user_id', userId).eq('collection_tag', tag),
                                 ])
@@ -1068,8 +1129,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                                 await supabase.from('collection_tab_settings').delete().eq('user_id', userId).eq('tag', tag)
                                 if (cur) await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag: newName, ...cur }, { onConflict: 'user_id,tag' })
                                 setTabSettings(prev => { const m = new Map(prev); if (cur) m.set(newName, cur); m.delete(tag); return m })
-                                setCollectionTags(prev => prev.map(t => t === tag ? newName : t).sort())
-                                setCards(prev => prev.map(c => c.collection_tag === tag ? { ...c, collection_tag: newName } : c))
+                                setCollectionTags(prev => [...new Set(prev.map(t => t === tag ? newName : t))].sort())
+                                setCards(prev => prev.map(c => {
+                                  if (!(c.collections || []).includes(tag)) return c
+                                  const cols = [...new Set((c.collections || []).map(t => t === tag ? newName : t))]
+                                  return { ...c, collections: cols, collection_tag: cols[0] || '' }
+                                }))
                                 if (fCollectionTag === tag) setFCollectionTag(newName)
                                 setColorPickerTag(null)
                               }}
@@ -1097,12 +1162,18 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                                 <p style={{ fontSize: 10, color: '#e53935', fontWeight: 700, margin: '0 0 6px' }}>Supprimer "{tag}" ? Les cartes ne seront pas supprimées.</p>
                                 <div style={{ display: 'flex', gap: 6 }}>
                                   <button onClick={async () => {
+                                    await supabase.from('card_collections').delete().eq('user_id', userId).eq('collection', tag)
                                     await supabase.from('cartes_manuelles').update({ collection_tag: null }).eq('user_id', userId).eq('collection_tag', tag)
                                     await supabase.from('carte_tags').update({ collection_tag: null }).eq('user_id', userId).eq('collection_tag', tag)
                                     await supabase.from('collection_tab_settings').delete().eq('user_id', userId).eq('tag', tag)
                                     setTabSettings(prev => { const m = new Map(prev); m.delete(tag); return m })
                                     setCollectionTags(prev => prev.filter(t => t !== tag))
-                                    setCards(prev => prev.map(c => c.collection_tag === tag ? { ...c, collection_tag: '' } : c))
+                                    setCards(prev => prev.map(c => {
+                                      if (!(c.collections || []).includes(tag)) return c
+                                      const cols = (c.collections || []).filter(t => t !== tag)
+                                      return { ...c, collections: cols, collection_tag: cols[0] || '' }
+                                    }))
+                                    if (fCollectionTag === tag) setFCollectionTag('')
                                     setColorPickerTag(null); setDeleteTagConfirm(null)
                                   }} style={{ flex: 1, background: '#e53935', color: 'white', border: 'none', borderRadius: 6, padding: '5px 0', fontSize: 10, fontWeight: 800, cursor: 'pointer' }}>
                                     Confirmer
@@ -1282,18 +1353,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   if (e.key !== 'Enter') return
                   const tag = bulkNewTag.trim()
                   if (!tag) { setShowBulkNewTag(false); return }
-                  const ids = [...selectedCards]
-                  await Promise.all(ids.map(async (id) => {
-                    const card = cards.find(c => (c.isManuelle ? c.id_manuelle : c.f) === id)
-                    if (!card) return
-                    if (card.isManuelle && card.id_manuelle) {
-                      await supabase.from('cartes_manuelles').update({ collection_tag: tag }).eq('id', card.id_manuelle)
-                    } else {
-                      await supabase.from('carte_tags').upsert({ user_id: currentUser!, card_key: card.f, collection_tag: tag }, { onConflict: 'user_id,card_key' })
-                    }
-                  }))
-                  setCards(prev => prev.map(c => { const id = c.isManuelle ? c.id_manuelle : c.f; return id && selectedCards.has(id) ? { ...c, collection_tag: tag } : c }))
-                  if (!collectionTags.includes(tag)) setCollectionTags(prev => [...prev, tag].sort())
+                  await addSelectedToCollection(tag)
                   setBulkNewTag(''); setShowBulkNewTag(false)
                 }}
                 placeholder="Nom de la collection… (Entrée)"
@@ -1312,28 +1372,14 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   const tag = e.target.value
                   if (!tag) return
                   if (tag === '__new__') { setShowBulkNewTag(true); return }
-                  const applyTag = tag === '__none__' ? '' : tag
-                  const ids = [...selectedCards]
-                  await Promise.all(ids.map(async (id) => {
-                    const card = cards.find(c => (c.isManuelle ? c.id_manuelle : c.f) === id)
-                    if (!card) return
-                    if (card.isManuelle && card.id_manuelle) {
-                      await supabase.from('cartes_manuelles').update({ collection_tag: applyTag || null }).eq('id', card.id_manuelle)
-                    } else {
-                      if (applyTag) {
-                        await supabase.from('carte_tags').upsert({ user_id: currentUser!, card_key: card.f, collection_tag: applyTag }, { onConflict: 'user_id,card_key' })
-                      } else {
-                        await supabase.from('carte_tags').delete().eq('user_id', currentUser!).eq('card_key', card.f)
-                      }
-                    }
-                  }))
-                  setCards(prev => prev.map(c => { const id = c.isManuelle ? c.id_manuelle : c.f; return id && selectedCards.has(id) ? { ...c, collection_tag: applyTag } : c }))
+                  if (tag === '__none__') { await removeSelectedFromAllCollections(); return }
+                  await addSelectedToCollection(tag)
                 }}
                 style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 6, color: 'white', padding: '4px 8px', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}
               >
-                <option value="" style={{ color: '#333' }}>🏷 Collection…</option>
+                <option value="" style={{ color: '#333' }}>🏷 Ajouter à une collection…</option>
                 <option value="__new__" style={{ color: '#003DA6', fontWeight: 900 }}>✚ Créer une nouvelle…</option>
-                <option value="__none__" style={{ color: '#333' }}>— Aucune —</option>
+                <option value="__none__" style={{ color: '#333' }}>— Retirer de toutes —</option>
                 {collectionTags.map(tag => (
                   <option key={tag} value={tag} style={{ color: '#333' }}>{tag}</option>
                 ))}
@@ -1575,18 +1621,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             return 'added'
           } : undefined}
           initialAddState={addedCards.has(popup.f) ? 'added' : 'idle'}
-          onCollectionTagChange={async (card, tag) => {
-            if (card.isManuelle && card.id_manuelle) {
-              await supabase.from('cartes_manuelles').update({ collection_tag: tag || null }).eq('id', card.id_manuelle)
-            } else {
-              if (tag) {
-                await supabase.from('carte_tags').upsert({ user_id: currentUser!, card_key: card.f, collection_tag: tag }, { onConflict: 'user_id,card_key' })
-              } else {
-                await supabase.from('carte_tags').delete().eq('user_id', currentUser!).eq('card_key', card.f)
-              }
-            }
-            setCards(prev => prev.map(c => c.f === card.f ? { ...c, collection_tag: tag } : c))
-            setPopup(prev => prev ? { ...prev, collection_tag: tag } : null)
+          allCollectionTags={collectionTags}
+          onCollectionsChange={(card, next) => {
+            // Les écritures DB sont faites par CollectionMultiSelect ; on met à jour l'état local
+            const cols = [...new Set(next)]
+            setCards(prev => prev.map(c => c.f === card.f ? { ...c, collections: cols, collection_tag: cols[0] || '' } : c))
+            setPopup(prev => prev ? { ...prev, collections: cols, collection_tag: cols[0] || '' } : null)
+            setCollectionTags(prev => [...new Set([...prev, ...cols])].sort())
           }}
         />
       )}
