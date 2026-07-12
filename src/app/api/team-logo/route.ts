@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
       raw: { width: info.width, height: info.height, channels: 4 },
     }).png({ compressionLevel: 7 }).toBuffer()
 
-    return new NextResponse(out, {
+    return new NextResponse(new Uint8Array(out), {
       headers: {
         'Content-Type': 'image/png',
         'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400',
