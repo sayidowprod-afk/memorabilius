@@ -245,7 +245,15 @@ export default function ChatBubble() {
                         }}>{msg.contenu}</div>
                       )}
                       <span style={{ fontSize: 9, color: textMuted, marginTop: 2 }}>
-                        {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                        {(() => {
+                          const d = new Date(msg.created_at)
+                          const today = new Date()
+                          const isToday = d.toDateString() === today.toDateString()
+                          const time = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+                          if (isToday) return time
+                          const date = d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' })
+                          return `${date} ${time}`
+                        })()}
                       </span>
                     </div>
                   )
