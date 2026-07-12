@@ -7,6 +7,17 @@ import CardPicker, { PickableCard } from './CardPicker'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import ShareButton from './ShareButton'
 import CommentsModal from './CommentsModal'
+import FolderIconPicker from './FolderIconPicker'
+import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
+
+// Rend l'icône d'un dossier : emoji, logo d'équipe (team:<id>) ou 📁 par défaut
+function FolderIcon({ icon, size = 16 }: { icon?: string | null; size?: number }) {
+  if (icon && icon.startsWith('team:')) {
+    const team = getTeamById(icon.slice(5))
+    if (team) return <img src={teamLogoUrl(team)} alt="" style={{ width: size, height: size, objectFit: 'contain', verticalAlign: 'middle' }} />
+  }
+  return <span style={{ fontSize: size }}>{icon || '📁'}</span>
+}
 
 const Viewer3D = dynamic(() => import('./Viewer3D'), { ssr: false })
 
@@ -23,7 +34,7 @@ interface Binder {
   folder_id: number | null
 }
 
-interface Folder { id: number; name: string; position: number }
+interface Folder { id: number; name: string; position: number; icon?: string | null }
 
 interface Slot {
   page_number: number
@@ -92,6 +103,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [binders, setBinders] = useState<Binder[]>([])
   const [folders, setFolders] = useState<Folder[]>([])
   const [currentFolder, setCurrentFolder] = useState<Folder | null>(null)
+  const [iconPickerFolder, setIconPickerFolder] = useState<Folder | null>(null)
   const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState<Binder | null>(null)
   const [showComments, setShowComments] = useState(false)
@@ -201,6 +213,20 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     await supabase.from('binder_folders').update({ name }).eq('id', folder.id)
     setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, name } : f))
     setCurrentFolder(c => c && c.id === folder.id ? { ...c, name } : c)
+  }
+
+  const saveFolderIcon = async (folder: Folder, icon: string) => {
+    const value = icon || null
+    await supabase.from('binder_folders').update({ icon: value }).eq('id', folder.id)
+    setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, icon: value } : f))
+    setCurrentFolder(c => c && c.id === folder.id ? { ...c, icon: value } : c)
+    setIconPickerFolder(null)
+  }
+
+  const moveBinderToFolder = async (binderId: number, folderId: number | null) => {
+    await supabase.from('binders').update({ folder_id: folderId }).eq('id', binderId)
+    setBinders(prev => prev.map(b => b.id === binderId ? { ...b, folder_id: folderId } : b))
+    try { (navigator as any).vibrate?.(15) } catch {}
   }
 
   const deleteFolder = async (folder: Folder) => {
@@ -362,6 +388,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setReorderingId(null)
     if (!r.active) return
     suppressClickUntil.current = Date.now() + 300
+    // Déposé sur un dossier (ou la racine) → ranger le classeur dedans
+    const folderEl = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-folder-drop]') as HTMLElement | null
+    if (folderEl) {
+      const raw = folderEl.dataset.folderDrop
+      const fid = raw === 'root' ? null : Number(raw)
+      if ((r.binder.folder_id ?? null) !== (fid ?? null)) moveBinderToFolder(r.binder.id, fid)
+      return
+    }
     const targetEl = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-binder-spine]') as HTMLElement | null
     const overId = targetEl ? Number(targetEl.dataset.binderSpine) : NaN
     if (Number.isNaN(overId) || overId === r.binder.id) return
@@ -902,24 +936,26 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         )}
         {/* Navigation dossiers / sous-bibliothèques */}
         {currentFolder ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12, flexWrap: 'wrap' }}>
-            <button onClick={() => setCurrentFolder(null)} style={{ background: '#f0f0f0', border: 'none', borderRadius: 8, padding: '7px 12px', fontWeight: 700, fontSize: 13, cursor: 'pointer', color: '#333' }}>← Bibliothèque</button>
-            <span style={{ fontWeight: 900, fontSize: 16 }}>📁 {currentFolder.name}</span>
+          <div data-folder-drop="root" style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12, flexWrap: 'wrap' }}>
+            <button onClick={() => setCurrentFolder(null)} data-folder-drop="root" style={{ background: '#f0f0f0', border: 'none', borderRadius: 8, padding: '7px 12px', fontWeight: 700, fontSize: 13, cursor: 'pointer', color: '#333' }}>← Bibliothèque</button>
+            <span style={{ fontWeight: 900, fontSize: 16, display: 'inline-flex', alignItems: 'center', gap: 6 }}><FolderIcon icon={currentFolder.icon} size={20} /> {currentFolder.name}</span>
             {isOwner && (
               <>
+                <button onClick={() => setIconPickerFolder(currentFolder)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#003DA6', fontWeight: 700 }}>Icône</button>
                 <button onClick={() => renameFolder(currentFolder)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#003DA6', fontWeight: 700 }}>Renommer</button>
                 <button onClick={() => deleteFolder(currentFolder)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: '#e74c3c', fontWeight: 700 }}>Supprimer</button>
               </>
             )}
           </div>
         ) : (folders.length > 0 || isOwner) && (
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12 }}>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12, alignItems: 'center' }}>
+            {isOwner && folders.length > 0 && <span style={{ fontSize: 11, color: '#aaa', fontWeight: 700, width: '100%' }}>Glisse un classeur sur un dossier pour l'y ranger</span>}
             {folders.map(f => {
               const count = binders.filter(b => b.folder_id === f.id).length
               return (
-                <button key={f.id} onClick={() => setCurrentFolder(f)}
+                <button key={f.id} onClick={() => setCurrentFolder(f)} data-folder-drop={f.id}
                   style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#fff', border: '1.5px solid #e0e0e0', borderRadius: 12, padding: '8px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 13, color: '#333' }}>
-                  📁 {f.name} <span style={{ fontSize: 11, color: '#999' }}>({count})</span>
+                  <FolderIcon icon={f.icon} /> {f.name} <span style={{ fontSize: 11, color: '#999' }}>({count})</span>
                 </button>
               )
             })}
@@ -1004,6 +1040,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             </div>
           </div>,
           document.body
+        )}
+
+        {iconPickerFolder && (
+          <FolderIconPicker
+            onPick={(icon) => saveFolderIcon(iconPickerFolder, icon)}
+            onClose={() => setIconPickerFolder(null)}
+          />
         )}
 
         {binderForm}
