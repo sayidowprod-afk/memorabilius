@@ -117,7 +117,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [brands, setBrands] = useState<string[]>([])
   const [years, setYears] = useState<string[]>([])
   const [collectionTags, setCollectionTags] = useState<string[]>([])
-  const [tabSettings, setTabSettings] = useState<Map<string, { color: string; position: number }>>(new Map())
+  const [tabSettings, setTabSettings] = useState<Map<string, { color: string; position: number; parent?: string | null }>>(new Map())
   const [draggedTag, setDraggedTag] = useState<string | null>(null)
   const [colorPickerTag, setColorPickerTag] = useState<string | null>(null)
   const [cardLikes, setCardLikes] = useState<Map<string, { count: number; liked: boolean }>>(new Map())
@@ -192,7 +192,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           if (data) setMonthlyBadges(data.map((b: any) => b.mois))
         })
         supabase.from('collection_tab_settings').select('tag, color, position').eq('user_id', resolvedId).then(({ data }) => {
-          if (data) setTabSettings(new Map(data.map((r: any) => [r.tag, { color: r.color, position: r.position }])))
+          if (data) setTabSettings(new Map(data.map((r: any) => [r.tag, { color: r.color, position: r.position, parent: r.parent ?? null }])))
         })
         supabase.from('grail_cards').select('card_key, position').eq('user_id', resolvedId).order('position').then(({ data }) => {
           if (data) setGrailCards(data)
@@ -405,6 +405,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   }
 
   useEffect(() => {
+    // Filtrer par une collection principale inclut ses sous-collections
+    const matchCols = new Set<string>()
+    if (fCollectionTag) {
+      matchCols.add(fCollectionTag)
+      for (const [tag, s] of tabSettings) if (s.parent === fCollectionTag) matchCols.add(tag)
+    }
     const f = cards.filter(d => {
       if (!isOwner && privateCards.has(d.f)) return false
       return (
@@ -412,7 +418,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         (!fTeam || d.t === fTeam) &&
         (!fBrand || d.s === fBrand) &&
         (!fYear || d.y === fYear) &&
-        (!fCollectionTag || (d.collections || []).includes(fCollectionTag)) &&
+        (!fCollectionTag || (d.collections || []).some(c => matchCols.has(c))) &&
         (!activeFilters.rc || d.rc) &&
         (!activeFilters.auto || d.auto) &&
         (!activeFilters.patch || d.patch) &&
@@ -449,7 +455,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     setFiltered(sorted)
     setPage(1)
     setDisplayed(sorted.slice(0, PAGE_SIZE))
-  }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, privateCards, isOwner, sortBy, cardValues])
+  }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, privateCards, isOwner, sortBy, cardValues, tabSettings])
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -1027,16 +1033,27 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               { label: 'Matrix', value: 'linear-gradient(135deg,#14532d,#22c55e)' },
             ]
             const resolveColor = (c: string) => isGradient(c) ? c.match(/#[0-9a-fA-F]{6}/)?.[0] || accent : c
-            const orderedTags = [...collectionTags].sort((a, b) => {
+            const byPos = (a: string, b: string) => {
               const pa = tabSettings.get(a)?.position ?? 999
               const pb = tabSettings.get(b)?.position ?? 999
               return pa !== pb ? pa - pb : a.localeCompare(b)
-            })
-            const saveTabSetting = async (tag: string, patch: { color?: string; position?: number }) => {
+            }
+            const parentOf = (t: string) => tabSettings.get(t)?.parent || null
+            const isSub = (t: string) => { const p = parentOf(t); return !!p && collectionTags.includes(p) }
+            // Ordre en arbre : chaque collection principale suivie de ses sous-collections
+            const principals = collectionTags.filter(t => !isSub(t)).sort(byPos)
+            const orderedTags: string[] = []
+            for (const p of principals) {
+              orderedTags.push(p)
+              orderedTags.push(...collectionTags.filter(t => parentOf(t) === p).sort(byPos))
+            }
+            // Filet de sécurité : n'oublie aucune collection
+            for (const t of collectionTags) if (!orderedTags.includes(t)) orderedTags.push(t)
+            const saveTabSetting = async (tag: string, patch: { color?: string; position?: number; parent?: string | null }) => {
               const cur = tabSettings.get(tag) || { color: accent, position: 0 }
               const next = { ...cur, ...patch }
               setTabSettings(prev => new Map(prev).set(tag, next))
-              await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag, ...next }, { onConflict: 'user_id,tag' })
+              await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag, color: next.color, position: next.position, parent: next.parent ?? null }, { onConflict: 'user_id,tag' })
             }
             const handleDragOver = (e: React.DragEvent, overTag: string) => {
               e.preventDefault()
@@ -1082,8 +1099,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                     const tabColor = settings?.color || accent
                     const isActive = fCollectionTag === tag
                     const isDragging = draggedTag === tag
+                    const sub = isSub(tag)
                     return (
-                      <div key={tag} style={{ position: 'relative', display: 'inline-flex' }}>
+                      <div key={tag} style={{ position: 'relative', display: 'inline-flex', marginLeft: sub ? 14 : 0 }}>
                         <button
                           onClick={(e) => { e.stopPropagation(); setFCollectionTag(isActive ? '' : tag); setColorPickerTag(null) }}
                           draggable={isOwner}
@@ -1091,14 +1109,15 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           onDragOver={(e) => handleDragOver(e, tag)}
                           onDragEnd={handleDragEnd}
                           style={{
-                            padding: '5px 10px', borderRadius: 20, cursor: isOwner ? 'grab' : 'pointer',
-                            fontSize: 11, fontWeight: 700, transition: '0.15s',
+                            padding: sub ? '4px 9px' : '5px 10px', borderRadius: 20, cursor: isOwner ? 'grab' : 'pointer',
+                            fontSize: sub ? 10 : 11, fontWeight: 700, transition: '0.15s',
                             opacity: isDragging ? 0.4 : 1,
                             background: isActive ? tabColor : '#f0f0f0',
                             color: isActive ? 'white' : '#555',
                             border: `2px solid ${isActive ? tabColor : tabColor + '55'}`,
                           }}
                         >
+                          {sub && <span style={{ opacity: 0.6, marginRight: 3 }}>↳</span>}
                           {!isActive && <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: tabColor, marginRight: 5, verticalAlign: 'middle', flexShrink: 0 }} />}
                           {tag}
                         </button>
@@ -1127,8 +1146,15 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                                 ])
                                 const cur = tabSettings.get(tag)
                                 await supabase.from('collection_tab_settings').delete().eq('user_id', userId).eq('tag', tag)
-                                if (cur) await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag: newName, ...cur }, { onConflict: 'user_id,tag' })
-                                setTabSettings(prev => { const m = new Map(prev); if (cur) m.set(newName, cur); m.delete(tag); return m })
+                                if (cur) await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag: newName, color: cur.color, position: cur.position, parent: cur.parent ?? null }, { onConflict: 'user_id,tag' })
+                                // Les sous-collections doivent suivre le nouveau nom du parent
+                                await supabase.from('collection_tab_settings').update({ parent: newName }).eq('user_id', userId).eq('parent', tag)
+                                setTabSettings(prev => {
+                                  const m = new Map(prev)
+                                  if (cur) m.set(newName, cur); m.delete(tag)
+                                  for (const [k, v] of m) if (v.parent === tag) m.set(k, { ...v, parent: newName })
+                                  return m
+                                })
                                 setCollectionTags(prev => [...new Set(prev.map(t => t === tag ? newName : t))].sort())
                                 setCards(prev => prev.map(c => {
                                   if (!(c.collections || []).includes(tag)) return c
@@ -1156,6 +1182,29 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                                   style={{ width: 36, height: 20, borderRadius: 4, background: g.value, border: tabColor === g.value ? '2.5px solid #111' : '2px solid transparent', cursor: 'pointer', padding: 0 }} />
                               ))}
                             </div>
+                            {/* Collection parente (sous-collection) */}
+                            {(() => {
+                              const hasChildren = collectionTags.some(t => parentOf(t) === tag)
+                              return (
+                                <>
+                                  <div style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#aaa', marginBottom: 5 }}>Collection parente</div>
+                                  {hasChildren ? (
+                                    <p style={{ fontSize: 10, color: '#bbb', margin: '0 0 8px' }}>Contient des sous-collections</p>
+                                  ) : (
+                                    <select
+                                      value={parentOf(tag) || ''}
+                                      onChange={e => saveTabSetting(tag, { parent: e.target.value || null })}
+                                      style={{ width: '100%', marginBottom: 8, padding: '5px 8px', borderRadius: 8, border: '1.5px solid #ddd', fontSize: 11, fontWeight: 700, color: '#333', background: 'white', outline: 'none', boxSizing: 'border-box' }}
+                                    >
+                                      <option value="">— Aucune (principale) —</option>
+                                      {principals.filter(p => p !== tag).map(p => (
+                                        <option key={p} value={p}>↳ dans « {p} »</option>
+                                      ))}
+                                    </select>
+                                  )}
+                                </>
+                              )
+                            })()}
                             {/* Supprimer la collection */}
                             {deleteTagConfirm === tag ? (
                               <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: 8 }}>
