@@ -82,7 +82,11 @@ export default function Navbar() {
           <img
             src='/memorabilius-logo.png'
             alt="Memorabilius" width={150} height={30}
-            style={{ height: 30, width: 'auto', filter: dark ? 'brightness(0) invert(1)' : 'none' }}
+            style={{
+              height: 30, width: 'auto',
+              filter: dark ? 'invert(1)' : 'none',
+              mixBlendMode: dark ? 'lighten' : 'multiply',
+            }}
           />
         </Link>
 
