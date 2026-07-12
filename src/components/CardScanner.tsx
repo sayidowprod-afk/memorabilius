@@ -757,6 +757,7 @@ function gaussElim(A: number[][], b: number[]): number[] {
     let max = i
     for (let j = i + 1; j < n; j++) if (Math.abs(A[j][i]) > Math.abs(A[max][i])) max = j
     ;[A[i], A[max]] = [A[max], A[i]];[b[i], b[max]] = [b[max], b[i]]
+    if (Math.abs(A[i][i]) < 1e-10) return new Array(n).fill(NaN) // matrice singulière (coins colinéaires)
     for (let j = i + 1; j < n; j++) {
       const f = A[j][i] / A[i][i]
       for (let k = i; k < n; k++) A[j][k] -= f * A[i][k]
@@ -800,6 +801,7 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
   // Homographie inverse sur les coins à l'échelle réduite
   const scaledCorners = corners.map(p => ({ x: p.x * srcScale, y: p.y * srcScale }))
   const [h0, h1, h2, h3, h4, h5, h6, h7] = computeHomography(dst, scaledCorners)
+  if ([h0, h1, h2, h3, h4, h5, h6, h7].some(v => !Number.isFinite(v))) throw new Error('degenerate homography — coins invalides')
 
   const outC = document.createElement('canvas')
   outC.width = OUT_W; outC.height = OUT_H
