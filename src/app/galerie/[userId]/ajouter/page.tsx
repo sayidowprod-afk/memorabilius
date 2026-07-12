@@ -139,7 +139,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [form, setForm] = useState({
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
-    is_horizontal: false, format: 'standard', collection_tag: '',
+    is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false,
     image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
     verso_is_horizontal: null as boolean | null, // null = même orientation que le recto
   })
@@ -469,6 +469,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       image_interieur_gauche: form.image_interieur_gauche || null,
       image_interieur_droite: form.image_interieur_droite || null,
       collection_tag: form.collection_tag || null,
+      disponible_vente: form.disponible_vente,
     })
     if (error) { alert('Erreur : ' + error.message); setSaving(false); return }
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -731,10 +732,21 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
-              {lang === 'fr' ? 'Ma collection (tag perso)' : 'My collection (personal tag)'}
+              {lang === 'fr' ? 'Ajouter à la collection...' : 'Add to collection...'}
             </label>
             <CollectionTagSelect userId={userId} value={form.collection_tag} onChange={tag => setForm({ ...form, collection_tag: tag })} />
           </div>
+
+          {/* Disponibilité vente / trade */}
+          <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '10px 14px', borderRadius: 10, border: `2px solid ${form.disponible_vente ? '#003DA6' : '#e0e0e0'}`, background: form.disponible_vente ? '#f0f4ff' : 'white', transition: '0.15s' }}>
+            <div onClick={() => setForm(f => ({ ...f, disponible_vente: !f.disponible_vente }))}
+              style={{ width: 36, height: 20, borderRadius: 10, background: form.disponible_vente ? '#003DA6' : '#ddd', position: 'relative', flexShrink: 0, transition: '0.2s' }}>
+              <div style={{ position: 'absolute', top: 2, left: form.disponible_vente ? 18 : 2, width: 16, height: 16, borderRadius: '50%', background: '#fff', transition: '0.2s', boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }} />
+            </div>
+            <span style={{ fontWeight: 700, fontSize: 13, color: form.disponible_vente ? '#003DA6' : '#666' }}>
+              {lang === 'fr' ? '🏷️ Disponible à la vente / trade' : '🏷️ Available for sale / trade'}
+            </span>
+          </label>
 
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>

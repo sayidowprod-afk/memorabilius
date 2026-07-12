@@ -1100,14 +1100,24 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     return bd < HANDLE_R * 2.5 ? best : -1
   }
 
-  // ── Événements souris ──────────────────────────────────────────────────
-  const onMouseDown = (e: React.MouseEvent) => {
+  // ── Événements pointeur (souris + stylet) ─────────────────────────────
+  // setPointerCapture : les événements pointeur continuent à arriver sur ce canvas
+  // même si le curseur sort de ses limites — un coin reste "saisi" jusqu'au relâché.
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (e.pointerType === 'touch') return // géré par onTouchStart
     const pos = screenToCanvasCoord(e.clientX, e.clientY)
     const idx = nearestCorner(pos)
-    if (idx >= 0) { hasAdjusted.current = true; setDragging(idx) }
-    else { isPanning.current = true; lastPanPt.current = { x: e.clientX, y: e.clientY } }
+    if (idx >= 0) {
+      hasAdjusted.current = true
+      setDragging(idx)
+      e.currentTarget.setPointerCapture(e.pointerId)
+    } else {
+      isPanning.current = true
+      lastPanPt.current = { x: e.clientX, y: e.clientY }
+    }
   }
-  const onMouseMove = (e: React.MouseEvent) => {
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (e.pointerType === 'touch') return
     if (dragging !== null) {
       const pos = screenToCanvasCoord(e.clientX, e.clientY)
       const canvas = canvasRef.current!
@@ -1122,7 +1132,13 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       setPan(p => ({ x: p.x - dx, y: p.y - dy }))
     }
   }
-  const onMouseUp = () => { setDragging(null); isPanning.current = false; lastPanPt.current = null }
+  const onPointerUp = (e: React.PointerEvent) => {
+    if (e.pointerType === 'touch') return
+    setDragging(null)
+    isPanning.current = false
+    lastPanPt.current = null
+    try { e.currentTarget.releasePointerCapture(e.pointerId) } catch {}
+  }
 
   const onWheel = (e: React.WheelEvent) => {
     e.preventDefault()
@@ -1241,7 +1257,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       <canvas
         ref={canvasRef}
         style={{ maxWidth: '100%', maxHeight: '50vh', borderRadius: 8, touchAction: 'none', display: 'block', cursor: dragging !== null ? 'grabbing' : isPanning.current ? 'grab' : 'crosshair' }}
-        onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp} onMouseLeave={onMouseUp}
+        onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp}
         onWheel={onWheel}
         onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
       />

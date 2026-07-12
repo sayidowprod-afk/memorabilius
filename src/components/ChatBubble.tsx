@@ -167,21 +167,18 @@ export default function ChatBubble() {
         onClick={toggleOpen}
         style={{
           position: 'fixed', bottom: 24, right: 24, zIndex: 9500,
-          width: 52, height: 52, borderRadius: '50%',
+          height: 52, borderRadius: !open && unread > 0 ? 26 : '50%',
+          width: !open && unread > 0 ? 'auto' : 52,
+          padding: !open && unread > 0 ? '0 18px' : '0',
           background: '#003DA6', color: 'white', border: 'none',
-          fontSize: 22, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: !open && unread > 0 ? 13 : 22, fontWeight: 800,
+          cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
           boxShadow: '0 4px 16px rgba(0,61,166,0.4)',
+          transition: 'all 0.2s', whiteSpace: 'nowrap',
         }}
         title="Messages"
       >
-        {open ? '✕' : '💬'}
-        {!open && unread > 0 && (
-          <span style={{
-            position: 'absolute', top: -2, right: -2, background: '#e74c3c', color: 'white',
-            borderRadius: '50%', minWidth: 18, height: 18, fontSize: 10, fontWeight: 900,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 3px',
-          }}>{unread > 9 ? '9+' : unread}</span>
-        )}
+        {open ? '✕' : (unread > 0 ? <>💬 Nouveau message reçu</> : '💬')}
       </button>
 
       {/* Panneau */}
@@ -235,7 +232,7 @@ export default function ChatBubble() {
                 {messages.map(msg => {
                   const isMe = msg.from_user_id === userId
                   return (
-                    <div key={msg.id} style={{ display: 'flex', justifyContent: isMe ? 'flex-end' : 'flex-start' }}>
+                    <div key={msg.id} style={{ display: 'flex', flexDirection: 'column', alignItems: isMe ? 'flex-end' : 'flex-start' }}>
                       {isImageMsg(msg.contenu) ? (
                         <a href={imgUrlOf(msg.contenu)} target="_blank" rel="noopener noreferrer">
                           <img src={imgUrlOf(msg.contenu)} alt="photo" style={{ maxWidth: 140, borderRadius: 10, display: 'block' }} />
@@ -247,6 +244,9 @@ export default function ChatBubble() {
                           color: isMe ? 'white' : textMain, fontSize: 12, lineHeight: 1.4,
                         }}>{msg.contenu}</div>
                       )}
+                      <span style={{ fontSize: 9, color: textMuted, marginTop: 2 }}>
+                        {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                      </span>
                     </div>
                   )
                 })}

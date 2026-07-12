@@ -93,6 +93,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const cardFmt = getFormat(popup.format)
   const isSlabFmt = cardFmt.isSlab
   const [addState, setAddState] = useState<'idle' | 'loading' | 'added' | 'duplicate'>(initialAddState ?? 'idle')
+  const [closeHover, setCloseHover] = useState(false)
   const { lang } = useLang()
 
   // Parse grade: "PSA 9", "BGS 9.5", or just "9" / "10" → slab info
@@ -314,12 +315,24 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           .viewer-hint { display: none !important; }
         }
       `}</style>
-      <button onClick={onClose} style={{
-        position: 'absolute', top: 10, right: 10, fontSize: 18, cursor: 'pointer',
-        background: dark ? 'rgba(40,40,40,0.95)' : 'rgba(255,255,255,0.95)', width: 32, height: 32, borderRadius: '50%',
-        border: `1px solid ${borderColor}`, color: textColor, display: 'flex', alignItems: 'center',
-        justifyContent: 'center', zIndex: 10001,
-      }}>×</button>
+      <button
+        onClick={onClose}
+        onMouseEnter={() => setCloseHover(true)}
+        onMouseLeave={() => setCloseHover(false)}
+        style={{
+          position: 'absolute', top: 10, right: 10, cursor: 'pointer', zIndex: 10001,
+          background: closeHover ? '#003DA6' : (dark ? 'rgba(40,40,40,0.95)' : 'rgba(255,255,255,0.95)'),
+          color: closeHover ? 'white' : textColor,
+          border: closeHover ? '1px solid #003DA6' : `1px solid ${borderColor}`,
+          borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: closeHover ? '0 14px' : '0',
+          width: closeHover ? 'auto' : 32, height: 32,
+          fontSize: closeHover ? 12 : 18, fontWeight: 800,
+          whiteSpace: 'nowrap', transition: 'all 0.18s',
+        }}
+      >
+        {closeHover ? 'Fermer cette Carte' : '×'}
+      </button>
 
       <div className="viewer-layout">
         {popup.booklet ? (
@@ -825,6 +838,16 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
           {/* Boutons actions */}
           <div style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {isOwner && popup.id_manuelle && userId && (
+              <Link href={`/galerie/${userId}/editer/${popup.id_manuelle}`} onClick={onClose} style={{
+                background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#eee' : '#333',
+                border: 'none', borderRadius: 10, padding: '12px 14px',
+                fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', textDecoration: 'none',
+                display: 'flex', alignItems: 'center', gap: 6,
+              }}>
+                ✏️ {lang === 'fr' ? 'Modifier' : 'Edit'}
+              </Link>
+            )}
             {!popup.booklet && (
               <button onClick={toggleFlip90} title={lang === 'fr' ? 'Pivoter la carte à 90°' : 'Rotate card 90°'} style={{
                 background: flip90 ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: flip90 ? 'white' : (dark ? '#eee' : '#333'),
@@ -901,24 +924,14 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             const psaCertUrl = realCert ? `https://www.psacard.com/cert/${encodeURIComponent(realCert)}` : `https://www.psacard.com/certlookup`
             return (
               <div style={{ borderTop: '1px solid #eee', paddingTop: 12, marginTop: 12, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1, marginRight: 4 }}>PSA</span>
-                <a href={psaPopUrl} target="_blank" rel="noopener noreferrer" style={{
+                <a href={psaCertUrl} target="_blank" rel="noopener noreferrer" style={{
                   fontSize: 11, fontWeight: 700, color: '#c0392b', textDecoration: 'none',
                   border: '1.5px solid #c0392b33', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4, transition: '0.15s',
                 }}
                   onMouseEnter={e => { e.currentTarget.style.background = '#c0392b'; e.currentTarget.style.color = 'white' }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#c0392b' }}
                 >
-                  Population Report ↗
-                </a>
-                <a href={psaCertUrl} target="_blank" rel="noopener noreferrer" style={{
-                  fontSize: 11, fontWeight: 700, color: '#888', textDecoration: 'none',
-                  border: '1.5px solid #e0e0e0', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4, transition: '0.15s',
-                }}
-                  onMouseEnter={e => (e.currentTarget.style.borderColor = '#bbb')}
-                  onMouseLeave={e => (e.currentTarget.style.borderColor = '#e0e0e0')}
-                >
-                  Cert Lookup ↗
+                  Infos de Gradation ↗
                 </a>
                 {psaGrade && (
                   <span style={{ marginLeft: 'auto', fontSize: 10, fontWeight: 700, color: '#aaa' }}>Note {psaGrade}</span>

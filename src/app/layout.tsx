@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/NavBar'
 import Footer from '@/components/Footer'
@@ -8,13 +7,6 @@ import { ThemeProvider } from '@/lib/ThemeContext'
 import { LangProvider } from '@/lib/LangContext'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'optional',
-  preload: true,
-  fallback: ['system-ui', 'arial'],
-})
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -68,7 +60,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body>
         {/* Lit le thème depuis localStorage AVANT le premier rendu React pour éviter le flash light→dark (CLS) */}
         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}` }} />
         <ThemeProvider>

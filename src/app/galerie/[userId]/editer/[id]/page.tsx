@@ -48,7 +48,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const [form, setForm] = useState({
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
     grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false,
-    image_recto: '', image_verso: '', collection_tag: '',
+    image_recto: '', image_verso: '', collection_tag: '', disponible_vente: false,
     booklet: false, is_horizontal: false, format: 'standard',
     image_interieur_gauche: '', image_interieur_droite: '',
     verso_is_horizontal: null as boolean | null, // null = même orientation que le recto
@@ -78,6 +78,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         rc: data.rc || false, auto: data.auto || false, patch: data.patch || false, printing_plate: data.printing_plate || false,
         image_recto: data.image_recto || '', image_verso: data.image_verso || '',
         collection_tag: data.collection_tag || '',
+        disponible_vente: data.disponible_vente || false,
         booklet: data.booklet || false,
         is_horizontal: data.is_horizontal || false,
         format: data.format || (data.is_horizontal ? 'horizontal' : 'standard'),
@@ -311,6 +312,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       num: form.num || null, card_number: form.card_number || null, cert_number: form.cert_number || null, rc: form.rc, auto: form.auto, patch: form.patch, printing_plate: form.printing_plate,
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
       collection_tag: form.collection_tag || null,
+      disponible_vente: form.disponible_vente,
       format: form.format || 'standard',
       booklet: form.booklet, is_horizontal: form.format === 'horizontal',
       verso_is_horizontal: form.verso_is_horizontal,
@@ -482,10 +484,21 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
-              {lang === 'fr' ? 'Ma collection (tag perso)' : 'My collection (personal tag)'}
+              {lang === 'fr' ? 'Ajouter à la collection...' : 'Add to collection...'}
             </label>
             <CollectionTagSelect userId={userId} value={form.collection_tag} onChange={tag => setForm({ ...form, collection_tag: tag })} />
           </div>
+
+          {/* Disponibilité vente / trade */}
+          <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '10px 14px', borderRadius: 10, border: `2px solid ${form.disponible_vente ? '#003DA6' : '#e0e0e0'}`, background: form.disponible_vente ? '#f0f4ff' : 'white', transition: '0.15s' }}>
+            <div onClick={() => setForm(f => ({ ...f, disponible_vente: !f.disponible_vente }))}
+              style={{ width: 36, height: 20, borderRadius: 10, background: form.disponible_vente ? '#003DA6' : '#ddd', position: 'relative', flexShrink: 0, transition: '0.2s' }}>
+              <div style={{ position: 'absolute', top: 2, left: form.disponible_vente ? 18 : 2, width: 16, height: 16, borderRadius: '50%', background: '#fff', transition: '0.2s', boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }} />
+            </div>
+            <span style={{ fontWeight: 700, fontSize: 13, color: form.disponible_vente ? '#003DA6' : '#666' }}>
+              {lang === 'fr' ? '🏷️ Disponible à la vente / trade' : '🏷️ Available for sale / trade'}
+            </span>
+          </label>
 
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>

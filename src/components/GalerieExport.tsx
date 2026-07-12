@@ -313,19 +313,39 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
   const [fPatch, setFPatch] = useState(false)
   const [fNum, setFNum] = useState(false)
 
+  // Tri
+  const [sortField, setSortField] = useState<'n' | 'y' | 't' | 's' | 'g' | '_value'>('n')
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
+
   useEffect(() => { setMounted(true) }, [])
 
   const teams = useMemo(() => [...new Set(cards.map(c => c.t).filter(Boolean))].sort(), [cards])
   const brands = useMemo(() => [...new Set(cards.map(c => c.s).filter(Boolean))].sort(), [cards])
   const years = useMemo(() => [...new Set(cards.map(c => c.y).filter(Boolean))].sort(), [cards])
 
-  const filtered = useMemo(() => cards.filter(c =>
-    c.n.toLowerCase().includes(search.toLowerCase()) &&
-    (!fTeam || c.t === fTeam) &&
-    (!fBrand || c.s === fBrand) &&
-    (!fYear || c.y === fYear) &&
-    (!fRc || c.rc) && (!fAuto || c.auto) && (!fPatch || c.patch) && (!fNum || c.num !== '')
-  ), [cards, search, fTeam, fBrand, fYear, fRc, fAuto, fPatch, fNum])
+  const filtered = useMemo(() => {
+    const list = cards.filter(c =>
+      c.n.toLowerCase().includes(search.toLowerCase()) &&
+      (!fTeam || c.t === fTeam) &&
+      (!fBrand || c.s === fBrand) &&
+      (!fYear || c.y === fYear) &&
+      (!fRc || c.rc) && (!fAuto || c.auto) && (!fPatch || c.patch) && (!fNum || c.num !== '')
+    )
+    return [...list].sort((a, b) => {
+      let va: string | number = ''
+      let vb: string | number = ''
+      if (sortField === '_value') {
+        va = cardValues.get(a.f) ?? -1
+        vb = cardValues.get(b.f) ?? -1
+      } else {
+        va = (a[sortField] || '').toLowerCase()
+        vb = (b[sortField] || '').toLowerCase()
+      }
+      if (va < vb) return sortDir === 'asc' ? -1 : 1
+      if (va > vb) return sortDir === 'asc' ? 1 : -1
+      return 0
+    })
+  }, [cards, search, fTeam, fBrand, fYear, fRc, fAuto, fPatch, fNum, sortField, sortDir, cardValues])
 
   const set = <K extends keyof Options>(k: K, v: Options[K]) => setOpts(o => ({ ...o, [k]: v }))
 
@@ -420,7 +440,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
       // Colonnes (mm)
       type Col = { header: string; key: keyof Card | '_photo' | '_valeur'; w: number; align?: 'center' | 'right' }
       const cols: Col[] = [
-        ...(withPhotos ? [{ header: '', key: '_photo' as const, w: 22 }] : []),
+        ...(withPhotos ? [{ header: '', key: '_photo' as const, w: 27 }] : []),
         { header: 'Joueur',     key: 'n',     w: 42 },
         { header: 'Équipe',    key: 't',     w: 28 },
         { header: 'Année',     key: 'y',     w: 16 },
@@ -642,6 +662,22 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
                     {label}
                   </button>
                 ))}
+              </div>
+              {/* Tri */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <select value={sortField} onChange={e => setSortField(e.target.value as any)}
+                  style={{ flex: 1, padding: '7px 8px', borderRadius: 8, border: '1px solid #e0e0e0', fontSize: 12, outline: 'none' }}>
+                  <option value="n">{lang === 'fr' ? 'Trier par : Joueur' : 'Sort by: Player'}</option>
+                  <option value="y">{lang === 'fr' ? 'Trier par : Année' : 'Sort by: Year'}</option>
+                  <option value="t">{lang === 'fr' ? 'Trier par : Équipe' : 'Sort by: Team'}</option>
+                  <option value="s">{lang === 'fr' ? 'Trier par : Collection' : 'Sort by: Set'}</option>
+                  <option value="g">{lang === 'fr' ? 'Trier par : Grade' : 'Sort by: Grade'}</option>
+                  {cardValues.size > 0 && <option value="_value">{lang === 'fr' ? 'Trier par : Valeur' : 'Sort by: Value'}</option>}
+                </select>
+                <button onClick={() => setSortDir(d => d === 'asc' ? 'desc' : 'asc')}
+                  style={{ padding: '7px 12px', borderRadius: 8, border: '1px solid #e0e0e0', background: '#fafafa', fontSize: 13, cursor: 'pointer', fontWeight: 700, color: '#555' }}>
+                  {sortDir === 'asc' ? '↑' : '↓'}
+                </button>
               </div>
             </div>
             <p style={{ fontSize: 12, color: '#999', margin: '8px 0 0', textAlign: 'center' }}>
