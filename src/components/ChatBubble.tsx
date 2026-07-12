@@ -18,7 +18,9 @@ export default function ChatBubble() {
   const [activeConv, setActiveConv] = useState<string | null>(null)
   const [messages, setMessages] = useState<any[]>([])
   const [newMsg, setNewMsg] = useState('')
+  const [uploadingImg, setUploadingImg] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const fileRef = useRef<HTMLInputElement>(null)
 
   const bg = dark ? '#222' : 'white'
   const border = dark ? '#333' : '#f0f0f0'
@@ -93,13 +95,8 @@ export default function ChatBubble() {
     loadMessages(id)
   }
 
-  const sendMessage = async () => {
-    if (!newMsg.trim() || !userId || !activeConv) return
-    const content = newMsg.trim()
-    setNewMsg('')
-    await supabase.from('messages').insert({ from_user_id: userId, to_user_id: activeConv, contenu: content })
-    loadMessages(activeConv)
-    loadConversations(userId)
+  const notifyRecipient = async () => {
+    if (!userId || !activeConv) return
     const { data: { session } } = await supabase.auth.getSession()
     if (session?.access_token) {
       const senderName = profiles[userId]?.display_name || 'Quelqu\'un'
@@ -108,6 +105,56 @@ export default function ChatBubble() {
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
         body: JSON.stringify({ toUserId: activeConv, senderName }),
       }).catch(() => {})
+    }
+  }
+
+  const sendMessage = async () => {
+    if (!newMsg.trim() || !userId || !activeConv) return
+    const content = newMsg.trim()
+    setNewMsg('')
+    await supabase.from('messages').insert({ from_user_id: userId, to_user_id: activeConv, contenu: content })
+    loadMessages(activeConv)
+    loadConversations(userId)
+    notifyRecipient()
+  }
+
+  // Réduit l'image (max 1400px, JPEG 0.82) avant l'upload pour limiter le poids
+  const downscaleImage = (file: File): Promise<Blob> => new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file)
+    const img = new Image()
+    img.onload = () => {
+      URL.revokeObjectURL(url)
+      const scale = Math.min(1, 1400 / Math.max(img.naturalWidth, img.naturalHeight))
+      const w = Math.max(1, Math.round(img.naturalWidth * scale))
+      const h = Math.max(1, Math.round(img.naturalHeight * scale))
+      const c = document.createElement('canvas'); c.width = w; c.height = h
+      c.getContext('2d')!.drawImage(img, 0, 0, w, h)
+      c.toBlob(b => { c.width = 0; b ? resolve(b) : reject(new Error('blob')) }, 'image/jpeg', 0.82)
+    }
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('image')) }
+    img.src = url
+  })
+
+  const sendImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file || !userId || !activeConv) return
+    setUploadingImg(true)
+    try {
+      const blob = await downscaleImage(file)
+      const path = `chat/${userId}/${Date.now()}.jpg`
+      const up = new File([blob], 'chat.jpg', { type: 'image/jpeg' })
+      const { error } = await supabase.storage.from('avatars').upload(path, up, { upsert: true })
+      if (error) { alert('Erreur envoi image : ' + error.message); return }
+      const { data } = supabase.storage.from('avatars').getPublicUrl(path)
+      await supabase.from('messages').insert({ from_user_id: userId, to_user_id: activeConv, contenu: IMG_PREFIX + data.publicUrl })
+      loadMessages(activeConv)
+      loadConversations(userId)
+      notifyRecipient()
+    } catch {
+      alert('Image illisible, réessayez.')
+    } finally {
+      setUploadingImg(false)
     }
   }
 
@@ -177,9 +224,12 @@ export default function ChatBubble() {
             <>
               <div style={{ padding: '10px 14px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <button onClick={() => setActiveConv(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16, color: '#003DA6', padding: 0 }}>←</button>
-                <img src={profiles[activeConv]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[activeConv]?.display_name || 'U')}&background=003DA6&color=fff`}
-                  style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover' }} alt="" />
-                <span style={{ fontWeight: 800, fontSize: 13, color: textMain }}>{profiles[activeConv]?.display_name}</span>
+                <Link href={`/galerie/${activeConv}`} onClick={() => setOpen(false)} title="Voir la galerie"
+                  style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', flex: 1, minWidth: 0 }}>
+                  <img src={profiles[activeConv]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[activeConv]?.display_name || 'U')}&background=003DA6&color=fff`}
+                    style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                  <span style={{ fontWeight: 800, fontSize: 13, color: textMain, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{profiles[activeConv]?.display_name}</span>
+                </Link>
               </div>
               <div style={{ flex: 1, overflowY: 'auto', padding: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {messages.map(msg => {
@@ -202,7 +252,13 @@ export default function ChatBubble() {
                 })}
                 <div ref={bottomRef} />
               </div>
-              <div style={{ padding: 10, borderTop: `1px solid ${border}`, display: 'flex', gap: 8 }}>
+              <div style={{ padding: 10, borderTop: `1px solid ${border}`, display: 'flex', gap: 8, alignItems: 'center' }}>
+                <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={sendImage} />
+                <button onClick={() => fileRef.current?.click()} disabled={uploadingImg}
+                  title="Envoyer une image"
+                  style={{ background: dark ? '#333' : '#f0f0f0', color: dark ? '#ddd' : '#555', border: 'none', borderRadius: 8, padding: '0 10px', height: 32, fontSize: 15, cursor: uploadingImg ? 'wait' : 'pointer', flexShrink: 0 }}>
+                  {uploadingImg ? '…' : '📷'}
+                </button>
                 <input
                   value={newMsg}
                   onChange={e => setNewMsg(e.target.value)}
@@ -210,7 +266,7 @@ export default function ChatBubble() {
                   placeholder="Écrire..."
                   style={{ flex: 1, fontSize: 12, padding: '8px 10px', borderRadius: 8, border: `1px solid ${border}`, background: dark ? '#2a2a2a' : 'white', color: textMain, outline: 'none' }}
                 />
-                <button onClick={sendMessage} style={{ background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, padding: '0 12px', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>➤</button>
+                <button onClick={sendMessage} style={{ background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, padding: '0 12px', height: 32, fontWeight: 700, fontSize: 12, cursor: 'pointer', flexShrink: 0 }}>➤</button>
               </div>
             </>
           )}
