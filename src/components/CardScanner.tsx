@@ -683,7 +683,9 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
 
   // ── Étape 1 : Gemini Pro sur l'image entière (premier, le plus précis) ──
   try {
+    await yieldThread() // laisse le browser peindre avant le travail sync
     const { b64 } = await imageToBase64(img, 1024)
+    await yieldThread()
     const ctrl = new AbortController()
     const t = setTimeout(() => ctrl.abort(), 5000)
     let res: Response
@@ -720,14 +722,16 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   } catch { /* fallback OpenCV */ }
 
   // ── Étape 2 : OpenCV fallback ────────────────────────────────────────────
-  await yieldThread() // respire entre Gemini et OpenCV
+  await yieldThread()
   try {
     const cv = await Promise.race([
       loadOpenCV(),
       new Promise<null>(r => setTimeout(() => r(null), 4000)),
     ])
     if (cv) {
+      await yieldThread() // laisse le browser respirer avant le bloc sync OpenCV
       const result = await detectCardOpenCV(img, cv)
+      await yieldThread()
       if (result) return result
     }
   } catch { /* rien */ }
@@ -788,8 +792,8 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
 
   const dst: Pt[] = [{ x: 0, y: 0 }, { x: OUT_W, y: 0 }, { x: OUT_W, y: OUT_H }, { x: 0, y: OUT_H }]
 
-  // Limiter la source à 1500px max — évite OOM + freeze sur mobile
-  const MAX_SRC = 1500
+  // Limiter la source à 1000px max — évite OOM + freeze sur mobile
+  const MAX_SRC = 1000
   const srcScale = Math.min(1, MAX_SRC / Math.max(img.naturalWidth, img.naturalHeight))
   const IW = Math.round(img.naturalWidth * srcScale)
   const IH = Math.round(img.naturalHeight * srcScale)
