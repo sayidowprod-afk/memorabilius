@@ -42,14 +42,14 @@ async function normalizeCard(url: string): Promise<string> {
   }
 }
 
-// ── Layout : panneau gauche solide (texte propre) + grille 3×3 à droite ──
+// ── Layout : panneau gauche solide (texte propre) + grille 3×2 à droite ──
 // Panneau gauche : 0→420px, #04091a opaque — texte toujours lisible
-// Section cartes : 420→1200px (780px), grille 3 colonnes × 3 rangées
+// Section cartes : 420→1200px (780px), grille 3 colonnes × 2 rangées
 const LEFT_W = 420         // largeur du panneau texte
 const CARD_COLS = 3
-const CARD_ROWS = 3
+const CARD_ROWS = 2
 const TW = 260             // 3 × 260 = 780 = 1200 - 420
-const TH = 210             // 3 × 210 = 630
+const TH = 315             // 2 × 315 = 630 — cartes plus hautes, moins de recadrage
 
 interface Tile { url: string; x: number; y: number; w: number; h: number }
 
@@ -104,8 +104,8 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
     ? `${totalCount} carte${totalCount > 1 ? 's' : ''} dans la collection`
     : 'Collection de cartes de sport'
 
-  // 9 tuiles suffisent pour la grille 3×3
-  const rawUrls = [...manualImgs, ...csvImgs].slice(0, 12)
+  // 6 tuiles suffisent pour la grille 3×2
+  const rawUrls = [...manualImgs, ...csvImgs].slice(0, 6)
   if (rawUrls.length === 0) rawUrls.push('https://placehold.co/260x210/0d1a3e/1e3a7a?text=+')
   const normalizedUrls = await Promise.all(rawUrls.map(normalizeCard))
 
@@ -136,13 +136,13 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
           {/* Nom + compteur */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{
-              fontSize: 52, fontWeight: 900, color: '#ffffff',
-              lineHeight: 1.05, letterSpacing: -1.5,
-              display: 'flex', maxWidth: 332, overflow: 'hidden',
+              fontSize: 46, fontWeight: 900, color: '#ffffff',
+              lineHeight: 1.1, letterSpacing: -1,
+              display: 'flex', flexWrap: 'wrap',
             }}>
               {name}
             </div>
-            <div style={{ fontSize: 19, color: 'rgba(255,255,255,0.52)', display: 'flex' }}>
+            <div style={{ fontSize: 18, color: 'rgba(255,255,255,0.52)', display: 'flex' }}>
               {countLabel}
             </div>
           </div>
@@ -180,10 +180,10 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
             </div>
           ))}
 
-          {/* Fondu gauche (rendu après les tuiles = par-dessus) */}
+          {/* Fondu gauche 30px — raccord panneau/cartes, minimal pour ne pas trop couper */}
           <div style={{
             position: 'absolute', left: 0, top: 0,
-            width: 80, height: 630,
+            width: 30, height: 630,
             background: 'linear-gradient(to right, #04091a, transparent)',
             display: 'flex',
           }} />
