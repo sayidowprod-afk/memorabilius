@@ -1044,6 +1044,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             const isSub = (t: string) => { const p = parentOf(t); return !!p && collectionTags.includes(p) }
             const principals = collectionTags.filter(t => !isSub(t)).sort(byPos)
             const getChildren = (tag: string) => collectionTags.filter(t => parentOf(t) === tag).sort(byPos)
+            const getDescendants = (tag: string): string[] => { const ch = getChildren(tag); return [...ch, ...ch.flatMap(c => getDescendants(c))] }
             const saveTabSetting = async (tag: string, patch: { color?: string; position?: number; parent?: string | null }) => {
               const cur = tabSettings.get(tag) || { color: accent, position: 0 }
               const next = { ...cur, ...patch }
@@ -1174,24 +1175,21 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           ))}
                         </div>
                         {(() => {
-                          const childCount = getChildren(tag).length > 0
+                          const forbidden = new Set([tag, ...getDescendants(tag)])
+                          const candidates = collectionTags.filter(t => !forbidden.has(t))
                           return (
                             <>
                               <div style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#aaa', marginBottom: 5 }}>Collection parente</div>
-                              {childCount ? (
-                                <p style={{ fontSize: 10, color: '#bbb', margin: '0 0 8px' }}>Contient des sous-collections</p>
-                              ) : (
-                                <select
-                                  value={parentOf(tag) || ''}
-                                  onChange={e => saveTabSetting(tag, { parent: e.target.value || null })}
-                                  style={{ width: '100%', marginBottom: 8, padding: '5px 8px', borderRadius: 8, border: '1.5px solid #ddd', fontSize: 11, fontWeight: 700, color: '#333', background: 'white', outline: 'none', boxSizing: 'border-box' }}
-                                >
-                                  <option value="">— Aucune (principale) —</option>
-                                  {principals.filter(p => p !== tag).map(p => (
-                                    <option key={p} value={p}>↳ dans « {p} »</option>
-                                  ))}
-                                </select>
-                              )}
+                              <select
+                                value={parentOf(tag) || ''}
+                                onChange={e => saveTabSetting(tag, { parent: e.target.value || null })}
+                                style={{ width: '100%', marginBottom: 8, padding: '5px 8px', borderRadius: 8, border: '1.5px solid #ddd', fontSize: 11, fontWeight: 700, color: '#333', background: 'white', outline: 'none', boxSizing: 'border-box' }}
+                              >
+                                <option value="">— Aucune (principale) —</option>
+                                {candidates.map(p => (
+                                  <option key={p} value={p}>↳ dans « {p} »</option>
+                                ))}
+                              </select>
                             </>
                           )
                         })()}
