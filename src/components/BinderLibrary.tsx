@@ -105,6 +105,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [folders, setFolders] = useState<Folder[]>([])
   const [currentFolder, setCurrentFolder] = useState<Folder | null>(null)
   const [iconPickerFolder, setIconPickerFolder] = useState<Folder | null>(null)
+  const [menuFolder, setMenuFolder] = useState<number | null>(null)
   const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState<Binder | null>(null)
   const [showComments, setShowComments] = useState(false)
@@ -217,13 +218,15 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }
 
   const saveFolderColor = async (folder: Folder, color: string) => {
-    await supabase.from('binder_folders').update({ color }).eq('id', folder.id)
+    const { error } = await supabase.from('binder_folders').update({ color }).eq('id', folder.id)
+    if (error) { alert('Erreur : ' + error.message); return }
     setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, color } : f))
   }
 
   const saveFolderIcon = async (folder: Folder, icon: string) => {
     const value = icon || null
-    await supabase.from('binder_folders').update({ icon: value }).eq('id', folder.id)
+    const { error } = await supabase.from('binder_folders').update({ icon: value }).eq('id', folder.id)
+    if (error) { alert('Erreur : ' + error.message); return }
     setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, icon: value } : f))
     setCurrentFolder(c => c && c.id === folder.id ? { ...c, icon: value } : c)
     setIconPickerFolder(null)
@@ -974,12 +977,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <img src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         )}
-        <div style={{ flex: 1 }} />
-        <div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 2, margin: '0 4px 14px', padding: '10px 2px', boxShadow: '0 1px 3px rgba(0,0,0,0.25)', display: 'flex', justifyContent: 'center', maxHeight: 120 }}>
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '4px 3px 12px' }}>
           <span style={{
-            writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 10, fontWeight: 800,
-            color: '#333', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-            maxHeight: 100, letterSpacing: '0.02em',
+            writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 9, fontWeight: 600,
+            color: 'rgba(255,255,255,0.82)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+            maxHeight: 100, letterSpacing: '0.06em',
+            textShadow: '0 0 6px rgba(0,0,0,0.9)',
           }}>{b.name}</span>
         </div>
       </div>
@@ -1003,7 +1006,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           </div>
         )}
 
-        <div style={{ background: 'linear-gradient(180deg, #6b4a32, #4e3623)', borderRadius: 16, boxShadow: '0 6px 24px rgba(0,0,0,0.18)', padding: '14px 14px 4px' }}>
+        <div style={{ background: 'linear-gradient(180deg, #1a2638, #0d1824)', borderRadius: 16, boxShadow: '0 6px 28px rgba(0,0,0,0.28)', padding: '14px 14px 4px' }}>
           {sections.map((section, si) => {
             const rows: (Binder | 'new')[][] = []
             for (let i = 0; i < section.binderItems.length; i += SHELF_ROW_SIZE) rows.push(section.binderItems.slice(i, i + SHELF_ROW_SIZE))
@@ -1016,42 +1019,46 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 style={{ marginBottom: si < sections.length - 1 ? 20 : 0 }}>
                 {section.folder ? (
                   /* En-tête coloré du dossier */
-                  <div style={{
-                    background: shelfColor,
-                    borderRadius: '8px 8px 0 0',
-                    padding: '6px 10px',
-                    display: 'flex', alignItems: 'center', gap: 7, flexWrap: 'wrap',
-                  }}>
-                    <FolderIcon icon={section.folder.icon} size={14} />
-                    <span style={{ color: 'white', fontWeight: 900, fontSize: 13, letterSpacing: 0.3, flex: 1, minWidth: 60 }}>
-                      {section.folder.name}
-                    </span>
-                    <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 10 }}>
-                      {section.binderItems.length} classeur{section.binderItems.length !== 1 ? 's' : ''}
-                    </span>
-                    {isOwner && (
-                      <>
+                  <div style={{ background: shelfColor, borderRadius: '8px 8px 0 0' }}>
+                    <div style={{ padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <FolderIcon icon={section.folder.icon} size={15} />
+                      <span style={{ color: 'white', fontWeight: 700, fontSize: 13, flex: 1, letterSpacing: 0.2 }}>
+                        {section.folder.name}
+                      </span>
+                      <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: 10 }}>
+                        {section.binderItems.length} classeur{section.binderItems.length !== 1 ? 's' : ''}
+                      </span>
+                      {isOwner && (
+                        <button
+                          onClick={() => setMenuFolder(menuFolder === section.folder!.id ? null : section.folder!.id)}
+                          style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 6, padding: '2px 10px', cursor: 'pointer', fontSize: 16, color: 'white', fontWeight: 700, lineHeight: 1 }}
+                        >···</button>
+                      )}
+                    </div>
+                    {isOwner && menuFolder === section.folder.id && (
+                      <div style={{ padding: '6px 12px 10px', display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
                         {FOLDER_SHELF_COLORS.map(c => (
                           <div key={c} onClick={() => saveFolderColor(section.folder!, c)} title={c}
                             style={{
-                              width: 13, height: 13, borderRadius: '50%', background: c, cursor: 'pointer', flexShrink: 0,
-                              border: c === (section.folder!.color || FOLDER_SHELF_COLORS[0]) ? '2px solid white' : '2px solid rgba(255,255,255,0.2)',
+                              width: 14, height: 14, borderRadius: '50%', background: c, cursor: 'pointer', flexShrink: 0,
+                              border: c === (section.folder!.color || FOLDER_SHELF_COLORS[0]) ? '2.5px solid white' : '2.5px solid rgba(255,255,255,0.2)',
                             }}
                           />
                         ))}
-                        <button onClick={() => setIconPickerFolder(section.folder!)} title="Icône"
-                          style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 5, padding: '2px 7px', cursor: 'pointer', fontSize: 11, color: 'white', fontWeight: 700 }}>
+                        <div style={{ width: 1, height: 14, background: 'rgba(255,255,255,0.2)', margin: '0 3px' }} />
+                        <button onClick={() => setIconPickerFolder(section.folder!)}
+                          style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 5, padding: '3px 8px', cursor: 'pointer', fontSize: 11, color: 'white', fontWeight: 700 }}>
                           icône
                         </button>
-                        <button onClick={() => renameFolder(section.folder!)} title="Renommer"
-                          style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 5, padding: '2px 7px', cursor: 'pointer', fontSize: 11, color: 'white', fontWeight: 700 }}>
-                          ✏️
+                        <button onClick={() => renameFolder(section.folder!)}
+                          style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 5, padding: '3px 8px', cursor: 'pointer', fontSize: 11, color: 'white', fontWeight: 700 }}>
+                          ✏️ Renommer
                         </button>
-                        <button onClick={() => deleteFolder(section.folder!)} title="Supprimer"
-                          style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: 5, padding: '2px 7px', cursor: 'pointer', fontSize: 11, color: 'rgba(255,160,160,1)', fontWeight: 700 }}>
+                        <button onClick={() => deleteFolder(section.folder!)}
+                          style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: 5, padding: '3px 8px', cursor: 'pointer', fontSize: 11, color: 'rgba(255,160,160,1)', fontWeight: 700 }}>
                           🗑️
                         </button>
-                      </>
+                      </div>
                     )}
                   </div>
                 ) : (folders.length > 0 || binders.some(b => b.folder_id === null)) ? (
@@ -1073,7 +1080,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                     }}>
                       {row.map(renderSpine)}
                     </div>
-                    <div style={{ height: 12, background: 'linear-gradient(180deg, #3a281a, #2a1d12)', borderRadius: 2, boxShadow: '0 4px 8px rgba(0,0,0,0.4)' }} />
+                    <div style={{ height: 12, background: 'linear-gradient(180deg, #0d1824, #060f1a)', borderRadius: 2, boxShadow: '0 4px 10px rgba(0,0,0,0.45)' }} />
                   </div>
                 ))}
               </div>
@@ -1093,8 +1100,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             background: reorderDrag.binder.color || accent, borderRadius: '4px 4px 0 0',
             boxShadow: '0 12px 28px rgba(0,0,0,0.45)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 10,
           }}>
-            <div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 2, padding: '8px 2px', maxHeight: 100 }}>
-              <span style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 9, fontWeight: 800, color: '#333', whiteSpace: 'nowrap' }}>{reorderDrag.binder.name}</span>
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', padding: '4px 3px 12px' }}>
+              <span style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.85)', whiteSpace: 'nowrap', textShadow: '0 0 6px rgba(0,0,0,0.9)', letterSpacing: '0.06em' }}>{reorderDrag.binder.name}</span>
             </div>
           </div>,
           document.body
