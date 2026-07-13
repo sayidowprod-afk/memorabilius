@@ -412,16 +412,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const targetEl = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-binder-spine]') as HTMLElement | null
     const overId = targetEl ? Number(targetEl.dataset.binderSpine) : NaN
     if (Number.isNaN(overId) || overId === r.binder.id) return
-    setBinders(prev => {
-      const from = prev.findIndex(b => b.id === r.binder.id)
-      const to = prev.findIndex(b => b.id === overId)
-      if (from < 0 || to < 0) return prev
-      const next = [...prev]
-      const [moved] = next.splice(from, 1)
-      next.splice(to, 0, moved)
-      next.forEach((b, i) => { supabase.from('binders').update({ position: i }).eq('id', b.id) })
-      return next
-    })
+    const from = binders.findIndex(b => b.id === r.binder.id)
+    const to = binders.findIndex(b => b.id === overId)
+    if (from < 0 || to < 0) return
+    const next = [...binders]
+    const [moved] = next.splice(from, 1)
+    next.splice(to, 0, moved)
+    setBinders(next)
+    next.forEach((b, i) => supabase.from('binders').update({ position: i }).eq('id', b.id))
   }
 
   const placeCard = async (page: number, idx: number, card: PickableCard) => {
