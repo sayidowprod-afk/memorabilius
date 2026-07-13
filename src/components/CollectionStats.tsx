@@ -65,7 +65,7 @@ export default function CollectionStats({ cards, accent }: Props) {
       sgc: sgc.length,
       otherGraded: otherGraded.length,
       topBrands: top(cards.map(c => c.br)),
-      topYears:  top(cards.map(c => c.y)).sort((a, b) => (b.label > a.label ? 1 : -1)),
+      topYears:  top(cards.map(c => c.y)),
       topTeams:  top(cards.map(c => c.t)),
       topSeries: top(cards.map(c => c.s)),
       topGrades: top(psaGrades).sort((a, b) => parseFloat(b.label) - parseFloat(a.label)),

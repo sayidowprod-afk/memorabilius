@@ -32,6 +32,7 @@ interface Binder {
   position: number
   binder_type: 'portfolio' | 'rings'
   folder_id: number | null
+  is_public?: boolean
 }
 
 interface Folder { id: number; name: string; position: number; icon?: string | null; color?: string | null }
@@ -136,8 +137,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [fColor, setFColor] = useState(BINDER_COLORS[0])
   const [fFolderId, setFFolderId] = useState<number | null>(null)
   const [fCover, setFCover] = useState<string | null>(null)
+  const [fIsPublic, setFIsPublic] = useState(true)
   const [uploadingCover, setUploadingCover] = useState(false)
   const coverInputRef = useRef<HTMLInputElement>(null)
+
+  const [cardCounts, setCardCounts] = useState<Record<number, number>>({})
 
   const [pageW, setPageW] = useState(PAGE_MAX_W)
   const stageRef = useRef<HTMLDivElement>(null)
@@ -196,8 +200,18 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       supabase.from('binders').select('*').eq('user_id', userId).order('position').order('id'),
       supabase.from('binder_folders').select('*').eq('user_id', userId).order('position').order('id'),
     ])
-    setBinders(data || [])
+    const allBinders = data || []
+    setBinders(allBinders)
     setFolders(fdata || [])
+    if (allBinders.length) {
+      const { data: slotRows } = await supabase
+        .from('binder_slots')
+        .select('binder_id')
+        .in('binder_id', allBinders.map(b => b.id))
+      const counts: Record<number, number> = {}
+      for (const row of slotRows || []) counts[row.binder_id] = (counts[row.binder_id] || 0) + 1
+      setCardCounts(counts)
+    }
     setLoading(false)
   }
 
@@ -294,12 +308,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }
 
   const openCreateForm = () => {
-    setFName(''); setFSubtitle(''); setFLayout(9); setFType('portfolio'); setFColor(BINDER_COLORS[0]); setFCover(null)
+    setFName(''); setFSubtitle(''); setFLayout(9); setFType('portfolio'); setFColor(BINDER_COLORS[0]); setFCover(null); setFIsPublic(true)
     setFFolderId(currentFolder?.id ?? null)
     setFormOpen('create')
   }
   const openEditForm = (b: Binder) => {
-    setFName(b.name); setFSubtitle(b.subtitle || ''); setFLayout(b.layout); setFType(b.binder_type || 'portfolio'); setFColor(b.color || BINDER_COLORS[0]); setFCover(b.cover_img)
+    setFName(b.name); setFSubtitle(b.subtitle || ''); setFLayout(b.layout); setFType(b.binder_type || 'portfolio'); setFColor(b.color || BINDER_COLORS[0]); setFCover(b.cover_img); setFIsPublic(b.is_public ?? true)
     setFFolderId(b.folder_id ?? null)
     setFormOpen(b.id)
   }
@@ -318,7 +332,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   const saveForm = async () => {
     if (!fName.trim()) return
-    const payload = { name: fName.trim(), subtitle: fSubtitle.trim() || null, color: fColor, cover_img: fCover, binder_type: fType, folder_id: fFolderId }
+    const payload = { name: fName.trim(), subtitle: fSubtitle.trim() || null, color: fColor, cover_img: fCover, binder_type: fType, folder_id: fFolderId, is_public: fIsPublic }
     if (formOpen === 'create') {
       const { data, error } = await supabase.from('binders').insert({
         user_id: userId, layout: fLayout, position: binders.length, ...payload,
@@ -432,6 +446,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     if (error) { alert('Erreur : ' + error.message); return }
     const k = slotKey(page, idx)
     setSlots(prev => new Map(prev).set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal }))
+    setCardCounts(prev => ({ ...prev, [selected.id]: (prev[selected.id] || 0) + 1 }))
     setJustInserted(k)
     setTimeout(() => setJustInserted(null), 550)
     setPickerTarget(null)
@@ -459,6 +474,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     await supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', page).eq('slot_index', idx)
     const k = slotKey(page, idx)
     setSlots(prev => { const m = new Map(prev); m.delete(k); return m })
+    setCardCounts(prev => ({ ...prev, [selected.id]: Math.max(0, (prev[selected.id] || 1) - 1) }))
   }
 
   const addPage = async () => {
@@ -501,6 +517,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const { error } = await supabase.from('binder_slots').insert(inserts)
     if (error) { alert('Erreur : ' + error.message); openBinder(selected); return }
     setSlots(prev => { const m = new Map(prev); for (const [k, v] of localAdds) m.set(k, v); return m })
+    setCardCounts(prev => ({ ...prev, [selected.id]: (prev[selected.id] || 0) + inserts.length }))
   }
 
   // Déplace une carte d'une pochette vers une autre (échange si la cible est occupée)
@@ -920,6 +937,27 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           </select>
         </div>
 
+        <button
+          type="button"
+          onClick={() => setFIsPublic(v => !v)}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 10, width: '100%',
+            padding: '10px 14px', borderRadius: 10, cursor: 'pointer', textAlign: 'left',
+            border: '1.5px solid #ddd', background: fIsPublic ? '#f0f6ff' : '#fff8f0',
+          }}
+        >
+          <span style={{ fontSize: 18 }}>{fIsPublic ? '🌐' : '🔒'}</span>
+          <div>
+            <div style={{ fontWeight: 800, fontSize: 13, color: '#333' }}>{fIsPublic ? 'Classeur public' : 'Classeur privé'}</div>
+            <div style={{ fontSize: 11, color: '#888', marginTop: 1 }}>
+              {fIsPublic ? 'Visible dans ta galerie publique' : 'Visible uniquement par toi'}
+            </div>
+          </div>
+          <div style={{ marginLeft: 'auto', width: 36, height: 20, borderRadius: 10, background: fIsPublic ? '#003DA6' : '#ccc', position: 'relative', transition: 'background 0.2s', flexShrink: 0 }}>
+            <div style={{ position: 'absolute', top: 2, left: fIsPublic ? 18 : 2, width: 16, height: 16, borderRadius: '50%', background: 'white', boxShadow: '0 1px 3px rgba(0,0,0,0.2)', transition: 'left 0.2s' }} />
+          </div>
+        </button>
+
         <button onClick={saveForm} disabled={!fName.trim()} className="btn-main btn-primary">
           {formOpen === 'create' ? 'Créer' : 'Enregistrer'}
         </button>
@@ -975,13 +1013,22 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <img src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         )}
+        {/* Icône verrou pour classeur privé */}
+        {b.is_public === false && (
+          <div style={{ position: 'absolute', top: b.cover_img ? 50 : 6, right: 4, fontSize: 9, lineHeight: 1 }}>🔒</div>
+        )}
         <div style={{ flex: 1 }} />
-        <div style={{ margin: '0 4px 10px', background: 'rgba(0,0,0,0.38)', borderRadius: 2, padding: '8px 2px', display: 'flex', justifyContent: 'center', maxHeight: 110 }}>
+        <div style={{ margin: '0 4px 10px', background: 'rgba(0,0,0,0.38)', borderRadius: 2, padding: '8px 2px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, maxHeight: 118 }}>
           <span style={{
             writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 9, fontWeight: 600,
             color: 'rgba(255,255,255,0.92)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-            maxHeight: 100, letterSpacing: '0.06em',
+            maxHeight: 90, letterSpacing: '0.06em',
           }}>{b.name}</span>
+          {(cardCounts[b.id] ?? 0) > 0 && (
+            <span style={{ fontSize: 8, fontWeight: 800, color: 'rgba(255,255,255,0.6)', letterSpacing: 0, lineHeight: 1 }}>
+              {cardCounts[b.id]}
+            </span>
+          )}
         </div>
       </div>
     )
