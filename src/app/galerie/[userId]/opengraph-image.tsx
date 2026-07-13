@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og'
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'fs'
 import { join } from 'path'
+import sharp from 'sharp'
 
 export const runtime = 'nodejs'
 export const alt = 'Galerie Memorabilius'
@@ -13,9 +14,8 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-const PLACEHOLDER = 'https://placehold.co/160x224/0d1a3e/1e3a7a?text=+'
+const PLACEHOLDER = 'https://placehold.co/200x280/0d1a3e/1e3a7a?text=+'
 
-// Logo blanc chargé depuis le disque — data URI pour éviter un fetch HTTP dans ImageResponse
 const logoWhiteDataUrl = (() => {
   try {
     const buf = readFileSync(join(process.cwd(), 'public/memorabilius-logo-white.png'))
@@ -25,29 +25,76 @@ const logoWhiteDataUrl = (() => {
   }
 })()
 
-const CARD_W = 160
-const CARD_H = 224
+const CARD_W = 200
+const CARD_H = 280
 const rotations = [-12, -6, 0, 6, 12]
-const yOffsets  = [20,  8,  0, 8, 20]
+const yOffsets  = [24,  10,  0, 10, 24]
 const zIndexes  = [1,   3,  5, 3,  1]
+
+// Retourne une data URI JPEG de l'image, auto-rotée si paysage → portrait
+async function normalizeCard(url: string): Promise<string> {
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(2000) })
+    if (!res.ok) return url
+    const buf = Buffer.from(await res.arrayBuffer())
+    const meta = await sharp(buf).metadata()
+    if (meta.width && meta.height && meta.width > meta.height) {
+      const rotated = await sharp(buf).rotate(90).jpeg({ quality: 85 }).toBuffer()
+      return `data:image/jpeg;base64,${rotated.toString('base64')}`
+    }
+    return url
+  } catch {
+    return url
+  }
+}
+
+// Parse simplifié du CSV TCDB/collecteur pour extraire les URLs d'images
+function parseCsvImages(text: string): string[] {
+  const imgs: string[] = []
+  const rows = text.split(/\r?\n/).slice(4)
+  for (const row of rows) {
+    if (imgs.length >= 10) break
+    const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+    const img = c[0]?.trim()
+    if (img?.startsWith('http')) imgs.push(img)
+  }
+  return imgs
+}
 
 export default async function OGImage({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params
 
   const [{ data: profile }, { data: cards }, { count: cardCount }] = await Promise.all([
-    supabase.from('profiles').select('display_name, avatar_url, couleur_bordure').eq('id', userId).single(),
+    supabase.from('profiles').select('display_name, avatar_url, couleur_bordure, lien_csv').eq('id', userId).single(),
     supabase.from('cartes_manuelles').select('image_recto').eq('user_id', userId).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(5),
     supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('user_id', userId),
   ])
 
   const accent     = profile?.couleur_bordure || '#003DA6'
   const name       = profile?.display_name    || 'Collector'
-  const thumbs     = Array.from({ length: 5 }, (_, i) => (cards || [])[i]?.image_recto || PLACEHOLDER)
   const avatarUrl  = profile?.avatar_url
     || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0c1942&color=ffffff&size=200`
   const countLabel = cardCount != null
     ? `${cardCount} carte${cardCount > 1 ? 's' : ''} dans la collection`
     : 'Collection de cartes de sport'
+
+  // Fusion cartes manuelles + CSV jusqu'à 5 images
+  const manualImgs = (cards || []).map(c => c.image_recto).filter(Boolean) as string[]
+  const csvImgs: string[] = []
+  if (manualImgs.length < 5 && profile?.lien_csv) {
+    try {
+      const r = await fetch(profile.lien_csv, { signal: AbortSignal.timeout(3000) })
+      if (r.ok) csvImgs.push(...parseCsvImages(await r.text()))
+    } catch {}
+  }
+  const rawThumbs = Array.from({ length: 5 }, (_, i) => {
+    return manualImgs[i] || csvImgs[i - manualImgs.length] || PLACEHOLDER
+  })
+
+  // Normaliser en parallèle (rotation auto si paysage)
+  const thumbs = await Promise.all(rawThumbs.map(url =>
+    url === PLACEHOLDER ? Promise.resolve(PLACEHOLDER) : normalizeCard(url)
+  ))
 
   return new ImageResponse(
     (
@@ -72,12 +119,12 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
           padding: '28px 52px 0', position: 'relative', zIndex: 10,
         }}>
           {logoWhiteDataUrl ? (
-            <img src={logoWhiteDataUrl} width={160} height={32}
-              style={{ width: 160, height: 32, objectFit: 'contain', display: 'block', opacity: 0.9 }} />
+            <img src={logoWhiteDataUrl} width={180} height={36}
+              style={{ width: 180, height: 36, objectFit: 'contain', display: 'block', opacity: 0.95 }} />
           ) : (
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div style={{ width: 16, height: 16, borderRadius: 3, background: accent, display: 'flex' }} />
-              <div style={{ fontSize: 12, fontWeight: 900, letterSpacing: 5, color: 'rgba(255,255,255,0.5)', display: 'flex' }}>
+              <div style={{ fontSize: 13, fontWeight: 900, letterSpacing: 5, color: 'rgba(255,255,255,0.7)', display: 'flex' }}>
                 MEMORABILIUS
               </div>
             </div>
@@ -102,11 +149,11 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
                 overflow: 'hidden',
                 border: i === 2 ? `2.5px solid ${accent}` : '1.5px solid rgba(255,255,255,0.1)',
                 zIndex: zIndexes[i],
-                marginLeft: i === 0 ? 0 : -22,
+                marginLeft: i === 0 ? 0 : -28,
                 display: 'flex',
               }}>
                 <img src={src}
-                  style={{ width: CARD_W, height: CARD_H, objectFit: 'cover', display: 'block', flexShrink: 0 }} />
+                  style={{ width: CARD_W, height: CARD_H, objectFit: 'cover', objectPosition: 'center 15%', display: 'block', flexShrink: 0 }} />
               </div>
             ))}
           </div>

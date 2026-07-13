@@ -893,8 +893,9 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
   }, [src])
 
   const initCanvas = async (img: HTMLImageElement) => {
+    try {
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas) { setStatus('notfound'); setCorners(defaultCorners({ width: 300, height: 420 } as HTMLCanvasElement)); return }
     const maxW = Math.min(window.innerWidth - 32, 500)
     const maxH = Math.round(window.innerHeight * 0.50)
     const scale = Math.min(maxW / img.naturalWidth, maxH / img.naturalHeight, 1)
@@ -994,6 +995,12 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       : defaultCorners(canvas)
     setCorners(display)
     setStatus(valid ? 'found' : 'notfound')
+    } catch {
+      // Erreur inattendue dans initCanvas → fallback visible plutôt que blocage infini
+      const canvas = canvasRef.current
+      setCorners(canvas ? defaultCorners(canvas) : [])
+      setStatus('notfound')
+    }
   }
 
   // Tourne l'image depuis l'original (évite la dégradation par compressions successives)
