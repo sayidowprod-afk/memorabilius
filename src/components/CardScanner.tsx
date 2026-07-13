@@ -809,6 +809,8 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
   const out  = ctx.createImageData(OUT_W, OUT_H)
 
   for (let dy = 0; dy < OUT_H; dy++) {
+    // Yield tous les 80 lignes pour ne pas bloquer le main thread (UI devient non-réactive sinon)
+    if (dy % 80 === 0 && dy > 0) await yieldThread()
     for (let dx = 0; dx < OUT_W; dx++) {
       const denom = h6 * dx + h7 * dy + 1
       const sx    = (h0 * dx + h1 * dy + h2) / denom
