@@ -119,6 +119,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [collectionTags, setCollectionTags] = useState<string[]>([])
   const [tabSettings, setTabSettings] = useState<Map<string, { color: string; position: number; parent?: string | null }>>(new Map())
   const [draggedTag, setDraggedTag] = useState<string | null>(null)
+  const dragLastOverRef = useRef<string | null>(null)
   const [colorPickerTag, setColorPickerTag] = useState<string | null>(null)
   const [cardLikes, setCardLikes] = useState<Map<string, { count: number; liked: boolean }>>(new Map())
   const [commentCard, setCommentCard] = useState<Card | null>(null)
@@ -1052,14 +1053,22 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             const handleDragOver = (e: React.DragEvent, overTag: string) => {
               e.preventDefault()
               if (!draggedTag || draggedTag === overTag) return
-              const fromPos = tabSettings.get(draggedTag)?.position ?? 999
-              const toPos = tabSettings.get(overTag)?.position ?? 999
+              if (dragLastOverRef.current === overTag) return
+              dragLastOverRef.current = overTag
+              const order = principals.map(t => t)
+              const fromIdx = order.indexOf(draggedTag)
+              const toIdx = order.indexOf(overTag)
+              if (fromIdx === -1 || toIdx === -1) return
+              order.splice(fromIdx, 1)
+              order.splice(toIdx, 0, draggedTag)
               const newMap = new Map(tabSettings)
-              newMap.set(draggedTag, { ...(newMap.get(draggedTag) || { color: accent }), position: toPos })
-              newMap.set(overTag, { ...(newMap.get(overTag) || { color: accent }), position: fromPos })
+              order.forEach((tag, i) => {
+                newMap.set(tag, { ...(newMap.get(tag) || { color: accent }), position: i })
+              })
               setTabSettings(newMap)
             }
             const handleDragEnd = async () => {
+              dragLastOverRef.current = null
               if (!draggedTag) return
               const allUpdates = principals.map((tag, i) => ({
                 user_id: userId, tag,
@@ -1084,7 +1093,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                     <button
                       onClick={(e) => { e.stopPropagation(); setFCollectionTag(isActive ? '' : tag); setColorPickerTag(null) }}
                       draggable={isOwner}
-                      onDragStart={() => setDraggedTag(tag)}
+                      onDragStart={() => { dragLastOverRef.current = null; setDraggedTag(tag) }}
                       onDragOver={(e) => handleDragOver(e, tag)}
                       onDragEnd={handleDragEnd}
                       style={{
