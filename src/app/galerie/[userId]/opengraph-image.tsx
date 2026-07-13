@@ -42,13 +42,13 @@ async function normalizeCard(url: string): Promise<string> {
   }
 }
 
-// ── Mosaic layout : grille décalée (brick pattern) pour couvrir 100% sans trous ──
-// Rangées paires  : 9 tuiles de 134px → 1206px (déborde légèrement → clippé)
-// Rangées impaires: 9 tuiles décalées +67px → les joints ne s'alignent pas
-const COLS = 9
-const ROWS = 5
-const TW = Math.ceil(1200 / COLS)   // 134
-const TH = Math.ceil(630  / ROWS)   // 126
+// ── Mosaic layout : grille 5×3 décalée (brick) — tuiles 240×210px bien visibles ──
+// Rangées paires  : 5 tuiles (0→1200px)
+// Rangées impaires: 6 tuiles décalées -120px (−120→1320px, clippé à 0-1200)
+const COLS = 5
+const ROWS = 3
+const TW = 240
+const TH = 210
 
 interface Tile { url: string; x: number; y: number; w: number; h: number }
 
@@ -57,10 +57,9 @@ function buildTiles(urls: string[]): Tile[] {
   const n = urls.length
   let idx = 0
   for (let r = 0; r < ROWS; r++) {
-    const offset = (r % 2) * Math.round(TW / 2)  // décalage brick
-    // +1 tuile si décalé pour couvrir le bord gauche
-    const extra = offset > 0 ? 1 : 0
-    for (let c = -extra; c < COLS + extra; c++) {
+    const offset = (r % 2) * (TW / 2)          // 0 ou 120
+    const ncols  = COLS + (offset > 0 ? 1 : 0) // 5 ou 6 tuiles
+    for (let c = 0; c < ncols; c++) {
       tiles.push({
         url: urls[idx % n],
         x: c * TW - offset,
@@ -106,9 +105,9 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
     ? `${totalCount} carte${totalCount > 1 ? 's' : ''} dans la collection`
     : 'Collection de cartes de sport'
 
-  // Normalise en parallèle (rotation auto si paysage)
-  const rawUrls = [...manualImgs, ...csvImgs].slice(0, 45)
-  if (rawUrls.length === 0) rawUrls.push('https://placehold.co/134x126/0d1a3e/1e3a7a?text=+')
+  // Normalise en parallèle (rotation auto si paysage) — limité à 20 pour la vitesse
+  const rawUrls = [...manualImgs, ...csvImgs].slice(0, 20)
+  if (rawUrls.length === 0) rawUrls.push('https://placehold.co/240x210/0d1a3e/1e3a7a?text=+')
   const normalizedUrls = await Promise.all(rawUrls.map(normalizeCard))
 
   const tiles = buildTiles(normalizedUrls)
@@ -123,7 +122,7 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
         fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
       }}>
 
-        {/* ── Couche 1 : mosaïque brick qui couvre 100% du canvas ── */}
+        {/* ── Couche 1 : mosaïque brick 5×3 (tuiles 240×210px) ── */}
         {tiles.map((t, i) => (
           <div key={i} style={{
             position: 'absolute', left: t.x, top: t.y,
@@ -131,66 +130,56 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
             overflow: 'hidden', display: 'flex',
           }}>
             <img src={t.url}
-              style={{ width: t.w, height: t.h, objectFit: 'cover', objectPosition: 'center 18%', display: 'block', flexShrink: 0 }} />
+              style={{ width: t.w, height: t.h, objectFit: 'cover', objectPosition: 'center 15%', display: 'block', flexShrink: 0 }} />
           </div>
         ))}
 
-        {/* ── Couche 2 : séparateurs entre tuiles (effet cadre carte) ── */}
-        <div style={{
-          position: 'absolute', inset: 0, zIndex: 10,
-          backgroundImage: `
-            repeating-linear-gradient(0deg, transparent, transparent ${TH - 1}px, rgba(4,9,26,0.6) ${TH - 1}px, rgba(4,9,26,0.6) ${TH}px),
-            repeating-linear-gradient(90deg, transparent, transparent ${TW - 1}px, rgba(4,9,26,0.6) ${TW - 1}px, rgba(4,9,26,0.6) ${TW}px)
-          `,
-          display: 'flex',
-        }} />
-
-        {/* ── Couche 3 : voile pour lisibilité du texte (fort à gauche, léger à droite) ── */}
+        {/* ── Couche 2 : voile gauche fort → transparent droite ── */}
         <div style={{
           position: 'absolute', inset: 0, zIndex: 20,
-          background: 'linear-gradient(105deg, rgba(4,9,26,0.93) 0%, rgba(4,9,26,0.72) 35%, rgba(4,9,26,0.25) 62%, rgba(4,9,26,0.06) 100%)',
+          background: 'linear-gradient(to right, rgba(4,9,26,0.97) 0px, rgba(4,9,26,0.93) 200px, rgba(4,9,26,0.72) 370px, rgba(4,9,26,0.28) 510px, rgba(4,9,26,0.06) 680px, transparent 820px)',
           display: 'flex',
         }} />
 
-        {/* ── Couche 4 : contenu (logo haut-gauche, profil bas-gauche, CTA bas-droit) ── */}
+        {/* ── Couche 3 : contenu textuel ── */}
         <div style={{
           position: 'absolute', inset: 0, zIndex: 30,
           display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-          padding: '36px 48px 40px',
+          padding: '40px 50px 42px',
         }}>
-          {/* Logo */}
-          <img src={LOGO_DATA_URL} width={220} height={49}
-            style={{ width: 220, height: 49, objectFit: 'contain', objectPosition: 'left center', display: 'block' }} />
 
-          {/* Bas */}
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-            {/* Profil */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-              <img src={avatarUrl} width={78} height={78}
-                style={{ width: 78, height: 78, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, display: 'block', flexShrink: 0 }} />
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <div style={{ fontSize: 42, fontWeight: 900, color: '#ffffff', lineHeight: 1, letterSpacing: -1, display: 'flex' }}>
-                  {name}
-                </div>
-                <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.52)', letterSpacing: 0.3, display: 'flex' }}>
-                  {countLabel}
-                </div>
-              </div>
-            </div>
+          {/* Logo haut-gauche */}
+          <img src={LOGO_DATA_URL}
+            style={{ width: 210, height: 47, objectFit: 'contain', objectPosition: 'left center', display: 'block' }} />
 
-            {/* CTA */}
+          {/* Nom + compteur — centre vertical */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <div style={{
-              background: accent, borderRadius: 12, padding: '14px 28px',
-              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
+              fontSize: 58, fontWeight: 900, color: '#ffffff',
+              lineHeight: 1, letterSpacing: -1.5,
+              display: 'flex', maxWidth: 480,
             }}>
-              <div style={{ fontSize: 14, fontWeight: 800, color: '#fff', letterSpacing: 1.5, textTransform: 'uppercase', display: 'flex' }}>
-                Voir la collection
+              {name}
+            </div>
+            <div style={{ fontSize: 20, color: 'rgba(255,255,255,0.55)', letterSpacing: 0.3, display: 'flex' }}>
+              {countLabel}
+            </div>
+          </div>
+
+          {/* Avatar + CTA bas-gauche */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+            <img src={avatarUrl}
+              style={{ width: 62, height: 62, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, display: 'block', flexShrink: 0 }} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <div style={{ fontSize: 15, fontWeight: 700, color: 'rgba(255,255,255,0.82)', letterSpacing: 0.3, display: 'flex' }}>
+                Voir la collection →
               </div>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', display: 'flex' }}>
+              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.38)', display: 'flex' }}>
                 memorabilius.fr
               </div>
             </div>
           </div>
+
         </div>
 
       </div>

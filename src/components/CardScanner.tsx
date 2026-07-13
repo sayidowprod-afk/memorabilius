@@ -680,7 +680,7 @@ function detectCardFromFrame(img: HTMLImageElement, frame: FrameRect): Pt[] | nu
   }
 }
 
-async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
+async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): Promise<Pt[] | null> {
   const W = img.naturalWidth, H = img.naturalHeight
 
   // ── Étape 1 : Gemini Pro sur l'image entière (premier, le plus précis) ──
@@ -689,7 +689,7 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
     const { b64 } = await imageToBase64(img, 1024)
     await yieldThread()
     const ctrl = new AbortController()
-    const t = setTimeout(() => ctrl.abort(), 2500)  // 5000→2500 : moins d'attente si Gemini lent
+    const t = setTimeout(() => ctrl.abort(), 3000)
     let res: Response
     try {
       const { data: { session } } = await supabase.auth.getSession()
@@ -703,16 +703,17 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
 
     if (res!.ok) {
       const { topLeft: tl, topRight: tr, bottomRight: br, bottomLeft: bl, confidence } = await res!.json()
-      // Reject low-confidence Gemini results → let OpenCV try
-      if (confidence !== null && confidence !== undefined && confidence < 0.55) throw new Error('low confidence')
-      if (tl && tr && br && bl) {
+      // En mode geminiOnly, on accepte un seuil plus bas (pas de fallback OpenCV possible)
+      const minConf = geminiOnly ? 0.40 : 0.55
+      if (confidence !== null && confidence !== undefined && confidence < minConf) {
+        if (!geminiOnly) throw new Error('low confidence')
+      } else if (tl && tr && br && bl) {
         const corners: Pt[] = [
           { x: tl.x * W, y: tl.y * H },
           { x: tr.x * W, y: tr.y * H },
           { x: br.x * W, y: br.y * H },
           { x: bl.x * W, y: bl.y * H },
         ]
-        // Sanity check : quadrilatère convexe et ratio raisonnable
         const w = (Math.hypot(corners[1].x-corners[0].x, corners[1].y-corners[0].y) + Math.hypot(corners[2].x-corners[3].x, corners[2].y-corners[3].y)) / 2
         const h = (Math.hypot(corners[3].x-corners[0].x, corners[3].y-corners[0].y) + Math.hypot(corners[2].x-corners[1].x, corners[2].y-corners[1].y)) / 2
         const ratio = w / (h || 1)
@@ -721,14 +722,16 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
         if (rScore < 0.45) return corners
       }
     }
-  } catch { /* fallback OpenCV */ }
+  } catch { /* fallback OpenCV si pas geminiOnly */ }
 
-  // ── Étape 2 : OpenCV fallback ────────────────────────────────────────────
+  // ── Étape 2 : OpenCV fallback (caméra uniquement — pas pour les uploads fichier) ──
+  if (geminiOnly) return null
+
   await yieldThread()
   try {
     const cv = await Promise.race([
       loadOpenCV(),
-      new Promise<null>(r => setTimeout(() => r(null), 2000)),  // 4000→2000
+      new Promise<null>(r => setTimeout(() => r(null), 2000)),
     ])
     if (cv) {
       await yieldThread()
@@ -966,10 +969,11 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           } catch {}
         }
       } else {
+        // Upload fichier : Gemini seulement (pas d'OpenCV — évite le blocage main thread)
         try {
           result = await Promise.race([
-            detectCard(img),
-            new Promise<null>(r => setTimeout(() => r(null), 5000)),  // 7000→5000
+            detectCard(img, { geminiOnly: true }),
+            new Promise<null>(r => setTimeout(() => r(null), 4500)),
           ])
         } catch {}
       }
