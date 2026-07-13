@@ -1,5 +1,7 @@
 import { ImageResponse } from 'next/og'
 import { createClient } from '@supabase/supabase-js'
+import { readFileSync } from 'fs'
+import { join } from 'path'
 
 export const runtime = 'nodejs'
 export const alt = 'Galerie Memorabilius'
@@ -11,7 +13,23 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-const PLACEHOLDER = 'https://placehold.co/164x230/0d1a3e/1e3a7a?text=+'
+const PLACEHOLDER = 'https://placehold.co/160x224/0d1a3e/1e3a7a?text=+'
+
+// Logo blanc chargé depuis le disque — data URI pour éviter un fetch HTTP dans ImageResponse
+const logoWhiteDataUrl = (() => {
+  try {
+    const buf = readFileSync(join(process.cwd(), 'public/memorabilius-logo-white.png'))
+    return `data:image/png;base64,${buf.toString('base64')}`
+  } catch {
+    return null
+  }
+})()
+
+const CARD_W = 160
+const CARD_H = 224
+const rotations = [-12, -6, 0, 6, 12]
+const yOffsets  = [20,  8,  0, 8, 20]
+const zIndexes  = [1,   3,  5, 3,  1]
 
 export default async function OGImage({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params
@@ -22,18 +40,11 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
     supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('user_id', userId),
   ])
 
-  const accent = profile?.couleur_bordure || '#003DA6'
-  const name = profile?.display_name || 'Collector'
-  const thumbs = Array.from({ length: 5 }, (_, i) => (cards || [])[i]?.image_recto || PLACEHOLDER)
-  const avatarUrl = profile?.avatar_url
+  const accent     = profile?.couleur_bordure || '#003DA6'
+  const name       = profile?.display_name    || 'Collector'
+  const thumbs     = Array.from({ length: 5 }, (_, i) => (cards || [])[i]?.image_recto || PLACEHOLDER)
+  const avatarUrl  = profile?.avatar_url
     || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=0c1942&color=ffffff&size=200`
-
-  const CARD_W = 162
-  const CARD_H = 227
-  const rotations = [-13, -6.5, 0, 6.5, 13]
-  const yOffsets = [24, 10, 0, 10, 24]
-  const zIndexes = [1, 3, 5, 3, 1]
-
   const countLabel = cardCount != null
     ? `${cardCount} carte${cardCount > 1 ? 's' : ''} dans la collection`
     : 'Collection de cartes de sport'
@@ -41,131 +52,94 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
   return new ImageResponse(
     (
       <div style={{
-        width: '100%', height: '100%',
+        width: 1200, height: 630,
         background: 'linear-gradient(150deg, #04091a 0%, #0b1840 50%, #060d22 100%)',
         display: 'flex', flexDirection: 'column',
         fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
-        overflow: 'hidden',
-        position: 'relative',
+        overflow: 'hidden', position: 'relative',
       }}>
 
-        {/* Spotlight behind cards — subtle white radial */}
+        {/* Glow */}
         <div style={{
           position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-          background: 'radial-gradient(ellipse 68% 52% at 50% 44%, rgba(255,255,255,0.055) 0%, transparent 100%)',
+          background: 'radial-gradient(ellipse 68% 52% at 50% 44%, rgba(255,255,255,0.05) 0%, transparent 100%)',
           display: 'flex',
         }} />
 
         {/* Top strip */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '30px 56px 0',
-          position: 'relative', zIndex: 10,
+          padding: '28px 52px 0', position: 'relative', zIndex: 10,
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
-            <div style={{
-              width: 18, height: 18, borderRadius: 4,
-              background: accent, display: 'flex',
-            }} />
-            <div style={{
-              fontSize: 12, fontWeight: 900, letterSpacing: 5,
-              color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase',
-              display: 'flex',
-            }}>
-              MEMORABILIUS
+          {logoWhiteDataUrl ? (
+            <img src={logoWhiteDataUrl} width={160} height={32}
+              style={{ width: 160, height: 32, objectFit: 'contain', display: 'block', opacity: 0.9 }} />
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ width: 16, height: 16, borderRadius: 3, background: accent, display: 'flex' }} />
+              <div style={{ fontSize: 12, fontWeight: 900, letterSpacing: 5, color: 'rgba(255,255,255,0.5)', display: 'flex' }}>
+                MEMORABILIUS
+              </div>
             </div>
-          </div>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.2)', letterSpacing: 2, display: 'flex' }}>
+          )}
+          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.22)', letterSpacing: 2, display: 'flex' }}>
             memorabilius.fr
           </div>
         </div>
 
-        {/* Cards — main hero, fan formation */}
+        {/* Cards fan — hero */}
         <div style={{
-          flex: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
-          paddingTop: 8, paddingBottom: 0,
+          flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
           position: 'relative', zIndex: 2,
         }}>
-          {thumbs.map((src, i) => (
-            <div
-              key={i}
-              style={{
+          <div style={{ display: 'flex', alignItems: 'flex-end', position: 'relative' }}>
+            {thumbs.map((src, i) => (
+              <div key={i} style={{
+                width: CARD_W, height: CARD_H,
+                flexShrink: 0,
                 transform: `rotate(${rotations[i]}deg) translateY(${yOffsets[i]}px)`,
                 borderRadius: 10,
                 overflow: 'hidden',
-                border: i === 2
-                  ? `2.5px solid ${accent}`
-                  : '1.5px solid rgba(255,255,255,0.09)',
-                flexShrink: 0,
+                border: i === 2 ? `2.5px solid ${accent}` : '1.5px solid rgba(255,255,255,0.1)',
                 zIndex: zIndexes[i],
-                marginLeft: i === 0 ? 0 : -26,
+                marginLeft: i === 0 ? 0 : -22,
                 display: 'flex',
-              }}
-            >
-              <img
-                src={src}
-                width={CARD_W}
-                height={CARD_H}
-                style={{ display: 'block', objectFit: 'cover' }}
-              />
-            </div>
-          ))}
+              }}>
+                <img src={src}
+                  style={{ width: CARD_W, height: CARD_H, objectFit: 'cover', display: 'block', flexShrink: 0 }} />
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Bottom info bar — strictly below cards, no overlap */}
+        {/* Bottom bar */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '0 56px 34px',
-          paddingTop: 22,
-          position: 'relative', zIndex: 10,
+          padding: '18px 52px 32px', position: 'relative', zIndex: 10,
         }}>
-          {/* Hairline separator */}
-          <div style={{
-            position: 'absolute', top: 0, left: 56, right: 56, height: 1,
-            background: 'rgba(255,255,255,0.07)', display: 'flex',
-          }} />
+          <div style={{ position: 'absolute', top: 0, left: 52, right: 52, height: 1, background: 'rgba(255,255,255,0.07)', display: 'flex' }} />
 
-          {/* Collector identity */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-            <img
-              src={avatarUrl}
-              width={70} height={70}
-              style={{
-                borderRadius: '50%', objectFit: 'cover',
-                border: `3px solid ${accent}`,
-                display: 'block',
-              }}
-            />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+            <img src={avatarUrl} width={68} height={68}
+              style={{ width: 68, height: 68, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${accent}`, display: 'block', flexShrink: 0 }} />
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <div style={{
-                fontSize: 35, fontWeight: 900, color: '#ffffff',
-                lineHeight: 1, letterSpacing: -1, display: 'flex',
-              }}>
+              <div style={{ fontSize: 34, fontWeight: 900, color: '#ffffff', lineHeight: 1, letterSpacing: -1, display: 'flex' }}>
                 {name}
               </div>
-              <div style={{
-                fontSize: 13, color: 'rgba(255,255,255,0.38)',
-                letterSpacing: 0.3, display: 'flex',
-              }}>
+              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.38)', letterSpacing: 0.3, display: 'flex' }}>
                 {countLabel}
               </div>
             </div>
           </div>
 
-          {/* CTA button */}
           <div style={{
-            background: accent,
-            borderRadius: 10,
-            padding: '13px 28px',
+            background: accent, borderRadius: 10, padding: '12px 26px',
             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
           }}>
-            <div style={{
-              fontSize: 13, fontWeight: 800, color: '#ffffff',
-              letterSpacing: 1.2, textTransform: 'uppercase', display: 'flex',
-            }}>
+            <div style={{ fontSize: 13, fontWeight: 800, color: '#fff', letterSpacing: 1.2, textTransform: 'uppercase', display: 'flex' }}>
               Voir la collection
             </div>
-            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.6)', letterSpacing: 0.5, display: 'flex' }}>
+            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.6)', display: 'flex' }}>
               memorabilius.fr
             </div>
           </div>
@@ -173,10 +147,6 @@ export default async function OGImage({ params }: { params: Promise<{ userId: st
 
       </div>
     ),
-    {
-      width: 1200,
-      height: 630,
-      headers: { 'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400' },
-    }
+    { width: 1200, height: 630, headers: { 'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400' } }
   )
 }
