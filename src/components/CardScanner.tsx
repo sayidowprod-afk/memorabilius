@@ -75,7 +75,7 @@ function cornersValid(pts: Pt[] | null, W: number, H: number): boolean {
 const yieldThread = () => new Promise<void>(r => setTimeout(r, 0))
 
 async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | null> {
-  const MAX = 800
+  const MAX = 600  // réduit de 800→600 : ~44% moins de pixels → findContours 2× plus rapide
   const scale = Math.min(MAX / img.naturalWidth, MAX / img.naturalHeight, 1)
   const W = Math.round(img.naturalWidth * scale)
   const H = Math.round(img.naturalHeight * scale)
@@ -157,7 +157,8 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
 
   try {
     // ── Méthode A : seuillage par couleur de fond ─────────────────────────
-    for (const tol of [20, 35, 55]) {
+    for (const tol of [20, 55]) {  // 2 passes au lieu de 3 → moins de blocking
+      await yieldThread()  // yield avant chaque findContours pour rester réactif
       const diff   = new cv.Mat(), thresh = new cv.Mat(), closed = new cv.Mat()
       const bgMat  = new cv.Mat(H, W, cv.CV_8UC1, new cv.Scalar(bgVal))
       try {
@@ -173,8 +174,8 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
 
     // ── Méthode B : Canny (fallback sur fond contrasté) ───────────────────
     if (!best) {
-      await yieldThread() // rend la main au navigateur entre les deux passes
-      for (const [lo, hi] of [[30, 90], [50, 150], [80, 200]]) {
+      for (const [lo, hi] of [[30, 90], [80, 200]]) {  // 2 passes au lieu de 3
+        await yieldThread()  // yield avant chaque Canny+findContours
         const edges = new cv.Mat(), dilated = new cv.Mat()
         const kernel = cv.Mat.ones(5, 5, cv.CV_8U)
         try {
@@ -488,7 +489,8 @@ async function detectCardInCrop(cropImg: HTMLImageElement, cv: any): Promise<Pt[
 
   let best: Pt[] | null = null
 
-  for (const tol of [25, 40, 60]) {
+  for (const tol of [25, 60]) {  // 2 passes → moins de blocking
+    await yieldThread()
     const diff   = new cv.Mat()
     const thresh = new cv.Mat()
     const closed = new cv.Mat()
@@ -687,7 +689,7 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
     const { b64 } = await imageToBase64(img, 1024)
     await yieldThread()
     const ctrl = new AbortController()
-    const t = setTimeout(() => ctrl.abort(), 5000)
+    const t = setTimeout(() => ctrl.abort(), 2500)  // 5000→2500 : moins d'attente si Gemini lent
     let res: Response
     try {
       const { data: { session } } = await supabase.auth.getSession()
@@ -726,10 +728,10 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
   try {
     const cv = await Promise.race([
       loadOpenCV(),
-      new Promise<null>(r => setTimeout(() => r(null), 4000)),
+      new Promise<null>(r => setTimeout(() => r(null), 2000)),  // 4000→2000
     ])
     if (cv) {
-      await yieldThread() // laisse le browser respirer avant le bloc sync OpenCV
+      await yieldThread()
       const result = await detectCardOpenCV(img, cv)
       await yieldThread()
       if (result) return result
@@ -959,7 +961,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           try {
             result = await Promise.race([
               detectCard(img),
-              new Promise<null>(r => setTimeout(() => r(null), 8000)),
+              new Promise<null>(r => setTimeout(() => r(null), 4000)),  // 8000→4000
             ])
           } catch {}
         }
@@ -967,7 +969,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
         try {
           result = await Promise.race([
             detectCard(img),
-            new Promise<null>(r => setTimeout(() => r(null), 7000)),
+            new Promise<null>(r => setTimeout(() => r(null), 5000)),  // 7000→5000
           ])
         } catch {}
       }
@@ -979,7 +981,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     try {
       detectedCorners = await Promise.race([
         detectPipeline(),
-        new Promise<null>(r => setTimeout(() => r(null), 11000)),
+        new Promise<null>(r => setTimeout(() => r(null), 6000)),  // 11000→6000 : max 6s
       ])
     } catch {
       detectedCorners = null
