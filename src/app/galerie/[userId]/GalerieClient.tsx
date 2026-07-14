@@ -695,11 +695,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 ))}
               </div>
 
-              <div style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', alignItems: 'center' }}>
+              <div className="galerie-actions" style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', alignItems: 'center' }}>
 
                 {/* Bouton "..." — actions secondaires */}
                 {!editMode && (
-                  <div style={{ position: 'relative' }}>
+                  <div className="btn-menu" style={{ position: 'relative' }}>
                     <button
                       onClick={() => setActionMenuOpen(v => !v)}
                       style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 14px', fontWeight: 700, fontSize: 15, cursor: 'pointer', lineHeight: 1 }}
@@ -752,10 +752,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
                 {/* CTA principal */}
                 {isOwner && !editMode && (
-                  <a href={`/galerie/${userId}/ajouter`} style={{
+                  <a href={`/galerie/${userId}/ajouter`} className="btn-ajouter" style={{
                     background: '#003DA6', color: 'white',
-                    border: 'none', borderRadius: 8, padding: '10px 20px',
-                    fontWeight: 800, fontSize: 14, cursor: 'pointer',
+                    border: 'none', borderRadius: 10, padding: '12px 28px',
+                    fontWeight: 800, fontSize: 15, cursor: 'pointer',
                     textDecoration: 'none', display: 'inline-block', textAlign: 'center', whiteSpace: 'nowrap',
                   }}>
                     + {lang === 'fr' ? 'Ajouter' : 'Add'}
@@ -1288,6 +1288,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           .card-item { flex: 0 0 calc(50% - 5px); max-width: calc(50% - 5px); }
           @media (max-width: 768px) {
             .header-stats-block { width: 100% !important; align-items: center !important; }
+            .galerie-actions { flex-direction: column-reverse !important; align-items: stretch !important; }
+            .galerie-actions .btn-ajouter { font-size: 17px !important; padding: 14px 20px !important; text-align: center; }
+            .galerie-actions .btn-menu { align-self: flex-end; }
           }
           @media (min-width: 900px) { .card-item { flex: 0 0 calc(20% - 10px); max-width: calc(20% - 10px); } }
 

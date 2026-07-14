@@ -191,11 +191,13 @@ async function postHandler(req: NextRequest) {
     lu: false,
   })
 
-  await sendPushToUser(receiverId, {
-    title: '🔄 Nouvelle offre d\'échange',
-    body: `${senderName} te propose un échange`,
-    url: '/echanges',
-  })
+  try {
+    await sendPushToUser(receiverId, {
+      title: '🔄 Nouvelle offre d\'échange',
+      body: `${senderName} te propose un échange`,
+      url: '/echanges',
+    })
+  } catch { /* push non critique */ }
 
   return NextResponse.json({ ok: true, tradeId: trade.id })
 }
