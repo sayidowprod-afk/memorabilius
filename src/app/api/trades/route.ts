@@ -135,17 +135,6 @@ async function postHandler(req: NextRequest) {
       return NextResponse.json({ error: 'Cartes introuvables dans la collection du destinataire' }, { status: 403 })
   }
 
-  // Anti-spam : max 5 échanges pending vers le même utilisateur
-  const { count } = await supabaseAdmin
-    .from('trade_offers')
-    .select('id', { count: 'exact', head: true })
-    .eq('sender_id', user.id)
-    .eq('receiver_id', receiverId)
-    .eq('status', 'pending')
-
-  if ((count || 0) >= 5)
-    return NextResponse.json({ error: 'Trop d\'offres en attente vers cet utilisateur' }, { status: 429 })
-
   const { data: trade, error: tradeErr } = await supabaseAdmin
     .from('trade_offers')
     .insert({ sender_id: user.id, receiver_id: receiverId, message: message || null })

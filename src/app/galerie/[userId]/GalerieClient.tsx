@@ -1288,9 +1288,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           .card-item { flex: 0 0 calc(50% - 5px); max-width: calc(50% - 5px); }
           @media (max-width: 768px) {
             .header-stats-block { width: 100% !important; align-items: center !important; }
-            .galerie-actions { flex-direction: column-reverse !important; align-items: stretch !important; }
-            .galerie-actions .btn-ajouter { font-size: 17px !important; padding: 14px 20px !important; text-align: center; }
-            .galerie-actions .btn-menu { align-self: flex-end; }
+            .galerie-actions { flex-direction: column !important; align-items: stretch !important; }
+            .galerie-actions .btn-ajouter { font-size: 17px !important; padding: 14px 20px !important; text-align: center; width: 100%; box-sizing: border-box; }
+            .galerie-actions .btn-menu { width: 100%; }
+            .galerie-actions .btn-menu > button { width: 100% !important; }
           }
           @media (min-width: 900px) { .card-item { flex: 0 0 calc(20% - 10px); max-width: calc(20% - 10px); } }
 
