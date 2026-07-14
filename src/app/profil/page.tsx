@@ -33,6 +33,8 @@ export default function Profil() {
   const [pushSubscribed, setPushSubscribed] = useState(false)
   const [pushLoading, setPushLoading] = useState(false)
   const [pushError, setPushError] = useState('')
+  const [wrapSending, setWrapSending] = useState(false)
+  const [wrapResult, setWrapResult] = useState<{ ok?: boolean; error?: string; month?: string; newCards?: number } | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -173,6 +175,24 @@ export default function Profil() {
     setTimeout(() => { setShowPasswordForm(false); setPasswordMsg(null) }, 2500)
   }
 
+  const handleWrapPreview = async (period: 'current' | 'last') => {
+    setWrapSending(true)
+    setWrapResult(null)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const res = await fetch(`/api/wrap-preview?period=${period}`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${session?.access_token}` },
+      })
+      const json = await res.json()
+      setWrapResult(json)
+    } catch (e: any) {
+      setWrapResult({ error: e.message })
+    } finally {
+      setWrapSending(false)
+    }
+  }
+
   const handleDeleteAccount = async () => {
     if (deleteConfirm !== 'SUPPRIMER' || !userId) return
     setDeleting(true)
@@ -297,6 +317,32 @@ export default function Profil() {
             <button onClick={handleEnablePush} disabled={pushLoading} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
               {pushLoading ? '...' : 'Activer les notifications'}
             </button>
+          </div>
+        )}
+      </div>
+
+      {/* Test wrap mensuel */}
+      <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+        <h3 style={{ fontWeight: 800, marginBottom: 6 }}>📊 Wrap mensuel — test</h3>
+        <p style={{ fontSize: 13, color: '#666', marginBottom: 16, lineHeight: 1.5 }}>
+          Envoie un email de test du wrap mensuel à ton adresse pour vérifier le rendu et les données.
+        </p>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+          <button onClick={() => handleWrapPreview('last')} disabled={wrapSending}
+            style={{ background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, padding: '10px 18px', fontWeight: 700, fontSize: 13, cursor: wrapSending ? 'not-allowed' : 'pointer', opacity: wrapSending ? 0.6 : 1 }}>
+            {wrapSending ? '⏳ Envoi…' : '📨 Mois précédent'}
+          </button>
+          <button onClick={() => handleWrapPreview('current')} disabled={wrapSending}
+            style={{ background: '#f0f4ff', color: '#003DA6', border: '2px solid #003DA6', borderRadius: 8, padding: '10px 18px', fontWeight: 700, fontSize: 13, cursor: wrapSending ? 'not-allowed' : 'pointer', opacity: wrapSending ? 0.6 : 1 }}>
+            {wrapSending ? '⏳ Envoi…' : '📨 Mois en cours'}
+          </button>
+        </div>
+        {wrapResult && (
+          <div style={{ marginTop: 14, padding: '10px 14px', borderRadius: 8, background: wrapResult.ok ? '#eafaf1' : '#fff5f5', border: `1px solid ${wrapResult.ok ? '#a9dfbf' : '#f5c6c6'}` }}>
+            {wrapResult.ok
+              ? <p style={{ fontSize: 13, color: '#1e8449', fontWeight: 700 }}>✓ Email envoyé — {wrapResult.month} · {wrapResult.newCards} carte{(wrapResult.newCards ?? 0) > 1 ? 's' : ''} ajoutée{(wrapResult.newCards ?? 0) > 1 ? 's' : ''}</p>
+              : <p style={{ fontSize: 13, color: '#c0392b', fontWeight: 700 }}>Erreur : {wrapResult.error}</p>
+            }
           </div>
         )}
       </div>
