@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'
 import CardPicker, { PickableCard } from './CardPicker'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import ShareButton from './ShareButton'
+import QrModal from './QrModal'
 import CommentsModal from './CommentsModal'
 import FolderIconPicker from './FolderIconPicker'
 import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
@@ -110,6 +111,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState<Binder | null>(null)
   const [showComments, setShowComments] = useState(false)
+  const [showQr, setShowQr] = useState(false)
   const [commentCount, setCommentCount] = useState(0)
   const [slots, setSlots] = useState<Map<string, Slot>>(new Map())
   // Page gauche du double-feuillet, PAIRE (0, 2, 4…). Comme un vrai classeur :
@@ -1247,6 +1249,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           <span style={{ fontWeight: 900, fontSize: 15 }}>{selected.name}</span>
           {!pendingCard && <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} />}
           {!pendingCard && (
+            <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1 }}>
+              ▦
+            </button>
+          )}
+          {!pendingCard && (
             <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '6px 12px', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: '#666' }}>
               💬 Commentaires{commentCount > 0 ? ` (${commentCount})` : ''}
             </button>
@@ -1420,6 +1427,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           accent={accent}
           onClose={() => setViewerSlot(null)}
           getTags={() => null}
+        />
+      )}
+
+      {showQr && selected && (
+        <QrModal
+          url={`/galerie/${userId}?tab=library&binder=${selected.id}`}
+          title={`Classeur « ${selected.name} »`}
+          onClose={() => setShowQr(false)}
         />
       )}
 

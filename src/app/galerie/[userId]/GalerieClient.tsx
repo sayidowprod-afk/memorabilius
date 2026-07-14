@@ -729,6 +729,16 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   </button>
                 )}
 
+                {!editMode && loaded && (
+                  <button onClick={() => router.push(`/galerie/${userId}/expo`)} style={{
+                    background: '#0a0a0a', color: '#fff',
+                    border: 'none', borderRadius: 8, padding: '10px 16px',
+                    fontWeight: 700, fontSize: 13, cursor: 'pointer', flex: '1 1 auto', textAlign: 'center',
+                  }}>
+                    ⊞ Mode expo
+                  </button>
+                )}
+
                 {!editMode && (
                   <GalerieExport
                     cards={cards}
