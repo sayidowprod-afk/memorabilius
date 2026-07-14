@@ -100,7 +100,8 @@ function MessagesContent() {
     const convMap: Record<string, any> = {}
     for (const msg of data) {
       const otherId = msg.from_user_id === uid ? msg.to_user_id : msg.from_user_id
-      if (!convMap[otherId]) convMap[otherId] = { lastMsg: msg.contenu, date: msg.created_at, unread: 0 }
+      const lastMsgDisplay = isTradeOfferMsg(msg.contenu) ? '🔄 Offre d\'échange' : isImageMsg(msg.contenu) ? '📷 Photo' : msg.contenu
+      if (!convMap[otherId]) convMap[otherId] = { lastMsg: lastMsgDisplay, date: msg.created_at, unread: 0 }
       if (!msg.lu && msg.to_user_id === uid) convMap[otherId].unread++
     }
     const ids = Object.keys(convMap)
