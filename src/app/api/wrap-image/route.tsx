@@ -21,7 +21,6 @@ function monthName(date: Date) {
   return date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
 }
 
-// Priorité d'affichage : RC > Auto > Patch > autres, tous avec image_recto
 function sortedCardImages(cards: any[]): string[] {
   const withImg = cards.filter(c => c.image_recto)
   return [
@@ -67,17 +66,16 @@ export async function POST(req: NextRequest) {
   const totalCollectors = ranked.length
   const name = profile?.display_name || user.email?.split('@')[0] || 'Collector'
   const newCards = cardsData?.length || 0
-  const rcCount = cardsData?.filter(c => c.rc).length || 0
-  const autoCount = cardsData?.filter(c => c.auto).length || 0
-  const patchCount = cardsData?.filter(c => c.patch).length || 0
-  const numCount = cardsData?.filter(c => c.num).length || 0
+  const rcCount = cardsData?.filter((c: any) => c.rc).length || 0
+  const autoCount = cardsData?.filter((c: any) => c.auto).length || 0
+  const patchCount = cardsData?.filter((c: any) => c.patch).length || 0
+  const numCount = cardsData?.filter((c: any) => c.num).length || 0
   const totalCards = profile?.stats_total || 0
   const medals = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`
   const cardImages = sortedCardImages(cardsData || [])
 
   const BG = 'linear-gradient(145deg, #04091a 0%, #0b1840 60%, #060d22 100%)'
   const ACCENT = '#003DA6'
-  const CARD_RATIO = '2.5 / 3.5'
 
   const StatBox = ({ value, label, small }: { value: string | number; label: string; small?: boolean }) => (
     <div style={{
@@ -90,11 +88,10 @@ export async function POST(req: NextRequest) {
     </div>
   )
 
-  const CardImg = ({ src, flex }: { src: string; flex?: number }) => (
+  const CardImg = ({ src }: { src: string }) => (
     <div style={{
-      display: 'flex', flex: flex ?? 1, borderRadius: 10, overflow: 'hidden',
+      display: 'flex', flex: 1, borderRadius: 10, overflow: 'hidden',
       border: '1.5px solid rgba(255,255,255,0.12)',
-      aspectRatio: CARD_RATIO,
     }}>
       <img src={src} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
     </div>
@@ -102,7 +99,7 @@ export async function POST(req: NextRequest) {
 
   const EmptyCard = () => (
     <div style={{
-      display: 'flex', flex: 1, borderRadius: 10, aspectRatio: CARD_RATIO,
+      display: 'flex', flex: 1, borderRadius: 10,
       background: 'rgba(255,255,255,0.04)', border: '1.5px dashed rgba(255,255,255,0.1)',
       alignItems: 'center', justifyContent: 'center',
     }}>
@@ -111,38 +108,33 @@ export async function POST(req: NextRequest) {
   )
 
   if (format === 'square') {
-    // 1080×1080 : header / stats / grille de cartes / footer
     const W = 1080, H = 1080
     const imgs = cardImages.slice(0, 8)
-    // 2 lignes si ≥4 cartes, sinon 1 ligne
-    const rows = imgs.length >= 4 ? [imgs.slice(0, 4), imgs.slice(4, 8)] : [imgs.slice(0, 4)]
-    const padRow = (row: string[], len: number) => [...row, ...Array(Math.max(0, len - row.length)).fill(null)]
+    const rows = imgs.length >= 4
+      ? [imgs.slice(0, 4), imgs.slice(4, 8)]
+      : [imgs.slice(0, 4)]
+    const padRow = (row: string[], len: number): (string | null)[] =>
+      [...row, ...Array(Math.max(0, len - row.length)).fill(null)]
 
     return new ImageResponse(
       (
         <div style={{
-          width: '100%', height: '100%',
-          background: BG,
+          width: '100%', height: '100%', background: BG,
           display: 'flex', flexDirection: 'column',
           padding: '52px 56px', gap: '28px',
           fontFamily: 'system-ui, -apple-system, sans-serif',
           overflow: 'hidden',
         }}>
-          {/* Header */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             {LOGO_B64
               ? <img src={LOGO_B64} width={180} height={36} style={{ objectFit: 'contain', opacity: 0.9 }} />
               : <div style={{ color: 'white', fontWeight: 900, fontSize: 20, display: 'flex' }}>MEMORABILIUS</div>
             }
-            <div style={{
-              color: 'white', fontSize: 22, fontWeight: 700, display: 'flex',
-              background: 'rgba(255,255,255,0.1)', borderRadius: 50, padding: '8px 20px',
-            }}>
+            <div style={{ color: 'white', fontSize: 22, fontWeight: 700, display: 'flex', background: 'rgba(255,255,255,0.1)', borderRadius: 50, padding: '8px 20px' }}>
               Wrap {monthLabel}
             </div>
           </div>
 
-          {/* Stats */}
           <div style={{ display: 'flex', gap: '14px' }}>
             <StatBox value={newCards} label="Cartes ajoutées" />
             <StatBox value={totalCards} label="Total collection" />
@@ -150,44 +142,31 @@ export async function POST(req: NextRequest) {
             <StatBox value={`${rcCount} RC · ${autoCount} Auto`} label="Highlights" small />
           </div>
 
-          {/* Cartes */}
-          {rows.length > 0 && (
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '10px', overflow: 'hidden' }}>
-              {rows.map((row, ri) => (
-                <div key={ri} style={{ display: 'flex', gap: '10px', flex: 1 }}>
-                  {padRow(row, 4).map((src, ci) =>
-                    src ? <CardImg key={ci} src={src} /> : <EmptyCard key={ci} />
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '10px', overflow: 'hidden' }}>
+            {rows.map((row, ri) => (
+              <div key={ri} style={{ display: 'flex', gap: '10px', flex: 1 }}>
+                {padRow(row, 4).map((src, ci) =>
+                  src ? <CardImg key={ci} src={src} /> : <EmptyCard key={ci} />
+                )}
+              </div>
+            ))}
+          </div>
 
-          {/* Footer */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 16, display: 'flex' }}>
-              memorabilius.fr
-            </div>
-            <div style={{
-              color: 'white', fontWeight: 800, fontSize: 18, display: 'flex',
-              background: ACCENT, borderRadius: 50, padding: '8px 20px',
-            }}>
+            <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 16, display: 'flex' }}>memorabilius.fr</div>
+            <div style={{ color: 'white', fontWeight: 800, fontSize: 18, display: 'flex', background: ACCENT, borderRadius: 50, padding: '8px 20px' }}>
               @{name}
             </div>
           </div>
         </div>
       ),
-      {
-        width: W, height: H,
-        headers: { 'Content-Type': 'image/png' },
-      }
+      { width: W, height: H, headers: { 'Content-Type': 'image/png' } }
     )
   }
 
   // Story 1080×1920
   const W = 1080, H = 1920
   const imgs = cardImages.slice(0, 8)
-  // 2 colonnes × jusqu'à 4 lignes
   const pairs: [string | null, string | null][] = []
   for (let i = 0; i < Math.max(2, Math.ceil(imgs.length / 2)); i++) {
     pairs.push([imgs[i * 2] || null, imgs[i * 2 + 1] || null])
@@ -196,26 +175,21 @@ export async function POST(req: NextRequest) {
   return new ImageResponse(
     (
       <div style={{
-        width: '100%', height: '100%',
-        background: BG,
+        width: '100%', height: '100%', background: BG,
         display: 'flex', flexDirection: 'column',
         padding: '70px 56px 56px',
         fontFamily: 'system-ui, -apple-system, sans-serif',
         overflow: 'hidden',
       }}>
-        {/* Header */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', marginBottom: '44px' }}>
           {LOGO_B64
             ? <img src={LOGO_B64} width={220} height={44} style={{ objectFit: 'contain', opacity: 0.9 }} />
             : <div style={{ color: 'white', fontWeight: 900, fontSize: 26, display: 'flex' }}>MEMORABILIUS</div>
           }
-          <div style={{ color: 'white', fontSize: 40, fontWeight: 900, display: 'flex' }}>
-            Wrap {monthLabel}
-          </div>
+          <div style={{ color: 'white', fontSize: 40, fontWeight: 900, display: 'flex' }}>Wrap {monthLabel}</div>
           <div style={{ color: 'rgba(255,255,255,0.55)', fontSize: 22, display: 'flex' }}>@{name}</div>
         </div>
 
-        {/* Grille de cartes 2 colonnes */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '12px', overflow: 'hidden' }}>
           {pairs.map(([a, b], ri) => (
             <div key={ri} style={{ display: 'flex', gap: '12px', flex: 1 }}>
@@ -225,7 +199,6 @@ export async function POST(req: NextRequest) {
           ))}
         </div>
 
-        {/* Stats */}
         <div style={{ display: 'flex', gap: '12px', marginTop: '36px' }}>
           <StatBox value={newCards} label="Cartes ajoutées" />
           <StatBox value={medals} label={`/ ${totalCollectors}`} />
@@ -235,17 +208,11 @@ export async function POST(req: NextRequest) {
           {numCount > 0 && <StatBox value={numCount} label="Num." />}
         </div>
 
-        {/* Footer */}
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '28px' }}>
-          <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 18, display: 'flex' }}>
-            memorabilius.fr
-          </div>
+          <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 18, display: 'flex' }}>memorabilius.fr</div>
         </div>
       </div>
     ),
-    {
-      width: W, height: H,
-      headers: { 'Content-Type': 'image/png' },
-    }
+    { width: W, height: H, headers: { 'Content-Type': 'image/png' } }
   )
 }
