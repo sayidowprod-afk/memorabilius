@@ -261,7 +261,7 @@ export async function GET(req: NextRequest) {
     const wrapMonth = monthStart.getMonth() + 1
     const makeWrapUrl = (fmt: string) => {
       const sig = signWrapUrl(authUser.id, wrapYear, wrapMonth, fmt)
-      return `${baseUrl}/api/wrap-image-public?uid=${authUser.id}&y=${wrapYear}&m=${wrapMonth}&format=${fmt}&sig=${sig}`
+      return `${baseUrl}/api/wrap-image-public?uid=${authUser.id}&amp;y=${wrapYear}&amp;m=${wrapMonth}&amp;format=${fmt}&amp;sig=${sig}`
     }
 
     const html = buildEmail({

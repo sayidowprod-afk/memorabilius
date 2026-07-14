@@ -211,7 +211,8 @@ export async function POST(req: NextRequest) {
   const wrapMonth = monthStart.getMonth() + 1
   const makeWrapUrl = (fmt: string) => {
     const sig = signWrapUrl(user.id, wrapYear, wrapMonth, fmt)
-    return `${baseUrl}/api/wrap-image-public?uid=${user.id}&y=${wrapYear}&m=${wrapMonth}&format=${fmt}&sig=${sig}`
+    // & doit être &amp; dans les attributs href HTML — les clients email (Outlook…) cassent l'URL sinon
+    return `${baseUrl}/api/wrap-image-public?uid=${user.id}&amp;y=${wrapYear}&amp;m=${wrapMonth}&amp;format=${fmt}&amp;sig=${sig}`
   }
   const html = buildEmail({
     name: profile?.display_name || user.email.split('@')[0],
