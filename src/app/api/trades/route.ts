@@ -176,7 +176,7 @@ async function postHandler(req: NextRequest) {
     user_id: receiverId,
     type: 'trade_offer',
     message: `${senderName} te propose un échange`,
-    lien: '/echanges',
+    lien: '/trades?tab=echanges',
     lu: false,
   })
 
@@ -184,9 +184,17 @@ async function postHandler(req: NextRequest) {
     await sendPushToUser(receiverId, {
       title: '🔄 Nouvelle offre d\'échange',
       body: `${senderName} te propose un échange`,
-      url: '/echanges',
+      url: '/messages?to=' + user.id,
     })
   } catch { /* push non critique */ }
 
-  return NextResponse.json({ ok: true, tradeId: trade.id })
+  // Insérer automatiquement le message de l'offre dans le chat
+  await supabaseAdmin.from('messages').insert({
+    from_user_id: user.id,
+    to_user_id: receiverId,
+    contenu: `[[trade_offer:${trade.id}]]`,
+    trade_id: null,
+  })
+
+  return NextResponse.json({ ok: true, tradeId: trade.id, receiverId })
 }

@@ -26,6 +26,7 @@ interface Trade {
   created_at: string
   offered_cards: TradeCard[]
   requested_cards: TradeCard[]
+  [key: string]: any
 }
 
 function CardThumb({ card }: { card: TradeCard }) {
@@ -147,6 +148,7 @@ export default function EchangesPage() {
           const myCards = isSender ? trade.offered_cards : trade.requested_cards
           const theirCards = isSender ? trade.requested_cards : trade.offered_cards
 
+          const otherUserId = isSender ? trade.receiver_id : trade.sender_id
           return (
             <div key={trade.id} style={{ background: '#fff', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.07)', border: '1.5px solid #f0f0f0' }}>
               {/* Header */}
@@ -179,37 +181,41 @@ export default function EchangesPage() {
               )}
 
               {/* Actions */}
-              {trade.status === 'pending' && (
-                <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
-                  {!isSender && (
-                    <>
-                      <button
-                        disabled={acting !== null}
-                        onClick={() => act(trade.id, 'accept')}
-                        style={{ flex: 1, border: 'none', borderRadius: 50, padding: '10px', background: '#003DA6', color: '#fff', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}
-                      >
-                        {acting === trade.id + 'accept' ? '…' : '✓ Accepter'}
-                      </button>
-                      <button
-                        disabled={acting !== null}
-                        onClick={() => act(trade.id, 'refuse')}
-                        style={{ flex: 1, border: '2px solid #ccc', borderRadius: 50, padding: '10px', background: '#fff', color: '#555', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}
-                      >
-                        {acting === trade.id + 'refuse' ? '…' : '✕ Refuser'}
-                      </button>
-                    </>
-                  )}
-                  {isSender && (
+              <div style={{ display: 'flex', gap: 8, marginTop: 14, flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => router.push(`/messages?to=${otherUserId}`)}
+                  style={{ border: '1.5px solid #003DA6', borderRadius: 50, padding: '9px 18px', background: '#fff', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+                >
+                  💬 Discuter
+                </button>
+                {trade.status === 'pending' && !isSender && (
+                  <>
                     <button
                       disabled={acting !== null}
-                      onClick={() => act(trade.id, 'cancel')}
-                      style={{ border: '2px solid #ccc', borderRadius: 50, padding: '9px 20px', background: '#fff', color: '#888', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+                      onClick={() => act(trade.id, 'accept')}
+                      style={{ flex: 1, border: 'none', borderRadius: 50, padding: '10px', background: '#003DA6', color: '#fff', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}
                     >
-                      {acting === trade.id + 'cancel' ? '…' : 'Annuler l\'offre'}
+                      {acting === trade.id + 'accept' ? '…' : '✓ Accepter'}
                     </button>
-                  )}
-                </div>
-              )}
+                    <button
+                      disabled={acting !== null}
+                      onClick={() => act(trade.id, 'refuse')}
+                      style={{ flex: 1, border: '2px solid #ccc', borderRadius: 50, padding: '10px', background: '#fff', color: '#555', fontWeight: 800, fontSize: 13, cursor: 'pointer' }}
+                    >
+                      {acting === trade.id + 'refuse' ? '…' : '✕ Refuser'}
+                    </button>
+                  </>
+                )}
+                {trade.status === 'pending' && isSender && (
+                  <button
+                    disabled={acting !== null}
+                    onClick={() => act(trade.id, 'cancel')}
+                    style={{ border: '2px solid #ccc', borderRadius: 50, padding: '9px 20px', background: '#fff', color: '#888', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+                  >
+                    {acting === trade.id + 'cancel' ? '…' : 'Annuler l\'offre'}
+                  </button>
+                )}
+              </div>
             </div>
           )
         })}

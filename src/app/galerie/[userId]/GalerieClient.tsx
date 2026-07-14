@@ -697,6 +697,17 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
               <div className="galerie-actions" style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', alignItems: 'center' }}>
 
+                {/* Bouton Terminé — visible uniquement en mode édition */}
+                {isOwner && editMode && (
+                  <button
+                    onClick={() => { setEditMode(false); setSelectedCards(new Set()) }}
+                    className="btn-ajouter"
+                    style={{ background: '#e74c3c', color: '#fff', border: 'none', borderRadius: 10, padding: '12px 28px', fontWeight: 800, fontSize: 15, cursor: 'pointer', textAlign: 'center', whiteSpace: 'nowrap' }}
+                  >
+                    ✓ Terminé
+                  </button>
+                )}
+
                 {/* Bouton "..." — actions secondaires */}
                 {!editMode && (
                   <div className="btn-menu" style={{ position: 'relative' }}>

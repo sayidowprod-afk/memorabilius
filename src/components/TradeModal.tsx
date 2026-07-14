@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
+import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 
 interface CardInfo {
@@ -46,6 +47,7 @@ function parseCSVCards(csvText: string): CardInfo[] {
 }
 
 export default function TradeModal({ targetCard, targetUserId, targetUserName, onClose, onSuccess }: TradeModalProps) {
+  const router = useRouter()
   const [myCards, setMyCards] = useState<CardInfo[]>([])
   const [selected, setSelected] = useState<Set<string>>(new Set())
   const [search, setSearch] = useState('')
@@ -132,6 +134,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
       const json = await res.json()
       if (!res.ok) { setError(json.error || 'Erreur'); setSending(false); return }
       onSuccess()
+      router.push(`/messages?to=${targetUserId}`)
     } catch {
       setError('Erreur réseau, réessaie')
       setSending(false)

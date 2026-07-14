@@ -51,7 +51,7 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
     user_id: notifyUserId,
     type: 'trade_response',
     message: msgMap[action],
-    lien: '/echanges',
+    lien: '/trades?tab=echanges',
     lu: false,
   })
 
@@ -59,7 +59,7 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
     await sendPushToUser(notifyUserId, {
       title: action === 'accept' ? '🎉 Échange accepté !' : '❌ Échange refusé',
       body: msgMap[action],
-      url: '/echanges',
+      url: '/trades?tab=echanges',
     })
   }
 

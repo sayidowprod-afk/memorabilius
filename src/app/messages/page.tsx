@@ -11,6 +11,11 @@ const IMG_PREFIX = '[[img]]'
 const isImageMsg = (c: string) => typeof c === 'string' && c.startsWith(IMG_PREFIX)
 const imgUrlOf = (c: string) => c.slice(IMG_PREFIX.length)
 
+// Préfixe marqueur pour les offres d'échange intégrées au chat
+const TRADE_OFFER_PREFIX = '[[trade_offer:'
+const isTradeOfferMsg = (c: string) => typeof c === 'string' && c.startsWith(TRADE_OFFER_PREFIX)
+const tradeOfferIdOf = (c: string) => c.slice(TRADE_OFFER_PREFIX.length, -2)
+
 // Réduit une image à 1200px max et l'encode en JPEG pour limiter le poids
 function compressImage(file: File): Promise<Blob> {
   return new Promise((resolve, reject) => {
@@ -49,6 +54,7 @@ function MessagesContent() {
   const [newMsg, setNewMsg] = useState('')
   const [profiles, setProfiles] = useState<Record<string, any>>({})
   const [tradesMap, setTradesMap] = useState<Record<number, any>>({})
+  const [tradeOffersMap, setTradeOffersMap] = useState<Record<string, any>>({})
   const [loading, setLoading] = useState(true)
   const [contextTrade, setContextTrade] = useState<any>(null)
   const [uploading, setUploading] = useState(false)
@@ -115,13 +121,34 @@ function MessagesContent() {
       .order('created_at', { ascending: true })
     setMessages(data || [])
 
-    // Charger les trades référencés dans les messages
+    // Charger les trades (forum) référencés dans les messages
     const tradeIds = [...new Set((data || []).map((m: any) => m.trade_id).filter(Boolean))] as number[]
     if (tradeIds.length > 0) {
       const { data: trades } = await supabase.from('trades').select('id, titre, type, image_url, joueur').in('id', tradeIds)
       const map: Record<number, any> = {}
       trades?.forEach(tr => { map[tr.id] = tr })
       setTradesMap(map)
+    }
+
+    // Charger les trade_offers référencées dans les messages
+    const offerIds = [...new Set((data || [])
+      .filter((m: any) => isTradeOfferMsg(m.contenu))
+      .map((m: any) => tradeOfferIdOf(m.contenu))
+    )]
+    if (offerIds.length > 0) {
+      const [{ data: offers }, { data: offerCards }] = await Promise.all([
+        supabase.from('trade_offers').select('*').in('id', offerIds),
+        supabase.from('trade_offer_cards').select('*').in('trade_id', offerIds),
+      ])
+      const oMap: Record<string, any> = {}
+      offers?.forEach(o => {
+        oMap[o.id] = {
+          ...o,
+          offered_cards: (offerCards || []).filter(c => c.trade_id === o.id && c.owner_id === o.sender_id),
+          requested_cards: (offerCards || []).filter(c => c.trade_id === o.id && c.owner_id === o.receiver_id),
+        }
+      })
+      setTradeOffersMap(oMap)
     }
 
     await supabase.from('messages').update({ lu: true }).eq('to_user_id', uid).eq('from_user_id', otherId)
@@ -259,11 +286,95 @@ function MessagesContent() {
                 {messages.map(msg => {
                   const isMe = msg.from_user_id === userId
                   const linkedTrade = msg.trade_id ? tradesMap[msg.trade_id] : null
+
+                  // ── Bulle offre d'échange ──
+                  if (isTradeOfferMsg(msg.contenu)) {
+                    const offer = tradeOffersMap[tradeOfferIdOf(msg.contenu)]
+                    const isSender = offer?.sender_id === userId
+                    const isPending = offer?.status === 'pending'
+                    const statusColors: Record<string, string> = { pending: '#7a5500', accepted: '#1b5e20', refused: '#7f0000', cancelled: '#555' }
+                    const statusLabels: Record<string, string> = { pending: 'En attente', accepted: 'Accepté ✓', refused: 'Refusé', cancelled: 'Annulé' }
+                    const actOnOffer = async (action: 'accept' | 'refuse' | 'cancel') => {
+                      const { data: { session } } = await supabase.auth.getSession()
+                      if (!session) return
+                      await fetch(`/api/trades/${offer.id}`, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+                        body: JSON.stringify({ action }),
+                      })
+                      if (userId) loadMessages(userId, activeConv!)
+                    }
+                    return (
+                      <div key={msg.id} style={{ display: 'flex', justifyContent: 'center', margin: '4px 0' }}>
+                        <div style={{ background: dark ? '#1e2a3a' : '#f0f4ff', border: `1.5px solid ${dark ? '#2a3a5a' : '#c5d5ff'}`, borderRadius: 14, padding: 14, width: '100%', maxWidth: 420 }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+                            <span style={{ fontSize: 12, fontWeight: 800, color: '#003DA6' }}>🔄 Offre d'échange</span>
+                            {offer && <span style={{ fontSize: 11, fontWeight: 700, color: statusColors[offer.status] || '#555' }}>{statusLabels[offer.status] || offer.status}</span>}
+                          </div>
+                          {offer ? (
+                            <>
+                              <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 10 }}>
+                                {/* Cartes offertes */}
+                                <div style={{ flex: 1 }}>
+                                  <div style={{ fontSize: 10, fontWeight: 700, color: textMuted, textTransform: 'uppercase', marginBottom: 4 }}>
+                                    {isSender ? 'Tu offres' : 'Il/elle offre'}
+                                  </div>
+                                  <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                                    {offer.offered_cards.slice(0, 4).map((c: any, i: number) => (
+                                      <div key={i} style={{ width: 40, height: 56, background: '#0d1a30', borderRadius: 4, overflow: 'hidden', flexShrink: 0 }}>
+                                        {(c.card_image || c.image_recto) && <img src={c.card_image || c.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                      </div>
+                                    ))}
+                                    {offer.offered_cards.length > 4 && <span style={{ fontSize: 11, color: textMuted, alignSelf: 'center' }}>+{offer.offered_cards.length - 4}</span>}
+                                  </div>
+                                </div>
+                                <span style={{ color: textMuted, fontSize: 18, flexShrink: 0 }}>⇄</span>
+                                {/* Cartes demandées */}
+                                <div style={{ flex: 1 }}>
+                                  <div style={{ fontSize: 10, fontWeight: 700, color: textMuted, textTransform: 'uppercase', marginBottom: 4 }}>
+                                    {isSender ? 'Tu demandes' : 'Il/elle demande'}
+                                  </div>
+                                  <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                                    {offer.requested_cards.slice(0, 4).map((c: any, i: number) => (
+                                      <div key={i} style={{ width: 40, height: 56, background: '#0d1a30', borderRadius: 4, overflow: 'hidden', flexShrink: 0 }}>
+                                        {(c.card_image || c.image_recto) && <img src={c.card_image || c.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                      </div>
+                                    ))}
+                                    {offer.requested_cards.length > 4 && <span style={{ fontSize: 11, color: textMuted, alignSelf: 'center' }}>+{offer.requested_cards.length - 4}</span>}
+                                  </div>
+                                </div>
+                              </div>
+                              {offer.message && <div style={{ fontSize: 12, color: textMuted, marginBottom: 10, fontStyle: 'italic' }}>"{offer.message}"</div>}
+                              {isPending && (
+                                <div style={{ display: 'flex', gap: 6 }}>
+                                  {!isSender && (
+                                    <>
+                                      <button onClick={() => actOnOffer('accept')} style={{ flex: 1, background: '#003DA6', color: '#fff', border: 'none', borderRadius: 8, padding: '8px', fontWeight: 800, fontSize: 12, cursor: 'pointer' }}>✓ Accepter</button>
+                                      <button onClick={() => actOnOffer('refuse')} style={{ flex: 1, background: 'none', border: '1.5px solid #ccc', borderRadius: 8, padding: '8px', fontWeight: 700, fontSize: 12, cursor: 'pointer', color: textMain }}>✕ Refuser</button>
+                                    </>
+                                  )}
+                                  {isSender && (
+                                    <button onClick={() => actOnOffer('cancel')} style={{ background: 'none', border: '1.5px solid #ccc', borderRadius: 8, padding: '7px 16px', fontWeight: 700, fontSize: 12, cursor: 'pointer', color: '#888' }}>Annuler l'offre</button>
+                                  )}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <div style={{ color: textMuted, fontSize: 13 }}>Chargement de l'offre…</div>
+                          )}
+                          <div style={{ fontSize: 10, color: textMuted, marginTop: 8, textAlign: 'right' }}>
+                            {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
+
                   return (
                     <div key={msg.id} style={{ display: 'flex', justifyContent: isMe ? 'flex-end' : 'flex-start' }}>
                       <div style={{ maxWidth: '75%', display: 'flex', flexDirection: 'column', gap: 4, alignItems: isMe ? 'flex-end' : 'flex-start' }}>
 
-                        {/* Carte trade attachée */}
+                        {/* Carte trade forum attachée */}
                         {linkedTrade && (
                           <a href={`/trades`} style={{ textDecoration: 'none', display: 'block', background: dark ? '#2a3a2a' : '#e8f5e9', border: `1px solid ${dark ? '#3a5a3a' : '#c8e6c9'}`, borderRadius: 10, overflow: 'hidden', width: 220 }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 10px' }}>
