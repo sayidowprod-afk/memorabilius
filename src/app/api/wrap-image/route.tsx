@@ -38,11 +38,20 @@ function colsForCount(n: number, format: 'square' | 'story') {
     if (n <= 20) return 4
     return 5
   }
-  // square
   if (n <= 8) return 4
   if (n <= 15) return 5
   if (n <= 24) return 6
   return 7
+}
+
+async function fetchAsB64(url: string): Promise<string | null> {
+  try {
+    const r = await fetch(url, { signal: AbortSignal.timeout(8000) })
+    if (!r.ok) return null
+    const buf = Buffer.from(await r.arrayBuffer())
+    const ct = r.headers.get('content-type') || 'image/jpeg'
+    return `data:${ct};base64,${buf.toString('base64')}`
+  } catch { return null }
 }
 
 export async function POST(req: NextRequest) {
@@ -86,35 +95,24 @@ export async function POST(req: NextRequest) {
   const numCount = cardsData?.filter((c: any) => c.num).length || 0
   const totalCards = profile?.stats_total || 0
   const medals = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`
-  const cardImages = sortedCardImages(cardsData || [])
+
+  const rawImages = sortedCardImages(cardsData || [])
+  const ncols = colsForCount(rawImages.length, format)
+
+  // Build rows of URLs first, then fetch all in parallel
+  const rawRows: string[][] = []
+  for (let i = 0; i < rawImages.length; i += ncols) {
+    rawRows.push(rawImages.slice(i, i + ncols))
+  }
+
+  // Pre-fetch all images as base64 so Satori can render them
+  const b64Rows: (string | null)[][] = await Promise.all(
+    rawRows.map(row => Promise.all(row.map(fetchAsB64)))
+  )
 
   const BG = '#060d22'
   const ACCENT = '#003DA6'
-  const ncols = colsForCount(cardImages.length, format)
-  const pct = `${(100 / ncols).toFixed(4)}%`
-
-  const CardTile = ({ src }: { src: string }) => (
-    <div style={{
-      width: pct,
-      padding: format === 'story' ? '4px' : '3px',
-      display: 'flex',
-    }}>
-      <div style={{
-        display: 'flex',
-        width: '100%',
-        aspectRatio: '2.5 / 3.5',
-        background: '#0d1a30',
-        borderRadius: format === 'story' ? 10 : 7,
-        overflow: 'hidden',
-        border: '1px solid rgba(255,255,255,0.08)',
-      }}>
-        <img
-          src={src}
-          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-        />
-      </div>
-    </div>
-  )
+  const GAP = format === 'story' ? 8 : 6
 
   const StatBox = ({ value, label }: { value: string | number; label: string }) => (
     <div style={{
@@ -123,7 +121,31 @@ export async function POST(req: NextRequest) {
       borderRadius: 14, padding: '14px 10px', flex: 1,
     }}>
       <div style={{ color: '#5B9FFF', fontSize: 30, fontWeight: 900, lineHeight: 1, display: 'flex' }}>{value}</div>
-      <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: 12, marginTop: 5, textAlign: 'center', display: 'flex' }}>{label}</div>
+      <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 11, marginTop: 5, textAlign: 'center', display: 'flex' }}>{label}</div>
+    </div>
+  )
+
+  const CardGrid = () => (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: GAP, overflow: 'hidden' }}>
+      {b64Rows.map((row, ri) => (
+        <div key={ri} style={{ display: 'flex', gap: GAP, flex: 1 }}>
+          {row.map((src, ci) => (
+            <div key={ci} style={{
+              flex: 1, display: 'flex',
+              background: '#0d1a30',
+              borderRadius: format === 'story' ? 10 : 7,
+              overflow: 'hidden',
+              border: '1px solid rgba(255,255,255,0.08)',
+            }}>
+              {src && <img src={src} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+            </div>
+          ))}
+          {/* Pad last row to keep grid aligned */}
+          {Array.from({ length: ncols - row.length }).map((_, pi) => (
+            <div key={`pad-${pi}`} style={{ flex: 1 }} />
+          ))}
+        </div>
+      ))}
     </div>
   )
 
@@ -137,27 +159,19 @@ export async function POST(req: NextRequest) {
           padding: '44px 44px 36px',
           fontFamily: 'system-ui, -apple-system, sans-serif',
         }}>
-          {/* Header */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
             {LOGO_B64
               ? <img src={LOGO_B64} width={160} height={32} style={{ objectFit: 'contain', opacity: 0.9 }} />
               : <div style={{ color: 'white', fontWeight: 900, fontSize: 18, display: 'flex' }}>MEMORABILIUS</div>
             }
-            <div style={{
-              color: 'white', fontSize: 20, fontWeight: 700, display: 'flex',
-              background: 'rgba(255,255,255,0.1)', borderRadius: 50, padding: '6px 18px',
-            }}>
+            <div style={{ color: 'white', fontSize: 20, fontWeight: 700, display: 'flex', background: 'rgba(255,255,255,0.1)', borderRadius: 50, padding: '6px 18px' }}>
               Wrap {monthLabel}
             </div>
           </div>
 
-          {/* Cards grid */}
-          <div style={{ flex: 1, display: 'flex', flexWrap: 'wrap', alignContent: 'flex-start', overflow: 'hidden' }}>
-            {cardImages.map((src, i) => <CardTile key={i} src={src} />)}
-          </div>
+          <CardGrid />
 
-          {/* Stats */}
-          <div style={{ display: 'flex', gap: '10px', marginTop: 18 }}>
+          <div style={{ display: 'flex', gap: '8px', marginTop: 16 }}>
             <StatBox value={newCards} label="Cartes" />
             <StatBox value={totalCards} label="Total" />
             <StatBox value={medals} label="Rang" />
@@ -167,10 +181,9 @@ export async function POST(req: NextRequest) {
             {numCount > 0 && <StatBox value={numCount} label="Num." />}
           </div>
 
-          {/* Footer */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 14 }}>
-            <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14, display: 'flex' }}>memorabilius.fr</div>
-            <div style={{ color: 'white', fontWeight: 800, fontSize: 16, display: 'flex', background: ACCENT, borderRadius: 50, padding: '6px 18px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 12 }}>
+            <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 13, display: 'flex' }}>memorabilius.fr</div>
+            <div style={{ color: 'white', fontWeight: 800, fontSize: 15, display: 'flex', background: ACCENT, borderRadius: 50, padding: '6px 18px' }}>
               @{name}
             </div>
           </div>
@@ -190,23 +203,18 @@ export async function POST(req: NextRequest) {
         padding: '60px 44px 44px',
         fontFamily: 'system-ui, -apple-system, sans-serif',
       }}>
-        {/* Header */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', marginBottom: 32 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', marginBottom: 28 }}>
           {LOGO_B64
-            ? <img src={LOGO_B64} width={200} height={40} style={{ objectFit: 'contain', opacity: 0.9 }} />
-            : <div style={{ color: 'white', fontWeight: 900, fontSize: 24, display: 'flex' }}>MEMORABILIUS</div>
+            ? <img src={LOGO_B64} width={190} height={38} style={{ objectFit: 'contain', opacity: 0.9 }} />
+            : <div style={{ color: 'white', fontWeight: 900, fontSize: 22, display: 'flex' }}>MEMORABILIUS</div>
           }
-          <div style={{ color: 'white', fontSize: 36, fontWeight: 900, display: 'flex' }}>Wrap {monthLabel}</div>
-          <div style={{ color: 'rgba(255,255,255,0.55)', fontSize: 20, display: 'flex' }}>@{name}</div>
+          <div style={{ color: 'white', fontSize: 34, fontWeight: 900, display: 'flex' }}>Wrap {monthLabel}</div>
+          <div style={{ color: 'rgba(255,255,255,0.55)', fontSize: 18, display: 'flex' }}>@{name}</div>
         </div>
 
-        {/* Cards grid — all cards, full ratio, no crop */}
-        <div style={{ flex: 1, display: 'flex', flexWrap: 'wrap', alignContent: 'flex-start', overflow: 'hidden' }}>
-          {cardImages.map((src, i) => <CardTile key={i} src={src} />)}
-        </div>
+        <CardGrid />
 
-        {/* Stats */}
-        <div style={{ display: 'flex', gap: '10px', marginTop: 28 }}>
+        <div style={{ display: 'flex', gap: '8px', marginTop: 24 }}>
           <StatBox value={newCards} label="Cartes ajoutées" />
           <StatBox value={medals} label={`/ ${totalCollectors}`} />
           {rcCount > 0 && <StatBox value={rcCount} label="RC" />}
@@ -215,9 +223,8 @@ export async function POST(req: NextRequest) {
           {numCount > 0 && <StatBox value={numCount} label="Num." />}
         </div>
 
-        {/* Footer */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
-          <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 16, display: 'flex' }}>memorabilius.fr</div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 18 }}>
+          <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 15, display: 'flex' }}>memorabilius.fr</div>
         </div>
       </div>
     ),
