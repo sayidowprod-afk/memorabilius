@@ -59,9 +59,15 @@ function buildEmail(opts: {
   .rank-medal { font-size: 42px; line-height: 1; }
   .rank-text { font-size: 15px; color: #555; }
   .rank-text strong { color: #121212; font-size: 18px; }
-  .cards-strip { display: flex; gap: 6px; margin-bottom: 28px; overflow: hidden; }
-  .card-thumb { flex: 1; min-width: 0; border-radius: 8px; overflow: hidden; }
-  .card-thumb img { width: 100%; aspect-ratio: 2.5/3.5; object-fit: cover; display: block; }
+  .cards-grid { margin-bottom: 28px; }
+  .cards-row { display: flex; gap: 6px; margin-bottom: 6px; }
+  .card-thumb { flex: 1; border-radius: 8px; overflow: hidden; background: #0d1a30; }
+  .card-thumb img { width: 100%; aspect-ratio: 2.5/3.5; object-fit: contain; display: block; }
+  .dl-section { background: #f0f4ff; border: 1.5px solid #c7d6f5; border-radius: 14px; padding: 20px 24px; margin-bottom: 28px; text-align: center; }
+  .dl-title { font-size: 13px; font-weight: 800; text-transform: uppercase; color: #003DA6; letter-spacing: 1px; margin-bottom: 14px; }
+  .dl-buttons { display: flex; gap: 10px; justify-content: center; }
+  .dl-btn { display: inline-block; background: #003DA6; color: white; font-size: 13px; font-weight: 800; padding: 11px 22px; border-radius: 50px; text-decoration: none; }
+  .dl-btn.secondary { background: white; color: #003DA6; border: 2px solid #003DA6; }
   .highlights { border-radius: 14px; overflow: hidden; border: 1.5px solid #eee; margin-bottom: 28px; }
   .highlight-row { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid #f5f5f5; }
   .highlight-row:last-child { border-bottom: none; }
@@ -92,11 +98,15 @@ function buildEmail(opts: {
     <div class="header-sub">Voilà ce qui s'est passé dans ta collection</div>
   </div>
   <div class="body">
-    ${cardImages.length > 0 ? `
-    <div class="section-title">🃏 Tes cartes du mois (${cardImages.length})</div>
-    <div class="cards-strip">
-      ${cardImages.map(src => `<div class="card-thumb"><img src="${src}" /></div>`).join('')}
-    </div>` : ''}
+    ${cardImages.length > 0 ? (() => {
+      const cols = cardImages.length <= 4 ? 2 : cardImages.length <= 9 ? 3 : 4
+      const rows: string[][] = []
+      for (let i = 0; i < cardImages.length; i += cols) rows.push(cardImages.slice(i, i + cols))
+      return `<div class="section-title">🃏 Tes cartes du mois (${cardImages.length})</div>
+    <div class="cards-grid">
+      ${rows.map(row => `<div class="cards-row">${row.map(src => `<div class="card-thumb"><img src="${src}" /></div>`).join('')}</div>`).join('')}
+    </div>`
+    })() : ''}
 
     <p class="greeting">Hey <strong>${name}</strong> 👋<br>
     ${newCards > 0
@@ -147,6 +157,13 @@ function buildEmail(opts: {
       </div>`).join('')}
     </div>` : ''}
 
+    <div class="dl-section">
+      <div class="dl-title">📸 Télécharger ton Wrap</div>
+      <div class="dl-buttons">
+        <a href="${galerieUrl.replace(/\/galerie\/.*/, '/profil')}#wrap-telecharger" class="dl-btn">⬜ Carré 1080×1080</a>
+        <a href="${galerieUrl.replace(/\/galerie\/.*/, '/profil')}#wrap-telecharger" class="dl-btn secondary">📱 Story 1080×1920</a>
+      </div>
+    </div>
     <div class="cta">
       <a href="${galerieUrl}">Voir ma galerie →</a>
     </div>

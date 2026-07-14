@@ -347,7 +347,7 @@ export default function Profil() {
       </div>
 
       {/* Test wrap mensuel */}
-      <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+      <div id="wrap-telecharger" style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <h3 style={{ fontWeight: 800, marginBottom: 6 }}>📊 Wrap mensuel — test</h3>
         <p style={{ fontSize: 13, color: '#666', marginBottom: 16, lineHeight: 1.5 }}>
           Envoie un email de test du wrap mensuel à ton adresse pour vérifier le rendu et les données.
