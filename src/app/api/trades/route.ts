@@ -90,6 +90,15 @@ export async function GET(req: NextRequest) {
 
 // POST /api/trades — créer une offre d'échange
 export async function POST(req: NextRequest) {
+  try {
+    return await postHandler(req)
+  } catch (err) {
+    console.error('[POST /api/trades] unexpected error:', err)
+    return NextResponse.json({ error: String(err) }, { status: 500 })
+  }
+}
+
+async function postHandler(req: NextRequest) {
   const token = auth(req)
   if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   const { data: { user } } = await supabaseAdmin.auth.getUser(token)

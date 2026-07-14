@@ -163,6 +163,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [addedCards, setAddedCards] = useState<Set<string>>(new Set())
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [showStats, setShowStats] = useState(false)
+  const [actionMenuOpen, setActionMenuOpen] = useState(false)
   const loaderRef = useRef<HTMLDivElement>(null)
 
   const isOwner = currentUser === userId
@@ -694,82 +695,70 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 ))}
               </div>
 
-              <div style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
-                {isOwner && (
-                  <button onClick={() => { setEditMode(m => !m); setSelectedCards(new Set()) }} style={{
-                    background: editMode ? '#e74c3c' : '#f0f0f0',
-                    color: editMode ? 'white' : '#333',
-                    border: 'none', borderRadius: 8, padding: '10px 16px',
-                    fontWeight: 700, fontSize: 13, cursor: 'pointer', flex: '1 1 auto', textAlign: 'center', minWidth: 150
-                  }}>
-                    {editMode ? t('gallery_done') : t('gallery_privacy')}
-                  </button>
-                )}
+              <div style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', alignItems: 'center' }}>
 
-                {/* Bouton partager la galerie */}
+                {/* Bouton "..." — actions secondaires */}
                 {!editMode && (
-                  <button onClick={() => {
-                    const url = window.location.href
-                    if (navigator.share) {
-                      navigator.share({ title: `Galerie de ${profile?.display_name || 'Collectionneur'}`, url })
-                    } else {
-                      navigator.clipboard.writeText(url).then(() => {
-                        setShareCopied(true)
-                        setTimeout(() => setShareCopied(false), 2000)
-                      })
-                    }
-                  }} style={{
-                    background: shareCopied ? '#22c55e' : '#f0f0f0',
-                    color: shareCopied ? 'white' : '#333',
-                    border: 'none', borderRadius: 8, padding: '10px 16px',
-                    fontWeight: 700, fontSize: 13, cursor: 'pointer', flex: '1 1 auto', textAlign: 'center',
-                    transition: '0.2s',
-                  }}>
-                    {shareCopied ? '✓ Copié !' : '↗ Partager'}
-                  </button>
+                  <div style={{ position: 'relative' }}>
+                    <button
+                      onClick={() => setActionMenuOpen(v => !v)}
+                      style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 14px', fontWeight: 700, fontSize: 15, cursor: 'pointer', lineHeight: 1 }}
+                    >
+                      ···
+                    </button>
+                    {actionMenuOpen && (
+                      <>
+                        {/* Overlay invisible pour fermer */}
+                        <div onClick={() => setActionMenuOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 99 }} />
+                        <div style={{ position: 'absolute', top: 'calc(100% + 6px)', right: 0, background: '#fff', borderRadius: 12, boxShadow: '0 8px 32px rgba(0,0,0,0.15)', padding: 6, zIndex: 100, minWidth: 190, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                          {isOwner && (
+                            <button onClick={() => { setEditMode(m => !m); setSelectedCards(new Set()); setActionMenuOpen(false) }}
+                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: '#333', width: '100%' }}>
+                              {editMode ? t('gallery_done') : t('gallery_privacy')}
+                            </button>
+                          )}
+                          <button onClick={() => {
+                            setActionMenuOpen(false)
+                            const url = window.location.href
+                            if (navigator.share) navigator.share({ title: `Galerie de ${profile?.display_name || 'Collectionneur'}`, url })
+                            else navigator.clipboard.writeText(url).then(() => { setShareCopied(true); setTimeout(() => setShareCopied(false), 2000) })
+                          }} style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: '#333', width: '100%' }}>
+                            {shareCopied ? '✓ Lien copié' : '↗ Partager'}
+                          </button>
+                          <button onClick={() => { setActionMenuOpen(false); router.push(`/galerie/${userId}/expo`) }}
+                            style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: '#333', width: '100%' }}>
+                            ⊞ Mode expo
+                          </button>
+                          <div style={{ padding: '0 4px' }}>
+                            <GalerieExport
+                              cards={cards}
+                              profileName={profile?.display_name || ''}
+                              avatarUrl={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
+                              accent={accent}
+                              lang={lang}
+                              cardValues={cardValues}
+                              isOwner={isOwner}
+                            />
+                          </div>
+                          <button onClick={() => { setShowStats(s => !s); setActionMenuOpen(false) }}
+                            style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: '#333', width: '100%' }}>
+                            📊 {showStats ? 'Masquer les stats' : 'Voir les stats'}
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 )}
 
-                {!editMode && loaded && (
-                  <button onClick={() => router.push(`/galerie/${userId}/expo`)} style={{
-                    background: '#0a0a0a', color: '#fff',
-                    border: 'none', borderRadius: 8, padding: '10px 16px',
-                    fontWeight: 700, fontSize: 13, cursor: 'pointer', flex: '1 1 auto', textAlign: 'center',
-                  }}>
-                    ⊞ Mode expo
-                  </button>
-                )}
-
-                {!editMode && (
-                  <GalerieExport
-                    cards={cards}
-                    profileName={profile?.display_name || ''}
-                    avatarUrl={profile?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.display_name || 'U')}&background=003DA6&color=fff&size=128`}
-                    accent={accent}
-                    lang={lang}
-                    cardValues={cardValues}
-                    isOwner={isOwner}
-                  />
-                )}
-
-                {!editMode && loaded && (
-                  <button onClick={() => setShowStats(s => !s)} style={{
-                    background: showStats ? accent : '#f0f0f0',
-                    color: showStats ? 'white' : '#333',
-                    border: 'none', borderRadius: 8, padding: '10px 16px',
-                    fontWeight: 700, fontSize: 13, cursor: 'pointer', flex: '1 1 auto', textAlign: 'center', minWidth: 100,
-                    transition: '0.2s',
-                  }}>
-                    📊 Stats
-                  </button>
-                )}
+                {/* CTA principal */}
                 {isOwner && !editMode && (
                   <a href={`/galerie/${userId}/ajouter`} style={{
                     background: '#003DA6', color: 'white',
-                    border: 'none', borderRadius: 8, padding: '10px 16px',
-                    fontWeight: 700, fontSize: 13, cursor: 'pointer',
-                    textDecoration: 'none', display: 'inline-block', flex: '1 1 auto', textAlign: 'center', minWidth: 100
+                    border: 'none', borderRadius: 8, padding: '10px 20px',
+                    fontWeight: 800, fontSize: 14, cursor: 'pointer',
+                    textDecoration: 'none', display: 'inline-block', textAlign: 'center', whiteSpace: 'nowrap',
                   }}>
-                    ➕ {lang === 'fr' ? 'Ajouter' : 'Add'}
+                    + {lang === 'fr' ? 'Ajouter' : 'Add'}
                   </a>
                 )}
               </div>

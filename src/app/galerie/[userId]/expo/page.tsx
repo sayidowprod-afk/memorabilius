@@ -233,57 +233,60 @@ export default function ExpoPage() {
         </div>
       ) : (
         /* ── Mode diaporama ── */
-        <div style={{ flex: 1, display: 'flex', gap: 32, alignItems: 'center', justifyContent: 'center', padding: '24px 32px', minHeight: 0, overflow: 'hidden' }}>
-          {/* Carte */}
-          <div style={{ flex: '0 0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '16px 24px', gap: 20, minHeight: 0, overflow: 'hidden' }}>
+          {/* Navigation + carte */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flex: 1, minHeight: 0, width: '100%', justifyContent: 'center' }}>
+            <button
+              onClick={() => setSlideIdx(i => (i - 1 + cards.length) % cards.length)}
+              style={{ background: 'rgba(255,255,255,0.08)', border: 'none', color: '#fff', borderRadius: 50, width: 44, height: 44, fontSize: 24, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
+            >‹</button>
+
             {current && (
               <img
                 key={slideIdx}
                 src={current.f}
                 alt={current.n}
                 style={{
-                  maxHeight: '100%', maxWidth: '45vw',
+                  maxHeight: '100%', maxWidth: '60vw',
                   objectFit: 'contain', borderRadius: 14,
                   boxShadow: '0 24px 80px rgba(0,0,0,0.9)',
                   animation: 'fadeIn 0.35s ease',
                 }}
               />
             )}
+
+            <button
+              onClick={() => setSlideIdx(i => (i + 1) % cards.length)}
+              style={{ background: 'rgba(255,255,255,0.08)', border: 'none', color: '#fff', borderRadius: 50, width: 44, height: 44, fontSize: 24, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
+            >›</button>
           </div>
 
-          {/* Infos complètes */}
+          {/* Infos complètes sous la carte */}
           {current && (
-            <div style={{ flex: '0 0 280px', display: 'flex', flexDirection: 'column', gap: 12, overflowY: 'auto', maxHeight: '100%' }}>
-              <div style={{ fontWeight: 900, fontSize: 22, lineHeight: 1.25 }}>{current.n}</div>
+            <div style={{ flexShrink: 0, textAlign: 'center', maxWidth: 560, width: '100%' }}>
+              <div style={{ fontWeight: 900, fontSize: 20, marginBottom: 6 }}>{current.n}</div>
 
+              {/* Ligne infos courtes */}
+              <div style={{ fontSize: 13, color: '#888', marginBottom: 8 }}>
+                {[current.t, current.y, current.br].filter(Boolean).join(' · ')}
+              </div>
+
+              {/* Badges */}
               {(current.rc || current.auto || current.patch || current.printing_plate || current.booklet || (current.g && current.g !== 'Raw')) && (
-                <Badges card={current} big />
+                <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginBottom: 10 }}>
+                  <Badges card={current} big />
+                </div>
               )}
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 4 }}>
-                {current.t && <InfoRow label="Équipe" value={current.t} />}
-                {current.y && <InfoRow label="Année" value={current.y} />}
-                {current.br && <InfoRow label="Marque" value={current.br} />}
-                {current.s && <InfoRow label="Collection" value={current.s} />}
-                {current.v && <InfoRow label="Variation" value={current.v} />}
-                {current.num && <InfoRow label="Numérotation" value={`#${current.num}`} />}
-                {current.g && current.g !== 'Raw' && <InfoRow label="Grade" value={current.g} />}
+              {/* Infos détaillées en ligne */}
+              <div style={{ display: 'flex', gap: 20, justifyContent: 'center', flexWrap: 'wrap' }}>
+                {current.s && <InfoPill label="Collection" value={current.s} />}
+                {current.v && <InfoPill label="Variation" value={current.v} />}
+                {current.num && <InfoPill label="N°" value={`#${current.num}`} />}
+                {current.g && current.g !== 'Raw' && <InfoPill label="Grade" value={current.g} />}
               </div>
 
-              {/* Navigation */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 16 }}>
-                <button
-                  onClick={() => setSlideIdx(i => (i - 1 + cards.length) % cards.length)}
-                  style={{ background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', borderRadius: 50, width: 40, height: 40, fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                >‹</button>
-                <span style={{ color: '#555', fontSize: 12, flex: 1, textAlign: 'center' }}>
-                  {slideIdx + 1} / {cards.length}
-                </span>
-                <button
-                  onClick={() => setSlideIdx(i => (i + 1) % cards.length)}
-                  style={{ background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', borderRadius: 50, width: 40, height: 40, fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                >›</button>
-              </div>
+              <div style={{ color: '#444', fontSize: 12, marginTop: 12 }}>{slideIdx + 1} / {cards.length}</div>
             </div>
           )}
         </div>
@@ -296,11 +299,11 @@ export default function ExpoPage() {
   )
 }
 
-function InfoRow({ label, value }: { label: string; value: string }) {
+function InfoPill({ label, value }: { label: string; value: string }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', color: '#555', letterSpacing: '0.08em' }}>{label}</span>
-      <span style={{ fontSize: 14, color: '#ddd', fontWeight: 600 }}>{value}</span>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+      <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', color: '#555', letterSpacing: '0.07em' }}>{label}</span>
+      <span style={{ fontSize: 13, color: '#ccc', fontWeight: 600 }}>{value}</span>
     </div>
   )
 }
