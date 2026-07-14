@@ -8,7 +8,8 @@ const supabaseAdmin = createClient(
 )
 
 // PATCH /api/trades/[id] — accepter / refuser / annuler
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+  const { id } = await context.params
   const token = req.headers.get('authorization')?.replace('Bearer ', '') || ''
   if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   const { data: { user } } = await supabaseAdmin.auth.getUser(token)
@@ -21,7 +22,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   const { data: trade } = await supabaseAdmin
     .from('trade_offers')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', id)
     .single()
 
   if (!trade) return NextResponse.json({ error: 'Échange introuvable' }, { status: 404 })
