@@ -27,8 +27,9 @@ function buildEmail(opts: {
   totalCards: number
   highlights: { player: string; year: string; brand: string; type: string }[]
   galerieUrl: string
+  cardImages: string[]
 }) {
-  const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl } = opts
+  const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl, cardImages } = opts
 
   const medals = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`
   const typeLabel = (t: string) => t === 'RC' ? '🌟 Rookie' : t === 'Auto' ? '✍️ Auto' : t === 'Patch' ? '🧩 Patch' : t === 'Num' ? '🔢 Numérotée' : t
@@ -58,6 +59,9 @@ function buildEmail(opts: {
   .rank-medal { font-size: 42px; line-height: 1; }
   .rank-text { font-size: 15px; color: #555; }
   .rank-text strong { color: #121212; font-size: 18px; }
+  .cards-strip { display: flex; gap: 6px; margin-bottom: 28px; overflow: hidden; }
+  .card-thumb { flex: 1; min-width: 0; border-radius: 8px; overflow: hidden; }
+  .card-thumb img { width: 100%; aspect-ratio: 2.5/3.5; object-fit: cover; display: block; }
   .highlights { border-radius: 14px; overflow: hidden; border: 1.5px solid #eee; margin-bottom: 28px; }
   .highlight-row { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid #f5f5f5; }
   .highlight-row:last-child { border-bottom: none; }
@@ -88,6 +92,12 @@ function buildEmail(opts: {
     <div class="header-sub">Voilà ce qui s'est passé dans ta collection</div>
   </div>
   <div class="body">
+    ${cardImages.length > 0 ? `
+    <div class="section-title">🃏 Tes cartes du mois (${cardImages.length})</div>
+    <div class="cards-strip">
+      ${cardImages.map(src => `<div class="card-thumb"><img src="${src}" /></div>`).join('')}
+    </div>` : ''}
+
     <p class="greeting">Hey <strong>${name}</strong> 👋<br>
     ${newCards > 0
       ? `En ${month}, tu as ajouté <strong>${newCards} carte${newCards > 1 ? 's' : ''}</strong> à ta collection. Voici ton bilan complet.`
@@ -200,7 +210,7 @@ export async function GET(req: NextRequest) {
     // Cards added this month
     const { data: newCardsData } = await supabase
       .from('cartes_manuelles')
-      .select('nom, annee, marque, rc, auto, patch, num')
+      .select('nom, annee, marque, rc, auto, patch, num, image_recto')
       .eq('user_id', authUser.id)
       .gte('created_at', monthStart.toISOString())
       .lt('created_at', monthEnd.toISOString())
@@ -218,6 +228,15 @@ export async function GET(req: NextRequest) {
       ...(newCardsData?.filter(c => c.patch && !c.rc && !c.auto).slice(0, 1).map(c => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'Patch' })) || []),
     ].slice(0, 5)
 
+    // Images RC > Auto > Patch > autres
+    const withImg = (newCardsData || []).filter(c => c.image_recto)
+    const cardImages = [
+      ...withImg.filter(c => c.rc),
+      ...withImg.filter(c => c.auto && !c.rc),
+      ...withImg.filter(c => c.patch && !c.rc && !c.auto),
+      ...withImg.filter(c => !c.rc && !c.auto && !c.patch),
+    ].map(c => c.image_recto as string)
+
     const html = buildEmail({
       name,
       month: monthLabel,
@@ -231,6 +250,7 @@ export async function GET(req: NextRequest) {
       totalCards: profile.stats_total || 0,
       highlights,
       galerieUrl: `${baseUrl}/galerie/${authUser.id}`,
+      cardImages,
     })
 
     try {

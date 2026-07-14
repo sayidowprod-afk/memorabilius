@@ -18,9 +18,9 @@ function buildEmail(opts: {
   name: string; month: string; newCards: number; rcCount: number; autoCount: number
   patchCount: number; numCount: number; rank: number; totalCollectors: number
   totalCards: number; highlights: { player: string; year: string; brand: string; type: string }[]
-  galerieUrl: string
+  galerieUrl: string; cardImages: string[]
 }) {
-  const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl } = opts
+  const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl, cardImages } = opts
   const medals = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`
   const typeLabel = (t: string) => t === 'RC' ? '🌟 Rookie' : t === 'Auto' ? '✍️ Auto' : t === 'Patch' ? '🧩 Patch' : t
 
@@ -49,6 +49,9 @@ function buildEmail(opts: {
   .rank-medal { font-size: 42px; line-height: 1; }
   .rank-text { font-size: 15px; color: #555; }
   .rank-text strong { color: #121212; font-size: 18px; }
+  .cards-strip { display: flex; gap: 6px; margin-bottom: 28px; overflow: hidden; }
+  .card-thumb { flex: 1; min-width: 0; border-radius: 8px; overflow: hidden; }
+  .card-thumb img { width: 100%; aspect-ratio: 2.5/3.5; object-fit: cover; display: block; }
   .highlights { border-radius: 14px; overflow: hidden; border: 1.5px solid #eee; margin-bottom: 28px; }
   .highlight-row { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid #f5f5f5; }
   .highlight-row:last-child { border-bottom: none; }
@@ -80,6 +83,12 @@ function buildEmail(opts: {
       ? `En ${month}, tu as ajouté <strong>${newCards} carte${newCards > 1 ? 's' : ''}</strong> à ta collection. Voici ton bilan complet.`
       : `Pas de nouvelles cartes en ${month}, mais ta collection continue de valoir le détour !`
     }</p>
+    ${cardImages.length > 0 ? `
+    <div class="section-title">🃏 Tes cartes du mois (${cardImages.length})</div>
+    <div class="cards-strip">
+      ${cardImages.map(src => `<div class="card-thumb"><img src="${src}" /></div>`).join('')}
+    </div>` : ''}
+
     <div class="section-title">📦 Ce mois</div>
     <div class="stats-grid">
       <div class="stat-card"><div class="stat-value">${newCards}</div><div class="stat-label">Cartes ajoutées</div></div>
@@ -153,7 +162,7 @@ export async function POST(req: NextRequest) {
 
   const { data: newCardsData } = await supabase
     .from('cartes_manuelles')
-    .select('nom, annee, marque, rc, auto, patch, num')
+    .select('nom, annee, marque, rc, auto, patch, num, image_recto')
     .eq('user_id', user.id)
     .gte('created_at', monthStart.toISOString())
     .lt('created_at', monthEnd.toISOString())
@@ -170,6 +179,15 @@ export async function POST(req: NextRequest) {
     ...(newCardsData?.filter(c => c.patch && !c.rc && !c.auto).slice(0, 1).map(c => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'Patch' })) || []),
   ].slice(0, 5)
 
+  // Cartes avec image, triées RC > Auto > Patch > autres
+  const withImg = (newCardsData || []).filter(c => c.image_recto)
+  const cardImages = [
+    ...withImg.filter(c => c.rc),
+    ...withImg.filter(c => c.auto && !c.rc),
+    ...withImg.filter(c => c.patch && !c.rc && !c.auto),
+    ...withImg.filter(c => !c.rc && !c.auto && !c.patch),
+  ].map(c => c.image_recto as string)
+
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.memorabilius.fr'
   const html = buildEmail({
     name: profile?.display_name || user.email.split('@')[0],
@@ -179,6 +197,7 @@ export async function POST(req: NextRequest) {
     totalCards: profile?.stats_total || 0,
     highlights,
     galerieUrl: `${baseUrl}/galerie/${user.id}`,
+    cardImages,
   })
 
   try {

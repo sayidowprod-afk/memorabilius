@@ -35,6 +35,7 @@ export default function Profil() {
   const [pushError, setPushError] = useState('')
   const [wrapSending, setWrapSending] = useState(false)
   const [wrapResult, setWrapResult] = useState<{ ok?: boolean; error?: string; month?: string; newCards?: number } | null>(null)
+  const [wrapImgLoading, setWrapImgLoading] = useState<string | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -173,6 +174,30 @@ export default function Profil() {
     setPasswordMsg({ ok: true, text: t('profile_password_success') })
     setNewPassword(''); setConfirmPassword('')
     setTimeout(() => { setShowPasswordForm(false); setPasswordMsg(null) }, 2500)
+  }
+
+  const handleDownloadWrapImage = async (format: 'square' | 'story', period: 'current' | 'last') => {
+    const key = `${format}-${period}`
+    setWrapImgLoading(key)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const res = await fetch(`/api/wrap-image?format=${format}&period=${period}`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${session?.access_token}` },
+      })
+      if (!res.ok) { alert('Erreur génération image'); return }
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `memorabilius-wrap-${format}-${period}.png`
+      a.click()
+      URL.revokeObjectURL(url)
+    } catch (e: any) {
+      alert('Erreur : ' + e.message)
+    } finally {
+      setWrapImgLoading(null)
+    }
   }
 
   const handleWrapPreview = async (period: 'current' | 'last') => {
@@ -345,6 +370,28 @@ export default function Profil() {
             }
           </div>
         )}
+
+        <div style={{ marginTop: 20, borderTop: '1px solid #f0f0f0', paddingTop: 16 }}>
+          <p style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#aaa', marginBottom: 10 }}>
+            📸 Image pour Instagram / Story
+          </p>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {(['square', 'story'] as const).map(fmt => (
+              ['last', 'current'].map(period => {
+                const key = `${fmt}-${period}`
+                const loading = wrapImgLoading === key
+                return (
+                  <button key={key}
+                    onClick={() => handleDownloadWrapImage(fmt, period as 'current' | 'last')}
+                    disabled={!!wrapImgLoading}
+                    style={{ background: loading ? '#eee' : fmt === 'square' ? '#f0f4ff' : '#f5f0ff', color: fmt === 'square' ? '#003DA6' : '#7b1fa2', border: `2px solid ${fmt === 'square' ? '#003DA6' : '#7b1fa2'}`, borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 12, cursor: wrapImgLoading ? 'not-allowed' : 'pointer', opacity: wrapImgLoading && !loading ? 0.5 : 1 }}>
+                    {loading ? '⏳ Génération…' : `${fmt === 'square' ? '⬜ Carré' : '📱 Story'} — ${period === 'last' ? 'mois précédent' : 'mois en cours'}`}
+                  </button>
+                )
+              })
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Modifier le mot de passe */}
