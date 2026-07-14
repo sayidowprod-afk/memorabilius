@@ -9,6 +9,7 @@ import CollectionStats from '@/components/CollectionStats'
 import PublicWishlist from '@/components/PublicWishlist'
 import GalerieComments from '@/components/GalerieComments'
 import CommentsModal from '@/components/CommentsModal'
+import TradeModal from '@/components/TradeModal'
 import LikedCards from '@/components/LikedCards'
 import BinderLibrary from '@/components/BinderLibrary'
 import {
@@ -137,6 +138,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     return { border: `${width}px solid ${color}` }
   }
   const [popup, setPopup] = useState<Card | null>(null)
+  const [tradeCard, setTradeCard] = useState<Card | null>(null)
+  const [tradeSent, setTradeSent] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const [currentUser, setCurrentUser] = useState<string | null>(null)
   const [privateCards, setPrivateCards] = useState<Set<string>>(new Set())
@@ -1660,6 +1663,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       {popup && (
         <Viewer3D popup={popup} accent={accent} onClose={() => setPopup(null)} getTags={getTags} userId={userId} userSlug={profile?.slug || userId}
           isOwner={isOwner} currentUserId={currentUser ?? undefined}
+          onProposeTrade={!isOwner && currentUser && popup.id_manuelle ? () => setTradeCard(popup) : undefined}
           onNext={() => {
             if (!popup) return
             const idx = filtered.findIndex(c => c.f === popup.f)
@@ -1719,6 +1723,31 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           }}
           aria-label="Retour en haut"
         >↑</button>
+      )}
+
+      {tradeCard && tradeCard.id_manuelle && (
+        <TradeModal
+          targetCard={{
+            id: tradeCard.id_manuelle,
+            nom: tradeCard.n,
+            annee: tradeCard.y,
+            marque: tradeCard.br,
+            image_recto: tradeCard.f,
+          }}
+          targetUserId={userId}
+          targetUserName={profile?.display_name || 'Collector'}
+          onClose={() => setTradeCard(null)}
+          onSuccess={() => { setTradeCard(null); setTradeSent(true) }}
+        />
+      )}
+
+      {tradeSent && (
+        <div
+          onClick={() => setTradeSent(false)}
+          style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#003DA6', color: '#fff', borderRadius: 50, padding: '12px 24px', fontWeight: 700, fontSize: 14, zIndex: 9999, cursor: 'pointer', boxShadow: '0 4px 20px rgba(0,0,61,0.3)' }}
+        >
+          🔄 Offre d&apos;échange envoyée !
+        </div>
       )}
     </>
   )

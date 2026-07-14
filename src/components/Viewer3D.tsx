@@ -38,7 +38,7 @@ function backFaceImgStyle(boxIsHorizontal: boolean, backIsHorizontal: boolean): 
   }
 }
 
-export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, onCollectionTagChange, onCollectionsChange, allCollectionTags, onAddToMyGallery, initialAddState }: {
+export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, onCollectionTagChange, onCollectionsChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade }: {
   popup: Card
   accent: string
   onClose: () => void
@@ -54,6 +54,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   allCollectionTags?: string[]
   onAddToMyGallery?: () => Promise<'added' | 'duplicate'>
   initialAddState?: 'idle' | 'added' | 'duplicate'
+  onProposeTrade?: () => void
 }) {
   const { dark } = useTheme()
   const bg = dark ? '#1a1a1a' : '#fff'
@@ -881,6 +882,22 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               </button>
             )}
           </div>
+
+          {/* Proposer un échange — visiteur connecté seulement */}
+          {!isOwner && onProposeTrade && (
+            <div style={{ marginTop: 10 }}>
+              <button
+                onClick={onProposeTrade}
+                style={{
+                  width: '100%', border: '2px solid #003DA6', borderRadius: 10, padding: '11px',
+                  fontWeight: 800, cursor: 'pointer', fontSize: 14,
+                  background: 'transparent', color: '#003DA6', transition: '0.2s',
+                }}
+              >
+                🔄 Proposer un échange
+              </button>
+            </div>
+          )}
 
           {/* Ajouter à ma galerie — visiteur connecté seulement */}
           {!isOwner && onAddToMyGallery && (
