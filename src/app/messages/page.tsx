@@ -131,25 +131,26 @@ function MessagesContent() {
       setTradesMap(map)
     }
 
-    // Charger les trade_offers référencées dans les messages
+    // Charger les trade_offers référencées dans les messages via l'API (enrichit les cartes manuelles)
     const offerIds = [...new Set((data || [])
       .filter((m: any) => isTradeOfferMsg(m.contenu))
       .map((m: any) => tradeOfferIdOf(m.contenu))
     )]
     if (offerIds.length > 0) {
-      const [{ data: offers }, { data: offerCards }] = await Promise.all([
-        supabase.from('trade_offers').select('*').in('id', offerIds),
-        supabase.from('trade_offer_cards').select('*').in('trade_id', offerIds),
-      ])
-      const oMap: Record<string, any> = {}
-      offers?.forEach(o => {
-        oMap[o.id] = {
-          ...o,
-          offered_cards: (offerCards || []).filter(c => c.trade_id === o.id && c.owner_id === o.sender_id),
-          requested_cards: (offerCards || []).filter(c => c.trade_id === o.id && c.owner_id === o.receiver_id),
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session?.access_token) {
+        const res = await fetch('/api/trades', {
+          headers: { Authorization: `Bearer ${session.access_token}` },
+        })
+        if (res.ok) {
+          const json = await res.json()
+          const oMap: Record<string, any> = {}
+          for (const t of (json.trades || [])) {
+            if (offerIds.includes(t.id)) oMap[t.id] = t
+          }
+          setTradeOffersMap(oMap)
         }
-      })
-      setTradeOffersMap(oMap)
+      }
     }
 
     await supabase.from('messages').update({ lu: true }).eq('to_user_id', uid).eq('from_user_id', otherId)

@@ -8,6 +8,13 @@ const IMG_PREFIX = '[[img]]'
 const isImageMsg = (c: string) => typeof c === 'string' && c.startsWith(IMG_PREFIX)
 const imgUrlOf = (c: string) => c.slice(IMG_PREFIX.length)
 
+const TRADE_PREFIX = '[[trade_offer:'
+const isTradeMsg = (c: string) => typeof c === 'string' && c.startsWith(TRADE_PREFIX)
+const tradeIdOf = (c: string) => c.slice(TRADE_PREFIX.length, -2)
+
+const STATUS_LABEL: Record<string, string> = { pending: 'En attente', accepted: 'Accepté ✓', refused: 'Refusé', cancelled: 'Annulé' }
+const STATUS_COLOR: Record<string, string> = { pending: '#7a5500', accepted: '#1b5e20', refused: '#7f0000', cancelled: '#555' }
+
 export default function ChatBubble() {
   const { dark } = useTheme()
   const [userId, setUserId] = useState<string | null>(null)
@@ -17,6 +24,7 @@ export default function ChatBubble() {
   const [profiles, setProfiles] = useState<Record<string, any>>({})
   const [activeConv, setActiveConv] = useState<string | null>(null)
   const [messages, setMessages] = useState<any[]>([])
+  const [tradeOffersMap, setTradeOffersMap] = useState<Record<string, any>>({})
   const [newMsg, setNewMsg] = useState('')
   const [uploadingImg, setUploadingImg] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
@@ -59,7 +67,10 @@ export default function ChatBubble() {
     const convMap: Record<string, any> = {}
     for (const msg of data) {
       const otherId = msg.from_user_id === uid ? msg.to_user_id : msg.from_user_id
-      if (!convMap[otherId]) convMap[otherId] = { lastMsg: msg.contenu, date: msg.created_at, unread: 0 }
+      if (!convMap[otherId]) convMap[otherId] = {
+        lastMsg: isTradeMsg(msg.contenu) ? '🔄 Offre d\'échange' : msg.contenu,
+        date: msg.created_at, unread: 0,
+      }
       if (!msg.lu && msg.to_user_id === uid) convMap[otherId].unread++
     }
     const ids = Object.keys(convMap)
@@ -80,6 +91,26 @@ export default function ChatBubble() {
       .or(`and(from_user_id.eq.${userId},to_user_id.eq.${otherId}),and(from_user_id.eq.${otherId},to_user_id.eq.${userId})`)
       .order('created_at', { ascending: true })
     setMessages(data || [])
+
+    const offerIds = [...new Set((data || [])
+      .filter((m: any) => isTradeMsg(m.contenu))
+      .map((m: any) => tradeIdOf(m.contenu))
+    )]
+    if (offerIds.length > 0) {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session?.access_token) {
+        const res = await fetch('/api/trades', { headers: { Authorization: `Bearer ${session.access_token}` } })
+        if (res.ok) {
+          const json = await res.json()
+          const oMap: Record<string, any> = {}
+          for (const t of (json.trades || [])) {
+            if (offerIds.includes(t.id)) oMap[t.id] = t
+          }
+          setTradeOffersMap(oMap)
+        }
+      }
+    }
+
     await supabase.from('messages').update({ lu: true }).eq('to_user_id', userId).eq('from_user_id', otherId)
     loadUnread(userId)
   }
@@ -231,6 +262,91 @@ export default function ChatBubble() {
               <div style={{ flex: 1, overflowY: 'auto', padding: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {messages.map(msg => {
                   const isMe = msg.from_user_id === userId
+
+                  const ts = (() => {
+                    const d = new Date(msg.created_at)
+                    const today = new Date()
+                    const time = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+                    if (d.toDateString() === today.toDateString()) return time
+                    return `${d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' })} ${time}`
+                  })()
+
+                  // ── Bulle trade offer ──
+                  if (isTradeMsg(msg.contenu)) {
+                    const offer = tradeOffersMap[tradeIdOf(msg.contenu)]
+                    const isSender = offer?.sender_id === userId
+                    const isPending = offer?.status === 'pending'
+                    const actOnOffer = async (action: 'accept' | 'refuse' | 'cancel') => {
+                      const { data: { session } } = await supabase.auth.getSession()
+                      if (!session || !offer) return
+                      await fetch(`/api/trades/${offer.id}`, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+                        body: JSON.stringify({ action }),
+                      })
+                      if (userId) loadMessages(activeConv!)
+                    }
+                    return (
+                      <div key={msg.id} style={{ width: '100%' }}>
+                        <div style={{
+                          background: dark ? '#1e2a3a' : '#f0f4ff',
+                          border: `1.5px solid ${dark ? '#2a3a5a' : '#c5d5ff'}`,
+                          borderRadius: 10, padding: 10,
+                        }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+                            <span style={{ fontSize: 11, fontWeight: 800, color: '#003DA6' }}>🔄 Offre d'échange</span>
+                            {offer && <span style={{ fontSize: 10, fontWeight: 700, color: STATUS_COLOR[offer.status] || '#555' }}>{STATUS_LABEL[offer.status] || offer.status}</span>}
+                          </div>
+                          {offer ? (
+                            <>
+                              <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginBottom: 6 }}>
+                                <div style={{ flex: 1 }}>
+                                  <div style={{ fontSize: 9, color: textMuted, fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>{isSender ? 'Tu offres' : 'Il/elle offre'}</div>
+                                  <div style={{ display: 'flex', gap: 3 }}>
+                                    {offer.offered_cards.slice(0, 3).map((c: any, i: number) => (
+                                      <div key={i} style={{ width: 28, height: 40, background: '#0d1a30', borderRadius: 3, overflow: 'hidden', flexShrink: 0 }}>
+                                        {(c.card_image || c.image_recto) && <img src={c.card_image || c.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                      </div>
+                                    ))}
+                                    {offer.offered_cards.length > 3 && <span style={{ fontSize: 9, color: textMuted, alignSelf: 'center' }}>+{offer.offered_cards.length - 3}</span>}
+                                  </div>
+                                </div>
+                                <span style={{ color: textMuted, fontSize: 14, flexShrink: 0 }}>⇄</span>
+                                <div style={{ flex: 1 }}>
+                                  <div style={{ fontSize: 9, color: textMuted, fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>{isSender ? 'Tu demandes' : 'Il/elle demande'}</div>
+                                  <div style={{ display: 'flex', gap: 3 }}>
+                                    {offer.requested_cards.slice(0, 3).map((c: any, i: number) => (
+                                      <div key={i} style={{ width: 28, height: 40, background: '#0d1a30', borderRadius: 3, overflow: 'hidden', flexShrink: 0 }}>
+                                        {(c.card_image || c.image_recto) && <img src={c.card_image || c.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                      </div>
+                                    ))}
+                                    {offer.requested_cards.length > 3 && <span style={{ fontSize: 9, color: textMuted, alignSelf: 'center' }}>+{offer.requested_cards.length - 3}</span>}
+                                  </div>
+                                </div>
+                              </div>
+                              {isPending && (
+                                <div style={{ display: 'flex', gap: 5, marginTop: 4 }}>
+                                  {!isSender && (
+                                    <>
+                                      <button onClick={() => actOnOffer('accept')} style={{ flex: 1, background: '#003DA6', color: '#fff', border: 'none', borderRadius: 6, padding: '5px 0', fontWeight: 800, fontSize: 10, cursor: 'pointer' }}>✓ Accepter</button>
+                                      <button onClick={() => actOnOffer('refuse')} style={{ flex: 1, background: 'none', border: `1px solid ${border}`, borderRadius: 6, padding: '5px 0', fontWeight: 700, fontSize: 10, cursor: 'pointer', color: textMain }}>✕ Refuser</button>
+                                    </>
+                                  )}
+                                  {isSender && (
+                                    <button onClick={() => actOnOffer('cancel')} style={{ background: 'none', border: `1px solid ${border}`, borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 10, cursor: 'pointer', color: '#888' }}>Annuler</button>
+                                  )}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <div style={{ fontSize: 11, color: textMuted }}>Chargement…</div>
+                          )}
+                          <div style={{ fontSize: 9, color: textMuted, marginTop: 5, textAlign: 'right' }}>{ts}</div>
+                        </div>
+                      </div>
+                    )
+                  }
+
                   return (
                     <div key={msg.id} style={{ display: 'flex', flexDirection: 'column', alignItems: isMe ? 'flex-end' : 'flex-start' }}>
                       {isImageMsg(msg.contenu) ? (
@@ -244,17 +360,7 @@ export default function ChatBubble() {
                           color: isMe ? 'white' : textMain, fontSize: 12, lineHeight: 1.4,
                         }}>{msg.contenu}</div>
                       )}
-                      <span style={{ fontSize: 9, color: textMuted, marginTop: 2 }}>
-                        {(() => {
-                          const d = new Date(msg.created_at)
-                          const today = new Date()
-                          const isToday = d.toDateString() === today.toDateString()
-                          const time = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
-                          if (isToday) return time
-                          const date = d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' })
-                          return `${date} ${time}`
-                        })()}
-                      </span>
+                      <span style={{ fontSize: 9, color: textMuted, marginTop: 2 }}>{ts}</span>
                     </div>
                   )
                 })}

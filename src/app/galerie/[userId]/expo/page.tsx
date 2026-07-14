@@ -61,14 +61,14 @@ function CardTile({ card, onClick }: { card: Card; onClick: () => void }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         position: 'relative', aspectRatio: '2.5/3.5',
-        background: '#1a1a1a', borderRadius: 8, overflow: 'visible',
+        background: '#1a1a1a', borderRadius: 0, overflow: 'visible',
         cursor: 'pointer',
         transform: hovered ? 'translateY(-10px) scale(1.06)' : 'translateY(0) scale(1)',
         transition: 'transform 0.2s cubic-bezier(.34,1.56,.64,1)',
         zIndex: hovered ? 10 : 1,
       }}
     >
-      <div style={{ borderRadius: 8, overflow: 'hidden', width: '100%', height: '100%', position: 'relative' }}>
+      <div style={{ borderRadius: 0, overflow: 'hidden', width: '100%', height: '100%', position: 'relative' }}>
         <img
           src={card.f} alt={card.n} loading="lazy"
           style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
@@ -248,7 +248,7 @@ export default function ExpoPage() {
                 alt={current.n}
                 style={{
                   maxHeight: '100%', maxWidth: '60vw',
-                  objectFit: 'contain', borderRadius: 14,
+                  objectFit: 'contain', borderRadius: 0,
                   boxShadow: '0 24px 80px rgba(0,0,0,0.9)',
                   animation: 'fadeIn 0.35s ease',
                 }}
