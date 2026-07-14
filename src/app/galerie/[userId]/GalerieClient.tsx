@@ -345,7 +345,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         }).filter(Boolean) as Card[]
       }
 
-      const { data: manuelles } = await supabase.from('cartes_manuelles').select('*').eq('user_id', userId)
+      let manuelles: any[] = []
+      for (let from = 0; ; from += 1000) {
+        const { data: batch } = await supabase.from('cartes_manuelles').select('*').eq('user_id', userId).range(from, from + 999)
+        if (!batch || batch.length === 0) break
+        manuelles.push(...batch)
+        if (batch.length < 1000) break
+      }
       const cartesM: Card[] = (manuelles || []).map((m: any) => ({
         id_manuelle: m.id,
         f: m.image_recto || 'https://placehold.co/300x420?text=No+Image',

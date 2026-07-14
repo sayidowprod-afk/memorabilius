@@ -12,7 +12,7 @@ export default function Teams() {
   const [teamsStats, setTeamsStats] = useState<any[]>([])
   const [search, setSearch] = useState('')
   const [userId, setUserId] = useState<string | null>(null)
-  const [userTeamId, setUserTeamId] = useState<number | null>(null)
+  const [userTeamIds, setUserTeamIds] = useState<Set<number>>(new Set())
   const [hasCandidature, setHasCandidature] = useState<Set<number>>(new Set())
   const [loading, setLoading] = useState(false)
   const [newTeamName, setNewTeamName] = useState('')
@@ -23,8 +23,8 @@ export default function Teams() {
     supabase.auth.getUser().then(async ({ data }) => {
       if (!data.user) return
       setUserId(data.user.id)
-      const { data: m } = await supabase.from('team_members').select('team_id').eq('user_id', data.user.id).single()
-      if (m) setUserTeamId(m.team_id)
+      const { data: memberships } = await supabase.from('team_members').select('team_id').eq('user_id', data.user.id)
+      if (memberships?.length) setUserTeamIds(new Set(memberships.map((m: any) => m.team_id)))
       // Candidatures en attente
       const { data: cands } = await supabase.from('team_candidatures').select('team_id').eq('user_id', data.user.id).eq('statut', 'en_attente')
       if (cands) setHasCandidature(new Set(cands.map((c: any) => c.team_id)))
@@ -60,7 +60,7 @@ export default function Teams() {
     const { data } = await supabase.from('teams').insert({ name: newTeamName.trim(), created_by: userId }).select().single()
     if (data) {
       await supabase.from('team_members').insert({ team_id: data.id, user_id: userId })
-      setUserTeamId(data.id)
+      setUserTeamIds(prev => new Set([...prev, data.id]))
       router.push(`/teams/${data.id}`)
     }
     setNewTeamName('')
@@ -81,15 +81,17 @@ export default function Teams() {
     <div style={{ maxWidth: 1000, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
         <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>{t('teams_title')}</h1>
-        {userId && !userTeamId && (
-          <button onClick={() => setShowCreate(!showCreate)} className="btn-main btn-primary" style={{ padding: '10px 20px', fontSize: 13 }}>
-            {t('teams_create')}
-          </button>
-        )}
-        {userId && userTeamId && (
-          <Link href={`/teams/${userTeamId}`} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 700, fontSize: 13 }}>
-            {t('teams_see_my_team')}
-          </Link>
+        {userId && (
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+            {[...userTeamIds].map(tid => (
+              <Link key={tid} href={`/teams/${tid}`} style={{ background: '#003DA6', color: 'white', padding: '8px 16px', borderRadius: 50, fontWeight: 700, fontSize: 13 }}>
+                {teams.find(t => t.id === tid)?.name || t('teams_see_my_team')} →
+              </Link>
+            ))}
+            <button onClick={() => setShowCreate(!showCreate)} className="btn-main btn-primary" style={{ padding: '10px 20px', fontSize: 13 }}>
+              {t('teams_create')}
+            </button>
+          </div>
         )}
       </div>
 
@@ -120,7 +122,7 @@ export default function Teams() {
             {filtered.map((team, i) => {
               const stats = teamsStats.find(s => s.teamId === team.id)
               const memberCount = team.team_members?.[0]?.count || 0
-              const isMyTeam = userTeamId === team.id
+              const isMyTeam = userTeamIds.has(team.id)
               const pending = hasCandidature.has(team.id)
               return (
                 <tr key={team.id}>
@@ -155,7 +157,7 @@ export default function Teams() {
                       <Link href={`/teams/${team.id}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13 }}>{t('teams_my_team')}</Link>
                     ) : pending ? (
                       <span style={{ color: '#e67e22', fontWeight: 700, fontSize: 13 }}>⏳ En attente</span>
-                    ) : userId && !userTeamId ? (
+                    ) : userId ? (
                       <button onClick={() => joinTeam(team.id)} disabled={loading} style={{ background: '#e8f5e9', color: '#2e7d32', padding: '6px 14px', borderRadius: 6, border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 900 }}>
                         Rejoindre
                       </button>

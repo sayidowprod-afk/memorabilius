@@ -7,18 +7,6 @@ export default function Tuto() {
   return (
     <div style={{ maxWidth: 800, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
 
-      {/* Tutoriel Vidéo */}
-      <h2 style={{ fontWeight: 900, fontSize: 28, marginBottom: 16 }}>{t('tuto_video')}</h2>
-      <div style={{ borderRadius: 16, overflow: 'hidden', marginBottom: 48, boxShadow: '0 4px 20px rgba(0,0,0,0.1)', aspectRatio: '16/9', position: 'relative' }}>
-        <iframe
-          src="https://www.youtube.com/embed/bMnV8jGQbGU"
-          title="Tutoriel Memorabilius"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-        />
-      </div>
-
       <h1 style={{ fontWeight: 900, fontSize: 32, marginBottom: 8 }}>{t('tuto_title')}</h1>
       <p style={{ color: '#666', marginBottom: 24, fontSize: 16 }}>{t('tuto_sub')}</p>
 

@@ -1043,10 +1043,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         )}
 
         {isOwner && (
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+            <span style={{ fontSize: 11, color: '#aaa', fontStyle: 'italic' }}>
+              💡 Glisse un classeur sur une section pour l'y ranger
+            </span>
             <button onClick={createFolder}
               style={{ background: 'none', border: '1.5px dashed #ccc', borderRadius: 10, padding: '6px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 12, color: '#888' }}>
-              + Nouvelle bibliothèque
+              + Nouvelle section
             </button>
           </div>
         )}

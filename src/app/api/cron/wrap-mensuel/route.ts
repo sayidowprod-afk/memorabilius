@@ -200,22 +200,22 @@ export async function GET(req: NextRequest) {
     // Cards added this month
     const { data: newCardsData } = await supabase
       .from('cartes_manuelles')
-      .select('player_name, year, brand, is_rc, is_auto, is_patch, is_numbered')
+      .select('nom, annee, marque, rc, auto, patch, num')
       .eq('user_id', authUser.id)
       .gte('created_at', monthStart.toISOString())
       .lt('created_at', monthEnd.toISOString())
 
     const newCards = newCardsData?.length || 0
-    const rcCount = newCardsData?.filter(c => c.is_rc).length || 0
-    const autoCount = newCardsData?.filter(c => c.is_auto).length || 0
-    const patchCount = newCardsData?.filter(c => c.is_patch).length || 0
-    const numCount = newCardsData?.filter(c => c.is_numbered).length || 0
+    const rcCount = newCardsData?.filter(c => c.rc).length || 0
+    const autoCount = newCardsData?.filter(c => c.auto).length || 0
+    const patchCount = newCardsData?.filter(c => c.patch).length || 0
+    const numCount = newCardsData?.filter(c => c.num).length || 0
 
-    // Highlights: RC first, then auto, then patch, then num (max 5)
+    // Highlights: RC first, then auto, then patch (max 5)
     const highlights = [
-      ...(newCardsData?.filter(c => c.is_rc).slice(0, 2).map(c => ({ player: c.player_name, year: c.year, brand: c.brand, type: 'RC' })) || []),
-      ...(newCardsData?.filter(c => c.is_auto && !c.is_rc).slice(0, 2).map(c => ({ player: c.player_name, year: c.year, brand: c.brand, type: 'Auto' })) || []),
-      ...(newCardsData?.filter(c => c.is_patch && !c.is_rc && !c.is_auto).slice(0, 1).map(c => ({ player: c.player_name, year: c.year, brand: c.brand, type: 'Patch' })) || []),
+      ...(newCardsData?.filter(c => c.rc).slice(0, 2).map(c => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'RC' })) || []),
+      ...(newCardsData?.filter(c => c.auto && !c.rc).slice(0, 2).map(c => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'Auto' })) || []),
+      ...(newCardsData?.filter(c => c.patch && !c.rc && !c.auto).slice(0, 1).map(c => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'Patch' })) || []),
     ].slice(0, 5)
 
     const html = buildEmail({

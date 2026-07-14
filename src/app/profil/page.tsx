@@ -79,7 +79,7 @@ export default function Profil() {
       if (perm === 'granted') {
         const ok = await subscribePush()
         setPushSubscribed(ok)
-        if (!ok) setPushError("Échec de l'activation, réessayez.")
+        if (!ok) setPushError("Échec de l'activation. Sur iPhone, assurez-vous d'avoir ajouté Memorabilius à l'écran d'accueil (Partager → Sur l'écran d'accueil), puis réessayez.")
       }
     } finally {
       setPushLoading(false)
@@ -278,9 +278,6 @@ export default function Profil() {
         </form>
       </div>
 
-      {/* Bannière Showcase (embed) */}
-      {userId && <ShowcaseWidget userId={userId} />}
-
       {/* Notifications push */}
       <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <h3 style={{ fontWeight: 800, marginBottom: 8 }}>🔔 Notifications</h3>
@@ -343,6 +340,9 @@ export default function Profil() {
           </form>
         )}
       </div>
+
+      {/* Bannière Showcase (embed) */}
+      {userId && <ShowcaseWidget userId={userId} />}
 
       {/* Zone danger */}
       <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #ffebee' }}>
