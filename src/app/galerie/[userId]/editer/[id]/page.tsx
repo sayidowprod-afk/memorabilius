@@ -51,7 +51,8 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     image_recto: '', image_verso: '', collection_tag: '', disponible_vente: false,
     booklet: false, is_horizontal: false, format: 'standard',
     image_interieur_gauche: '', image_interieur_droite: '',
-    verso_is_horizontal: null as boolean | null, // null = même orientation que le recto
+    verso_is_horizontal: null as boolean | null,
+    beckett_designation: '', // null = même orientation que le recto
   })
 
   const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
@@ -85,6 +86,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         verso_is_horizontal: data.verso_is_horizontal ?? null,
         image_interieur_gauche: data.image_interieur_gauche || '',
         image_interieur_droite: data.image_interieur_droite || '',
+        beckett_designation: data.beckett_designation || '',
       })
       if (data.image_recto) setPreviewRecto(data.image_recto)
       if (data.image_verso) setPreviewVerso(data.image_verso)
@@ -318,6 +320,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       verso_is_horizontal: form.verso_is_horizontal,
       image_interieur_gauche: form.image_interieur_gauche || null,
       image_interieur_droite: form.image_interieur_droite || null,
+      beckett_designation: form.beckett_designation || null,
     }).eq('id', id).eq('user_id', user.id)
 
     if (error) { alert('Erreur : ' + error.message); setSaving(false); return }
@@ -458,6 +461,23 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Variation' : 'Variant'}</label>
               <input value={form.variation} onChange={e => setForm({ ...form, variation: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Silver Prizm' : 'Ex: Silver Prizm'} />
             </div>
+          </div>
+
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
+              {lang === 'fr' ? 'Désignation Beckett (optionnel)' : 'Beckett designation (optional)'}
+            </label>
+            <input
+              value={form.beckett_designation}
+              onChange={e => setForm({ ...form, beckett_designation: e.target.value })}
+              placeholder={lang === 'fr' ? 'Ex : 2023-24 Panini Prizm Silver #48 LeBron James — laissez vide pour génération automatique' : 'Ex: 2023-24 Panini Prizm Silver #48 LeBron James — leave empty for auto-generation'}
+            />
+            {!form.beckett_designation && (form.annee || form.marque || form.collection) && (
+              <p style={{ fontSize: 11, color: '#aaa', marginTop: 4, marginBottom: 0 }}>
+                {lang === 'fr' ? 'Générée automatiquement : ' : 'Auto-generated: '}
+                <em>{[form.annee, form.marque, form.collection, form.variation, form.card_number ? `#${form.card_number}` : '', form.nom].filter(Boolean).join(' ')}</em>
+              </p>
+            )}
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>

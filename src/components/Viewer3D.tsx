@@ -16,7 +16,7 @@ interface Card {
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; g: string
-  isManuelle?: boolean; id_manuelle?: string; collection_tag?: string; collections?: string[]
+  isManuelle?: boolean; id_manuelle?: string; collection_tag?: string; collections?: string[]; beckett_designation?: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
 }
 
@@ -802,9 +802,10 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             <h2 style={{ fontSize: '1.4rem', fontWeight: 900, margin: '3px 0', cursor: 'pointer' }}>{popup.n}</h2>
           </Link>
           <div style={{ fontSize: '0.9rem', color: accent, fontWeight: 700, marginBottom: 4, fontStyle: 'italic' }}>{popup.v}</div>
-          {popup.isManuelle && (popup.y || popup.br || popup.s) && (
+          {popup.isManuelle && (popup.beckett_designation || popup.y || popup.br || popup.s) && (
             <div style={{ fontSize: 11, color: metaColor, marginBottom: 8, lineHeight: 1.4 }}>
-              {[popup.y, popup.br, popup.s, popup.v, popup.card_number ? `#${popup.card_number}` : '', popup.n].filter(Boolean).join(' ')}
+              {popup.beckett_designation ||
+                [popup.y, popup.br, popup.s, popup.v, popup.card_number ? `#${popup.card_number}` : '', popup.n].filter(Boolean).join(' ')}
             </div>
           )}
           {getTags(popup)}

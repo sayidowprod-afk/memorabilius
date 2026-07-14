@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom'
 
 interface Card {
   f: string; b?: string; n: string; v: string; y: string; br: string; s: string; t: string
-  rc: boolean; auto: boolean; patch: boolean; num: string; g: string; card_number?: string
+  rc: boolean; auto: boolean; patch: boolean; num: string; g: string; card_number?: string; beckett_designation?: string
 }
 interface Props {
   cards: Card[]
@@ -352,6 +352,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
 
   // ── Export CSV ─────────────────────────────────────────────────────────────
   const beckettDesig = (c: Card) =>
+    c.beckett_designation ||
     [c.y, c.br, c.s, c.v, c.card_number ? `#${c.card_number}` : '', c.n].filter(Boolean).join(' ')
 
   const exportCSV = () => {
