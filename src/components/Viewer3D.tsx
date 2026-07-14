@@ -801,7 +801,12 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           >
             <h2 style={{ fontSize: '1.4rem', fontWeight: 900, margin: '3px 0', cursor: 'pointer' }}>{popup.n}</h2>
           </Link>
-          <div style={{ fontSize: '0.9rem', color: accent, fontWeight: 700, marginBottom: 8, fontStyle: 'italic' }}>{popup.v}</div>
+          <div style={{ fontSize: '0.9rem', color: accent, fontWeight: 700, marginBottom: 4, fontStyle: 'italic' }}>{popup.v}</div>
+          {popup.isManuelle && (popup.y || popup.br || popup.s) && (
+            <div style={{ fontSize: 11, color: metaColor, marginBottom: 8, lineHeight: 1.4 }}>
+              {[popup.y, popup.br, popup.s, popup.v, popup.card_number ? `#${popup.card_number}` : '', popup.n].filter(Boolean).join(' ')}
+            </div>
+          )}
           {getTags(popup)}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, borderTop: `1px solid ${borderColor}`, marginTop: 10, paddingTop: 10 }}>
             {[['Année', popup.y], ['Numérotation', popup.num || 'N/A'], ['Grade', popup.g], ['Collection', `${popup.br} ${popup.s}`]].map(([l, v]) => (

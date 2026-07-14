@@ -190,17 +190,6 @@ export default function Profil() {
     <div style={{ maxWidth: 600, margin: '40px auto' }}>
       <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 30 }}>{t('profile_title')}</h1>
 
-      {csvLinked ? (
-        <div style={{ background: '#eef2f7', borderLeft: '4px solid #2ecc71', padding: 15, borderRadius: 8, marginBottom: 24 }}>
-          <strong style={{ color: '#2ecc71' }}>{t('profile_status_label')}</strong> {t('profile_status_synced')}
-          {userId && <Link href={`/galerie/${userId}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13, marginLeft: 12 }}>{t('profile_view_gallery')}</Link>}
-        </div>
-      ) : (
-        <div style={{ background: '#fff5f5', borderLeft: '4px solid #e74c3c', padding: 15, borderRadius: 8, marginBottom: 24 }}>
-          <strong style={{ color: '#e74c3c' }}>{t('profile_status_label')}</strong> {t('profile_status_none')}
-          <p style={{ margin: '5px 0 0', fontSize: 12, color: '#666' }}>{t('profile_status_hint')}</p>
-        </div>
-      )}
 
       {/* Avatar */}
       <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
@@ -278,6 +267,9 @@ export default function Profil() {
         </form>
       </div>
 
+      {/* Bannière Showcase (embed) */}
+      {userId && <ShowcaseWidget userId={userId} />}
+
       {/* Notifications push */}
       <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <h3 style={{ fontWeight: 800, marginBottom: 8 }}>🔔 Notifications</h3>
@@ -341,8 +333,18 @@ export default function Profil() {
         )}
       </div>
 
-      {/* Bannière Showcase (embed) */}
-      {userId && <ShowcaseWidget userId={userId} />}
+      {/* Statut synchronisation collection */}
+      {csvLinked ? (
+        <div style={{ background: '#eef2f7', borderLeft: '4px solid #2ecc71', padding: 15, borderRadius: 8, marginBottom: 20 }}>
+          <strong style={{ color: '#2ecc71' }}>{t('profile_status_label')}</strong> {t('profile_status_synced')}
+          {userId && <Link href={`/galerie/${userId}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13, marginLeft: 12 }}>{t('profile_view_gallery')}</Link>}
+        </div>
+      ) : (
+        <div style={{ background: '#fff5f5', borderLeft: '4px solid #e74c3c', padding: 15, borderRadius: 8, marginBottom: 20 }}>
+          <strong style={{ color: '#e74c3c' }}>{t('profile_status_label')}</strong> {t('profile_status_none')}
+          <p style={{ margin: '5px 0 0', fontSize: 12, color: '#666' }}>{t('profile_status_hint')}</p>
+        </div>
+      )}
 
       {/* Zone danger */}
       <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #ffebee' }}>

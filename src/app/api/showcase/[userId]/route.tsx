@@ -1,6 +1,8 @@
 import { ImageResponse } from 'next/og'
 import { createClient } from '@supabase/supabase-js'
 import { NextRequest } from 'next/server'
+import fs from 'fs'
+import path from 'path'
 
 export const runtime = 'nodejs'
 
@@ -12,12 +14,20 @@ const supabase = createClient(
 const W = 900
 const H = 300
 
-const PLACEHOLDER = 'https://placehold.co/120x168/0d1a3e/1e3a7a?text=+'
+// SVG placeholder inline — no external HTTP dependency
+const PLACEHOLDER = 'data:image/svg+xml;base64,' + Buffer.from(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="168"><rect width="120" height="168" fill="#0d1a3e"/><text x="60" y="90" text-anchor="middle" dominant-baseline="middle" fill="#1e3a7a" font-size="40" font-family="sans-serif">+</text></svg>'
+).toString('base64')
+
+// Logo read from disk once — avoids self-referential HTTP call on Vercel
+let LOGO_B64: string | null = null
+try {
+  const logoPath = path.join(process.cwd(), 'public', 'memorabilius-logo-white.png')
+  LOGO_B64 = 'data:image/png;base64,' + fs.readFileSync(logoPath).toString('base64')
+} catch {}
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params
-  const origin = new URL(req.url).origin
-  const logoWhiteUrl = `${origin}/memorabilius-logo-white.png`
 
   const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
   let resolvedId = userId
@@ -81,11 +91,13 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ user
           position: 'relative', zIndex: 5,
         }}>
           {/* Logo image */}
-          <img
-            src={logoWhiteUrl}
-            width={140} height={28}
-            style={{ display: 'block', objectFit: 'contain', marginBottom: 4, opacity: 0.85 }}
-          />
+          {LOGO_B64 && (
+            <img
+              src={LOGO_B64}
+              width={140} height={28}
+              style={{ display: 'block', objectFit: 'contain', marginBottom: 4, opacity: 0.85 }}
+            />
+          )}
 
           {/* Avatar */}
           <img
