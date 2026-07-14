@@ -118,19 +118,24 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
         : { id, isManuelle: false, nom: card.nom, annee: card.annee, marque: card.marque, image: card.image_recto }
     })
 
-    const res = await fetch('/api/trades', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
-      body: JSON.stringify({
-        receiverId: targetUserId,
-        offeredCards,
-        requestedCards: [{ id: targetCard.id, isManuelle: true }],
-        message: message.trim() || undefined,
-      }),
-    })
-    const json = await res.json()
-    if (!res.ok) { setError(json.error || 'Erreur'); setSending(false); return }
-    onSuccess()
+    try {
+      const res = await fetch('/api/trades', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+        body: JSON.stringify({
+          receiverId: targetUserId,
+          offeredCards,
+          requestedCards: [{ id: targetCard.id, isManuelle: true }],
+          message: message.trim() || undefined,
+        }),
+      })
+      const json = await res.json()
+      if (!res.ok) { setError(json.error || 'Erreur'); setSending(false); return }
+      onSuccess()
+    } catch {
+      setError('Erreur réseau, réessaie')
+      setSending(false)
+    }
   }
 
   const FilterBtn = ({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) => (
