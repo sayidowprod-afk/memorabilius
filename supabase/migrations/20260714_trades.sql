@@ -12,11 +12,18 @@ CREATE TABLE IF NOT EXISTS trade_offers (
 );
 
 -- Les cartes impliquées dans un échange direct (owner_id détermine quel côté c'est)
+-- card_id = UUID pour les cartes manuelles, URL image pour les cartes CSV
 CREATE TABLE IF NOT EXISTS trade_offer_cards (
-  id       UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  trade_id UUID NOT NULL REFERENCES trade_offers(id) ON DELETE CASCADE,
-  card_id  UUID NOT NULL,   -- id dans cartes_manuelles
-  owner_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE
+  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  trade_id    UUID    NOT NULL REFERENCES trade_offers(id) ON DELETE CASCADE,
+  card_id     TEXT    NOT NULL,
+  is_manuelle BOOLEAN NOT NULL DEFAULT true,
+  -- Snapshot affiché dans l'UI (obligatoire pour les cartes CSV, optionnel pour les manuelles)
+  card_nom    TEXT,
+  card_annee  TEXT,
+  card_marque TEXT,
+  card_image  TEXT,
+  owner_id    UUID    NOT NULL REFERENCES profiles(id) ON DELETE CASCADE
 );
 
 CREATE INDEX IF NOT EXISTS idx_trade_offers_sender   ON trade_offers(sender_id);

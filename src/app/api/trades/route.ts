@@ -11,6 +11,15 @@ function auth(req: NextRequest) {
   return req.headers.get('authorization')?.replace('Bearer ', '') || ''
 }
 
+interface CardInput {
+  id: string
+  isManuelle: boolean
+  nom?: string
+  annee?: string
+  marque?: string
+  image?: string
+}
+
 // GET /api/trades — mes échanges (envoyés + reçus)
 export async function GET(req: NextRequest) {
   const token = auth(req)
@@ -28,28 +37,40 @@ export async function GET(req: NextRequest) {
 
   const tradeIds = trades.map(t => t.id)
 
-  // Récupérer toutes les trade_cards d'un coup
   const { data: tradeCards } = await supabaseAdmin
     .from('trade_offer_cards')
-    .select('trade_id, card_id, owner_id')
+    .select('trade_id, card_id, is_manuelle, card_nom, card_annee, card_marque, card_image, owner_id')
     .in('trade_id', tradeIds)
 
-  // Récupérer les infos des cartes (nom, image, marque…)
-  const cardIds = [...new Set((tradeCards || []).map(tc => tc.card_id))]
-  const { data: cards } = cardIds.length
+  // Récupérer les infos des cartes manuelles depuis la DB
+  const manualIds = (tradeCards || []).filter(tc => tc.is_manuelle).map(tc => tc.card_id)
+  const { data: manualCards } = manualIds.length
     ? await supabaseAdmin.from('cartes_manuelles')
-        .select('id, nom, annee, marque, image_recto, rc, auto, patch, num')
-        .in('id', cardIds)
+        .select('id, nom, annee, marque, image_recto, rc, auto, patch')
+        .in('id', manualIds)
     : { data: [] }
 
-  // Récupérer les display_name des participants
+  const manualMap = Object.fromEntries((manualCards || []).map(c => [c.id, c]))
+
+  const enrichCard = (tc: { card_id: string; is_manuelle: boolean; card_nom?: string; card_annee?: string; card_marque?: string; card_image?: string }) => {
+    if (tc.is_manuelle && manualMap[tc.card_id]) {
+      return { id: tc.card_id, ...manualMap[tc.card_id] }
+    }
+    // Carte CSV — on utilise le snapshot stocké
+    return {
+      id: tc.card_id,
+      nom: tc.card_nom || '',
+      annee: tc.card_annee || '',
+      marque: tc.card_marque || '',
+      image_recto: tc.card_image || null,
+      rc: false, auto: false, patch: false,
+    }
+  }
+
   const userIds = [...new Set(trades.flatMap(t => [t.sender_id, t.receiver_id]))]
   const { data: profiles } = await supabaseAdmin
-    .from('profiles')
-    .select('id, display_name')
-    .in('id', userIds)
+    .from('profiles').select('id, display_name').in('id', userIds)
 
-  const cardMap = Object.fromEntries((cards || []).map(c => [c.id, c]))
   const profileMap = Object.fromEntries((profiles || []).map(p => [p.id, p.display_name]))
 
   const enriched = trades.map(t => ({
@@ -58,10 +79,10 @@ export async function GET(req: NextRequest) {
     receiver_name: profileMap[t.receiver_id] || 'Collector',
     offered_cards: (tradeCards || [])
       .filter(tc => tc.trade_id === t.id && tc.owner_id === t.sender_id)
-      .map(tc => cardMap[tc.card_id]).filter(Boolean),
+      .map(enrichCard),
     requested_cards: (tradeCards || [])
       .filter(tc => tc.trade_id === t.id && tc.owner_id === t.receiver_id)
-      .map(tc => cardMap[tc.card_id]).filter(Boolean),
+      .map(enrichCard),
   }))
 
   return NextResponse.json({ trades: enriched })
@@ -74,33 +95,36 @@ export async function POST(req: NextRequest) {
   const { data: { user } } = await supabaseAdmin.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { receiverId, offeredCardIds, requestedCardIds, message } = await req.json()
+  const { receiverId, offeredCards, requestedCards, message }: {
+    receiverId: string
+    offeredCards: CardInput[]
+    requestedCards: CardInput[]
+    message?: string
+  } = await req.json()
 
-  if (!receiverId || !offeredCardIds?.length || !requestedCardIds?.length)
+  if (!receiverId || !offeredCards?.length || !requestedCards?.length)
     return NextResponse.json({ error: 'Paramètres manquants' }, { status: 400 })
 
   if (receiverId === user.id)
     return NextResponse.json({ error: 'Impossible de s\'échanger avec soi-même' }, { status: 400 })
 
-  // Vérifier que les cartes offertes appartiennent bien à l'expéditeur
-  const { data: senderCards } = await supabaseAdmin
-    .from('cartes_manuelles')
-    .select('id')
-    .in('id', offeredCardIds)
-    .eq('user_id', user.id)
+  // Vérifier ownership des cartes manuelles offertes (cartes CSV : on fait confiance au client)
+  const manualOfferedIds = offeredCards.filter(c => c.isManuelle).map(c => c.id)
+  if (manualOfferedIds.length) {
+    const { data: senderCards } = await supabaseAdmin
+      .from('cartes_manuelles').select('id').in('id', manualOfferedIds).eq('user_id', user.id)
+    if ((senderCards?.length || 0) !== manualOfferedIds.length)
+      return NextResponse.json({ error: 'Cartes introuvables dans ta collection' }, { status: 403 })
+  }
 
-  if ((senderCards?.length || 0) !== offeredCardIds.length)
-    return NextResponse.json({ error: 'Cartes introuvables dans ta collection' }, { status: 403 })
-
-  // Vérifier que les cartes demandées appartiennent bien au destinataire
-  const { data: receiverCards } = await supabaseAdmin
-    .from('cartes_manuelles')
-    .select('id')
-    .in('id', requestedCardIds)
-    .eq('user_id', receiverId)
-
-  if ((receiverCards?.length || 0) !== requestedCardIds.length)
-    return NextResponse.json({ error: 'Cartes introuvables dans la collection du destinataire' }, { status: 403 })
+  // Vérifier ownership des cartes manuelles demandées
+  const manualRequestedIds = requestedCards.filter(c => c.isManuelle).map(c => c.id)
+  if (manualRequestedIds.length) {
+    const { data: receiverCards } = await supabaseAdmin
+      .from('cartes_manuelles').select('id').in('id', manualRequestedIds).eq('user_id', receiverId)
+    if ((receiverCards?.length || 0) !== manualRequestedIds.length)
+      return NextResponse.json({ error: 'Cartes introuvables dans la collection du destinataire' }, { status: 403 })
+  }
 
   // Anti-spam : max 5 échanges pending vers le même utilisateur
   const { count } = await supabaseAdmin
@@ -113,7 +137,6 @@ export async function POST(req: NextRequest) {
   if ((count || 0) >= 5)
     return NextResponse.json({ error: 'Trop d\'offres en attente vers cet utilisateur' }, { status: 429 })
 
-  // Créer le trade
   const { data: trade, error: tradeErr } = await supabaseAdmin
     .from('trade_offers')
     .insert({ sender_id: user.id, receiver_id: receiverId, message: message || null })
@@ -123,20 +146,32 @@ export async function POST(req: NextRequest) {
   if (tradeErr || !trade)
     return NextResponse.json({ error: 'Erreur lors de la création' }, { status: 500 })
 
-  // Insérer les cartes des deux côtés
   const rows = [
-    ...offeredCardIds.map((id: string) => ({ trade_id: trade.id, card_id: id, owner_id: user.id })),
-    ...requestedCardIds.map((id: string) => ({ trade_id: trade.id, card_id: id, owner_id: receiverId })),
+    ...offeredCards.map(c => ({
+      trade_id: trade.id,
+      card_id: c.id,
+      is_manuelle: c.isManuelle,
+      card_nom: c.nom || null,
+      card_annee: c.annee || null,
+      card_marque: c.marque || null,
+      card_image: c.image || null,
+      owner_id: user.id,
+    })),
+    ...requestedCards.map(c => ({
+      trade_id: trade.id,
+      card_id: c.id,
+      is_manuelle: c.isManuelle,
+      card_nom: c.nom || null,
+      card_annee: c.annee || null,
+      card_marque: c.marque || null,
+      card_image: c.image || null,
+      owner_id: receiverId,
+    })),
   ]
   await supabaseAdmin.from('trade_offer_cards').insert(rows)
 
-  // Notif + push au destinataire
   const { data: senderProfile } = await supabaseAdmin
-    .from('profiles')
-    .select('display_name')
-    .eq('id', user.id)
-    .single()
-
+    .from('profiles').select('display_name').eq('id', user.id).single()
   const senderName = senderProfile?.display_name || 'Quelqu\'un'
 
   await supabaseAdmin.from('notifications').insert({
