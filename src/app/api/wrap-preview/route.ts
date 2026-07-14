@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
+import { signWrapUrl } from '@/lib/wrapSign'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -18,9 +19,9 @@ function buildEmail(opts: {
   name: string; month: string; newCards: number; rcCount: number; autoCount: number
   patchCount: number; numCount: number; rank: number; totalCollectors: number
   totalCards: number; highlights: { player: string; year: string; brand: string; type: string }[]
-  galerieUrl: string; cardImages: string[]
+  galerieUrl: string; cardImages: string[]; squareUrl: string; storyUrl: string
 }) {
-  const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl, cardImages } = opts
+  const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl, cardImages, squareUrl, storyUrl } = opts
   const medals = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`
   const typeLabel = (t: string) => t === 'RC' ? '🌟 Rookie' : t === 'Auto' ? '✍️ Auto' : t === 'Patch' ? '🧩 Patch' : t
 
@@ -132,8 +133,8 @@ function buildEmail(opts: {
     <div class="dl-section">
       <div class="dl-title">📸 Télécharger ton Wrap</div>
       <div class="dl-buttons">
-        <a href="${galerieUrl.replace(/\/galerie\/.*/, '/profil')}#wrap-telecharger" class="dl-btn">⬜ Carré 1080×1080</a>
-        <a href="${galerieUrl.replace(/\/galerie\/.*/, '/profil')}#wrap-telecharger" class="dl-btn secondary">📱 Story 1080×1920</a>
+        <a href="${squareUrl}" class="dl-btn">⬜ Carré 1080×1080</a>
+        <a href="${storyUrl}" class="dl-btn secondary">📱 Story 1080×1920</a>
       </div>
     </div>
     <div class="cta"><a href="${galerieUrl}">Voir ma galerie →</a></div>
@@ -206,6 +207,12 @@ export async function POST(req: NextRequest) {
   ].map(c => c.image_recto as string)
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.memorabilius.fr'
+  const wrapYear = monthStart.getFullYear()
+  const wrapMonth = monthStart.getMonth() + 1
+  const makeWrapUrl = (fmt: string) => {
+    const sig = signWrapUrl(user.id, wrapYear, wrapMonth, fmt)
+    return `${baseUrl}/api/wrap-image-public?uid=${user.id}&y=${wrapYear}&m=${wrapMonth}&format=${fmt}&sig=${sig}`
+  }
   const html = buildEmail({
     name: profile?.display_name || user.email.split('@')[0],
     month: monthLabel,
@@ -215,6 +222,8 @@ export async function POST(req: NextRequest) {
     highlights,
     galerieUrl: `${baseUrl}/galerie/${user.id}`,
     cardImages,
+    squareUrl: makeWrapUrl('square'),
+    storyUrl: makeWrapUrl('story'),
   })
 
   try {

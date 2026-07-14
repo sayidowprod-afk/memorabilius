@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
+import { signWrapUrl } from '@/lib/wrapSign'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -28,8 +29,10 @@ function buildEmail(opts: {
   highlights: { player: string; year: string; brand: string; type: string }[]
   galerieUrl: string
   cardImages: string[]
+  squareUrl: string
+  storyUrl: string
 }) {
-  const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl, cardImages } = opts
+  const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl, cardImages, squareUrl, storyUrl } = opts
 
   const medals = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`
   const typeLabel = (t: string) => t === 'RC' ? '🌟 Rookie' : t === 'Auto' ? '✍️ Auto' : t === 'Patch' ? '🧩 Patch' : t === 'Num' ? '🔢 Numérotée' : t
@@ -160,8 +163,8 @@ function buildEmail(opts: {
     <div class="dl-section">
       <div class="dl-title">📸 Télécharger ton Wrap</div>
       <div class="dl-buttons">
-        <a href="${galerieUrl.replace(/\/galerie\/.*/, '/profil')}#wrap-telecharger" class="dl-btn">⬜ Carré 1080×1080</a>
-        <a href="${galerieUrl.replace(/\/galerie\/.*/, '/profil')}#wrap-telecharger" class="dl-btn secondary">📱 Story 1080×1920</a>
+        <a href="${squareUrl}" class="dl-btn">⬜ Carré 1080×1080</a>
+        <a href="${storyUrl}" class="dl-btn secondary">📱 Story 1080×1920</a>
       </div>
     </div>
     <div class="cta">
@@ -254,6 +257,13 @@ export async function GET(req: NextRequest) {
       ...withImg.filter(c => !c.rc && !c.auto && !c.patch),
     ].map(c => c.image_recto as string)
 
+    const wrapYear = monthStart.getFullYear()
+    const wrapMonth = monthStart.getMonth() + 1
+    const makeWrapUrl = (fmt: string) => {
+      const sig = signWrapUrl(authUser.id, wrapYear, wrapMonth, fmt)
+      return `${baseUrl}/api/wrap-image-public?uid=${authUser.id}&y=${wrapYear}&m=${wrapMonth}&format=${fmt}&sig=${sig}`
+    }
+
     const html = buildEmail({
       name,
       month: monthLabel,
@@ -268,6 +278,8 @@ export async function GET(req: NextRequest) {
       highlights,
       galerieUrl: `${baseUrl}/galerie/${authUser.id}`,
       cardImages,
+      squareUrl: makeWrapUrl('square'),
+      storyUrl: makeWrapUrl('story'),
     })
 
     try {
