@@ -303,11 +303,16 @@ export default function ChatBubble() {
                                 <div style={{ flex: 1 }}>
                                   <div style={{ fontSize: 9, color: textMuted, fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>{isSender ? 'Tu offres' : 'Il/elle offre'}</div>
                                   <div style={{ display: 'flex', gap: 3 }}>
-                                    {offer.offered_cards.slice(0, 3).map((c: any, i: number) => (
-                                      <div key={i} style={{ width: 28, height: 40, background: '#0d1a30', borderRadius: 3, overflow: 'hidden', flexShrink: 0 }}>
-                                        {(c.card_image || c.image_recto) && <img src={c.card_image || c.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
-                                      </div>
-                                    ))}
+                                    {offer.offered_cards.slice(0, 3).map((c: any, i: number) => {
+                                      const img = c.image_recto || c.card_image
+                                      const href = img ? `/galerie/${offer.sender_id}?card=${encodeURIComponent(img)}` : null
+                                      return (
+                                        <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer"
+                                          style={{ width: 28, height: 40, background: '#0d1a30', borderRadius: 3, overflow: 'hidden', flexShrink: 0, display: 'block', cursor: href ? 'pointer' : 'default', textDecoration: 'none' }}>
+                                          {img && <img src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                        </a>
+                                      )
+                                    })}
                                     {offer.offered_cards.length > 3 && <span style={{ fontSize: 9, color: textMuted, alignSelf: 'center' }}>+{offer.offered_cards.length - 3}</span>}
                                   </div>
                                 </div>
@@ -315,11 +320,16 @@ export default function ChatBubble() {
                                 <div style={{ flex: 1 }}>
                                   <div style={{ fontSize: 9, color: textMuted, fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>{isSender ? 'Tu demandes' : 'Il/elle demande'}</div>
                                   <div style={{ display: 'flex', gap: 3 }}>
-                                    {offer.requested_cards.slice(0, 3).map((c: any, i: number) => (
-                                      <div key={i} style={{ width: 28, height: 40, background: '#0d1a30', borderRadius: 3, overflow: 'hidden', flexShrink: 0 }}>
-                                        {(c.card_image || c.image_recto) && <img src={c.card_image || c.image_recto} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
-                                      </div>
-                                    ))}
+                                    {offer.requested_cards.slice(0, 3).map((c: any, i: number) => {
+                                      const img = c.image_recto || c.card_image
+                                      const href = img ? `/galerie/${offer.receiver_id}?card=${encodeURIComponent(img)}` : null
+                                      return (
+                                        <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer"
+                                          style={{ width: 28, height: 40, background: '#0d1a30', borderRadius: 3, overflow: 'hidden', flexShrink: 0, display: 'block', cursor: href ? 'pointer' : 'default', textDecoration: 'none' }}>
+                                          {img && <img src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                        </a>
+                                      )
+                                    })}
                                     {offer.requested_cards.length > 3 && <span style={{ fontSize: 9, color: textMuted, alignSelf: 'center' }}>+{offer.requested_cards.length - 3}</span>}
                                   </div>
                                 </div>
