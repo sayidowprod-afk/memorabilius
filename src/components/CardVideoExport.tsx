@@ -47,9 +47,17 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   vfmtRef.current = vfmt
 
   const previewImgs = useRef<{ f?: HTMLImageElement; b?: HTMLImageElement }>({})
-  // Fond statique pré-rendu (base + halo + dégradé) : on le blit à chaque frame
-  // au lieu de refaire 3 remplissages plein écran → énorme gain de fluidité mobile.
+  const logoImgs = useRef<{ dark?: HTMLImageElement; light?: HTMLImageElement }>({})
   const bgCache = useRef<{ key: string; canvas: HTMLCanvasElement } | null>(null)
+
+  useEffect(() => {
+    const load = (src: string) => new Promise<HTMLImageElement>(r => {
+      const i = new Image(); i.onload = () => r(i); i.onerror = () => r(i); i.src = src
+    })
+    Promise.all([load('/memorabilius-logo-white.png'), load('/memorabilius-logo.png')]).then(([dark, light]) => {
+      logoImgs.current = { dark, light }
+    })
+  }, [])
 
   // Sync canvas size + dessine un aperçu statique du rendu
   useEffect(() => {
@@ -249,64 +257,116 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
 
     ctx.textAlign = 'center'; ctx.textBaseline = 'top'
     const tx = W / 2
-    let ty = infoY + INFO_H * 0.11
+    let ty = infoY + INFO_H * 0.09
 
-    // Badges (en premier pour ancrer le layout)
-    const tags: { label: string; color: string }[] = []
-    if (card.rc)    tags.push({ label: 'RC',    color: '#e67e22' })
-    if (card.auto)  tags.push({ label: 'AUTO',  color: '#2e7d32' })
-    if (card.num)   tags.push({ label: card.num, color: '#7b1fa2' })
-    if (card.patch) tags.push({ label: 'PATCH', color: '#1976d2' })
+    // ── Badges ──────────────────────────────────────────────────────────────
+    const badgeFs  = Math.round(W * 0.026)
+    const badgeH   = Math.round(W * 0.042)
+    const badgePad = Math.round(W * 0.026)
+    const badgeR   = badgeH / 2  // pill complet
 
-    const badgeFs = Math.round(W * 0.025)
-    const badgeH  = Math.round(W * 0.038)
-    const badgePad = Math.round(W * 0.022)
+    type BadgeEntry = { label: string; solid?: string; grad?: [string, string]; textColor: string }
+    const tags: BadgeEntry[] = []
+    if (card.rc) tags.push({ label: '★ RC', grad: ['#e67e22', '#f39c12'], textColor: '#fff' })
+    if (card.auto) tags.push({ label: 'AUTO', solid: '#2e7d32', textColor: '#fff' })
+    if (card.num) {
+      const m = card.num.trim().match(/\/(\d+)$/)
+      const n = m ? parseInt(m[1]) : null
+      if (n === 1)        tags.push({ label: card.num, grad: ['#b8860b', '#ffd700'], textColor: '#3d2800' })
+      else if (n !== null && n <= 10)  tags.push({ label: card.num, grad: ['#555', '#c0c0c0'], textColor: '#111' })
+      else if (n !== null && n <= 25)  tags.push({ label: card.num, grad: ['#6d3a00', '#cd7f32'], textColor: '#fff' })
+      else                tags.push({ label: card.num, solid: '#7b1fa2', textColor: '#fff' })
+    }
+    if (card.patch) tags.push({ label: 'PATCH', solid: '#1565c0', textColor: '#fff' })
 
     if (tags.length > 0) {
-      ctx.font = `700 ${badgeFs}px Inter, sans-serif`
+      ctx.font = `800 ${badgeFs}px Inter, sans-serif`
       const widths = tags.map(t => ctx.measureText(t.label).width + badgePad * 2)
-      const gap = Math.round(W * 0.012)
+      const gap = Math.round(W * 0.014)
       const totalW = widths.reduce((a, b) => a + b, 0) + gap * (tags.length - 1)
       let bx = tx - totalW / 2
+
       tags.forEach((tag, i) => {
         const bw = widths[i]
-        ctx.fillStyle = tag.color
-        ctx.beginPath(); ctx.roundRect(bx, ty, bw, badgeH, 5); ctx.fill()
-        ctx.fillStyle = '#ffffff'
-        ctx.fillText(tag.label, bx + bw / 2, ty + badgeH * 0.18)
+        const bcy = ty + badgeH / 2
+
+        if (tag.grad) {
+          const g = ctx.createLinearGradient(bx, ty, bx + bw, ty + badgeH)
+          g.addColorStop(0, tag.grad[0]); g.addColorStop(1, tag.grad[1])
+          ctx.fillStyle = g
+        } else {
+          ctx.fillStyle = tag.solid!
+        }
+        // Glow
+        ctx.shadowColor = tag.solid || tag.grad![0]
+        ctx.shadowBlur  = Math.round(W * 0.018)
+        ctx.beginPath(); ctx.roundRect(bx, ty, bw, badgeH, badgeR); ctx.fill()
+        ctx.shadowBlur = 0
+
+        // Reflet interne (liseré haut)
+        const shine = ctx.createLinearGradient(bx, ty, bx, ty + badgeH * 0.5)
+        shine.addColorStop(0, 'rgba(255,255,255,0.25)'); shine.addColorStop(1, 'rgba(255,255,255,0)')
+        ctx.fillStyle = shine
+        ctx.beginPath(); ctx.roundRect(bx, ty, bw, badgeH * 0.55, [badgeR, badgeR, 0, 0]); ctx.fill()
+
+        // Texte centré verticalement
+        ctx.fillStyle = tag.textColor
+        ctx.textBaseline = 'middle'
+        ctx.fillText(tag.label, bx + bw / 2, bcy)
+        ctx.textBaseline = 'top'
         bx += bw + gap
       })
-      ty += badgeH + Math.round(INFO_H * 0.06)
+      ty += badgeH + Math.round(INFO_H * 0.07)
     }
 
-    // Nom joueur
-    const nameFs = Math.round(W * 0.052)
+    // ── Nom joueur ───────────────────────────────────────────────────────────
+    const nameFs = Math.round(W * 0.054)
     ctx.fillStyle = textMain
-    ctx.font = `800 ${nameFs}px Inter, sans-serif`
+    ctx.font = `900 ${nameFs}px Inter, sans-serif`
     ctx.fillText(card.n, tx, ty)
-    ty += nameFs + Math.round(INFO_H * 0.04)
+    ty += nameFs * 1.15
 
-    // Variation
+    // ── Variation ────────────────────────────────────────────────────────────
     if (card.v) {
-      const varFs = Math.round(W * 0.031)
+      const varFs = Math.round(W * 0.030)
       ctx.fillStyle = accent
-      ctx.font = `600 ${varFs}px Inter, sans-serif`
+      ctx.font = `600 italic ${varFs}px Inter, sans-serif`
       ctx.fillText(card.v, tx, ty)
-      ty += varFs + Math.round(INFO_H * 0.03)
+      ty += varFs * 1.3
     }
 
-    // Infos secondaires
-    const infoFs = Math.round(W * 0.025)
-    ctx.fillStyle = textSub
-    ctx.font = `400 ${infoFs}px Inter, sans-serif`
-    const meta = [card.t, card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
-    if (meta) ctx.fillText(meta, tx, ty)
+    // ── Équipe (ligne 1) ─────────────────────────────────────────────────────
+    if (card.t) {
+      const teamFs = Math.round(W * 0.026)
+      ctx.fillStyle = textSub
+      ctx.font = `700 ${teamFs}px Inter, sans-serif`
+      ctx.fillText(card.t, tx, ty)
+      ty += teamFs * 1.35
+    }
 
-    // Logo watermark
-    ctx.textAlign = 'right'; ctx.textBaseline = 'bottom'
-    ctx.fillStyle = isDark ? `rgba(${ar},${ag},${ab},0.55)` : `rgba(${ar},${ag},${ab},0.7)`
-    ctx.font = `600 ${Math.round(W * 0.026)}px Inter, sans-serif`
-    ctx.fillText('memorabilius.fr', W - Math.round(W * 0.03), H - Math.round(H * 0.012))
+    // ── Année · Marque · Collection (ligne 2) ────────────────────────────────
+    const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
+    if (meta2) {
+      const metaFs = Math.round(W * 0.022)
+      ctx.fillStyle = isDark ? 'rgba(255,255,255,0.32)' : 'rgba(0,0,0,0.32)'
+      ctx.font = `400 ${metaFs}px Inter, sans-serif`
+      ctx.fillText(meta2, tx, ty)
+    }
+
+    // ── Logo watermark ────────────────────────────────────────────────────────
+    const logoImg = isDark ? logoImgs.current.dark : logoImgs.current.light
+    if (logoImg && logoImg.naturalWidth > 0) {
+      const logoW = W * 0.19
+      const logoH = logoW * (logoImg.naturalHeight / logoImg.naturalWidth)
+      ctx.globalAlpha = isDark ? 0.50 : 0.65
+      ctx.drawImage(logoImg, W - logoW - W * 0.03, H - logoH - H * 0.014, logoW, logoH)
+      ctx.globalAlpha = 1
+    } else {
+      ctx.textAlign = 'right'; ctx.textBaseline = 'bottom'
+      ctx.fillStyle = isDark ? `rgba(${ar},${ag},${ab},0.55)` : `rgba(${ar},${ag},${ab},0.7)`
+      ctx.font = `600 ${Math.round(W * 0.026)}px Inter, sans-serif`
+      ctx.fillText('memorabilius.fr', W - Math.round(W * 0.03), H - Math.round(H * 0.012))
+    }
   }
 
   const startRecording = async () => {
