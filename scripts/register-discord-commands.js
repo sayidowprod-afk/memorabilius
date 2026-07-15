@@ -1,6 +1,4 @@
 // Usage: node scripts/register-discord-commands.js
-// Enregistre (ou met à jour) les slash commands globales de l'application Discord.
-// À relancer à chaque fois qu'une commande est ajoutée/modifiée.
 require('dotenv').config({ path: '.env.local' })
 
 const APP_ID    = process.env.DISCORD_APPLICATION_ID
@@ -18,7 +16,7 @@ const commands = [
     options: [{
       name: 'utilisateur',
       description: 'Nom du collectionneur (ex: Killian)',
-      type: 3,       // STRING
+      type: 3,
       required: true,
     }],
   },
@@ -27,14 +25,22 @@ const commands = [
     description: 'Podium des meilleurs collectionneurs du mois en cours',
   },
   {
-    name: 'prix',
-    description: 'Prix eBay récents pour une carte de collection',
-    options: [{
-      name: 'carte',
-      description: 'Nom de la carte (ex: Wembanyama RC Prizm 2024)',
-      type: 3,       // STRING
-      required: true,
-    }],
+    name: 'carte',
+    description: 'Affiche une carte de la communauté avec son image',
+    options: [
+      {
+        name: 'nom',
+        description: 'Nom du joueur ou de la carte (ex: Wembanyama)',
+        type: 3,
+        required: true,
+      },
+      {
+        name: 'utilisateur',
+        description: 'Filtrer par collectionneur (optionnel)',
+        type: 3,
+        required: false,
+      },
+    ],
   },
 ]
 
