@@ -14,13 +14,12 @@ export interface SportsTeam {
 // ESPN abbr overrides (quand notre abbr ≠ code ESPN)
 const ESPN_CODES: Record<string, string> = {
   'nba:WAS': 'wsh',   // Washington Wizards
+  'nba:NOP': 'no',    // New Orleans Pelicans (ESPN: no)
+  'nba:UTA': 'utah',  // Utah Jazz (ESPN: utah)
   'mlb:CWS': 'chw',   // Chicago White Sox
-  'nhl:SJS': 'sj',    // San Jose Sharks (ESPN: sj, pas sjs)
-  'nhl:UTA': 'utah',  // Utah Hockey Club (nouvelle équipe 2024, ESPN: utah)
-  'nhl:LA':  'lak',   // LA Kings (ESPN: lak)
+  'nhl:SJS': 'sj',    // San Jose Sharks (ESPN: sj)
+  'nhl:UTA': 'utah',  // Utah Hockey Club (ESPN: utah)
   'nhl:NJ':  'njd',   // New Jersey Devils (ESPN: njd)
-  'nhl:TB':  'tbl',   // Tampa Bay Lightning (ESPN: tbl)
-  'nhl:WPG': 'wpg',   // Winnipeg Jets
   'nfl:WSH': 'wsh',   // Washington Commanders
 }
 
@@ -208,10 +207,10 @@ export const SPORTS_TEAMS: SportsTeam[] = [
   { id: 'football:SCF', sport: 'football', abbr: 'SCF', name: 'SC Freiburg',          color: '#E31E24', league: 'bundesliga', logoUrl: fdo(17) },
   { id: 'football:FCU', sport: 'football', abbr: 'FCU', name: 'Union Berlin',         color: '#EB1923', league: 'bundesliga', logoUrl: fdo(28) },
   { id: 'football:M05', sport: 'football', abbr: 'M05', name: 'Mainz 05',             color: '#C3161C', league: 'bundesliga', logoUrl: fdo(15) },
-  { id: 'football:FCH', sport: 'football', abbr: 'FCH', name: 'Heidenheim',           color: '#E63A23', league: 'bundesliga', logoUrl: fdo(781) },
+  { id: 'football:FCH', sport: 'football', abbr: 'FCH', name: 'Heidenheim',           color: '#E63A23', league: 'bundesliga', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/6418.png' },
   { id: 'football:BOC', sport: 'football', abbr: 'BOC', name: 'VfL Bochum',           color: '#005CA9', league: 'bundesliga', logoUrl: fdo(36) },
-  { id: 'football:STP', sport: 'football', abbr: 'STP', name: 'St. Pauli',            color: '#4B3226', league: 'bundesliga', logoUrl: fdo(182) },
-  { id: 'football:KSV', sport: 'football', abbr: 'KSV', name: 'Holstein Kiel',        color: '#0057A8', league: 'bundesliga', logoUrl: fdo(733) },
+  { id: 'football:STP', sport: 'football', abbr: 'STP', name: 'St. Pauli',            color: '#4B3226', league: 'bundesliga', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/270.png' },
+  { id: 'football:KSV', sport: 'football', abbr: 'KSV', name: 'Holstein Kiel',        color: '#0057A8', league: 'bundesliga', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/7884.png' },
 
   // SERIE A
   { id: 'football:INT', sport: 'football', abbr: 'INT', name: 'Inter Milan',          color: '#010E80', league: 'serie-a', logoUrl: fdo(108) },
@@ -233,7 +232,7 @@ export const SPORTS_TEAMS: SportsTeam[] = [
   { id: 'football:VER', sport: 'football', abbr: 'VER', name: 'Hellas Verona',        color: '#003DA6', league: 'serie-a', logoUrl: fdo(450) },
   { id: 'football:COM', sport: 'football', abbr: 'COM', name: 'Como',                 color: '#004B9E', league: 'serie-a', logoUrl: fdo(5914) },
   { id: 'football:VEN', sport: 'football', abbr: 'VEN', name: 'Venezia',              color: '#000000', league: 'serie-a', logoUrl: fdo(454) },
-  { id: 'football:PAR', sport: 'football', abbr: 'PAR', name: 'Parma',                color: '#F5EB00', league: 'serie-a', logoUrl: fdo(117) },
+  { id: 'football:PAR', sport: 'football', abbr: 'PAR', name: 'Parma',                color: '#F5EB00', league: 'serie-a', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/115.png' },
 
   // LA LIGA
   { id: 'football:RMA', sport: 'football', abbr: 'RMA', name: 'Real Madrid',          color: '#FEBE10', league: 'laliga', logoUrl: fdo(86) },
@@ -274,7 +273,7 @@ export const SPORTS_TEAMS: SportsTeam[] = [
   { id: 'football:HAC', sport: 'football', abbr: 'HAC', name: 'Le Havre',            color: '#009FE3', league: 'ligue-1', logoUrl: fdo(547) },
   { id: 'football:ASE', sport: 'football', abbr: 'ASE', name: 'Saint-Étienne',       color: '#007F3D', league: 'ligue-1', logoUrl: fdo(528) },
   { id: 'football:FCN', sport: 'football', abbr: 'FCN', name: 'Nantes',              color: '#F5CE3E', league: 'ligue-1', logoUrl: fdo(525) },
-  { id: 'football:ANG', sport: 'football', abbr: 'ANG', name: 'Angers',              color: '#000000', league: 'ligue-1', logoUrl: fdo(544) },
+  { id: 'football:ANG', sport: 'football', abbr: 'ANG', name: 'Angers',              color: '#000000', league: 'ligue-1', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/7868.png' },
   { id: 'football:AJA', sport: 'football', abbr: 'AJA', name: 'Auxerre',             color: '#002F6C', league: 'ligue-1', logoUrl: fdo(541) },
   { id: 'football:GDB', sport: 'football', abbr: 'GDB', name: 'Girondins de Bordeaux', color: '#003399', league: 'ligue-1', logoUrl: fdo(526) },
 ]

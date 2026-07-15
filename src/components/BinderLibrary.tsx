@@ -597,27 +597,26 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     try {
       const allSlots = [...slots.values()]
 
-      // Pour le tri par année : on combine cartes_manuelles (annee) + CSV (year)
-      // binder_slots ne stocke pas l'année, donc on construit une yearMap img→année
-      const yearMap = new Map<string, number>()
+      // Tri par année de la carte (ex: "2021-22" < "2022-23" < "2023-24")
+      // img→annee raw string, comparaison lexicographique sur la partie normalisée
+      const yearMap = new Map<string, string>()
+      const normYear = (s: string) => {
+        // "2021-22", "2022", "2021-2022" → extrait "20XX..." pour comparaison stable
+        const m = (s || '').match(/((?:19|20)\d{2}(?:[-\/]\d{2,4})?)/)
+        return m ? m[1] : ''
+      }
       if (by === 'annee_asc' || by === 'annee_desc') {
-        const [{ data: cartes }, { data: profile }] = await Promise.all([
-          supabase.from('cartes_manuelles').select('image_recto, annee').eq('user_id', userId),
-          supabase.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').eq('id', userId).single(),
+        const [{ data: cartes }, { data: csvProfile }] = await Promise.all([
+          supabase.from('cartes_manuelles').select('image_recto, annee').eq('user_id', userId).limit(10000),
+          supabase.from('profiles').select('id, display_name, avatar_url, lien_csv').eq('id', userId).single(),
         ])
-        // Cartes manuelles
         for (const c of cartes || []) {
-          const y = parseInt((c.annee || '').match(/(19|20)\d{2}/)?.[0] || '0')
-          if (y) yearMap.set(c.image_recto, y)
+          if (c.annee && c.image_recto) yearMap.set(c.image_recto, c.annee)
         }
-        // Cartes CSV
-        if (profile?.lien_csv) {
-          const csvCards = await fetchCsvCardsForProfiles([profile])
+        if (csvProfile?.lien_csv) {
+          const csvCards = await fetchCsvCardsForProfiles([{ ...csvProfile, couleur_bordure: null }])
           for (const c of csvCards) {
-            if (!yearMap.has(c.img)) {
-              const y = parseInt((c.year || '').match(/(19|20)\d{2}/)?.[0] || '0')
-              if (y) yearMap.set(c.img, y)
-            }
+            if (!yearMap.has(c.img) && c.year) yearMap.set(c.img, c.year)
           }
         }
       }
@@ -626,8 +625,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         const na = a.nom || '', nb = b.nom || ''
         if (by === 'nom_asc') return na.localeCompare(nb, 'fr', { sensitivity: 'base' })
         if (by === 'nom_desc') return nb.localeCompare(na, 'fr', { sensitivity: 'base' })
-        if (by === 'annee_asc') return (yearMap.get(a.img) || 0) - (yearMap.get(b.img) || 0)
-        if (by === 'annee_desc') return (yearMap.get(b.img) || 0) - (yearMap.get(a.img) || 0)
+        const ya = normYear(yearMap.get(a.img) || '')
+        const yb = normYear(yearMap.get(b.img) || '')
+        if (by === 'annee_asc') return ya.localeCompare(yb) || (a.nom || '').localeCompare(b.nom || '')
+        if (by === 'annee_desc') return yb.localeCompare(ya) || (b.nom || '').localeCompare(a.nom || '')
         return 0
       })
       const newSlots = new Map<string, Slot>()
