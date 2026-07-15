@@ -25,7 +25,7 @@ export function teamLogoUrl(teamOrSport: SportsTeam | Sport, abbr?: string): str
   if (team.sport === 'football') return ''
   // NBA / NFL / MLB / NHL : ESPN CDN — PNGs affichés dans un cercle blanc par TeamBadge
   const code = ESPN_CODES[team.id] ?? team.abbr.toLowerCase()
-  return `https://a.espncdn.com/i/teamlogos/${team.sport}/${code}.png`
+  return `https://a.espncdn.com/i/teamlogos/${team.sport}/500/${code}.png`
 }
 
 // CDN helper — logos SVG transparents pour le foot (football-data.org)
