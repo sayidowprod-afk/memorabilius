@@ -13,7 +13,10 @@ const supabase = createClient(
 function verifyDiscord(req: NextRequest, body: string): boolean {
   const sig = req.headers.get('x-signature-ed25519') || ''
   const ts  = req.headers.get('x-signature-timestamp') || ''
-  if (!sig || !ts || !process.env.DISCORD_PUBLIC_KEY) return false
+  if (!sig || !ts || !process.env.DISCORD_PUBLIC_KEY) {
+    console.error('[discord] missing sig/ts/key', { sig: !!sig, ts: !!ts, key: !!process.env.DISCORD_PUBLIC_KEY })
+    return false
+  }
   try {
     // La clé Discord est un hex de 32 bytes bruts. Node.js createPublicKey
     // attend du SPKI/DER : on préfixe avec le header ASN.1 Ed25519 (12 bytes).
@@ -21,8 +24,21 @@ function verifyDiscord(req: NextRequest, body: string): boolean {
     const rawKey = Buffer.from(process.env.DISCORD_PUBLIC_KEY, 'hex')
     const spki = Buffer.concat([spkiPrefix, rawKey])
     const keyObject = createPublicKey({ key: spki, format: 'der', type: 'spki' })
-    return cryptoVerify(null, Buffer.from(ts + body), keyObject, Buffer.from(sig, 'hex'))
-  } catch { return false }
+    const result = cryptoVerify(null, Buffer.from(ts + body), keyObject, Buffer.from(sig, 'hex'))
+    if (!result) console.error('[discord] signature invalide')
+    return result
+  } catch (e) {
+    console.error('[discord] erreur vérification', e)
+    return false
+  }
+}
+
+export async function GET() {
+  return NextResponse.json({
+    ok: true,
+    hasKey: !!process.env.DISCORD_PUBLIC_KEY,
+    keyLength: process.env.DISCORD_PUBLIC_KEY?.length ?? 0,
+  })
 }
 
 function med(arr: number[]): number {
