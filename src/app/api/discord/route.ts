@@ -135,7 +135,8 @@ async function cmdCarte(options: any[]) {
   if (utilisateur) {
     const { data: prof } = await supabase
       .from('profiles').select('id').ilike('display_name', `%${utilisateur}%`).limit(1)
-    if (prof?.[0]) query = query.eq('user_id', prof[0].id)
+    if (!prof?.[0]) return reply({ content: `❌ Collectionneur \`${utilisateur}\` introuvable.`, flags: 64 })
+    query = query.eq('user_id', prof[0].id)
   }
 
   const { data } = await query.limit(1)
@@ -150,10 +151,14 @@ async function cmdCarte(options: any[]) {
   if (c.num)   badges.push(`🔢 ${c.num}`)
 
   const desc = [c.variation, c.annee, c.marque, c.equipe].filter(Boolean).join(' · ')
+  const cardUrl = profile
+    ? `https://memorabilius.fr/galerie/${profile.id}?card=${encodeURIComponent(c.image_recto)}`
+    : 'https://memorabilius.fr'
 
   return reply({
     embeds: [{
       title: c.nom,
+      url: cardUrl,
       description: desc || undefined,
       color: 0x003DA6,
       image: { url: c.image_recto },
