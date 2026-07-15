@@ -57,6 +57,7 @@ function AnnuaireContent() {
       .select('id, display_name, avatar_url, lien_csv, stats_total, stats_rc, stats_auto, stats_num, stats_patch, stats_updated_at, favorite_teams, is_donor')
       .not('display_name', 'is', null)
       .neq('display_name', '')
+      .limit(10000)
 
     if (!profiles) { setLoading(false); return }
 
