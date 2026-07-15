@@ -15,7 +15,11 @@ import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
 function FolderIcon({ icon, size = 16 }: { icon?: string | null; size?: number }) {
   if (icon && icon.startsWith('team:')) {
     const team = getTeamById(icon.slice(5))
-    if (team) return <img src={teamLogoUrl(team)} alt="" style={{ width: size, height: size, objectFit: 'contain', verticalAlign: 'middle' }} />
+    if (team) {
+      const url = teamLogoUrl(team)
+      if (url) return <img src={url} alt="" style={{ width: size, height: size, objectFit: 'contain', verticalAlign: 'middle' }} />
+      return <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: size, height: size, borderRadius: '50%', background: team.color, color: 'white', fontSize: Math.round(size * 0.4), fontWeight: 900, verticalAlign: 'middle' }}>{team.abbr.slice(0, 2)}</span>
+    }
   }
   return <span style={{ fontSize: size }}>{icon || '📁'}</span>
 }
@@ -328,9 +332,9 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     }
   }
 
-  const openCreateForm = () => {
+  const openCreateForm = (inFolderId?: number | null) => {
     setFName(''); setFSubtitle(''); setFLayout(9); setFType('portfolio'); setFColor(BINDER_COLORS[0]); setFCover(null); setFIsPublic(true)
-    setFFolderId(currentFolder?.id ?? null)
+    setFFolderId(inFolderId !== undefined ? inFolderId : currentFolder?.id ?? null)
     setFormOpen('create')
   }
   const openEditForm = (b: Binder) => {
@@ -454,21 +458,89 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const [moved] = next.splice(from, 1)
     next.splice(to, 0, moved)
     setBinders(next)
-    next.forEach((b, i) => supabase.from('binders').update({ position: i }).eq('id', b.id))
+    Promise.all(next.map((b, i) => supabase.from('binders').update({ position: i }).eq('id', b.id)))
   }
 
   const placeCard = async (page: number, idx: number, card: PickableCard) => {
     if (!selected) return
     const isHorizontal = await detectIsHorizontal(card.img)
-    const { error } = await supabase.from('binder_slots').insert({
-      binder_id: selected.id, page_number: page, slot_index: idx,
-      card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal,
+    const targetKey = slotKey(page, idx)
+    const occupied = slots.has(targetKey)
+
+    if (!occupied) {
+      // Pochette vide — insertion simple
+      const { error } = await supabase.from('binder_slots').insert({
+        binder_id: selected.id, page_number: page, slot_index: idx,
+        card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal,
+      })
+      if (error) { alert('Erreur : ' + error.message); return }
+      setSlots(prev => new Map(prev).set(targetKey, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal }))
+      setCardCounts(prev => ({ ...prev, [selected.id]: (prev[selected.id] || 0) + 1 }))
+      setJustInserted(targetKey)
+      setTimeout(() => setJustInserted(null), 550)
+      setPickerTarget(null)
+      return
+    }
+
+    // Pochette occupée — décaler toutes les cartes de idx jusqu'à la première pochette libre
+    // Trouver la première pochette libre à partir de (page, idx)
+    let freePage = page, freeIdx = idx
+    let newPageCount = selected.page_count
+    outer: while (true) {
+      const startIdx = freePage === page ? freeIdx : 0
+      for (let i = startIdx; i < selected.layout; i++) {
+        if (!slots.has(slotKey(freePage, i))) { freeIdx = i; break outer }
+      }
+      freePage++
+      if (freePage > newPageCount) { newPageCount = freePage; break } // nouvelle page
+    }
+
+    // Collecter les cartes à décaler (de (page,idx) jusqu'à juste avant la case libre)
+    const toShift: Slot[] = []
+    let p = page, i = idx
+    while (!(p === freePage && i === freeIdx)) {
+      const s = slots.get(slotKey(p, i))
+      if (s) toShift.push(s)
+      i++
+      if (i >= selected.layout) { i = 0; p++ }
+    }
+
+    // Calculer les nouvelles positions (décalées de +1)
+    const deletes: Array<{ page: number; idx: number }> = []
+    const inserts: any[] = []
+    const localUpdates = new Map<string, Slot>()
+
+    for (const slot of toShift) {
+      deletes.push({ page: slot.page_number, idx: slot.slot_index })
+      let np = slot.page_number, ni = slot.slot_index + 1
+      if (ni >= selected.layout) { ni = 0; np++ }
+      inserts.push({ binder_id: selected.id, page_number: np, slot_index: ni, card_key: slot.card_key, img: slot.img, img_back: slot.img_back, nom: slot.nom, is_horizontal: !!slot.is_horizontal })
+      localUpdates.set(slotKey(np, ni), { ...slot, page_number: np, slot_index: ni })
+    }
+    // La nouvelle carte va en (page, idx)
+    inserts.push({ binder_id: selected.id, page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal })
+    localUpdates.set(targetKey, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal })
+
+    // Mettre à jour le page_count si besoin
+    if (newPageCount !== selected.page_count) {
+      await supabase.from('binders').update({ page_count: newPageCount }).eq('id', selected.id)
+      setSelected(s => s ? { ...s, page_count: newPageCount } : s)
+      setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newPageCount } : b))
+    }
+
+    // Supprimer les anciens slots puis insérer les nouveaux
+    await Promise.all(deletes.map(d => supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', d.page).eq('slot_index', d.idx)))
+    const { error: insErr } = await supabase.from('binder_slots').insert(inserts)
+    if (insErr) { alert('Erreur insertion : ' + insErr.message); openBinder(selected); return }
+
+    setSlots(prev => {
+      const m = new Map(prev)
+      for (const d of deletes) m.delete(slotKey(d.page, d.idx))
+      for (const [k, v] of localUpdates) m.set(k, v)
+      return m
     })
-    if (error) { alert('Erreur : ' + error.message); return }
-    const k = slotKey(page, idx)
-    setSlots(prev => new Map(prev).set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal }))
     setCardCounts(prev => ({ ...prev, [selected.id]: (prev[selected.id] || 0) + 1 }))
-    setJustInserted(k)
+    setJustInserted(targetKey)
     setTimeout(() => setJustInserted(null), 550)
     setPickerTarget(null)
   }
@@ -857,19 +929,21 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
           // ── Face RECTO : interactive (ajout, déplacement, retrait) ──
           if (slot) {
+            const isDragSource = cardDrag && cardDragRef.current?.active && cardDragRef.current?.page === page && cardDragRef.current?.idx === idx
             return (
               <div key={idx} data-pocket data-page={page} data-idx={idx}
                 className={`binder-slot-card${justInserted === k ? ' binder-slot-card-enter' : ''}`}
-                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', boxShadow: '0 0 0 1px rgba(150,165,180,0.4)', touchAction: 'none', opacity: cardDrag && cardDragRef.current?.active && cardDragRef.current?.page === page && cardDragRef.current?.idx === idx ? 0.35 : 1 }}
-                onPointerDown={cardPointerDown(page, idx, slot)}
-                onPointerMove={cardPointerMove}
-                onPointerUp={cardPointerUp}
-                onPointerCancel={cardPointerCancel}
+                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', boxShadow: pendingCard && isOwner ? '0 0 0 2px #003DA6' : '0 0 0 1px rgba(150,165,180,0.4)', touchAction: 'none', opacity: isDragSource ? 0.35 : 1, cursor: pendingCard && isOwner ? 'cell' : undefined }}
+                onPointerDown={pendingCard ? undefined : cardPointerDown(page, idx, slot)}
+                onPointerMove={pendingCard ? undefined : cardPointerMove}
+                onPointerUp={pendingCard ? undefined : cardPointerUp}
+                onPointerCancel={pendingCard ? undefined : cardPointerCancel}
                 onClick={() => {
                   if (flip || clickSuppressed()) return
+                  if (pendingCard && isOwner) { placeCard(page, idx, pendingCard); onPlaced?.(); return }
                   if (!onOpenCard || !onOpenCard(slot.img)) setViewerSlot(slot)
                 }}
-                title={isOwner ? 'Appui long pour déplacer · clic pour ouvrir' : (slot.nom || '')}
+                title={pendingCard && isOwner ? 'Insérer ici (décale les cartes suivantes)' : isOwner ? 'Appui long pour déplacer · clic pour ouvrir' : (slot.nom || '')}
               >
                 <img src={slot.img} alt={slot.nom || ''} loading="lazy" draggable={false} style={cardImgStyle(slot.is_horizontal)} onLoad={fixOrientationIfLoaded(page, idx, slot)} />
                 <PlasticSheen />
@@ -1057,22 +1131,24 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       ...folders.map(f => ({
         folder: f as Folder | null,
         key: `f-${f.id}`,
-        binderItems: binders.filter(b => b.folder_id === f.id) as (Binder | 'new')[],
+        binderItems: binders.filter(b => b.folder_id === f.id),
       })),
       {
         folder: null as Folder | null,
         key: 'root',
-        binderItems: [...binders.filter(b => b.folder_id === null), ...(isOwner ? ['new' as const] : [])] as (Binder | 'new')[],
+        binderItems: binders.filter(b => b.folder_id === null),
       },
     ]
 
-    const renderSpine = (b: Binder | 'new') => b === 'new' ? (
-      <div key="new" onClick={openCreateForm} title="Nouveau classeur" style={{
+    const renderAddBtn = (folderId: number | null) => isOwner ? (
+      <div key="add" onClick={() => openCreateForm(folderId)} title="Nouveau classeur" style={{
         width: 40, height: 184, cursor: 'pointer', border: '2px dashed rgba(255,255,255,0.35)', borderRadius: '4px 4px 0 0',
         background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center',
         flexShrink: 0, color: 'rgba(255,255,255,0.6)', fontSize: 20,
       }}>+</div>
-    ) : (
+    ) : null
+
+    const renderSpine = (b: Binder) => (
       <div key={b.id} data-binder-spine={b.id}
         onClick={() => { if (clickSuppressed()) return; openBinder(b) }}
         onPointerDown={shelfPointerDown(b)}
@@ -1139,7 +1215,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
         <div ref={shelfContainerRef} style={{ background: 'linear-gradient(180deg, #1a2638, #0d1824)', borderRadius: 16, boxShadow: '0 6px 28px rgba(0,0,0,0.28)', padding: '14px 14px 4px' }}>
           {sections.map((section, si) => {
-            const rows: (Binder | 'new')[][] = []
+            const rows: Binder[][] = []
             for (let i = 0; i < section.binderItems.length; i += shelfRowSize) rows.push(section.binderItems.slice(i, i + shelfRowSize))
             if (rows.length === 0) rows.push([])
             const shelfColor = section.folder?.color || FOLDER_SHELF_COLORS[0]
@@ -1203,17 +1279,22 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                   </div>
                 ) : null}
 
-                {rows.map((row, ri) => (
-                  <div key={ri} style={{ marginBottom: 4 }}>
-                    <div style={{
-                      display: 'flex', alignItems: 'flex-end', gap: 4, padding: '0 6px 10px',
-                      overflowX: 'auto', WebkitOverflowScrolling: 'touch', minHeight: 190,
-                    }}>
-                      {row.map(renderSpine)}
+                {rows.map((row, ri) => {
+                  const isLastRow = ri === rows.length - 1
+                  return (
+                    <div key={ri} style={{ marginBottom: 4 }}>
+                      <div style={{
+                        display: 'flex', alignItems: 'flex-end', gap: 4, padding: '0 6px 10px',
+                        overflowX: 'auto', WebkitOverflowScrolling: 'touch', minHeight: 190,
+                      }}>
+                        {row.map(renderSpine)}
+                        {/* Bouton + à la fin de chaque ligne (si la ligne n'est pas complète ou si c'est la dernière) */}
+                        {isOwner && (row.length < shelfRowSize || isLastRow) && renderAddBtn(section.folder?.id ?? null)}
+                      </div>
+                      <div style={{ height: 12, background: section.folder ? shelfColor : 'linear-gradient(180deg, #0d1824, #060f1a)', borderRadius: 2, boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }} />
                     </div>
-                    <div style={{ height: 12, background: section.folder ? shelfColor : 'linear-gradient(180deg, #0d1824, #060f1a)', borderRadius: 2, boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }} />
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             )
           })}
