@@ -13,8 +13,15 @@ export interface SportsTeam {
 
 // ESPN abbr overrides (quand notre abbr ≠ code ESPN)
 const ESPN_CODES: Record<string, string> = {
-  'nba:WAS': 'wsh',  // Washington Wizards
-  'mlb:CWS': 'chw',  // Chicago White Sox
+  'nba:WAS': 'wsh',   // Washington Wizards
+  'mlb:CWS': 'chw',   // Chicago White Sox
+  'nhl:SJS': 'sj',    // San Jose Sharks (ESPN: sj, pas sjs)
+  'nhl:UTA': 'utah',  // Utah Hockey Club (nouvelle équipe 2024, ESPN: utah)
+  'nhl:LA':  'lak',   // LA Kings (ESPN: lak)
+  'nhl:NJ':  'njd',   // New Jersey Devils (ESPN: njd)
+  'nhl:TB':  'tbl',   // Tampa Bay Lightning (ESPN: tbl)
+  'nhl:WPG': 'wpg',   // Winnipeg Jets
+  'nfl:WSH': 'wsh',   // Washington Commanders
 }
 
 export function teamLogoUrl(teamOrSport: SportsTeam | Sport, abbr?: string): string {
@@ -28,8 +35,8 @@ export function teamLogoUrl(teamOrSport: SportsTeam | Sport, abbr?: string): str
   return `https://a.espncdn.com/i/teamlogos/${team.sport}/500/${code}.png`
 }
 
-// CDN helper — logos SVG transparents pour le foot (football-data.org)
-const fdo = (id: number) => `https://crests.football-data.org/${id}.svg`
+// CDN helper — logos PNG pour le foot (football-data.org)
+const fdo = (id: number) => `https://crests.football-data.org/${id}.png`
 
 export const SPORTS_TEAMS: SportsTeam[] = [
   // NBA — cdn.nba.com (transparent SVG)
@@ -241,7 +248,7 @@ export const SPORTS_TEAMS: SportsTeam[] = [
   { id: 'football:CEL', sport: 'football', abbr: 'CEL', name: 'Celta Vigo',           color: '#73C4E2', league: 'laliga', logoUrl: fdo(558) },
   { id: 'football:GET', sport: 'football', abbr: 'GET', name: 'Getafe',               color: '#005EA8', league: 'laliga', logoUrl: fdo(554) },
   { id: 'football:OSA', sport: 'football', abbr: 'OSA', name: 'Osasuna',              color: '#C41426', league: 'laliga', logoUrl: fdo(557) },
-  { id: 'football:RAY', sport: 'football', abbr: 'RAY', name: 'Rayo Vallecano',       color: '#CF0013', league: 'laliga', logoUrl: fdo(576) },
+  { id: 'football:RAY', sport: 'football', abbr: 'RAY', name: 'Rayo Vallecano',       color: '#CF0013', league: 'laliga', logoUrl: fdo(264) },
   { id: 'football:ESP', sport: 'football', abbr: 'ESP', name: 'Espanyol',             color: '#0055A0', league: 'laliga', logoUrl: fdo(80) },
   { id: 'football:MAL', sport: 'football', abbr: 'MAL', name: 'Mallorca',             color: '#CF0017', league: 'laliga', logoUrl: fdo(89) },
   { id: 'football:LPA', sport: 'football', abbr: 'LPA', name: 'Las Palmas',           color: '#F5C400', league: 'laliga', logoUrl: fdo(275) },
