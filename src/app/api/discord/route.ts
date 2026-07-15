@@ -20,10 +20,10 @@ async function verifyDiscord(req: NextRequest, body: string): Promise<boolean> {
   if (!sig || !ts || !process.env.DISCORD_PUBLIC_KEY) return false
   try {
     const key = await crypto.subtle.importKey(
-      'raw', hexToBytes(process.env.DISCORD_PUBLIC_KEY),
+      'raw', hexToBytes(process.env.DISCORD_PUBLIC_KEY).buffer as ArrayBuffer,
       { name: 'Ed25519' }, false, ['verify']
     )
-    return await crypto.subtle.verify('Ed25519', key, hexToBytes(sig), new TextEncoder().encode(ts + body))
+    return await crypto.subtle.verify('Ed25519', key, hexToBytes(sig).buffer as ArrayBuffer, new TextEncoder().encode(ts + body))
   } catch { return false }
 }
 
