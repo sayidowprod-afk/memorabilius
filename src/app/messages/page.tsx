@@ -60,6 +60,8 @@ function MessagesContent() {
   const [uploading, setUploading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const activeConvRef = useRef<string | null>(null)
+  activeConvRef.current = activeConv
 
   const bg = dark ? '#1a1a1a' : 'white'
   const bgPanel = dark ? '#222' : 'white'
@@ -84,6 +86,22 @@ function MessagesContent() {
       setLoading(false)
     })
   }, [])
+
+  useEffect(() => {
+    if (!userId) return
+    const channel = supabase
+      .channel(`messages-incoming:${userId}`)
+      .on('postgres_changes', {
+        event: 'INSERT', schema: 'public', table: 'messages',
+        filter: `to_user_id=eq.${userId}`,
+      }, () => {
+        loadConversations(userId)
+        const conv = activeConvRef.current
+        if (conv) loadMessages(userId, conv)
+      })
+      .subscribe()
+    return () => { supabase.removeChannel(channel) }
+  }, [userId])
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })

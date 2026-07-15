@@ -80,7 +80,7 @@ export default function Profil() {
       const perm = await Notification.requestPermission()
       setPushPermission(perm)
       if (perm === 'granted') {
-        const ok = await subscribePush()
+        const ok = await subscribePush(true)
         setPushSubscribed(ok)
         if (!ok) setPushError("Échec de l'activation. Sur iPhone, assurez-vous d'avoir ajouté Memorabilius à l'écran d'accueil (Partager → Sur l'écran d'accueil), puis réessayez.")
       }

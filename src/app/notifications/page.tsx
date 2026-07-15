@@ -29,7 +29,7 @@ export default function Notifications() {
       await navigator.serviceWorker.register('/sw.js')
       const perm = await Notification.requestPermission()
       setPushPerm(perm)
-      if (perm === 'granted') await subscribePush()
+      if (perm === 'granted') await subscribePush(true)
     } finally {
       setPushLoading(false)
     }

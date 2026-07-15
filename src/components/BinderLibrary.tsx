@@ -154,6 +154,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [shelfRowSize, setShelfRowSize] = useState(SHELF_ROW_SIZE)
   const shelfContainerRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
+    if (loading || selected) return
     const el = shelfContainerRef.current
     if (!el) return
     const measure = () => {
@@ -165,7 +166,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const ro = new ResizeObserver(measure)
     ro.observe(el)
     return () => ro.disconnect()
-  }, [selected])
+  }, [selected, loading])
 
   useEffect(() => {
     const el = stageRef.current
@@ -548,8 +549,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       }
       // Nombre de pages effectif après tri (peut être inférieur à page_count si le classeur avait des trous)
       const newPageCount = idx > 0 ? page : page - 1
-      await supabase.from('binder_slots').delete().eq('binder_id', selected.id)
-      if (rows.length) await supabase.from('binder_slots').insert(rows)
+      const { error: delErr } = await supabase.from('binder_slots').delete().eq('binder_id', selected.id)
+      if (delErr) { alert('Erreur tri (suppression) : ' + delErr.message); return }
+      if (rows.length) {
+        const { error: insErr } = await supabase.from('binder_slots').insert(rows)
+        if (insErr) { alert('Erreur tri (insertion) : ' + insErr.message); openBinder(selected); return }
+      }
       if (newPageCount !== selected.page_count) {
         await supabase.from('binders').update({ page_count: newPageCount }).eq('id', selected.id)
         setSelected(s => s ? { ...s, page_count: newPageCount } : s)

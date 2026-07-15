@@ -10,14 +10,20 @@ function urlBase64ToUint8Array(base64: string): Uint8Array {
   return Uint8Array.from([...raw].map(c => c.charCodeAt(0)))
 }
 
-async function subscribePush(): Promise<boolean> {
+// force=true : désabonne d'abord (garantit un endpoint frais, utile si les
+// clés VAPID ont changé ou si la souscription FCM est expirée côté serveur).
+async function subscribePush(force = false): Promise<boolean> {
   try {
     if (!process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY) {
       console.error('[push] NEXT_PUBLIC_VAPID_PUBLIC_KEY manquante')
       return false
     }
     const sw = await navigator.serviceWorker.ready
-    const existing = await sw.pushManager.getSubscription()
+    if (force) {
+      const old = await sw.pushManager.getSubscription()
+      if (old) await old.unsubscribe().catch(() => {})
+    }
+    const existing = force ? null : await sw.pushManager.getSubscription()
     const sub = existing || await sw.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY) as unknown as ArrayBuffer,
@@ -78,7 +84,7 @@ export default function PWAInstall() {
       // Proposer push après l'installation
       if ('Notification' in window && Notification.permission === 'default') {
         const perm = await Notification.requestPermission()
-        if (perm === 'granted') { await subscribePush(); setPushDone(true) }
+        if (perm === 'granted') { await subscribePush(true); setPushDone(true) }
       }
     }
   }

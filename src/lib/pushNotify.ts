@@ -30,11 +30,6 @@ export async function sendPushToUser(
     process.env.VAPID_PRIVATE_KEY
   )
 
-  if (!process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || !process.env.VAPID_PRIVATE_KEY) {
-    console.error('[push] Clés VAPID manquantes — vérifiez NEXT_PUBLIC_VAPID_PUBLIC_KEY et VAPID_PRIVATE_KEY dans les variables d\'env Vercel')
-    return
-  }
-
   const payloadStr = JSON.stringify(payload)
 
   await Promise.allSettled(
@@ -45,7 +40,8 @@ export async function sendPushToUser(
           payloadStr
         )
       } catch (err: any) {
-        if (err.statusCode === 410 || err.statusCode === 404) {
+        if (err.statusCode === 410 || err.statusCode === 404 || err.statusCode === 401) {
+          // Subscription invalide ou clés VAPID incompatibles → purge
           await supabaseAdmin.from('push_subscriptions').delete().eq('endpoint', sub.endpoint)
         } else {
           console.error('[push] Erreur sendNotification:', err.statusCode, err.message)

@@ -659,7 +659,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 )}
                 {profile?.twitter && (
                   <a href={`https://x.com/${profile.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
-                    style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 700, color: '#121212', textDecoration: 'none', background: '#f0f0f0', padding: '4px 10px', borderRadius: 20 }}>
+                    style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 700, color: dark ? '#e0e0e0' : '#121212', textDecoration: 'none', background: dark ? '#1a1a1a' : '#f0f0f0', border: dark ? '1px solid #333' : 'none', padding: '4px 10px', borderRadius: 20 }}>
                     <span>𝕏</span> {profile.twitter.startsWith('@') ? profile.twitter : `@${profile.twitter}`}
                   </a>
                 )}
