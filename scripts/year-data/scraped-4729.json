@@ -1,0 +1,5175 @@
+{
+  "year": 2005,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 4729,
+        "name": "2005 Upper Deck Sweet Spot"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Kurt Warner",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Elton Brown",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Eric Green",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "207",
+          "player_name": "Darryl Blackstock",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "213",
+          "player_name": "Lance Mitchell",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "229",
+          "player_name": "Adam Bergen",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "259",
+          "player_name": "J.J. Arrington",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "260",
+          "player_name": "Antrel Rolle",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "259",
+          "player_name": "J.J. Arrington",
+          "team": "Arizona Cardinals",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "260",
+          "player_name": "Antrel Rolle",
+          "team": "Arizona Cardinals",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-AN",
+          "player_name": "Antrel Rolle",
+          "team": "Arizona Cardinals",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SR-JA",
+          "player_name": "J.J. Arrington",
+          "team": "Arizona Cardinals",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-AB",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-BC",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-RJ",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AN",
+          "player_name": "Antrel Rolle",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AN",
+          "player_name": "Antrel Rolle",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "T.J. Duckett",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Deandra Cobb",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Chauncey Davis",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Michael Boley",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "198",
+          "player_name": "Jonathan Babineaux",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "223",
+          "player_name": "Jordan Beck",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "237",
+          "player_name": "Darrell Shropshire",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "275",
+          "player_name": "Roddy White",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "300",
+          "player_name": "Frank Omiyale",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "275",
+          "player_name": "Roddy White",
+          "team": "Atlanta Falcons",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-RW",
+          "player_name": "Roddy White",
+          "team": "Atlanta Falcons",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-HW",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-VM",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RO",
+          "player_name": "Roddy White",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RO",
+          "player_name": "Roddy White",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Todd Heap",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kyle Boller",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Derrick Mason",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Justin Green",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "232",
+          "player_name": "Dan Cody",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "245",
+          "player_name": "Derek Anderson",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "274",
+          "player_name": "Mark Clayton",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "299",
+          "player_name": "Jason Brown",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "245",
+          "player_name": "Derek Anderson",
+          "team": "Baltimore Ravens",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "274",
+          "player_name": "Mark Clayton",
+          "team": "Baltimore Ravens",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-MC",
+          "player_name": "Mark Clayton",
+          "team": "Baltimore Ravens",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPD-CP",
+          "player_name": "Baltimore Ravens",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DA",
+          "player_name": "Derek Anderson",
+          "team": "Baltimore Ravens",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MA",
+          "player_name": "Mark Clayton",
+          "team": "Baltimore Ravens",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DA",
+          "player_name": "Derek Anderson",
+          "team": "Baltimore Ravens",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MA",
+          "player_name": "Mark Clayton",
+          "team": "Baltimore Ravens",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-RL",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "J.P. Losman",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Willis McGahee",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Jim Leonhard",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Eric King",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Duke Preston",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "184",
+          "player_name": "Justin Geisinger",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "187",
+          "player_name": "Lionel Gates",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "265",
+          "player_name": "Roscoe Parrish",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "265",
+          "player_name": "Roscoe Parrish",
+          "team": "Buffalo Bills",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-RP",
+          "player_name": "Roscoe Parrish",
+          "team": "Buffalo Bills",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JF",
+          "player_name": "Joe Ferguson",
+          "team": "Buffalo Bills",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-LE",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JF",
+          "player_name": "Joe Ferguson",
+          "team": "Buffalo Bills",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-LE",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-CP",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-LP",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RP",
+          "player_name": "Roscoe Parrish",
+          "team": "Buffalo Bills",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RP",
+          "player_name": "Roscoe Parrish",
+          "team": "Buffalo Bills",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Jake Delhomme",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Keary Colbert",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "DeShaun Foster",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Jovan Haye",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Adam Seward",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Evan Mathis",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "183",
+          "player_name": "Geoff Hangartner",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "218",
+          "player_name": "Thomas Davis",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "247",
+          "player_name": "Eric Shelton",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "248",
+          "player_name": "Stefan LeFors",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "247",
+          "player_name": "Eric Shelton",
+          "team": "Carolina Panthers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "248",
+          "player_name": "Stefan LeFors",
+          "team": "Carolina Panthers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-ES",
+          "player_name": "Eric Shelton",
+          "team": "Carolina Panthers",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SR-SL",
+          "player_name": "Stefan LeFors",
+          "team": "Carolina Panthers",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KC",
+          "player_name": "Keary Colbert",
+          "team": "Carolina Panthers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-KC",
+          "player_name": "Keary Colbert",
+          "team": "Carolina Panthers",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-CS",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-CW",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-WC",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Rex Grossman",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Muhsin Muhammad",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Chris Harris",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Daven Holly",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "243",
+          "player_name": "Kyle Orton",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "251",
+          "player_name": "Mark Bradley",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "279",
+          "player_name": "Cedric Benson",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "243",
+          "player_name": "Kyle Orton",
+          "team": "Chicago Bears",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "251",
+          "player_name": "Mark Bradley",
+          "team": "Chicago Bears",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "279",
+          "player_name": "Cedric Benson",
+          "team": "Chicago Bears",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-CB",
+          "player_name": "Cedric Benson",
+          "team": "Chicago Bears",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SR-KO",
+          "player_name": "Kyle Orton",
+          "team": "Chicago Bears",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SR-MB",
+          "player_name": "Mark Bradley",
+          "team": "Chicago Bears",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MM",
+          "player_name": "Muhsin Muhammad",
+          "team": "Chicago Bears",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MM",
+          "player_name": "Muhsin Muhammad",
+          "team": "Chicago Bears",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-AB",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-MT",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-OB",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-KO",
+          "player_name": "Kyle Orton",
+          "team": "Chicago Bears",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-KO",
+          "player_name": "Kyle Orton",
+          "team": "Chicago Bears",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-BU",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-RG",
+          "player_name": "Rex Grossman",
+          "team": "Chicago Bears",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Rudi Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Jonathan Fanene",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Tab Perry",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "211",
+          "player_name": "Odell Thurman",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "238",
+          "player_name": "David Pollack",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "257",
+          "player_name": "Chris Henry",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "257",
+          "player_name": "Chris Henry",
+          "team": "Cincinnati Bengals",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DP",
+          "player_name": "David Pollack",
+          "team": "Cincinnati Bengals",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-RJ",
+          "player_name": "Rudi Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DP",
+          "player_name": "David Pollack",
+          "team": "Cincinnati Bengals",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-RJ",
+          "player_name": "Rudi Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-GP",
+          "player_name": "Cincinnati Bengals",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-HW",
+          "player_name": "Cincinnati Bengals",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-JJ",
+          "player_name": "Cincinnati Bengals",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-RJ",
+          "player_name": "Rudi Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Antonio Perkins",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "David McMillan",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "219",
+          "player_name": "Brodney Pool",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "262",
+          "player_name": "Charlie Frye",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "278",
+          "player_name": "Braylon Edwards",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "286",
+          "player_name": "Nick Speegle",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "262",
+          "player_name": "Charlie Frye",
+          "team": "Cleveland Browns",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "278",
+          "player_name": "Braylon Edwards",
+          "team": "Cleveland Browns",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-BE",
+          "player_name": "Braylon Edwards",
+          "team": "Cleveland Browns",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SR-CF",
+          "player_name": "Charlie Frye",
+          "team": "Cleveland Browns",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BK",
+          "player_name": "Bernie Kosar",
+          "team": "Cleveland Browns",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BK",
+          "player_name": "Bernie Kosar",
+          "team": "Cleveland Browns",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-BW",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-EW",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-FO",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-KM",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-BE",
+          "player_name": "Braylon Edwards",
+          "team": "Cleveland Browns",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CF",
+          "player_name": "Charlie Frye",
+          "team": "Cleveland Browns",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-BE",
+          "player_name": "Braylon Edwards",
+          "team": "Cleveland Browns",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CF",
+          "player_name": "Charlie Frye",
+          "team": "Cleveland Browns",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Peerless Price",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Keyshawn Johnson",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Drew Bledsoe",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Justin Beriault",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Kevin Burnett",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Jay Ratliff",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "192",
+          "player_name": "Tyson Thompson",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "205",
+          "player_name": "DeMarcus Ware",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "239",
+          "player_name": "Marcus Spears",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "255",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "255",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DR",
+          "player_name": "Drew Bledsoe",
+          "team": "Dallas Cowboys",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JJ",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DR",
+          "player_name": "Drew Bledsoe",
+          "team": "Dallas Cowboys",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JJ",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-AS",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-DJ",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DB",
+          "player_name": "Drew Bledsoe",
+          "team": "Dallas Cowboys",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JJ",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DB",
+          "player_name": "Drew Bledsoe",
+          "team": "Dallas Cowboys",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JJ",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-DB",
+          "player_name": "Drew Bledsoe",
+          "team": "Dallas Cowboys",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-JJ",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-RW",
+          "player_name": "Roy Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Tatum Bell",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Darrent Williams",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Domonique Foxworth",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "179",
+          "player_name": "Paul Ernster",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "216",
+          "player_name": "Brandon Browner",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "271",
+          "player_name": "Maurice Clarett",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "271",
+          "player_name": "Maurice Clarett",
+          "team": "Denver Broncos",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-MO",
+          "player_name": "Maurice Clarett",
+          "team": "Denver Broncos",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPD-CS",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MC",
+          "player_name": "Maurice Clarett",
+          "team": "Denver Broncos",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MC",
+          "player_name": "Maurice Clarett",
+          "team": "Denver Broncos",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-AL",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Roy Williams",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Kevin Jones",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Stanley Wilson",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "202",
+          "player_name": "Shaun Cody",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "206",
+          "player_name": "Bill Swancutt",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "246",
+          "player_name": "Dan Orlovsky",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "277",
+          "player_name": "Mike Williams",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "246",
+          "player_name": "Dan Orlovsky",
+          "team": "Detroit Lions",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "277",
+          "player_name": "Mike Williams",
+          "team": "Detroit Lions",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-MW",
+          "player_name": "Mike Williams",
+          "team": "Detroit Lions",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-AS",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-CW",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-FO",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DO",
+          "player_name": "Dan Orlovsky",
+          "team": "Detroit Lions",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MW",
+          "player_name": "Mike Williams",
+          "team": "Detroit Lions",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DO",
+          "player_name": "Dan Orlovsky",
+          "team": "Detroit Lions",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MW",
+          "player_name": "Mike Williams",
+          "team": "Detroit Lions",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Javon Walker",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Michael Hawkins",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Nick Collins",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Marviel Underwood",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Mike Montgomery",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Kurt Campbell",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Vonta Leach",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "199",
+          "player_name": "Will Whitticker",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "208",
+          "player_name": "Brady Poppinga",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "254",
+          "player_name": "Terrence Murphy",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "284",
+          "player_name": "Aaron Rodgers",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "295",
+          "player_name": "Roy Manning",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "254",
+          "player_name": "Terrence Murphy",
+          "team": "Green Bay Packers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "284",
+          "player_name": "Aaron Rodgers",
+          "team": "Green Bay Packers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-AR",
+          "player_name": "Aaron Rodgers",
+          "team": "Green Bay Packers",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SR-TM",
+          "player_name": "Terrence Murphy",
+          "team": "Green Bay Packers",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-HA",
+          "player_name": "Herb Adderley",
+          "team": "Green Bay Packers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-PH",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-HA",
+          "player_name": "Herb Adderley",
+          "team": "Green Bay Packers",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-PH",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-BM",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-GR",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-HM",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-RF",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-SR",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AR",
+          "player_name": "Aaron Rodgers",
+          "team": "Green Bay Packers",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-HA",
+          "player_name": "Herb Adderley",
+          "team": "Green Bay Packers",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AR",
+          "player_name": "Aaron Rodgers",
+          "team": "Green Bay Packers",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-HA",
+          "player_name": "Herb Adderley",
+          "team": "Green Bay Packers",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Domanick Davis",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "C.C. Brown",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "215",
+          "player_name": "Jerome Mathis",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "234",
+          "player_name": "Travis Johnson",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "273",
+          "player_name": "Vernand Morency",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "273",
+          "player_name": "Vernand Morency",
+          "team": "Houston Texans",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-VM",
+          "player_name": "Vernand Morency",
+          "team": "Houston Texans",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DD",
+          "player_name": "Domanick Davis",
+          "team": "Houston Texans",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DD",
+          "player_name": "Domanick Davis",
+          "team": "Houston Texans",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-DB",
+          "player_name": "Houston Texans",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-MM",
+          "player_name": "Houston Texans",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DD",
+          "player_name": "Domanick Davis",
+          "team": "Houston Texans",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-VM",
+          "player_name": "Vernand Morency",
+          "team": "Houston Texans",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DD",
+          "player_name": "Domanick Davis",
+          "team": "Houston Texans",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-VM",
+          "player_name": "Vernand Morency",
+          "team": "Houston Texans",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-DC",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Kelvin Hayden",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Jonathan Welsh",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Kerry Wright",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Dave Rayner",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "204",
+          "player_name": "Vincent Burns",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "220",
+          "player_name": "Dylan Gandy",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "269",
+          "player_name": "Marlin Jackson",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "292",
+          "player_name": "Matt Giordano",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "269",
+          "player_name": "Marlin Jackson",
+          "team": "Indianapolis Colts",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-RW",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-RW",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-KM",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-WM",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AD",
+          "player_name": "Anthony Davis",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RW",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AD",
+          "player_name": "Anthony Davis",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RW",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Byron Leftwich",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Scott Starks",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Pat Thomas",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "189",
+          "player_name": "Alvin Pearman",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "Chad Owens",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "282",
+          "player_name": "Matt Jones",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "291",
+          "player_name": "Khalif Barnes",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "296",
+          "player_name": "Gerald Sensabaugh",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "282",
+          "player_name": "Matt Jones",
+          "team": "Jacksonville Jaguars",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-MJ",
+          "player_name": "Matt Jones",
+          "team": "Jacksonville Jaguars",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPD-RL",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-BL",
+          "player_name": "Byron Leftwich",
+          "team": "Jacksonville Jaguars",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Trent Green",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Boomer Grigsby",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "242",
+          "player_name": "Derrick Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-PH",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BJ",
+          "player_name": "Bo Jackson",
+          "team": "Los Angeles Raiders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MA",
+          "player_name": "Marcus Allen",
+          "team": "Los Angeles Raiders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BJ",
+          "player_name": "Bo Jackson",
+          "team": "Los Angeles Raiders",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MA",
+          "player_name": "Marcus Allen",
+          "team": "Los Angeles Raiders",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "A.J. Feeley",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Chris Chambers",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Randy McMichael",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Travis Daniels",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Kevin Vickerson",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "201",
+          "player_name": "Matt Roth",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "241",
+          "player_name": "Channing Crowder",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "281",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "281",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-RB",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPD-WB",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RB",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RB",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Nate Burleson",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "264",
+          "player_name": "Ciatrick Fason",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "266",
+          "player_name": "Erasmus James",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "276",
+          "player_name": "Troy Williamson",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "264",
+          "player_name": "Ciatrick Fason",
+          "team": "Minnesota Vikings",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "266",
+          "player_name": "Erasmus James",
+          "team": "Minnesota Vikings",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "276",
+          "player_name": "Troy Williamson",
+          "team": "Minnesota Vikings",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-CI",
+          "player_name": "Ciatrick Fason",
+          "team": "Minnesota Vikings",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SR-TW",
+          "player_name": "Troy Williamson",
+          "team": "Minnesota Vikings",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-NB",
+          "player_name": "Nate Burleson",
+          "team": "Minnesota Vikings",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-NB",
+          "player_name": "Nate Burleson",
+          "team": "Minnesota Vikings",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-EW",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-FG",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-HJ",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-NW",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-WC",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CI",
+          "player_name": "Ciatrick Fason",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-EJ",
+          "player_name": "Erasmus James",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-NB",
+          "player_name": "Nate Burleson",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-TW",
+          "player_name": "Troy Williamson",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CI",
+          "player_name": "Ciatrick Fason",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-EJ",
+          "player_name": "Erasmus James",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-NB",
+          "player_name": "Nate Burleson",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-TW",
+          "player_name": "Troy Williamson",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-DU",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Corey Dillon",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Deion Branch",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Richard Seymour",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "James Sanders",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Matt Cassel",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Ellis Hobbs",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "210",
+          "player_name": "Ryan Claridge",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "288",
+          "player_name": "Logan Mankins",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "297",
+          "player_name": "Nick Kaczur",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Jammal Brown",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Alfred Fincher",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Chase Lyman",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "221",
+          "player_name": "Josh Bullocks",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "225",
+          "player_name": "Adrian McPherson",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AM",
+          "player_name": "Adrian McPherson",
+          "team": "New Orleans Saints",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AM",
+          "player_name": "Adrian McPherson",
+          "team": "New Orleans Saints",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JH",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JH",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-DM",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "169",
+          "player_name": "Corey Webster",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "Ryan Grant",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "178",
+          "player_name": "James Butler",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "188",
+          "player_name": "Brandon Jacobs",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "203",
+          "player_name": "Justin Tuck",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "231",
+          "player_name": "Eric Moore",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-DB",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-MR",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-WR",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-JS",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Laveranues Coles",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Andre Maddox",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Kerry Rhodes",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Joel Dreessen",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "181",
+          "player_name": "Mike Nugent",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "182",
+          "player_name": "Sione Pouha",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "194",
+          "player_name": "Dante Ridgeway",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "217",
+          "player_name": "Justin Miller",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "227",
+          "player_name": "Cedric Houston",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DO",
+          "player_name": "Don Maynard",
+          "team": "New York Jets",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DO",
+          "player_name": "Don Maynard",
+          "team": "New York Jets",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-CM",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-LC",
+          "player_name": "Laveranues Coles",
+          "team": "New York Jets",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Kerry Collins",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "LaMont Jordan",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Randy Moss",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Stanford Routt",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Kirk Morrison",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "Fabian Washington",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "197",
+          "player_name": "Chris Carr",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "235",
+          "player_name": "Ryan Riddle",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "250",
+          "player_name": "Andrew Walter",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "250",
+          "player_name": "Andrew Walter",
+          "team": "Oakland Raiders",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-AW",
+          "player_name": "Andrew Walter",
+          "team": "Oakland Raiders",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JP",
+          "player_name": "Jim Plunkett",
+          "team": "Oakland Raiders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JP",
+          "player_name": "Jim Plunkett",
+          "team": "Oakland Raiders",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-FP",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-HJ",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-WJ",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AW",
+          "player_name": "Andrew Walter",
+          "team": "Oakland Raiders",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AW",
+          "player_name": "Andrew Walter",
+          "team": "Oakland Raiders",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-CW",
+          "player_name": "Charles Woodson",
+          "team": "Oakland Raiders",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-JP",
+          "player_name": "Jerry Porter",
+          "team": "Oakland Raiders",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-RM",
+          "player_name": "Randy Moss",
+          "team": "Oakland Raiders",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Terrell Owens",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jeremiah Trotter",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "Matt McCoy",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "175",
+          "player_name": "Sean Considine",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "195",
+          "player_name": "Stephen Spach",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "214",
+          "player_name": "Trent Cole",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "236",
+          "player_name": "Mike Patterson",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "249",
+          "player_name": "Reggie Brown",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "268",
+          "player_name": "Ryan Moats",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "249",
+          "player_name": "Reggie Brown",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "268",
+          "player_name": "Ryan Moats",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-RE",
+          "player_name": "Reggie Brown",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-BM",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-GB",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-MM",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-MT",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-VM",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RE",
+          "player_name": "Reggie Brown",
+          "team": "Philadelphia Eagles",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RM",
+          "player_name": "Ryan Moats",
+          "team": "Philadelphia Eagles",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RE",
+          "player_name": "Reggie Brown",
+          "team": "Philadelphia Eagles",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-RM",
+          "player_name": "Ryan Moats",
+          "team": "Philadelphia Eagles",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-BW",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-DO",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Willie Parker",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Noah Herron",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Bryant McFadden",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Chris Kemoeatu",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "258",
+          "player_name": "Heath Miller",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "261",
+          "player_name": "Fred Gibson",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "285",
+          "player_name": "Rian Wallace",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "294",
+          "player_name": "Trai Essex",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "258",
+          "player_name": "Heath Miller",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "261",
+          "player_name": "Fred Gibson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BR",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BR",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-GB",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-GG",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-MR",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-RL",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-FG",
+          "player_name": "Fred Gibson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-FG",
+          "player_name": "Fred Gibson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-AR",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-BR",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Antonio Gates",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "196",
+          "player_name": "Scott Mruczkowski",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "200",
+          "player_name": "Luis Castillo",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "240",
+          "player_name": "Shawne Merriman",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "253",
+          "player_name": "Vincent Jackson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "270",
+          "player_name": "Darren Sproles",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "253",
+          "player_name": "Vincent Jackson",
+          "team": "San Diego Chargers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "270",
+          "player_name": "Darren Sproles",
+          "team": "San Diego Chargers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-VJ",
+          "player_name": "Vincent Jackson",
+          "team": "San Diego Chargers",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AN",
+          "player_name": "Antonio Gates",
+          "team": "San Diego Chargers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AN",
+          "player_name": "Antonio Gates",
+          "team": "San Diego Chargers",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-FP",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-GJ",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-VJ",
+          "player_name": "Vincent Jackson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-VJ",
+          "player_name": "Vincent Jackson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-DR",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Tim Rattay",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Brandon Lloyd",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Eric Johnson",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Patrick Estes",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Rasheed Marshall",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Billy Bajema",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Derrick Johnson",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "256",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "283",
+          "player_name": "Alex Smith",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "289",
+          "player_name": "David Baas",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "301",
+          "player_name": "Fred Amey",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "256",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "283",
+          "player_name": "Alex Smith",
+          "team": "San Francisco 49ers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-AS",
+          "player_name": "Alex Smith",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SR-FG",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-FG",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-HM",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-SR",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AS",
+          "player_name": "Alex Smith",
+          "team": "San Francisco 49ers",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-FR",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AS",
+          "player_name": "Alex Smith",
+          "team": "San Francisco 49ers",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-FR",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Darrell Jackson",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Lofa Tatupu",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "209",
+          "player_name": "Leroy Hill",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "230",
+          "player_name": "Jeb Huckeba",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "244",
+          "player_name": "David Greene",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "287",
+          "player_name": "Chris Spencer",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "298",
+          "player_name": "Ray Willis",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "244",
+          "player_name": "David Greene",
+          "team": "Seattle Seahawks",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-GG",
+          "player_name": "Seattle Seahawks",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-GP",
+          "player_name": "Seattle Seahawks",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DG",
+          "player_name": "David Greene",
+          "team": "Seattle Seahawks",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-DG",
+          "player_name": "David Greene",
+          "team": "Seattle Seahawks",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-MA",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-SA",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marc Bulger",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Steven Jackson",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Madison Hedgecock",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Alex Barron",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Jerome Carter",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "174",
+          "player_name": "Ronald Bartell",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "O.J. Atogwe",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "Ryan Fitzpatrick",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "224",
+          "player_name": "Claude Terrell",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "226",
+          "player_name": "Jerome Collins",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "302",
+          "player_name": "Reggie Hodges",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MB",
+          "player_name": "Marc Bulger",
+          "team": "St. Louis Rams",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SJ",
+          "player_name": "Steven Jackson",
+          "team": "St. Louis Rams",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MB",
+          "player_name": "Marc Bulger",
+          "team": "St. Louis Rams",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SJ",
+          "player_name": "Steven Jackson",
+          "team": "St. Louis Rams",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-BJ",
+          "player_name": "St. Louis Rams",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-MB",
+          "player_name": "Marc Bulger",
+          "team": "St. Louis Rams",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Joey Galloway",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Brian Griese",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Michael Clayton",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Paris Warren",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Anthony Bryant",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Dan Buenning",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Donte Nicholson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "J.R. Russell",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "212",
+          "player_name": "Barrett Ruud",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "233",
+          "player_name": "Alex Smith",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "280",
+          "player_name": "Cadillac Williams",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "293",
+          "player_name": "Rick Razzano",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "280",
+          "player_name": "Cadillac Williams",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-CW",
+          "player_name": "Carnell Williams",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AS",
+          "player_name": "Alex Smith",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AS",
+          "player_name": "Alex Smith",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-BC",
+          "player_name": "Tampa Bay Buccaneers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-BW",
+          "player_name": "Tampa Bay Buccaneers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-WB",
+          "player_name": "Tampa Bay Buccaneers",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CW",
+          "player_name": "Cadillac Williams",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MI",
+          "player_name": "Michael Clayton",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CW",
+          "player_name": "Cadillac Williams",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-MI",
+          "player_name": "Michael Clayton",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Drew Bennett",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Roydell Williams",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Bo Scaife",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Reynaldo Hill",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Damien Nash",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Brandon Jones",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "222",
+          "player_name": "Vincent Fuller",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "228",
+          "player_name": "Daniel Loper",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "252",
+          "player_name": "Courtney Roby",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "263",
+          "player_name": "Adam Jones",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "290",
+          "player_name": "Michael Roos",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "252",
+          "player_name": "Courtney Roby",
+          "team": "Tennessee Titans",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "263",
+          "player_name": "Adam Jones",
+          "team": "Tennessee Titans",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-AJ",
+          "player_name": "Adam Jones",
+          "team": "Tennessee Titans",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DB",
+          "player_name": "Drew Bennett",
+          "team": "Tennessee Titans",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-DB",
+          "player_name": "Drew Bennett",
+          "team": "Tennessee Titans",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-BD",
+          "player_name": "Tennessee Titans",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-RJ",
+          "player_name": "Tennessee Titans",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AJ",
+          "player_name": "Adam Jones",
+          "team": "Tennessee Titans",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-AJ",
+          "player_name": "Adam Jones",
+          "team": "Tennessee Titans",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-SM",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Santana Moss",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Nehemiah Broughton",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "191",
+          "player_name": "Manuel White",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "267",
+          "player_name": "Carlos Rogers",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "272",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "267",
+          "player_name": "Carlos Rogers",
+          "team": "Washington Redskins",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "272",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SR-CR",
+          "player_name": "Carlos Rogers",
+          "team": "Washington Redskins",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SR-JC",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": "Rookie Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BI",
+          "player_name": "Billy Kilmer",
+          "team": "Washington Redskins",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BI",
+          "player_name": "Billy Kilmer",
+          "team": "Washington Redskins",
+          "variation": "Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-WJ",
+          "player_name": "Washington Redskins",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPD-WR",
+          "player_name": "Washington Redskins",
+          "team": null,
+          "variation": "Sweet Panel Dual Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CR",
+          "player_name": "Carlos Rogers",
+          "team": "Washington Redskins",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JC",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": "Sweet Panel Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-CR",
+          "player_name": "Carlos Rogers",
+          "team": "Washington Redskins",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SP-JC",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": "Sweet Panel Signatures Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SW-CL",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SW-LA",
+          "player_name": "Lavar Arrington",
+          "team": "Washington Redskins",
+          "variation": "Sweet Swatches",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "year": 1996,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 67614,
+        "name": "1996 Fleer USA"
+      },
+      "unique": [
+        {
+          "card_number": "7",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Shaquille O'neal",
+          "team": "Orlando Magic",
+          "variation": "Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Heroes",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Heroes",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}

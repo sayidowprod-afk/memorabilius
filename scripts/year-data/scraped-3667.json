@@ -1,0 +1,63 @@
+{
+  "year": 1996,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3667,
+        "name": "1996 Collector's Choice Update"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Joe Montana",
+          "team": "Kansas City Chiefs",
+          "variation": "Record Breaking Trio",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Record Breaking Trio",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Record Breaking Trio",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Record Breaking Trio",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Record Breaking Trio",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Record Breaking Trio",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

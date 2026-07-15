@@ -1,0 +1,5007 @@
+{
+  "year": 2009,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 9629,
+        "name": "2009 UD Black"
+      },
+      "unique": [
+        {
+          "card_number": "3",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kurt Warner",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Chris Wells",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kurt Warner",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kurt Warner",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "115",
+          "player_name": "Beanie Wells",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-KW",
+          "player_name": "Kurt Warner",
+          "team": "Arizona Cardinals",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-KW",
+          "player_name": "Kurt Warner",
+          "team": "Arizona Cardinals",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-KW",
+          "player_name": "Kurt Warner",
+          "team": "Arizona Cardinals",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-KW",
+          "player_name": "Kurt Warner",
+          "team": "Arizona Cardinals",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-KW",
+          "player_name": "Kurt Warner",
+          "team": "Arizona Cardinals",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-KW",
+          "player_name": "Kurt Warner",
+          "team": "Arizona Cardinals",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Michael Turner",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Michael Turner",
+          "team": "Atlanta Falcons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Michael Turner",
+          "team": "Atlanta Falcons",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-MR",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-MT",
+          "player_name": "Michael Turner",
+          "team": "Atlanta Falcons",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-MR",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-MT",
+          "player_name": "Michael Turner",
+          "team": "Atlanta Falcons",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-MR",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-MT",
+          "player_name": "Michael Turner",
+          "team": "Atlanta Falcons",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-MR",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-MT",
+          "player_name": "Michael Turner",
+          "team": "Atlanta Falcons",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-MR",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-MR",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Bubba Smith",
+          "team": "Baltimore Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Bubba Smith",
+          "team": "Baltimore Colts",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-AA",
+          "player_name": "Alan Ameche",
+          "team": "Baltimore Colts",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-JP",
+          "player_name": "Jim Parker",
+          "team": "Baltimore Colts",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ed Reed",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Thurman Thomas",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Marshawn Lynch",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Bubba Smith",
+          "team": "Buffalo Bills",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Thurman Thomas",
+          "team": "Buffalo Bills",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Marshawn Lynch",
+          "team": "Buffalo Bills",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Thurman Thomas",
+          "team": "Buffalo Bills",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Marshawn Lynch",
+          "team": "Buffalo Bills",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-JK",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-JK",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-EL",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-EL",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Mike Goodson",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "106",
+          "player_name": "Mike Goodson",
+          "team": "Carolina Panthers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Mike Ditka",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Juaquin Iglesias",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "119",
+          "player_name": "Juaquin Iglesias",
+          "team": "Chicago Bears",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-GS",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-GS",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-BG",
+          "player_name": "Bill George",
+          "team": "Chicago Bears",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-BN",
+          "player_name": "Bronko Nagurski",
+          "team": "Chicago Bears",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-CT",
+          "player_name": "Bulldog Turner",
+          "team": "Chicago Bears",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-DF",
+          "player_name": "Dan Fortmann",
+          "team": "Chicago Bears",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-GC",
+          "player_name": "George Connor",
+          "team": "Chicago Bears",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-GH",
+          "player_name": "George Halas",
+          "team": "Chicago Bears",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-GM",
+          "player_name": "George McAfee",
+          "team": "Chicago Bears",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-HE",
+          "player_name": "Ed Healey",
+          "team": "Chicago Bears",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-MU",
+          "player_name": "George Musso",
+          "team": "Chicago Bears",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-RG",
+          "player_name": "Red Grange",
+          "team": "Chicago Bears",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-TH",
+          "player_name": "Tom Harmon",
+          "team": "Chicago Bears",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-WP",
+          "player_name": "Walter Payton",
+          "team": "Chicago Bears",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-GS",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-MF",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-GS",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-MF",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-LV",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-TM",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-MF",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-MS",
+          "player_name": "Mike Singletary",
+          "team": "Chicago Bears",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-MF",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-MS",
+          "player_name": "Mike Singletary",
+          "team": "Chicago Bears",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Anthony Munoz",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Ken Anderson",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Andre Smith",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "127",
+          "player_name": "Rey Maualuga",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Anthony Munoz",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Ken Anderson",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Anthony Munoz",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Ken Anderson",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "Andre Smith",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "127",
+          "player_name": "Rey Maualuga",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-KA",
+          "player_name": "Ken Anderson",
+          "team": "Cincinnati Bengals",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-KA",
+          "player_name": "Ken Anderson",
+          "team": "Cincinnati Bengals",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "James Davis",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "102",
+          "player_name": "Mohamed Massaquoi",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "James Davis",
+          "team": "Cleveland Browns",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "102",
+          "player_name": "Mohamed Massaquoi",
+          "team": "Cleveland Browns",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-BW",
+          "player_name": "Bill Willis",
+          "team": "Cleveland Browns",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-FG",
+          "player_name": "Frank Gatski",
+          "team": "Cleveland Browns",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-LA",
+          "player_name": "Dante Lavelli",
+          "team": "Cleveland Browns",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-LG",
+          "player_name": "Lou Groza",
+          "team": "Cleveland Browns",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-MM",
+          "player_name": "Marion Motley",
+          "team": "Cleveland Browns",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-OG",
+          "player_name": "Otto Graham",
+          "team": "Cleveland Browns",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-PB",
+          "player_name": "Paul Brown",
+          "team": "Cleveland Browns",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-GG",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-GL",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-WM",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Roger Staubach",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Bob Lilly",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Daryl Johnston",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Randy White",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Felix Jones",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "DeMarcus Ware",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Stephen McGee",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Roger Staubach",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Bob Lilly",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Daryl Johnston",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Randy White",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "DeMarcus Ware",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Roger Staubach",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Bob Lilly",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Daryl Johnston",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Randy White",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "DeMarcus Ware",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "128",
+          "player_name": "Stephen McGee",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-BL",
+          "player_name": "Bob Lilly",
+          "team": "Dallas Cowboys",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-RS",
+          "player_name": "Roger Staubach",
+          "team": "Dallas Cowboys",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-RW",
+          "player_name": "Randy White",
+          "team": "Dallas Cowboys",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-BL",
+          "player_name": "Bob Lilly",
+          "team": "Dallas Cowboys",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-RS",
+          "player_name": "Roger Staubach",
+          "team": "Dallas Cowboys",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-RW",
+          "player_name": "Randy White",
+          "team": "Dallas Cowboys",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-BH",
+          "player_name": "Bob Hayes",
+          "team": "Dallas Cowboys",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-TL",
+          "player_name": "Tom Landry",
+          "team": "Dallas Cowboys",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-TS",
+          "player_name": "Tex Schramm",
+          "team": "Dallas Cowboys",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-TR",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-TD",
+          "player_name": "Tony Dorsett",
+          "team": "Dallas Cowboys",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-TR",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-HS",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-LS",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-AS",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DP-SS",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-AS",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DP-SS",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LP-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-TR",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-TR",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Brian Dawkins",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Knowshon Moreno",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "130",
+          "player_name": "Alphonso Smith",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "101",
+          "player_name": "Knowshon Moreno",
+          "team": "Denver Broncos",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "130",
+          "player_name": "Alphonso Smith",
+          "team": "Denver Broncos",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-BM",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-BM",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Billy Sims",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lem Barney",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Calvin Johnson",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Kevin Smith",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Matthew Stafford",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "110",
+          "player_name": "Derrick Williams",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "118",
+          "player_name": "Brandon Pettigrew",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Billy Sims",
+          "team": "Detroit Lions",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lem Barney",
+          "team": "Detroit Lions",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Kevin Smith",
+          "team": "Detroit Lions",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Billy Sims",
+          "team": "Detroit Lions",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Lem Barney",
+          "team": "Detroit Lions",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Kevin Smith",
+          "team": "Detroit Lions",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "100",
+          "player_name": "Matthew Stafford",
+          "team": "Detroit Lions",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "110",
+          "player_name": "Derrick Williams",
+          "team": "Detroit Lions",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "118",
+          "player_name": "Brandon Pettigrew",
+          "team": "Detroit Lions",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-BL",
+          "player_name": "Bobby Layne",
+          "team": "Detroit Lions",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-DL",
+          "player_name": "Dick Lane",
+          "team": "Detroit Lions",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-DW",
+          "player_name": "Doak Walker",
+          "team": "Detroit Lions",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-JC",
+          "player_name": "Jack Christiansen",
+          "team": "Detroit Lions",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-LC",
+          "player_name": "Lou Creekmur",
+          "team": "Detroit Lions",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-WO",
+          "player_name": "Alex Wojciechowicz",
+          "team": "Detroit Lions",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-LB",
+          "player_name": "Lem Barney",
+          "team": "Detroit Lions",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-LB",
+          "player_name": "Lem Barney",
+          "team": "Detroit Lions",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-LL",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-SP",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-SS",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-SP",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DP-SS",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LP-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-KS",
+          "player_name": "Kevin Smith",
+          "team": "Detroit Lions",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-KS",
+          "player_name": "Kevin Smith",
+          "team": "Detroit Lions",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jerry Kramer",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Aaron Rodgers",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "B.J. Raji",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "111",
+          "player_name": "Clay Matthews",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jerry Kramer",
+          "team": "Green Bay Packers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jerry Kramer",
+          "team": "Green Bay Packers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "B.J. Raji",
+          "team": "Green Bay Packers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "111",
+          "player_name": "Clay Matthews",
+          "team": "Green Bay Packers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-BM",
+          "player_name": "Johnny McNally",
+          "team": "Green Bay Packers",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-CH",
+          "player_name": "Clarke Hinkle",
+          "team": "Green Bay Packers",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-DH",
+          "player_name": "Don Hutson",
+          "team": "Green Bay Packers",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-JR",
+          "player_name": "Jim Ringo",
+          "team": "Green Bay Packers",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-RN",
+          "player_name": "Ray Nitschke",
+          "team": "Green Bay Packers",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-TC",
+          "player_name": "Tony Canadeo",
+          "team": "Green Bay Packers",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-HC",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-NR",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-CS",
+          "player_name": "Houston Oilers",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-CS",
+          "player_name": "Houston Oilers",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Steve Slaton",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Brian Cushing",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Steve Slaton",
+          "team": "Houston Texans",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Steve Slaton",
+          "team": "Houston Texans",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "125",
+          "player_name": "Brian Cushing",
+          "team": "Houston Texans",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-SL",
+          "player_name": "Steve Slaton",
+          "team": "Houston Texans",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-SL",
+          "player_name": "Steve Slaton",
+          "team": "Houston Texans",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-CS",
+          "player_name": "Houston Texans",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-CS",
+          "player_name": "Houston Texans",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Donald Brown",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Donald Brown",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-MM",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-MM",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LP-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Maurice Jones-Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Eugene Monroe",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Maurice Jones-Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Maurice Jones-Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "129",
+          "player_name": "Eugene Monroe",
+          "team": "Jacksonville Jaguars",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-MJ",
+          "player_name": "Maurice Jones-Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-MJ",
+          "player_name": "Maurice Jones-Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Dwayne Bowe",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Matt Cassel",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Dwayne Bowe",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Matt Cassel",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Dwayne Bowe",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Matt Cassel",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-BU",
+          "player_name": "Buck Buchanan",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-DT",
+          "player_name": "Derrick Thomas",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-HS",
+          "player_name": "Hank Stram",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-LH",
+          "player_name": "Lamar Hunt",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-HS",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-TH",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-DB",
+          "player_name": "Dwayne Bowe",
+          "team": "Kansas City Chiefs",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-DB",
+          "player_name": "Dwayne Bowe",
+          "team": "Kansas City Chiefs",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Deacon Jones",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jack Youngblood",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Merlin Olsen",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Deacon Jones",
+          "team": "Los Angeles Rams",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jack Youngblood",
+          "team": "Los Angeles Rams",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Merlin Olsen",
+          "team": "Los Angeles Rams",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Deacon Jones",
+          "team": "Los Angeles Rams",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jack Youngblood",
+          "team": "Los Angeles Rams",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Merlin Olsen",
+          "team": "Los Angeles Rams",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-DJ",
+          "player_name": "Deacon Jones",
+          "team": "Los Angeles Rams",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-JY",
+          "player_name": "Jack Youngblood",
+          "team": "Los Angeles Rams",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-DJ",
+          "player_name": "Deacon Jones",
+          "team": "Los Angeles Rams",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-JY",
+          "player_name": "Jack Youngblood",
+          "team": "Los Angeles Rams",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-EH",
+          "player_name": "Elroy Hirsch",
+          "team": "Los Angeles Rams",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-GA",
+          "player_name": "George Allen",
+          "team": "Los Angeles Rams",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-SG",
+          "player_name": "Sid Gillman",
+          "team": "Los Angeles Rams",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-TF",
+          "player_name": "Tom Fears",
+          "team": "Los Angeles Rams",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-WB",
+          "player_name": "Bob Waterfield",
+          "team": "Los Angeles Rams",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-LV",
+          "player_name": "Los Angeles Rams",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Joey Porter",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Vontae Davis",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "113",
+          "player_name": "Patrick Turner",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "132",
+          "player_name": "Pat White",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Joey Porter",
+          "team": "Miami Dolphins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Joey Porter",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "103",
+          "player_name": "Vontae Davis",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "113",
+          "player_name": "Patrick Turner",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "132",
+          "player_name": "Pat White",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-BG",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-BG",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-BG",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RB",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-BG",
+          "player_name": "Bob Griese",
+          "team": "Miami Dolphins",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RB",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Ron Yary",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Alan Page",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Percy Harvin",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Ron Yary",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Alan Page",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Ron Yary",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Alan Page",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "98",
+          "player_name": "Percy Harvin",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-JA",
+          "player_name": "Jared Allen",
+          "team": "Minnesota Vikings",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-PA",
+          "player_name": "Alan Page",
+          "team": "Minnesota Vikings",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-JA",
+          "player_name": "Jared Allen",
+          "team": "Minnesota Vikings",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-PA",
+          "player_name": "Alan Page",
+          "team": "Minnesota Vikings",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RY",
+          "player_name": "Ron Yary",
+          "team": "Minnesota Vikings",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RY",
+          "player_name": "Ron Yary",
+          "team": "Minnesota Vikings",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-SP",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-SP",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LP-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-FT",
+          "player_name": "Fran Tarkenton",
+          "team": "Minnesota Vikings",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-FT",
+          "player_name": "Fran Tarkenton",
+          "team": "Minnesota Vikings",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Brandon Tate",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "107",
+          "player_name": "Brandon Tate",
+          "team": "New England Patriots",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Malcolm Jenkins",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "117",
+          "player_name": "Malcolm Jenkins",
+          "team": "New Orleans Saints",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-DB",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-MC",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-DB",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-MC",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-DB",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-DB",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-MC",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-MC",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Brandon Jacobs",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harry Carson",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Hakeem Nicks",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "122",
+          "player_name": "Ramses Barden",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Brandon Jacobs",
+          "team": "New York Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harry Carson",
+          "team": "New York Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "57",
+          "player_name": "Brandon Jacobs",
+          "team": "New York Giants",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "74",
+          "player_name": "Harry Carson",
+          "team": "New York Giants",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "114",
+          "player_name": "Hakeem Nicks",
+          "team": "New York Giants",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "122",
+          "player_name": "Ramses Barden",
+          "team": "New York Giants",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-LT",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-LT",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-AW",
+          "player_name": "Arnie Weinmeister",
+          "team": "New York Giants",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-BA",
+          "player_name": "Red Badgro",
+          "team": "New York Giants",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-CC",
+          "player_name": "Charley Conerly",
+          "team": "New York Giants",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-ET",
+          "player_name": "Emlen Tunnell",
+          "team": "New York Giants",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-KS",
+          "player_name": "Ken Strong",
+          "team": "New York Giants",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-MH",
+          "player_name": "Mel Hein",
+          "team": "New York Giants",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-RB",
+          "player_name": "Roosevelt Brown",
+          "team": "New York Giants",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-WM",
+          "player_name": "Wellington Mara",
+          "team": "New York Giants",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-LT",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-LT",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-BT",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-MM",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-MM",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LP-BJ",
+          "player_name": "Brandon Jacobs",
+          "team": "New York Giants",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-BJ",
+          "player_name": "Brandon Jacobs",
+          "team": "New York Giants",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jerricho Cotchery",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Don Maynard",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Shonn Greene",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "126",
+          "player_name": "Mark Sanchez",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Don Maynard",
+          "team": "New York Jets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Don Maynard",
+          "team": "New York Jets",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "104",
+          "player_name": "Shonn Greene",
+          "team": "New York Jets",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "126",
+          "player_name": "Mark Sanchez",
+          "team": "New York Jets",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-WE",
+          "player_name": "Weeb Ewbank",
+          "team": "New York Jets",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-EG",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Fred Biletnikoff",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Darrius Heyward-Bey",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Fred Biletnikoff",
+          "team": "Oakland Raiders",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Fred Biletnikoff",
+          "team": "Oakland Raiders",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "108",
+          "player_name": "Darrius Heyward-Bey",
+          "team": "Oakland Raiders",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-GU",
+          "player_name": "Gene Upshaw",
+          "team": "Oakland Raiders",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-FB",
+          "player_name": "Fred Biletnikoff",
+          "team": "Oakland Raiders",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-FB",
+          "player_name": "Fred Biletnikoff",
+          "team": "Oakland Raiders",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "68",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Chuck Bednarik",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Jeremy Maclin",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "120",
+          "player_name": "LeSean McCoy",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "68",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "68",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "112",
+          "player_name": "Jeremy Maclin",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "120",
+          "player_name": "LeSean McCoy",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-BB",
+          "player_name": "Bert Bell",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-CB",
+          "player_name": "Chuck Bednarik",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RC",
+          "player_name": "Randall Cunningham",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-CB",
+          "player_name": "Chuck Bednarik",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-RC",
+          "player_name": "Randall Cunningham",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-BW",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-BW",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "L.C. Greenwood",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Rocky Bleier",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jack Ham",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Mike Wallace",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "L.C. Greenwood",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "76",
+          "player_name": "Rocky Bleier",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jack Ham",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "L.C. Greenwood",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "76",
+          "player_name": "Rocky Bleier",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jack Ham",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "Mike Wallace",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-BR",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-FH",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-RB",
+          "player_name": "Rocky Bleier",
+          "team": "Pittsburgh Steelers",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-TE",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-BR",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-FH",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-RB",
+          "player_name": "Rocky Bleier",
+          "team": "Pittsburgh Steelers",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-TE",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-AR",
+          "player_name": "Art Rooney",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-ES",
+          "player_name": "Ernie Stautner",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-JF",
+          "player_name": "Jim Finks",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-MW",
+          "player_name": "Mike Webster",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-BL",
+          "player_name": "Rocky Bleier",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-BR",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-FH",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-BL",
+          "player_name": "Rocky Bleier",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-BR",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-FH",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-BR",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DP-BR",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LP-BR",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-BR",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Kellen Winslow",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Antonio Gates",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Kellen Winslow",
+          "team": "San Diego Chargers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "79",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Kellen Winslow",
+          "team": "San Diego Chargers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "79",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-TO",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-TO",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-TO",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-TO",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DC-EG",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Dual Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Ronnie Lott",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Roger Craig",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Tom Rathman",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Nate Davis",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Glen Coffee",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "124",
+          "player_name": "Michael Crabtree",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Ronnie Lott",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "83",
+          "player_name": "Roger Craig",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "Tom Rathman",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Ronnie Lott",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "83",
+          "player_name": "Roger Craig",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "Tom Rathman",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Nate Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Glen Coffee",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "124",
+          "player_name": "Michael Crabtree",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-JR",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-SY",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-JR",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-SY",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-LN",
+          "player_name": "Leo Nomellini",
+          "team": "San Francisco 49ers",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-JR",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-SY",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-JR",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-SY",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-RL",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DP-RL",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "LP-FG",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-JR",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-SY",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-FG",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-JR",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-SY",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Jim Zorn",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Aaron Curry",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Jim Zorn",
+          "team": "Seattle Seahawks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Jim Zorn",
+          "team": "Seattle Seahawks",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "131",
+          "player_name": "Aaron Curry",
+          "team": "Seattle Seahawks",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-LA",
+          "player_name": "Steve Largent",
+          "team": "Seattle Seahawks",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-LA",
+          "player_name": "Steve Largent",
+          "team": "Seattle Seahawks",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-SL",
+          "player_name": "Steve Largent",
+          "team": "Seattle Seahawks",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-SL",
+          "player_name": "Steve Largent",
+          "team": "Seattle Seahawks",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "DP-RL",
+          "player_name": "Seattle Seahawks",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DP-RL",
+          "player_name": "Seattle Seahawks",
+          "team": null,
+          "variation": "Dual Player Autographs on Jersey Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jason Smith",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "116",
+          "player_name": "James Laurinaitis",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "93",
+          "player_name": "Jason Smith",
+          "team": "St. Louis Rams",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "116",
+          "player_name": "James Laurinaitis",
+          "team": "St. Louis Rams",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Derrick Brooks",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Josh Freeman",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Derrick Brooks",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Derrick Brooks",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "105",
+          "player_name": "Josh Freeman",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Javon Ringer",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "109",
+          "player_name": "Javon Ringer",
+          "team": "Tennessee Titans",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-JO",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-JO",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Darrell Green",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Joe Theismann",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Brian Orakpo",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Darrell Green",
+          "team": "Washington Redskins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Joe Theismann",
+          "team": "Washington Redskins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "90",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Darrell Green",
+          "team": "Washington Redskins",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Joe Theismann",
+          "team": "Washington Redskins",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "90",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "123",
+          "player_name": "Brian Orakpo",
+          "team": "Washington Redskins",
+          "variation": "Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-JT",
+          "player_name": "Joe Theismann",
+          "team": "Washington Redskins",
+          "variation": "Biography Plaque Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BPS-JT",
+          "player_name": "Joe Theismann",
+          "team": "Washington Redskins",
+          "variation": "Biography Plaque Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-RF",
+          "player_name": "Ray Flaherty",
+          "team": null,
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-SB",
+          "player_name": "Sammy Baugh",
+          "team": "Washington Redskins",
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BC-WA",
+          "player_name": "Wayne Millner",
+          "team": null,
+          "variation": "Black Cut Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-CP",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-JT",
+          "player_name": "Joe Theismann",
+          "team": "Washington Redskins",
+          "variation": "Black Film Slides Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-CP",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FS-JT",
+          "player_name": "Joe Theismann",
+          "team": "Washington Redskins",
+          "variation": "Black Film Slides Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-CP",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-JT",
+          "player_name": "Joe Theismann",
+          "team": "Washington Redskins",
+          "variation": "Lustrous Materials Patch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-CP",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "LP-JT",
+          "player_name": "Joe Theismann",
+          "team": "Washington Redskins",
+          "variation": "Lustrous Materials Patch Autographs Blue",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

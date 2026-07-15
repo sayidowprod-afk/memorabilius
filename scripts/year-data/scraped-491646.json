@@ -1,0 +1,478 @@
+{
+  "year": 1994,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 491646,
+        "name": "1994-95 Collector's Choice European English"
+      },
+      "unique": [
+        {
+          "card_number": "426",
+          "player_name": "Tyrone Corbin",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "372",
+          "player_name": "Stacey Augmon",
+          "team": "Atlanta Hawks",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "373",
+          "player_name": "Eric Montross",
+          "team": "Boston Celtics",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "414",
+          "player_name": "Eric Montross",
+          "team": "Boston Celtics",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "374",
+          "player_name": "Alonzo Mourning",
+          "team": "Charlotte Hornets",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "420",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "423",
+          "player_name": "Luc Longley",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "375",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "402",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "428",
+          "player_name": "Bobby Phills",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "376",
+          "player_name": "Mark Price",
+          "team": "Cleveland Cavaliers",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "377",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "408",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "378",
+          "player_name": "Jalen Rose",
+          "team": "Denver Nuggets",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "429",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "379",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "409",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "380",
+          "player_name": "Latrell Sprewell",
+          "team": "Golden State Warriors",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "401",
+          "player_name": "Chris Webber",
+          "team": "Golden State Warriors",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "416",
+          "player_name": "Carlos Rogers",
+          "team": "Golden State Warriors",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "421",
+          "player_name": "Vernon Maxwell",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "427",
+          "player_name": "Mario Elie",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "381",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "399",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "382",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "425",
+          "player_name": "Pooh Richardson",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "383",
+          "player_name": "Lamond Murray",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "412",
+          "player_name": "Lamond Murray",
+          "team": "Los Angeles Clippers",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "384",
+          "player_name": "Eddie Jones",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "415",
+          "player_name": "Eddie Jones",
+          "team": "Los Angeles Lakers",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "385",
+          "player_name": "Khalid Reeves",
+          "team": "Miami Heat",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "386",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "407",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "387",
+          "player_name": "Donyell Marshall",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "410",
+          "player_name": "Donyell Marshall",
+          "team": "Minnesota Timberwolves",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "388",
+          "player_name": "Derrick Coleman",
+          "team": "New Jersey Nets",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "389",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "405",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "390",
+          "player_name": "Shaquille O'Neal",
+          "team": "Orlando Magic",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "400",
+          "player_name": "Shaquille O'Neal",
+          "team": "Orlando Magic",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "419",
+          "player_name": "Shawn Bradley",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "391",
+          "player_name": "Sharone Wright",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "411",
+          "player_name": "Sharone Wright",
+          "team": "Philadelphia 76ers",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "392",
+          "player_name": "Charles Barkley",
+          "team": "Phoenix Suns",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "406",
+          "player_name": "Charles Barkley",
+          "team": "Phoenix Suns",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "393",
+          "player_name": "Aaron McKie",
+          "team": "Portland Trail Blazers",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "418",
+          "player_name": "Bobby Hurley",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "394",
+          "player_name": "Brian Grant",
+          "team": "Sacramento Kings",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "413",
+          "player_name": "Brian Grant",
+          "team": "Sacramento Kings",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "395",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "403",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "417",
+          "player_name": "Shawn Kemp",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "424",
+          "player_name": "Sam Perkins",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "396",
+          "player_name": "Shawn Kemp",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "404",
+          "player_name": "Shawn Kemp",
+          "team": "Seattle SuperSonics",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "422",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "397",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "398",
+          "player_name": "Tom Gugliotta",
+          "team": "Washington Bullets",
+          "variation": "Gold Signatures",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

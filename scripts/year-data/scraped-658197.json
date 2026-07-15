@@ -1,0 +1,3831 @@
+{
+  "year": 2025,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 658197,
+        "name": "2025 Topps Resurgence"
+      },
+      "unique": [
+        {
+          "card_number": "MM-AB",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PT-21",
+          "player_name": "Marvin Harrison Jr.",
+          "team": "Arizona Cardinals",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Walter Nolen",
+          "team": "Arizona Cardinals",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "103",
+          "player_name": "Denzel Burke",
+          "team": "Arizona Cardinals",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "W-17",
+          "player_name": "Kyler Murray",
+          "team": "Arizona Cardinals",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AFA-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EL-11",
+          "player_name": "Bijan Robinson",
+          "team": "Atlanta Falcons",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-20",
+          "player_name": "Bijan Robinson",
+          "team": "Atlanta Falcons",
+          "variation": "Perfect Fits",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Michael Penix Jr.",
+          "team": "Atlanta Falcons",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Drake London",
+          "team": "Atlanta Falcons",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "104",
+          "player_name": "Jalon Walker",
+          "team": "Atlanta Falcons",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "105",
+          "player_name": "Xavier Watts",
+          "team": "Atlanta Falcons",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-21",
+          "player_name": "Bijan Robinson",
+          "team": "Atlanta Falcons",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VT-19",
+          "player_name": "Michael Penix Jr.",
+          "team": "Atlanta Falcons",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-27",
+          "player_name": "Bijan Robinson",
+          "team": "Atlanta Falcons",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-30",
+          "player_name": "Michael Penix Jr.",
+          "team": "Atlanta Falcons",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-25",
+          "player_name": "Zay Flowers",
+          "team": "Baltimore Ravens",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-14",
+          "player_name": "Lamar Jackson",
+          "team": "Baltimore Ravens",
+          "variation": "Perfect Fits",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PT-22",
+          "player_name": "Derrick Henry",
+          "team": "Baltimore Ravens",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PT-25",
+          "player_name": "Lamar Jackson",
+          "team": "Baltimore Ravens",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Derrick Henry",
+          "team": "Baltimore Ravens",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kyle Hamilton",
+          "team": "Baltimore Ravens",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "107",
+          "player_name": "Malaki Starks",
+          "team": "Baltimore Ravens",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "108",
+          "player_name": "Mike Green",
+          "team": "Baltimore Ravens",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-11",
+          "player_name": "Lamar Jackson",
+          "team": "Baltimore Ravens",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-20",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TRI-RL",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "W-10",
+          "player_name": "Lamar Jackson",
+          "team": "Baltimore Ravens",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-CB",
+          "player_name": "Cornelius Bennett",
+          "team": "Buffalo Bills",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-11",
+          "player_name": "Josh Allen",
+          "team": "Buffalo Bills",
+          "variation": "Perfect Fits",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PT-23",
+          "player_name": "Josh Allen",
+          "team": "Buffalo Bills",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Josh Allen",
+          "team": "Buffalo Bills",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "James Cook",
+          "team": "Buffalo Bills",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Joey Bosa",
+          "team": "Buffalo Bills",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "109",
+          "player_name": "Maxwell Hairston",
+          "team": "Buffalo Bills",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "110",
+          "player_name": "T.J. Sanders",
+          "team": "Buffalo Bills",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-JK",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-TE",
+          "player_name": "Trevor Etienne",
+          "team": "Carolina Panthers",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CB-22",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-SS",
+          "player_name": "Steve Smith Sr.",
+          "team": "Carolina Panthers",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-TM",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-10",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Perfect Fits",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-TE",
+          "player_name": "Trevor Etienne",
+          "team": "Carolina Panthers",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Bryce Young",
+          "team": "Carolina Panthers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Chuba Hubbard",
+          "team": "Carolina Panthers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "111",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "112",
+          "player_name": "Nic Scourton",
+          "team": "Carolina Panthers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "113",
+          "player_name": "Princely Umanmielen",
+          "team": "Carolina Panthers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "114",
+          "player_name": "Trevor Etienne",
+          "team": "Carolina Panthers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-23",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VT-12",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-29",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-CL",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-LB",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-17",
+          "player_name": "Caleb Williams",
+          "team": "Chicago Bears",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-10",
+          "player_name": "Caleb Williams",
+          "team": "Chicago Bears",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-CL",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-LB",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PT-14",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PT-19",
+          "player_name": "Caleb Williams",
+          "team": "Chicago Bears",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-CL",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-LB",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-CL",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-LB",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Caleb Williams",
+          "team": "Chicago Bears",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "D'Andre Swift",
+          "team": "Chicago Bears",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Rome Odunze",
+          "team": "Chicago Bears",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "115",
+          "player_name": "Shemar Turner",
+          "team": "Chicago Bears",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "116",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "117",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-JM",
+          "player_name": "Jim McMahon",
+          "team": "Chicago Bears",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VT-11",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VT-15",
+          "player_name": "Caleb Williams",
+          "team": "Chicago Bears",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-CJ",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-12",
+          "player_name": "Joe Burrow",
+          "team": "Cincinnati Bengals",
+          "variation": "Perfect Fits",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-15",
+          "player_name": "Ja'Marr Chase",
+          "team": "Cincinnati Bengals",
+          "variation": "Perfect Fits",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PT-16",
+          "player_name": "Joe Burrow",
+          "team": "Cincinnati Bengals",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PT-18",
+          "player_name": "Ja'Marr Chase",
+          "team": "Cincinnati Bengals",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Joe Burrow",
+          "team": "Cincinnati Bengals",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Trey Hendrickson",
+          "team": "Cincinnati Bengals",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "118",
+          "player_name": "Shemar Stewart",
+          "team": "Cincinnati Bengals",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "119",
+          "player_name": "Tahj Brooks",
+          "team": "Cincinnati Bengals",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "120",
+          "player_name": "Barrett Carter",
+          "team": "Cincinnati Bengals",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-12",
+          "player_name": "Ja'Marr Chase",
+          "team": "Cincinnati Bengals",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-DG",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-DS",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-MGH",
+          "player_name": "Mason Graham",
+          "team": "Cleveland Browns",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-QJ",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-ON",
+          "player_name": "Ozzie Newsome",
+          "team": "Cleveland Browns",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CB-19",
+          "player_name": "Jerry Jeudy",
+          "team": "Cleveland Browns",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "C-18",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-17",
+          "player_name": "Myles Garrett",
+          "team": "Cleveland Browns",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-24",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-DG",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-QJ",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRA-DG",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-DS",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-QJ",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-DG",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-DS",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-QJ",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jerry Jeudy",
+          "team": "Cleveland Browns",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Myles Garrett",
+          "team": "Cleveland Browns",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "122",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "123",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "124",
+          "player_name": "Mason Graham",
+          "team": "Cleveland Browns",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "202",
+          "player_name": "Isaiah Bond",
+          "team": "Cleveland Browns",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VT-10",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-24",
+          "player_name": "Myles Garrett",
+          "team": "Cleveland Browns",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AFA-DP",
+          "player_name": "Drew Pearson",
+          "team": "Dallas Cowboys",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CB-15",
+          "player_name": "CeeDee Lamb",
+          "team": "Dallas Cowboys",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-16",
+          "player_name": "CeeDee Lamb",
+          "team": "Dallas Cowboys",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-TOH",
+          "player_name": "Tony Hill",
+          "team": "Dallas Cowboys",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-17",
+          "player_name": "CeeDee Lamb",
+          "team": "Dallas Cowboys",
+          "variation": "Perfect Fits",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PT-20",
+          "player_name": "CeeDee Lamb",
+          "team": "Dallas Cowboys",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-JB",
+          "player_name": "Jaydon Blue",
+          "team": "Dallas Cowboys",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-JBL",
+          "player_name": "Jaydon Blue",
+          "team": "Dallas Cowboys",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Dak Prescott",
+          "team": "Dallas Cowboys",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "CeeDee Lamb",
+          "team": "Dallas Cowboys",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "George Pickens",
+          "team": "Dallas Cowboys",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "125",
+          "player_name": "Jaydon Blue",
+          "team": "Dallas Cowboys",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "126",
+          "player_name": "Shavon Revel Jr.",
+          "team": "Dallas Cowboys",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-24",
+          "player_name": "Dak Prescott",
+          "team": "Dallas Cowboys",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TRI-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-MI",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "W-15",
+          "player_name": "CeeDee Lamb",
+          "team": "Dallas Cowboys",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-RH",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-EM",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CB-23",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "C-19",
+          "player_name": "Bo Nix",
+          "team": "Denver Broncos",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-TD",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-RH",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRA-PB",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-RH",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-PB",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-RH",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Bo Nix",
+          "team": "Denver Broncos",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Patrick Surtain II",
+          "team": "Denver Broncos",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "127",
+          "player_name": "Jahdae Barron",
+          "team": "Denver Broncos",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "128",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "129",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VT-16",
+          "player_name": "Bo Nix",
+          "team": "Denver Broncos",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-22",
+          "player_name": "Bo Nix",
+          "team": "Denver Broncos",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "C-12",
+          "player_name": "Jared Goff",
+          "team": "Detroit Lions",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-13",
+          "player_name": "Jahmyr Gibbs",
+          "team": "Detroit Lions",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-BS",
+          "player_name": "Billy Sims",
+          "team": "Detroit Lions",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Jared Goff",
+          "team": "Detroit Lions",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Amon-Ra St. Brown",
+          "team": "Detroit Lions",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Jahmyr Gibbs",
+          "team": "Detroit Lions",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Aidan Hutchinson",
+          "team": "Detroit Lions",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "130",
+          "player_name": "Tyleik Williams",
+          "team": "Detroit Lions",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "131",
+          "player_name": "Tate Ratledge",
+          "team": "Detroit Lions",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "132",
+          "player_name": "Isaac TeSlaa",
+          "team": "Detroit Lions",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-22",
+          "player_name": "Jahmyr Gibbs",
+          "team": "Detroit Lions",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TRI-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VT-22",
+          "player_name": "Jahmyr Gibbs",
+          "team": "Detroit Lions",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-25",
+          "player_name": "Amon-Ra St. Brown",
+          "team": "Detroit Lions",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-MG",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-SS",
+          "player_name": "Sterling Sharpe",
+          "team": "Green Bay Packers",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-10",
+          "player_name": "Jordan Love",
+          "team": "Green Bay Packers",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-MG",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRA-MG",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-SW",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-MG",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-SW",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Xavier McKinney",
+          "team": "Green Bay Packers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "133",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "134",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MM-WM",
+          "player_name": "Warren Moon",
+          "team": "Houston Oilers",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JH",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JN",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CB-18",
+          "player_name": "Nico Collins",
+          "team": "Houston Texans",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "C-14",
+          "player_name": "CJ Stroud",
+          "team": "Houston Texans",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-JH",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-JN",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRA-JH",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-JN",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-JH",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-JN",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-WM",
+          "player_name": "Woody Marks",
+          "team": "Houston Texans",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Nico Collins",
+          "team": "Houston Texans",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "136",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "137",
+          "player_name": "Jaylen Reed",
+          "team": "Houston Texans",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "139",
+          "player_name": "Woody Marks",
+          "team": "Houston Texans",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VT-21",
+          "player_name": "CJ Stroud",
+          "team": "Houston Texans",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-11",
+          "player_name": "CJ Stroud",
+          "team": "Houston Texans",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-TW",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MM-REW",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-RL",
+          "player_name": "Riley Leonard",
+          "team": "Indianapolis Colts",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-TW",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PT-13",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-TW",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-RL",
+          "player_name": "Riley Leonard",
+          "team": "Indianapolis Colts",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-TW",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jonathan Taylor",
+          "team": "Indianapolis Colts",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Michael Pittman Jr.",
+          "team": "Indianapolis Colts",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Sauce Gardner",
+          "team": "Indianapolis Colts",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "138",
+          "player_name": "Riley Leonard",
+          "team": "Indianapolis Colts",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "140",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-BT",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-MJD",
+          "player_name": "Maurice Jones-Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CB-20",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "C-21",
+          "player_name": "Trevor Lawrence",
+          "team": "Jacksonville Jaguars",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-21",
+          "player_name": "Trevor Lawrence",
+          "team": "Jacksonville Jaguars",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-BT",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-THU",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Trevor Lawrence",
+          "team": "Jacksonville Jaguars",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Brian Thomas Jr.",
+          "team": "Jacksonville Jaguars",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "141",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "142",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "143",
+          "player_name": "Jack Kiser",
+          "team": "Jacksonville Jaguars",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VT-13",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-12",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-26",
+          "player_name": "Trevor Lawrence",
+          "team": "Jacksonville Jaguars",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AFA-MA",
+          "player_name": "Marcus Allen",
+          "team": "Kansas City Chiefs",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-13",
+          "player_name": "Patrick Mahomes II",
+          "team": "Kansas City Chiefs",
+          "variation": "Perfect Fits",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PT-17",
+          "player_name": "Patrick Mahomes II",
+          "team": "Kansas City Chiefs",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-JR",
+          "player_name": "Jalen Royals",
+          "team": "Kansas City Chiefs",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Xavier Worthy",
+          "team": "Kansas City Chiefs",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "144",
+          "player_name": "Jalen Royals",
+          "team": "Kansas City Chiefs",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "146",
+          "player_name": "Omarr Norman-Lott",
+          "team": "Kansas City Chiefs",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-10",
+          "player_name": "Patrick Mahomes II",
+          "team": "Kansas City Chiefs",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VT-24",
+          "player_name": "Xavier Worthy",
+          "team": "Kansas City Chiefs",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-16",
+          "player_name": "Travis Kelce",
+          "team": "Kansas City Chiefs",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-AJ",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JB",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CB-21",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-12",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-AJ",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-JB",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRA-AJ",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-JAB",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-AJ",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-DT",
+          "player_name": "Dont'e Thornton Jr.",
+          "team": "Las Vegas Raiders",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-JB",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "Geno Smith",
+          "team": "Las Vegas Raiders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Brock Bowers",
+          "team": "Las Vegas Raiders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "147",
+          "player_name": "Tommy Mellott",
+          "team": "Las Vegas Raiders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "148",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "149",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VT-25",
+          "player_name": "Brock Bowers",
+          "team": "Las Vegas Raiders",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-OH",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-TRH",
+          "player_name": "Tre Harris III",
+          "team": "Los Angeles Chargers",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CB-13",
+          "player_name": "Ladd McConkey",
+          "team": "Los Angeles Chargers",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-15",
+          "player_name": "Justin Herbert",
+          "team": "Los Angeles Chargers",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-22",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-OH",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-THA",
+          "player_name": "Tre Harris III",
+          "team": "Los Angeles Chargers",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRA-OH",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-TRH",
+          "player_name": "Tre Harris III",
+          "team": "Los Angeles Chargers",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-OH",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-TRH",
+          "player_name": "Tre Harris III",
+          "team": "Los Angeles Chargers",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Justin Herbert",
+          "team": "Los Angeles Chargers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Ladd McConkey",
+          "team": "Los Angeles Chargers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Derwin James",
+          "team": "Los Angeles Chargers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "150",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "151",
+          "player_name": "Tre Harris III",
+          "team": "Los Angeles Chargers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "W-19",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-10",
+          "player_name": "Puka Nacua",
+          "team": "Los Angeles Rams",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "C-11",
+          "player_name": "Matthew Stafford",
+          "team": "Los Angeles Rams",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-19",
+          "player_name": "Puka Nacua",
+          "team": "Los Angeles Rams",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-AD",
+          "player_name": "Aaron Donald",
+          "team": "Los Angeles Rams",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-TF",
+          "player_name": "Terrance Ferguson",
+          "team": "Los Angeles Rams",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRA-TEF",
+          "player_name": "Terrence Ferguson",
+          "team": "Los Angeles Rams",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Matthew Stafford",
+          "team": "Los Angeles Rams",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "58",
+          "player_name": "Puka Nacua",
+          "team": "Los Angeles Rams",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "Kyren Williams",
+          "team": "Los Angeles Rams",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "152",
+          "player_name": "Terrance Ferguson",
+          "team": "Los Angeles Rams",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "153",
+          "player_name": "Chris Paul Jr.",
+          "team": "Los Angeles Rams",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-19",
+          "player_name": "Puka Nacua",
+          "team": "Los Angeles Rams",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TRI-AD",
+          "player_name": "Aaron Donald",
+          "team": "Los Angeles Rams",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CB-14",
+          "player_name": "De'Von Achane",
+          "team": "Miami Dolphins",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-18",
+          "player_name": "Tyreek Hill",
+          "team": "Miami Dolphins",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-OG",
+          "player_name": "Ollie Gordon II",
+          "team": "Miami Dolphins",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Tua Tagovailoa",
+          "team": "Miami Dolphins",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Tyreek Hill",
+          "team": "Miami Dolphins",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "De'Von Achane",
+          "team": "Miami Dolphins",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "154",
+          "player_name": "Ollie Gordon II",
+          "team": "Miami Dolphins",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "156",
+          "player_name": "Kenneth Grant",
+          "team": "Miami Dolphins",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "W-23",
+          "player_name": "Tyreek Hill",
+          "team": "Miami Dolphins",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "C-22",
+          "player_name": "J.J. McCarthy",
+          "team": "Minnesota Vikings",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-14",
+          "player_name": "Justin Jefferson",
+          "team": "Minnesota Vikings",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-16",
+          "player_name": "Justin Jefferson",
+          "team": "Minnesota Vikings",
+          "variation": "Perfect Fits",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PT-24",
+          "player_name": "Justin Jefferson",
+          "team": "Minnesota Vikings",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-TF",
+          "player_name": "Tai Felton",
+          "team": "Minnesota Vikings",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "J.J. McCarthy",
+          "team": "Minnesota Vikings",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Justin Jefferson",
+          "team": "Minnesota Vikings",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "157",
+          "player_name": "Tai Felton",
+          "team": "Minnesota Vikings",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "158",
+          "player_name": "Donovan Jackson",
+          "team": "Minnesota Vikings",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-18",
+          "player_name": "Justin Jefferson",
+          "team": "Minnesota Vikings",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TRI-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VT-20",
+          "player_name": "J.J. McCarthy",
+          "team": "Minnesota Vikings",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-18",
+          "player_name": "Justin Jefferson",
+          "team": "Minnesota Vikings",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-KW",
+          "player_name": "Kyle Williams",
+          "team": "New England Patriots",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-TH",
+          "player_name": "TreVeyon Henderson",
+          "team": "New England Patriots",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-DA",
+          "player_name": "Danny Amendola",
+          "team": "New England Patriots",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-RG",
+          "player_name": "Rob Gronkowski",
+          "team": "New England Patriots",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-STM",
+          "player_name": "Stanley Morgan",
+          "team": "New England Patriots",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-24",
+          "player_name": "Drake Maye",
+          "team": "New England Patriots",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-DA",
+          "player_name": "Danny Amendola",
+          "team": "New England Patriots",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MM-MIV",
+          "player_name": "Mike Vrabel",
+          "team": "New England Patriots",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-KW",
+          "player_name": "Kyle Williams",
+          "team": "New England Patriots",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-TVH",
+          "player_name": "TreVeyon Henderson",
+          "team": "New England Patriots",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRA-KW",
+          "player_name": "Kyle Williams",
+          "team": "New England Patriots",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-TH",
+          "player_name": "TreVeyon Henderson",
+          "team": "New England Patriots",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-KW",
+          "player_name": "Kyle Williams",
+          "team": "New England Patriots",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-TH",
+          "player_name": "TreVeyon Henderson",
+          "team": "New England Patriots",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Drake Maye",
+          "team": "New England Patriots",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "159",
+          "player_name": "TreVeyon Henderson",
+          "team": "New England Patriots",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "160",
+          "player_name": "Will Campbell",
+          "team": "New England Patriots",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "161",
+          "player_name": "Kyle Williams",
+          "team": "New England Patriots",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "162",
+          "player_name": "Bradyn Swinson",
+          "team": "New England Patriots",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VT-17",
+          "player_name": "Drake Maye",
+          "team": "New England Patriots",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-TS",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CB-24",
+          "player_name": "Chris Olave",
+          "team": "New Orleans Saints",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-TS",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PT-12",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-TS",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-TS",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Chris Olave",
+          "team": "New Orleans Saints",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Alvin Kamara",
+          "team": "New Orleans Saints",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "163",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "164",
+          "player_name": "Devin Neal",
+          "team": "New Orleans Saints",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "165",
+          "player_name": "Kelvin Banks Jr.",
+          "team": "New Orleans Saints",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "166",
+          "player_name": "Danny Stutsman",
+          "team": "New Orleans Saints",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-DB",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-AC",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-CS",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JD",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-LT",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-PB",
+          "player_name": "Plaxico Burress",
+          "team": "New York Giants",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-13",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-23",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-CS",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-JD",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PT-10",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-CS",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-JD",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-AC",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-CS",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-JD",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Darius Slayton",
+          "team": "New York Giants",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Malik Nabers",
+          "team": "New York Giants",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "167",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "168",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "169",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "170",
+          "player_name": "Darius Alexander",
+          "team": "New York Giants",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-16",
+          "player_name": "Malik Nabers",
+          "team": "New York Giants",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ST-17",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TRI-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VT-23",
+          "player_name": "Malik Nabers",
+          "team": "New York Giants",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-20",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-17",
+          "player_name": "Garrett Wilson",
+          "team": "New York Jets",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-MT",
+          "player_name": "Mason Taylor",
+          "team": "New York Jets",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "76",
+          "player_name": "Breece Hall",
+          "team": "New York Jets",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Garrett Wilson",
+          "team": "New York Jets",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "171",
+          "player_name": "Malachi Moore",
+          "team": "New York Jets",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "173",
+          "player_name": "Mason Taylor",
+          "team": "New York Jets",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-DJ",
+          "player_name": "DeSean Jackson",
+          "team": "Philadelphia Eagles",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-EA",
+          "player_name": "Eric Allen",
+          "team": "Philadelphia Eagles",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "EL-20",
+          "player_name": "Saquon Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-BD",
+          "player_name": "Brian Dawkins",
+          "team": "Philadelphia Eagles",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "P-18",
+          "player_name": "A.J. Brown",
+          "team": "Philadelphia Eagles",
+          "variation": "Perfect Fits",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "P-19",
+          "player_name": "Saquon Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": "Perfect Fits",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-KM",
+          "player_name": "Kyle McCord",
+          "team": "Philadelphia Eagles",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "A.J. Brown",
+          "team": "Philadelphia Eagles",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "79",
+          "player_name": "Jalen Hurts",
+          "team": "Philadelphia Eagles",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "DeVonta Smith",
+          "team": "Philadelphia Eagles",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Cooper DeJean",
+          "team": "Philadelphia Eagles",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "175",
+          "player_name": "Kyle McCord",
+          "team": "Philadelphia Eagles",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "176",
+          "player_name": "Jihaad Campbell",
+          "team": "Philadelphia Eagles",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "177",
+          "player_name": "Andrew Mukuba",
+          "team": "Philadelphia Eagles",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "178",
+          "player_name": "Ty Robinson",
+          "team": "Philadelphia Eagles",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-14",
+          "player_name": "Saquon Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-28",
+          "player_name": "Saquon Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-KJ",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-WH",
+          "player_name": "Will Howard",
+          "team": "Pittsburgh Steelers",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CB-11",
+          "player_name": "DK Metcalf",
+          "team": "Pittsburgh Steelers",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "C-25",
+          "player_name": "Aaron Rodgers",
+          "team": "Pittsburgh Steelers",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MM-YT",
+          "player_name": "Yancey Thigpen",
+          "team": "Pittsburgh Steelers",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-KJ",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-WH",
+          "player_name": "Will Howard",
+          "team": "Pittsburgh Steelers",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRA-KJ",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-KJ",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-WH",
+          "player_name": "Will Howard",
+          "team": "Pittsburgh Steelers",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "83",
+          "player_name": "Aaron Rodgers",
+          "team": "Pittsburgh Steelers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "T.J. Watt",
+          "team": "Pittsburgh Steelers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "179",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "180",
+          "player_name": "Jack Sawyer",
+          "team": "Pittsburgh Steelers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "181",
+          "player_name": "Derrick Harmon",
+          "team": "Pittsburgh Steelers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "182",
+          "player_name": "Will Howard",
+          "team": "Pittsburgh Steelers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-TP",
+          "player_name": "Troy Polamalu",
+          "team": "Pittsburgh Steelers",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-AG",
+          "player_name": "Antonio Gates",
+          "team": "San Diego Chargers",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-CJO",
+          "player_name": "Charlie Joiner",
+          "team": "San Diego Chargers",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-JJ",
+          "player_name": "Jordan James",
+          "team": "San Francisco 49ers",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-MW",
+          "player_name": "Mykel Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-JTA",
+          "player_name": "John Taylor",
+          "team": "San Francisco 49ers",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-VD",
+          "player_name": "Vernon Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-15",
+          "player_name": "Brock Purdy",
+          "team": "San Francisco 49ers",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-FG",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRA-JJ",
+          "player_name": "Jordan James",
+          "team": "San Francisco 49ers",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-JJ",
+          "player_name": "Jordan James",
+          "team": "San Francisco 49ers",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Brock Purdy",
+          "team": "San Francisco 49ers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Christian McCaffrey",
+          "team": "San Francisco 49ers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "George Kittle",
+          "team": "San Francisco 49ers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "184",
+          "player_name": "Mykel Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "185",
+          "player_name": "Jordan James",
+          "team": "San Francisco 49ers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "186",
+          "player_name": "Alfred Collins",
+          "team": "San Francisco 49ers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-JOM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-JR",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-SY",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "W-13",
+          "player_name": "Brock Purdy",
+          "team": "San Francisco 49ers",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-14",
+          "player_name": "Christian McCaffrey",
+          "team": "San Francisco 49ers",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CB-12",
+          "player_name": "Jaxon Smith-Njigba",
+          "team": "Seattle Seahawks",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-ELA",
+          "player_name": "Elijah Arroyo",
+          "team": "Seattle Seahawks",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-THO",
+          "player_name": "Tory Horton",
+          "team": "Seattle Seahawks",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "90",
+          "player_name": "Sam Darnold",
+          "team": "Seattle Seahawks",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "Jaxon Smith-Njigba",
+          "team": "Seattle Seahawks",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Rashid Shaheed",
+          "team": "Seattle Seahawks",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "187",
+          "player_name": "Elijah Arroyo",
+          "team": "Seattle Seahawks",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "190",
+          "player_name": "Tory Horton",
+          "team": "Seattle Seahawks",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-15",
+          "player_name": "Jaxon Smith-Njigba",
+          "team": "Seattle Seahawks",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AFA-IB",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-TA",
+          "player_name": "Tavon Austin",
+          "team": "St. Louis Rams",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MM-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TRI-KW",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Thermal Red Ink Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-EE",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AU-TJ",
+          "player_name": "Tez Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CB-16",
+          "player_name": "Mike Evans",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Circuit Breakers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "C-23",
+          "player_name": "Tom Brady",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "EL-25",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Electro Lights",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NI-EE",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PT-11",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-EE",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-EE",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "Bucky Irving",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Mike Evans",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "191",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "192",
+          "player_name": "Benjamin Morrison",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "193",
+          "player_name": "Tez Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-25",
+          "player_name": "Tom Brady",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "VT-14",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "W-21",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Wired",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AU-CW",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Amped Up Rookie Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AFA-ED",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "C-20",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MM-DW",
+          "player_name": "Delanie Walker",
+          "team": "Tennessee Titans",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NI-CW",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Neon Initiates",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRA-CW",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRA-EA",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": "Radial Rookie Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-CW",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RRS-EA",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "Calvin Ridley",
+          "team": "Tennessee Titans",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "194",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "195",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "196",
+          "player_name": "Gunnar Helm",
+          "team": "Tennessee Titans",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "197",
+          "player_name": "Chimere Dike",
+          "team": "Tennessee Titans",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ST-13",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "String Theory",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "C-16",
+          "player_name": "Jayden Daniels",
+          "team": "Washington Commanders",
+          "variation": "Conductors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PT-15",
+          "player_name": "Jayden Daniels",
+          "team": "Washington Commanders",
+          "variation": "Protonyx",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RRS-JL",
+          "player_name": "Jaylin Lane",
+          "team": "Washington Commanders",
+          "variation": "Resurgence Rookie Relic Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "98",
+          "player_name": "Jayden Daniels",
+          "team": "Washington Commanders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "100",
+          "player_name": "Terry McLaurin",
+          "team": "Washington Commanders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "198",
+          "player_name": "Jacory Croskey-Merritt",
+          "team": "Washington Commanders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "199",
+          "player_name": "Trey Amos",
+          "team": "Washington Commanders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "200",
+          "player_name": "Jaylin Lane",
+          "team": "Washington Commanders",
+          "variation": "Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "VT-18",
+          "player_name": "Jayden Daniels",
+          "team": "Washington Commanders",
+          "variation": "Voltaic",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "AFA-SM",
+          "player_name": "Santana Moss",
+          "team": "Washington Redskins",
+          "variation": "Arc Flash Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MM-JT",
+          "player_name": "Joe Theismann",
+          "team": "Washington Redskins",
+          "variation": "Molecular Marks",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

@@ -1,0 +1,6495 @@
+{
+  "year": 2013,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 92135,
+        "name": "2013 Topps Turkey Red"
+      },
+      "unique": [
+        {
+          "card_number": "21",
+          "player_name": "Alex Okafor",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Dan Buckner",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Swope",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Stepfan Taylor",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tyrann Mathieu",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Andre Ellington",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Alex Okafor",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Dan Buckner",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Swope",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Stepfan Taylor",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Alex Okafor",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Dan Buckner",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Swope",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Stepfan Taylor",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Alex Okafor",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "43",
+          "player_name": "Dan Buckner",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Swope",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Stepfan Taylor",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Alex Okafor",
+          "team": "Arizona Cardinals",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Dan Buckner",
+          "team": "Arizona Cardinals",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Swope",
+          "team": "Arizona Cardinals",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Stepfan Taylor",
+          "team": "Arizona Cardinals",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tyrann Mathieu",
+          "team": "Arizona Cardinals",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Andre Ellington",
+          "team": "Arizona Cardinals",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Alex Okafor",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Dan Buckner",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Swope",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Stepfan Taylor",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tyrann Mathieu",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Andre Ellington",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Alex Okafor",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Dan Buckner",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Swope",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Stepfan Taylor",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tyrann Mathieu",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Andre Ellington",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Alex Okafor",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Dan Buckner",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Swope",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Stepfan Taylor",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tyrann Mathieu",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Andre Ellington",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Alex Okafor",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Dan Buckner",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Ryan Swope",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Stepfan Taylor",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Tyrann Mathieu",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Andre Ellington",
+          "team": "Arizona Cardinals",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Desmond Trufant",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Desmond Trufant",
+          "team": "Atlanta Falcons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "100",
+          "player_name": "Desmond Trufant",
+          "team": "Atlanta Falcons",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "100",
+          "player_name": "Desmond Trufant",
+          "team": "Atlanta Falcons",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "100",
+          "player_name": "Desmond Trufant",
+          "team": "Atlanta Falcons",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Desmond Trufant",
+          "team": "Atlanta Falcons",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Desmond Trufant",
+          "team": "Atlanta Falcons",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Desmond Trufant",
+          "team": "Atlanta Falcons",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Desmond Trufant",
+          "team": "Atlanta Falcons",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Aaron Mellette",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "John Simon",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Arthur Brown",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Aaron Mellette",
+          "team": "Baltimore Ravens",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "John Simon",
+          "team": "Baltimore Ravens",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Aaron Mellette",
+          "team": "Baltimore Ravens",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "John Simon",
+          "team": "Baltimore Ravens",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Aaron Mellette",
+          "team": "Baltimore Ravens",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "59",
+          "player_name": "John Simon",
+          "team": "Baltimore Ravens",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Aaron Mellette",
+          "team": "Baltimore Ravens",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "John Simon",
+          "team": "Baltimore Ravens",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Arthur Brown",
+          "team": "Baltimore Ravens",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Aaron Mellette",
+          "team": "Baltimore Ravens",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "John Simon",
+          "team": "Baltimore Ravens",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Arthur Brown",
+          "team": "Baltimore Ravens",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Aaron Mellette",
+          "team": "Baltimore Ravens",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "John Simon",
+          "team": "Baltimore Ravens",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Arthur Brown",
+          "team": "Baltimore Ravens",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Aaron Mellette",
+          "team": "Baltimore Ravens",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "John Simon",
+          "team": "Baltimore Ravens",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Arthur Brown",
+          "team": "Baltimore Ravens",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Aaron Mellette",
+          "team": "Baltimore Ravens",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "John Simon",
+          "team": "Baltimore Ravens",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Arthur Brown",
+          "team": "Baltimore Ravens",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "EJ Manuel",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Chris Gragg",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Robert Woods",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Da'Rick Rogers",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Marquise Goodwin",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "E.J. Manuel",
+          "team": "Buffalo Bills",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Chris Gragg",
+          "team": "Buffalo Bills",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "E.J. Manuel",
+          "team": "Buffalo Bills",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Chris Gragg",
+          "team": "Buffalo Bills",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "E.J. Manuel",
+          "team": "Buffalo Bills",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Chris Gragg",
+          "team": "Buffalo Bills",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "E.J. Manuel",
+          "team": "Buffalo Bills",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Chris Gragg",
+          "team": "Buffalo Bills",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Robert Woods",
+          "team": "Buffalo Bills",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Da'Rick Rogers",
+          "team": "Buffalo Bills",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Marquise Goodwin",
+          "team": "Buffalo Bills",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "E.J. Manuel",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Chris Gragg",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Robert Woods",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Da'Rick Rogers",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Marquise Goodwin",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "E.J. Manuel",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Chris Gragg",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Robert Woods",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Da'Rick Rogers",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Marquise Goodwin",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "E.J. Manuel",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Chris Gragg",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Robert Woods",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Da'Rick Rogers",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Marquise Goodwin",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "E.J. Manuel",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Chris Gragg",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Robert Woods",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Da'Rick Rogers",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Marquise Goodwin",
+          "team": "Buffalo Bills",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Robert Lester",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Kenjon Barner",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Robert Lester",
+          "team": "Carolina Panthers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Robert Lester",
+          "team": "Carolina Panthers",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Robert Lester",
+          "team": "Carolina Panthers",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Robert Lester",
+          "team": "Carolina Panthers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Kenjon Barner",
+          "team": "Carolina Panthers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Robert Lester",
+          "team": "Carolina Panthers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Kenjon Barner",
+          "team": "Carolina Panthers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Robert Lester",
+          "team": "Carolina Panthers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Kenjon Barner",
+          "team": "Carolina Panthers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Robert Lester",
+          "team": "Carolina Panthers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Kenjon Barner",
+          "team": "Carolina Panthers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Robert Lester",
+          "team": "Carolina Panthers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Kenjon Barner",
+          "team": "Carolina Panthers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Khaseem Greene",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Khaseem Greene",
+          "team": "Chicago Bears",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Khaseem Greene",
+          "team": "Chicago Bears",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Khaseem Greene",
+          "team": "Chicago Bears",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Khaseem Greene",
+          "team": "Chicago Bears",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Khaseem Greene",
+          "team": "Chicago Bears",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Khaseem Greene",
+          "team": "Chicago Bears",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Khaseem Greene",
+          "team": "Chicago Bears",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Khaseem Greene",
+          "team": "Chicago Bears",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Onterio McCalebb",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Giovani Bernard",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tyler Eifert",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Rex Burkhead",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shawn Williams",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tyrone Goard",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Onterio McCalebb",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Giovani Bernard",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tyler Eifert",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Onterio McCalebb",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Giovani Bernard",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tyler Eifert",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Onterio McCalebb",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Giovani Bernard",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tyler Eifert",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Onterio McCalebb",
+          "team": "Cincinnati Bengals",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Giovani Bernard",
+          "team": "Cincinnati Bengals",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tyler Eifert",
+          "team": "Cincinnati Bengals",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Rex Burkhead",
+          "team": "Cincinnati Bengals",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shawn Williams",
+          "team": "Cincinnati Bengals",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tyrone Goard",
+          "team": "Cincinnati Bengals",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Onterio McCalebb",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Giovani Bernard",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tyler Eifert",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Rex Burkhead",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shawn Williams",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tyrone Goard",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Onterio McCalebb",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Giovani Bernard",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tyler Eifert",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Rex Burkhead",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shawn Williams",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tyrone Goard",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Onterio McCalebb",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Giovani Bernard",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tyler Eifert",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Rex Burkhead",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shawn Williams",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tyrone Goard",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Onterio McCalebb",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Giovani Bernard",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tyler Eifert",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Rex Burkhead",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Shawn Williams",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tyrone Goard",
+          "team": "Cincinnati Bengals",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Miguel Maysonet",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Barkevious Mingo",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Barkevious Mingo",
+          "team": "Cleveland Browns",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "74",
+          "player_name": "Barkevious Mingo",
+          "team": "Cleveland Browns",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "74",
+          "player_name": "Barkevious Mingo",
+          "team": "Cleveland Browns",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Miguel Maysonet",
+          "team": "Cleveland Browns",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Barkevious Mingo",
+          "team": "Cleveland Browns",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Miguel Maysonet",
+          "team": "Cleveland Browns",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Barkevious Mingo",
+          "team": "Cleveland Browns",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Miguel Maysonet",
+          "team": "Cleveland Browns",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Barkevious Mingo",
+          "team": "Cleveland Browns",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Miguel Maysonet",
+          "team": "Cleveland Browns",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Barkevious Mingo",
+          "team": "Cleveland Browns",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Miguel Maysonet",
+          "team": "Cleveland Browns",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Barkevious Mingo",
+          "team": "Cleveland Browns",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joseph Randle",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Terrance Williams",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Gavin Escobar",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joseph Randle",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Gavin Escobar",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joseph Randle",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Gavin Escobar",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joseph Randle",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "63",
+          "player_name": "Gavin Escobar",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joseph Randle",
+          "team": "Dallas Cowboys",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Terrance Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Gavin Escobar",
+          "team": "Dallas Cowboys",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joseph Randle",
+          "team": "Dallas Cowboys",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Terrance Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Gavin Escobar",
+          "team": "Dallas Cowboys",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joseph Randle",
+          "team": "Dallas Cowboys",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Terrance Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Gavin Escobar",
+          "team": "Dallas Cowboys",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joseph Randle",
+          "team": "Dallas Cowboys",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Terrance Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Gavin Escobar",
+          "team": "Dallas Cowboys",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Joseph Randle",
+          "team": "Dallas Cowboys",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Terrance Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Gavin Escobar",
+          "team": "Dallas Cowboys",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Montee Ball",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kayvon Webster",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Zac Dysert",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tavarres King",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Montee Ball",
+          "team": "Denver Broncos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kayvon Webster",
+          "team": "Denver Broncos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Montee Ball",
+          "team": "Denver Broncos",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kayvon Webster",
+          "team": "Denver Broncos",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Montee Ball",
+          "team": "Denver Broncos",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kayvon Webster",
+          "team": "Denver Broncos",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Montee Ball",
+          "team": "Denver Broncos",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kayvon Webster",
+          "team": "Denver Broncos",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Zac Dysert",
+          "team": "Denver Broncos",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tavarres King",
+          "team": "Denver Broncos",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Montee Ball",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kayvon Webster",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Zac Dysert",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tavarres King",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Montee Ball",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kayvon Webster",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Zac Dysert",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tavarres King",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Montee Ball",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kayvon Webster",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Zac Dysert",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tavarres King",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Montee Ball",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Kayvon Webster",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Zac Dysert",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tavarres King",
+          "team": "Denver Broncos",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ezekiel Ansah",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Corey Fuller",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Theo Riddick",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Corey Fuller",
+          "team": "Detroit Lions",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Corey Fuller",
+          "team": "Detroit Lions",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Corey Fuller",
+          "team": "Detroit Lions",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ezekiel Ansah",
+          "team": "Detroit Lions",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Corey Fuller",
+          "team": "Detroit Lions",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Theo Riddick",
+          "team": "Detroit Lions",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ezekiel Ansah",
+          "team": "Detroit Lions",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Corey Fuller",
+          "team": "Detroit Lions",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Theo Riddick",
+          "team": "Detroit Lions",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ezekiel Ansah",
+          "team": "Detroit Lions",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Corey Fuller",
+          "team": "Detroit Lions",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Theo Riddick",
+          "team": "Detroit Lions",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ezekiel Ansah",
+          "team": "Detroit Lions",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Corey Fuller",
+          "team": "Detroit Lions",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Theo Riddick",
+          "team": "Detroit Lions",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Ezekiel Ansah",
+          "team": "Detroit Lions",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Corey Fuller",
+          "team": "Detroit Lions",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Theo Riddick",
+          "team": "Detroit Lions",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Eddie Lacy",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Johnathan Franklin",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Datone Jones",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Eddie Lacy",
+          "team": "Green Bay Packers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Datone Jones",
+          "team": "Green Bay Packers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Eddie Lacy",
+          "team": "Green Bay Packers",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Datone Jones",
+          "team": "Green Bay Packers",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Eddie Lacy",
+          "team": "Green Bay Packers",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "78",
+          "player_name": "Datone Jones",
+          "team": "Green Bay Packers",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Eddie Lacy",
+          "team": "Green Bay Packers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Johnathan Franklin",
+          "team": "Green Bay Packers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Datone Jones",
+          "team": "Green Bay Packers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Eddie Lacy",
+          "team": "Green Bay Packers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Johnathan Franklin",
+          "team": "Green Bay Packers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Datone Jones",
+          "team": "Green Bay Packers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Eddie Lacy",
+          "team": "Green Bay Packers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Johnathan Franklin",
+          "team": "Green Bay Packers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Datone Jones",
+          "team": "Green Bay Packers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Eddie Lacy",
+          "team": "Green Bay Packers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Johnathan Franklin",
+          "team": "Green Bay Packers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Datone Jones",
+          "team": "Green Bay Packers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Eddie Lacy",
+          "team": "Green Bay Packers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Johnathan Franklin",
+          "team": "Green Bay Packers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Datone Jones",
+          "team": "Green Bay Packers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Dennis Johnson",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Sam Montgomery",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Ray Graham",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "DeAndre Hopkins",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Sam Montgomery",
+          "team": "Houston Texans",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Ray Graham",
+          "team": "Houston Texans",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "DeAndre Hopkins",
+          "team": "Houston Texans",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Sam Montgomery",
+          "team": "Houston Texans",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Ray Graham",
+          "team": "Houston Texans",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "DeAndre Hopkins",
+          "team": "Houston Texans",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "72",
+          "player_name": "Sam Montgomery",
+          "team": "Houston Texans",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Ray Graham",
+          "team": "Houston Texans",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "DeAndre Hopkins",
+          "team": "Houston Texans",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "71",
+          "player_name": "Dennis Johnson",
+          "team": "Houston Texans",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Sam Montgomery",
+          "team": "Houston Texans",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Ray Graham",
+          "team": "Houston Texans",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "DeAndre Hopkins",
+          "team": "Houston Texans",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Dennis Johnson",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Sam Montgomery",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Ray Graham",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "DeAndre Hopkins",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Dennis Johnson",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Sam Montgomery",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Ray Graham",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "DeAndre Hopkins",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Dennis Johnson",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Sam Montgomery",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Ray Graham",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "DeAndre Hopkins",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Dennis Johnson",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Sam Montgomery",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Ray Graham",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "DeAndre Hopkins",
+          "team": "Houston Texans",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Bjoern Werner",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Bjoern Werner",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Da'Rick Rogers",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Bjoern Werner",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Da'Rick Rogers",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Bjoern Werner",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "92",
+          "player_name": "Da'Rick Rogers",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Bjoern Werner",
+          "team": "Indianapolis Colts",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Bjoern Werner",
+          "team": "Indianapolis Colts",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Bjoern Werner",
+          "team": "Indianapolis Colts",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Bjoern Werner",
+          "team": "Indianapolis Colts",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Bjoern Werner",
+          "team": "Indianapolis Colts",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Johnathan Cyprien",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Matt Scott",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Luke Joeckel",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Denard Robinson",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Johnathan Cyprien",
+          "team": "jacksonville Jaguars",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Matt Scott",
+          "team": "Jacksonville Jaguars",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Johnathan Cyprien",
+          "team": "jacksonville Jaguars",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Matt Scott",
+          "team": "Jacksonville Jaguars",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Johnathan Cyprien",
+          "team": "jacksonville Jaguars",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Matt Scott",
+          "team": "Jacksonville Jaguars",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Johnathan Cyprien",
+          "team": "Jacksonville Jaguars",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Matt Scott",
+          "team": "Jacksonville Jaguars",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Luke Joeckel",
+          "team": "Jacksonville Jaguars",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Denard Robinson",
+          "team": "Jacksonville Jaguars",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Johnathan Cyprien",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Matt Scott",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Luke Joeckel",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Denard Robinson",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Johnathan Cyprien",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Matt Scott",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Luke Joeckel",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Denard Robinson",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Johnathan Cyprien",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Matt Scott",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Luke Joeckel",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Denard Robinson",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Johnathan Cyprien",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Matt Scott",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Luke Joeckel",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Denard Robinson",
+          "team": "Jacksonville Jaguars",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Tyler Bray",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Knile Davis",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Eric Fisher",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nico Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Knile Davis",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nico Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Knile Davis",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nico Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Knile Davis",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nico Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Tyler Bray",
+          "team": "Kansas City Chiefs",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Knile Davis",
+          "team": "Kansas City Chiefs",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Eric Fisher",
+          "team": "Kansas City Chiefs",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nico Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Tyler Bray",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Knile Davis",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Eric Fisher",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nico Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Tyler Bray",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Knile Davis",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Eric Fisher",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nico Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Tyler Bray",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Knile Davis",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Eric Fisher",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nico Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Tyler Bray",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Knile Davis",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Eric Fisher",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Nico Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jamar Taylor",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dion Sims",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Gillislee",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dion Jordan",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jamar Taylor",
+          "team": "Miami Dolphins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dion Sims",
+          "team": "Miami Dolphins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Gillislee",
+          "team": "Miami Dolphins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dion Jordan",
+          "team": "Miami Dolphins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jamar Taylor",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dion Sims",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Gillislee",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dion Jordan",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jamar Taylor",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dion Sims",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Gillislee",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dion Jordan",
+          "team": "Miami Dolphins",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jamar Taylor",
+          "team": "Miami Dolphins",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dion Sims",
+          "team": "Miami Dolphins",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Gillislee",
+          "team": "Miami Dolphins",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dion Jordan",
+          "team": "Miami Dolphins",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jamar Taylor",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dion Sims",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Gillislee",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dion Jordan",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jamar Taylor",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dion Sims",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Gillislee",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dion Jordan",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jamar Taylor",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dion Sims",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Gillislee",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dion Jordan",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jamar Taylor",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Dion Sims",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Mike Gillislee",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dion Jordan",
+          "team": "Miami Dolphins",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Cordarrelle Patterson",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rodney Smith",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Xavier Rhodes",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sharrif Floyd",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Cordarrelle Patterson",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rodney Smith",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sharrif Floyd",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Cordarrelle Patterson",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rodney Smith",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sharrif Floyd",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Cordarrelle Patterson",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rodney Smith",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sharrif Floyd",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Cordarrelle Patterson",
+          "team": "Minnesota Vikings",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rodney Smith",
+          "team": "Minnesota Vikings",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Xavier Rhodes",
+          "team": "Minnesota Vikings",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sharrif Floyd",
+          "team": "Minnesota Vikings",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Cordarrelle Patterson",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rodney Smith",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Xavier Rhodes",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sharrif Floyd",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Cordarrelle Patterson",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rodney Smith",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Xavier Rhodes",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sharrif Floyd",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Cordarrelle Patterson",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rodney Smith",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Xavier Rhodes",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sharrif Floyd",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Cordarrelle Patterson",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Rodney Smith",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Xavier Rhodes",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Sharrif Floyd",
+          "team": "Minnesota Vikings",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Kenbrell Thompkins",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Aaron Dobson",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Kenbrell Thompkins",
+          "team": "New England Patriots",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Aaron Dobson",
+          "team": "New England Patriots",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Kenbrell Thompkins",
+          "team": "New England Patriots",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Aaron Dobson",
+          "team": "New England Patriots",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Kenbrell Thompkins",
+          "team": "New England Patriots",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Aaron Dobson",
+          "team": "New England Patriots",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "61",
+          "player_name": "Kenbrell Thompkins",
+          "team": "New England Patriots",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Aaron Dobson",
+          "team": "New England Patriots",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Kenbrell Thompkins",
+          "team": "New England Patriots",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Aaron Dobson",
+          "team": "New England Patriots",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Kenbrell Thompkins",
+          "team": "New England Patriots",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Aaron Dobson",
+          "team": "New England Patriots",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Kenbrell Thompkins",
+          "team": "New England Patriots",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Aaron Dobson",
+          "team": "New England Patriots",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Kenbrell Thompkins",
+          "team": "New England Patriots",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Aaron Dobson",
+          "team": "New England Patriots",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Chase Thomas",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Kenny Stills",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "John Jenkins",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Chase Thomas",
+          "team": "New Orleans Saints",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Kenny Stills",
+          "team": "New Orleans Saints",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "John Jenkins",
+          "team": "New Orleans Saints",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Chase Thomas",
+          "team": "New Orleans Saints",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Kenny Stills",
+          "team": "New Orleans Saints",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "John Jenkins",
+          "team": "New Orleans Saints",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Chase Thomas",
+          "team": "New Orleans Saints",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "60",
+          "player_name": "Kenny Stills",
+          "team": "New Orleans Saints",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "John Jenkins",
+          "team": "New Orleans Saints",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Chase Thomas",
+          "team": "New Orleans Saints",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Kenny Stills",
+          "team": "New Orleans Saints",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "John Jenkins",
+          "team": "New Orleans Saints",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Chase Thomas",
+          "team": "New Orleans Saints",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Kenny Stills",
+          "team": "New Orleans Saints",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "John Jenkins",
+          "team": "New Orleans Saints",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Chase Thomas",
+          "team": "New Orleans Saints",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Kenny Stills",
+          "team": "New Orleans Saints",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "John Jenkins",
+          "team": "New Orleans Saints",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Chase Thomas",
+          "team": "New Orleans Saints",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Kenny Stills",
+          "team": "New Orleans Saints",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "John Jenkins",
+          "team": "New Orleans Saints",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Chase Thomas",
+          "team": "New Orleans Saints",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Kenny Stills",
+          "team": "New Orleans Saints",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "John Jenkins",
+          "team": "New Orleans Saints",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Ryan Nassib",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Johnathan Hankins",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Johnathan Hankins",
+          "team": "New York Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Johnathan Hankins",
+          "team": "New York Giants",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Johnathan Hankins",
+          "team": "New York Giants",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "79",
+          "player_name": "Ryan Nassib",
+          "team": "New York Giants",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Johnathan Hankins",
+          "team": "New York Giants",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Ryan Nassib",
+          "team": "New York Giants",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Johnathan Hankins",
+          "team": "New York Giants",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Ryan Nassib",
+          "team": "New York Giants",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Johnathan Hankins",
+          "team": "New York Giants",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Ryan Nassib",
+          "team": "New York Giants",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Johnathan Hankins",
+          "team": "New York Giants",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Ryan Nassib",
+          "team": "New York Giants",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Johnathan Hankins",
+          "team": "New York Giants",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Sheldon Richardson",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dee Milliner",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marcus Davis",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Geno Smith",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dee Milliner",
+          "team": "New York Jets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marcus Davis",
+          "team": "New York Jets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "Geno Smith",
+          "team": "New York Jets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dee Milliner",
+          "team": "New York Jets",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marcus Davis",
+          "team": "New York Jets",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "Geno Smith",
+          "team": "New York Jets",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dee Milliner",
+          "team": "New York Jets",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marcus Davis",
+          "team": "New York Jets",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "Geno Smith",
+          "team": "New York Jets",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Sheldon Richardson",
+          "team": "New York Jets",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dee Milliner",
+          "team": "New York Jets",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marcus Davis",
+          "team": "New York Jets",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Geno Smith",
+          "team": "New York Jets",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Sheldon Richardson",
+          "team": "New York Jets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dee Milliner",
+          "team": "New York Jets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marcus Davis",
+          "team": "New York Jets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Geno Smith",
+          "team": "New York Jets",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Sheldon Richardson",
+          "team": "New York Jets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dee Milliner",
+          "team": "New York Jets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marcus Davis",
+          "team": "New York Jets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Geno Smith",
+          "team": "New York Jets",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Sheldon Richardson",
+          "team": "New York Jets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dee Milliner",
+          "team": "New York Jets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marcus Davis",
+          "team": "New York Jets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Geno Smith",
+          "team": "New York Jets",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Sheldon Richardson",
+          "team": "New York Jets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dee Milliner",
+          "team": "New York Jets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marcus Davis",
+          "team": "New York Jets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Geno Smith",
+          "team": "New York Jets",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tyler Wilson",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "John Wetzel",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Conner Vernon",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tyler Wilson",
+          "team": "Oakland Raiders",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "John Wetzel",
+          "team": "Oakland Raiders",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Conner Vernon",
+          "team": "Oakland Raiders",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tyler Wilson",
+          "team": "Oakland Raiders",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "John Wetzel",
+          "team": "Oakland Raiders",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Conner Vernon",
+          "team": "Oakland Raiders",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tyler Wilson",
+          "team": "Oakland Raiders",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "John Wetzel",
+          "team": "Oakland Raiders",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Conner Vernon",
+          "team": "Oakland Raiders",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tyler Wilson",
+          "team": "Oakland Raiders",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "John Wetzel",
+          "team": "Oakland Raiders",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Conner Vernon",
+          "team": "Oakland Raiders",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tyler Wilson",
+          "team": "Oakland Raiders",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "John Wetzel",
+          "team": "Oakland Raiders",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Conner Vernon",
+          "team": "Oakland Raiders",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jordan Poyer",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Zach Ertz",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Miguel Maysonet",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jordan Poyer",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Zach Ertz",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Miguel Maysonet",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jordan Poyer",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Zach Ertz",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Miguel Maysonet",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jordan Poyer",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "62",
+          "player_name": "Zach Ertz",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jordan Poyer",
+          "team": "Philadelphia Eagles",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Zach Ertz",
+          "team": "Philadelphia Eagles",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jordan Poyer",
+          "team": "Philadelphia Eagles",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Zach Ertz",
+          "team": "Philadelphia Eagles",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jordan Poyer",
+          "team": "Philadelphia Eagles",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Zach Ertz",
+          "team": "Philadelphia Eagles",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jordan Poyer",
+          "team": "Philadelphia Eagles",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Zach Ertz",
+          "team": "Philadelphia Eagles",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jordan Poyer",
+          "team": "Philadelphia Eagles",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Matt Barkley",
+          "team": "Philadelphia Eagles",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Zach Ertz",
+          "team": "Philadelphia Eagles",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Landry Jones",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Markus Wheaton",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Le'Veon Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Landry Jones",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Markus Wheaton",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Le'Veon Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Landry Jones",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Markus Wheaton",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Le'Veon Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Landry Jones",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "56",
+          "player_name": "Markus Wheaton",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "67",
+          "player_name": "Le'Veon Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Landry Jones",
+          "team": "Pittsburgh Steelers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Markus Wheaton",
+          "team": "Pittsburgh Steelers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Le'Veon Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Landry Jones",
+          "team": "Pittsburgh Steelers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Markus Wheaton",
+          "team": "Pittsburgh Steelers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Le'Veon Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Landry Jones",
+          "team": "Pittsburgh Steelers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Markus Wheaton",
+          "team": "Pittsburgh Steelers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Le'Veon Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Landry Jones",
+          "team": "Pittsburgh Steelers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Markus Wheaton",
+          "team": "Pittsburgh Steelers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Le'Veon Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Landry Jones",
+          "team": "Pittsburgh Steelers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Markus Wheaton",
+          "team": "Pittsburgh Steelers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Le'Veon Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Manti Te'o",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Keenan Allen",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Manti Te'o",
+          "team": "San Diego Chargers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Keenan Allen",
+          "team": "San Diego Chargers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Manti Te'o",
+          "team": "San Diego Chargers",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Keenan Allen",
+          "team": "San Diego Chargers",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Manti Te'o",
+          "team": "San Diego Chargers",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Keenan Allen",
+          "team": "San Diego Chargers",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Manti Te'o",
+          "team": "San Diego Chargers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Keenan Allen",
+          "team": "San Diego Chargers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Manti Te'o",
+          "team": "San Diego Chargers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Keenan Allen",
+          "team": "San Diego Chargers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Manti Te'o",
+          "team": "San Diego Chargers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Keenan Allen",
+          "team": "San Diego Chargers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Manti Te'o",
+          "team": "San Diego Chargers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Keenan Allen",
+          "team": "San Diego Chargers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Manti Te'o",
+          "team": "San Diego Chargers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Keenan Allen",
+          "team": "San Diego Chargers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Marcus Lattimore",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Vance McDonald",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "D.J. Harper",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Quinton Patton",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Marcus Lattimore",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "D.J. Harper",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Marcus Lattimore",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "D.J. Harper",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Marcus Lattimore",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "51",
+          "player_name": "D.J. Harper",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Marcus Lattimore",
+          "team": "San Francisco 49ers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Vance McDonald",
+          "team": "San Francisco 49ers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "D.J. Harper",
+          "team": "San Francisco 49ers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Quinton Patton",
+          "team": "San Francisco 49ers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Marcus Lattimore",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Vance McDonald",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "D.J. Harper",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Quinton Patton",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Marcus Lattimore",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Vance McDonald",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "D.J. Harper",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Quinton Patton",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Marcus Lattimore",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Vance McDonald",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "D.J. Harper",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Quinton Patton",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Marcus Lattimore",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Vance McDonald",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "D.J. Harper",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Quinton Patton",
+          "team": "San Francisco 49ers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jesse Williams",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Christine Michael",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jesse Williams",
+          "team": "Seattle Seahawks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Christine Michael",
+          "team": "Seattle Seahawks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jesse Williams",
+          "team": "Seattle Seahawks",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Christine Michael",
+          "team": "Seattle Seahawks",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jesse Williams",
+          "team": "Seattle Seahawks",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Christine Michael",
+          "team": "Seattle Seahawks",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jesse Williams",
+          "team": "Seattle Seahawks",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Christine Michael",
+          "team": "Seattle Seahawks",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jesse Williams",
+          "team": "Seattle Seahawks",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Christine Michael",
+          "team": "Seattle Seahawks",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jesse Williams",
+          "team": "Seattle Seahawks",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Christine Michael",
+          "team": "Seattle Seahawks",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jesse Williams",
+          "team": "Seattle Seahawks",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Christine Michael",
+          "team": "Seattle Seahawks",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jesse Williams",
+          "team": "Seattle Seahawks",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Christine Michael",
+          "team": "Seattle Seahawks",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tavon Austin",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Barrett Jones",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stedman Bailey",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "T.J. McDonald",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Philip Lutzenkirchen",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tavon Austin",
+          "team": "St. Louis Rams",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Barrett Jones",
+          "team": "St. Louis Rams",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stedman Bailey",
+          "team": "St. Louis Rams",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "T.J. McDonald",
+          "team": "St. Louis Rams",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tavon Austin",
+          "team": "St. Louis Rams",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Barrett Jones",
+          "team": "St. Louis Rams",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stedman Bailey",
+          "team": "St. Louis Rams",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "T.J. McDonald",
+          "team": "St. Louis Rams",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tavon Austin",
+          "team": "St. Louis Rams",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Barrett Jones",
+          "team": "St. Louis Rams",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stedman Bailey",
+          "team": "St. Louis Rams",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "T.J. McDonald",
+          "team": "St. Louis Rams",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tavon Austin",
+          "team": "St. Louis Rams",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Barrett Jones",
+          "team": "St. Louis Rams",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stedman Bailey",
+          "team": "St. Louis Rams",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "T.J. McDonald",
+          "team": "St. Louis Rams",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Philip Lutzenkirchen",
+          "team": "St. Louis Rams",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tavon Austin",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Barrett Jones",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stedman Bailey",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "T.J. McDonald",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Philip Lutzenkirchen",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tavon Austin",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Barrett Jones",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stedman Bailey",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "T.J. McDonald",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Philip Lutzenkirchen",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tavon Austin",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Barrett Jones",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stedman Bailey",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "T.J. McDonald",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Philip Lutzenkirchen",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Tavon Austin",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Barrett Jones",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Stedman Bailey",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "T.J. McDonald",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Philip Lutzenkirchen",
+          "team": "St. Louis Rams",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mike Glennon",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mike Glennon",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mike Glennon",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mike Glennon",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mike Glennon",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Mike Glennon",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chance Warmack",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Justin Hunter",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Blidi Wreh-Wilson",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chance Warmack",
+          "team": "Tennessee Titans",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Justin Hunter",
+          "team": "Tennessee Titans",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Blidi Wreh-Wilson",
+          "team": "Tennessee Titans",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chance Warmack",
+          "team": "Tennessee Titans",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Justin Hunter",
+          "team": "Tennessee Titans",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Blidi Wreh-Wilson",
+          "team": "Tennessee Titans",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chance Warmack",
+          "team": "Tennessee Titans",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Justin Hunter",
+          "team": "Tennessee Titans",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Blidi Wreh-Wilson",
+          "team": "Tennessee Titans",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chance Warmack",
+          "team": "Tennessee Titans",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Justin Hunter",
+          "team": "Tennessee Titans",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Blidi Wreh-Wilson",
+          "team": "Tennessee Titans",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chance Warmack",
+          "team": "Tennessee Titans",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Justin Hunter",
+          "team": "Tennessee Titans",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Blidi Wreh-Wilson",
+          "team": "Tennessee Titans",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chance Warmack",
+          "team": "Tennessee Titans",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Justin Hunter",
+          "team": "Tennessee Titans",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Blidi Wreh-Wilson",
+          "team": "Tennessee Titans",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chance Warmack",
+          "team": "Tennessee Titans",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Justin Hunter",
+          "team": "Tennessee Titans",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Blidi Wreh-Wilson",
+          "team": "Tennessee Titans",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chance Warmack",
+          "team": "Tennessee Titans",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Justin Hunter",
+          "team": "Tennessee Titans",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Blidi Wreh-Wilson",
+          "team": "Tennessee Titans",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Chris Thompson",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Brandon Jenkins",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jordan Reed",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Chris Thompson",
+          "team": "Washington Redskins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Brandon Jenkins",
+          "team": "Washington Redskins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jordan Reed",
+          "team": "Washington Redskins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Chris Thompson",
+          "team": "Washington Redskins",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Brandon Jenkins",
+          "team": "Washington Redskins",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jordan Reed",
+          "team": "Washington Redskins",
+          "variation": "Autographs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Chris Thompson",
+          "team": "Washington Redskins",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "36",
+          "player_name": "Brandon Jenkins",
+          "team": "Washington Redskins",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jordan Reed",
+          "team": "Washington Redskins",
+          "variation": "Autographs Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Chris Thompson",
+          "team": "Washington Redskins",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Brandon Jenkins",
+          "team": "Washington Redskins",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jordan Reed",
+          "team": "Washington Redskins",
+          "variation": "Mini",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Chris Thompson",
+          "team": "Washington Redskins",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Brandon Jenkins",
+          "team": "Washington Redskins",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jordan Reed",
+          "team": "Washington Redskins",
+          "variation": "Printing Plates Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Chris Thompson",
+          "team": "Washington Redskins",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Brandon Jenkins",
+          "team": "Washington Redskins",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jordan Reed",
+          "team": "Washington Redskins",
+          "variation": "Printing Plates Cyan",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Chris Thompson",
+          "team": "Washington Redskins",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Brandon Jenkins",
+          "team": "Washington Redskins",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jordan Reed",
+          "team": "Washington Redskins",
+          "variation": "Printing Plates Magenta",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Chris Thompson",
+          "team": "Washington Redskins",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Brandon Jenkins",
+          "team": "Washington Redskins",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jordan Reed",
+          "team": "Washington Redskins",
+          "variation": "Printing Plates Yellow",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

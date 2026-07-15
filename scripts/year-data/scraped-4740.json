@@ -1,0 +1,6663 @@
+{
+  "year": 2006,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 4740,
+        "name": "2006 Bowman Sterling"
+      },
+      "unique": [
+        {
+          "card_number": "37",
+          "player_name": "Gabe Watson",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LF",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LP",
+          "player_name": "Leonard Pope",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-ML",
+          "player_name": "Matt Leinart",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Gabe Watson",
+          "team": "Arizona Cardinals",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LF",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LP",
+          "player_name": "Leonard Pope",
+          "team": "Arizona Cardinals",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-ML",
+          "player_name": "Matt Leinart",
+          "team": "Arizona Cardinals",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BSHC-LM",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LP",
+          "player_name": "Leonard Pope",
+          "team": "Arizona Cardinals",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Gabe Watson",
+          "team": "Arizona Cardinals",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LF",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LP",
+          "player_name": "Leonard Pope",
+          "team": "Arizona Cardinals",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-ML",
+          "player_name": "Matt Leinart",
+          "team": "Arizona Cardinals",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Gabe Watson",
+          "team": "Arizona Cardinals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LF",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LP",
+          "player_name": "Leonard Pope",
+          "team": "Arizona Cardinals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-ML",
+          "player_name": "Matt Leinart",
+          "team": "Arizona Cardinals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jimmy Williams",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AC",
+          "player_name": "Alge Crumpler",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AJ",
+          "player_name": "Adam Jennings",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DS",
+          "player_name": "D.J. Shockley",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JN",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WD",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jimmy Williams",
+          "team": "Atlanta Falcons",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AC2",
+          "player_name": "Alge Crumpler",
+          "team": "Atlanta Falcons",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AJ",
+          "player_name": "Adam Jennings",
+          "team": "Atlanta Falcons",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DS2",
+          "player_name": "D.J. Shockley",
+          "team": "Atlanta Falcons",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JN1",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JN2",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JN3",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WD",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BSHC-VF",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Gold Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DS",
+          "player_name": "D.J. Shockley",
+          "team": "Atlanta Falcons",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JN",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jimmy Williams",
+          "team": "Atlanta Falcons",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AC2",
+          "player_name": "Alge Crumpler",
+          "team": "Atlanta Falcons",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AJ",
+          "player_name": "Adam Jennings",
+          "team": "Atlanta Falcons",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DS2",
+          "player_name": "D.J. Shockley",
+          "team": "Atlanta Falcons",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JN1",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JN2",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JN3",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WD",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Jimmy Williams",
+          "team": "Atlanta Falcons",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AC2",
+          "player_name": "Alge Crumpler",
+          "team": "Atlanta Falcons",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AJ",
+          "player_name": "Adam Jennings",
+          "team": "Atlanta Falcons",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DS2",
+          "player_name": "D.J. Shockley",
+          "team": "Atlanta Falcons",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JN1",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JN2",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JN3",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WD",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Haloti Ngata",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Quinn Sypniewski",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DEW",
+          "player_name": "Demetrius Williams",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DOL",
+          "player_name": "Drew Olson",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JL",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Haloti Ngata",
+          "team": "Baltimore Ravens",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Quinn Sypniewski",
+          "team": "Baltimore Ravens",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DEW",
+          "player_name": "Demetrius Williams",
+          "team": "Baltimore Ravens",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DOL",
+          "player_name": "Drew Olson",
+          "team": "Baltimore Ravens",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JL",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Haloti Ngata",
+          "team": "Baltimore Ravens",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Quinn Sypniewski",
+          "team": "Baltimore Ravens",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DEW",
+          "player_name": "Demetrius Williams",
+          "team": "Baltimore Ravens",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DOL",
+          "player_name": "Drew Olson",
+          "team": "Baltimore Ravens",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JL",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Haloti Ngata",
+          "team": "Baltimore Ravens",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Quinn Sypniewski",
+          "team": "Baltimore Ravens",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DEW",
+          "player_name": "Demetrius Williams",
+          "team": "Baltimore Ravens",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DOL",
+          "player_name": "Drew Olson",
+          "team": "Baltimore Ravens",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JL",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Donte Whitner",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Ko Simpson",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AY",
+          "player_name": "Ashton Youboty",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LE",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MN",
+          "player_name": "Martin Nance",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Donte Whitner",
+          "team": "Buffalo Bills",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Ko Simpson",
+          "team": "Buffalo Bills",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AY",
+          "player_name": "Ashton Youboty",
+          "team": "Buffalo Bills",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LE",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MN",
+          "player_name": "Martin Nance",
+          "team": "Buffalo Bills",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Donte Whitner",
+          "team": "Buffalo Bills",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Ko Simpson",
+          "team": "Buffalo Bills",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AY",
+          "player_name": "Ashton Youboty",
+          "team": "Buffalo Bills",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LE",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MN",
+          "player_name": "Martin Nance",
+          "team": "Buffalo Bills",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Donte Whitner",
+          "team": "Buffalo Bills",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Ko Simpson",
+          "team": "Buffalo Bills",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AY",
+          "player_name": "Ashton Youboty",
+          "team": "Buffalo Bills",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LE",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MN",
+          "player_name": "Martin Nance",
+          "team": "Buffalo Bills",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jovon Bouknight",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "James Anderson",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jeff King",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BB",
+          "player_name": "Brett Basanez",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DW",
+          "player_name": "DeAngelo Williams",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JD",
+          "player_name": "Jake Delhomme",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JP",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SS",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jovon Bouknight",
+          "team": "Carolina Panthers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "James Anderson",
+          "team": "Carolina Panthers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jeff King",
+          "team": "Carolina Panthers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BB",
+          "player_name": "Brett Basanez",
+          "team": "Carolina Panthers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DW",
+          "player_name": "DeAngelo Williams",
+          "team": "Carolina Panthers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JD",
+          "player_name": "Jake Delhomme",
+          "team": "Carolina Panthers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JP",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SS",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-JS",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-WW",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jovon Bouknight",
+          "team": "Carolina Panthers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "James Anderson",
+          "team": "Carolina Panthers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jeff King",
+          "team": "Carolina Panthers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BB",
+          "player_name": "Brett Basanez",
+          "team": "Carolina Panthers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DW",
+          "player_name": "DeAngelo Williams",
+          "team": "Carolina Panthers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JD",
+          "player_name": "Jake Delhomme",
+          "team": "Carolina Panthers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JP",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SS",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Jovon Bouknight",
+          "team": "Carolina Panthers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "James Anderson",
+          "team": "Carolina Panthers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Jeff King",
+          "team": "Carolina Panthers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BB",
+          "player_name": "Brett Basanez",
+          "team": "Carolina Panthers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DW",
+          "player_name": "DeAngelo Williams",
+          "team": "Carolina Panthers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JD",
+          "player_name": "Jake Delhomme",
+          "team": "Carolina Panthers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JP",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SS",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "44",
+          "player_name": "P.J. Pope",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Dusty Dvoracek",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Danieal Manning",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHE",
+          "player_name": "Devin Hester",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LB",
+          "player_name": "Lance Briggs",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TH",
+          "player_name": "Tommie Harris",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "P.J. Pope",
+          "team": "Chicago Bears",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Dusty Dvoracek",
+          "team": "Chicago Bears",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Danieal Manning",
+          "team": "Chicago Bears",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHE",
+          "player_name": "Devin Hester",
+          "team": "Chicago Bears",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LB",
+          "player_name": "Lance Briggs",
+          "team": "Chicago Bears",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TH",
+          "player_name": "Tommie Harris",
+          "team": "Chicago Bears",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "P.J. Pope",
+          "team": "Chicago Bears",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Dusty Dvoracek",
+          "team": "Chicago Bears",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Danieal Manning",
+          "team": "Chicago Bears",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHE",
+          "player_name": "Devin Hester",
+          "team": "Chicago Bears",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LB",
+          "player_name": "Lance Briggs",
+          "team": "Chicago Bears",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TH",
+          "player_name": "Tommie Harris",
+          "team": "Chicago Bears",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "P.J. Pope",
+          "team": "Chicago Bears",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Dusty Dvoracek",
+          "team": "Chicago Bears",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Danieal Manning",
+          "team": "Chicago Bears",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHE",
+          "player_name": "Devin Hester",
+          "team": "Chicago Bears",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LB",
+          "player_name": "Lance Briggs",
+          "team": "Chicago Bears",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TH",
+          "player_name": "Tommie Harris",
+          "team": "Chicago Bears",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johnathan Joseph",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Bennie Brazell",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DON",
+          "player_name": "Deltha O'Neal",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RJ",
+          "player_name": "Rudi Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RM",
+          "player_name": "Reggie McNeal",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johnathan Joseph",
+          "team": "Cincinnati Bengals",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Bennie Brazell",
+          "team": "Cincinnati Bengals",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RJ",
+          "player_name": "Rudi Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RM",
+          "player_name": "Reggie McNeal",
+          "team": "Cincinnati Bengals",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-JS",
+          "player_name": "Cincinnati Bengals",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RM",
+          "player_name": "Reggie McNeal",
+          "team": "Cincinnati Bengals",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johnathan Joseph",
+          "team": "Cincinnati Bengals",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Bennie Brazell",
+          "team": "Cincinnati Bengals",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RJ",
+          "player_name": "Rudi Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RM",
+          "player_name": "Reggie McNeal",
+          "team": "Cincinnati Bengals",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Johnathan Joseph",
+          "team": "Cincinnati Bengals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Bennie Brazell",
+          "team": "Cincinnati Bengals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RJ",
+          "player_name": "Rudi Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RM",
+          "player_name": "Reggie McNeal",
+          "team": "Cincinnati Bengals",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Lawrence Vickers",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "DeMario Minter",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "D'Qwell Jackson",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHA",
+          "player_name": "Darrell Hackney",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JH",
+          "player_name": "Jerome Harrison",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-KW",
+          "player_name": "Kamerion Wimbley",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-TW",
+          "player_name": "Travis Wilson",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Lawrence Vickers",
+          "team": "Cleveland Browns",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "DeMario Minter",
+          "team": "Cleveland Browns",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "D'Qwell Jackson",
+          "team": "Cleveland Browns",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHA",
+          "player_name": "Darrell Hackney",
+          "team": "Cleveland Browns",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JH",
+          "player_name": "Jerome Harrison",
+          "team": "Cleveland Browns",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-KW",
+          "player_name": "Kamerion Wimbley",
+          "team": "Cleveland Browns",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-TW",
+          "player_name": "Travis Wilson",
+          "team": "Cleveland Browns",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHA",
+          "player_name": "Darrell Hackney",
+          "team": "Cleveland Browns",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JH",
+          "player_name": "Jerome Harrison",
+          "team": "Cleveland Browns",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Lawrence Vickers",
+          "team": "Cleveland Browns",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "DeMario Minter",
+          "team": "Cleveland Browns",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "D'Qwell Jackson",
+          "team": "Cleveland Browns",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHA",
+          "player_name": "Darrell Hackney",
+          "team": "Cleveland Browns",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JH",
+          "player_name": "Jerome Harrison",
+          "team": "Cleveland Browns",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-KW",
+          "player_name": "Kamerion Wimbley",
+          "team": "Cleveland Browns",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-TW",
+          "player_name": "Travis Wilson",
+          "team": "Cleveland Browns",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Lawrence Vickers",
+          "team": "Cleveland Browns",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "DeMario Minter",
+          "team": "Cleveland Browns",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "D'Qwell Jackson",
+          "team": "Cleveland Browns",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHA",
+          "player_name": "Darrell Hackney",
+          "team": "Cleveland Browns",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JH",
+          "player_name": "Jerome Harrison",
+          "team": "Cleveland Browns",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-KW",
+          "player_name": "Kamerion Wimbley",
+          "team": "Cleveland Browns",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-TW",
+          "player_name": "Travis Wilson",
+          "team": "Cleveland Browns",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AF",
+          "player_name": "Anthony Fasano",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JJ",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MB",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RWI",
+          "player_name": "Roy Williams",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SG",
+          "player_name": "Skyler Green",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-AF",
+          "player_name": "Anthony Fasano",
+          "team": "Dallas Cowboys",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JJ",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MB",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RWI",
+          "player_name": "Roy Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SG",
+          "player_name": "Skyler Green",
+          "team": "Dallas Cowboys",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-BS",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JJ",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Gold Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-AF",
+          "player_name": "Anthony Fasano",
+          "team": "Dallas Cowboys",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-SG",
+          "player_name": "Skyler Green",
+          "team": "Dallas Cowboys",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-AF",
+          "player_name": "Anthony Fasano",
+          "team": "Dallas Cowboys",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JJ",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MB",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RWI",
+          "player_name": "Roy Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SG",
+          "player_name": "Skyler Green",
+          "team": "Dallas Cowboys",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-AF",
+          "player_name": "Anthony Fasano",
+          "team": "Dallas Cowboys",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JJ",
+          "player_name": "Julius Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MB",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RWI",
+          "player_name": "Roy Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SG",
+          "player_name": "Skyler Green",
+          "team": "Dallas Cowboys",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Elvis Dumervil",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tony Scheffler",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AW",
+          "player_name": "Al Wilson",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BM",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHI",
+          "player_name": "Domenik Hixon",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MBE",
+          "player_name": "Mike Bell",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RS",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TB",
+          "player_name": "Tatum Bell",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Elvis Dumervil",
+          "team": "Denver Broncos",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tony Scheffler",
+          "team": "Denver Broncos",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AW",
+          "player_name": "Al Wilson",
+          "team": "Denver Broncos",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BM",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHI",
+          "player_name": "Domenik Hixon",
+          "team": "Denver Broncos",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MBE",
+          "player_name": "Mike Bell",
+          "team": "Denver Broncos",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RS",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TB",
+          "player_name": "Tatum Bell",
+          "team": "Denver Broncos",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-AB",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-CC",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-MB",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-NE",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DHI",
+          "player_name": "Domenik Hixon",
+          "team": "Denver Broncos",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MBE",
+          "player_name": "Mike Bell",
+          "team": "Denver Broncos",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Elvis Dumervil",
+          "team": "Denver Broncos",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tony Scheffler",
+          "team": "Denver Broncos",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AW",
+          "player_name": "Al Wilson",
+          "team": "Denver Broncos",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BM",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHI",
+          "player_name": "Domenik Hixon",
+          "team": "Denver Broncos",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MBE",
+          "player_name": "Mike Bell",
+          "team": "Denver Broncos",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RS",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TB",
+          "player_name": "Tatum Bell",
+          "team": "Denver Broncos",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "35",
+          "player_name": "Elvis Dumervil",
+          "team": "Denver Broncos",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tony Scheffler",
+          "team": "Denver Broncos",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AW",
+          "player_name": "Al Wilson",
+          "team": "Denver Broncos",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BM",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DHI",
+          "player_name": "Domenik Hixon",
+          "team": "Denver Broncos",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MBE",
+          "player_name": "Mike Bell",
+          "team": "Denver Broncos",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RS",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TB",
+          "player_name": "Tatum Bell",
+          "team": "Denver Broncos",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Daniel Bullocks",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ernie Sims",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BC",
+          "player_name": "Brian Calhoun",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SR",
+          "player_name": "Shaun Rogers",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Daniel Bullocks",
+          "team": "Detroit Lions",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ernie Sims",
+          "team": "Detroit Lions",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BC1",
+          "player_name": "Brian Calhoun",
+          "team": "Detroit Lions",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BC2",
+          "player_name": "Brian Calhoun",
+          "team": "Detroit Lions",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-SR",
+          "player_name": "Shaun Rogers",
+          "team": "Detroit Lions",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Daniel Bullocks",
+          "team": "Detroit Lions",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ernie Sims",
+          "team": "Detroit Lions",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BC1",
+          "player_name": "Brian Calhoun",
+          "team": "Detroit Lions",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BC2",
+          "player_name": "Brian Calhoun",
+          "team": "Detroit Lions",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-SR",
+          "player_name": "Shaun Rogers",
+          "team": "Detroit Lions",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Daniel Bullocks",
+          "team": "Detroit Lions",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ernie Sims",
+          "team": "Detroit Lions",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BC1",
+          "player_name": "Brian Calhoun",
+          "team": "Detroit Lions",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BC2",
+          "player_name": "Brian Calhoun",
+          "team": "Detroit Lions",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-SR",
+          "player_name": "Shaun Rogers",
+          "team": "Detroit Lions",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Abdul Hodge",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AH",
+          "player_name": "A.J. Hawk",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-IM",
+          "player_name": "Ingle Martin",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JW",
+          "player_name": "Javon Walker",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WB",
+          "player_name": "Will Blackmon",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Abdul Hodge",
+          "team": "Green Bay Packers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AH1",
+          "player_name": "A.J. Hawk",
+          "team": "Green Bay Packers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AH",
+          "player_name": "A.J. Hawk",
+          "team": "Green Bay Packers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-IM",
+          "player_name": "Ingle Martin",
+          "team": "Green Bay Packers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JW",
+          "player_name": "Javon Walker",
+          "team": "Green Bay Packers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WB",
+          "player_name": "Will Blackmon",
+          "team": "Green Bay Packers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-CF",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-VF",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-WH",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Gold Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-IM",
+          "player_name": "Ingle Martin",
+          "team": "Green Bay Packers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-WB",
+          "player_name": "Will Blackmon",
+          "team": "Green Bay Packers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Abdul Hodge",
+          "team": "Green Bay Packers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AH1",
+          "player_name": "A.J. Hawk",
+          "team": "Green Bay Packers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AH2",
+          "player_name": "A.J. Hawk",
+          "team": "Green Bay Packers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-IM",
+          "player_name": "Ingle Martin",
+          "team": "Green Bay Packers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JW",
+          "player_name": "Javon Walker",
+          "team": "Green Bay Packers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WB",
+          "player_name": "Will Blackmon",
+          "team": "Green Bay Packers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Abdul Hodge",
+          "team": "Green Bay Packers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AH1",
+          "player_name": "A.J. Hawk",
+          "team": "Green Bay Packers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AH",
+          "player_name": "A.J. Hawk",
+          "team": "Green Bay Packers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-IM",
+          "player_name": "Ingle Martin",
+          "team": "Green Bay Packers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JW",
+          "player_name": "Javon Walker",
+          "team": "Green Bay Packers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WB",
+          "player_name": "Will Blackmon",
+          "team": "Green Bay Packers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-YC",
+          "player_name": "Houston Oilers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Damien Rhodes",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Owen Daniels",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DAN",
+          "player_name": "David Anderson",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DRY",
+          "player_name": "DeMeco Ryans",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JM",
+          "player_name": "Jerome Mathis",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MW",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Damien Rhodes",
+          "team": "Houston Texans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Owen Daniels",
+          "team": "Houston Texans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DAN",
+          "player_name": "David Anderson",
+          "team": "Houston Texans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DRY",
+          "player_name": "DeMeco Ryans",
+          "team": "Houston Texans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JM",
+          "player_name": "Jerome Mathis",
+          "team": "Houston Texans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MW1",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MW2",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-WH",
+          "player_name": "Houston Texans",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DAN",
+          "player_name": "David Anderson",
+          "team": "Houston Texans",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Damien Rhodes",
+          "team": "Houston Texans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Owen Daniels",
+          "team": "Houston Texans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DAN",
+          "player_name": "David Anderson",
+          "team": "Houston Texans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DRY",
+          "player_name": "DeMeco Ryans",
+          "team": "Houston Texans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JM",
+          "player_name": "Jerome Mathis",
+          "team": "Houston Texans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MW1",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MW2",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Damien Rhodes",
+          "team": "Houston Texans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Owen Daniels",
+          "team": "Houston Texans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DAN",
+          "player_name": "David Anderson",
+          "team": "Houston Texans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DRY",
+          "player_name": "DeMeco Ryans",
+          "team": "Houston Texans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JM",
+          "player_name": "Jerome Mathis",
+          "team": "Houston Texans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MW1",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MW2",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Josh Betts",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "T.J. Rushing",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Freddy Keiaho",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BS",
+          "player_name": "Bob Sanders",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DF",
+          "player_name": "Dwight Freeney",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JA",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RW",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Josh Betts",
+          "team": "Indianapolis Colts",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "T.J. Rushing",
+          "team": "Indianapolis Colts",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Freddy Keiaho",
+          "team": "Indianapolis Colts",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BS1",
+          "player_name": "Bob Sanders",
+          "team": "Indianapolis Colts",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DF",
+          "player_name": "Dwight Freeney",
+          "team": "Indianapolis Colts",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JA1",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RW",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BSHC-AB",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-MM",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Gold Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Gold Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JA",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Josh Betts",
+          "team": "Indianapolis Colts",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "T.J. Rushing",
+          "team": "Indianapolis Colts",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Freddy Keiaho",
+          "team": "Indianapolis Colts",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BS1",
+          "player_name": "Bob Sanders",
+          "team": "Indianapolis Colts",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DF",
+          "player_name": "Dwight Freeney",
+          "team": "Indianapolis Colts",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JA1",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RW",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Josh Betts",
+          "team": "Indianapolis Colts",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "T.J. Rushing",
+          "team": "Indianapolis Colts",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Freddy Keiaho",
+          "team": "Indianapolis Colts",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BS1",
+          "player_name": "Bob Sanders",
+          "team": "Indianapolis Colts",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DF",
+          "player_name": "Dwight Freeney",
+          "team": "Indianapolis Colts",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JA1",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RW",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Dee Webb",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JSM",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MD",
+          "player_name": "Maurice Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MLE",
+          "player_name": "Marcedes Lewis",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MST",
+          "player_name": "Marcus Stroud",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-PP",
+          "player_name": "Paul Pinegar",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Dee Webb",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JSM",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MD",
+          "player_name": "Maurice Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MLE",
+          "player_name": "Marcedes Lewis",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MST",
+          "player_name": "Marcus Stroud",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-PP",
+          "player_name": "Paul Pinegar",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-DL",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Dee Webb",
+          "team": "Jacksonville Jaguars",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JSM",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MD",
+          "player_name": "Maurice Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MLE",
+          "player_name": "Marcedes Lewis",
+          "team": "Jacksonville Jaguars",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MST",
+          "player_name": "Marcus Stroud",
+          "team": "Jacksonville Jaguars",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-PP",
+          "player_name": "Paul Pinegar",
+          "team": "Jacksonville Jaguars",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "48",
+          "player_name": "Dee Webb",
+          "team": "Jacksonville Jaguars",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JSM",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MD",
+          "player_name": "Maurice Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MLE",
+          "player_name": "Marcedes Lewis",
+          "team": "Jacksonville Jaguars",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MST",
+          "player_name": "Marcus Stroud",
+          "team": "Jacksonville Jaguars",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-PP",
+          "player_name": "Paul Pinegar",
+          "team": "Jacksonville Jaguars",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tamba Hali",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BCR",
+          "player_name": "Brodie Croyle",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JWE",
+          "player_name": "Jeff Webb",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TG",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tamba Hali",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BCR",
+          "player_name": "Brodie Croyle",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JWE",
+          "player_name": "Jeff Webb",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TG",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Gold Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-BCR",
+          "player_name": "Brodie Croyle",
+          "team": "Kansas City Chiefs",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tamba Hali",
+          "team": "Kansas City Chiefs",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BCR",
+          "player_name": "Brodie Croyle",
+          "team": "Kansas City Chiefs",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JWE",
+          "player_name": "Jeff Webb",
+          "team": "Kansas City Chiefs",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TG",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tamba Hali",
+          "team": "Kansas City Chiefs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BCR",
+          "player_name": "Brodie Croyle",
+          "team": "Kansas City Chiefs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JWE",
+          "player_name": "Jeff Webb",
+          "team": "Kansas City Chiefs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TG",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BSHC-JT",
+          "player_name": "Los Angeles Raiders",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Allen",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DEH",
+          "player_name": "Derek Hagan",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RB",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-ZT",
+          "player_name": "Zach Thomas",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Allen",
+          "team": "Miami Dolphins",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DEH",
+          "player_name": "Derek Hagan",
+          "team": "Miami Dolphins",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RB3",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-ZT",
+          "player_name": "Zach Thomas",
+          "team": "Miami Dolphins",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Allen",
+          "team": "Miami Dolphins",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DEH",
+          "player_name": "Derek Hagan",
+          "team": "Miami Dolphins",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RB3",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-ZT",
+          "player_name": "Zach Thomas",
+          "team": "Miami Dolphins",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Allen",
+          "team": "Miami Dolphins",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DEH",
+          "player_name": "Derek Hagan",
+          "team": "Miami Dolphins",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RB3",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-ZT",
+          "player_name": "Zach Thomas",
+          "team": "Miami Dolphins",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Ray Edwards",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CG",
+          "player_name": "Chad Greenway",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DS",
+          "player_name": "Darren Sharper",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-KR",
+          "player_name": "Koren Robinson",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TJ",
+          "player_name": "Tarvaris Jackson",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Ray Edwards",
+          "team": "Minnesota Vikings",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CG",
+          "player_name": "Chad Greenway",
+          "team": "Minnesota Vikings",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DS1",
+          "player_name": "Darren Sharper",
+          "team": "Minnesota Vikings",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-KR",
+          "player_name": "Koren Robinson",
+          "team": "Minnesota Vikings",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TJ1",
+          "player_name": "Tarvaris Jackson",
+          "team": "Minnesota Vikings",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TJ2",
+          "player_name": "Tarvaris Jackson",
+          "team": "Minnesota Vikings",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CG",
+          "player_name": "Chad Greenway",
+          "team": "Minnesota Vikings",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Ray Edwards",
+          "team": "Minnesota Vikings",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CG",
+          "player_name": "Chad Greenway",
+          "team": "Minnesota Vikings",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DS1",
+          "player_name": "Darren Sharper",
+          "team": "Minnesota Vikings",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-KR",
+          "player_name": "Koren Robinson",
+          "team": "Minnesota Vikings",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TJ1",
+          "player_name": "Tarvaris Jackson",
+          "team": "Minnesota Vikings",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TJ2",
+          "player_name": "Tarvaris Jackson",
+          "team": "Minnesota Vikings",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Ray Edwards",
+          "team": "Minnesota Vikings",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CG",
+          "player_name": "Chad Greenway",
+          "team": "Minnesota Vikings",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DS1",
+          "player_name": "Darren Sharper",
+          "team": "Minnesota Vikings",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-KR",
+          "player_name": "Koren Robinson",
+          "team": "Minnesota Vikings",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TJ1",
+          "player_name": "Tarvaris Jackson",
+          "team": "Minnesota Vikings",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TJ2",
+          "player_name": "Tarvaris Jackson",
+          "team": "Minnesota Vikings",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Garrett Mills",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Corey Bramlet",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CJ",
+          "player_name": "Chad Jackson",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DT",
+          "player_name": "David Thomas",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LM",
+          "player_name": "Laurence Maroney",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Garrett Mills",
+          "team": "New England Patriots",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Corey Bramlet",
+          "team": "New England Patriots",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CJ",
+          "player_name": "Chad Jackson",
+          "team": "New England Patriots",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DT",
+          "player_name": "David Thomas",
+          "team": "New England Patriots",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LM",
+          "player_name": "Laurence Maroney",
+          "team": "New England Patriots",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BSHC-HJ",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-MB",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DT",
+          "player_name": "David Thomas",
+          "team": "New England Patriots",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Garrett Mills",
+          "team": "New England Patriots",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Corey Bramlet",
+          "team": "New England Patriots",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CJ",
+          "player_name": "Chad Jackson",
+          "team": "New England Patriots",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DT",
+          "player_name": "David Thomas",
+          "team": "New England Patriots",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LM",
+          "player_name": "Laurence Maroney",
+          "team": "New England Patriots",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Garrett Mills",
+          "team": "New England Patriots",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Corey Bramlet",
+          "team": "New England Patriots",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CJ",
+          "player_name": "Chad Jackson",
+          "team": "New England Patriots",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DT",
+          "player_name": "David Thomas",
+          "team": "New England Patriots",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LM",
+          "player_name": "Laurence Maroney",
+          "team": "New England Patriots",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MIH",
+          "player_name": "Mike Hass",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RB",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MIH",
+          "player_name": "Mike Hass",
+          "team": "New Orleans Saints",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RB1",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RB2",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-BS",
+          "player_name": "New Orleans Saints",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MIH",
+          "player_name": "Mike Hass",
+          "team": "New Orleans Saints",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MIH",
+          "player_name": "Mike Hass",
+          "team": "New Orleans Saints",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RB1",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RB2",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MIH",
+          "player_name": "Mike Hass",
+          "team": "New Orleans Saints",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RB1",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RB2",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Sinorice Moss",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JS",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MK",
+          "player_name": "Mathias Kiwanuka",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MS",
+          "player_name": "Michael Strahan",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-OU",
+          "player_name": "Osi Umenyiora",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-PB",
+          "player_name": "Plaxico Burress",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TBA",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Sinorice Moss",
+          "team": "New York Giants",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JS",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MK",
+          "player_name": "Mathias Kiwanuka",
+          "team": "New York Giants",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MS",
+          "player_name": "Michael Strahan",
+          "team": "New York Giants",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-OU",
+          "player_name": "Osi Umenyiora",
+          "team": "New York Giants",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-PB",
+          "player_name": "Plaxico Burress",
+          "team": "New York Giants",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TBA",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BSHC-MH",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-MM",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Gold Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Sinorice Moss",
+          "team": "New York Giants",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JS",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MK",
+          "player_name": "Mathias Kiwanuka",
+          "team": "New York Giants",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MS",
+          "player_name": "Michael Strahan",
+          "team": "New York Giants",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-OU",
+          "player_name": "Osi Umenyiora",
+          "team": "New York Giants",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-PB",
+          "player_name": "Plaxico Burress",
+          "team": "New York Giants",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TBA",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Sinorice Moss",
+          "team": "New York Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JS",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MK",
+          "player_name": "Mathias Kiwanuka",
+          "team": "New York Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MIS",
+          "player_name": "Michael Strahan",
+          "team": "New York Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-OU",
+          "player_name": "Osi Umenyiora",
+          "team": "New York Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-PB",
+          "player_name": "Plaxico Burress",
+          "team": "New York Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TBA",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Anthony Schlegel",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BS",
+          "player_name": "Brad Smith",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CM",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DFE",
+          "player_name": "D'Brickashaw Ferguson",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-KC",
+          "player_name": "Kellen Clemens",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LWA",
+          "player_name": "Leon Washington",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Anthony Schlegel",
+          "team": "New York Jets",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BS2",
+          "player_name": "Brad Smith",
+          "team": "New York Jets",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CM",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DFE",
+          "player_name": "D'Brickashaw Ferguson",
+          "team": "New York Jets",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-KC1",
+          "player_name": "Kellen Clemens",
+          "team": "New York Jets",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-KC2",
+          "player_name": "Kellen Clemens",
+          "team": "New York Jets",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LWA1",
+          "player_name": "Leon Washington",
+          "team": "New York Jets",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LWA2",
+          "player_name": "Leon Washington",
+          "team": "New York Jets",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-CC",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-CF",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-NE",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-BS",
+          "player_name": "Brad Smith",
+          "team": "New York Jets",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DFE",
+          "player_name": "D'Brickashaw Ferguson",
+          "team": "New York Jets",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Anthony Schlegel",
+          "team": "New York Jets",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BS2",
+          "player_name": "Brad Smith",
+          "team": "New York Jets",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CM",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DFE",
+          "player_name": "D'Brickashaw Ferguson",
+          "team": "New York Jets",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-KC1",
+          "player_name": "Kellen Clemens",
+          "team": "New York Jets",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-KC2",
+          "player_name": "Kellen Clemens",
+          "team": "New York Jets",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LWA1",
+          "player_name": "Leon Washington",
+          "team": "New York Jets",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LWA2",
+          "player_name": "Leon Washington",
+          "team": "New York Jets",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Anthony Schlegel",
+          "team": "New York Jets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BS2",
+          "player_name": "Brad Smith",
+          "team": "New York Jets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CM",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DFE",
+          "player_name": "D'Brickashaw Ferguson",
+          "team": "New York Jets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-KC1",
+          "player_name": "Kellen Clemens",
+          "team": "New York Jets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-KC2",
+          "player_name": "Kellen Clemens",
+          "team": "New York Jets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LWA1",
+          "player_name": "Leon Washington",
+          "team": "New York Jets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LWA2",
+          "player_name": "Leon Washington",
+          "team": "New York Jets",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kevin McMahan",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Thomas Howard",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DB",
+          "player_name": "Derrick Burgess",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MHU",
+          "player_name": "Michael Huff",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kevin McMahan",
+          "team": "Oakland Raiders",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Thomas Howard",
+          "team": "Oakland Raiders",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DB1",
+          "player_name": "Derrick Burgess",
+          "team": "Oakland Raiders",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MHU",
+          "player_name": "Michael Huff",
+          "team": "Oakland Raiders",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kevin McMahan",
+          "team": "Oakland Raiders",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Thomas Howard",
+          "team": "Oakland Raiders",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DB1",
+          "player_name": "Derrick Burgess",
+          "team": "Oakland Raiders",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MHU",
+          "player_name": "Michael Huff",
+          "team": "Oakland Raiders",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kevin McMahan",
+          "team": "Oakland Raiders",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Thomas Howard",
+          "team": "Oakland Raiders",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DB1",
+          "player_name": "Derrick Burgess",
+          "team": "Oakland Raiders",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MHU",
+          "player_name": "Michael Huff",
+          "team": "Oakland Raiders",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jeremy Bloom",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "J.J. Outlaw",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Omar Gaither",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Chris Gocong",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-HB",
+          "player_name": "Hank Baskett",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JA",
+          "player_name": "Jason Avant",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JT",
+          "player_name": "Jeremiah Trotter",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WJ",
+          "player_name": "Winston Justice",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jeremy Bloom",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "J.J. Outlaw",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Omar Gaither",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Chris Gocong",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-HB",
+          "player_name": "Hank Baskett",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JA2",
+          "player_name": "Jason Avant",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JT",
+          "player_name": "Jeremiah Trotter",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WJ",
+          "player_name": "Winston Justice",
+          "team": "Philadelphia Eagles",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-HB",
+          "player_name": "Hank Baskett",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jeremy Bloom",
+          "team": "Philadelphia Eagles",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "J.J. Outlaw",
+          "team": "Philadelphia Eagles",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Omar Gaither",
+          "team": "Philadelphia Eagles",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Chris Gocong",
+          "team": "Philadelphia Eagles",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-HB",
+          "player_name": "Hank Baskett",
+          "team": "Philadelphia Eagles",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JA2",
+          "player_name": "Jason Avant",
+          "team": "Philadelphia Eagles",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JT",
+          "player_name": "Jeremiah Trotter",
+          "team": "Philadelphia Eagles",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WJ",
+          "player_name": "Winston Justice",
+          "team": "Philadelphia Eagles",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jeremy Bloom",
+          "team": "Philadelphia Eagles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "J.J. Outlaw",
+          "team": "Philadelphia Eagles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Omar Gaither",
+          "team": "Philadelphia Eagles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Chris Gocong",
+          "team": "Philadelphia Eagles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-HB",
+          "player_name": "Hank Baskett",
+          "team": "Philadelphia Eagles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JA",
+          "player_name": "Jason Avant",
+          "team": "Philadelphia Eagles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JT",
+          "player_name": "Jeremiah Trotter",
+          "team": "Philadelphia Eagles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WJ",
+          "player_name": "Winston Justice",
+          "team": "Philadelphia Eagles",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Orien Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Charles Davis",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CH",
+          "player_name": "Cedric Humes",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-OJ",
+          "player_name": "Omar Jacobs",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SH",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-WR",
+          "player_name": "Willie Reid",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Orien Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Charles Davis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CH",
+          "player_name": "Cedric Humes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-OJ",
+          "player_name": "Omar Jacobs",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SH",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SH2",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-WR",
+          "player_name": "Willie Reid",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-HJ",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-MH",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-WR",
+          "player_name": "Willie Reid",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Orien Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Charles Davis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CH",
+          "player_name": "Cedric Humes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-OJ",
+          "player_name": "Omar Jacobs",
+          "team": "Pittsburgh Steelers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SH",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SH2",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-WR",
+          "player_name": "Willie Reid",
+          "team": "Pittsburgh Steelers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Orien Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Charles Davis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CH",
+          "player_name": "Cedric Humes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-OJ",
+          "player_name": "Omar Jacobs",
+          "team": "Pittsburgh Steelers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SH",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SH2",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-WR",
+          "player_name": "Willie Reid",
+          "team": "Pittsburgh Steelers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-AC",
+          "player_name": "Antonio Cromartie",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CW",
+          "player_name": "Charlie Whitehurst",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LN",
+          "player_name": "Lorenzo Neal",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AC1",
+          "player_name": "Antonio Cromartie",
+          "team": "San Diego Chargers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CW",
+          "player_name": "Charlie Whitehurst",
+          "team": "San Diego Chargers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LN",
+          "player_name": "Lorenzo Neal",
+          "team": "San Diego Chargers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BSHC-JT",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-AC1",
+          "player_name": "Antonio Cromartie",
+          "team": "San Diego Chargers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CW",
+          "player_name": "Charlie Whitehurst",
+          "team": "San Diego Chargers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LN",
+          "player_name": "Lorenzo Neal",
+          "team": "San Diego Chargers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AC1",
+          "player_name": "Antonio Cromartie",
+          "team": "San Diego Chargers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CW",
+          "player_name": "Charlie Whitehurst",
+          "team": "San Diego Chargers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-LN",
+          "player_name": "Lorenzo Neal",
+          "team": "San Diego Chargers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Manny Lawson",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BW",
+          "player_name": "Brandon Williams",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DWA",
+          "player_name": "Delanie Walker",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MR",
+          "player_name": "Michael Robinson",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-VD",
+          "player_name": "Vernon Davis",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Manny Lawson",
+          "team": "San Francisco 49ers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BW1",
+          "player_name": "Brandon Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BW2",
+          "player_name": "Brandon Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DWA",
+          "player_name": "Delanie Walker",
+          "team": "San Francisco 49ers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MR1",
+          "player_name": "Michael Robinson",
+          "team": "San Francisco 49ers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MR2",
+          "player_name": "Michael Robinson",
+          "team": "San Francisco 49ers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-VD1",
+          "player_name": "Vernon Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-VD2",
+          "player_name": "Vernon Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-DL",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-LM",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Manny Lawson",
+          "team": "San Francisco 49ers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BW1",
+          "player_name": "Brandon Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BW2",
+          "player_name": "Brandon Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DWA",
+          "player_name": "Delanie Walker",
+          "team": "San Francisco 49ers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MR1",
+          "player_name": "Michael Robinson",
+          "team": "San Francisco 49ers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MR2",
+          "player_name": "Michael Robinson",
+          "team": "San Francisco 49ers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-VD1",
+          "player_name": "Vernon Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-VD2",
+          "player_name": "Vernon Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Manny Lawson",
+          "team": "San Francisco 49ers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BW1",
+          "player_name": "Brandon Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BW2",
+          "player_name": "Brandon Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-DWA",
+          "player_name": "Delanie Walker",
+          "team": "San Francisco 49ers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MR1",
+          "player_name": "Michael Robinson",
+          "team": "San Francisco 49ers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MR",
+          "player_name": "Michael Robinson",
+          "team": "San Francisco 49ers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-VD1",
+          "player_name": "Vernon Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-VD2",
+          "player_name": "Vernon Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kelly Jennings",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "David Kirtman",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Travis Lulay",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BO",
+          "player_name": "Ben Obomanu",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kelly Jennings",
+          "team": "Seattle Seahawks",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "David Kirtman",
+          "team": "Seattle Seahawks",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Travis Lulay",
+          "team": "Seattle Seahawks",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BO",
+          "player_name": "Ben Obomanu",
+          "team": "Seattle Seahawks",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-BO",
+          "player_name": "Ben Obomanu",
+          "team": "Seattle Seahawks",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kelly Jennings",
+          "team": "Seattle Seahawks",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "David Kirtman",
+          "team": "Seattle Seahawks",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Travis Lulay",
+          "team": "Seattle Seahawks",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BO",
+          "player_name": "Ben Obomanu",
+          "team": "Seattle Seahawks",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kelly Jennings",
+          "team": "Seattle Seahawks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "David Kirtman",
+          "team": "Seattle Seahawks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Travis Lulay",
+          "team": "Seattle Seahawks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BO",
+          "player_name": "Ben Obomanu",
+          "team": "Seattle Seahawks",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jon Alston",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DB",
+          "player_name": "Dominique Byrd",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JK",
+          "player_name": "Joe Klopfenstein",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MHA",
+          "player_name": "Marques Hagans",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-THO",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TYH",
+          "player_name": "Tye Hill",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jon Alston",
+          "team": "St. Louis Rams",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DB2",
+          "player_name": "Dominique Byrd",
+          "team": "St. Louis Rams",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JK1",
+          "player_name": "Joe Klopfenstein",
+          "team": "St. Louis Rams",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JK2",
+          "player_name": "Joe Klopfenstein",
+          "team": "St. Louis Rams",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MHA",
+          "player_name": "Marques Hagans",
+          "team": "St. Louis Rams",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-THO",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TYH",
+          "player_name": "Tye Hill",
+          "team": "St. Louis Rams",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MHA",
+          "player_name": "Marques Hagans",
+          "team": "St. Louis Rams",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jon Alston",
+          "team": "St. Louis Rams",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DB2",
+          "player_name": "Dominique Byrd",
+          "team": "St. Louis Rams",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JK1",
+          "player_name": "Joe Klopfenstein",
+          "team": "St. Louis Rams",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JK2",
+          "player_name": "Joe Klopfenstein",
+          "team": "St. Louis Rams",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MHA",
+          "player_name": "Marques Hagans",
+          "team": "St. Louis Rams",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-THO",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TYH",
+          "player_name": "Tye Hill",
+          "team": "St. Louis Rams",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jon Alston",
+          "team": "St. Louis Rams",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-DB2",
+          "player_name": "Dominique Byrd",
+          "team": "St. Louis Rams",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JK",
+          "player_name": "Joe Klopfenstein",
+          "team": "St. Louis Rams",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-JK2",
+          "player_name": "Joe Klopfenstein",
+          "team": "St. Louis Rams",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MHA",
+          "player_name": "Marques Hagans",
+          "team": "St. Louis Rams",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-THO",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-TYH",
+          "player_name": "Tye Hill",
+          "team": "St. Louis Rams",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Tim Massaquoi",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AHA",
+          "player_name": "Andre Hall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-AZ",
+          "player_name": "Alan Zemaitis",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-BG",
+          "player_name": "Bruce Gradkowski",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MS",
+          "player_name": "Maurice Stovall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-RBA",
+          "player_name": "Ronde Barber",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Tim Massaquoi",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AHA",
+          "player_name": "Andre Hall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-AZ",
+          "player_name": "Alan Zemaitis",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-BG",
+          "player_name": "Bruce Gradkowski",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MST1",
+          "player_name": "Maurice Stovall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MST2",
+          "player_name": "Maurice Stovall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RBA",
+          "player_name": "Ronde Barber",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-BG",
+          "player_name": "Bruce Gradkowski",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MST",
+          "player_name": "Maurice Stovall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Tim Massaquoi",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AHA",
+          "player_name": "Andre Hall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-AZ",
+          "player_name": "Alan Zemaitis",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-BG",
+          "player_name": "Bruce Gradkowski",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MST1",
+          "player_name": "Maurice Stovall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MST2",
+          "player_name": "Maurice Stovall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RBA",
+          "player_name": "Ronde Barber",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Tim Massaquoi",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-AHA",
+          "player_name": "Andre Hall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-AZ",
+          "player_name": "Alan Zemaitis",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-BG",
+          "player_name": "Bruce Gradkowski",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-MST1",
+          "player_name": "Maurice Stovall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-MST2",
+          "player_name": "Maurice Stovall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-RBA",
+          "player_name": "Ronde Barber",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CB",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CHO",
+          "player_name": "Cody Hodges",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JO",
+          "player_name": "Jonathan Orr",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LW",
+          "player_name": "LenDale White",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-QG",
+          "player_name": "Quinton Ganther",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-VY",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CB1",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CB2",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CHO",
+          "player_name": "Cody Hodges",
+          "team": "Tennessee Titans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JO",
+          "player_name": "Jonathan Orr",
+          "team": "Tennessee Titans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LW",
+          "player_name": "LenDale White",
+          "team": "Tennessee Titans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-QG",
+          "player_name": "Quinton Ganther",
+          "team": "Tennessee Titans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-VY1",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-VY2",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-WW",
+          "player_name": "Tennessee Titans",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSHC-YC",
+          "player_name": "Tennessee Titans",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CB",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": "Gold Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CHO",
+          "player_name": "Cody Hodges",
+          "team": "Tennessee Titans",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CB1",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CB2",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CHO",
+          "player_name": "Cody Hodges",
+          "team": "Tennessee Titans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JO",
+          "player_name": "Jonathan Orr",
+          "team": "Tennessee Titans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LW",
+          "player_name": "LenDale White",
+          "team": "Tennessee Titans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-QG",
+          "player_name": "Quinton Ganther",
+          "team": "Tennessee Titans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-VY1",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-VY2",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CB1",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-CB2",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-CHO",
+          "player_name": "Cody Hodges",
+          "team": "Tennessee Titans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-JO",
+          "player_name": "Jonathan Orr",
+          "team": "Tennessee Titans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-LW",
+          "player_name": "LenDale White",
+          "team": "Tennessee Titans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-QG",
+          "player_name": "Quinton Ganther",
+          "team": "Tennessee Titans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BS-VY1",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-VY2",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Rocky McIntosh",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SMO",
+          "player_name": "Santana Moss",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Rocky McIntosh",
+          "team": "Washington Redskins",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SMO",
+          "player_name": "Santana Moss",
+          "team": "Washington Redskins",
+          "variation": "Black Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SMO",
+          "player_name": "Santana Moss",
+          "team": "Washington Redskins",
+          "variation": "Gold Relic Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Rocky McIntosh",
+          "team": "Washington Redskins",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SMO",
+          "player_name": "Santana Moss",
+          "team": "Washington Redskins",
+          "variation": "Red Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Rocky McIntosh",
+          "team": "Washington Redskins",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BS-SMO",
+          "player_name": "Santana Moss",
+          "team": "Washington Redskins",
+          "variation": "Refractors",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Bowman"
+    }
+  ]
+}

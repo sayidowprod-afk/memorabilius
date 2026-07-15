@@ -1,0 +1,2798 @@
+{
+  "year": 2001,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 2961,
+        "name": "2001-02 Fleer Focus"
+      },
+      "unique": [
+        {
+          "card_number": "51",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Toni Kukoc",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Nazr Mohammed",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Toni Kukoc",
+          "team": "Atlanta Hawks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Nazr Mohammed",
+          "team": "Atlanta Hawks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-DM",
+          "player_name": "Dikembe Mutombo",
+          "team": "Atlanta Hawks",
+          "variation": "Trading Places Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-SA",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Trading Places Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-DM",
+          "player_name": "Dikembe Mutombo",
+          "team": "Atlanta Hawks",
+          "variation": "Trading Places Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-SA",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "Trading Places Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Kedrick Brown",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Joe Johnson",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Joseph Forte",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Kedrick Brown",
+          "team": "Boston Celtics",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Joe Johnson",
+          "team": "Boston Celtics",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Joseph Forte",
+          "team": "Boston Celtics",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "ROY Collection Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-LB",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "ROY Collection Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Baron Davis",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "David Wesley",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Jamal Mashburn",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Kirk Haston",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Baron Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "David Wesley",
+          "team": "Charlotte Hornets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Jamal Mashburn",
+          "team": "Charlotte Hornets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Kirk Haston",
+          "team": "Charlotte Hornets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-EJ",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": "Trading Places Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Eddie Robinson",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Ron Mercer",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Trenton Hassell",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "179U",
+          "player_name": "Trenton Hassell",
+          "team": "Chicago Bulls",
+          "variation": "2001-02 Ultra Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-TC",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-TC",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Eddie Robinson",
+          "team": "Chicago Bulls",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Ron Mercer",
+          "team": "Chicago Bulls",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Trenton Hassell",
+          "team": "Chicago Bulls",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-EB",
+          "player_name": "Elton Brand",
+          "team": "Chicago Bulls",
+          "variation": "Trading Places Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-EB",
+          "player_name": "Elton Brand",
+          "team": "Chicago Bulls",
+          "variation": "Trading Places Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Chris Mihm",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Wesley Person",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Andre Miller",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "DeSagana Diop",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Chris Mihm",
+          "team": "Cleveland Cavaliers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Wesley Person",
+          "team": "Cleveland Cavaliers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Andre Miller",
+          "team": "Cleveland Cavaliers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "DeSagana Diop",
+          "team": "Cleveland Cavaliers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Tim Hardaway",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-DN",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Tim Hardaway",
+          "team": "Dallas Mavericks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-JK",
+          "player_name": "Jason Kidd",
+          "team": "Dallas Mavericks",
+          "variation": "ROY Collection Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Avery Johnson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Nick Van Exel",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Avery Johnson",
+          "team": "Denver Nuggets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Nick Van Exel",
+          "team": "Denver Nuggets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Clifford Robinson",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Corliss Williamson",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Rodney White",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Zeljko Rebraca",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "180U",
+          "player_name": "Zeljko Rebraca",
+          "team": "Detroit Pistons",
+          "variation": "2001-02 Ultra Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Clifford Robinson",
+          "team": "Detroit Pistons",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Corliss Williamson",
+          "team": "Detroit Pistons",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Rodney White",
+          "team": "Detroit Pistons",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Zeljko Rebraca",
+          "team": "Detroit Pistons",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-GH",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "ROY Collection Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Larry Hughes",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Danny Fortson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Troy Murphy",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Larry Hughes",
+          "team": "Golden State Warriors",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Danny Fortson",
+          "team": "Golden State Warriors",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Troy Murphy",
+          "team": "Golden State Warriors",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-CW",
+          "player_name": "Chris Webber",
+          "team": "Golden State Warriors",
+          "variation": "ROY Collection Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-CW",
+          "player_name": "Chris Webber",
+          "team": "Golden State Warriors",
+          "variation": "Trading Places Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-CW",
+          "player_name": "Chris Webber",
+          "team": "Golden State Warriors",
+          "variation": "Trading Places Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Moochie Norris",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "181U",
+          "player_name": "Oscar Torres",
+          "team": "Houston Rockets",
+          "variation": "2001-02 Ultra Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-EG",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-EG",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-SF",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Moochie Norris",
+          "team": "Houston Rockets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Jalen Rose",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-JT",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-JT",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Jalen Rose",
+          "team": "Indiana Pacers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Darius Miles",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Quentin Richardson",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Lamar Odom",
+          "team": "Los Angeles Clippers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Darius Miles",
+          "team": "Los Angeles Clippers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Quentin Richardson",
+          "team": "Los Angeles Clippers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Trading Places Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-CM",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "Trading Places Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Lindsey Hunter",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Mitch Richmond",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-KB",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-SO",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Lindsey Hunter",
+          "team": "Los Angeles Lakers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Mitch Richmond",
+          "team": "Los Angeles Lakers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-EJ",
+          "player_name": "Eddie Jones",
+          "team": "Los Angeles Lakers",
+          "variation": "Trading Places Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Lorenzen Wright",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-SB",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-PG",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-SB",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Lorenzen Wright",
+          "team": "Memphis Grizzlies",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Anthony Carter",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Brian Grant",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Anthony Carter",
+          "team": "Miami Heat",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Brian Grant",
+          "team": "Miami Heat",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Anthony Mason",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Cassell",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-RA",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-RA",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Anthony Mason",
+          "team": "Milwaukee Bucks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Cassell",
+          "team": "Milwaukee Bucks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Chauncey Billups",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Loren Woods",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-KG",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Chauncey Billups",
+          "team": "Minnesota Timberwolves",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Loren Woods",
+          "team": "Minnesota Timberwolves",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Brandon Armstrong",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Jason Collins",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Brandon Armstrong",
+          "team": "New Jersey Nets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Jason Collins",
+          "team": "New Jersey Nets",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "ROY Collection Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Trading Places Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Trading Places Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-JK",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "Trading Places Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-SM",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Trading Places Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Mark Jackson",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Kurt Thomas",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Mark Jackson",
+          "team": "New York Knicks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Kurt Thomas",
+          "team": "New York Knicks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-PE",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "ROY Collection Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Darrell Armstrong",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Patrick Ewing",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Jeryl Sasser",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-GH",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-TG",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-GH",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-TM",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Darrell Armstrong",
+          "team": "Orlando Magic",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Patrick Ewing",
+          "team": "Orlando Magic",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Jeryl Sasser",
+          "team": "Orlando Magic",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-PE",
+          "player_name": "Patrick Ewing",
+          "team": "Orlando Magic",
+          "variation": "ROY Collection Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-MM",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "ROY Collection Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-GH",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "ROY Collection Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-MM",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "ROY Collection Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-PE",
+          "player_name": "Patrick Ewing",
+          "team": "Orlando Magic",
+          "variation": "Trading Places Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-PE",
+          "player_name": "Patrick Ewing",
+          "team": "Orlando Magic",
+          "variation": "Trading Places Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Speedy Claxton",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dikembe Mutombo",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Derrick Coleman",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Speedy Claxton",
+          "team": "Philadelphia 76ers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Dikembe Mutombo",
+          "team": "Philadelphia 76ers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Derrick Coleman",
+          "team": "Philadelphia 76ers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "ROY Collection Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-AI",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "ROY Collection Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Anfernee Hardaway",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Tony Delk",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Anfernee Hardaway",
+          "team": "Phoenix Suns",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Tony Delk",
+          "team": "Phoenix Suns",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Derek Anderson",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Ruben Boumtje-Boumtje",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Derek Anderson",
+          "team": "Portland Trail Blazers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Ruben Boumtje-Boumtje",
+          "team": "Portland Trail Blazers",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gerald Wallace",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "176U",
+          "player_name": "Gerald Wallace",
+          "team": "Sacramento Kings",
+          "variation": "2001-02 Ultra Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-CW",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-CW",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Gerald Wallace",
+          "team": "Sacramento Kings",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-CW",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "ROY Collection Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Steve Smith",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "177U",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "2001-02 Ultra Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-TD",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Steve Smith",
+          "team": "San Antonio Spurs",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-DR",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "ROY Collection Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-DR",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "ROY Collection Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Desmond Mason",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "178U",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "2001-02 Ultra Update",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Desmond Mason",
+          "team": "Seattle SuperSonics",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Michael Bradley",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Toronto Raptors",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Michael Bradley",
+          "team": "Toronto Raptors",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ROY-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "ROY Collection Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1a",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "ROY Collection Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1b",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "ROY Collection Jerseys",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ROY-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "ROY Collection Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Trading Places Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-VC",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Trading Places Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Donyell Marshall",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-KM",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-KM",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Donyell Marshall",
+          "team": "Utah Jazz",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Richard Hamilton",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Courtney Alexander",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Brendan Haywood",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-KB",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Materialistic Away",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-KB",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-MJ",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Materialistic Home",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Richard Hamilton",
+          "team": "Washington Wizards",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Courtney Alexander",
+          "team": "Washington Wizards",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Brendan Haywood",
+          "team": "Washington Wizards",
+          "variation": "Numbers",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Fleer"
+    }
+  ]
+}

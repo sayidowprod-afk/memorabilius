@@ -1,0 +1,1143 @@
+{
+  "year": 2009,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 9903,
+        "name": "2009 Topps National Chicle"
+      },
+      "unique": [
+        {
+          "card_number": "NCA-CW",
+          "player_name": "Beanie Wells",
+          "team": "Arizona Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-MWE",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-FB",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-CW",
+          "player_name": "Beanie Wells",
+          "team": "Arizona Cardinals",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YG-18",
+          "player_name": "Beanie Wells",
+          "team": "Arizona Cardinals",
+          "variation": "Youngsters of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-MJ",
+          "player_name": "Michael Jenkins",
+          "team": "Atlanta Falcons",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "YG-16",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Youngsters of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-JFL",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCR-RR",
+          "player_name": "Ray Rice",
+          "team": "Baltimore Ravens",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YG-19",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": "Youngsters of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-LE",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-MG",
+          "player_name": "Mike Goodson",
+          "team": "Carolina Panthers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-SW",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-DEW",
+          "player_name": "DeAngelo Williams",
+          "team": "Carolina Panthers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YG-17",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": "Youngsters of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-JCU",
+          "player_name": "Jay Cutler",
+          "team": "Chicago Bears",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-JI",
+          "player_name": "Juaquin Iglesias",
+          "team": "Chicago Bears",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCR-JI",
+          "player_name": "Juaquin Iglesias",
+          "team": "Chicago Bears",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-MF",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YG-11",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "Youngsters of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-CC",
+          "player_name": "Chase Coffman",
+          "team": "Cincinnati Bengals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-JB",
+          "player_name": "Jim Brown",
+          "team": "Cleveland Browns",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCR-BR",
+          "player_name": "Brian Robiskie",
+          "team": "Cleveland Browns",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-MM",
+          "player_name": "Mohamed Massaquoi",
+          "team": "Cleveland Browns",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-SM",
+          "player_name": "Stephen McGee",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-RB",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "GG-10",
+          "player_name": "Tony Dorsett",
+          "team": "Dallas Cowboys",
+          "variation": "Greats of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-FJ",
+          "player_name": "Felix Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-SM",
+          "player_name": "Stephen McGee",
+          "team": "Dallas Cowboys",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-BM",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-KM",
+          "player_name": "Knowshon Moreno",
+          "team": "Denver Broncos",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-MWE",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-ME",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-BM",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-KM",
+          "player_name": "Knowshon Moreno",
+          "team": "Denver Broncos",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YG-10",
+          "player_name": "Knowshon Moreno",
+          "team": "Denver Broncos",
+          "variation": "Youngsters of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-DW",
+          "player_name": "Derrick Williams",
+          "team": "Detroit Lions",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-MS",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-SM",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-SS",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-SJ",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-BP",
+          "player_name": "Brandon Pettigrew",
+          "team": "Detroit Lions",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-DW",
+          "player_name": "Derrick Williams",
+          "team": "Detroit Lions",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-MS",
+          "player_name": "Matthew Stafford",
+          "team": "Detroit Lions",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-RJ",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-AR",
+          "player_name": "Aaron Rodgers",
+          "team": "Green Bay Packers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-ACO",
+          "player_name": "Austin Collie",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-JA",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-RW",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-MW",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-MW",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-DBR",
+          "player_name": "Donald Brown",
+          "team": "Indianapolis Colts",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-DC",
+          "player_name": "Dallas Clark",
+          "team": "Indianapolis Colts",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SG-10",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Stars of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YG-15",
+          "player_name": "Donald Brown",
+          "team": "Indianapolis Colts",
+          "variation": "Youngsters of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-JD",
+          "player_name": "Jarett Dillard",
+          "team": "Jacksonville Jaguars",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCR-MJD",
+          "player_name": "Maurice Jones-Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-MT",
+          "player_name": "Mike Thomas",
+          "team": "Jacksonville Jaguars",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-JCH",
+          "player_name": "Jamaal Charles",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-TJ",
+          "player_name": "Tyson Jackson",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-CB",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-SC",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-SM",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCR-TJ",
+          "player_name": "Tyson Jackson",
+          "team": "Kansas City Chiefs",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-BH",
+          "player_name": "Brian Hartline",
+          "team": "Miami Dolphins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-PT",
+          "player_name": "Patrick Turner",
+          "team": "Miami Dolphins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-PW",
+          "player_name": "Pat White",
+          "team": "Miami Dolphins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-BW",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCDR-ME",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-DMA",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-PT",
+          "player_name": "Patrick Turner",
+          "team": "Miami Dolphins",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-PW",
+          "player_name": "Pat White",
+          "team": "Miami Dolphins",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-BB",
+          "player_name": "Bernard Berrian",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-BF",
+          "player_name": "Brett Favre",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-PH",
+          "player_name": "Percy Harvin",
+          "team": "Minnesota Vikings",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-FP",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-PH",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-PH",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-PH",
+          "player_name": "Percy Harvin",
+          "team": "Minnesota Vikings",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YG-14",
+          "player_name": "Percy Harvin",
+          "team": "Minnesota Vikings",
+          "variation": "Youngsters of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-BT",
+          "player_name": "Brandon Tate",
+          "team": "New England Patriots",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "GT-10",
+          "player_name": "Adam Vinatieri",
+          "team": "New England Patriots",
+          "variation": "Greatest Thrills",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-RM",
+          "player_name": "Randy Moss",
+          "team": "New England Patriots",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-ACB",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-BC",
+          "player_name": "New Orleans Saints",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-DB1",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-AB",
+          "player_name": "Andre Brown",
+          "team": "New York Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-HN",
+          "player_name": "Hakeem Nicks",
+          "team": "New York Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-TBE",
+          "player_name": "Travis Beckum",
+          "team": "New York Giants",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-MN",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-AB",
+          "player_name": "Andre Brown",
+          "team": "New York Giants",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-HN",
+          "player_name": "Hakeem Nicks",
+          "team": "New York Giants",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-RB",
+          "player_name": "Ramses Barden",
+          "team": "New York Giants",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-JN",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-SC",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-SS",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-SG",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-MSA",
+          "player_name": "Mark Sanchez",
+          "team": "New York Jets",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-SG",
+          "player_name": "Shonn Greene",
+          "team": "New York Jets",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-DHB",
+          "player_name": "Darrius Heyward-Bey",
+          "team": "Oakland Raiders",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-DMC",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YG-13",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": "Youngsters of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-DJ",
+          "player_name": "DeSean Jackson",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCA-LM",
+          "player_name": "LeSean McCoy",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-MM",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-WM",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-JM",
+          "player_name": "Jeremy Maclin",
+          "team": "Philadelphia Eagles",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-LM",
+          "player_name": "LeSean McCoy",
+          "team": "Philadelphia Eagles",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YG-12",
+          "player_name": "Jeremy Maclin",
+          "team": "Philadelphia Eagles",
+          "variation": "Youngsters of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-MW",
+          "player_name": "Mike Wallace",
+          "team": "Pittsburgh Steelers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-TBR",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCDR-RG",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-ND",
+          "player_name": "Nate Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CDA-MS",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCR-JMO",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-JR",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-MC",
+          "player_name": "Michael Crabtree",
+          "team": "San Francisco 49ers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-ND",
+          "player_name": "Nate Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "YG-20",
+          "player_name": "Michael Crabtree",
+          "team": "San Francisco 49ers",
+          "variation": "Youngsters of the Gridiron",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-AC",
+          "player_name": "Aaron Curry",
+          "team": "Seattle Seahawks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCR-AC",
+          "player_name": "Aaron Curry",
+          "team": "Seattle Seahawks",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-DB2",
+          "player_name": "Deon Butler",
+          "team": "Seattle Seahawks",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-JS",
+          "player_name": "Jason Smith",
+          "team": "St. Louis Rams",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCR-DA",
+          "player_name": "Donnie Avery",
+          "team": "St. Louis Rams",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-JS",
+          "player_name": "Jason Smith",
+          "team": "St. Louis Rams",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-JF",
+          "player_name": "Josh Freeman",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-JCO",
+          "player_name": "Jared Cook",
+          "team": "Tennessee Titans",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCR-KB",
+          "player_name": "Kenny Britt",
+          "team": "Tennessee Titans",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCA-BO",
+          "player_name": "Brian Orakpo",
+          "team": "Washington Redskins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "NCDR-MP",
+          "player_name": "Washington Redskins",
+          "team": null,
+          "variation": "Dual Relics",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "NCR-SMO",
+          "player_name": "Santana Moss",
+          "team": "Washington Redskins",
+          "variation": "Relics",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

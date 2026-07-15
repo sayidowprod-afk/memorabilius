@@ -512,13 +512,28 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setSorting(true)
     try {
       const allSlots = [...slots.values()]
-      const yearOf = (nom: string) => parseInt(nom?.match(/(19|20)\d{2}/)?.[0] || '0')
+
+      // Pour le tri par année, on récupère les vraies années depuis cartes_manuelles
+      // (binder_slots ne stocke pas l'année — on fetch tout par user_id pour éviter
+      // le dépassement de longueur de requête avec .in() sur des URLs)
+      const yearMap = new Map<string, number>()
+      if (by === 'annee_asc' || by === 'annee_desc') {
+        const { data: cartes } = await supabase
+          .from('cartes_manuelles')
+          .select('image_recto, annee')
+          .eq('user_id', userId)
+        for (const c of cartes || []) {
+          const y = parseInt((c.annee || '').match(/(19|20)\d{2}/)?.[0] || '0')
+          if (y) yearMap.set(c.image_recto, y)
+        }
+      }
+
       const sorted = [...allSlots].sort((a, b) => {
         const na = a.nom || '', nb = b.nom || ''
         if (by === 'nom_asc') return na.localeCompare(nb, 'fr', { sensitivity: 'base' })
         if (by === 'nom_desc') return nb.localeCompare(na, 'fr', { sensitivity: 'base' })
-        if (by === 'annee_asc') return yearOf(na) - yearOf(nb)
-        if (by === 'annee_desc') return yearOf(nb) - yearOf(na)
+        if (by === 'annee_asc') return (yearMap.get(a.img) || 0) - (yearMap.get(b.img) || 0)
+        if (by === 'annee_desc') return (yearMap.get(b.img) || 0) - (yearMap.get(a.img) || 0)
         return 0
       })
       const newSlots = new Map<string, Slot>()
