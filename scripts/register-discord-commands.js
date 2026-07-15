@@ -44,22 +44,25 @@ const commands = [
   },
 ]
 
-async function register() {
-  const res = await fetch(`https://discord.com/api/v10/applications/${APP_ID}/commands`, {
+async function register(url, label) {
+  const res = await fetch(url, {
     method: 'PUT',
-    headers: {
-      Authorization: `Bot ${BOT_TOKEN}`,
-      'Content-Type': 'application/json',
-    },
+    headers: { Authorization: `Bot ${BOT_TOKEN}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(commands),
   })
   const data = await res.json()
-  if (!res.ok) {
-    console.error('Erreur Discord:', JSON.stringify(data, null, 2))
-    process.exit(1)
-  }
-  console.log(`✅ ${data.length} commande(s) enregistrée(s) :`)
-  data.forEach(c => console.log(`  /${c.name} — ${c.description}`))
+  if (!res.ok) { console.error(`Erreur ${label}:`, JSON.stringify(data, null, 2)); return false }
+  console.log(`✅ ${label} — ${data.length} commande(s) :`)
+  data.forEach(c => console.log(`  /${c.name}`))
+  return true
 }
 
-register().catch(err => { console.error(err); process.exit(1) })
+async function main() {
+  const GUILD_ID = process.env.DISCORD_GUILD_ID || '1525208040221970582'
+  // Guild : propagation instantanée (test + serveur principal)
+  await register(`https://discord.com/api/v10/applications/${APP_ID}/guilds/${GUILD_ID}/commands`, `Guild ${GUILD_ID}`)
+  // Global : propagation ~1h, disponible sur tous les serveurs
+  await register(`https://discord.com/api/v10/applications/${APP_ID}/commands`, 'Global (tous les serveurs)')
+}
+
+main().catch(err => { console.error(err); process.exit(1) })
