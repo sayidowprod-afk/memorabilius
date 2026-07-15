@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     // CSV et cartes manuelles sont indépendants → en parallèle
     const [csvText, manuellesRes] = await Promise.all([
       csvUrl ? fetchCsvCapped(csvUrl) : Promise.resolve(null),
-      supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId),
+      supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).limit(10000),
     ])
 
     if (csvText) {

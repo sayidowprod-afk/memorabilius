@@ -18,8 +18,9 @@ export async function GET(req: NextRequest) {
   const { data: profiles } = await supabase
     .from('profiles')
     .select('id, lien_csv')
-    .not('lien_csv', 'is', null)
-    .neq('lien_csv', '')
+    .not('display_name', 'is', null)
+    .neq('display_name', '')
+    .limit(10000)
 
   if (!profiles) return NextResponse.json({ error: 'No profiles' })
 
@@ -27,10 +28,37 @@ export async function GET(req: NextRequest) {
 
   for (const p of profiles) {
     try {
-      const text = await fetchCsvCapped(p.lien_csv)
-      if (!text) { results.push({ id: p.id, error: 'fetch failed' }); continue }
+      const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
 
-      const stats = parseCardStats(text)
+      // CSV
+      if (p.lien_csv) {
+        const text = await fetchCsvCapped(p.lien_csv)
+        if (text) {
+          const csvStats = parseCardStats(text)
+          stats.total += csvStats.total
+          stats.rc += csvStats.rc
+          stats.auto += csvStats.auto
+          stats.num += csvStats.num
+          stats.patch += csvStats.patch
+        }
+      }
+
+      // Cartes manuelles
+      const { data: manuelles } = await supabase
+        .from('cartes_manuelles')
+        .select('rc, auto, patch, num')
+        .eq('user_id', p.id)
+        .limit(10000)
+
+      if (manuelles) {
+        for (const m of manuelles) {
+          stats.total++
+          if (m.rc) stats.rc++
+          if (m.auto) stats.auto++
+          if (m.patch) stats.patch++
+          if (m.num) stats.num++
+        }
+      }
 
       // monthly_additions n'est pas touché ici : un CSV n'a pas de date d'ajout
       // par ligne, donc comparer à l'ancien stats_total ne dit pas QUAND ces
