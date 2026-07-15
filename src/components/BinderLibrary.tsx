@@ -151,6 +151,22 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const stageRef = useRef<HTMLDivElement>(null)
   const pageH = Math.round(pageW * PAGE_RATIO)
 
+  const [shelfRowSize, setShelfRowSize] = useState(SHELF_ROW_SIZE)
+  const shelfContainerRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = shelfContainerRef.current
+    if (!el) return
+    const measure = () => {
+      // 28px outer padding (14×2), 12px row padding (6×2), 44px per spine (40 + 4 gap)
+      const innerW = el.clientWidth - 28 - 12
+      setShelfRowSize(Math.max(1, Math.floor((innerW + 4) / 44)))
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [selected])
+
   useEffect(() => {
     const el = stageRef.current
     if (!el) return
@@ -1101,10 +1117,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           </div>
         )}
 
-        <div style={{ background: 'linear-gradient(180deg, #1a2638, #0d1824)', borderRadius: 16, boxShadow: '0 6px 28px rgba(0,0,0,0.28)', padding: '14px 14px 4px' }}>
+        <div ref={shelfContainerRef} style={{ background: 'linear-gradient(180deg, #1a2638, #0d1824)', borderRadius: 16, boxShadow: '0 6px 28px rgba(0,0,0,0.28)', padding: '14px 14px 4px' }}>
           {sections.map((section, si) => {
             const rows: (Binder | 'new')[][] = []
-            for (let i = 0; i < section.binderItems.length; i += SHELF_ROW_SIZE) rows.push(section.binderItems.slice(i, i + SHELF_ROW_SIZE))
+            for (let i = 0; i < section.binderItems.length; i += shelfRowSize) rows.push(section.binderItems.slice(i, i + shelfRowSize))
             if (rows.length === 0) rows.push([])
             const shelfColor = section.folder?.color || FOLDER_SHELF_COLORS[0]
 

@@ -4,10 +4,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 
 export default function Teams() {
   const router = useRouter()
   const { t, lang } = useLang()
+  const { dark } = useTheme()
   const [teams, setTeams] = useState<any[]>([])
   const [teamsStats, setTeamsStats] = useState<any[]>([])
   const [search, setSearch] = useState('')
@@ -100,7 +102,7 @@ export default function Teams() {
       </div>
 
       {showCreate && (
-        <div style={{ background: 'white', padding: 24, borderRadius: 12, marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
+        <div style={{ background: dark ? '#1e1e1e' : 'white', padding: 24, borderRadius: 12, marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
           <h3 style={{ fontWeight: 800, marginBottom: 12 }}>{lang === 'fr' ? 'Créer une nouvelle team' : 'Create a new team'}</h3>
           <div style={{ display: 'flex', gap: 12 }}>
             <input value={newTeamName} onChange={e => setNewTeamName(e.target.value)} placeholder={lang === 'fr' ? 'Nom de la team' : 'Team name'} onKeyDown={e => e.key === 'Enter' && createTeam()} />
@@ -111,11 +113,11 @@ export default function Teams() {
         </div>
       )}
 
-      <div style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
+      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead><tr>
             {['#', 'Team', t('teams_members'), t('teams_total_cards_label'), t('teams_action')].map(h => (
-              <th key={h} style={{ background: '#fdfdfd', padding: '16px', textAlign: 'left', fontSize: 11, textTransform: 'uppercase', color: '#999', borderBottom: '2px solid #f0f0f0' }}>{h}</th>
+              <th key={h} style={{ background: dark ? '#252525' : '#fdfdfd', padding: '16px', textAlign: 'left', fontSize: 11, textTransform: 'uppercase', color: '#999', borderBottom: `2px solid ${dark ? '#333' : '#f0f0f0'}` }}>{h}</th>
             ))}
           </tr></thead>
           <tbody>
@@ -126,10 +128,10 @@ export default function Teams() {
               const pending = hasCandidature.has(team.id)
               return (
                 <tr key={team.id}>
-                  <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5', fontWeight: 900, color: i === 0 ? '#f39c12' : i === 1 ? '#95a5a6' : i === 2 ? '#cd7f32' : '#999', fontSize: 16 }}>
+                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, fontWeight: 900, color: i === 0 ? '#f39c12' : i === 1 ? '#95a5a6' : i === 2 ? '#cd7f32' : '#999', fontSize: 16 }}>
                     {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : i + 1}
                   </td>
-                  <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}>
+                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                       {team.avatar_url ? (
                         <img src={team.avatar_url} style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt={team.name} />
@@ -139,20 +141,20 @@ export default function Teams() {
                         </div>
                       )}
                       <div>
-                        <Link href={`/teams/${team.id}`} style={{ fontWeight: 800, color: '#121212', display: 'block' }}>{team.name}</Link>
+                        <Link href={`/teams/${team.id}`} style={{ fontWeight: 800, color: dark ? '#f0f0f0' : '#121212', display: 'block' }}>{team.name}</Link>
                         {team.description && <p style={{ fontSize: 11, color: '#999', margin: 0 }}>{team.description}</p>}
                       </div>
                     </div>
                   </td>
-                  <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}>
-                    <span style={{ background: '#f0f0f0', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{memberCount}</span>
+                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` }}>
+                    <span style={{ background: dark ? '#333' : '#f0f0f0', color: dark ? '#eee' : '#333', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>{memberCount}</span>
                   </td>
-                  <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}>
+                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` }}>
                     <span style={{ background: '#e3f2fd', color: '#1976d2', padding: '4px 10px', borderRadius: 6, fontWeight: 700 }}>
                       {stats?.total ?? '...'}
                     </span>
                   </td>
-                  <td style={{ padding: '14px 16px', borderBottom: '1px solid #f5f5f5' }}>
+                  <td style={{ padding: '14px 16px', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` }}>
                     {isMyTeam ? (
                       <Link href={`/teams/${team.id}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13 }}>{t('teams_my_team')}</Link>
                     ) : pending ? (

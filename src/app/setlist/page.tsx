@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 
 interface CardSet {
   id: number
@@ -28,10 +29,10 @@ interface UnmatchedCard extends GalleryCard {
   candidates: SetCandidate[]
 }
 
-function CompletionBar({ pct }: { pct: number }) {
+function CompletionBar({ pct, dark = false }: { pct: number; dark?: boolean }) {
   const color = pct >= 80 ? '#2ecc71' : pct >= 40 ? '#f39c12' : pct > 0 ? '#3498db' : '#e0e0e0'
   return (
-    <div style={{ height: 5, borderRadius: 3, background: '#f0f0f0', overflow: 'hidden', marginTop: 6 }}>
+    <div style={{ height: 5, borderRadius: 3, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden', marginTop: 6 }}>
       <div style={{ height: '100%', width: `${pct}%`, background: color, borderRadius: 3, transition: 'width 0.3s' }} />
     </div>
   )
@@ -45,6 +46,7 @@ function seasonLabel(year: number, sport = 'nba') {
 
 export default function SetlistPage() {
   const { t } = useLang()
+  const { dark } = useTheme()
   const [sets, setSets] = useState<CardSet[]>([])
   const [loading, setLoading] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
@@ -529,13 +531,13 @@ export default function SetlistPage() {
               {syncing ? `${t('setlist_syncing')} ${syncProgress}%` : t('setlist_sync_btn')}
             </button>
             {syncing && (
-              <div style={{ width: 240, height: 6, borderRadius: 3, background: '#f0f0f0', overflow: 'hidden' }}>
+              <div style={{ width: 240, height: 6, borderRadius: 3, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
                 <div style={{ height: '100%', width: `${syncProgress}%`, background: '#003DA6', borderRadius: 3, transition: 'width 0.3s' }} />
               </div>
             )}
             {/* Stats toujours visibles dès que les sets sont chargés */}
             {!loading && (
-              <div style={{ background: '#f0f4ff', borderRadius: 12, padding: '12px 18px', fontSize: 14, display: 'flex', flexDirection: 'column', gap: 6, minWidth: 240 }}>
+              <div style={{ background: dark ? '#1a2440' : '#f0f4ff', borderRadius: 12, padding: '12px 18px', fontSize: 14, display: 'flex', flexDirection: 'column', gap: 6, minWidth: 240 }}>
                 {syncDone && (
                   <div style={{ fontWeight: 800, color: '#2ecc71', marginBottom: 2 }}>
                     ✅ {newMatchCount} {t(newMatchCount !== 1 ? 'setlist_new_match_other' : 'setlist_new_match_one')}
@@ -568,7 +570,7 @@ export default function SetlistPage() {
                     }
                     setShowMissing(true)
                   }}
-                  style={{ marginTop: 4, padding: '7px 14px', borderRadius: 8, border: '1.5px solid #003DA6', background: 'white', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+                  style={{ marginTop: 4, padding: '7px 14px', borderRadius: 8, border: '1.5px solid #003DA6', background: dark ? '#1e1e1e' : 'white', color: '#003DA6', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
                 >
                   {syncDone ? `${t('setlist_see_unplaced')} (${unmatchedCards.length})` : `${t('setlist_see_unplaced')} →`}
                 </button>
@@ -585,7 +587,7 @@ export default function SetlistPage() {
           onClick={() => setShowMissing(false)}
         >
           <div
-            style={{ background: 'white', borderRadius: 18, padding: '28px 24px', maxWidth: 620, width: '100%', maxHeight: '80vh', overflow: 'auto' }}
+            style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 18, padding: '28px 24px', maxWidth: 620, width: '100%', maxHeight: '80vh', overflow: 'auto' }}
             onClick={e => e.stopPropagation()}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
@@ -612,7 +614,7 @@ export default function SetlistPage() {
                   {!showAddManual ? (
                     <button
                       onClick={() => setShowAddManual(true)}
-                      style={{ fontSize: 13, padding: '7px 14px', borderRadius: 8, border: '1.5px dashed #ccc', background: 'white', color: '#888', cursor: 'pointer', width: '100%' }}
+                      style={{ fontSize: 13, padding: '7px 14px', borderRadius: 8, border: '1.5px dashed #ccc', background: dark ? '#2a2a2a' : 'white', color: '#888', cursor: 'pointer', width: '100%' }}
                     >
                       {t('setlist_add_manual')}
                     </button>
@@ -648,7 +650,7 @@ export default function SetlistPage() {
                         >
                           {t('setlist_add')}
                         </button>
-                        <button onClick={() => setShowAddManual(false)} style={{ fontSize: 13, padding: '8px 12px', borderRadius: 8, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888' }}>{t('profile_cancel')}</button>
+                        <button onClick={() => setShowAddManual(false)} style={{ fontSize: 13, padding: '8px 12px', borderRadius: 8, border: '1px solid #ccc', background: dark ? '#2a2a2a' : 'white', cursor: 'pointer', color: '#888' }}>{t('profile_cancel')}</button>
                       </div>
                     </div>
                   )}
@@ -671,7 +673,7 @@ export default function SetlistPage() {
                         <select
                           defaultValue=""
                           onChange={e => { const v = Number(e.target.value); if (v) placeCard(i, v) }}
-                          style={{ fontSize: 13, padding: '7px 10px', borderRadius: 8, border: '1.5px solid #003DA6', color: '#003DA6', fontWeight: 600, background: 'white', cursor: 'pointer', maxWidth: 160 }}
+                          style={{ fontSize: 13, padding: '7px 10px', borderRadius: 8, border: '1.5px solid #003DA6', color: '#003DA6', fontWeight: 600, background: dark ? '#1e1e1e' : 'white', cursor: 'pointer', maxWidth: 160 }}
                         >
                           <option value="">{t('setlist_place_in')} ({card.candidates.length})</option>
                           {card.candidates.map(c => (
@@ -681,7 +683,7 @@ export default function SetlistPage() {
                         <button
                           onClick={() => { setGotoPickerIdx(i); setGotoSetId('') }}
                           title={t('setlist_choose_set')}
-                          style={{ fontSize: 11, padding: '5px 8px', borderRadius: 6, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888', whiteSpace: 'nowrap' }}
+                          style={{ fontSize: 11, padding: '5px 8px', borderRadius: 6, border: '1px solid #ccc', background: dark ? '#2a2a2a' : 'white', cursor: 'pointer', color: '#888', whiteSpace: 'nowrap' }}
                         >
                           {t('setlist_other')}
                         </button>
@@ -709,7 +711,7 @@ export default function SetlistPage() {
                         </select>
                         <button
                           onClick={() => { setGotoAllSets(v => !v); setGotoSetId('') }}
-                          style={{ fontSize: 11, padding: '5px 7px', borderRadius: 6, border: '1px solid #ccc', background: gotoAllSets ? '#eee' : 'white', cursor: 'pointer', color: '#666' }}
+                          style={{ fontSize: 11, padding: '5px 7px', borderRadius: 6, border: '1px solid #ccc', background: gotoAllSets ? (dark ? '#333' : '#eee') : (dark ? '#2a2a2a' : 'white'), cursor: 'pointer', color: dark ? '#bbb' : '#666' }}
                         >
                           {gotoAllSets ? t('setlist_filtered') : t('setlist_all_sets')}
                         </button>
@@ -718,13 +720,13 @@ export default function SetlistPage() {
                             Voir →
                           </Link>
                         )}
-                        <button onClick={() => setGotoPickerIdx(null)} style={{ fontSize: 12, padding: '6px 8px', borderRadius: 8, border: '1px solid #ccc', background: 'white', cursor: 'pointer', color: '#888' }}>✕</button>
+                        <button onClick={() => setGotoPickerIdx(null)} style={{ fontSize: 12, padding: '6px 8px', borderRadius: 8, border: '1px solid #ccc', background: dark ? '#2a2a2a' : 'white', cursor: 'pointer', color: '#888' }}>✕</button>
                       </div>
                     ) : (
                       <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                         <button
                           onClick={() => { setGotoPickerIdx(i); setGotoSetId('') }}
-                          style={{ fontSize: 11, color: '#555', fontWeight: 700, background: '#f5f5f5', border: '1.5px solid #ddd', borderRadius: 6, padding: '4px 9px', cursor: 'pointer', whiteSpace: 'nowrap' }}
+                          style={{ fontSize: 11, color: dark ? '#bbb' : '#555', fontWeight: 700, background: dark ? '#333' : '#f5f5f5', border: `1.5px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 6, padding: '4px 9px', cursor: 'pointer', whiteSpace: 'nowrap' }}
                         >
                           {t('setlist_see_set')}
                         </button>
@@ -765,14 +767,14 @@ export default function SetlistPage() {
               setNewMatchCount(0)
             }} style={{
               padding: '10px 22px', borderRadius: 12, border: '2px solid',
-              borderColor: isActive ? accent : '#e0e0e0',
-              background: isActive ? accent : 'white',
+              borderColor: isActive ? accent : (dark ? '#444' : '#e0e0e0'),
+              background: isActive ? accent : (dark ? '#2a2a2a' : 'white'),
               cursor: isActive ? 'default' : 'pointer',
               transition: 'all 0.15s',
               display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2,
               minWidth: 80,
             }}>
-              <span style={{ fontSize: 15, fontWeight: 900, color: isActive ? 'white' : '#111' }}>
+              <span style={{ fontSize: 15, fontWeight: 900, color: isActive ? 'white' : (dark ? '#eee' : '#111') }}>
                 {label}
               </span>
             </button>
@@ -784,7 +786,7 @@ export default function SetlistPage() {
       {!loading && (
         <div style={{ marginBottom: 32 }}>
           {/* Onglets décennie */}
-          <div style={{ display: 'flex', gap: 8, marginBottom: 14, borderBottom: '2px solid #f0f0f0', paddingBottom: 0 }}>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 14, borderBottom: `2px solid ${dark ? '#333' : '#f0f0f0'}`, paddingBottom: 0 }}>
             {decades.map(decade => {
               const isAct = resolvedDecade === decade
               const label = `${String(decade).slice(2)}s`
@@ -798,7 +800,7 @@ export default function SetlistPage() {
                   }}
                   style={{
                     padding: '10px 22px', border: 'none', background: 'none', cursor: 'pointer',
-                    fontWeight: 800, fontSize: 16, color: isAct ? '#003DA6' : '#aaa',
+                    fontWeight: 800, fontSize: 16, color: isAct ? (dark ? '#5b8fff' : '#003DA6') : '#aaa',
                     borderBottom: isAct ? '3px solid #003DA6' : '3px solid transparent',
                     marginBottom: -2, transition: 'all 0.15s',
                   }}
@@ -820,13 +822,13 @@ export default function SetlistPage() {
               return (
                 <button key={year} onClick={() => setActiveSeason(year)} style={{
                   padding: '10px 18px', borderRadius: 12, border: '2px solid',
-                  borderColor: isActive ? '#003DA6' : '#e0e0e0',
-                  background: isActive ? '#003DA6' : 'white',
+                  borderColor: isActive ? '#003DA6' : (dark ? '#444' : '#e0e0e0'),
+                  background: isActive ? '#003DA6' : (dark ? '#2a2a2a' : 'white'),
                   cursor: 'pointer', transition: 'all 0.15s',
                   display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
                   minWidth: 80,
                 }}>
-                  <span style={{ fontSize: 15, fontWeight: 900, color: isActive ? 'white' : '#111' }}>
+                  <span style={{ fontSize: 15, fontWeight: 900, color: isActive ? 'white' : (dark ? '#eee' : '#111') }}>
                     {seasonLabel(year, activeSport)}
                   </span>
                   <span style={{ fontSize: 11, color: isActive ? 'rgba(255,255,255,0.7)' : '#aaa', fontWeight: 600 }}>
@@ -848,7 +850,7 @@ export default function SetlistPage() {
       {activeSeason && !loading && (
         <div style={{ marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
           <div>
-            <span style={{ fontWeight: 900, fontSize: 20, color: '#111' }}>{t('setlist_season')} {seasonLabel(activeSeason, activeSport)}</span>
+            <span style={{ fontWeight: 900, fontSize: 20, color: dark ? '#eee' : '#111' }}>{t('setlist_season')} {seasonLabel(activeSeason, activeSport)}</span>
             <span style={{ color: '#aaa', fontSize: 14, marginLeft: 10 }}>{seasonSets.length} collections · {totalCards.toLocaleString()} {t('setlist_cards')}</span>
           </div>
           {userId && totalCards > 0 && (
@@ -867,12 +869,12 @@ export default function SetlistPage() {
           {seasonSets.map(set => (
             <Link key={set.id} href={`/setlist/${set.id}`} style={{ textDecoration: 'none' }}>
               <div
-                style={{ background: 'white', borderRadius: 14, padding: '18px 20px', border: '1.5px solid #f0f0f0', cursor: 'pointer', transition: 'box-shadow 0.15s, border-color 0.15s', height: '100%', boxSizing: 'border-box' }}
+                style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 14, padding: '18px 20px', border: `1.5px solid ${dark ? '#2a2a2a' : '#f0f0f0'}`, cursor: 'pointer', transition: 'box-shadow 0.15s, border-color 0.15s', height: '100%', boxSizing: 'border-box' }}
                 onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 18px rgba(0,0,0,0.10)'; (e.currentTarget as HTMLDivElement).style.borderColor = '#003DA6' }}
-                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; (e.currentTarget as HTMLDivElement).style.borderColor = '#f0f0f0' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; (e.currentTarget as HTMLDivElement).style.borderColor = dark ? '#2a2a2a' : '#f0f0f0' }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
-                  <div style={{ fontWeight: 800, fontSize: 15, color: '#111', lineHeight: 1.3, flex: 1, marginRight: 8 }}>
+                  <div style={{ fontWeight: 800, fontSize: 15, color: dark ? '#eee' : '#111', lineHeight: 1.3, flex: 1, marginRight: 8 }}>
                     {set.name}
                   </div>
                   {set.pct !== undefined && set.pct > 0 && (
@@ -883,7 +885,7 @@ export default function SetlistPage() {
                 </div>
                 <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 8 }}>
                   {set.brand && (
-                    <span style={{ fontSize: 11, color: '#003DA6', fontWeight: 700, background: '#f0f4ff', borderRadius: 4, padding: '2px 7px' }}>
+                    <span style={{ fontSize: 11, color: dark ? '#7eb8ff' : '#003DA6', fontWeight: 700, background: dark ? '#1a2440' : '#f0f4ff', borderRadius: 4, padding: '2px 7px' }}>
                       {set.brand}
                     </span>
                   )}
@@ -891,7 +893,7 @@ export default function SetlistPage() {
                 </div>
                 {userId && (
                   <>
-                    <CompletionBar pct={set.pct || 0} />
+                    <CompletionBar pct={set.pct || 0} dark={dark} />
                     <div style={{ fontSize: 11, color: '#999', marginTop: 4 }}>
                       {(set.owned || 0).toLocaleString()} / {set.total_cards.toLocaleString()} {t('setlist_owned')}
                     </div>

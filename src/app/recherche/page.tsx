@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 import { playerSlug, teamSlug } from '@/lib/playerSlug'
 import { SPORTS_TEAMS, teamLogoUrl } from '@/lib/sportsTeams'
 
@@ -22,6 +23,7 @@ export default function Recherche() {
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
   const sentinelRef = useRef<HTMLDivElement>(null)
   const { t } = useLang()
+  const { dark } = useTheme()
 
   const updateUrl = (q: string) => {
     const params = new URLSearchParams()
@@ -166,7 +168,7 @@ export default function Recherche() {
               <Link key={i} href={`/equipe/${teamSlug(team.name)}`} style={{ textDecoration: 'none' }}>
                 <div style={{
                   display: 'flex', alignItems: 'center', gap: 8,
-                  background: 'white', border: `2px solid ${team.color}`,
+                  background: dark ? '#2a2a2a' : 'white', border: `2px solid ${team.color}`,
                   borderRadius: 50, padding: '5px 16px 5px 5px',
                   transition: '0.2s', cursor: 'pointer',
                 }}
@@ -179,7 +181,7 @@ export default function Recherche() {
                     alt={team.name}
                     onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
                   />
-                  <span style={{ fontWeight: 800, fontSize: 13, color: '#121212' }}>{team.name}</span>
+                  <span style={{ fontWeight: 800, fontSize: 13, color: dark ? '#f0f0f0' : '#121212' }}>{team.name}</span>
                 </div>
               </Link>
             ))}
@@ -198,7 +200,7 @@ export default function Recherche() {
               <Link key={i} href={`/joueur/${playerSlug(p.name)}`} style={{ textDecoration: 'none' }}>
                 <div style={{
                   display: 'flex', alignItems: 'center', gap: 7,
-                  background: 'white', border: '2px solid #003DA6',
+                  background: dark ? '#2a2a2a' : 'white', border: '2px solid #003DA6',
                   borderRadius: 50, padding: '5px 16px 5px 5px',
                   transition: '0.2s', cursor: 'pointer',
                 }}
@@ -209,7 +211,7 @@ export default function Recherche() {
                     ? <img src={p.photo} style={{ width: 28, height: 28, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top' }} alt={p.name} />
                     : <span style={{ fontSize: 18 }}>🏀</span>
                   }
-                  <span style={{ fontWeight: 800, fontSize: 13, color: '#121212' }}>{p.name}</span>
+                  <span style={{ fontWeight: 800, fontSize: 13, color: dark ? '#f0f0f0' : '#121212' }}>{p.name}</span>
                   {p.isRc && <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 700 }}>RC</span>}
                 </div>
               </Link>
@@ -229,7 +231,7 @@ export default function Recherche() {
               <Link key={i} href={`/galerie/${u.id}`} style={{ textDecoration: 'none' }}>
                 <div style={{
                   display: 'flex', alignItems: 'center', gap: 10,
-                  background: 'white', border: `2px solid ${u.accent}`,
+                  background: dark ? '#2a2a2a' : 'white', border: `2px solid ${u.accent}`,
                   borderRadius: 50, padding: '6px 16px 6px 6px',
                   transition: '0.2s', cursor: 'pointer',
                 }}
@@ -241,7 +243,7 @@ export default function Recherche() {
                     style={{ width: 34, height: 34, borderRadius: '50%', objectFit: 'cover' }}
                     alt={u.display_name}
                   />
-                  <span style={{ fontWeight: 800, fontSize: 14, color: '#121212' }}>{u.display_name}</span>
+                  <span style={{ fontWeight: 800, fontSize: 14, color: dark ? '#f0f0f0' : '#121212' }}>{u.display_name}</span>
                 </div>
               </Link>
             ))}
@@ -260,21 +262,21 @@ export default function Recherche() {
             </p>
             {availableYears.length > 1 && (
               <select value={fYear} onChange={e => { setFYear(e.target.value); setVisibleCount(40) }}
-                style={{ border: '1.5px solid #ddd', borderRadius: 20, padding: '6px 12px', fontSize: 13, fontWeight: 700, background: fYear ? '#003DA6' : 'white', color: fYear ? 'white' : '#333', cursor: 'pointer' }}>
+                style={{ border: '1.5px solid #ddd', borderRadius: 20, padding: '6px 12px', fontSize: 13, fontWeight: 700, background: fYear ? '#003DA6' : (dark ? '#2a2a2a' : 'white'), color: fYear ? 'white' : (dark ? '#eee' : '#333'), cursor: 'pointer' }}>
                 <option value="">Toutes les années</option>
                 {availableYears.map(y => <option key={y} value={y}>{y}</option>)}
               </select>
             )}
             {availableBrands.length > 1 && (
               <select value={fBrand} onChange={e => { setFBrand(e.target.value); setVisibleCount(40) }}
-                style={{ border: '1.5px solid #ddd', borderRadius: 20, padding: '6px 12px', fontSize: 13, fontWeight: 700, background: fBrand ? '#003DA6' : 'white', color: fBrand ? 'white' : '#333', cursor: 'pointer' }}>
+                style={{ border: '1.5px solid #ddd', borderRadius: 20, padding: '6px 12px', fontSize: 13, fontWeight: 700, background: fBrand ? '#003DA6' : (dark ? '#2a2a2a' : 'white'), color: fBrand ? 'white' : (dark ? '#eee' : '#333'), cursor: 'pointer' }}>
                 <option value="">Toutes les marques</option>
                 {availableBrands.map(b => <option key={b} value={b}>{b}</option>)}
               </select>
             )}
             {(fYear || fBrand) && (
               <button onClick={() => { setFYear(''); setFBrand('') }}
-                style={{ border: 'none', background: '#eee', borderRadius: 20, padding: '6px 14px', fontSize: 13, fontWeight: 700, cursor: 'pointer', color: '#555' }}>
+                style={{ border: 'none', background: dark ? '#333' : '#eee', borderRadius: 20, padding: '6px 14px', fontSize: 13, fontWeight: 700, cursor: 'pointer', color: dark ? '#ddd' : '#555' }}>
                 ✕ Effacer
               </button>
             )}
@@ -283,7 +285,7 @@ export default function Recherche() {
             {filteredCards.slice(0, visibleCount).map((card, i) => (
               <Link key={i} href={`/galerie/${card.collectorId}?card=${encodeURIComponent(card.img)}`} style={{ textDecoration: 'none', display: 'block' }}>
                 <div style={{
-                  background: 'white', borderRadius: 12, overflow: 'hidden',
+                  background: dark ? '#1e1e1e' : 'white', borderRadius: 12, overflow: 'hidden',
                   border: `2px solid ${card.accent}`,
                   transition: '0.2s', cursor: 'pointer',
                 }}
@@ -296,11 +298,11 @@ export default function Recherche() {
                   </div>
                   <div style={{ padding: '10px 10px 12px' }}>
                     {getTags(card)}
-                    <p style={{ fontWeight: 800, fontSize: 12, margin: '5px 0 2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: '#121212' }}>{card.name}</p>
+                    <p style={{ fontWeight: 800, fontSize: 12, margin: '5px 0 2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: dark ? '#f0f0f0' : '#121212' }}>{card.name}</p>
                     {card.variant && <p style={{ fontSize: 10, color: card.accent, fontWeight: 700, margin: '0 0 2px', fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.variant}</p>}
                     <p style={{ fontSize: 10, color: '#999', margin: 0 }}>{card.year} {card.brand}</p>
                     {/* Collectionneur */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 8, paddingTop: 8, borderTop: '1px solid #f0f0f0' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 8, paddingTop: 8, borderTop: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }}>
                       <img
                         src={card.collectorAvatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(card.collector || 'U')}&background=003DA6&color=fff&size=32`}
                         style={{ width: 20, height: 20, borderRadius: '50%', objectFit: 'cover' }}

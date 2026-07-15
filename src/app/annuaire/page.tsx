@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 import { SPORTS_TEAMS, getSpeciality, getTeamById } from '@/lib/sportsTeams'
 import TeamBadge from '@/components/TeamBadge'
 
@@ -20,6 +21,7 @@ export default function Annuaire() {
 
 function AnnuaireContent() {
   const { t, lang } = useLang()
+  const { dark } = useTheme()
   const searchParams = useSearchParams()
   const teamIdFromUrl = searchParams.get('team_id') || ''
 
@@ -139,7 +141,7 @@ function AnnuaireContent() {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 600
 
   const th = (k: typeof sortKey, label: string) => (
-    <th onClick={() => handleSort(k)} style={{ background: '#fdfdfd', padding: isMobile ? '10px 6px' : '18px 15px', textAlign: isMobile ? 'center' : 'left', fontSize: isMobile ? 10 : 11, textTransform: 'uppercase', color: '#999', borderBottom: '2px solid #f0f0f0', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+    <th onClick={() => handleSort(k)} style={{ background: dark ? '#252525' : '#fdfdfd', padding: isMobile ? '10px 6px' : '18px 15px', textAlign: isMobile ? 'center' : 'left', fontSize: isMobile ? 10 : 11, textTransform: 'uppercase', color: '#999', borderBottom: `2px solid ${dark ? '#333' : '#f0f0f0'}`, cursor: 'pointer', whiteSpace: 'nowrap' }}>
       {label}{sortKey === k ? (sortAsc ? ' ↑' : ' ↓') : ''}
     </th>
   )
@@ -268,7 +270,7 @@ function AnnuaireContent() {
 
       {loading ? <p style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>Chargement des collections...</p> : (
         <div style={{ borderRadius: 12, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', background: 'white', tableLayout: 'fixed' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', background: dark ? '#1e1e1e' : 'white', tableLayout: 'fixed' }}>
             <colgroup>
               <col style={{ width: isMobile ? '42%' : '40%' }} />
               <col style={{ width: isMobile ? '12%' : '12%' }} />
@@ -291,11 +293,11 @@ function AnnuaireContent() {
               )}
               {sorted.map(c => (
                 <tr key={c.id}>
-                  <td style={{ padding: isMobile ? '10px 8px' : 15, borderBottom: '1px solid #f5f5f5', overflow: 'hidden' }}>
+                  <td style={{ padding: isMobile ? '10px 8px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 15, minWidth: 0 }}>
-                      <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: '2px solid #eee', objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
+                      <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: `2px solid ${dark ? '#333' : '#eee'}`, objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
                       <div style={{ minWidth: 0 }}>
-                        <Link href={`/galerie/${c.id}`} className={c.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: c.is_donor ? undefined : '#121212', fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
+                        <Link href={`/galerie/${c.id}`} className={c.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: c.is_donor ? undefined : (dark ? '#f0f0f0' : '#121212'), fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
                         {(() => {
                           const teams = c.favorite_teams || []
                           const spec = getSpeciality(c.stats)
@@ -320,11 +322,11 @@ function AnnuaireContent() {
                       </div>
                     </div>
                   </td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>{badge(c.stats?.total ?? 0, '#f0f0f0', '#333')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>{badge(c.stats?.rc ?? 0, '#e67e22', 'white')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>{badge(c.stats?.auto ?? 0, '#2e7d32', 'white')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>{badge(c.stats?.num ?? 0, '#7b1fa2', 'white')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>{badge(c.stats?.patch ?? 0, '#1976d2', 'white')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.total ?? 0, dark ? '#333' : '#f0f0f0', dark ? '#eee' : '#333')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.rc ?? 0, '#e67e22', 'white')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.auto ?? 0, '#2e7d32', 'white')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.num ?? 0, '#7b1fa2', 'white')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.patch ?? 0, '#1976d2', 'white')}</td>
                 </tr>
               ))}
             </tbody>

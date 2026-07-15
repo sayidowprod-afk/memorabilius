@@ -3,6 +3,7 @@ import { useEffect, useState, use } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { playerSlug } from '@/lib/playerSlug'
+import { useTheme } from '@/lib/ThemeContext'
 
 interface Entry {
   id: number
@@ -34,6 +35,7 @@ interface CardSet {
 }
 
 export default function SetDetailPage({ params }: { params: Promise<{ setId: string }> }) {
+  const { dark } = useTheme()
   const { setId } = use(params)
   const [set, setSet] = useState<CardSet | null>(null)
   const [variations, setVariations] = useState<VariationMeta[]>([])
@@ -416,7 +418,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
       </div>
 
       {/* Header */}
-      <div style={{ background: 'white', borderRadius: 16, padding: '24px 28px', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 24 }}>
+      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: '24px 28px', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 24 }}>
         <h1 style={{ fontWeight: 900, fontSize: 26, marginBottom: 8 }}>{set.name}</h1>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', marginBottom: userId ? 16 : 0 }}>
           {set.year && <span style={{ fontSize: 13, color: '#888', fontWeight: 700 }}>{set.year}</span>}
@@ -429,7 +431,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
               <span style={{ fontSize: 14, fontWeight: 700, color: '#333' }}>{totalOwned} / {set.total_cards.toLocaleString()} possédées</span>
               <span style={{ fontSize: 20, fontWeight: 900, color: pct === 100 ? '#2ecc71' : '#003DA6' }}>{pct}%</span>
             </div>
-            <div style={{ height: 10, borderRadius: 5, background: '#f0f0f0', overflow: 'hidden' }}>
+            <div style={{ height: 10, borderRadius: 5, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
               <div style={{ height: '100%', width: `${pct}%`, background: pct === 100 ? '#2ecc71' : 'linear-gradient(90deg, #003DA6, #0057D9)', borderRadius: 5, transition: 'width 0.4s' }} />
             </div>
           </div>
@@ -445,7 +447,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher un joueur..."
           style={{ flex: '1 1 200px', minWidth: 160, padding: '10px 14px', border: '1.5px solid #e0e0e0', borderRadius: 8, fontSize: 14, outline: 'none' }} />
         <select value={filterTeam} onChange={e => setFilterTeam(e.target.value)}
-          style={{ padding: '10px 14px', border: `1.5px solid ${filterTeam ? '#003DA6' : '#e0e0e0'}`, borderRadius: 8, fontSize: 13, background: 'white', cursor: 'pointer', fontWeight: filterTeam ? 700 : 400, color: filterTeam ? '#003DA6' : '#666', minWidth: 160 }}>
+          style={{ padding: '10px 14px', border: `1.5px solid ${filterTeam ? '#003DA6' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 8, fontSize: 13, background: dark ? '#2a2a2a' : 'white', cursor: 'pointer', fontWeight: filterTeam ? 700 : 400, color: filterTeam ? '#003DA6' : (dark ? '#bbb' : '#666'), minWidth: 160 }}>
           <option value="">Toutes les équipes</option>
           {allTeams.map(t => <option key={t} value={t}>{t}</option>)}
         </select>
@@ -453,7 +455,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
           <div style={{ display: 'flex', gap: 4 }}>
             {(['all', 'owned', 'missing'] as const).map(f => (
               <button key={f} onClick={() => setFilter(f)}
-                style={{ padding: '10px 16px', border: '1.5px solid', borderColor: filter === f ? '#003DA6' : '#e0e0e0', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', background: filter === f ? '#003DA6' : 'white', color: filter === f ? 'white' : '#333' }}>
+                style={{ padding: '10px 16px', border: '1.5px solid', borderColor: filter === f ? '#003DA6' : (dark ? '#444' : '#e0e0e0'), borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', background: filter === f ? '#003DA6' : (dark ? '#2a2a2a' : 'white'), color: filter === f ? 'white' : (dark ? '#eee' : '#333') }}>
                 {f === 'all' ? 'Tout' : f === 'owned' ? '✓ Possédées' : '✗ Manquantes'}
               </button>
             ))}
@@ -480,14 +482,14 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
           if ((filter !== 'all' || search || filterTeam) && variation.loaded && displayEntries.length === 0) return null
 
           return (
-            <div key={variation.name} style={{ background: 'white', borderRadius: 12, overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', border: '1px solid #f0f0f0' }}>
+            <div key={variation.name} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 12, overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', border: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }}>
               <div onClick={() => toggleVariation(variation.name)}
                 style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '13px 18px', cursor: 'pointer', boxSizing: 'border-box' }}>
                 <span style={{ fontSize: 15, fontWeight: 800, color: '#111', flex: 1 }}>{variation.name}</span>
                 <span style={{ fontSize: 12, color: '#aaa', whiteSpace: 'nowrap' }}>{variation.count} cartes</span>
                 {userId && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 130 }}>
-                    <div style={{ flex: 1, height: 5, borderRadius: 3, background: '#f0f0f0', overflow: 'hidden' }}>
+                    <div style={{ flex: 1, height: 5, borderRadius: 3, background: dark ? '#333' : '#f0f0f0', overflow: 'hidden' }}>
                       <div style={{ height: '100%', width: `${varPct}%`, background: varPct === 100 ? '#2ecc71' : 'linear-gradient(90deg, #003DA6, #0057D9)', borderRadius: 3 }} />
                     </div>
                     <span style={{ fontSize: 12, fontWeight: 700, color: varPct === 100 ? '#2ecc71' : '#003DA6', minWidth: 32, textAlign: 'right' }}>{varPct}%</span>
@@ -498,7 +500,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                     onClick={ev => checkAllVariation(variation.name, ev)}
                     disabled={checkingAll === variation.name}
                     title={varPct === 100 ? 'Tout décocher' : 'Tout cocher'}
-                    style={{ fontSize: 11, fontWeight: 800, padding: '4px 9px', borderRadius: 6, border: '1.5px solid', borderColor: varPct === 100 ? '#2ecc71' : '#003DA6', background: 'white', color: varPct === 100 ? '#2ecc71' : '#003DA6', cursor: checkingAll === variation.name ? 'default' : 'pointer', whiteSpace: 'nowrap', opacity: checkingAll === variation.name ? 0.5 : 1, flexShrink: 0 }}
+                    style={{ fontSize: 11, fontWeight: 800, padding: '4px 9px', borderRadius: 6, border: '1.5px solid', borderColor: varPct === 100 ? '#2ecc71' : '#003DA6', background: dark ? '#1e1e1e' : 'white', color: varPct === 100 ? '#2ecc71' : '#003DA6', cursor: checkingAll === variation.name ? 'default' : 'pointer', whiteSpace: 'nowrap', opacity: checkingAll === variation.name ? 0.5 : 1, flexShrink: 0 }}
                   >
                     {checkingAll === variation.name ? '…' : varPct === 100 ? '✗ Tout' : '✓ Tout'}
                   </button>
@@ -507,19 +509,19 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
               </div>
 
               {isOpen && (
-                <div style={{ borderTop: '1px solid #f5f5f5' }}>
+                <div style={{ borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` }}>
                   {!variation.loaded ? (
                     <div style={{ padding: '20px', textAlign: 'center', color: '#aaa', fontSize: 13 }}>Chargement...</div>
                   ) : (
                     <>
-                      <div style={{ display: 'grid', gridTemplateColumns: '52px 1fr 150px 36px', padding: '8px 18px', background: '#fafafa', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#bbb', letterSpacing: '0.5px' }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: '52px 1fr 150px 36px', padding: '8px 18px', background: dark ? '#252525' : '#fafafa', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#bbb', letterSpacing: '0.5px' }}>
                         <span>#</span><span>Joueur</span><span>Équipe</span><span></span>
                       </div>
                       {displayEntries.length === 0 ? (
                         <div style={{ padding: '20px', textAlign: 'center', color: '#ccc', fontSize: 13 }}>Aucune carte</div>
                       ) : displayEntries.map(entry => (
                         <div key={entry.id}
-                          style={{ display: 'grid', gridTemplateColumns: '52px 1fr 150px 36px', padding: '9px 18px', borderTop: '1px solid #f5f5f5', background: entry.owned ? '#f5fff7' : 'white', alignItems: 'center' }}>
+                          style={{ display: 'grid', gridTemplateColumns: '52px 1fr 150px 36px', padding: '9px 18px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, background: entry.owned ? (dark ? '#0d2e1a' : '#f5fff7') : (dark ? '#1e1e1e' : 'white'), alignItems: 'center' }}>
                           <span style={{ fontSize: 12, color: '#bbb', fontWeight: 700 }}>{entry.card_number || '—'}</span>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 6, overflow: 'hidden' }}>
                             <Link href={`/joueur/${playerSlug(entry.player_name)}`} style={{ fontSize: 14, fontWeight: entry.owned ? 700 : 400, color: entry.owned ? '#111' : '#444', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }} onClick={e => e.stopPropagation()}>{entry.player_name}</Link>
@@ -529,7 +531,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                           <span style={{ fontSize: 12, color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{entry.team || '—'}</span>
                           {userId ? (
                             <button onClick={() => toggleOwned(entry, variation.name)} disabled={saving === entry.id}
-                              style={{ width: 28, height: 28, borderRadius: '50%', border: '2px solid', borderColor: entry.owned ? '#2ecc71' : '#ddd', background: entry.owned ? '#2ecc71' : 'white', color: entry.owned ? 'white' : '#ccc', fontWeight: 900, fontSize: 14, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: saving === entry.id ? 0.5 : 1 }}>
+                              style={{ width: 28, height: 28, borderRadius: '50%', border: '2px solid', borderColor: entry.owned ? '#2ecc71' : (dark ? '#444' : '#ddd'), background: entry.owned ? '#2ecc71' : (dark ? '#2a2a2a' : 'white'), color: entry.owned ? 'white' : '#ccc', fontWeight: 900, fontSize: 14, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: saving === entry.id ? 0.5 : 1 }}>
                               ✓
                             </button>
                           ) : <span />}
