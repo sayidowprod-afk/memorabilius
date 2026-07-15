@@ -13,6 +13,8 @@ export default function Notifications() {
   const [loading, setLoading] = useState(true)
   const [pushPerm, setPushPerm] = useState<NotificationPermission | null>(null)
   const [pushLoading, setPushLoading] = useState(false)
+  const [testResult, setTestResult] = useState<{ ok?: boolean; error?: string } | null>(null)
+  const [testLoading, setTestLoading] = useState(false)
 
   useEffect(() => {
     if ('Notification' in window) setPushPerm(Notification.permission)
@@ -105,11 +107,43 @@ export default function Notifications() {
           </button>
         )}
         {pushPerm === 'granted' && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 12, color: '#2ecc71', fontWeight: 700 }}>🔔 Notifications activées</span>
+            <button
+              onClick={async () => {
+                setTestLoading(true)
+                setTestResult(null)
+                try {
+                  const { data: { session } } = await supabase.auth.getSession()
+                  const res = await fetch('/api/push-test', {
+                    method: 'POST',
+                    headers: { Authorization: `Bearer ${session?.access_token}` },
+                  })
+                  const json = await res.json()
+                  setTestResult(res.ok ? { ok: true } : { error: json.error || 'Erreur inconnue' })
+                } catch (e: any) {
+                  setTestResult({ error: e?.message || 'Erreur réseau' })
+                } finally {
+                  setTestLoading(false)
+                }
+              }}
+              disabled={testLoading}
+              style={{ padding: '6px 12px', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}
+            >
+              {testLoading ? '...' : '🧪 Tester'}
+            </button>
             <button onClick={handleDisablePush} disabled={pushLoading} style={{ padding: '6px 12px', background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
               {pushLoading ? '...' : 'Désactiver'}
             </button>
+          </div>
+        )}
+        {testResult && (
+          <div style={{
+            fontSize: 12, fontWeight: 700, padding: '6px 12px', borderRadius: 8,
+            background: testResult.ok ? '#e8f5e9' : '#fdecea',
+            color: testResult.ok ? '#1b5e20' : '#b71c1c',
+          }}>
+            {testResult.ok ? '✓ Notification envoyée — vérifie ton téléphone !' : `✗ ${testResult.error}`}
           </div>
         )}
       </div>

@@ -246,6 +246,84 @@ nav {
 }
 .section-title::after { content: ""; flex: 1; height: 2px; background: var(--border); }
 
+/* ===== DARK MODE — ÉLÉMENTS NON-DIV (button, a, input, select) ===== */
+/* La cause racine : les overrides ci-dessus ne ciblent que div/span.
+   button, a, input, select avec background inline passaient au travers. */
+
+/* Backgrounds blancs sur button / a */
+[data-theme="dark"] button[style*="background:white"],
+[data-theme="dark"] button[style*="background: white"],
+[data-theme="dark"] button[style*="background:#fff"],
+[data-theme="dark"] button[style*="background: #fff"],
+[data-theme="dark"] a[style*="background:white"],
+[data-theme="dark"] a[style*="background: white"],
+[data-theme="dark"] a[style*="background:#fff"],
+[data-theme="dark"] a[style*="background: #fff"] { background: var(--bg2) !important; color: var(--text) !important; }
+
+/* Backgrounds gris clairs sur button / a */
+[data-theme="dark"] button[style*="background:#f0f0f0"],
+[data-theme="dark"] button[style*="background: #f0f0f0"],
+[data-theme="dark"] button[style*="background:#f8f8f8"],
+[data-theme="dark"] button[style*="background: #f8f8f8"],
+[data-theme="dark"] button[style*="background:#e8e8e8"],
+[data-theme="dark"] button[style*="background: #e8e8e8"],
+[data-theme="dark"] button[style*="background:#f0f4ff"],
+[data-theme="dark"] button[style*="background: #f0f4ff"],
+[data-theme="dark"] button[style*="background:#f5f5f5"],
+[data-theme="dark"] button[style*="background: #f5f5f5"],
+[data-theme="dark"] a[style*="background:#f0f0f0"],
+[data-theme="dark"] a[style*="background: #f0f0f0"],
+[data-theme="dark"] a[style*="background:#f8f8f8"],
+[data-theme="dark"] a[style*="background: #f8f8f8"],
+[data-theme="dark"] a[style*="background:#e8e8e8"],
+[data-theme="dark"] a[style*="background: #e8e8e8"] { background: var(--bg3) !important; color: var(--text) !important; }
+
+/* input / select avec background inline (l'inline override le global CSS) */
+[data-theme="dark"] input[style*="background:white"],
+[data-theme="dark"] input[style*="background: white"],
+[data-theme="dark"] input[style*="background:#fff"],
+[data-theme="dark"] input[style*="background: #fff"],
+[data-theme="dark"] select[style*="background:white"],
+[data-theme="dark"] select[style*="background: white"],
+[data-theme="dark"] select[style*="background:#fff"],
+[data-theme="dark"] select[style*="background: #fff"],
+[data-theme="dark"] select[style*="background:#f0f4ff"],
+[data-theme="dark"] select[style*="background: #f0f4ff"] { background: var(--input-bg) !important; color: var(--text) !important; }
+
+/* Couleurs div manquantes dans les règles précédentes */
+[data-theme="dark"] div[style*="background:#fffbf0"],
+[data-theme="dark"] div[style*="background: #fffbf0"],
+[data-theme="dark"] div[style*="background:#fdf6ef"],
+[data-theme="dark"] div[style*="background: #fdf6ef"],
+[data-theme="dark"] div[style*="background:#ddd"],
+[data-theme="dark"] div[style*="background: #ddd"],
+[data-theme="dark"] div[style*="background:#e8e8e8"],
+[data-theme="dark"] div[style*="background: #e8e8e8"],
+[data-theme="dark"] div[style*="background:#f0f4ff"],
+[data-theme="dark"] div[style*="background: #f0f4ff"],
+[data-theme="dark"] div[style*="background:#fff8f0"],
+[data-theme="dark"] div[style*="background: #fff8f0"],
+[data-theme="dark"] div[style*="background:#f0f6ff"],
+[data-theme="dark"] div[style*="background: #f0f6ff"],
+[data-theme="dark"] div[style*="background:#e8f0fe"],
+[data-theme="dark"] div[style*="background: #e8f0fe"],
+[data-theme="dark"] div[style*="background:#e8eeff"],
+[data-theme="dark"] div[style*="background: #e8eeff"] { background: var(--bg3) !important; }
+
+/* Bleu foncé (#003DA6) illisible sur fond sombre → bleu clair */
+[data-theme="dark"] *[style*="color:#003DA6"]:not(button.btn-primary):not([style*="background:#003DA6"]),
+[data-theme="dark"] *[style*="color: #003DA6"]:not(button.btn-primary):not([style*="background:#003DA6"]) { color: #5b8def !important; }
+
+/* Shimmer skeleton */
+[data-theme="dark"] div[style*="linear-gradient(90deg, #f0f0f0"],
+[data-theme="dark"] div[style*="linear-gradient(90deg,#f0f0f0"] {
+  background: linear-gradient(90deg, var(--bg3) 25%, var(--bg2) 50%, var(--bg3) 75%) !important;
+}
+
+/* Spinner border */
+[data-theme="dark"] *[style*="3px solid #eee"],
+[data-theme="dark"] *[style*="3px solid #f0f0f0"] { border-color: var(--border) !important; }
+
 /* ===== RESPONSIVE MOBILE ===== */
 @media (max-width: 768px) {
   main { padding: 12px !important; }

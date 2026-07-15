@@ -19,10 +19,15 @@ export async function sendPushToUser(
   // Dynamic import avoids Turbopack trying to bundle this Node-only package at build time
   const webpush = (await import('web-push')).default
 
+  if (!process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || !process.env.VAPID_PRIVATE_KEY) {
+    console.error('[push] Clés VAPID manquantes — vérifiez NEXT_PUBLIC_VAPID_PUBLIC_KEY et VAPID_PRIVATE_KEY dans les variables d\'env Vercel')
+    return
+  }
+
   webpush.setVapidDetails(
     `mailto:${process.env.VAPID_MAILTO || 'contact@memorabilius.fr'}`,
-    process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
-    process.env.VAPID_PRIVATE_KEY!
+    process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+    process.env.VAPID_PRIVATE_KEY
   )
 
   if (!process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || !process.env.VAPID_PRIVATE_KEY) {

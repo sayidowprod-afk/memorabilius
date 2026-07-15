@@ -113,6 +113,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [showComments, setShowComments] = useState(false)
   const [showQr, setShowQr] = useState(false)
   const [commentCount, setCommentCount] = useState(0)
+  const [showSortMenu, setShowSortMenu] = useState(false)
+  const [sorting, setSorting] = useState(false)
   const [slots, setSlots] = useState<Map<string, Slot>>(new Map())
   // Page gauche du double-feuillet, PAIRE (0, 2, 4…). Comme un vrai classeur :
   // 0 = intérieur de couverture (gauche) + page 1 seule à droite, puis 2–3, 4–5…
@@ -485,6 +487,49 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     await supabase.from('binders').update({ page_count: newCount }).eq('id', selected.id)
     setSelected(s => s ? { ...s, page_count: newCount } : s)
     setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newCount } : b))
+  }
+
+  // Trie toutes les cartes du classeur et réécrit les slots dans le nouvel ordre
+  const sortBinder = async (by: 'nom_asc' | 'nom_desc' | 'annee_asc' | 'annee_desc') => {
+    if (!selected || sorting) return
+    setShowSortMenu(false)
+    setSorting(true)
+    try {
+      const allSlots = [...slots.values()]
+      const yearOf = (nom: string) => parseInt(nom?.match(/(19|20)\d{2}/)?.[0] || '0')
+      const sorted = [...allSlots].sort((a, b) => {
+        const na = a.nom || '', nb = b.nom || ''
+        if (by === 'nom_asc') return na.localeCompare(nb, 'fr', { sensitivity: 'base' })
+        if (by === 'nom_desc') return nb.localeCompare(na, 'fr', { sensitivity: 'base' })
+        if (by === 'annee_asc') return yearOf(na) - yearOf(nb)
+        if (by === 'annee_desc') return yearOf(nb) - yearOf(na)
+        return 0
+      })
+      const newSlots = new Map<string, Slot>()
+      const rows: any[] = []
+      let page = 1, idx = 0
+      for (const s of sorted) {
+        if (idx >= selected.layout) { page++; idx = 0 }
+        const k = slotKey(page, idx)
+        newSlots.set(k, { ...s, page_number: page, slot_index: idx })
+        rows.push({ binder_id: selected.id, page_number: page, slot_index: idx, card_key: s.card_key, img: s.img, img_back: s.img_back, nom: s.nom, is_horizontal: !!s.is_horizontal })
+        idx++
+      }
+      // Nombre de pages effectif après tri (peut être inférieur à page_count si le classeur avait des trous)
+      const newPageCount = idx > 0 ? page : page - 1
+      await supabase.from('binder_slots').delete().eq('binder_id', selected.id)
+      if (rows.length) await supabase.from('binder_slots').insert(rows)
+      if (newPageCount !== selected.page_count) {
+        await supabase.from('binders').update({ page_count: newPageCount }).eq('id', selected.id)
+        setSelected(s => s ? { ...s, page_count: newPageCount } : s)
+        setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newPageCount } : b))
+      }
+      setSlots(newSlots)
+      setPageIndex(0)
+      setIsOpen(false)
+    } finally {
+      setSorting(false)
+    }
   }
 
   // Ajoute plusieurs cartes d'un coup dans les premières pochettes vides (crée des pages si besoin)
@@ -1260,6 +1305,35 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           )}
           {isOwner && !pendingCard && (
             <>
+              {/* Bouton Trier */}
+              <div style={{ position: 'relative' }}>
+                <button
+                  onClick={() => setShowSortMenu(v => !v)}
+                  disabled={sorting || slots.size === 0}
+                  style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700, opacity: sorting ? 0.5 : 1 }}
+                >
+                  {sorting ? '⏳ Tri…' : '⇅ Trier'}
+                </button>
+                {showSortMenu && (
+                  <div
+                    onMouseLeave={() => setShowSortMenu(false)}
+                    style={{ position: 'absolute', top: '100%', right: 0, zIndex: 200, background: 'white', border: '1px solid #e0e0e0', borderRadius: 10, boxShadow: '0 6px 24px rgba(0,0,0,0.15)', minWidth: 190, padding: 6 }}
+                  >
+                    {([
+                      ['nom_asc',   'Nom  A → Z'],
+                      ['nom_desc',  'Nom  Z → A'],
+                      ['annee_asc', 'Année  ↑ (ancienne en premier)'],
+                      ['annee_desc','Année  ↓ (récente en premier)'],
+                    ] as const).map(([key, label]) => (
+                      <button key={key} onClick={() => sortBinder(key)}
+                        style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '8px 12px', fontSize: 13, cursor: 'pointer', borderRadius: 6, color: '#222' }}
+                        onMouseEnter={e => (e.currentTarget.style.background = '#f0f4ff')}
+                        onMouseLeave={e => (e.currentTarget.style.background = 'none')}
+                      >{label}</button>
+                    ))}
+                  </div>
+                )}
+              </div>
               <button onClick={() => setMultiPicker(true)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>＋ Ajouter des cartes</button>
               <button onClick={() => openEditForm(selected)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>✏️ Modifier</button>
               <button onClick={() => deleteBinder(selected.id)} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12 }}>🗑️</button>
