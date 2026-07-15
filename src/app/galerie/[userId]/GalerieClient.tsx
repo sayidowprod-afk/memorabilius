@@ -21,6 +21,7 @@ import { CSS } from '@dnd-kit/utilities'
 
 const Viewer3D = dynamic(() => import('@/components/Viewer3D'), { ssr: false })
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 import { getSpeciality, getTeamById } from '@/lib/sportsTeams'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
@@ -168,6 +169,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
   const isOwner = currentUser === userId
   const { t, lang } = useLang()
+  const { dark } = useTheme()
   const cardParam = searchParams.get('card')
 
   useEffect(() => {
@@ -713,7 +715,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   <div className="btn-menu" style={{ position: 'relative' }}>
                     <button
                       onClick={() => setActionMenuOpen(v => !v)}
-                      style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 14px', fontWeight: 700, fontSize: 15, cursor: 'pointer', lineHeight: 1 }}
+                      style={{ background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ddd' : '#333', border: 'none', borderRadius: 8, padding: '10px 14px', fontWeight: 700, fontSize: 15, cursor: 'pointer', lineHeight: 1 }}
                     >
                       ···
                     </button>
@@ -721,10 +723,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       <>
                         {/* Overlay invisible pour fermer */}
                         <div onClick={() => setActionMenuOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 99 }} />
-                        <div style={{ position: 'absolute', top: 'calc(100% + 6px)', right: 0, background: '#fff', borderRadius: 12, boxShadow: '0 8px 32px rgba(0,0,0,0.15)', padding: 6, zIndex: 100, minWidth: 190, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                        <div style={{ position: 'absolute', top: 'calc(100% + 6px)', right: 0, background: dark ? '#1e1e1e' : '#fff', borderRadius: 12, boxShadow: dark ? '0 8px 32px rgba(0,0,0,0.5)' : '0 8px 32px rgba(0,0,0,0.15)', border: dark ? '1px solid #333' : 'none', padding: 6, zIndex: 100, minWidth: 190, display: 'flex', flexDirection: 'column', gap: 2 }}>
                           {isOwner && (
                             <button onClick={() => { setEditMode(m => !m); setSelectedCards(new Set()); setActionMenuOpen(false) }}
-                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: '#333', width: '100%' }}>
+                              style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                               {editMode ? t('gallery_done') : t('gallery_privacy')}
                             </button>
                           )}
@@ -733,11 +735,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                             const url = window.location.href
                             if (navigator.share) navigator.share({ title: `Galerie de ${profile?.display_name || 'Collectionneur'}`, url })
                             else navigator.clipboard.writeText(url).then(() => { setShareCopied(true); setTimeout(() => setShareCopied(false), 2000) })
-                          }} style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: '#333', width: '100%' }}>
+                          }} style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             {shareCopied ? '✓ Lien copié' : '↗ Partager'}
                           </button>
                           <button onClick={() => { setActionMenuOpen(false); router.push(`/galerie/${userId}/expo`) }}
-                            style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: '#333', width: '100%' }}>
+                            style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             ⊞ Mode expo
                           </button>
                           <div style={{ padding: '0 4px' }}>
@@ -752,7 +754,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                             />
                           </div>
                           <button onClick={() => { setShowStats(s => !s); setActionMenuOpen(false) }}
-                            style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: '#333', width: '100%' }}>
+                            style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             📊 {showStats ? 'Masquer les stats' : 'Voir les stats'}
                           </button>
                         </div>
@@ -925,13 +927,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         })()}
 
         {/* Onglets Collection / Wishlist / Commentaires / Bibliothèque — scrollable sur mobile */}
-        <div style={{ display: 'flex', gap: 4, marginBottom: 16, background: '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        <div style={{ display: 'flex', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {(['collection', 'wishlist', 'library', 'comments', ...(isOwner ? ['likes'] as const : [])] as const).map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)} style={{
               padding: '8px 16px', border: 'none', borderRadius: 8, cursor: 'pointer',
               fontWeight: 800, fontSize: 13, whiteSpace: 'nowrap', flexShrink: 0,
-              background: activeTab === tab ? 'white' : 'transparent',
-              color: activeTab === tab ? accent : '#999',
+              background: activeTab === tab ? (dark ? '#121212' : 'white') : 'transparent',
+              color: activeTab === tab ? accent : (dark ? '#666' : '#999'),
               boxShadow: activeTab === tab ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
               transition: '0.15s',
             }}>
@@ -955,7 +957,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
         {activeTab === 'collection' && <>
         {/* Filtres de recherche */}
-        <div style={{ background: '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: '1px solid #eee' }}>
+        <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_search_label')}</label>
               <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('gallery_search')} /></div>
@@ -976,13 +978,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
               <button key={k} onClick={() => toggleFilter(k)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
-                background: activeFilters[k] ? accent : '#f0f0f0', color: activeFilters[k] ? 'white' : '#333'
+                background: activeFilters[k] ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: activeFilters[k] ? 'white' : (dark ? '#bbb' : '#333')
               }}>{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
             ))}
             {isOwner && (
               <button onClick={() => setFilterPrivate(p => !p)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
-                background: filterPrivate ? '#555' : '#f0f0f0', color: filterPrivate ? 'white' : '#333'
+                background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
               }}>🔒 Privé</button>
             )}
           </div>
@@ -991,7 +993,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               {lang === 'fr' ? 'Trier par' : 'Sort by'}
             </label>
             <select value={sortBy} onChange={e => setSortBy(e.target.value as typeof sortBy)}
-              style={{ background: sortBy !== 'default' ? '#f0f4ff' : undefined, borderColor: sortBy !== 'default' ? '#003DA6' : undefined, color: sortBy !== 'default' ? '#003DA6' : undefined, fontWeight: sortBy !== 'default' ? 700 : undefined }}>
+              style={{ background: sortBy !== 'default' ? (dark ? '#1a2240' : '#f0f4ff') : undefined, borderColor: sortBy !== 'default' ? '#003DA6' : undefined, color: sortBy !== 'default' ? (dark ? '#7aabf7' : '#003DA6') : undefined, fontWeight: sortBy !== 'default' ? 700 : undefined }}>
               <option value="default">{lang === 'fr' ? '— Ordre par défaut —' : '— Default order —'}</option>
               <optgroup label={lang === 'fr' ? 'Joueur' : 'Player'}>
                 <option value="n">{lang === 'fr' ? 'Joueur A → Z' : 'Player A → Z'}</option>
@@ -1099,52 +1101,56 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               setDraggedTag(null)
             }
 
-            const renderTagNode = (tag: string, depth: number): React.ReactNode => {
+            const renderTagPill = (tag: string, depth: number): React.ReactNode => {
               const settings = tabSettings.get(tag)
               const tabColor = settings?.color || accent
-              const isActive = fCollectionTag === tag
-              const isDragging = draggedTag === tag
               const children = getChildren(tag)
               const hasChildren = children.length > 0
-              const isExpanded = expandedCollections.has(tag)
+              const isActive = fCollectionTag === tag
+              const isChildActive = children.includes(fCollectionTag)
+              const highlighted = isActive || isChildActive
+              const isDragging = draggedTag === tag
               return (
                 <div key={tag}>
                   <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', gap: 3 }}>
                     <button
-                      onClick={(e) => { e.stopPropagation(); setFCollectionTag(isActive ? '' : tag); setColorPickerTag(null) }}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        // Si un enfant est actif, cliquer sur le parent revient à "Tout" dans ce parent
+                        // Si le parent lui-même est actif, on déselectionne
+                        setFCollectionTag(isActive ? '' : tag)
+                        setColorPickerTag(null)
+                      }}
                       draggable={isOwner}
                       onDragStart={() => { dragLastOverRef.current = null; setDraggedTag(tag) }}
                       onDragOver={(e) => handleDragOver(e, tag)}
                       onDragEnd={handleDragEnd}
                       style={{
-                        padding: depth > 0 ? '4px 9px' : '5px 10px', borderRadius: 20, cursor: isOwner ? 'grab' : 'pointer',
+                        padding: depth > 0 ? '4px 9px' : '5px 10px', borderRadius: 20,
+                        cursor: isOwner && depth === 0 ? 'grab' : 'pointer',
                         fontSize: depth > 0 ? 10 : 11, fontWeight: 700, transition: '0.15s',
                         opacity: isDragging ? 0.4 : 1,
-                        background: isActive ? tabColor : '#f0f0f0',
-                        color: isActive ? 'white' : '#555',
-                        border: `2px solid ${isActive ? tabColor : tabColor + '55'}`,
+                        background: highlighted ? tabColor : (dark ? '#2a2a2a' : '#f0f0f0'),
+                        color: highlighted ? 'white' : (dark ? '#ccc' : '#555'),
+                        border: `2px solid ${highlighted ? tabColor : resolveColor(tabColor) + '55'}`,
+                        display: 'inline-flex', alignItems: 'center', gap: 5,
                       }}
                     >
-                      {!isActive && <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: tabColor, marginRight: 5, verticalAlign: 'middle', flexShrink: 0 }} />}
+                      {!highlighted && <span style={{ width: 8, height: 8, borderRadius: '50%', background: tabColor, flexShrink: 0 }} />}
                       {tag}
+                      {hasChildren && depth === 0 && (
+                        <span style={{ fontSize: 9, opacity: 0.8, marginLeft: 1 }}>{isChildActive ? '▾' : '▸'}</span>
+                      )}
                     </button>
-                    {hasChildren && (
-                      <button
-                        onClick={e => { e.stopPropagation(); setExpandedCollections(prev => { const s = new Set(prev); s.has(tag) ? s.delete(tag) : s.add(tag); return s }) }}
-                        style={{ background: '#e8e8e8', border: 'none', cursor: 'pointer', padding: '3px 7px', fontSize: 10, color: '#555', fontWeight: 900, lineHeight: 1, borderRadius: 10, flexShrink: 0 }}
-                      >
-                        {isExpanded ? '▾' : `▸ ${children.length}`}
-                      </button>
-                    )}
                     {isOwner && (
                       <button
                         onClick={(e) => { e.stopPropagation(); setColorPickerTag(colorPickerTag === tag ? null : tag); setRenameValue(tag); setDeleteTagConfirm(null) }}
                         title="Couleur"
-                        style={{ position: 'absolute', top: -6, right: hasChildren ? 30 : -6, width: 16, height: 16, borderRadius: '50%', background: tabColor, border: '2px solid white', cursor: 'pointer', padding: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.3)', zIndex: 1 }}
+                        style={{ position: 'absolute', top: -6, right: -6, width: 16, height: 16, borderRadius: '50%', background: tabColor, border: `2px solid ${dark ? '#121212' : 'white'}`, cursor: 'pointer', padding: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.3)', zIndex: 1 }}
                       />
                     )}
                     {colorPickerTag === tag && (
-                      <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', top: '110%', left: 0, background: 'white', borderRadius: 12, padding: 10, boxShadow: '0 8px 30px rgba(0,0,0,0.18)', zIndex: 100, width: 220 }}>
+                      <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', top: '110%', left: 0, background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 10, boxShadow: dark ? '0 8px 30px rgba(0,0,0,0.5)' : '0 8px 30px rgba(0,0,0,0.18)', border: dark ? '1px solid #333' : 'none', zIndex: 100, width: 220 }}>
                         <input
                           value={renameValue}
                           onChange={e => setRenameValue(e.target.value)}
@@ -1177,7 +1183,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                             if (fCollectionTag === tag) setFCollectionTag(newName)
                             setColorPickerTag(null)
                           }}
-                          style={{ width: '100%', marginBottom: 8, padding: '5px 10px', borderRadius: 8, border: `2.5px solid ${isGradient(tabColor) ? 'transparent' : tabColor}`, fontSize: 11, fontWeight: 700, color: '#333', textAlign: 'center', outline: 'none', boxSizing: 'border-box', fontFamily: 'Inter, sans-serif', background: 'white' }}
+                          style={{ width: '100%', marginBottom: 8, padding: '5px 10px', borderRadius: 8, border: `2.5px solid ${isGradient(tabColor) ? 'transparent' : tabColor}`, fontSize: 11, fontWeight: 700, color: dark ? '#eee' : '#333', textAlign: 'center', outline: 'none', boxSizing: 'border-box', fontFamily: 'Inter, sans-serif', background: dark ? '#2a2a2a' : 'white' }}
                         />
                         <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
                           {TAB_COLORS.map(c => (
@@ -1202,7 +1208,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                               <select
                                 value={parentOf(tag) || ''}
                                 onChange={e => saveTabSetting(tag, { parent: e.target.value || null })}
-                                style={{ width: '100%', marginBottom: 8, padding: '5px 8px', borderRadius: 8, border: '1.5px solid #ddd', fontSize: 11, fontWeight: 700, color: '#333', background: 'white', outline: 'none', boxSizing: 'border-box' }}
+                                style={{ width: '100%', marginBottom: 8, padding: '5px 8px', borderRadius: 8, border: dark ? '1.5px solid #444' : '1.5px solid #ddd', fontSize: 11, fontWeight: 700, color: dark ? '#eee' : '#333', background: dark ? '#2a2a2a' : 'white', outline: 'none', boxSizing: 'border-box' }}
                               >
                                 <option value="">— Aucune (principale) —</option>
                                 {candidates.map(p => (
@@ -1233,7 +1239,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                               }} style={{ flex: 1, background: '#e53935', color: 'white', border: 'none', borderRadius: 6, padding: '5px 0', fontSize: 10, fontWeight: 800, cursor: 'pointer' }}>
                                 Confirmer
                               </button>
-                              <button onClick={() => setDeleteTagConfirm(null)} style={{ flex: 1, background: '#f0f0f0', color: '#555', border: 'none', borderRadius: 6, padding: '5px 0', fontSize: 10, fontWeight: 700, cursor: 'pointer' }}>
+                              <button onClick={() => setDeleteTagConfirm(null)} style={{ flex: 1, background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ccc' : '#555', border: 'none', borderRadius: 6, padding: '5px 0', fontSize: 10, fontWeight: 700, cursor: 'pointer' }}>
                                 Annuler
                               </button>
                             </div>
@@ -1246,14 +1252,16 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       </div>
                     )}
                   </div>
-                  {hasChildren && isExpanded && (
-                    <div style={{ marginLeft: 10, marginTop: 4, display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'flex-start' }}>
-                      {children.map(child => renderTagNode(child, depth + 1))}
-                    </div>
-                  )}
                 </div>
               )
             }
+
+            // Trouver quel parent est actif (directement ou via un enfant actif)
+            const activeParent = fCollectionTag
+              ? principals.find(p => p === fCollectionTag || getChildren(p).includes(fCollectionTag))
+              : null
+            const activeChildren = activeParent ? getChildren(activeParent) : []
+            const activeParentColor = activeParent ? resolveColor(tabSettings.get(activeParent)?.color || accent) : accent
 
             return (
               <div style={{ marginTop: 8 }} onClick={() => colorPickerTag && setColorPickerTag(null)}>
@@ -1263,17 +1271,35 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                     {lang === 'fr' ? '· glisser pour réordonner' : '· drag to reorder'}
                   </span>}
                 </label>
-                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+                {/* Ligne principale : Tout + parents */}
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
                   <button onClick={() => setFCollectionTag('')} style={{
                     padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer',
                     fontSize: 11, fontWeight: 700,
-                    background: !fCollectionTag ? accent : '#f0f0f0',
-                    color: !fCollectionTag ? 'white' : '#555',
+                    background: !fCollectionTag ? accent : (dark ? '#2a2a2a' : '#f0f0f0'),
+                    color: !fCollectionTag ? 'white' : (dark ? '#ccc' : '#555'),
                   }}>
                     {lang === 'fr' ? 'Tout' : 'All'}
                   </button>
-                  {principals.map(tag => renderTagNode(tag, 0))}
+                  {principals.map(tag => renderTagPill(tag, 0))}
                 </div>
+                {/* Sous-ligne : enfants du parent actif */}
+                {activeChildren.length > 0 && (
+                  <div style={{ marginTop: 6, paddingLeft: 10, borderLeft: `3px solid ${activeParentColor}`, display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+                    <button
+                      onClick={() => setFCollectionTag(activeParent!)}
+                      style={{
+                        padding: '3px 9px', border: 'none', borderRadius: 20, cursor: 'pointer',
+                        fontSize: 10, fontWeight: 700,
+                        background: fCollectionTag === activeParent ? activeParentColor : (dark ? '#2a2a2a' : '#f0f0f0'),
+                        color: fCollectionTag === activeParent ? 'white' : (dark ? '#ccc' : '#555'),
+                      }}
+                    >
+                      {lang === 'fr' ? 'Tout' : 'All'}
+                    </button>
+                    {activeChildren.map(child => renderTagPill(child, 1))}
+                  </div>
+                )}
               </div>
             )
           })()}
@@ -1282,11 +1308,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         {!loaded && (
           <div className="card-grid">
             {Array.from({ length: 10 }).map((_, i) => (
-              <div key={i} className="card-item" style={{ borderRadius: 8, overflow: 'hidden', background: '#f0f0f0' }}>
-                <div style={{ width: '100%', aspectRatio: '2.5/3.5', background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)', backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite' }} />
+              <div key={i} className="card-item" style={{ borderRadius: 8, overflow: 'hidden', background: dark ? '#2a2a2a' : '#f0f0f0' }}>
+                <div style={{ width: '100%', aspectRatio: '2.5/3.5', background: dark ? 'linear-gradient(90deg, #2a2a2a 25%, #222 50%, #2a2a2a 75%)' : 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)', backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite' }} />
                 <div style={{ padding: 8 }}>
-                  <div style={{ height: 10, background: '#e0e0e0', borderRadius: 4, marginBottom: 6, width: '80%' }} />
-                  <div style={{ height: 8, background: '#e8e8e8', borderRadius: 4, width: '60%' }} />
+                  <div style={{ height: 10, background: dark ? '#222' : '#e0e0e0', borderRadius: 4, marginBottom: 6, width: '80%' }} />
+                  <div style={{ height: 8, background: dark ? '#252525' : '#e8e8e8', borderRadius: 4, width: '60%' }} />
                 </div>
               </div>
             ))}
