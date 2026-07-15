@@ -1,29 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { createVerify } from 'crypto'
 
 export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
-function hexToBytes(hex: string): Uint8Array {
-  const b = new Uint8Array(hex.length / 2)
-  for (let i = 0; i < hex.length; i += 2) b[i / 2] = parseInt(hex.slice(i, i + 2), 16)
-  return b
-}
-
-async function verifyDiscord(req: NextRequest, body: string): Promise<boolean> {
+function verifyDiscord(req: NextRequest, body: string): boolean {
   const sig = req.headers.get('x-signature-ed25519') || ''
   const ts  = req.headers.get('x-signature-timestamp') || ''
   if (!sig || !ts || !process.env.DISCORD_PUBLIC_KEY) return false
   try {
-    const key = await crypto.subtle.importKey(
-      'raw', hexToBytes(process.env.DISCORD_PUBLIC_KEY).buffer as ArrayBuffer,
-      { name: 'Ed25519' }, false, ['verify']
-    )
-    return await crypto.subtle.verify('Ed25519', key, hexToBytes(sig).buffer as ArrayBuffer, new TextEncoder().encode(ts + body))
+    const v = createVerify('ed25519')
+    v.update(Buffer.from(ts + body))
+    return v.verify(Buffer.from(process.env.DISCORD_PUBLIC_KEY, 'hex'), Buffer.from(sig, 'hex'))
   } catch { return false }
 }
 
@@ -164,7 +158,7 @@ async function cmdPrix(options: any[]) {
 export async function POST(req: NextRequest) {
   const rawBody = await req.text()
 
-  if (!await verifyDiscord(req, rawBody)) {
+  if (!verifyDiscord(req, rawBody)) {
     return new NextResponse('Unauthorized', { status: 401 })
   }
 
