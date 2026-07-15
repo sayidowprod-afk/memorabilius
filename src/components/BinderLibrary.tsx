@@ -17,8 +17,18 @@ function FolderIcon({ icon, size = 16 }: { icon?: string | null; size?: number }
     const team = getTeamById(icon.slice(5))
     if (team) {
       const url = teamLogoUrl(team)
-      if (url) return <img src={url} alt="" style={{ width: size, height: size, objectFit: 'contain', verticalAlign: 'middle' }} />
-      return <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: size, height: size, borderRadius: '50%', background: team.color, color: 'white', fontSize: Math.round(size * 0.4), fontWeight: 900, verticalAlign: 'middle' }}>{team.abbr.slice(0, 2)}</span>
+      if (url) return (
+        <span style={{
+          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          width: size, height: size, borderRadius: '50%',
+          background: 'white', verticalAlign: 'middle', flexShrink: 0,
+          overflow: 'hidden', boxShadow: '0 0 0 0.75px rgba(0,0,0,0.10)',
+        }}>
+          <img src={url} alt="" style={{ width: Math.round(size * 0.82), height: Math.round(size * 0.82), objectFit: 'contain', display: 'block' }} />
+        </span>
+      )
+      // Pas de logo → cercle coloré sans texte
+      return <span style={{ display: 'inline-block', width: size, height: size, borderRadius: '50%', background: team.color, verticalAlign: 'middle', flexShrink: 0 }} />
     }
   }
   return <span style={{ fontSize: size }}>{icon || '📁'}</span>
