@@ -95,23 +95,46 @@ async function cmdTop() {
 }
 
 async function cmdCarte(options: any[]) {
-  const nom = options.find((o: any) => o.name === 'nom')?.value || ''
+  const input = (options.find((o: any) => o.name === 'nom')?.value || '') as string
   const utilisateur = options.find((o: any) => o.name === 'utilisateur')?.value || ''
-  if (!nom) return reply({ content: "❌ Précise le nom d'une carte.", flags: 64 })
+  if (!input) return reply({ content: "❌ Précise le nom d'une carte.", flags: 64 })
+
+  // Extraire les mots-clés spéciaux du champ de recherche
+  const tokens = input.toLowerCase().split(/\s+/)
+  const isRc    = tokens.includes('rc')
+  const isAuto  = tokens.includes('auto')
+  const isPatch = tokens.includes('patch')
+  const yearTok = tokens.find(t => /^\d{4}(-\d{2})?$/.test(t))
+  const numTok  = tokens.find(t => /^\/?\d+$/.test(t) && !yearTok?.startsWith(t))
+  const textTokens = tokens.filter(t =>
+    !['rc', 'auto', 'patch'].includes(t) &&
+    !/^\d{4}(-\d{2})?$/.test(t) &&
+    !(numTok && t === numTok)
+  )
+  const searchText = textTokens.join(' ').trim()
 
   let query = supabase
     .from('cartes_manuelles')
-    .select('nom, image_recto, equipe, annee, marque, variation, rc, auto, num, patch, user_id, profiles(id, display_name)')
-    .ilike('nom', `%${nom}%`)
+    .select('nom, image_recto, equipe, annee, marque, variation, collection, rc, auto, num, patch, user_id, profiles(id, display_name)')
     .not('image_recto', 'is', null)
 
+  // Recherche textuelle multi-colonnes
+  if (searchText) {
+    const s = searchText.replace(/[%_]/g, '\\$&') // échapper les wildcards SQL
+    query = query.or(
+      `nom.ilike.%${s}%,variation.ilike.%${s}%,marque.ilike.%${s}%,equipe.ilike.%${s}%,collection.ilike.%${s}%`
+    )
+  }
+
+  if (isRc)    query = query.eq('rc', true)
+  if (isAuto)  query = query.eq('auto', true)
+  if (isPatch) query = query.eq('patch', true)
+  if (yearTok) query = query.ilike('annee', `%${yearTok}%`)
+  if (numTok)  query = query.ilike('num', `%${numTok.replace('/', '')}%`)
+
   if (utilisateur) {
-    // Résoudre l'utilisateur par display_name d'abord
     const { data: prof } = await supabase
-      .from('profiles')
-      .select('id')
-      .ilike('display_name', `%${utilisateur}%`)
-      .limit(1)
+      .from('profiles').select('id').ilike('display_name', `%${utilisateur}%`).limit(1)
     if (prof?.[0]) query = query.eq('user_id', prof[0].id)
   }
 
