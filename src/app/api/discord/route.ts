@@ -140,7 +140,7 @@ async function cmdCarte(options: any[]) {
 
   const { data } = await query.limit(1)
   const c = data?.[0] as any
-  if (!c) return reply({ content: `❌ Aucune carte trouvée pour \`${nom}\`${utilisateur ? ` chez \`${utilisateur}\`` : ''}.`, flags: 64 })
+  if (!c) return reply({ content: `❌ Aucune carte trouvée pour \`${input}\`${utilisateur ? ` chez \`${utilisateur}\`` : ''}.`, flags: 64 })
 
   const profile = c.profiles
   const badges: string[] = []
