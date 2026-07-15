@@ -390,23 +390,18 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       codec === 'mp4' && MediaRecorder.isTypeSupported('video/mp4') ? 'video/mp4'
       : MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9'
       : 'video/webm'
-    // Débit adapté à la résolution, plafonné pour rester sous 15 Mo.
-    // Durée réelle = DURATION + HOLD + 200 ms buffer ≈ 7 s
-    // 15 Mo × 8 bits ÷ 7 s × 0.88 (marge VBR) ≈ 15 Mbps — largement suffisant
-    // pour VP9 (Netflix streame 1080p à 4-8 Mbps).
+    // videoBitsPerSecond est un hint, pas un cap strict : Chrome dépasse
+    // typiquement de 30-50 %. On divise par 1.5 pour garantir ≤ 14.9 Mo
+    // dans tous les cas (test réel : 15 Mbps → 17.7 Mo, ratio ≈ 1.35×).
     const HOLD = 700
     const totalSecs = (DURATION + HOLD + 300) / 1000
-    const sizeCap = Math.floor((15 * 8_000_000) / totalSecs * 0.88) // ~15 Mbps
+    const sizeCap = Math.floor((14.9 * 8_000_000) / totalSecs / 1.5) // ~11.3 Mbps
     const pixels = w * h
     const qualityBitrate = Math.round(pixels * (isMobile ? 9 : 14))
     const stream = canvas.captureStream(FPS)
     const recorder = new MediaRecorder(stream, {
       mimeType,
-      videoBitsPerSecond: Math.min(
-        sizeCap,
-        isMobile ? 12_000_000 : 20_000_000,
-        Math.max(4_000_000, qualityBitrate),
-      ),
+      videoBitsPerSecond: Math.min(sizeCap, Math.max(3_000_000, qualityBitrate)),
     })
     const chunks: Blob[] = []
     recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data) }
