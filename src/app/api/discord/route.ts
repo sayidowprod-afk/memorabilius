@@ -94,78 +94,151 @@ async function cmdTop() {
   })
 }
 
-async function cmdCarte(options: any[]) {
-  const input = (options.find((o: any) => o.name === 'nom')?.value || '') as string
-  const utilisateur = options.find((o: any) => o.name === 'utilisateur')?.value || ''
-  if (!input) return reply({ content: "❌ Précise le nom d'une carte.", flags: 64 })
-
-  // Extraire les mots-clés spéciaux du champ de recherche
+function parseTokens(input: string) {
   const tokens = input.toLowerCase().split(/\s+/)
   const isRc    = tokens.includes('rc')
   const isAuto  = tokens.includes('auto')
   const isPatch = tokens.includes('patch')
   const yearTok = tokens.find(t => /^\d{4}(-\d{2})?$/.test(t))
-  const numTok  = tokens.find(t => /^\/?\d+$/.test(t) && !yearTok?.startsWith(t))
-  const textTokens = tokens.filter(t =>
+  const numTok  = tokens.find(t => /^\/?\d+$/.test(t) && t !== yearTok)
+  const text    = tokens.filter(t =>
     !['rc', 'auto', 'patch'].includes(t) &&
     !/^\d{4}(-\d{2})?$/.test(t) &&
-    !(numTok && t === numTok)
-  )
-  const searchText = textTokens.join(' ').trim()
+    t !== numTok
+  ).join(' ').trim()
+  return { isRc, isAuto, isPatch, yearTok, numTok, text }
+}
 
-  let query = supabase
+function matchesCsvCard(card: any, tk: ReturnType<typeof parseTokens>): boolean {
+  const norm = (s: string) => (s || '').toLowerCase()
+  const haystack = [card.name, card.variant, card.brand, card.serie, card.team].map(norm).join(' ')
+  if (tk.text && !haystack.includes(tk.text)) return false
+  if (tk.isRc    && !card.rc)    return false
+  if (tk.isAuto  && !card.auto)  return false
+  if (tk.isPatch && !card.patch) return false
+  if (tk.yearTok && !norm(card.year).includes(tk.yearTok)) return false
+  if (tk.numTok  && !norm(card.num).includes(tk.numTok.replace('/', ''))) return false
+  return true
+}
+
+async function searchCsv(profiles: any[], tk: ReturnType<typeof parseTokens>) {
+  for (const p of profiles) {
+    if (!p.lien_csv) continue
+    try {
+      const res = await fetch(p.lien_csv, { signal: AbortSignal.timeout(2000), next: { revalidate: 3600 } } as any)
+      if (!res.ok) continue
+      const text = await res.text()
+      const rows = text.split(/\r?\n/).slice(4)
+      for (const row of rows) {
+        const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+        if (!c[0]?.includes('http')) continue
+        const card = {
+          img: c[0]?.trim(), name: (c[2] || '').replace(/^"|"$/g, ''),
+          team: (c[3] || '').replace(/^"|"$/g, ''), year: (c[4] || '').replace(/^"|"$/g, ''),
+          brand: (c[5] || '').replace(/^"|"$/g, ''), serie: (c[6] || '').replace(/^"|"$/g, ''),
+          variant: (c[7] || '').replace(/^"|"$/g, ''), num: (c[8] || '').replace(/^"|"$/g, ''),
+          auto: (c[9] || '').toLowerCase().includes('oui'),
+          rc: (c[10] || '').toLowerCase().includes('oui'),
+          patch: (c[11] || '').toLowerCase().includes('oui'),
+        }
+        if (matchesCsvCard(card, tk)) return { card, profile: p }
+      }
+    } catch { continue }
+  }
+  return null
+}
+
+async function cmdCarte(options: any[]) {
+  const input = (options.find((o: any) => o.name === 'nom')?.value || '') as string
+  const utilisateur = options.find((o: any) => o.name === 'utilisateur')?.value || ''
+  if (!input) return reply({ content: "❌ Précise le nom d'une carte.", flags: 64 })
+
+  const tk = parseTokens(input)
+
+  // Résoudre l'utilisateur si spécifié
+  let targetProfile: any = null
+  if (utilisateur) {
+    const { data: prof } = await supabase
+      .from('profiles').select('id, display_name, lien_csv').ilike('display_name', `%${utilisateur}%`).limit(1)
+    if (!prof?.[0]) return reply({ content: `❌ Collectionneur \`${utilisateur}\` introuvable.`, flags: 64 })
+    targetProfile = prof[0]
+  }
+
+  // Recherche DB (cartes_manuelles) et CSV en parallèle
+  let dbQuery = supabase
     .from('cartes_manuelles')
     .select('nom, image_recto, equipe, annee, marque, variation, collection, rc, auto, num, patch, user_id, profiles(id, display_name)')
     .not('image_recto', 'is', null)
 
-  // Recherche textuelle multi-colonnes
-  if (searchText) {
-    const s = searchText.replace(/[%_]/g, '\\$&') // échapper les wildcards SQL
-    query = query.or(
-      `nom.ilike.%${s}%,variation.ilike.%${s}%,marque.ilike.%${s}%,equipe.ilike.%${s}%,collection.ilike.%${s}%`
-    )
+  if (tk.text) {
+    const s = tk.text.replace(/[%_]/g, '\\$&')
+    dbQuery = dbQuery.or(`nom.ilike.%${s}%,variation.ilike.%${s}%,marque.ilike.%${s}%,equipe.ilike.%${s}%,collection.ilike.%${s}%`)
+  }
+  if (tk.isRc)    dbQuery = dbQuery.eq('rc', true)
+  if (tk.isAuto)  dbQuery = dbQuery.eq('auto', true)
+  if (tk.isPatch) dbQuery = dbQuery.eq('patch', true)
+  if (tk.yearTok) dbQuery = dbQuery.ilike('annee', `%${tk.yearTok}%`)
+  if (tk.numTok)  dbQuery = dbQuery.ilike('num', `%${tk.numTok.replace('/', '')}%`)
+  if (targetProfile) dbQuery = dbQuery.eq('user_id', targetProfile.id)
+
+  // Pour les CSV : si utilisateur spécifié → son CSV seulement, sinon top 15 avec CSV
+  const csvProfilesPromise = targetProfile
+    ? Promise.resolve([targetProfile])
+    : supabase.from('profiles').select('id, display_name, lien_csv')
+        .not('lien_csv', 'is', null).neq('lien_csv', '').limit(15)
+        .then(r => r.data || [])
+
+  const [dbResult, csvProfiles] = await Promise.all([dbQuery.limit(1), csvProfilesPromise])
+
+  const dbCard = dbResult.data?.[0] as any
+  const csvResult = dbCard ? null : await searchCsv(csvProfiles, tk)
+
+  if (!dbCard && !csvResult) {
+    return reply({ content: `❌ Aucune carte trouvée pour \`${input}\`${utilisateur ? ` chez \`${utilisateur}\`` : ''}.`, flags: 64 })
   }
 
-  if (isRc)    query = query.eq('rc', true)
-  if (isAuto)  query = query.eq('auto', true)
-  if (isPatch) query = query.eq('patch', true)
-  if (yearTok) query = query.ilike('annee', `%${yearTok}%`)
-  if (numTok)  query = query.ilike('num', `%${numTok.replace('/', '')}%`)
+  // Construire la réponse
+  let nom: string, img: string, desc: string, badges: string[], profileId: string, profileName: string, cardUrl: string
 
-  if (utilisateur) {
-    const { data: prof } = await supabase
-      .from('profiles').select('id').ilike('display_name', `%${utilisateur}%`).limit(1)
-    if (!prof?.[0]) return reply({ content: `❌ Collectionneur \`${utilisateur}\` introuvable.`, flags: 64 })
-    query = query.eq('user_id', prof[0].id)
+  if (dbCard) {
+    const p = dbCard.profiles
+    nom = dbCard.nom
+    img = dbCard.image_recto
+    desc = [dbCard.variation, dbCard.annee, dbCard.marque, dbCard.equipe].filter(Boolean).join(' · ')
+    badges = []
+    if (dbCard.rc)    badges.push('🌟 RC')
+    if (dbCard.auto)  badges.push('✍️ Auto')
+    if (dbCard.patch) badges.push('🪡 Patch')
+    if (dbCard.num)   badges.push(`🔢 ${dbCard.num}`)
+    profileId = p?.id; profileName = p?.display_name
+  } else {
+    const { card, profile: p } = csvResult!
+    nom = card.name
+    img = card.img
+    desc = [card.variant, card.year, card.brand, card.team].filter(Boolean).join(' · ')
+    badges = []
+    if (card.rc)    badges.push('🌟 RC')
+    if (card.auto)  badges.push('✍️ Auto')
+    if (card.patch) badges.push('🪡 Patch')
+    if (card.num)   badges.push(`🔢 ${card.num}`)
+    profileId = p.id; profileName = p.display_name
   }
 
-  const { data } = await query.limit(1)
-  const c = data?.[0] as any
-  if (!c) return reply({ content: `❌ Aucune carte trouvée pour \`${input}\`${utilisateur ? ` chez \`${utilisateur}\`` : ''}.`, flags: 64 })
-
-  const profile = c.profiles
-  const badges: string[] = []
-  if (c.rc)    badges.push('🌟 RC')
-  if (c.auto)  badges.push('✍️ Auto')
-  if (c.patch) badges.push('🪡 Patch')
-  if (c.num)   badges.push(`🔢 ${c.num}`)
-
-  const desc = [c.variation, c.annee, c.marque, c.equipe].filter(Boolean).join(' · ')
-  const cardUrl = profile
-    ? `https://memorabilius.fr/galerie/${profile.id}?card=${encodeURIComponent(c.image_recto)}`
+  cardUrl = profileId
+    ? `https://memorabilius.fr/galerie/${profileId}?card=${encodeURIComponent(img)}`
     : 'https://memorabilius.fr'
 
   return reply({
     embeds: [{
-      title: c.nom,
+      title: nom,
       url: cardUrl,
       description: desc || undefined,
       color: 0x003DA6,
-      image: { url: c.image_recto },
+      image: { url: img },
       fields: badges.length ? [{ name: 'Badges', value: badges.join('  '), inline: false }] : [],
-      author: profile ? {
-        name: profile.display_name,
-        url: `https://memorabilius.fr/galerie/${profile.id}`,
+      author: profileName ? {
+        name: profileName,
+        url: `https://memorabilius.fr/galerie/${profileId}`,
       } : undefined,
       footer: { text: 'memorabilius.fr' },
     }],
