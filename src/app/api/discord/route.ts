@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { createVerify } from 'crypto'
+import { createPublicKey, verify as cryptoVerify } from 'crypto'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -15,9 +15,13 @@ function verifyDiscord(req: NextRequest, body: string): boolean {
   const ts  = req.headers.get('x-signature-timestamp') || ''
   if (!sig || !ts || !process.env.DISCORD_PUBLIC_KEY) return false
   try {
-    const v = createVerify('ed25519')
-    v.update(Buffer.from(ts + body))
-    return v.verify(Buffer.from(process.env.DISCORD_PUBLIC_KEY, 'hex'), Buffer.from(sig, 'hex'))
+    // La clé Discord est un hex de 32 bytes bruts. Node.js createPublicKey
+    // attend du SPKI/DER : on préfixe avec le header ASN.1 Ed25519 (12 bytes).
+    const spkiPrefix = Buffer.from('302a300506032b6570032100', 'hex')
+    const rawKey = Buffer.from(process.env.DISCORD_PUBLIC_KEY, 'hex')
+    const spki = Buffer.concat([spkiPrefix, rawKey])
+    const keyObject = createPublicKey({ key: spki, format: 'der', type: 'spki' })
+    return cryptoVerify(null, Buffer.from(ts + body), keyObject, Buffer.from(sig, 'hex'))
   } catch { return false }
 }
 
