@@ -390,14 +390,23 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       codec === 'mp4' && MediaRecorder.isTypeSupported('video/mp4') ? 'video/mp4'
       : MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9'
       : 'video/webm'
-    // Débit adapté à la résolution : ~beaucoup plus élevé qu'avant pour un
-    // rendu net, plafonné plus bas sur mobile pour rester fluide.
+    // Débit adapté à la résolution, plafonné pour rester sous 15 Mo.
+    // Durée réelle = DURATION + HOLD + 200 ms buffer ≈ 7 s
+    // 15 Mo × 8 bits ÷ 7 s × 0.88 (marge VBR) ≈ 15 Mbps — largement suffisant
+    // pour VP9 (Netflix streame 1080p à 4-8 Mbps).
+    const HOLD = 700
+    const totalSecs = (DURATION + HOLD + 300) / 1000
+    const sizeCap = Math.floor((15 * 8_000_000) / totalSecs * 0.88) // ~15 Mbps
     const pixels = w * h
-    const bitrate = Math.round(pixels * (isMobile ? 9 : 14)) // ~ bits/pixel/s équivalent
+    const qualityBitrate = Math.round(pixels * (isMobile ? 9 : 14))
     const stream = canvas.captureStream(FPS)
     const recorder = new MediaRecorder(stream, {
       mimeType,
-      videoBitsPerSecond: Math.min(isMobile ? 12_000_000 : 24_000_000, Math.max(6_000_000, bitrate)),
+      videoBitsPerSecond: Math.min(
+        sizeCap,
+        isMobile ? 12_000_000 : 20_000_000,
+        Math.max(4_000_000, qualityBitrate),
+      ),
     })
     const chunks: Blob[] = []
     recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data) }
@@ -410,7 +419,6 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     // Boucle rendu en temps réel basée sur l'horloge. On maintient la face
     // recto affichée HOLD ms après la fin de l'animation → la vidéo ne se coupe
     // plus trop tôt et la boucle recto↔recto reste parfaite.
-    const HOLD = 700
     const frameInterval = 1000 / FPS
     const start = performance.now()
     let lastDraw = -1

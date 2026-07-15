@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 
 interface Card {
   img: string; name: string; variant: string; year: string
@@ -10,13 +11,14 @@ interface Card {
 
 export default function PepitesSection({ cards }: { cards: Card[] }) {
   const { t } = useLang()
+  const { dark } = useTheme()
 
   if (cards.length === 0) return null
 
   return (
     <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 20, marginBottom: 60 }}>
       {cards.map((card, i) => (
-        <Link key={i} href={`/galerie/${card.userId}?card=${encodeURIComponent(card.img)}`} style={{ background: 'white', borderRadius: 12, overflow: 'hidden', border: '1px solid #eee', textDecoration: 'none', display: 'block', transition: '0.3s' }}>
+        <Link key={i} href={`/galerie/${card.userId}?card=${encodeURIComponent(card.img)}`} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 12, overflow: 'hidden', border: dark ? '1px solid #2a2a2a' : '1px solid #eee', textDecoration: 'none', display: 'block', transition: '0.3s' }}>
           <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative' }}>
             <img src={card.img} alt={card.name} loading={i === 0 ? 'eager' : 'lazy'} fetchPriority={i === 0 ? 'high' : 'auto'}
               style={card.isHorizontal ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover' } : { width: '100%', height: '100%', objectFit: 'cover' }} />
