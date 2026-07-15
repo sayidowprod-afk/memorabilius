@@ -597,18 +597,28 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     try {
       const allSlots = [...slots.values()]
 
-      // Pour le tri par année, on récupère les vraies années depuis cartes_manuelles
-      // (binder_slots ne stocke pas l'année — on fetch tout par user_id pour éviter
-      // le dépassement de longueur de requête avec .in() sur des URLs)
+      // Pour le tri par année : on combine cartes_manuelles (annee) + CSV (year)
+      // binder_slots ne stocke pas l'année, donc on construit une yearMap img→année
       const yearMap = new Map<string, number>()
       if (by === 'annee_asc' || by === 'annee_desc') {
-        const { data: cartes } = await supabase
-          .from('cartes_manuelles')
-          .select('image_recto, annee')
-          .eq('user_id', userId)
+        const [{ data: cartes }, { data: profile }] = await Promise.all([
+          supabase.from('cartes_manuelles').select('image_recto, annee').eq('user_id', userId),
+          supabase.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').eq('id', userId).single(),
+        ])
+        // Cartes manuelles
         for (const c of cartes || []) {
           const y = parseInt((c.annee || '').match(/(19|20)\d{2}/)?.[0] || '0')
           if (y) yearMap.set(c.image_recto, y)
+        }
+        // Cartes CSV
+        if (profile?.lien_csv) {
+          const csvCards = await fetchCsvCardsForProfiles([profile])
+          for (const c of csvCards) {
+            if (!yearMap.has(c.img)) {
+              const y = parseInt((c.year || '').match(/(19|20)\d{2}/)?.[0] || '0')
+              if (y) yearMap.set(c.img, y)
+            }
+          }
         }
       }
 
