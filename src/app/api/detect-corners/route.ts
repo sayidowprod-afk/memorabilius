@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { checkAiScanRateLimit } from '@/lib/rateLimit'
+import { checkAiRateLimit } from '@/lib/rateLimit'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -29,7 +29,8 @@ export async function POST(req: NextRequest) {
   if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   const { data: { user } } = await supabase.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  if (!(await checkAiScanRateLimit(user.id))) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+  const rateLimitErr = await checkAiRateLimit(user.id)
+  if (rateLimitErr) return NextResponse.json({ error: rateLimitErr }, { status: 429 })
 
   const apiKey = process.env.GEMINI_API_KEY
   if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY manquante' }, { status: 500 })

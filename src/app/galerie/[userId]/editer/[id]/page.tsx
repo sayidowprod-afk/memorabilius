@@ -424,8 +424,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           </div>
         )}
         {scanError && (
-          <div style={{ background: '#fff5f5', border: '1.5px solid #ffc0c0', borderRadius: 10, padding: '10px 16px', marginBottom: 4, fontSize: 12, color: '#c0392b' }}>
-            Analyse IA : {scanError}
+          <div style={{ background: '#fff5f5', border: '1.5px solid #ffc0c0', borderRadius: 10, padding: '10px 16px', marginBottom: 4, fontSize: 12, color: '#c0392b', display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+            <span style={{ flexShrink: 0 }}>{scanError.startsWith('Trop de requêtes') ? '⏳' : '⚠️'}</span>
+            <span>{scanError}</span>
           </div>
         )}
 
