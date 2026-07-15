@@ -148,6 +148,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [fIsPublic, setFIsPublic] = useState(true)
   const [uploadingCover, setUploadingCover] = useState(false)
   const coverInputRef = useRef<HTMLInputElement>(null)
+  const binderColorInputRef = useRef<HTMLInputElement>(null)
 
   const [cardCounts, setCardCounts] = useState<Record<number, number>>({})
 
@@ -640,8 +641,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     }
   }
 
-  // Ajoute plusieurs cartes d'un coup dans les premières pochettes vides (crée des pages si besoin)
-  const placeMany = async (cards: PickableCard[]) => {
+  // Ajoute plusieurs cartes à partir d'une position donnée, puis dans les pochettes vides suivantes
+  const placeManyFrom = async (startPage: number, startIdx: number, cards: PickableCard[]) => {
     if (!selected || !cards.length) return
     const orientations = new Map<string, boolean>(
       await Promise.all(cards.map(async c => [c.key, await detectIsHorizontal(c.img)] as [string, boolean]))
@@ -649,11 +650,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const remaining = [...cards]
     const inserts: any[] = []
     const localAdds = new Map<string, Slot>()
-    let page = 1
     let pageCount = selected.page_count
+
+    let page = startPage
     while (remaining.length) {
-      if (page > pageCount) pageCount++ // nouvelle page vide
-      for (let idx = 0; idx < selected.layout && remaining.length; idx++) {
+      if (page > pageCount) pageCount++
+      const fromIdx = page === startPage ? startIdx : 0
+      for (let idx = fromIdx; idx < selected.layout && remaining.length; idx++) {
         const k = slotKey(page, idx)
         if (slots.has(k) || localAdds.has(k)) continue
         const card = remaining.shift()!
@@ -673,7 +676,11 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     if (error) { alert('Erreur : ' + error.message); openBinder(selected); return }
     setSlots(prev => { const m = new Map(prev); for (const [k, v] of localAdds) m.set(k, v); return m })
     setCardCounts(prev => ({ ...prev, [selected.id]: (prev[selected.id] || 0) + inserts.length }))
+    setPickerTarget(null)
   }
+
+  // Ajoute plusieurs cartes d'un coup dans les premières pochettes vides (crée des pages si besoin)
+  const placeMany = async (cards: PickableCard[]) => placeManyFrom(1, 0, cards)
 
   // Déplace une carte d'une pochette vers une autre (échange si la cible est occupée)
   const moveSlot = async (fromPage: number, fromIdx: number, toPage: number, toIdx: number) => {
@@ -1074,7 +1081,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
         <div>
           <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Couleur</label>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
             {BINDER_COLORS.map(c => (
               <button key={c} onClick={() => setFColor(c)} style={{
                 width: 30, height: 30, borderRadius: '50%', cursor: 'pointer', background: c,
@@ -1082,6 +1089,27 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 boxShadow: fColor === c ? 'none' : '0 0 0 1px #ddd',
               }} />
             ))}
+            {/* Bouton couleur personnalisée */}
+            <button
+              onClick={() => binderColorInputRef.current?.click()}
+              title="Couleur personnalisée"
+              style={{
+                width: 30, height: 30, borderRadius: '50%', cursor: 'pointer', padding: 0, border: 'none',
+                background: 'conic-gradient(red 0%, yellow 17%, lime 33%, cyan 50%, blue 67%, magenta 83%, red 100%)',
+                boxShadow: !BINDER_COLORS.includes(fColor) ? `0 0 0 3px ${accent}` : '0 0 0 1px #ddd',
+                flexShrink: 0,
+              }}
+            />
+            <input
+              ref={binderColorInputRef}
+              type="color"
+              value={fColor}
+              onChange={e => setFColor(e.target.value)}
+              style={{ display: 'none' }}
+            />
+            {!BINDER_COLORS.includes(fColor) && (
+              <span style={{ fontSize: 11, color: '#888', fontFamily: 'monospace' }}>{fColor}</span>
+            )}
           </div>
         </div>
 
@@ -1252,6 +1280,20 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                             }}
                           />
                         ))}
+                        {/* Couleur personnalisée pour le dossier */}
+                        <label title="Couleur personnalisée" style={{ position: 'relative', width: 14, height: 14, flexShrink: 0, cursor: 'pointer' }}>
+                          <div style={{
+                            width: 14, height: 14, borderRadius: '50%',
+                            background: 'conic-gradient(red 0%, yellow 17%, lime 33%, cyan 50%, blue 67%, magenta 83%, red 100%)',
+                            border: !FOLDER_SHELF_COLORS.includes(section.folder!.color || '') ? '2.5px solid white' : '2.5px solid rgba(255,255,255,0.2)',
+                          }} />
+                          <input
+                            type="color"
+                            value={section.folder!.color || FOLDER_SHELF_COLORS[0]}
+                            onChange={e => saveFolderColor(section.folder!, e.target.value)}
+                            style={{ position: 'absolute', inset: 0, opacity: 0, width: '100%', height: '100%', cursor: 'pointer', padding: 0, border: 'none' }}
+                          />
+                        </label>
                         <div style={{ width: 1, height: 14, background: 'rgba(255,255,255,0.2)', margin: '0 3px' }} />
                         <button onClick={() => setIconPickerFolder(section.folder!)}
                           style={{ background: 'rgba(255,255,255,0.12)', border: 'none', borderRadius: 5, padding: '3px 8px', cursor: 'pointer', fontSize: 11, color: 'white', fontWeight: 700 }}>
@@ -1592,9 +1634,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       {pickerTarget && (
         <CardPicker
           userId={userId}
+          multi
           excludeKeys={new Set([...slots.values()].map(s => s.card_key))}
           onClose={() => setPickerTarget(null)}
-          onSelect={card => placeCard(pickerTarget.page, pickerTarget.idx, card)}
+          onSelectMany={cards => placeManyFrom(pickerTarget.page, pickerTarget.idx, cards)}
         />
       )}
 
