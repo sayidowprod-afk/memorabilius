@@ -109,18 +109,66 @@ async function fetchSoldItems(
   mustTerms: string[],
   mustSetWord: string,
   isGraded: boolean,
+  appId: string,
   token: string,
 ): Promise<{ items: Array<{ title: string; price: number; url: string; img: string; soldDate: string }>; debug: any }> {
   const debug: any = { keywords, mustTerms, mustSetWord }
+  const now = new Date()
+
+  // 1. Finding API findCompletedItems — seul endpoint officiel pour les vendues.
+  //    N'utilise que l'App ID (pas OAuth), pas d'accolades à encoder.
   try {
-    // Browse API avec soldItemsOnly:{true} — même token OAuth que les annonces actives
-    const params = new URLSearchParams({
-      q: keywords,
-      filter: 'soldItemsOnly:{true}',
-      limit: '40',
+    const findingParams = new URLSearchParams({
+      'OPERATION-NAME': 'findCompletedItems',
+      'SERVICE-VERSION': '1.0.0',
+      'SECURITY-APPNAME': appId,
+      'RESPONSE-DATA-FORMAT': 'JSON',
+      'keywords': keywords,
+      'itemFilter(0).name': 'SoldItemsOnly',
+      'itemFilter(0).value': 'true',
+      'paginationInput.entriesPerPage': '40',
+      'sortOrder': 'EndTimeSoonest',
     })
+    const findingRes = await fetch(
+      `https://svcs.ebay.com/services/search/FindingService/v1?${findingParams}`,
+      { cache: 'no-store', signal: AbortSignal.timeout(10000) }
+    )
+    const findingBody = await findingRes.text()
+    debug.findingStatus = findingRes.status
+    debug.findingBody = findingBody.slice(0, 200)
+
+    if (findingRes.ok && findingBody.startsWith('{')) {
+      const data = JSON.parse(findingBody)
+      const searchResult = data?.findCompletedItemsResponse?.[0]?.searchResult?.[0]
+      const rawItems: any[] = searchResult?.item || []
+      debug.findingRaw = rawItems.length
+
+      const mapped = rawItems
+        .map((item: any) => ({
+          title: item.title?.[0] || '',
+          price: parseFloat(item.sellingStatus?.[0]?.currentPrice?.[0]?.['__value__'] || '0'),
+          url: item.viewItemURL?.[0] || '',
+          img: item.galleryURL?.[0] || '',
+          soldDate: item.listingInfo?.[0]?.endTime?.[0] || '',
+        }))
+        .filter(i => i.price > 0)
+        .filter(i => i.soldDate && new Date(i.soldDate) <= now)
+        .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
+        .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
+
+      debug.findingMapped = mapped.length
+      if (mapped.length > 0) return { items: applyOutlierFilter(mapped), debug }
+    }
+  } catch (e) {
+    debug.findingError = String(e)
+  }
+
+  // 2. Fallback : Browse API soldItemsOnly — accolades NON encodées (URLSearchParams les encoderait).
+  //    Filtre de date pour ne jamais retourner d'annonces encore actives.
+  try {
+    const encodedQ = encodeURIComponent(keywords)
     const res = await fetch(
-      `https://api.ebay.com/buy/browse/v1/item_summary/search?${params}`,
+      `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodedQ}&filter=soldItemsOnly:{true}&limit=40`,
       {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -132,9 +180,9 @@ async function fetchSoldItems(
     )
     const body = await res.text()
     debug.browseStatus = res.status
-    debug.browseBody = body.slice(0, 400)
+    debug.browseBody = body.slice(0, 200)
 
-    if (res.ok) {
+    if (res.ok && body.startsWith('{')) {
       const data = JSON.parse(body)
       const rawItems: any[] = data?.itemSummaries || []
       debug.browseRaw = rawItems.length
@@ -145,9 +193,12 @@ async function fetchSoldItems(
           price: parseFloat(item.price?.value || '0'),
           url: item.itemWebUrl || '',
           img: item.thumbnailImages?.[0]?.imageUrl || item.image?.imageUrl || '',
-          soldDate: item.itemEndDate || item.lastSoldDate || '',
+          soldDate: item.lastSoldDate || item.itemEndDate || '',
         }))
-        .filter(i => i.price > 0 && titleMatchesCard(i.title, mustTerms, isGraded))
+        .filter(i => i.price > 0)
+        // Sécurité : ne garder que les items dont la date est passée (annonces actives exclues)
+        .filter(i => i.soldDate && new Date(i.soldDate) <= now)
+        .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
         .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
 
       debug.browseMapped = mapped.length
@@ -156,6 +207,7 @@ async function fetchSoldItems(
   } catch (e) {
     debug.browseError = String(e)
   }
+
   return { items: [], debug }
 }
 
@@ -239,7 +291,7 @@ export async function GET(req: NextRequest) {
     const timeout = setTimeout(() => controller.abort(), 20000)
 
     // Active listings + sold comps en parallèle
-    const soldPromise = fetchSoldItems(soldKeywords, mustTerms, mustSetWord, isGraded, token)
+    const soldPromise = fetchSoldItems(soldKeywords, mustTerms, mustSetWord, isGraded, appId, token)
 
     let rawItems: any[] = []
 

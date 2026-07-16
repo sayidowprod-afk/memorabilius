@@ -456,6 +456,20 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     }, 'image/jpeg', 0.88)
   }
 
+  const resetForm = () => {
+    setForm({
+      nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
+      grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
+      is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false,
+      image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
+      verso_is_horizontal: null,
+    })
+    setPreviewRecto(null); setPreviewVerso(null); setPreviewIL(null); setPreviewIR(null)
+    setBinderPrompt(null); setShowBinderPicker(false)
+    setDesignation(''); setDesignationDone(false); setShowDesignation(false)
+    setScanError(null); rectoBase64Ref.current = null
+  }
+
   const doInsert = async (uid: string) => {
     const { error } = await supabase.from('cartes_manuelles').insert({
       user_id: uid, nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
@@ -869,7 +883,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             <p style={{ fontSize: 13, color: '#666', margin: '0 0 18px' }}>
               {lang === 'fr' ? 'La ranger dans un classeur de ta bibliothèque ?' : 'File it into a binder in your library?'}
             </p>
-            <div style={{ display: 'flex', gap: 10 }}>
+            <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
               <button
                 onClick={() => router.push(`/galerie/${userId}`)}
                 style={{ flex: 1, padding: '11px 0', borderRadius: 10, border: '2px solid #e0e0e0', background: 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: '#333' }}>
@@ -881,6 +895,11 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
                 {lang === 'fr' ? '📔 Ranger' : '📔 File it'}
               </button>
             </div>
+            <button
+              onClick={resetForm}
+              style={{ width: '100%', padding: '11px 0', borderRadius: 10, border: `2px solid ${ACCENT}`, background: 'white', fontWeight: 700, fontSize: 14, cursor: 'pointer', color: ACCENT }}>
+              {lang === 'fr' ? '➕ Ajouter une autre carte' : '➕ Add another card'}
+            </button>
           </div>
         </div>,
         document.body
@@ -894,7 +913,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               isOwner={true}
               accent={ACCENT}
               pendingCard={{ key: binderPrompt.img, img: binderPrompt.img, nom: binderPrompt.nom }}
-              onPlaced={() => router.push(`/galerie/${userId}`)}
+              onPlaced={() => { setShowBinderPicker(false); setBinderPrompt(null); resetForm() }}
             />
           </div>
         </div>,
