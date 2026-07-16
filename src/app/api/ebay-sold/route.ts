@@ -115,9 +115,9 @@ async function fetchSoldItems(
   const debug: any = { keywords, mustTerms, mustSetWord }
   const now = new Date()
 
-  // 1. Finding API findCompletedItems — itemFilter DOIT être passé en brut dans l'URL,
-  //    URLSearchParams encode les parenthèses (%28%29) qu'eBay ne reconnaît pas.
-  const tryFinding = async (soldOnly: boolean) => {
+  // 1. Finding API findCompletedItems — itemFilter passé en brut (URLSearchParams encode les parenthèses).
+  //    On lance SoldItemsOnly ET AllCompleted en parallèle pour éviter 2×timeout séquentiel.
+  const tryFinding = async (soldOnly: boolean): Promise<Array<{ title: string; price: number; url: string; img: string; soldDate: string }>> => {
     const base = new URLSearchParams({
       'OPERATION-NAME': 'findCompletedItems',
       'SERVICE-VERSION': '1.0.0',
@@ -129,36 +129,39 @@ async function fetchSoldItems(
       'sortOrder': 'EndTimeSoonest',
     })
     const filter = soldOnly ? '&itemFilter(0).name=SoldItemsOnly&itemFilter(0).value=true' : ''
-    const findingRes = await fetch(
-      `https://svcs.ebay.com/services/search/FindingService/v1?${base}${filter}`,
-      { cache: 'no-store', signal: AbortSignal.timeout(12000) }
-    )
-    const findingBody = await findingRes.text()
-    debug[soldOnly ? 'findingSoldStatus' : 'findingCompletedStatus'] = findingRes.status
-    debug[soldOnly ? 'findingSoldBody' : 'findingCompletedBody'] = findingBody.slice(0, 150)
-    if (!findingRes.ok || !findingBody.startsWith('{')) return []
-    const data = JSON.parse(findingBody)
-    const rawItems: any[] = data?.findCompletedItemsResponse?.[0]?.searchResult?.[0]?.item || []
-    return rawItems
-      .map((item: any) => ({
-        title: item.title?.[0] || '',
-        price: parseFloat(item.sellingStatus?.[0]?.convertedCurrentPrice?.[0]?.__value__ || item.sellingStatus?.[0]?.currentPrice?.[0]?.__value__ || '0'),
-        url: item.viewItemURL?.[0] || '',
-        img: item.galleryURL?.[0] || '',
-        soldDate: item.listingInfo?.[0]?.endTime?.[0] || '',
-      }))
-      .filter(i => i.price > 0)
-      .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
-      .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
+    try {
+      const findingRes = await fetch(
+        `https://svcs.ebay.com/services/search/FindingService/v1?${base}${filter}`,
+        { cache: 'no-store', signal: AbortSignal.timeout(5000) }
+      )
+      const body = await findingRes.text()
+      debug[soldOnly ? 'soldStatus' : 'completedStatus'] = findingRes.status
+      debug[soldOnly ? 'soldBody' : 'completedBody'] = body.slice(0, 120)
+      if (!findingRes.ok || !body.startsWith('{')) return []
+      const data = JSON.parse(body)
+      const rawItems: any[] = data?.findCompletedItemsResponse?.[0]?.searchResult?.[0]?.item || []
+      return rawItems
+        .map((item: any) => ({
+          title: item.title?.[0] || '',
+          price: parseFloat(item.sellingStatus?.[0]?.convertedCurrentPrice?.[0]?.__value__ || item.sellingStatus?.[0]?.currentPrice?.[0]?.__value__ || '0'),
+          url: item.viewItemURL?.[0] || '',
+          img: item.galleryURL?.[0] || '',
+          soldDate: item.listingInfo?.[0]?.endTime?.[0] || '',
+        }))
+        .filter(i => i.price > 0)
+        .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
+        .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
+    } catch {
+      return []
+    }
   }
 
   try {
-    let mapped = await tryFinding(true)
-    debug.findingSoldOnly = mapped.length
-    if (mapped.length === 0) {
-      mapped = await tryFinding(false)
-      debug.findingCompleted = mapped.length
-    }
+    const [soldItems, completedItems] = await Promise.all([tryFinding(true), tryFinding(false)])
+    debug.findingSoldOnly = soldItems.length
+    debug.findingCompleted = completedItems.length
+    // Préférer les vendues strictes ; sinon prendre toutes les finies ; sinon merger
+    const mapped = soldItems.length > 0 ? soldItems : completedItems
     if (mapped.length > 0) return { items: applyOutlierFilter(mapped), debug }
   } catch (e) {
     debug.findingError = String(e)
