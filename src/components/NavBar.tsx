@@ -99,6 +99,7 @@ export default function Navbar() {
           <Link href="/tuto" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>{t('nav_tuto')}</Link>
           <Link href="/setlist" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>Setlist</Link>
           <Link href="/evenements" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>Events</Link>
+          <Link href="/scanner" style={{ color: dark ? '#ddd' : '#444', fontWeight: 600 }}>🔍 Scanner</Link>
           {user === undefined ? (
             /* Réserve exactement la même largeur que l'état connecté pour éviter le CLS */
             <div style={{ visibility: 'hidden', display: 'flex', gap: 20, alignItems: 'center', pointerEvents: 'none' }}>
@@ -148,6 +149,7 @@ export default function Navbar() {
           <Link href="/tuto" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_tuto')}</Link>
           <Link href="/setlist" style={ls} onClick={() => setMenuOpen(false)}>Setlist</Link>
           <Link href="/evenements" style={ls} onClick={() => setMenuOpen(false)}>Events</Link>
+          <Link href="/scanner" style={ls} onClick={() => setMenuOpen(false)}>🔍 Scanner</Link>
           {user ? (
             <>
               <Link href={`/galerie/${user.id}`} style={ls} onClick={() => setMenuOpen(false)}>{t('nav_galerie')}</Link>

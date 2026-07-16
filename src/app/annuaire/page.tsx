@@ -81,10 +81,10 @@ function AnnuaireContent() {
       const isStale = !lastUpdate || (Date.now() - lastUpdate.getTime() > 60 * 60 * 1000)
       if (isStale) {
         try {
-          const r = await fetch('/api/update-stats', {
+          const r = await fetch('/api/recalc-user', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId: p.id, csvUrl: p.lien_csv || null }),
+            body: JSON.stringify({ userId: p.id }),
           })
           const data = await r.json()
           if (data.stats) {
