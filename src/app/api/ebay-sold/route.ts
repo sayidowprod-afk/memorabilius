@@ -115,9 +115,15 @@ async function fetchSoldItems(
   const debug: any = { keywords, mustTerms, mustSetWord }
   const now = new Date()
 
+  const mapAndFilter = (items: any[], mapFn: (i: any) => { title: string; price: number; url: string; img: string; soldDate: string }) =>
+    items.map(mapFn)
+      .filter(i => i.price > 0)
+      .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
+      .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
+
   // 1. Finding API findCompletedItems — itemFilter passé en brut (URLSearchParams encode les parenthèses).
-  //    On lance SoldItemsOnly ET AllCompleted en parallèle pour éviter 2×timeout séquentiel.
-  const tryFinding = async (soldOnly: boolean): Promise<Array<{ title: string; price: number; url: string; img: string; soldDate: string }>> => {
+  //    SoldOnly + AllCompleted en parallèle.
+  const tryFinding = async (soldOnly: boolean): Promise<typeof mapAndFilter extends (...a: any[]) => infer R ? R : never> => {
     const base = new URLSearchParams({
       'OPERATION-NAME': 'findCompletedItems',
       'SERVICE-VERSION': '1.0.0',
@@ -129,92 +135,66 @@ async function fetchSoldItems(
       'sortOrder': 'EndTimeSoonest',
     })
     const filter = soldOnly ? '&itemFilter(0).name=SoldItemsOnly&itemFilter(0).value=true' : ''
-    try {
-      const findingRes = await fetch(
-        `https://svcs.ebay.com/services/search/FindingService/v1?${base}${filter}`,
-        { cache: 'no-store', signal: AbortSignal.timeout(5000) }
-      )
-      const body = await findingRes.text()
-      debug[soldOnly ? 'soldStatus' : 'completedStatus'] = findingRes.status
-      debug[soldOnly ? 'soldBody' : 'completedBody'] = body.slice(0, 120)
-      if (!findingRes.ok || !body.startsWith('{')) return []
-      const data = JSON.parse(body)
-      const rawItems: any[] = data?.findCompletedItemsResponse?.[0]?.searchResult?.[0]?.item || []
-      return rawItems
-        .map((item: any) => ({
-          title: item.title?.[0] || '',
-          price: parseFloat(item.sellingStatus?.[0]?.convertedCurrentPrice?.[0]?.__value__ || item.sellingStatus?.[0]?.currentPrice?.[0]?.__value__ || '0'),
-          url: item.viewItemURL?.[0] || '',
-          img: item.galleryURL?.[0] || '',
-          soldDate: item.listingInfo?.[0]?.endTime?.[0] || '',
-        }))
-        .filter(i => i.price > 0)
-        .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
-        .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
-    } catch {
-      return []
-    }
+    const findingRes = await fetch(
+      `https://svcs.ebay.com/services/search/FindingService/v1?${base}${filter}`,
+      { cache: 'no-store', signal: AbortSignal.timeout(8000) }
+    )
+    const body = await findingRes.text()
+    debug[soldOnly ? 'findingSoldStatus' : 'findingCompletedStatus'] = findingRes.status
+    debug[soldOnly ? 'findingSoldBody' : 'findingCompletedBody'] = body.slice(0, 150)
+    if (!findingRes.ok || !body.startsWith('{')) return []
+    const data = JSON.parse(body)
+    const rawItems: any[] = data?.findCompletedItemsResponse?.[0]?.searchResult?.[0]?.item || []
+    return mapAndFilter(rawItems, (item: any) => ({
+      title: item.title?.[0] || '',
+      price: parseFloat(item.sellingStatus?.[0]?.convertedCurrentPrice?.[0]?.__value__ || item.sellingStatus?.[0]?.currentPrice?.[0]?.__value__ || '0'),
+      url: item.viewItemURL?.[0] || '',
+      img: item.galleryURL?.[0] || '',
+      soldDate: item.listingInfo?.[0]?.endTime?.[0] || '',
+    }))
   }
 
-  try {
-    const [soldItems, completedItems] = await Promise.all([tryFinding(true), tryFinding(false)])
-    debug.findingSoldOnly = soldItems.length
-    debug.findingCompleted = completedItems.length
-    // Préférer les vendues strictes ; sinon prendre toutes les finies ; sinon merger
-    const mapped = soldItems.length > 0 ? soldItems : completedItems
-    if (mapped.length > 0) return { items: applyOutlierFilter(mapped), debug }
-  } catch (e) {
-    debug.findingError = String(e)
-  }
+  const [soldItems, completedItems] = await Promise.allSettled([tryFinding(true), tryFinding(false)])
+  const soldMapped = soldItems.status === 'fulfilled' ? soldItems.value : []
+  const completedMapped = completedItems.status === 'fulfilled' ? completedItems.value : []
+  debug.findingSoldOnly = soldMapped.length
+  debug.findingCompleted = completedMapped.length
+  const findingResult = soldMapped.length > 0 ? soldMapped : completedMapped
+  if (findingResult.length > 0) return { items: applyOutlierFilter(findingResult), debug }
 
-  // 2. Fallback : Browse API soldItemsOnly — accolades NON encodées (URLSearchParams les encoderait).
-  //    Filtre de date pour ne jamais retourner d'annonces encore actives.
+  // 2. Marketplace Insights API — endpoint eBay dédié aux ventes réalisées.
+  //    Browse API soldItemsOnly est explicitement invalide (errorId 12002).
   try {
-    const encodedQ = encodeURIComponent(keywords)
-    const res = await fetch(
-      `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodedQ}&filter=soldItemsOnly:{true}&limit=40`,
+    const miRes = await fetch(
+      `https://api.ebay.com/buy/marketplace_insights/v1_beta/item_sales/search?q=${encodeURIComponent(keywords)}&limit=40`,
       {
         headers: {
           'Authorization': `Bearer ${token}`,
           'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US',
         },
         cache: 'no-store',
-        signal: AbortSignal.timeout(12000),
+        signal: AbortSignal.timeout(8000),
       }
     )
-    const body = await res.text()
-    debug.browseStatus = res.status
-    debug.browseBody = body.slice(0, 200)
-
-    if (res.ok && body.startsWith('{')) {
-      const data = JSON.parse(body)
-      const rawItems: any[] = data?.itemSummaries || []
-      debug.browseRaw = rawItems.length
-
-      // Inspecter les champs de date pour diagnostiquer si soldItemsOnly est respecté
-      debug.sampleDates = rawItems.slice(0, 3).map(i => ({
-        lastSoldDate: i.lastSoldDate || null,
-        itemEndDate: i.itemEndDate || null,
+    const miBody = await miRes.text()
+    debug.miStatus = miRes.status
+    debug.miBody = miBody.slice(0, 150)
+    if (miRes.ok && miBody.startsWith('{')) {
+      const miData = JSON.parse(miBody)
+      const miRaw: any[] = miData?.itemSales || []
+      debug.miRaw = miRaw.length
+      const miMapped = mapAndFilter(miRaw, (item: any) => ({
+        title: item.title || '',
+        price: parseFloat(item.lastSoldPrice?.value || '0'),
+        url: item.itemWebUrl || '',
+        img: item.image?.imageUrl || '',
+        soldDate: item.lastSoldDate || '',
       }))
-      const mapped = rawItems
-        .map((item: any) => ({
-          title: item.title || '',
-          price: parseFloat(item.price?.value || '0'),
-          url: item.itemWebUrl || '',
-          img: item.thumbnailImages?.[0]?.imageUrl || item.image?.imageUrl || '',
-          soldDate: item.lastSoldDate || item.itemEndDate || '',
-        }))
-        .filter(i => i.price > 0)
-        // Exiger une date dans le passé — sans ça, les annonces actives (sans lastSoldDate) passent
-        .filter(i => i.soldDate && new Date(i.soldDate) <= now)
-        .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
-        .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
-
-      debug.browseMapped = mapped.length
-      return { items: applyOutlierFilter(mapped), debug }
+      debug.miMapped = miMapped.length
+      if (miMapped.length > 0) return { items: applyOutlierFilter(miMapped), debug }
     }
   } catch (e) {
-    debug.browseError = String(e)
+    debug.miError = String(e)
   }
 
   return { items: [], debug }
