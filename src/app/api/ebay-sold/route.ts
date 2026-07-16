@@ -160,7 +160,10 @@ export async function GET(req: NextRequest) {
   const grade   = searchParams.get('grade') || ''
   const imgUrl  = searchParams.get('img') || ''
 
-  if (!name) return NextResponse.json({ items: [] })
+  // ?q= permet de passer un titre eBay exact (depuis la recherche image) en court-circuit
+  const directQ = searchParams.get('q') || ''
+
+  if (!name && !directQ) return NextResponse.json({ items: [] })
 
   const appId  = process.env.EBAY_APP_ID
   const certId = process.env.EBAY_CERT_ID
@@ -174,9 +177,12 @@ export async function GET(req: NextRequest) {
   const setWords = set.split(/\s+/).filter(w => w.length > 2 && !GENERIC.has(w.toLowerCase()))
 
   const keywordParts = [name, yearShort, set, variant, printRun || '', rc ? 'RC' : '', auto ? 'AUTO' : '', patch ? 'PATCH' : ''].filter(Boolean)
-  const keywords = keywordParts.join(' ')
+  const keywords = directQ || keywordParts.join(' ')
 
-  const mustTerms: string[] = [name]
+  // Quand ?q= est fourni, on filtre sur les mots significatifs du titre (>3 chars, pas trop génériques)
+  const mustTerms: string[] = directQ
+    ? directQ.split(/\s+/).filter(w => w.length > 3 && !GENERIC.has(w.toLowerCase())).slice(0, 4)
+    : [name]
   if (yearShort) mustTerms.push(yearShort)
   if (printRun) mustTerms.push(printRun.replace('/', ''))
   if (auto) mustTerms.push('auto')
