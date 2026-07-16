@@ -25,7 +25,9 @@ export async function POST(req: NextRequest) {
     const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
 
     const [csvText, manuellesRes] = await Promise.all([
-      profile.lien_csv ? fetchCsvCapped(profile.lien_csv) : Promise.resolve(null),
+      profile.lien_csv
+        ? fetchCsvCapped(profile.lien_csv, { cache: 'no-store', signal: AbortSignal.timeout(12000) })
+        : Promise.resolve(null),
       supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).limit(10000),
     ])
 

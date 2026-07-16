@@ -535,6 +535,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     await supabase.from('profiles').update({ gallery_order: order }).eq('id', userId)
   }
 
+  const applyCurrentSortAsDefault = async () => {
+    const newCards = [...filtered]
+    setCards(newCards)
+    setSortBy('default')
+    await saveGalleryOrder(newCards)
+  }
+
   const toggleCardSelection = (cardId: string) => {
     setSelectedCards(prev => {
       const next = new Set(prev)
@@ -1021,6 +1028,14 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 <option value="valeur_desc">{lang === 'fr' ? 'Valeur ↑ (moins cher en 1er)' : 'Value ↑ (lowest first)'}</option>
               </>}
             </select>
+            {isOwner && sortBy !== 'default' && (
+              <button onClick={applyCurrentSortAsDefault} title="Sauvegarder cet ordre et activer le drag & drop" style={{
+                marginTop: 4, width: '100%', padding: '5px 8px', fontSize: 10, fontWeight: 800,
+                background: '#003DA6', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer',
+              }}>
+                💾 Fixer cet ordre (activer le drag)
+              </button>
+            )}
           </div>
           {collectionTags.length > 0 && (() => {
             const TAB_COLORS = [

@@ -180,12 +180,12 @@ export async function GET(req: NextRequest) {
   const keywords = directQ || keywordParts.join(' ')
 
   // Pour la recherche vendues (Finding API), le titre complet eBay donne 0 résultat car l'API
-  // fait un AND strict sur tous les mots. On exclut les mots courts (stop words "the", "in"),
-  // les génériques, les années numériques (format "2020-21" cause des faux-négatifs AND) et les #.
+  // fait un AND strict sur tous les mots. On prend 3 mots significatifs max : moins = plus de
+  // résultats, les mustTerms filtrent ensuite les faux positifs.
   const soldKeywords = directQ
     ? directQ.split(/\s+/)
         .filter(w => w.length > 3 && !GENERIC.has(w.toLowerCase()) && !/^\d/.test(w) && !/^#/.test(w))
-        .slice(0, 5)
+        .slice(0, 3)
         .join(' ')
     : keywords
 
