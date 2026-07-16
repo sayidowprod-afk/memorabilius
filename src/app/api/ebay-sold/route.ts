@@ -163,25 +163,19 @@ async function fetchSoldItems(
   if (findingResult.length > 0) return { items: applyOutlierFilter(findingResult), debug }
 
   // 2. Marketplace Insights API — endpoint eBay dédié aux ventes réalisées.
-  //    Browse API soldItemsOnly est explicitement invalide (errorId 12002).
   try {
     const miRes = await fetch(
       `https://api.ebay.com/buy/marketplace_insights/v1_beta/item_sales/search?q=${encodeURIComponent(keywords)}&limit=40`,
       {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US',
-        },
+        headers: { 'Authorization': `Bearer ${token}`, 'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US' },
         cache: 'no-store',
         signal: AbortSignal.timeout(8000),
       }
     )
     const miBody = await miRes.text()
     debug.miStatus = miRes.status
-    debug.miBody = miBody.slice(0, 150)
     if (miRes.ok && miBody.startsWith('{')) {
-      const miData = JSON.parse(miBody)
-      const miRaw: any[] = miData?.itemSales || []
+      const miRaw: any[] = JSON.parse(miBody)?.itemSales || []
       debug.miRaw = miRaw.length
       const miMapped = mapAndFilter(miRaw, (item: any) => ({
         title: item.title || '',
@@ -190,11 +184,41 @@ async function fetchSoldItems(
         img: item.image?.imageUrl || '',
         soldDate: item.lastSoldDate || '',
       }))
-      debug.miMapped = miMapped.length
       if (miMapped.length > 0) return { items: applyOutlierFilter(miMapped), debug }
     }
   } catch (e) {
     debug.miError = String(e)
+  }
+
+  // 3. Fallback Browse API — annonces actives comme proxy prix du marché.
+  //    Finding API (svcs.ebay.com) est injoignable depuis Vercel, Marketplace Insights nécessite
+  //    une approbation eBay. Les prix des annonces actives reflètent le marché réel.
+  try {
+    const res = await fetch(
+      `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(keywords)}&filter=buyingOptions:{FIXED_PRICE|BEST_OFFER}&sort=price&limit=40`,
+      {
+        headers: { 'Authorization': `Bearer ${token}`, 'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US' },
+        cache: 'no-store',
+        signal: AbortSignal.timeout(8000),
+      }
+    )
+    const body = await res.text()
+    debug.browseStatus = res.status
+    if (res.ok && body.startsWith('{')) {
+      const rawItems: any[] = JSON.parse(body)?.itemSummaries || []
+      debug.browseRaw = rawItems.length
+      const mapped = mapAndFilter(rawItems, (item: any) => ({
+        title: item.title || '',
+        price: parseFloat(item.price?.value || '0'),
+        url: item.itemWebUrl || '',
+        img: item.thumbnailImages?.[0]?.imageUrl || item.image?.imageUrl || '',
+        soldDate: '',
+      }))
+      debug.browseMapped = mapped.length
+      if (mapped.length > 0) return { items: applyOutlierFilter(mapped), debug }
+    }
+  } catch (e) {
+    debug.browseError = String(e)
   }
 
   return { items: [], debug }
