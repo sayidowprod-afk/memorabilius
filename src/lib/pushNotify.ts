@@ -41,7 +41,8 @@ export async function sendPushToUser(
       try {
         await webpush.sendNotification(
           { endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth } },
-          payloadStr
+          payloadStr,
+          { TTL: 86400, urgency: 'high' }
         )
       } catch (err: any) {
         if (err.statusCode === 410 || err.statusCode === 404 || err.statusCode === 401) {
