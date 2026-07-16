@@ -116,49 +116,51 @@ async function fetchSoldItems(
   const now = new Date()
 
   // 1. Finding API findCompletedItems — seul endpoint officiel pour les vendues.
-  //    N'utilise que l'App ID (pas OAuth), pas d'accolades à encoder.
-  try {
-    const findingParams = new URLSearchParams({
+  //    On tente d'abord avec SoldItemsOnly, puis sans si 0 résultats (annonces finies = proxy valable).
+  const tryFinding = async (soldOnly: boolean) => {
+    const params: Record<string, string> = {
       'OPERATION-NAME': 'findCompletedItems',
       'SERVICE-VERSION': '1.0.0',
       'SECURITY-APPNAME': appId,
       'RESPONSE-DATA-FORMAT': 'JSON',
       'keywords': keywords,
-      'itemFilter(0).name': 'SoldItemsOnly',
-      'itemFilter(0).value': 'true',
       'paginationInput.entriesPerPage': '40',
       'sortOrder': 'EndTimeSoonest',
-    })
+    }
+    if (soldOnly) {
+      params['itemFilter(0).name'] = 'SoldItemsOnly'
+      params['itemFilter(0).value'] = 'true'
+    }
     const findingRes = await fetch(
-      `https://svcs.ebay.com/services/search/FindingService/v1?${findingParams}`,
+      `https://svcs.ebay.com/services/search/FindingService/v1?${new URLSearchParams(params)}`,
       { cache: 'no-store', signal: AbortSignal.timeout(10000) }
     )
     const findingBody = await findingRes.text()
-    debug.findingStatus = findingRes.status
-    debug.findingBody = findingBody.slice(0, 200)
+    if (!findingRes.ok || !findingBody.startsWith('{')) return []
+    const data = JSON.parse(findingBody)
+    const rawItems: any[] = data?.findCompletedItemsResponse?.[0]?.searchResult?.[0]?.item || []
+    return rawItems
+      .map((item: any) => ({
+        title: item.title?.[0] || '',
+        price: parseFloat(item.sellingStatus?.[0]?.currentPrice?.[0]?.['__value__'] || '0'),
+        url: item.viewItemURL?.[0] || '',
+        img: item.galleryURL?.[0] || '',
+        soldDate: item.listingInfo?.[0]?.endTime?.[0] || '',
+      }))
+      .filter(i => i.price > 0)
+      .filter(i => i.soldDate && new Date(i.soldDate) <= now)
+      .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
+      .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
+  }
 
-    if (findingRes.ok && findingBody.startsWith('{')) {
-      const data = JSON.parse(findingBody)
-      const searchResult = data?.findCompletedItemsResponse?.[0]?.searchResult?.[0]
-      const rawItems: any[] = searchResult?.item || []
-      debug.findingRaw = rawItems.length
-
-      const mapped = rawItems
-        .map((item: any) => ({
-          title: item.title?.[0] || '',
-          price: parseFloat(item.sellingStatus?.[0]?.currentPrice?.[0]?.['__value__'] || '0'),
-          url: item.viewItemURL?.[0] || '',
-          img: item.galleryURL?.[0] || '',
-          soldDate: item.listingInfo?.[0]?.endTime?.[0] || '',
-        }))
-        .filter(i => i.price > 0)
-        .filter(i => i.soldDate && new Date(i.soldDate) <= now)
-        .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
-        .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
-
-      debug.findingMapped = mapped.length
-      if (mapped.length > 0) return { items: applyOutlierFilter(mapped), debug }
+  try {
+    let mapped = await tryFinding(true)
+    debug.findingSoldOnly = mapped.length
+    if (mapped.length === 0) {
+      mapped = await tryFinding(false)
+      debug.findingCompleted = mapped.length
     }
+    if (mapped.length > 0) return { items: applyOutlierFilter(mapped), debug }
   } catch (e) {
     debug.findingError = String(e)
   }
