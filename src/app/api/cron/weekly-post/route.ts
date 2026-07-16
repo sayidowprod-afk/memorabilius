@@ -123,7 +123,7 @@ Découvre sa galerie sur memorabilius.fr 🔥
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(post),
-      }).then(r => ({ type: post.type, status: r.status, ok: r.ok }))
+      }).then(r => ({ status: r.status, ok: r.ok }))
     )
   )
 
