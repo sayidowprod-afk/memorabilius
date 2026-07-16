@@ -180,13 +180,12 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
                   if (multi) setPicked(prev => sel ? prev.filter(p => p.key !== c.key) : [...prev, c])
                   else onSelect?.(c)
                 }}
-                style={{ cursor: 'pointer', borderRadius: 8, overflow: 'hidden', border: sel ? `2px solid ${ACCENT}` : '1px solid #eee', transition: '0.15s', position: 'relative' }}
+                style={{ cursor: 'pointer', borderRadius: 8, border: sel ? `2px solid ${ACCENT}` : '1px solid #eee', transition: '0.15s', position: 'relative', background: '#f4f4f4' }}
                 onMouseEnter={e => { if (!sel) e.currentTarget.style.borderColor = ACCENT }}
                 onMouseLeave={e => { if (!sel) e.currentTarget.style.borderColor = '#eee' }}
               >
-                <div style={{ height: 140, overflow: 'hidden', background: '#f2f2f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={c.img} alt={c.nom} loading="lazy" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }} />
-                </div>
+                <img src={c.img} alt={c.nom} loading="lazy"
+                  style={{ width: '100%', height: 140, objectFit: 'contain', display: 'block', borderRadius: '6px 6px 0 0' }} />
                 {(c.rc || c.auto || c.patch) && (
                   <div style={{ position: 'absolute', top: 3, left: 3, display: 'flex', gap: 2 }}>
                     {c.rc && <span style={{ fontSize: 7, fontWeight: 900, color: 'white', background: '#e67e22', borderRadius: 2, padding: '1px 3px' }}>RC</span>}
