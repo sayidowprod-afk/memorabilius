@@ -24,6 +24,33 @@ function toBase64(file: File): Promise<{ b64: string; mime: string }> {
   })
 }
 
+// Recadre l'image sur la carte détectée (crop bounding box des 4 coins)
+function cropWithCorners(b64: string, corners: Record<string, {x:number,y:number}>): Promise<string> {
+  return new Promise(res => {
+    const img = new Image()
+    img.onload = () => {
+      const W = img.naturalWidth, H = img.naturalHeight
+      const xs = Object.values(corners).map(c => c.x * W)
+      const ys = Object.values(corners).map(c => c.y * H)
+      const PAD = 12
+      const x0 = Math.max(0,  Math.min(...xs) - PAD)
+      const y0 = Math.max(0,  Math.min(...ys) - PAD)
+      const x1 = Math.min(W,  Math.max(...xs) + PAD)
+      const y1 = Math.min(H,  Math.max(...ys) + PAD)
+      const cw = x1 - x0, ch = y1 - y0
+      const canvas = document.createElement('canvas')
+      canvas.width = cw; canvas.height = ch
+      canvas.getContext('2d')!.drawImage(img, x0, y0, cw, ch, 0, 0, cw, ch)
+      canvas.toBlob(blob => {
+        const reader = new FileReader()
+        reader.onload = () => res((reader.result as string).split(',')[1])
+        reader.readAsDataURL(blob!)
+      }, 'image/jpeg', 0.93)
+    }
+    img.src = `data:image/jpeg;base64,${b64}`
+  })
+}
+
 function fmtDate(d: string) {
   try { return new Date(d).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' }) } catch { return '' }
 }
@@ -109,9 +136,8 @@ export default function ScannerPage() {
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) { setErr('Connectez-vous pour scanner.'); setPhase('error'); return }
 
-    let resolvedCard: CardInfo | null = null
-
-    // Lancement parallèle : recherche image eBay + identification Gemini
+    // Phase 1 : eBay image search + détection coins en parallèle
+    // L'image eBay utilise la photo brute (meilleur matching visuel avec le fond inclus)
     const imageSearchPromise = fetch('/api/ebay-image-search', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
@@ -120,39 +146,52 @@ export default function ScannerPage() {
       const matches: ImageMatch[] = d.items || []
       setImgMatches(matches)
       setImgSearchDone(true)
+      setPhase('results')
       return matches
     }).catch(() => {
       setImgSearchDone(true)
+      setPhase('results')
       return [] as ImageMatch[]
     })
 
-    const geminiPromise = fetch('/api/scan-card', {
+    // Détection coins : 5s max pour ne pas retarder Gemini si l'API est lente
+    const cornersPromise: Promise<Record<string, {x:number;y:number}> & {confidence?: number} | null> = Promise.race([
+      fetch('/api/detect-corners', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+        body: JSON.stringify({ imageBase64: b64, mimeType: mime }),
+      }).then(r => r.json()).catch(() => null),
+      new Promise<null>(r => setTimeout(() => r(null), 5000)),
+    ])
+
+    // Attendre les deux avant de lancer Gemini
+    const [matches, corners] = await Promise.all([imageSearchPromise, cornersPromise])
+
+    // Phase 2 : recadrer sur la carte si les coins sont détectés avec confiance suffisante
+    // Même logique que le flow "ajouter une carte" → Gemini reçoit une image propre, sans fond
+    let aiB64 = b64
+    if (corners && (corners.confidence ?? 0) >= 0.65 && corners.topLeft) {
+      try {
+        aiB64 = await cropWithCorners(b64, corners)
+      } catch { /* fallback photo complète */ }
+    }
+
+    // Phase 3 : identification Gemini avec l'image recadrée
+    const identified = await fetch('/api/scan-card', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
-      body: JSON.stringify({ imageBase64: b64, imageBase64Verso: versoB64, mimeType: mime }),
+      body: JSON.stringify({ imageBase64: aiB64, imageBase64Verso: versoB64, mimeType: mime }),
     }).then(r => r.json()).then(d => {
       if (d.error) return null
       setCard(d)
       setGeminiDone(true)
-      resolvedCard = d
       return d as CardInfo
     }).catch(() => {
       setGeminiDone(true)
       return null
     })
 
-    // Passer en mode résultats dès qu'une des deux répond
-    const raceTimeout = setTimeout(() => setPhase('results'), 12000)
-    Promise.race([imageSearchPromise, geminiPromise]).then(() => {
-      clearTimeout(raceTimeout)
-      setPhase('results')
-    })
-
-    // Attendre les deux pour lancer les sold comps automatiquement
-    const [matches, identified] = await Promise.all([imageSearchPromise, geminiPromise])
-
-    // Si eBay a trouvé des correspondances, l'utilisateur choisit — on n'auto-lance pas
-    // Si aucune correspondance eBay, on lance les sold comps avec Gemini
+    // Si eBay n'a rien trouvé et Gemini a identifié → recherche vendues automatique
     if (matches.length === 0 && identified) {
       loadSoldComps('', identified)
     }
