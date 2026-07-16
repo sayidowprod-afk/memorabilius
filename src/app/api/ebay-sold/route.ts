@@ -197,9 +197,11 @@ export async function GET(req: NextRequest) {
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 20000)
 
+    // Active listings + sold comps en parallèle
+    const soldPromise = fetchSoldItems(keywords, mustTerms, mustSetWord, isGraded, appId)
+
     let rawItems: any[] = []
 
-    // 1. Recherche par image si disponible (plus précise)
     if (imgUrl) {
       const imgBase64 = await fetchImageBase64(imgUrl)
       if (imgBase64) {
@@ -215,7 +217,6 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    // 2. Si recherche par image insuffisante (<3 résultats après filtrage), compléter par texte
     const imgFiltered = processItems(rawItems, mustTerms, mustSetWord, isGraded)
     if (imgFiltered.length < 3) {
       const browseParams = new URLSearchParams({
@@ -231,25 +232,34 @@ export async function GET(req: NextRequest) {
       })
       const textData = await textRes.json()
       const textItems = textData?.itemSummaries || []
-
       const seen = new Set(rawItems.map((i: any) => i.itemId))
       rawItems = [...rawItems, ...textItems.filter((i: any) => !seen.has(i.itemId))]
     }
 
     clearTimeout(timeout)
 
-    const items = processItems(rawItems, mustTerms, mustSetWord, isGraded)
-    const prices = items.map(i => i.price)
+    const [active, sold] = await Promise.all([
+      Promise.resolve(processItems(rawItems, mustTerms, mustSetWord, isGraded)),
+      soldPromise,
+    ])
+
+    const soldPrices = sold.map(i => i.price)
 
     return NextResponse.json({
-      items,
-      count: items.length,
-      median: median(prices),
-      min: prices.length ? Math.min(...prices) : 0,
-      max: prices.length ? Math.max(...prices) : 0,
+      // ventes en cours
+      active,
+      // ventes réalisées (pour la valeur marché)
+      sold,
+      soldCount: sold.length,
+      median: median(soldPrices),
+      min: soldPrices.length ? Math.min(...soldPrices) : 0,
+      max: soldPrices.length ? Math.max(...soldPrices) : 0,
+      // compat ancien code
+      items: active,
+      count: active.length,
     })
   } catch (err) {
     console.error('[ebay-sold]', err)
-    return NextResponse.json({ items: [] })
+    return NextResponse.json({ items: [], active: [], sold: [] })
   }
 }
