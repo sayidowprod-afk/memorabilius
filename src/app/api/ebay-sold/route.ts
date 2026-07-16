@@ -111,8 +111,10 @@ async function fetchSoldItems(
   isGraded: boolean,
   appId: string,
   oauthToken?: string,
-): Promise<Array<{ title: string; price: number; url: string; img: string; soldDate: string }>> {
-  // Marketplace Insights API (OAuth, remplace le Finding API déprécié)
+): Promise<{ items: Array<{ title: string; price: number; url: string; img: string; soldDate: string }>; debug: any }> {
+  const debug: any = { keywords, mustTerms, mustSetWord, insightsToken: !!oauthToken }
+
+  // Marketplace Insights API (OAuth, nécessite scope buy.marketplace.insights)
   if (oauthToken) {
     try {
       const params = new URLSearchParams({ q: keywords, limit: '40' })
@@ -127,9 +129,13 @@ async function fetchSoldItems(
           signal: AbortSignal.timeout(12000),
         }
       )
+      const body = await res.text()
+      debug.insightsStatus = res.status
+      debug.insightsBody = body.slice(0, 300)
       if (res.ok) {
-        const data = await res.json()
+        const data = JSON.parse(body)
         const rawItems: any[] = data?.itemSales || []
+        debug.insightsRaw = rawItems.length
         const mapped = rawItems
           .map((item: any) => ({
             title: item.title || '',
@@ -140,10 +146,11 @@ async function fetchSoldItems(
           }))
           .filter(i => i.price > 0 && titleMatchesCard(i.title, mustTerms, isGraded))
           .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
-        if (mapped.length > 0) return applyOutlierFilter(mapped)
+        debug.insightsMapped = mapped.length
+        if (mapped.length > 0) return { items: applyOutlierFilter(mapped), debug }
       }
-    } catch {
-      // fallback Finding API
+    } catch (e) {
+      debug.insightsError = String(e)
     }
   }
 
@@ -164,8 +171,12 @@ async function fetchSoldItems(
       cache: 'no-store',
       signal: AbortSignal.timeout(12000),
     })
-    const data = await res.json()
+    const body = await res.text()
+    debug.findingStatus = res.status
+    debug.findingBody = body.slice(0, 300)
+    const data = JSON.parse(body)
     const rawItems: any[] = data?.findCompletedItemsResponse?.[0]?.searchResult?.[0]?.item || []
+    debug.findingRaw = rawItems.length
     const mapped = rawItems
       .map((item: any) => ({
         title: item.title?.[0] || '',
@@ -176,9 +187,11 @@ async function fetchSoldItems(
       }))
       .filter(i => i.price > 0 && titleMatchesCard(i.title, mustTerms, isGraded))
       .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
-    return applyOutlierFilter(mapped)
-  } catch {
-    return []
+    debug.findingMapped = mapped.length
+    return { items: applyOutlierFilter(mapped), debug }
+  } catch (e) {
+    debug.findingError = String(e)
+    return { items: [], debug }
   }
 }
 
@@ -302,11 +315,12 @@ export async function GET(req: NextRequest) {
 
     clearTimeout(timeout)
 
-    const [active, sold] = await Promise.all([
+    const [active, soldResult] = await Promise.all([
       Promise.resolve(processItems(rawItems, mustTerms, mustSetWord, isGraded)),
       soldPromise,
     ])
 
+    const sold = soldResult.items
     const soldPrices = sold.map(i => i.price)
 
     return NextResponse.json({
@@ -321,6 +335,8 @@ export async function GET(req: NextRequest) {
       // compat ancien code
       items: active,
       count: active.length,
+      // debug temporaire — à retirer une fois le problème identifié
+      _soldDebug: soldResult.debug,
     })
   } catch (err) {
     console.error('[ebay-sold]', err)
