@@ -193,27 +193,30 @@ export async function GET(req: NextRequest) {
   const yearShort = year?.match(/^(\d{4})/)?.[1] || year
 
   const GENERIC = new Set(['panini', 'topps', 'upper', 'deck', 'donruss', 'fleer', 'nba', 'nfl', 'mlb', 'basketball', 'football', 'baseball', 'card', 'cards'])
+  const BRANDS = new Set(['donruss', 'topps', 'panini', 'bowman', 'fleer', 'prizm', 'optic', 'select', 'chronicles', 'mosaic', 'illusions', 'hoops', 'score', 'contenders', 'certified', 'absolute', 'revolution', 'status', 'noir', 'eminence', 'immaculate', 'national', 'treasures', 'spectra', 'obsidian', 'kaboom', 'phoenix'])
   const setWords = set.split(/\s+/).filter(w => w.length > 2 && !GENERIC.has(w.toLowerCase()))
 
   const keywordParts = [name, yearShort, set, variant, printRun || '', rc ? 'RC' : '', auto ? 'AUTO' : '', patch ? 'PATCH' : ''].filter(Boolean)
   const keywords = directQ || keywordParts.join(' ')
 
-  // Pour la recherche vendues (Finding API), le titre complet eBay donne 0 résultat car l'API
-  // fait un AND strict sur tous les mots. On prend 3 mots significatifs max : moins = plus de
-  // résultats, les mustTerms filtrent ensuite les faux positifs.
-  const soldKeywords = directQ
-    ? directQ.split(/\s+/)
-        .filter(w => w.length > 3 && !GENERIC.has(w.toLowerCase()) && !/^\d/.test(w) && !/^#/.test(w))
-        .slice(0, 3)
-        .join(' ')
-    : keywords
+  // Browse API gère bien les longues requêtes — on utilise le titre complet
+  const soldKeywords = directQ || keywords
 
-  // mustTerms plus lâches pour directQ : 2 mots non-numériques pour éviter les faux-négatifs
-  // liés aux formats d'année (202223 vs 2223 selon les vendeurs)
+  // mustTerms : filtre strict côté client après résultats Browse API
+  // Pour directQ : joueur (2 mots) + année (4 chiffres) + marque du set
   const mustTerms: string[] = directQ
-    ? directQ.split(/\s+/)
-        .filter(w => w.length > 3 && !GENERIC.has(w.toLowerCase()) && !/^\d/.test(w) && !/^#/.test(w))
-        .slice(0, 2)
+    ? (() => {
+        const words = directQ.split(/\s+/)
+        // Mots du nom joueur/insert : pas d'année, pas de #, pas générique, pas marque
+        const nameWords = words
+          .filter(w => w.length > 3 && !GENERIC.has(w.toLowerCase()) && !BRANDS.has(w.toLowerCase()) && !/^\d/.test(w) && !/^#/.test(w))
+          .slice(0, 2)
+        // Année 4 chiffres (2020 de "2020-21")
+        const yearM = directQ.match(/\b((?:19|20)\d{2})\b/)
+        // Marque du set (Donruss, Topps, etc.)
+        const brand = words.find(w => BRANDS.has(w.toLowerCase()))
+        return [...nameWords, ...(yearM ? [yearM[1]] : []), ...(brand ? [brand] : [])]
+      })()
     : [name]
   if (!directQ && yearShort) mustTerms.push(yearShort)
   if (!directQ && printRun) mustTerms.push(printRun.replace('/', ''))
