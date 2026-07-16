@@ -175,6 +175,14 @@ IDENTIFICATION DE LA VARIATION — ORDRE DE PRIORITÉ :
 
 ERREUR FRÉQUENTE À ÉVITER : Une carte Mosaic avec une bordure bleue mais un design d'insert distinct (ex: Bang!, Jam!) N'EST PAS "Blue Mosaic" — c'est l'INSERT en question.
 
+ANNÉE / SAISON :
+- Cherche l'année imprimée sur le RECTO en haut ou en bas (ex: "2023-24", "2023", "2022-23")
+- Si absent au recto, cherche au VERSO dans le texte du set (ex: "2023-24 Panini Prizm Basketball")
+- Format NBA/NHL/soccer → saison YYYY-YY (ex: 2023-24). Format MLB/NFL → juste l'année (ex: 2023)
+- Le nom du set sur l'étiquette PSA/BGS commence souvent par l'année
+- Si l'image montre "23-24" → retourne "2023-24". Si "23" seul → "2023"
+- Ne devine JAMAIS l'année depuis le joueur ou l'équipe. Si vraiment invisible → ""
+
 COLLECTION (set) :
 - Lis le texte en bas ou en haut de la carte
 - Sur les slabs PSA/BGS, le set est souvent indiqué sur l'étiquette
