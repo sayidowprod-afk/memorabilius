@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "fr.memorabilius.twa",
+        "sha256_cert_fingerprints": ["89:4A:01:D9:FF:34:57:ED:ED:6D:67:BD:C1:7B:12:71:3A:41:65:A5:C3:67:23:65:8D:9A:03:1B:31:B2:15:9A"]
+      }
+    }]
