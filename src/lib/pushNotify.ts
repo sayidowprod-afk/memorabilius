@@ -24,9 +24,10 @@ export async function sendPushToUser(
     return
   }
 
-  // web-push exige du base64url SANS padding "=" — on les strip au cas où
-  const pubKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY.replace(/=+$/, '')
-  const privKey = process.env.VAPID_PRIVATE_KEY.replace(/=+$/, '')
+  // web-push exige du base64url strict : pas de +, /, ni = (base64 standard → base64url)
+  const toBase64url = (s: string) => s.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+  const pubKey = toBase64url(process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY)
+  const privKey = toBase64url(process.env.VAPID_PRIVATE_KEY)
   webpush.setVapidDetails(
     `mailto:${process.env.VAPID_MAILTO || 'contact@memorabilius.fr'}`,
     pubKey,

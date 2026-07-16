@@ -78,8 +78,10 @@ function AnnuaireContent() {
     // Recalculer les stats si pas à jour depuis 24h
     profiles.forEach(async p => {
       const lastUpdate = p.stats_updated_at ? new Date(p.stats_updated_at) : null
-      const isStale = !lastUpdate || (Date.now() - lastUpdate.getTime() > 60 * 60 * 1000)
-      if (isStale) {
+      const isStale = !lastUpdate || (Date.now() - lastUpdate.getTime() > 24 * 60 * 60 * 1000)
+      // Recalcule aussi si le total est un multiple de 1000 — signe d'un ancien plafond Supabase
+      const isCapped = (p.stats_total || 0) > 0 && (p.stats_total || 0) % 1000 === 0
+      if (isStale || isCapped) {
         try {
           const r = await fetch('/api/recalc-user', {
             method: 'POST',
