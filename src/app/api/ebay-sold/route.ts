@@ -115,40 +115,39 @@ async function fetchSoldItems(
   const debug: any = { keywords, mustTerms, mustSetWord }
   const now = new Date()
 
-  // 1. Finding API findCompletedItems — seul endpoint officiel pour les vendues.
-  //    On tente d'abord avec SoldItemsOnly, puis sans si 0 résultats (annonces finies = proxy valable).
+  // 1. Finding API findCompletedItems — itemFilter DOIT être passé en brut dans l'URL,
+  //    URLSearchParams encode les parenthèses (%28%29) qu'eBay ne reconnaît pas.
   const tryFinding = async (soldOnly: boolean) => {
-    const params: Record<string, string> = {
+    const base = new URLSearchParams({
       'OPERATION-NAME': 'findCompletedItems',
       'SERVICE-VERSION': '1.0.0',
       'SECURITY-APPNAME': appId,
       'RESPONSE-DATA-FORMAT': 'JSON',
+      'GLOBAL-ID': 'EBAY-US',
       'keywords': keywords,
       'paginationInput.entriesPerPage': '40',
       'sortOrder': 'EndTimeSoonest',
-    }
-    if (soldOnly) {
-      params['itemFilter(0).name'] = 'SoldItemsOnly'
-      params['itemFilter(0).value'] = 'true'
-    }
+    })
+    const filter = soldOnly ? '&itemFilter(0).name=SoldItemsOnly&itemFilter(0).value=true' : ''
     const findingRes = await fetch(
-      `https://svcs.ebay.com/services/search/FindingService/v1?${new URLSearchParams(params)}`,
-      { cache: 'no-store', signal: AbortSignal.timeout(10000) }
+      `https://svcs.ebay.com/services/search/FindingService/v1?${base}${filter}`,
+      { cache: 'no-store', signal: AbortSignal.timeout(12000) }
     )
     const findingBody = await findingRes.text()
+    debug[soldOnly ? 'findingSoldStatus' : 'findingCompletedStatus'] = findingRes.status
+    debug[soldOnly ? 'findingSoldBody' : 'findingCompletedBody'] = findingBody.slice(0, 150)
     if (!findingRes.ok || !findingBody.startsWith('{')) return []
     const data = JSON.parse(findingBody)
     const rawItems: any[] = data?.findCompletedItemsResponse?.[0]?.searchResult?.[0]?.item || []
     return rawItems
       .map((item: any) => ({
         title: item.title?.[0] || '',
-        price: parseFloat(item.sellingStatus?.[0]?.currentPrice?.[0]?.['__value__'] || '0'),
+        price: parseFloat(item.sellingStatus?.[0]?.convertedCurrentPrice?.[0]?.__value__ || item.sellingStatus?.[0]?.currentPrice?.[0]?.__value__ || '0'),
         url: item.viewItemURL?.[0] || '',
         img: item.galleryURL?.[0] || '',
         soldDate: item.listingInfo?.[0]?.endTime?.[0] || '',
       }))
       .filter(i => i.price > 0)
-      .filter(i => i.soldDate && new Date(i.soldDate) <= now)
       .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
       .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
   }
