@@ -74,6 +74,7 @@ export default function Trades() {
   const [fSport, setFSport] = useState('')
   const [fTags, setFTags] = useState({ rc: false, auto: false, num: false, patch: false })
   const [popup, setPopup] = useState<any | null>(null)
+  const [popupShowVerso, setPopupShowVerso] = useState(false)
 
   // ── État mes échanges ───────────────────────────────────────────────────────
   const [tradeOffers, setTradeOffers] = useState<any[]>([])
@@ -122,6 +123,7 @@ export default function Trades() {
       titre: [c.annee, c.marque, c.collection, c.nom].filter(Boolean).join(' '),
       joueur: c.nom,
       image_url: c.image_recto || null,
+      image_verso: c.image_verso || null,
       statut: 'actif',
       sport: null,
     }))
@@ -288,7 +290,7 @@ export default function Trades() {
             ) : (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 20 }}>
                 {filteredForum.map(trade => (
-                  <div key={trade.id} onClick={() => setPopup(trade)} style={{
+                  <div key={trade.id} onClick={() => { setPopup(trade); setPopupShowVerso(false) }} style={{
                     background: 'white', borderRadius: 16, overflow: 'hidden',
                     boxShadow: '0 4px 20px rgba(0,0,0,0.06)', border: '1px solid #eee',
                     cursor: 'pointer', transition: '0.2s',
@@ -464,10 +466,17 @@ export default function Trades() {
             `}</style>
             <div className="trade-popup-inner" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', flex: 1, minHeight: 0 }}>
               <div className="trade-popup-img" style={{ background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', flexShrink: 0 }}>
-                {popup.image_url ? <ImageZoom src={popup.image_url} alt={popup.titre} /> : <span style={{ fontSize: 80 }}>🃏</span>}
+                {popup.image_url
+                  ? <ImageZoom src={popupShowVerso && popup.image_verso ? popup.image_verso : popup.image_url} alt={popup.titre} key={popupShowVerso ? 'verso' : 'recto'} />
+                  : <span style={{ fontSize: 80 }}>🃏</span>}
                 <div style={{ position: 'absolute', top: 12, left: 12, background: popup._source === 'galerie' ? '#6a1b9a' : popup.type === 'offre' ? '#2e7d32' : '#1976d2', color: 'white', padding: '4px 12px', borderRadius: 20, fontSize: 12, fontWeight: 900 }}>
                   {popup._source === 'galerie' ? '🏷️ Vente/Trade' : popup.type === 'offre' ? '📤 Offre' : '📥 Recherche'}
                 </div>
+                {popup._source === 'galerie' && popup.image_verso && (
+                  <button onClick={() => setPopupShowVerso(v => !v)} style={{ position: 'absolute', bottom: 12, right: 12, background: 'rgba(0,0,0,0.6)', color: 'white', border: 'none', borderRadius: 20, padding: '6px 14px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+                    {popupShowVerso ? '↩ Recto' : '↪ Verso'}
+                  </button>
+                )}
               </div>
               <div className="trade-popup-info" style={{ padding: 24, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
                 <button onClick={() => setPopup(null)} style={{ alignSelf: 'flex-end', background: '#f0f0f0', border: 'none', width: 32, height: 32, borderRadius: '50%', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</button>
