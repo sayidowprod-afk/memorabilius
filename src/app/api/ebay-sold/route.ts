@@ -109,84 +109,54 @@ async function fetchSoldItems(
   mustTerms: string[],
   mustSetWord: string,
   isGraded: boolean,
+  token: string,
 ): Promise<{ items: Array<{ title: string; price: number; url: string; img: string; soldDate: string }>; debug: any }> {
   const debug: any = { keywords, mustTerms, mustSetWord }
   try {
-    const qs = new URLSearchParams({
-      _nkw: keywords,
-      LH_Sold: '1',
-      LH_Complete: '1',
-      _sacat: '0',
-      _ipg: '60',
+    // Browse API avec soldItemsOnly:{true} — même token OAuth que les annonces actives
+    const params = new URLSearchParams({
+      q: keywords,
+      filter: 'soldItemsOnly:{true}',
+      limit: '40',
     })
-    const res = await fetch(`https://www.ebay.com/sch/i.html?${qs}`, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      },
-      cache: 'no-store',
-      signal: AbortSignal.timeout(15000),
-    })
-    debug.scrapeStatus = res.status
-    if (!res.ok) return { items: [], debug }
+    const res = await fetch(
+      `https://api.ebay.com/buy/browse/v1/item_summary/search?${params}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US',
+        },
+        cache: 'no-store',
+        signal: AbortSignal.timeout(12000),
+      }
+    )
+    const body = await res.text()
+    debug.browseStatus = res.status
+    debug.browseBody = body.slice(0, 400)
 
-    const html = await res.text()
-    debug.htmlLen = html.length
+    if (res.ok) {
+      const data = JSON.parse(body)
+      const rawItems: any[] = data?.itemSummaries || []
+      debug.browseRaw = rawItems.length
 
-    if (html.length < 5000 || html.includes('g-recaptcha')) {
-      debug.blocked = true
-      return { items: [], debug }
+      const mapped = rawItems
+        .map((item: any) => ({
+          title: item.title || '',
+          price: parseFloat(item.price?.value || '0'),
+          url: item.itemWebUrl || '',
+          img: item.thumbnailImages?.[0]?.imageUrl || item.image?.imageUrl || '',
+          soldDate: item.itemEndDate || item.lastSoldDate || '',
+        }))
+        .filter(i => i.price > 0 && titleMatchesCard(i.title, mustTerms, isGraded))
+        .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
+
+      debug.browseMapped = mapped.length
+      return { items: applyOutlierFilter(mapped), debug }
     }
-
-    // Chaque annonce eBay est séparée par "s-item__wrapper" dans le HTML
-    const blocks = html.split('s-item__wrapper')
-    debug.blocks = blocks.length - 1
-
-    const items: Array<{ title: string; price: number; url: string; img: string; soldDate: string }> = []
-
-    for (let i = 1; i < blocks.length; i++) {
-      const block = blocks[i]
-
-      // URL de l'annonce
-      const urlM = block.match(/href="(https:\/\/www\.ebay\.com\/itm\/[0-9]+)[^"]*"/)
-      if (!urlM) continue
-      const url = urlM[1]
-
-      // Titre
-      const titleM = block.match(/s-item__title[^>]*>([\s\S]*?)<\/(?:h3|div|span)/)
-      const title = (titleM?.[1] || '').replace(/<[^>]+>/g, '').replace(/<!--[\s\S]*?-->/g, '').trim()
-      if (!title || title.toLowerCase() === 'shop on ebay') continue
-
-      // Prix (premier montant en dollars dans le bloc)
-      const priceM = block.match(/\$([0-9,]+\.?[0-9]*)/)
-      const price = parseFloat(priceM?.[1]?.replace(',', '') || '0')
-      if (!price) continue
-
-      // Image
-      const imgM = block.match(/src="(https:\/\/i\.ebayimg\.com\/[^"]+)"/)
-      const img = imgM?.[1] || ''
-
-      // Date de vente (texte "Sold mmm DD, YYYY")
-      const dateM = block.match(/POSITIVE[^>]*>([^<]*Sold[^<]*)</)
-      const soldDate = dateM?.[1]?.trim() || ''
-
-      items.push({ title, price, url, img, soldDate })
-    }
-
-    debug.scraped = items.length
-
-    const filtered = items
-      .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
-      .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
-
-    debug.filtered = filtered.length
-
-    return { items: applyOutlierFilter(filtered), debug }
   } catch (e) {
-    debug.error = String(e)
-    return { items: [], debug }
+    debug.browseError = String(e)
   }
+  return { items: [], debug }
 }
 
 function median(prices: number[]): number {
@@ -266,7 +236,7 @@ export async function GET(req: NextRequest) {
     const timeout = setTimeout(() => controller.abort(), 20000)
 
     // Active listings + sold comps en parallèle
-    const soldPromise = fetchSoldItems(soldKeywords, mustTerms, mustSetWord, isGraded)
+    const soldPromise = fetchSoldItems(soldKeywords, mustTerms, mustSetWord, isGraded, token)
 
     let rawItems: any[] = []
 
