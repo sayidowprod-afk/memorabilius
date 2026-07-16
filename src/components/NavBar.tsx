@@ -190,20 +190,20 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Ma Galerie mobile — visible sans ouvrir le menu */}
-        {user && (
-          <Link href={`/galerie/${user.id}`} className="nav-hamburger"
-            style={{ background: '#003DA6', color: 'white', borderRadius: 20, padding: '7px 14px', fontWeight: 700, fontSize: 13, textDecoration: 'none', whiteSpace: 'nowrap', marginRight: 8 }}>
-            {t('nav_galerie')}
-          </Link>
-        )}
-
-        {/* Hamburger */}
-        <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, display: 'flex', flexDirection: 'column', gap: 5 }}>
-          <span style={{ display: 'block', width: 25, height: 2.5, background: dark ? '#ddd' : '#333', borderRadius: 2, transition: '0.3s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
-          <span style={{ display: 'block', width: 25, height: 2.5, background: dark ? '#ddd' : '#333', borderRadius: 2, transition: '0.3s', opacity: menuOpen ? 0 : 1 }} />
-          <span style={{ display: 'block', width: 25, height: 2.5, background: dark ? '#ddd' : '#333', borderRadius: 2, transition: '0.3s', transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }} />
-        </button>
+        {/* Ma Galerie + Hamburger groupés (mobile uniquement) */}
+        <div className="nav-hamburger" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          {user && (
+            <Link href={`/galerie/${user.id}`}
+              style={{ background: '#003DA6', color: 'white', borderRadius: 20, padding: '9px 18px', fontWeight: 700, fontSize: 14, textDecoration: 'none', whiteSpace: 'nowrap' }}>
+              {t('nav_galerie')}
+            </Link>
+          )}
+          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 6, display: 'flex', flexDirection: 'column', gap: 5 }}>
+            <span style={{ display: 'block', width: 25, height: 2.5, background: dark ? '#ddd' : '#333', borderRadius: 2, transition: '0.3s', transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none' }} />
+            <span style={{ display: 'block', width: 25, height: 2.5, background: dark ? '#ddd' : '#333', borderRadius: 2, transition: '0.3s', opacity: menuOpen ? 0 : 1 }} />
+            <span style={{ display: 'block', width: 25, height: 2.5, background: dark ? '#ddd' : '#333', borderRadius: 2, transition: '0.3s', transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none' }} />
+          </button>
+        </div>
       </nav>
 
       {/* Menu mobile */}
