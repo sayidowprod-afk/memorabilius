@@ -43,21 +43,22 @@ export async function GET(req: NextRequest) {
         }
       }
 
-      // Cartes manuelles
-      const { data: manuelles } = await supabase
-        .from('cartes_manuelles')
-        .select('rc, auto, patch, num')
-        .eq('user_id', p.id)
-        .limit(10000)
-
-      if (manuelles) {
-        for (const m of manuelles) {
+      // Pagination pour bypasser le max_rows=1000 de Supabase (identique à la galerie)
+      for (let from = 0; ; from += 1000) {
+        const { data: batch } = await supabase
+          .from('cartes_manuelles')
+          .select('rc, auto, patch, num')
+          .eq('user_id', p.id)
+          .range(from, from + 999)
+        if (!batch || batch.length === 0) break
+        for (const m of batch) {
           stats.total++
           if (m.rc) stats.rc++
           if (m.auto) stats.auto++
           if (m.patch) stats.patch++
           if (m.num) stats.num++
         }
+        if (batch.length < 1000) break
       }
 
       // monthly_additions n'est pas touché ici : un CSV n'a pas de date d'ajout

@@ -24,12 +24,9 @@ export async function POST(req: NextRequest) {
 
     const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
 
-    const [csvText, manuellesRes] = await Promise.all([
-      profile.lien_csv
-        ? fetchCsvCapped(profile.lien_csv, { cache: 'no-store', signal: AbortSignal.timeout(12000) })
-        : Promise.resolve(null),
-      supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).limit(10000),
-    ])
+    const csvText = profile.lien_csv
+      ? await fetchCsvCapped(profile.lien_csv, { cache: 'no-store', signal: AbortSignal.timeout(12000) })
+      : null
 
     if (csvText) {
       const s = parseCardStats(csvText)
@@ -40,14 +37,22 @@ export async function POST(req: NextRequest) {
       stats.patch += s.patch
     }
 
-    if (manuellesRes.data) {
-      for (const m of manuellesRes.data) {
+    // Pagination pour bypasser le max_rows=1000 de Supabase (identique à la galerie)
+    for (let from = 0; ; from += 1000) {
+      const { data: batch } = await supabase
+        .from('cartes_manuelles')
+        .select('rc, auto, patch, num')
+        .eq('user_id', userId)
+        .range(from, from + 999)
+      if (!batch || batch.length === 0) break
+      for (const m of batch) {
         stats.total++
         if (m.rc) stats.rc++
         if (m.auto) stats.auto++
         if (m.patch) stats.patch++
         if (m.num) stats.num++
       }
+      if (batch.length < 1000) break
     }
 
     await supabase.from('profiles').update({

@@ -91,13 +91,62 @@ function processItems(rawItems: any[], mustTerms: string[], mustSetWord: string,
   return items.slice(0, 20)
 }
 
+function applyOutlierFilter(
+  items: Array<{ title: string; price: number; url: string; img: string; soldDate: string }>
+) {
+  if (items.length >= 4) {
+    const prices = [...items].map(i => i.price).sort((a, b) => a - b)
+    const mid = Math.floor(prices.length / 2)
+    const med = prices.length % 2 === 0 ? (prices[mid - 1] + prices[mid]) / 2 : prices[mid]
+    return items.filter(i => i.price >= med * 0.15 && i.price <= med * 5).slice(0, 20)
+  }
+  return items.slice(0, 20)
+}
+
 async function fetchSoldItems(
   keywords: string,
   mustTerms: string[],
   mustSetWord: string,
   isGraded: boolean,
   appId: string,
+  oauthToken?: string,
 ): Promise<Array<{ title: string; price: number; url: string; img: string; soldDate: string }>> {
+  // Marketplace Insights API (OAuth, remplace le Finding API déprécié)
+  if (oauthToken) {
+    try {
+      const params = new URLSearchParams({ q: keywords, limit: '40' })
+      const res = await fetch(
+        `https://api.ebay.com/buy/marketplace_insights/v1_beta/item_sales/search?${params}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${oauthToken}`,
+            'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US',
+          },
+          cache: 'no-store',
+          signal: AbortSignal.timeout(12000),
+        }
+      )
+      if (res.ok) {
+        const data = await res.json()
+        const rawItems: any[] = data?.itemSales || []
+        const mapped = rawItems
+          .map((item: any) => ({
+            title: item.title || '',
+            price: parseFloat(item.lastSoldPrice?.value || '0'),
+            url: item.itemWebUrl || '',
+            img: item.image?.imageUrl || item.thumbnailImages?.[0]?.imageUrl || '',
+            soldDate: item.lastSoldDate || '',
+          }))
+          .filter(i => i.price > 0 && titleMatchesCard(i.title, mustTerms, isGraded))
+          .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
+        if (mapped.length > 0) return applyOutlierFilter(mapped)
+      }
+    } catch {
+      // fallback Finding API
+    }
+  }
+
+  // Fallback: Finding API (legacy)
   try {
     const params = new URLSearchParams({
       'OPERATION-NAME': 'findCompletedItems',
@@ -116,25 +165,17 @@ async function fetchSoldItems(
     })
     const data = await res.json()
     const rawItems: any[] = data?.findCompletedItemsResponse?.[0]?.searchResult?.[0]?.item || []
-
-    const mapped = rawItems.map((item: any) => ({
-      title: item.title?.[0] || '',
-      price: parseFloat(item.sellingStatus?.[0]?.convertedCurrentPrice?.[0]?.__value__ || '0'),
-      url: item.viewItemURL?.[0] || '',
-      img: item.galleryURL?.[0] || '',
-      soldDate: item.listingInfo?.[0]?.endTime?.[0] || '',
-    }))
-    .filter(i => i.price > 0 && titleMatchesCard(i.title, mustTerms, isGraded))
-    .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
-
-    // Outlier filter
-    if (mapped.length >= 4) {
-      const prices = [...mapped].map(i => i.price).sort((a, b) => a - b)
-      const mid = Math.floor(prices.length / 2)
-      const med = prices.length % 2 === 0 ? (prices[mid - 1] + prices[mid]) / 2 : prices[mid]
-      return mapped.filter(i => i.price >= med * 0.15 && i.price <= med * 5).slice(0, 20)
-    }
-    return mapped.slice(0, 20)
+    const mapped = rawItems
+      .map((item: any) => ({
+        title: item.title?.[0] || '',
+        price: parseFloat(item.sellingStatus?.[0]?.convertedCurrentPrice?.[0]?.__value__ || '0'),
+        url: item.viewItemURL?.[0] || '',
+        img: item.galleryURL?.[0] || '',
+        soldDate: item.listingInfo?.[0]?.endTime?.[0] || '',
+      }))
+      .filter(i => i.price > 0 && titleMatchesCard(i.title, mustTerms, isGraded))
+      .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
+    return applyOutlierFilter(mapped)
   } catch {
     return []
   }
@@ -217,7 +258,7 @@ export async function GET(req: NextRequest) {
     const timeout = setTimeout(() => controller.abort(), 20000)
 
     // Active listings + sold comps en parallèle
-    const soldPromise = fetchSoldItems(soldKeywords, mustTerms, mustSetWord, isGraded, appId)
+    const soldPromise = fetchSoldItems(soldKeywords, mustTerms, mustSetWord, isGraded, appId, token)
 
     let rawItems: any[] = []
 
