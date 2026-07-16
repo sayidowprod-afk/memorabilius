@@ -24,8 +24,8 @@ export async function sendPushToUser(
     return
   }
 
-  // web-push exige du base64url strict : pas de +, /, ni = (base64 standard → base64url)
-  const toBase64url = (s: string) => s.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+  // web-push valide /^[A-Za-z0-9\-\_]*$/ — convertit base64 → base64url et retire tout = et espace
+  const toBase64url = (s: string) => s.trim().replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
   const pubKey = toBase64url(process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY)
   const privKey = toBase64url(process.env.VAPID_PRIVATE_KEY)
   webpush.setVapidDetails(
