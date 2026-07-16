@@ -138,7 +138,7 @@ export default function Navbar() {
               <div style={{ position: 'absolute', top: 56, left: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 160, zIndex: 300 }}>
                 <Link href="/scanner" style={dropItemStyle} onClick={() => setDropOutils(false)}>📷 Scanner</Link>
                 <Link href="/setlist" style={dropItemStyle} onClick={() => setDropOutils(false)}>📋 Setlist</Link>
-                <Link href="/recherche" style={dropItemStyle} onClick={() => setDropOutils(false)}>🔍 {t('nav_recherche')}</Link>
+                <Link href="/recherche" style={dropItemStyle} onClick={() => setDropOutils(false)}>{t('nav_recherche')}</Link>
               </div>
             )}
           </div>
@@ -147,16 +147,24 @@ export default function Navbar() {
             <Link href="/tuto" style={linkStyle}>{t('nav_tuto')}</Link>
           </div>
 
+          {/* Ma Galerie — dans les liens principaux */}
+          {user && (
+            <Link href={`/galerie/${user.id}`}
+              style={{ background: '#003DA6', color: 'white', borderRadius: 20, padding: '8px 18px', fontWeight: 700, fontSize: 14, textDecoration: 'none', marginLeft: 8, whiteSpace: 'nowrap' }}>
+              {t('nav_galerie')}
+            </Link>
+          )}
+
           {/* Séparateur */}
-          <div style={{ width: 1, height: 24, background: dark ? '#333' : '#e0e0e0', margin: '0 4px' }} />
+          <div style={{ width: 1, height: 24, background: dark ? '#333' : '#e0e0e0', margin: '0 8px' }} />
 
           {user === undefined ? (
             <div style={{ visibility: 'hidden', display: 'flex', gap: 8, alignItems: 'center', pointerEvents: 'none' }}>
-              <span style={{ fontWeight: 600, padding: '0 12px' }}>🔔</span>
-              <span style={{ fontWeight: 600, padding: '0 12px' }}>Profil</span>
+              <span style={{ fontWeight: 600 }}>🔔</span>
+              <span style={{ fontWeight: 600 }}>Profil</span>
               <button style={{ background: 'none', border: '1px solid #ddd', borderRadius: 20, padding: '4px 10px', fontSize: 12, fontWeight: 700 }}>FR</button>
               <button style={{ background: 'none', border: '1px solid #ddd', borderRadius: 20, padding: '4px 12px', fontSize: 14 }}>🌙</button>
-              <span style={{ background: '#003DA6', color: 'white', borderRadius: 20, padding: '8px 18px', fontWeight: 700, fontSize: 14 }}>Ma galerie</span>
+              <button style={{ background: 'none', border: '1px solid #ddd', borderRadius: 20, padding: '6px 14px', fontSize: 13 }}>Déco</button>
             </div>
           ) : user ? (
             <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
@@ -171,10 +179,6 @@ export default function Navbar() {
               <LangToggle />
               <button onClick={toggle} style={{ background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`, borderRadius: 20, padding: '4px 12px', cursor: 'pointer', fontSize: 14 }}>{dark ? '☀️' : '🌙'}</button>
               <button onClick={handleLogout} style={{ background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`, borderRadius: 20, padding: '6px 14px', cursor: 'pointer', fontSize: 13, fontWeight: 600, color: dark ? '#ddd' : '#555' }}>{t('nav_deconnexion')}</button>
-              <Link href={`/galerie/${user.id}`}
-                style={{ background: '#003DA6', color: 'white', borderRadius: 20, padding: '8px 18px', fontWeight: 700, fontSize: 14, textDecoration: 'none', marginLeft: 4, whiteSpace: 'nowrap' }}>
-                {t('nav_galerie')}
-              </Link>
             </div>
           ) : (
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
@@ -185,6 +189,14 @@ export default function Navbar() {
             </div>
           )}
         </div>
+
+        {/* Ma Galerie mobile — visible sans ouvrir le menu */}
+        {user && (
+          <Link href={`/galerie/${user.id}`} className="nav-hamburger"
+            style={{ background: '#003DA6', color: 'white', borderRadius: 20, padding: '7px 14px', fontWeight: 700, fontSize: 13, textDecoration: 'none', whiteSpace: 'nowrap', marginRight: 8 }}>
+            {t('nav_galerie')}
+          </Link>
+        )}
 
         {/* Hamburger */}
         <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, display: 'flex', flexDirection: 'column', gap: 5 }}>
@@ -197,10 +209,7 @@ export default function Navbar() {
       {/* Menu mobile */}
       {menuOpen && (
         <div style={{ position: 'fixed', top: 60, left: 0, right: 0, bottom: 0, background: dark ? '#1a1a1a' : 'white', zIndex: 199, padding: '16px 24px', display: 'flex', flexDirection: 'column', overflowY: 'auto' }} className="nav-mobile-menu">
-          {user && (
-            <Link href={`/galerie/${user.id}`} style={{ ...ls, color: '#003DA6', fontWeight: 800, fontSize: 16 }} onClick={() => setMenuOpen(false)}>🃏 {t('nav_galerie')}</Link>
-          )}
-          <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>Communauté</div>
+          <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '4px 0 4px' }}>Communauté</div>
           <Link href="/annuaire" style={ls} onClick={() => setMenuOpen(false)}>👥 {t('nav_annuaire')}</Link>
           <Link href="/teams" style={ls} onClick={() => setMenuOpen(false)}>🏆 {t('nav_teams')}</Link>
           <Link href="/trades" style={ls} onClick={() => setMenuOpen(false)}>🔄 {t('nav_trades')}</Link>
@@ -208,7 +217,7 @@ export default function Navbar() {
           <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>Outils</div>
           <Link href="/scanner" style={ls} onClick={() => setMenuOpen(false)}>📷 Scanner</Link>
           <Link href="/setlist" style={ls} onClick={() => setMenuOpen(false)}>📋 Setlist</Link>
-          <Link href="/recherche" style={ls} onClick={() => setMenuOpen(false)}>🔍 {t('nav_recherche')}</Link>
+          <Link href="/recherche" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_recherche')}</Link>
           <Link href="/tuto" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_tuto')}</Link>
           {user ? (
             <>
