@@ -36,11 +36,14 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ user
     if (p) resolvedId = p.id
   }
 
-  const [{ data: profile }, { data: cards }, { count: cardCount }] = await Promise.all([
+  const [{ data: profile }, { data: allCards }, { count: cardCount }, { data: privees }] = await Promise.all([
     supabase.from('profiles').select('display_name, avatar_url, couleur_bordure').eq('id', resolvedId).single(),
-    supabase.from('cartes_manuelles').select('image_recto').eq('user_id', resolvedId).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(5),
+    supabase.from('cartes_manuelles').select('image_recto').eq('user_id', resolvedId).not('image_recto', 'is', null).order('created_at', { ascending: false }).limit(50),
     supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('user_id', resolvedId),
+    supabase.from('cartes_privees').select('card_key').eq('user_id', resolvedId),
   ])
+  const privateKeys = new Set((privees || []).map((p: any) => p.card_key))
+  const cards = (allCards || []).filter(c => !privateKeys.has(c.image_recto)).slice(0, 5)
 
   if (!profile) {
     return new ImageResponse(

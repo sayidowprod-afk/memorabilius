@@ -186,19 +186,23 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
   const [error, setError] = useState('')
 
   const fetchTargetCards = useCallback(async () => {
-    const [{ data: manuelles }, { data: profile }] = await Promise.all([
+    const [{ data: manuelles }, { data: profile }, { data: privees }] = await Promise.all([
       supabase.from('cartes_manuelles')
         .select('id, nom, annee, marque, image_recto, rc, auto, patch')
         .eq('user_id', targetUserId)
         .order('created_at', { ascending: false }),
       supabase.from('profiles').select('lien_csv').eq('id', targetUserId).single(),
+      supabase.from('cartes_privees').select('card_key').eq('user_id', targetUserId),
     ])
-    const manuelCards: CardInfo[] = (manuelles || []).map(c => ({ ...c, isManuelle: true }))
+    const privateKeys = new Set((privees || []).map((p: any) => p.card_key))
+    const manuelCards: CardInfo[] = (manuelles || [])
+      .filter(c => !privateKeys.has(c.image_recto))
+      .map(c => ({ ...c, isManuelle: true }))
     let csvCards: CardInfo[] = []
     if (profile?.lien_csv) {
       try {
         const res = await fetch(profile.lien_csv + '&t=' + Date.now())
-        if (res.ok) csvCards = parseCSVCards(await res.text())
+        if (res.ok) csvCards = parseCSVCards(await res.text()).filter(c => !privateKeys.has(c.image_recto))
       } catch { }
     }
     setTargetCards([...manuelCards, ...csvCards])

@@ -23,16 +23,20 @@ export async function GET(req: NextRequest) {
   // Pour la numérotation : garde seulement le tirage (/99), ignore le numéro individuel (23/99 → 99)
   const normNum = (s: string) => { const m = s.match(/\/(\d+)/); return m ? m[1] : normalize(s) }
 
-  // Cartes manuelles
-  const { data: manuelles } = await supabase
-    .from('cartes_manuelles')
-    .select('user_id, nom, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
-    .neq('user_id', excludeUserId)
+  // Cartes manuelles + cartes privées (pour filtrage)
+  const [{ data: manuelles }, { data: privees }] = await Promise.all([
+    supabase.from('cartes_manuelles')
+      .select('user_id, nom, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
+      .neq('user_id', excludeUserId),
+    supabase.from('cartes_privees').select('user_id, card_key'),
+  ])
+  const privateSet = new Set((privees || []).map((p: any) => `${p.user_id}::${p.card_key}`))
 
   const matchIds = new Set<string>()
   const cardsByUser = new Map<string, any>()
 
   ;(manuelles || []).forEach(m => {
+    if (privateSet.has(`${m.user_id}::${m.image_recto}`)) return
     const sameName    = normalize(m.nom || '') === normalize(name)
     const sameYear    = !year    || normalize(m.annee || '')      === normalize(year)
     const sameBrand   = !brand   || normalize(m.marque || '')     === normalize(brand)
