@@ -175,13 +175,14 @@ IDENTIFICATION DE LA VARIATION — ORDRE DE PRIORITÉ :
 
 ERREUR FRÉQUENTE À ÉVITER : Une carte Mosaic avec une bordure bleue mais un design d'insert distinct (ex: Bang!, Jam!) N'EST PAS "Blue Mosaic" — c'est l'INSERT en question.
 
-ANNÉE / SAISON :
-- Cherche l'année imprimée sur le RECTO en haut ou en bas (ex: "2023-24", "2023", "2022-23")
-- Si absent au recto, cherche au VERSO dans le texte du set (ex: "2023-24 Panini Prizm Basketball")
-- Format NBA/NHL/soccer → saison YYYY-YY (ex: 2023-24). Format MLB/NFL → juste l'année (ex: 2023)
-- Le nom du set sur l'étiquette PSA/BGS commence souvent par l'année
-- Si l'image montre "23-24" → retourne "2023-24". Si "23" seul → "2023"
-- Ne devine JAMAIS l'année depuis le joueur ou l'équipe. Si vraiment invisible → ""
+ANNÉE / SAISON — RÈGLE ABSOLUE : COPIE CE QUI EST IMPRIMÉ, NE DÉDUIS PAS.
+- Cherche l'année sur le RECTO (en haut, en bas, dans un coin) puis sur le VERSO (texte du set, étiquette PSA/BGS)
+- TOPPS (Chrome, Heritage, Bowman, Stadium Club…) → toujours YYYY imprimé sur la carte (ex: "2025", "2024"). Ne jamais écrire "2024-25" pour Topps.
+- PANINI NBA/NHL/Soccer (Prizm, Mosaic, Select…) → souvent YYYY-YY (ex: "2024-25"). Si la carte n'affiche qu'une année → retourne cette année exacte.
+- UPPER DECK NHL → souvent YYYY-YY (ex: "2024-25")
+- Si la carte affiche "2025" → retourne "2025". Si elle affiche "2024-25" → retourne "2024-25". Recopie exactement.
+- Si l'image montre "25-26" abrégé → développe en "2025-26". Si "25" seul → "2025".
+- Ne devine JAMAIS l'année depuis le joueur, l'équipe, ou le set. Si vraiment illisible → ""
 
 COLLECTION (set) :
 - Lis le texte en bas ou en haut de la carte
