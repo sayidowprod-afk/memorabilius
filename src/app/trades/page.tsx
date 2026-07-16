@@ -101,12 +101,35 @@ export default function Trades() {
   }, [])
 
   const loadForum = async () => {
-    const { data } = await supabase
-      .from('trades')
-      .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
-      .eq('statut', 'actif')
-      .order('created_at', { ascending: false })
-    setTrades(data || [])
+    const [{ data: tradeData }, { data: carteData }] = await Promise.all([
+      supabase
+        .from('trades')
+        .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
+        .eq('statut', 'actif')
+        .order('created_at', { ascending: false }),
+      supabase
+        .from('cartes_manuelles')
+        .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
+        .eq('disponible_vente', true)
+        .order('created_at', { ascending: false }),
+    ])
+
+    // Mapper les cartes galerie en objets trade-compatibles
+    const cartesAsOffers = (carteData || []).map(c => ({
+      ...c,
+      _source: 'galerie' as const,
+      type: 'offre',
+      titre: [c.annee, c.marque, c.collection, c.nom].filter(Boolean).join(' '),
+      joueur: c.nom,
+      image_url: c.image_recto || null,
+      statut: 'actif',
+      sport: null,
+    }))
+
+    const merged = [...(tradeData || []), ...cartesAsOffers]
+      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+
+    setTrades(merged)
     setLoadingForum(false)
   }
 
@@ -135,6 +158,12 @@ export default function Trades() {
 
   const closeTrade = async (id: number) => {
     await supabase.from('trades').update({ statut: 'clos' }).eq('id', id)
+    setTrades(prev => prev.filter(t => t.id !== id))
+    setPopup(null)
+  }
+
+  const removeSale = async (id: number) => {
+    await supabase.from('cartes_manuelles').update({ disponible_vente: false }).eq('id', id)
     setTrades(prev => prev.filter(t => t.id !== id))
     setPopup(null)
   }
@@ -267,9 +296,9 @@ export default function Trades() {
                     onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px)')}
                     onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
                   >
-                    <div style={{ padding: '8px 16px', background: trade.type === 'offre' ? '#e8f5e9' : '#e3f2fd', display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ fontSize: 12, fontWeight: 900, color: trade.type === 'offre' ? '#2e7d32' : '#1976d2' }}>
-                        {trade.type === 'offre' ? '📤 Offre' : '📥 Recherche'}
+                    <div style={{ padding: '8px 16px', background: (trade as any)._source === 'galerie' ? '#f3e5f5' : trade.type === 'offre' ? '#e8f5e9' : '#e3f2fd', display: 'flex', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: 12, fontWeight: 900, color: (trade as any)._source === 'galerie' ? '#6a1b9a' : trade.type === 'offre' ? '#2e7d32' : '#1976d2' }}>
+                        {(trade as any)._source === 'galerie' ? '🏷️ Vente/Trade' : trade.type === 'offre' ? '📤 Offre' : '📥 Recherche'}
                       </span>
                       <span style={{ fontSize: 11, color: '#999' }}>{new Date(trade.created_at).toLocaleDateString('fr-FR')}</span>
                     </div>
@@ -436,8 +465,8 @@ export default function Trades() {
             <div className="trade-popup-inner" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', flex: 1, minHeight: 0 }}>
               <div className="trade-popup-img" style={{ background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', flexShrink: 0 }}>
                 {popup.image_url ? <ImageZoom src={popup.image_url} alt={popup.titre} /> : <span style={{ fontSize: 80 }}>🃏</span>}
-                <div style={{ position: 'absolute', top: 12, left: 12, background: popup.type === 'offre' ? '#2e7d32' : '#1976d2', color: 'white', padding: '4px 12px', borderRadius: 20, fontSize: 12, fontWeight: 900 }}>
-                  {popup.type === 'offre' ? '📤 Offre' : '📥 Recherche'}
+                <div style={{ position: 'absolute', top: 12, left: 12, background: popup._source === 'galerie' ? '#6a1b9a' : popup.type === 'offre' ? '#2e7d32' : '#1976d2', color: 'white', padding: '4px 12px', borderRadius: 20, fontSize: 12, fontWeight: 900 }}>
+                  {popup._source === 'galerie' ? '🏷️ Vente/Trade' : popup.type === 'offre' ? '📤 Offre' : '📥 Recherche'}
                 </div>
               </div>
               <div className="trade-popup-info" style={{ padding: 24, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14, flex: 1 }}>
@@ -445,10 +474,13 @@ export default function Trades() {
                 <h2 style={{ fontWeight: 900, fontSize: 22, margin: 0 }}>{popup.titre}</h2>
                 {(popup.joueur || popup.annee || popup.marque || popup.equipe) && (
                   <div style={{ background: '#f8f8f8', borderRadius: 10, padding: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                    {popup.joueur && <p style={{ margin: 0, fontSize: 14, fontWeight: 700 }}>{SPORTS[popup.sport] || '🏀'} {popup.joueur}</p>}
+                    {popup.joueur && <p style={{ margin: 0, fontSize: 14, fontWeight: 700 }}>{popup.sport ? (SPORTS[popup.sport] || '🏀') : '🃏'} {popup.joueur}</p>}
                     {popup.equipe && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>🏟️ {popup.equipe}</p>}
                     {popup.annee && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>📅 {popup.annee}</p>}
                     {popup.marque && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>🏷️ {popup.marque}</p>}
+                    {popup._source === 'galerie' && popup.collection && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>📦 {popup.collection}{popup.variation ? ` · ${popup.variation}` : ''}</p>}
+                    {popup._source === 'galerie' && popup.grade && popup.grade !== 'Raw' && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>⭐ {popup.grade}{popup.cert_number ? ` · #${popup.cert_number}` : ''}</p>}
+                    {popup._source === 'galerie' && popup.num && <p style={{ margin: 0, fontSize: 13, color: '#666' }}>🔢 {popup.card_number || ''} {popup.num}</p>}
                     <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 4 }}>
                       {popup.rc && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
                       {popup.auto && <span style={{ fontSize: 10, fontWeight: 900, padding: '3px 8px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
@@ -478,7 +510,20 @@ export default function Trades() {
                       💬 Envoyer un message
                     </Link>
                   )}
-                  {userId === popup.user_id && (
+                  {userId === popup.user_id && popup._source === 'galerie' && (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <Link href={`/galerie/${userId}`} onClick={() => setPopup(null)} style={{
+                        background: '#f0f0f0', color: '#333', padding: '12px',
+                        borderRadius: 10, fontWeight: 700, fontSize: 14, textAlign: 'center', textDecoration: 'none',
+                      }}>
+                        🖼️ Voir dans ma galerie
+                      </Link>
+                      <button onClick={() => removeSale(popup.id)} style={{ background: '#fff5f5', color: '#e67e22', padding: '12px', border: 'none', borderRadius: 10, fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>
+                        ✕ Retirer de la vente
+                      </button>
+                    </div>
+                  )}
+                  {userId === popup.user_id && !popup._source && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                       <Link href={`/trades/${popup.id}`} onClick={() => setPopup(null)} style={{
                         background: '#f0f0f0', color: '#333', padding: '12px',
