@@ -303,8 +303,8 @@ export default function Trades() {
                       <span style={{ fontSize: 11, color: '#999' }}>{new Date(trade.created_at).toLocaleDateString('fr-FR')}</span>
                     </div>
                     {trade.image_url ? (
-                      <div style={{ height: 200, overflow: 'hidden' }}>
-                        <img src={trade.image_url} alt={trade.titre} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      <div style={{ background: '#f4f4f4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <img src={trade.image_url} alt={trade.titre} style={{ width: '100%', aspectRatio: '2.5 / 3.5', objectFit: 'contain', display: 'block' }} />
                       </div>
                     ) : (
                       <div style={{ height: 80, background: '#f8f8f8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32 }}>🃏</div>
