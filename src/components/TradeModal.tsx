@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -15,6 +15,17 @@ interface CardInfo {
   patch: boolean
   isManuelle: boolean
 }
+
+interface Filters {
+  search: string
+  annee: string
+  marque: string
+  rc: boolean
+  auto: boolean
+  patch: boolean
+}
+
+const emptyFilters = (): Filters => ({ search: '', annee: '', marque: '', rc: false, auto: false, patch: false })
 
 interface TradeModalProps {
   targetCard: { id: string; nom: string; annee: string; marque: string; image_recto?: string }
@@ -44,6 +55,21 @@ function parseCSVCards(csvText: string): CardInfo[] {
     })
   }
   return cards
+}
+
+function applyFilters(cards: CardInfo[], f: Filters): CardInfo[] {
+  return cards.filter(c => {
+    if (f.rc && !c.rc) return false
+    if (f.auto && !c.auto) return false
+    if (f.patch && !c.patch) return false
+    if (f.annee && c.annee !== f.annee) return false
+    if (f.marque && c.marque !== f.marque) return false
+    if (f.search.trim()) {
+      const q = f.search.toLowerCase()
+      if (!c.nom.toLowerCase().includes(q) && !c.annee.includes(q) && !c.marque.toLowerCase().includes(q)) return false
+    }
+    return true
+  })
 }
 
 function CardGrid({
@@ -95,28 +121,65 @@ function CardGrid({
   )
 }
 
+const selStyle: React.CSSProperties = { padding: '5px 8px', borderRadius: 8, border: '1.5px solid #e0e0e0', fontSize: 11, background: 'white', cursor: 'pointer', fontFamily: 'inherit' }
+
+function FilterBar({ cards, filters, onChange }: { cards: CardInfo[]; filters: Filters; onChange: (f: Filters) => void }) {
+  const années = useMemo(() => [...new Set(cards.map(c => c.annee).filter(Boolean))].sort().reverse(), [cards])
+  const marques = useMemo(() => [...new Set(cards.map(c => c.marque).filter(Boolean))].sort(), [cards])
+  const hasActive = filters.rc || filters.auto || filters.patch || filters.annee || filters.marque || filters.search
+
+  const Tag = ({ label, key2, bg }: { label: string; key2: 'rc' | 'auto' | 'patch'; bg: string }) => (
+    <button onClick={() => onChange({ ...filters, [key2]: !filters[key2] })} style={{
+      border: filters[key2] ? 'none' : '1.5px solid #ddd', borderRadius: 20, padding: '5px 12px',
+      fontSize: 11, fontWeight: 800, cursor: 'pointer',
+      background: filters[key2] ? bg : '#fff', color: filters[key2] ? '#fff' : '#666',
+    }}>{label}</button>
+  )
+
+  return (
+    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+      {années.length > 0 && (
+        <select value={filters.annee} onChange={e => onChange({ ...filters, annee: e.target.value })}
+          style={{ ...selStyle, borderColor: filters.annee ? '#003DA6' : '#e0e0e0' }}>
+          <option value="">Année</option>
+          {années.map(y => <option key={y} value={y}>{y}</option>)}
+        </select>
+      )}
+      {marques.length > 0 && (
+        <select value={filters.marque} onChange={e => onChange({ ...filters, marque: e.target.value })}
+          style={{ ...selStyle, borderColor: filters.marque ? '#003DA6' : '#e0e0e0' }}>
+          <option value="">Marque</option>
+          {marques.map(m => <option key={m} value={m}>{m}</option>)}
+        </select>
+      )}
+      <Tag label="RC" key2="rc" bg="#e67e22" />
+      <Tag label="Auto" key2="auto" bg="#2e7d32" />
+      <Tag label="Patch" key2="patch" bg="#1976d2" />
+      {hasActive && (
+        <button onClick={() => onChange(emptyFilters())}
+          style={{ border: 'none', background: 'none', fontSize: 11, color: '#aaa', cursor: 'pointer', padding: '5px 4px' }}>
+          ✕ Effacer
+        </button>
+      )}
+    </div>
+  )
+}
+
 export default function TradeModal({ targetCard, targetUserId, targetUserName, onClose, onSuccess }: TradeModalProps) {
   const router = useRouter()
 
-  // Cartes du destinataire — initialisé avec la carte cliquée pour qu'elle soit
-  // disponible immédiatement même si le fetch n'est pas encore terminé.
   const [targetCards, setTargetCards] = useState<CardInfo[]>([{
     id: targetCard.id, nom: targetCard.nom, annee: targetCard.annee, marque: targetCard.marque,
     image_recto: targetCard.image_recto || null, rc: false, auto: false, patch: false, isManuelle: true,
   }])
   const [targetSelected, setTargetSelected] = useState<Set<string>>(new Set([targetCard.id]))
-  const [targetSearch, setTargetSearch] = useState('')
+  const [targetFilters, setTargetFilters] = useState<Filters>(emptyFilters())
   const [targetLoading, setTargetLoading] = useState(true)
 
-  // Mes cartes
   const [myCards, setMyCards] = useState<CardInfo[]>([])
   const [mySelected, setMySelected] = useState<Set<string>>(new Set())
-  const [mySearch, setMySearch] = useState('')
+  const [myFilters, setMyFilters] = useState<Filters>(emptyFilters())
   const [myLoading, setMyLoading] = useState(true)
-
-  const [filterRC, setFilterRC] = useState(false)
-  const [filterAuto, setFilterAuto] = useState(false)
-  const [filterPatch, setFilterPatch] = useState(false)
 
   const [message, setMessage] = useState('')
   const [sending, setSending] = useState(false)
@@ -173,22 +236,8 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
     const next = new Set(prev); next.has(id) ? next.delete(id) : next.add(id); return next
   })
 
-  const filteredTarget = targetCards.filter(c => {
-    if (!targetSearch.trim()) return true
-    const q = targetSearch.toLowerCase()
-    return c.nom.toLowerCase().includes(q) || c.annee.includes(q) || c.marque.toLowerCase().includes(q)
-  })
-
-  const filteredMy = myCards.filter(c => {
-    if (filterRC && !c.rc) return false
-    if (filterAuto && !c.auto) return false
-    if (filterPatch && !c.patch) return false
-    if (mySearch.trim()) {
-      const q = mySearch.toLowerCase()
-      return c.nom.toLowerCase().includes(q) || c.annee.includes(q) || c.marque.toLowerCase().includes(q)
-    }
-    return true
-  })
+  const filteredTarget = applyFilters(targetCards, targetFilters)
+  const filteredMy = applyFilters(myCards, myFilters)
 
   const submit = async () => {
     if (targetSelected.size === 0) { setError('Sélectionne au moins une carte à demander'); return }
@@ -228,25 +277,18 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
     }
   }
 
-  const FilterBtn = ({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) => (
-    <button onClick={onClick} style={{
-      border: active ? 'none' : '1.5px solid #ddd', borderRadius: 20, padding: '5px 12px',
-      fontSize: 11, fontWeight: 800, cursor: 'pointer',
-      background: active ? '#003DA6' : '#fff', color: active ? '#fff' : '#666',
-    }}>{label}</button>
-  )
-
   const sectionLabel = (label: string, count: number) => (
     <div style={{ fontSize: 12, fontWeight: 800, textTransform: 'uppercase', color: '#888' }}>
       {label} <span style={{ color: '#003DA6' }}>({count} sélectionnée{count > 1 ? 's' : ''})</span>
     </div>
   )
 
+  const inputStyle: React.CSSProperties = { border: '1.5px solid #e0e0e0', borderRadius: 10, padding: '7px 12px', fontSize: 13, fontFamily: 'inherit', outline: 'none', width: '100%', boxSizing: 'border-box' }
+
   const modal = (
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
       <div onClick={e => e.stopPropagation()} style={{ background: '#fff', borderRadius: 18, padding: 24, width: '100%', maxWidth: 560, maxHeight: '92vh', display: 'flex', flexDirection: 'column', gap: 14, overflowY: 'auto' }}>
 
-        {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h2 style={{ fontSize: 18, fontWeight: 800, margin: 0 }}>🔄 Proposer un échange</h2>
           <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#888' }}>✕</button>
@@ -255,11 +297,10 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
         {/* Section : cartes du destinataire */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {sectionLabel(`Cartes de ${targetUserName} à demander`, targetSelected.size)}
-          <input
-            type="text" placeholder="Rechercher…" value={targetSearch}
-            onChange={e => setTargetSearch(e.target.value)}
-            style={{ border: '1.5px solid #e0e0e0', borderRadius: 10, padding: '7px 12px', fontSize: 13, fontFamily: 'inherit', outline: 'none', width: '100%', boxSizing: 'border-box' }}
-          />
+          <input type="text" placeholder="Rechercher…" value={targetFilters.search}
+            onChange={e => setTargetFilters(f => ({ ...f, search: e.target.value }))}
+            style={inputStyle} />
+          <FilterBar cards={targetCards} filters={targetFilters} onChange={setTargetFilters} />
           <CardGrid cards={filteredTarget} selected={targetSelected} onToggle={toggleTarget} loading={targetLoading} emptyMsg={`${targetUserName} n'a pas de cartes`} />
         </div>
 
@@ -268,29 +309,14 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
         {/* Section : mes cartes */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {sectionLabel('Tes cartes à offrir', mySelected.size)}
-          <input
-            type="text" placeholder="Rechercher par nom, année, marque…" value={mySearch}
-            onChange={e => setMySearch(e.target.value)}
-            style={{ border: '1.5px solid #e0e0e0', borderRadius: 10, padding: '7px 12px', fontSize: 13, fontFamily: 'inherit', outline: 'none', width: '100%', boxSizing: 'border-box' }}
-          />
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-            <FilterBtn label="RC" active={filterRC} onClick={() => setFilterRC(v => !v)} />
-            <FilterBtn label="Auto" active={filterAuto} onClick={() => setFilterAuto(v => !v)} />
-            <FilterBtn label="Patch" active={filterPatch} onClick={() => setFilterPatch(v => !v)} />
-            {(filterRC || filterAuto || filterPatch || mySearch) && (
-              <button onClick={() => { setFilterRC(false); setFilterAuto(false); setFilterPatch(false); setMySearch('') }}
-                style={{ border: 'none', background: 'none', fontSize: 11, color: '#aaa', cursor: 'pointer', padding: '5px 6px' }}>
-                Tout effacer
-              </button>
-            )}
-          </div>
+          <input type="text" placeholder="Rechercher par nom, année, marque…" value={myFilters.search}
+            onChange={e => setMyFilters(f => ({ ...f, search: e.target.value }))}
+            style={inputStyle} />
+          <FilterBar cards={myCards} filters={myFilters} onChange={setMyFilters} />
           <CardGrid cards={filteredMy} selected={mySelected} onToggle={toggleMy} loading={myLoading} emptyMsg="Ta collection est vide" />
         </div>
 
-        {/* Message */}
-        <textarea
-          placeholder="Message (optionnel)"
-          value={message} onChange={e => setMessage(e.target.value)}
+        <textarea placeholder="Message (optionnel)" value={message} onChange={e => setMessage(e.target.value)}
           maxLength={300} rows={2}
           style={{ resize: 'none', border: '1.5px solid #e0e0e0', borderRadius: 10, padding: '10px 12px', fontSize: 14, fontFamily: 'inherit', outline: 'none' }}
         />
