@@ -192,9 +192,6 @@ async function fetchSoldItems(
         lastSoldDate: i.lastSoldDate || null,
         itemEndDate: i.itemEndDate || null,
       }))
-      const hasSoldDate = rawItems.some(i => i.lastSoldDate)
-      debug.soldItemsOnlyWorking = hasSoldDate
-
       const mapped = rawItems
         .map((item: any) => ({
           title: item.title || '',
@@ -204,9 +201,8 @@ async function fetchSoldItems(
           soldDate: item.lastSoldDate || item.itemEndDate || '',
         }))
         .filter(i => i.price > 0)
-        // Si soldItemsOnly est respecté (lastSoldDate présent), filtrer par date passée.
-        // Sinon (filtre ignoré = annonces actives), laisser passer pour avoir des données.
-        .filter(i => !hasSoldDate || (i.soldDate && new Date(i.soldDate) <= now))
+        // Exiger une date dans le passé — sans ça, les annonces actives (sans lastSoldDate) passent
+        .filter(i => i.soldDate && new Date(i.soldDate) <= now)
         .filter(i => titleMatchesCard(i.title, mustTerms, isGraded))
         .filter(i => !mustSetWord || normalize(i.title).includes(normalize(mustSetWord)))
 
