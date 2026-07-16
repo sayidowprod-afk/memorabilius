@@ -191,7 +191,7 @@ export default function ScannerPage() {
   )
 
   const isSearching = phase === 'searching'
-  const showResults = phase === 'results' || phase === 'loading-sold' || phase === 'done'
+  const showResults = phase === 'results' || phase === 'loading-sold' || phase === 'done' || phase === 'error'
 
   return (
     <div style={{ minHeight: '100vh', background: bg, fontFamily: 'Inter, system-ui, sans-serif' }}>
