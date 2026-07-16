@@ -12,7 +12,6 @@ import CommentsModal from '@/components/CommentsModal'
 import TradeModal from '@/components/TradeModal'
 import LikedCards from '@/components/LikedCards'
 import BinderLibrary from '@/components/BinderLibrary'
-import PCTracker from '@/components/PCTracker'
 import {
   DndContext, closestCenter, PointerSensor, TouchSensor,
   useSensor, useSensors, type DragEndEvent
@@ -147,7 +146,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [privateCards, setPrivateCards] = useState<Set<string>>(new Set())
   const [cardValues, setCardValues] = useState<Map<string, number>>(new Map())
   const [editMode, setEditMode] = useState(false)
-  const [activeTab, setActiveTab] = useState<'collection' | 'wishlist' | 'comments' | 'library' | 'likes' | 'pc'>(
+  const [activeTab, setActiveTab] = useState<'collection' | 'wishlist' | 'comments' | 'library' | 'likes'>(
     (searchParams.get('tab') as any) || 'collection'
   )
   const initialBinderId = searchParams.get('binder') ? parseInt(searchParams.get('binder')!, 10) : null
@@ -936,7 +935,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
         {/* Onglets Collection / Wishlist / Commentaires / Bibliothèque — scrollable sur mobile */}
         <div style={{ display: 'flex', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-          {(['collection', 'wishlist', 'library', 'comments', ...(isOwner ? ['likes'] as const : []), 'pc'] as const).map(tab => (
+          {(['collection', 'wishlist', 'library', 'comments', ...(isOwner ? ['likes'] as const : [])] as const).map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)} style={{
               padding: '8px 16px', border: 'none', borderRadius: 8, cursor: 'pointer',
               fontWeight: 800, fontSize: 13, whiteSpace: 'nowrap', flexShrink: 0,
@@ -945,7 +944,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               boxShadow: activeTab === tab ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
               transition: '0.15s',
             }}>
-              {tab === 'collection' ? '🃏 Collection' : tab === 'wishlist' ? '🎯 Wishlist' : tab === 'comments' ? '💬 Commentaires' : tab === 'likes' ? '❤️ Aimées' : tab === 'pc' ? '🎯 Mes PCs' : '📔 Ma bibliothèque'}
+              {tab === 'collection' ? '🃏 Collection' : tab === 'wishlist' ? '🎯 Wishlist' : tab === 'comments' ? '💬 Commentaires' : tab === 'likes' ? '❤️ Aimées' : '📔 Ma bibliothèque'}
             </button>
           ))}
         </div>
@@ -953,7 +952,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         {activeTab === 'wishlist' && <PublicWishlist userId={userId} accent={accent} isOwner={isOwner} />}
         {activeTab === 'comments' && <GalerieComments galerieUserId={userId} accent={accent} isOwner={isOwner} />}
         {activeTab === 'likes' && isOwner && <LikedCards userId={userId} />}
-        {activeTab === 'pc' && <PCTracker userId={userId} isOwner={isOwner} accent={accent} />}
         {activeTab === 'library' && <BinderLibrary userId={userId} isOwner={isOwner} accent={accent} initialBinderId={initialBinderId}
           onOpenCard={(img) => {
             // Retrouve la carte complète de la collection par son image, pour ouvrir
