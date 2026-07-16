@@ -11,16 +11,17 @@ function titleMatchesCard(title: string, mustTerms: string[], isGraded: boolean)
   return mustTerms.every(term => t.includes(normalize(term)))
 }
 
-async function getOAuthToken(appId: string, certId: string): Promise<string | null> {
+async function getOAuthToken(appId: string, certId: string, scope?: string): Promise<string | null> {
   try {
     const creds = Buffer.from(`${appId}:${certId}`).toString('base64')
+    const encodedScope = encodeURIComponent(scope || 'https://api.ebay.com/oauth/api_scope')
     const res = await fetch('https://api.ebay.com/identity/v1/oauth2/token', {
       method: 'POST',
       headers: {
         'Authorization': `Basic ${creds}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: 'grant_type=client_credentials&scope=https%3A%2F%2Fapi.ebay.com%2Foauth%2Fapi_scope',
+      body: `grant_type=client_credentials&scope=${encodedScope}`,
       cache: 'no-store',
     })
     const data = await res.json()
@@ -244,7 +245,10 @@ export async function GET(req: NextRequest) {
   const mustSetWord = directQ ? '' : (setWords[0] || '')
   const isGraded = Boolean(grade && grade !== 'Raw' && grade !== 'Non gradée' && grade !== '')
 
-  const token = await getOAuthToken(appId, certId)
+  const [token, insightsToken] = await Promise.all([
+    getOAuthToken(appId, certId),
+    getOAuthToken(appId, certId, 'https://api.ebay.com/oauth/api_scope/buy.marketplace.insights'),
+  ])
   if (!token) return NextResponse.json({ items: [] })
 
   const headers = {
@@ -258,7 +262,7 @@ export async function GET(req: NextRequest) {
     const timeout = setTimeout(() => controller.abort(), 20000)
 
     // Active listings + sold comps en parallèle
-    const soldPromise = fetchSoldItems(soldKeywords, mustTerms, mustSetWord, isGraded, appId, token)
+    const soldPromise = fetchSoldItems(soldKeywords, mustTerms, mustSetWord, isGraded, appId, insightsToken || undefined)
 
     let rawItems: any[] = []
 
