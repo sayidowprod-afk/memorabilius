@@ -184,8 +184,8 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
                 onMouseEnter={e => { if (!sel) e.currentTarget.style.borderColor = ACCENT }}
                 onMouseLeave={e => { if (!sel) e.currentTarget.style.borderColor = '#eee' }}
               >
-                <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', background: '#f2f2f2' }}>
-                  <img src={c.img} alt={c.nom} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
+                <div style={{ position: 'relative', paddingTop: '140%', overflow: 'hidden', background: '#f2f2f2' }}>
+                  <img src={c.img} alt={c.nom} loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
                 </div>
                 {(c.rc || c.auto || c.patch) && (
                   <div style={{ position: 'absolute', top: 3, left: 3, display: 'flex', gap: 2 }}>
