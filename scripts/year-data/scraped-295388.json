@@ -1,0 +1,5767 @@
+{
+  "year": 2021,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 295388,
+        "name": "2021 Topps Chrome Update"
+      },
+      "unique": [
+        {
+          "card_number": "CUSA-GP",
+          "player_name": "Geraldo Perdomo",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GP",
+          "player_name": "Geraldo Perdomo",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GP",
+          "player_name": "Geraldo Perdomo",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GP",
+          "player_name": "Geraldo Perdomo",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GP",
+          "player_name": "Geraldo Perdomo",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GP",
+          "player_name": "Geraldo Perdomo",
+          "team": "Arizona Diamondbacks",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-21",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-CM",
+          "player_name": "Charlie Morton",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-CM",
+          "player_name": "Charlie Morton",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-CM",
+          "player_name": "Charlie Morton",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-CM",
+          "player_name": "Charlie Morton",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-CM",
+          "player_name": "Charlie Morton",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-CM",
+          "player_name": "Charlie Morton",
+          "team": "Atlanta Braves",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-RA",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-35",
+          "player_name": "Chipper Jones",
+          "team": "Atlanta Braves",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-47",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-52",
+          "player_name": "Tom Glavine",
+          "team": "Atlanta Braves",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-57",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-47",
+          "player_name": "Greg Maddux",
+          "team": "Atlanta Braves",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-52",
+          "player_name": "Tom Glavine",
+          "team": "Atlanta Braves",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-57",
+          "player_name": "Ronald Acuña Jr.",
+          "team": "Atlanta Braves",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-29",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-30",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-29",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-30",
+          "player_name": "Ian Anderson",
+          "team": "Atlanta Braves",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-50",
+          "player_name": "Cedric Mullins",
+          "team": "Baltimore Orioles",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-19",
+          "player_name": "Brooks Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-43",
+          "player_name": "Frank Robinson",
+          "team": "Baltimore Orioles",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-51",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-53",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-51",
+          "player_name": "Eddie Murray",
+          "team": "Baltimore Orioles",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-53",
+          "player_name": "Jim Palmer",
+          "team": "Baltimore Orioles",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-20",
+          "player_name": "Xander Bogaerts",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-28",
+          "player_name": "J.D. Martinez",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JM",
+          "player_name": "J.D. Martinez",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-RD",
+          "player_name": "Rafael Devers",
+          "team": "Boston Red Sox",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GW",
+          "player_name": "Garrett Whitlock",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-HS",
+          "player_name": "Hirokazu Sawamura",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GW",
+          "player_name": "Garrett Whitlock",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-HS",
+          "player_name": "Hirokazu Sawamura",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GW",
+          "player_name": "Garrett Whitlock",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-HS",
+          "player_name": "Hirokazu Sawamura",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GW",
+          "player_name": "Garrett Whitlock",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-HS",
+          "player_name": "Hirokazu Sawamura",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GW",
+          "player_name": "Garrett Whitlock",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-HS",
+          "player_name": "Hirokazu Sawamura",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GW",
+          "player_name": "Garrett Whitlock",
+          "team": "Boston Red Sox",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-HS",
+          "player_name": "Hirokazu Sawamura",
+          "team": "Boston Red Sox",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-20",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-27",
+          "player_name": "Ted Williams",
+          "team": "Boston Red Sox",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-37",
+          "player_name": "Carl Yastrzemski",
+          "team": "Boston Red Sox",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-45",
+          "player_name": "Roger Clemens",
+          "team": "Boston Red Sox",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-67",
+          "player_name": "David Ortiz",
+          "team": "Boston Red Sox",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-20",
+          "player_name": "Wade Boggs",
+          "team": "Boston Red Sox",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-BD",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-BD",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-BD",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-BD",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-BD",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-BD",
+          "player_name": "Bobby Dalbec",
+          "team": "Boston Red Sox",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-60",
+          "player_name": "Duke Snider",
+          "team": "Brooklyn Dodgers",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-66",
+          "player_name": "Roy Campanella",
+          "team": "Brooklyn Dodgers",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-33",
+          "player_name": "Craig Kimbrel",
+          "team": "Chicago Cubs",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CUSA-JP",
+          "player_name": "Joc Pederson",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TM",
+          "player_name": "Tyson Miller",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JP",
+          "player_name": "Joc Pederson",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TM",
+          "player_name": "Tyson Miller",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JP",
+          "player_name": "Joc Pederson",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TM",
+          "player_name": "Tyson Miller",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JP",
+          "player_name": "Joc Pederson",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TM",
+          "player_name": "Tyson Miller",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JP",
+          "player_name": "Joc Pederson",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TM",
+          "player_name": "Tyson Miller",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JP",
+          "player_name": "Joc Pederson",
+          "team": "Chicago Cubs",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TM",
+          "player_name": "Tyson Miller",
+          "team": "Chicago Cubs",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-24",
+          "player_name": "Ernie Banks",
+          "team": "Chicago Cubs",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-18",
+          "player_name": "Javier Baez",
+          "team": "Chicago Cubs",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-32",
+          "player_name": "Carlos Rodon",
+          "team": "Chicago White Sox",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CUSA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JL",
+          "player_name": "Jimmy Lambert",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-YM",
+          "player_name": "Yermin Mercedes",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JL",
+          "player_name": "Jimmy Lambert",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-YM",
+          "player_name": "Yermin Mercedes",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JL",
+          "player_name": "Jimmy Lambert",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-YM",
+          "player_name": "Yermin Mercedes",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JL",
+          "player_name": "Jimmy Lambert",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-YM",
+          "player_name": "Yermin Mercedes",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JL",
+          "player_name": "Jimmy Lambert",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-YM",
+          "player_name": "Yermin Mercedes",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AV",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JL",
+          "player_name": "Jimmy Lambert",
+          "team": "Chicago White Sox",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LG",
+          "player_name": "Luis Gonzalez",
+          "team": "Chicago White Sox",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-YM",
+          "player_name": "Yermin Mercedes",
+          "team": "Chicago White Sox",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-10",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-10",
+          "player_name": "Frank Thomas",
+          "team": "Chicago White Sox",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-GC",
+          "player_name": "Garrett Crochet",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-GC",
+          "player_name": "Garrett Crochet",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-GC",
+          "player_name": "Garrett Crochet",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-GC",
+          "player_name": "Garrett Crochet",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-GC",
+          "player_name": "Garrett Crochet",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-GC",
+          "player_name": "Garrett Crochet",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-17",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-17",
+          "player_name": "Luis Robert",
+          "team": "Chicago White Sox",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-14",
+          "player_name": "Jesse Winker",
+          "team": "Cincinnati Reds",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-25",
+          "player_name": "Nick Castellanos",
+          "team": "Cincinnati Reds",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CUSA-JI",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JI",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JI",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JI",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JI",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JI",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-36",
+          "player_name": "Joe Morgan",
+          "team": "Cincinnati Reds",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-12",
+          "player_name": "Shane Bieber",
+          "team": "Cleveland Indians",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-18",
+          "player_name": "Jose Ramirez",
+          "team": "Cleveland Indians",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CUSA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "Cleveland Indians",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-64",
+          "player_name": "Bob Feller",
+          "team": "Cleveland Indians",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CUSA-ABA",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BG",
+          "player_name": "Bryan Garcia",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KF",
+          "player_name": "Kyle Funkhouser",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-ABA",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BG",
+          "player_name": "Bryan Garcia",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KF",
+          "player_name": "Kyle Funkhouser",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-ABA",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BG",
+          "player_name": "Bryan Garcia",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KF",
+          "player_name": "Kyle Funkhouser",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-ABA",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BG",
+          "player_name": "Bryan Garcia",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KF",
+          "player_name": "Kyle Funkhouser",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-ABA",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BG",
+          "player_name": "Bryan Garcia",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KF",
+          "player_name": "Kyle Funkhouser",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-ABA",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BG",
+          "player_name": "Bryan Garcia",
+          "team": "Detroit Tigers",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KF",
+          "player_name": "Kyle Funkhouser",
+          "team": "Detroit Tigers",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MC",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-30",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-62",
+          "player_name": "Al Kaline",
+          "team": "Detroit Tigers",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-30",
+          "player_name": "Miguel Cabrera",
+          "team": "Detroit Tigers",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-29",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-37",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MB",
+          "player_name": "Michael Brantley",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MB",
+          "player_name": "Michael Brantley",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MB",
+          "player_name": "Michael Brantley",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MB",
+          "player_name": "Michael Brantley",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MB",
+          "player_name": "Michael Brantley",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-CC",
+          "player_name": "Carlos Correa",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JA",
+          "player_name": "Jose Altuve",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MB",
+          "player_name": "Michael Brantley",
+          "team": "Houston Astros",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NR",
+          "player_name": "Nivaldo Rodriguez",
+          "team": "Houston Astros",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NR",
+          "player_name": "Nivaldo Rodriguez",
+          "team": "Houston Astros",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NR",
+          "player_name": "Nivaldo Rodriguez",
+          "team": "Houston Astros",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NR",
+          "player_name": "Nivaldo Rodriguez",
+          "team": "Houston Astros",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NR",
+          "player_name": "Nivaldo Rodriguez",
+          "team": "Houston Astros",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NR",
+          "player_name": "Nivaldo Rodriguez",
+          "team": "Houston Astros",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-17",
+          "player_name": "Justin Verlander",
+          "team": "Houston Astros",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-15",
+          "player_name": "Alex Bregman",
+          "team": "Houston Astros",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-26",
+          "player_name": "Salvador Perez",
+          "team": "Kansas City Royals",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CUSA-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Kansas City Royals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-DL",
+          "player_name": "Daniel Lynch",
+          "team": "Kansas City Royals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KI",
+          "player_name": "Kyle Isbel",
+          "team": "Kansas City Royals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-DL",
+          "player_name": "Daniel Lynch",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KI",
+          "player_name": "Kyle Isbel",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-DL",
+          "player_name": "Daniel Lynch",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KI",
+          "player_name": "Kyle Isbel",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-DL",
+          "player_name": "Daniel Lynch",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KI",
+          "player_name": "Kyle Isbel",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-DL",
+          "player_name": "Daniel Lynch",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KI",
+          "player_name": "Kyle Isbel",
+          "team": "Kansas City Royals",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AB",
+          "player_name": "Andrew Benintendi",
+          "team": "Kansas City Royals",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-DL",
+          "player_name": "Daniel Lynch",
+          "team": "Kansas City Royals",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KI",
+          "player_name": "Kyle Isbel",
+          "team": "Kansas City Royals",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-40",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-49",
+          "player_name": "Jared Walsh",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-SO",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MT",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-25",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-25",
+          "player_name": "Albert Pujols",
+          "team": "Los Angeles Angels",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-13",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-25",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-13",
+          "player_name": "Shohei Ohtani",
+          "team": "Los Angeles Angels",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-13",
+          "player_name": "Mookie Betts",
+          "team": "Los Angeles Dodgers",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-19",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-41",
+          "player_name": "Walker Buehler",
+          "team": "Los Angeles Dodgers",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-43",
+          "player_name": "Chris Taylor",
+          "team": "Los Angeles Dodgers",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MM",
+          "player_name": "Max Muncy",
+          "team": "Los Angeles Dodgers",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-VG",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-VG",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-VG",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-VG",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-VG",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-VG",
+          "player_name": "Victor Gonzalez",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-19",
+          "player_name": "Clayton Kershaw",
+          "team": "Los Angeles Dodgers",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-36",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JED",
+          "player_name": "Jose Devers",
+          "team": "Miami Marlins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JH",
+          "player_name": "Jordan Holloway",
+          "team": "Miami Marlins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JED",
+          "player_name": "Jose Devers",
+          "team": "Miami Marlins",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JH",
+          "player_name": "Jordan Holloway",
+          "team": "Miami Marlins",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JED",
+          "player_name": "Jose Devers",
+          "team": "Miami Marlins",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JH",
+          "player_name": "Jordan Holloway",
+          "team": "Miami Marlins",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JED",
+          "player_name": "Jose Devers",
+          "team": "Miami Marlins",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JH",
+          "player_name": "Jordan Holloway",
+          "team": "Miami Marlins",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JED",
+          "player_name": "Jose Devers",
+          "team": "Miami Marlins",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JH",
+          "player_name": "Jordan Holloway",
+          "team": "Miami Marlins",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JED",
+          "player_name": "Jose Devers",
+          "team": "Miami Marlins",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JH",
+          "player_name": "Jordan Holloway",
+          "team": "Miami Marlins",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JC",
+          "player_name": "Jazz Chisholm Jr.",
+          "team": "Miami Marlins",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JC",
+          "player_name": "Jazz Chisholm Jr.",
+          "team": "Miami Marlins",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JC",
+          "player_name": "Jazz Chisholm Jr.",
+          "team": "Miami Marlins",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JC",
+          "player_name": "Jazz Chisholm Jr.",
+          "team": "Miami Marlins",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JC",
+          "player_name": "Jazz Chisholm Jr.",
+          "team": "Miami Marlins",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JC",
+          "player_name": "Jazz Chisholm Jr.",
+          "team": "Miami Marlins",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-40",
+          "player_name": "Warren Spahn",
+          "team": "Milwaukee Braves",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-54",
+          "player_name": "Eddie Mathews",
+          "team": "Milwaukee Braves",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-31",
+          "player_name": "Brandon Woodruff",
+          "team": "Milwaukee Brewers",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-JH",
+          "player_name": "Josh Hader",
+          "team": "Milwaukee Brewers",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JH",
+          "player_name": "Josh Hader",
+          "team": "Milwaukee Brewers",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JH",
+          "player_name": "Josh Hader",
+          "team": "Milwaukee Brewers",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JH",
+          "player_name": "Josh Hader",
+          "team": "Milwaukee Brewers",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JH",
+          "player_name": "Josh Hader",
+          "team": "Milwaukee Brewers",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JH",
+          "player_name": "Josh Hader",
+          "team": "Milwaukee Brewers",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-PW",
+          "player_name": "Patrick Weigel",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-PW",
+          "player_name": "Patrick Weigel",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-PW",
+          "player_name": "Patrick Weigel",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-PW",
+          "player_name": "Patrick Weigel",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-PW",
+          "player_name": "Patrick Weigel",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-CY",
+          "player_name": "Christian Yelich",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-PW",
+          "player_name": "Patrick Weigel",
+          "team": "Milwaukee Brewers",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-22",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-56",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-22",
+          "player_name": "Robin Yount",
+          "team": "Milwaukee Brewers",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-56",
+          "player_name": "Paul Molitor",
+          "team": "Milwaukee Brewers",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-35",
+          "player_name": "Nelson Cruz",
+          "team": "Minnesota Twins",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-NCR",
+          "player_name": "Nelson Cruz",
+          "team": "Minnesota Twins",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-NCR",
+          "player_name": "Nelson Cruz",
+          "team": "Minnesota Twins",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-NCR",
+          "player_name": "Nelson Cruz",
+          "team": "Minnesota Twins",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-NCR",
+          "player_name": "Nelson Cruz",
+          "team": "Minnesota Twins",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-NCR",
+          "player_name": "Nelson Cruz",
+          "team": "Minnesota Twins",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-NCR",
+          "player_name": "Nelson Cruz",
+          "team": "Minnesota Twins",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TL",
+          "player_name": "Trevor Larnach",
+          "team": "Minnesota Twins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TL",
+          "player_name": "Trevor Larnach",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TL",
+          "player_name": "Trevor Larnach",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TL",
+          "player_name": "Trevor Larnach",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TL",
+          "player_name": "Trevor Larnach",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TL",
+          "player_name": "Trevor Larnach",
+          "team": "Minnesota Twins",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-33",
+          "player_name": "Rod Carew",
+          "team": "Minnesota Twins",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-48",
+          "player_name": "Kirby Puckett",
+          "team": "Minnesota Twins",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-22",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-22",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-32",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-32",
+          "player_name": "Vladimir Guerrero",
+          "team": "Montreal Expos",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-10",
+          "player_name": "Jacob deGrom",
+          "team": "New York Mets",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CUSA-FK",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-FK",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-FK",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-FK",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-FK",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-FK",
+          "player_name": "Franklyn Kilome",
+          "team": "New York Mets",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-18",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-41",
+          "player_name": "Tom Seaver",
+          "team": "New York Mets",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-18",
+          "player_name": "Mike Piazza",
+          "team": "New York Mets",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DP",
+          "player_name": "David Peterson",
+          "team": "New York Mets",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DP",
+          "player_name": "David Peterson",
+          "team": "New York Mets",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DP",
+          "player_name": "David Peterson",
+          "team": "New York Mets",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DP",
+          "player_name": "David Peterson",
+          "team": "New York Mets",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DP",
+          "player_name": "David Peterson",
+          "team": "New York Mets",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DP",
+          "player_name": "David Peterson",
+          "team": "New York Mets",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-14",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-14",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-11",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-23",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-AC",
+          "player_name": "Aroldis Chapman",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-AC",
+          "player_name": "Aroldis Chapman",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-AC",
+          "player_name": "Aroldis Chapman",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-AC",
+          "player_name": "Aroldis Chapman",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-AC",
+          "player_name": "Aroldis Chapman",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-AC",
+          "player_name": "Aroldis Chapman",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-AJ",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NN",
+          "player_name": "Nick Nelson",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NN",
+          "player_name": "Nick Nelson",
+          "team": "New York Yankees",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NN",
+          "player_name": "Nick Nelson",
+          "team": "New York Yankees",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NN",
+          "player_name": "Nick Nelson",
+          "team": "New York Yankees",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NN",
+          "player_name": "Nick Nelson",
+          "team": "New York Yankees",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-GC",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NN",
+          "player_name": "Nick Nelson",
+          "team": "New York Yankees",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-11",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-12",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-16",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-42",
+          "player_name": "Alex Rodriguez",
+          "team": "New York Yankees",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-58",
+          "player_name": "Dave Winfield",
+          "team": "New York Yankees",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-61",
+          "player_name": "Whitey Ford",
+          "team": "New York Yankees",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-65",
+          "player_name": "Yogi Berra",
+          "team": "New York Yankees",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-11",
+          "player_name": "Reggie Jackson",
+          "team": "New York Yankees",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-12",
+          "player_name": "Derek Jeter",
+          "team": "New York Yankees",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-16",
+          "player_name": "Mariano Rivera",
+          "team": "New York Yankees",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-58",
+          "player_name": "Dave Winfield",
+          "team": "New York Yankees",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-10",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-11",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-10",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-11",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-15",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MO",
+          "player_name": "Matt Olson",
+          "team": "Oakland Athletics",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-26",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-70",
+          "player_name": "Mark McGwire",
+          "team": "Oakland Athletics",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-26",
+          "player_name": "Rickey Henderson",
+          "team": "Oakland Athletics",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-45",
+          "player_name": "J.T. Realmuto",
+          "team": "Philadelphia Phillies",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-ZW",
+          "player_name": "Zack Wheeler",
+          "team": "Philadelphia Phillies",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-ZW",
+          "player_name": "Zack Wheeler",
+          "team": "Philadelphia Phillies",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-ZW",
+          "player_name": "Zack Wheeler",
+          "team": "Philadelphia Phillies",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-ZW",
+          "player_name": "Zack Wheeler",
+          "team": "Philadelphia Phillies",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-ZW",
+          "player_name": "Zack Wheeler",
+          "team": "Philadelphia Phillies",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-ZW",
+          "player_name": "Zack Wheeler",
+          "team": "Philadelphia Phillies",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NM",
+          "player_name": "Nick Maton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NM",
+          "player_name": "Nick Maton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NM",
+          "player_name": "Nick Maton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NM",
+          "player_name": "Nick Maton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NM",
+          "player_name": "Nick Maton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NM",
+          "player_name": "Nick Maton",
+          "team": "Philadelphia Phillies",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-29",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-31",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-38",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-29",
+          "player_name": "Mike Schmidt",
+          "team": "Philadelphia Phillies",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-31",
+          "player_name": "Bryce Harper",
+          "team": "Philadelphia Phillies",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-38",
+          "player_name": "Steve Carlton",
+          "team": "Philadelphia Phillies",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-SH",
+          "player_name": "Spencer Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-SH",
+          "player_name": "Spencer Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-SH",
+          "player_name": "Spencer Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-SH",
+          "player_name": "Spencer Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-SH",
+          "player_name": "Spencer Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-SH",
+          "player_name": "Spencer Howard",
+          "team": "Philadelphia Phillies",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-24",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-24",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-34",
+          "player_name": "Adam Frazier",
+          "team": "Pittsburgh Pirates",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-44",
+          "player_name": "Bryan Reynolds",
+          "team": "Pittsburgh Pirates",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CUSA-KT",
+          "player_name": "Ka'ai Tom",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-WC",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KT",
+          "player_name": "Ka'ai Tom",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-WC",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KT",
+          "player_name": "Ka'ai Tom",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-WC",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KT",
+          "player_name": "Ka'ai Tom",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-WC",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KT",
+          "player_name": "Ka'ai Tom",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-WC",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KT",
+          "player_name": "Ka'ai Tom",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-WC",
+          "player_name": "Will Craig",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-28",
+          "player_name": "Roberto Clemente",
+          "team": "Pittsburgh Pirates",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-69",
+          "player_name": "Willie Stargell",
+          "team": "Pittsburgh Pirates",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-21",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-21",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-42",
+          "player_name": "Manny Machado",
+          "team": "San Diego Padres",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-46",
+          "player_name": "Jake Cronenworth",
+          "team": "San Diego Padres",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-FT",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BS",
+          "player_name": "Blake Snell",
+          "team": "San Diego Padres",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JM",
+          "player_name": "Jorge Mateo",
+          "team": "San Diego Padres",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JO",
+          "player_name": "Jorge Ona",
+          "team": "San Diego Padres",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BS",
+          "player_name": "Blake Snell",
+          "team": "San Diego Padres",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JM",
+          "player_name": "Jorge Mateo",
+          "team": "San Diego Padres",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JO",
+          "player_name": "Jorge Ona",
+          "team": "San Diego Padres",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BS",
+          "player_name": "Blake Snell",
+          "team": "San Diego Padres",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JM",
+          "player_name": "Jorge Mateo",
+          "team": "San Diego Padres",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JO",
+          "player_name": "Jorge Ona",
+          "team": "San Diego Padres",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BS",
+          "player_name": "Blake Snell",
+          "team": "San Diego Padres",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JM",
+          "player_name": "Jorge Mateo",
+          "team": "San Diego Padres",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JO",
+          "player_name": "Jorge Ona",
+          "team": "San Diego Padres",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BS",
+          "player_name": "Blake Snell",
+          "team": "San Diego Padres",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JM",
+          "player_name": "Jorge Mateo",
+          "team": "San Diego Padres",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JO",
+          "player_name": "Jorge Ona",
+          "team": "San Diego Padres",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BS",
+          "player_name": "Blake Snell",
+          "team": "San Diego Padres",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JM",
+          "player_name": "Jorge Mateo",
+          "team": "San Diego Padres",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JO",
+          "player_name": "Jorge Ona",
+          "team": "San Diego Padres",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-34",
+          "player_name": "Tony Gwynn",
+          "team": "San Diego Padres",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-49",
+          "player_name": "Fernando Tatis Jr.",
+          "team": "San Diego Padres",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-28",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-27",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-30",
+          "player_name": "Kevin Gausman",
+          "team": "San Francisco Giants",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-38",
+          "player_name": "Brandon Crawford",
+          "team": "San Francisco Giants",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-BP",
+          "player_name": "Buster Posey",
+          "team": "San Francisco Giants",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-13",
+          "player_name": "Willie Mays",
+          "team": "San Francisco Giants",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-23",
+          "player_name": "Willie McCovey",
+          "team": "San Francisco Giants",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-59",
+          "player_name": "Juan Marichal",
+          "team": "San Francisco Giants",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RDA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-23",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-23",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LGI",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TT",
+          "player_name": "Taylor Trammell",
+          "team": "Seattle Mariners",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LGI",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TT",
+          "player_name": "Taylor Trammell",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LGI",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TT",
+          "player_name": "Taylor Trammell",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LGI",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TT",
+          "player_name": "Taylor Trammell",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LGI",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TT",
+          "player_name": "Taylor Trammell",
+          "team": "Seattle Mariners",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LGI",
+          "player_name": "Logan Gilbert",
+          "team": "Seattle Mariners",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-TT",
+          "player_name": "Taylor Trammell",
+          "team": "Seattle Mariners",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-14",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-15",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-44",
+          "player_name": "Randy Johnson",
+          "team": "Seattle Mariners",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-14",
+          "player_name": "Ken Griffey Jr.",
+          "team": "Seattle Mariners",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-15",
+          "player_name": "Seattle Mariners",
+          "team": null,
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-26",
+          "player_name": "Kyle Lewis",
+          "team": "Seattle Mariners",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-63",
+          "player_name": "Satchel Paige",
+          "team": "St. Louis Browns",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-22",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-SE",
+          "player_name": "Seth Elledge",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-SE",
+          "player_name": "Seth Elledge",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-SE",
+          "player_name": "Seth Elledge",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-SE",
+          "player_name": "Seth Elledge",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-SE",
+          "player_name": "Seth Elledge",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-NA",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-SE",
+          "player_name": "Seth Elledge",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-21",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-39",
+          "player_name": "Bob Gibson",
+          "team": "St. Louis Cardinals",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-46",
+          "player_name": "Stan Musial",
+          "team": "St. Louis Cardinals",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-68",
+          "player_name": "Lou Brock",
+          "team": "St. Louis Cardinals",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-21",
+          "player_name": "Ozzie Smith",
+          "team": "St. Louis Cardinals",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-16",
+          "player_name": "Yadier Molina",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-20",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-27",
+          "player_name": "Nolan Arenado",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-20",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BH",
+          "player_name": "Brent Honeywell Jr.",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LP",
+          "player_name": "Luis Patiño",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BH",
+          "player_name": "Brent Honeywell Jr.",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LP",
+          "player_name": "Luis Patiño",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BH",
+          "player_name": "Brent Honeywell Jr.",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LP",
+          "player_name": "Luis Patiño",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BH",
+          "player_name": "Brent Honeywell Jr.",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LP",
+          "player_name": "Luis Patiño",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BH",
+          "player_name": "Brent Honeywell Jr.",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LP",
+          "player_name": "Luis Patiño",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-BH",
+          "player_name": "Brent Honeywell Jr.",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-LP",
+          "player_name": "Luis Patiño",
+          "team": "Tampa Bay Rays",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-24",
+          "player_name": "Adolis Garcia",
+          "team": "Texas Rangers",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-48",
+          "player_name": "Joey Gallo",
+          "team": "Texas Rangers",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CUSA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Texas Rangers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JHE",
+          "player_name": "Jonah Heim",
+          "team": "Texas Rangers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KCO",
+          "player_name": "Kyle Cody",
+          "team": "Texas Rangers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Texas Rangers",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JHE",
+          "player_name": "Jonah Heim",
+          "team": "Texas Rangers",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KCO",
+          "player_name": "Kyle Cody",
+          "team": "Texas Rangers",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Texas Rangers",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JHE",
+          "player_name": "Jonah Heim",
+          "team": "Texas Rangers",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KCO",
+          "player_name": "Kyle Cody",
+          "team": "Texas Rangers",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Texas Rangers",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JHE",
+          "player_name": "Jonah Heim",
+          "team": "Texas Rangers",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KCO",
+          "player_name": "Kyle Cody",
+          "team": "Texas Rangers",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Texas Rangers",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JHE",
+          "player_name": "Jonah Heim",
+          "team": "Texas Rangers",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KCO",
+          "player_name": "Kyle Cody",
+          "team": "Texas Rangers",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Texas Rangers",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JHE",
+          "player_name": "Jonah Heim",
+          "team": "Texas Rangers",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KA",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-KCO",
+          "player_name": "Kyle Cody",
+          "team": "Texas Rangers",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-16",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-17",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASG-39",
+          "player_name": "Teoscar Hernandez",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-MS",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MS",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MS",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MS",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MS",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-MS",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-VG",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AM",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MS",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AM",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MS",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AM",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MS",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AM",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MS",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AM",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MS",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-AM",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-MS",
+          "player_name": "Marcus Semien",
+          "team": "Toronto Blue Jays",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BGC-12",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Black Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BGC-12",
+          "player_name": "Bo Bichette",
+          "team": "Toronto Blue Jays",
+          "variation": "Topps Black Gold Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASG-47",
+          "player_name": "Trea Turner",
+          "team": "Washington Nationals",
+          "variation": "2021 All-Star Game",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ASGA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "2021 All-Star Game Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "2021 All-Star Game Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "2021 All-Star Game Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "2021 All-Star Game Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "2021 All-Star Game Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "ASGA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "2021 All-Star Game Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JB",
+          "player_name": "Josh Bell",
+          "team": "Washington Nationals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-SR",
+          "player_name": "Seth Romero",
+          "team": "Washington Nationals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JB",
+          "player_name": "Josh Bell",
+          "team": "Washington Nationals",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-SR",
+          "player_name": "Seth Romero",
+          "team": "Washington Nationals",
+          "variation": "Autographs Gold Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JB",
+          "player_name": "Josh Bell",
+          "team": "Washington Nationals",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-SR",
+          "player_name": "Seth Romero",
+          "team": "Washington Nationals",
+          "variation": "Autographs Orange Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JB",
+          "player_name": "Josh Bell",
+          "team": "Washington Nationals",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-SR",
+          "player_name": "Seth Romero",
+          "team": "Washington Nationals",
+          "variation": "Autographs Red Refractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JB",
+          "player_name": "Josh Bell",
+          "team": "Washington Nationals",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-SR",
+          "player_name": "Seth Romero",
+          "team": "Washington Nationals",
+          "variation": "Autographs Superfractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JB",
+          "player_name": "Josh Bell",
+          "team": "Washington Nationals",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-JS",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CUSA-SR",
+          "player_name": "Seth Romero",
+          "team": "Washington Nationals",
+          "variation": "Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CPDC-50",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-55",
+          "player_name": "Max Scherzer",
+          "team": "Washington Nationals",
+          "variation": "Platinum Players Die Cuts",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "CPDC-50",
+          "player_name": "Juan Soto",
+          "team": "Washington Nationals",
+          "variation": "Platinum Players Die Cuts Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Rookie Debut Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Rookie Debut Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Rookie Debut Autographs Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Rookie Debut Autographs Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Rookie Debut Autographs SuperFractor",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Rookie Debut Autographs X-Fractor",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

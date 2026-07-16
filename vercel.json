@@ -11,10 +11,6 @@
     {
       "path": "/api/cron/wrap-mensuel",
       "schedule": "0 9 2 * *"
-    },
-    {
-      "path": "/api/cron/weekly-post",
-      "schedule": "0 10 * * 0"
     }
   ],
   "headers": [

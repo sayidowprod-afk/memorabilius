@@ -1,0 +1,2967 @@
+{
+  "year": 2021,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 263560,
+        "name": "2021 Topps Clearly Authentic"
+      },
+      "unique": [
+        {
+          "card_number": "CAA-AY",
+          "player_name": "Andy Young",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DV",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AY",
+          "player_name": "Andy Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DV",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AY",
+          "player_name": "Andy Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DV",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AY",
+          "player_name": "Andy Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DV",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AY",
+          "player_name": "Andy Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DV",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AY",
+          "player_name": "Andy Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DV",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AY",
+          "player_name": "Andy Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DV",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AY",
+          "player_name": "Andy Young",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DV",
+          "player_name": "Daulton Varsho",
+          "team": "Arizona Diamondbacks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TD",
+          "player_name": "Tucker Davidson",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WC",
+          "player_name": "William Contreras",
+          "team": "Atlanta Braves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TD",
+          "player_name": "Tucker Davidson",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WC",
+          "player_name": "William Contreras",
+          "team": "Atlanta Braves",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TD",
+          "player_name": "Tucker Davidson",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WC",
+          "player_name": "William Contreras",
+          "team": "Atlanta Braves",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TD",
+          "player_name": "Tucker Davidson",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WC",
+          "player_name": "William Contreras",
+          "team": "Atlanta Braves",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TD",
+          "player_name": "Tucker Davidson",
+          "team": "Atlanta Braves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WC",
+          "player_name": "William Contreras",
+          "team": "Atlanta Braves",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TD",
+          "player_name": "Tucker Davidson",
+          "team": "Atlanta Braves",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WC",
+          "player_name": "William Contreras",
+          "team": "Atlanta Braves",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TD",
+          "player_name": "Tucker Davidson",
+          "team": "Atlanta Braves",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WC",
+          "player_name": "William Contreras",
+          "team": "Atlanta Braves",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CP",
+          "player_name": "Cristian Pache",
+          "team": "Atlanta Braves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TD",
+          "player_name": "Tucker Davidson",
+          "team": "Atlanta Braves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-WC",
+          "player_name": "William Contreras",
+          "team": "Atlanta Braves",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DK",
+          "player_name": "Dean Kremer",
+          "team": "Baltimore Orioles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DK",
+          "player_name": "Dean Kremer",
+          "team": "Baltimore Orioles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DK",
+          "player_name": "Dean Kremer",
+          "team": "Baltimore Orioles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DK",
+          "player_name": "Dean Kremer",
+          "team": "Baltimore Orioles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DK",
+          "player_name": "Dean Kremer",
+          "team": "Baltimore Orioles",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DK",
+          "player_name": "Dean Kremer",
+          "team": "Baltimore Orioles",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DK",
+          "player_name": "Dean Kremer",
+          "team": "Baltimore Orioles",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DK",
+          "player_name": "Dean Kremer",
+          "team": "Baltimore Orioles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TH",
+          "player_name": "Tanner Houck",
+          "team": "Boston Red Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TH",
+          "player_name": "Tanner Houck",
+          "team": "Boston Red Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TH",
+          "player_name": "Tanner Houck",
+          "team": "Boston Red Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TH",
+          "player_name": "Tanner Houck",
+          "team": "Boston Red Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TH",
+          "player_name": "Tanner Houck",
+          "team": "Boston Red Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TH",
+          "player_name": "Tanner Houck",
+          "team": "Boston Red Sox",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TH",
+          "player_name": "Tanner Houck",
+          "team": "Boston Red Sox",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TH",
+          "player_name": "Tanner Houck",
+          "team": "Boston Red Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BM",
+          "player_name": "Brailyn Marquez",
+          "team": "Chicago Cubs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BM",
+          "player_name": "Brailyn Marquez",
+          "team": "Chicago Cubs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BM",
+          "player_name": "Brailyn Marquez",
+          "team": "Chicago Cubs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BM",
+          "player_name": "Brailyn Marquez",
+          "team": "Chicago Cubs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BM",
+          "player_name": "Brailyn Marquez",
+          "team": "Chicago Cubs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BM",
+          "player_name": "Brailyn Marquez",
+          "team": "Chicago Cubs",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BM",
+          "player_name": "Brailyn Marquez",
+          "team": "Chicago Cubs",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BM",
+          "player_name": "Brailyn Marquez",
+          "team": "Chicago Cubs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AVA",
+          "player_name": "Andrew Vaughn",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-YME",
+          "player_name": "Yermin Mercedes",
+          "team": "Chicago White Sox",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DD",
+          "player_name": "Dane Dunning",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NM",
+          "player_name": "Nick Madrigal",
+          "team": "Chicago White Sox",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JIN",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TS",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TS",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TS",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TS",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TS",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TS",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TS",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JG",
+          "player_name": "Jose Garcia",
+          "team": "Cincinnati Reds",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TS",
+          "player_name": "Tyler Stephenson",
+          "team": "Cincinnati Reds",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TM",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TM",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TM",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TM",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TM",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TM",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TM",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TM",
+          "player_name": "Triston McKenzie",
+          "team": "Cleveland Indians",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AKB",
+          "player_name": "Akil Baddoo",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CM",
+          "player_name": "Casey Mize",
+          "team": "Detroit Tigers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BB",
+          "player_name": "Brandon Bielak",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BT",
+          "player_name": "Blake Taylor",
+          "team": "Houston Astros",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BB",
+          "player_name": "Brandon Bielak",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BT",
+          "player_name": "Blake Taylor",
+          "team": "Houston Astros",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BB",
+          "player_name": "Brandon Bielak",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BT",
+          "player_name": "Blake Taylor",
+          "team": "Houston Astros",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BB",
+          "player_name": "Brandon Bielak",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BT",
+          "player_name": "Blake Taylor",
+          "team": "Houston Astros",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BB",
+          "player_name": "Brandon Bielak",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BT",
+          "player_name": "Blake Taylor",
+          "team": "Houston Astros",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BB",
+          "player_name": "Brandon Bielak",
+          "team": "Houston Astros",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BT",
+          "player_name": "Blake Taylor",
+          "team": "Houston Astros",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BB",
+          "player_name": "Brandon Bielak",
+          "team": "Houston Astros",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BT",
+          "player_name": "Blake Taylor",
+          "team": "Houston Astros",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BB",
+          "player_name": "Brandon Bielak",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BT",
+          "player_name": "Blake Taylor",
+          "team": "Houston Astros",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KB",
+          "player_name": "Kris Bubic",
+          "team": "Kansas City Royals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KB",
+          "player_name": "Kris Bubic",
+          "team": "Kansas City Royals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KB",
+          "player_name": "Kris Bubic",
+          "team": "Kansas City Royals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KB",
+          "player_name": "Kris Bubic",
+          "team": "Kansas City Royals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KB",
+          "player_name": "Kris Bubic",
+          "team": "Kansas City Royals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KB",
+          "player_name": "Kris Bubic",
+          "team": "Kansas City Royals",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KB",
+          "player_name": "Kris Bubic",
+          "team": "Kansas City Royals",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KB",
+          "player_name": "Kris Bubic",
+          "team": "Kansas City Royals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JA",
+          "player_name": "Jo Adell",
+          "team": "Los Angeles Angels",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-ZM",
+          "player_name": "Zach McKinstry",
+          "team": "Los Angeles Dodgers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JC",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LD",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MH",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JC",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LD",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MH",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JC",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LD",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MH",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JC",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LD",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MH",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JC",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LD",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MH",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JC",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LD",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MH",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JC",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LD",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MH",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JC",
+          "player_name": "Jazz Chisholm",
+          "team": "Miami Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LD",
+          "player_name": "Lewin Diaz",
+          "team": "Miami Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-MH",
+          "player_name": "Monte Harrison",
+          "team": "Miami Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SS",
+          "player_name": "Sixto Sanchez",
+          "team": "Miami Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TR",
+          "player_name": "Trevor Rogers",
+          "team": "Miami Marlins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AKI",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BR",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AKI",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BR",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AKI",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BR",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AKI",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BR",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AKI",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BR",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AKI",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BR",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AKI",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BR",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AKI",
+          "player_name": "Alex Kirilloff",
+          "team": "Minnesota Twins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-BR",
+          "player_name": "Brent Rooker",
+          "team": "Minnesota Twins",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "New York Mets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "New York Mets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "New York Mets",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "New York Mets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "New York Mets",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "New York Mets",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "New York Mets",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AG",
+          "player_name": "Andres Gimenez",
+          "team": "New York Mets",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "Albert Abreu",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EF",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "Albert Abreu",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EF",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "Albert Abreu",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EF",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "Albert Abreu",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EF",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "Albert Abreu",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EF",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "Albert Abreu",
+          "team": "New York Yankees",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EF",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "Albert Abreu",
+          "team": "New York Yankees",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EF",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AA",
+          "player_name": "Albert Abreu",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-CS",
+          "player_name": "Clarke Schmidt",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DG",
+          "player_name": "Deivi Garcia",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EF",
+          "player_name": "Estevan Florial",
+          "team": "New York Yankees",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RMA",
+          "player_name": "Rafael Marchan",
+          "team": "Philadelphia Phillies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RMA",
+          "player_name": "Rafael Marchan",
+          "team": "Philadelphia Phillies",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RMA",
+          "player_name": "Rafael Marchan",
+          "team": "Philadelphia Phillies",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RMA",
+          "player_name": "Rafael Marchan",
+          "team": "Philadelphia Phillies",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RMA",
+          "player_name": "Rafael Marchan",
+          "team": "Philadelphia Phillies",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RMA",
+          "player_name": "Rafael Marchan",
+          "team": "Philadelphia Phillies",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RMA",
+          "player_name": "Rafael Marchan",
+          "team": "Philadelphia Phillies",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AB",
+          "player_name": "Alec Bohm",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-RMA",
+          "player_name": "Rafael Marchan",
+          "team": "Philadelphia Phillies",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KH",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-HSK",
+          "player_name": "Ha-Seong Kim",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JCR",
+          "player_name": "Jake Cronenworth",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LP",
+          "player_name": "Luis Patiño",
+          "team": "San Diego Padres",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JCR",
+          "player_name": "Jake Cronenworth",
+          "team": "San Diego Padres",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LP",
+          "player_name": "Luis Patiño",
+          "team": "San Diego Padres",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JCR",
+          "player_name": "Jake Cronenworth",
+          "team": "San Diego Padres",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LP",
+          "player_name": "Luis Patiño",
+          "team": "San Diego Padres",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JCR",
+          "player_name": "Jake Cronenworth",
+          "team": "San Diego Padres",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LP",
+          "player_name": "Luis Patiño",
+          "team": "San Diego Padres",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JCR",
+          "player_name": "Jake Cronenworth",
+          "team": "San Diego Padres",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LP",
+          "player_name": "Luis Patiño",
+          "team": "San Diego Padres",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JCR",
+          "player_name": "Jake Cronenworth",
+          "team": "San Diego Padres",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LP",
+          "player_name": "Luis Patiño",
+          "team": "San Diego Padres",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JCR",
+          "player_name": "Jake Cronenworth",
+          "team": "San Diego Padres",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LP",
+          "player_name": "Luis Patiño",
+          "team": "San Diego Padres",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JCR",
+          "player_name": "Jake Cronenworth",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LP",
+          "player_name": "Luis Patiño",
+          "team": "San Diego Padres",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JB",
+          "player_name": "Joey Bart",
+          "team": "San Francisco Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-TTR",
+          "player_name": "Taylor Trammell",
+          "team": "Seattle Mariners",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-EW",
+          "player_name": "Evan White",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-JK",
+          "player_name": "Jarred Kelenic",
+          "team": "Seattle Mariners",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-DC",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SM",
+          "player_name": "Shane McClanahan",
+          "team": "Tampa Bay Rays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SM",
+          "player_name": "Shane McClanahan",
+          "team": "Tampa Bay Rays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SM",
+          "player_name": "Shane McClanahan",
+          "team": "Tampa Bay Rays",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SM",
+          "player_name": "Shane McClanahan",
+          "team": "Tampa Bay Rays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SM",
+          "player_name": "Shane McClanahan",
+          "team": "Tampa Bay Rays",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SM",
+          "player_name": "Shane McClanahan",
+          "team": "Tampa Bay Rays",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SM",
+          "player_name": "Shane McClanahan",
+          "team": "Tampa Bay Rays",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SM",
+          "player_name": "Shane McClanahan",
+          "team": "Tampa Bay Rays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Anderson Tejeda",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-KAR",
+          "player_name": "Kohei Arihara",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LT",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SA",
+          "player_name": "Sherten Apostel",
+          "team": "Texas Rangers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Anderson Tejeda",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LT",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SA",
+          "player_name": "Sherten Apostel",
+          "team": "Texas Rangers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Anderson Tejeda",
+          "team": "Texas Rangers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LT",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SA",
+          "player_name": "Sherten Apostel",
+          "team": "Texas Rangers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Anderson Tejeda",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LT",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SA",
+          "player_name": "Sherten Apostel",
+          "team": "Texas Rangers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Anderson Tejeda",
+          "team": "Texas Rangers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LT",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SA",
+          "player_name": "Sherten Apostel",
+          "team": "Texas Rangers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Anderson Tejeda",
+          "team": "Texas Rangers",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LT",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SA",
+          "player_name": "Sherten Apostel",
+          "team": "Texas Rangers",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Anderson Tejeda",
+          "team": "Texas Rangers",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LT",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SA",
+          "player_name": "Sherten Apostel",
+          "team": "Texas Rangers",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-AT",
+          "player_name": "Anderson Tejeda",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LT",
+          "player_name": "Leody Taveras",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-SA",
+          "player_name": "Sherten Apostel",
+          "team": "Texas Rangers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-NP",
+          "player_name": "Nate Pearson",
+          "team": "Toronto Blue Jays",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Orange",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Purple",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CAA-LG",
+          "player_name": "Luis Garcia",
+          "team": "Washington Nationals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}
