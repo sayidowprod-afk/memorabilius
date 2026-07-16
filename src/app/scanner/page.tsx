@@ -146,6 +146,8 @@ export default function ScannerPage() {
       const matches: ImageMatch[] = d.items || []
       setImgMatches(matches)
       setImgSearchDone(true)
+      // eBay a trouvé → Gemini pas nécessaire, marquer immédiatement pour éviter le spinner
+      if (matches.length > 0) setGeminiDone(true)
       setPhase('results')
       return matches
     }).catch(() => {
@@ -154,7 +156,8 @@ export default function ScannerPage() {
       return [] as ImageMatch[]
     })
 
-    // Détection coins : 5s max pour ne pas retarder Gemini si l'API est lente
+    // Détection coins : uniquement utile si eBay ne trouve rien (fallback Gemini)
+    // On lance en parallèle pour ne pas perdre de temps si on en a besoin
     const cornersPromise: Promise<Record<string, {x:number;y:number}> & {confidence?: number} | null> = Promise.race([
       fetch('/api/detect-corners', {
         method: 'POST',
@@ -164,11 +167,12 @@ export default function ScannerPage() {
       new Promise<null>(r => setTimeout(() => r(null), 5000)),
     ])
 
-    // Attendre les deux avant de lancer Gemini
     const [matches, corners] = await Promise.all([imageSearchPromise, cornersPromise])
 
-    // Phase 2 : recadrer sur la carte si les coins sont détectés avec confiance suffisante
-    // Même logique que le flow "ajouter une carte" → Gemini reçoit une image propre, sans fond
+    // eBay a trouvé des correspondances → Gemini inutile, terminé
+    if (matches.length > 0) return
+
+    // Fallback : eBay n'a rien trouvé → crop + Gemini pour identifier
     let aiB64 = b64
     if (corners && (corners.confidence ?? 0) >= 0.65 && corners.topLeft) {
       try {
@@ -176,7 +180,6 @@ export default function ScannerPage() {
       } catch { /* fallback photo complète */ }
     }
 
-    // Phase 3 : identification Gemini avec l'image recadrée
     const identified = await fetch('/api/scan-card', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
@@ -191,10 +194,7 @@ export default function ScannerPage() {
       return null
     })
 
-    // Si eBay n'a rien trouvé et Gemini a identifié → recherche vendues automatique
-    if (matches.length === 0 && identified) {
-      loadSoldComps('', identified)
-    }
+    if (identified) loadSoldComps('', identified)
   }, [loadSoldComps])
 
   const handleRecto = async (file: File) => {
@@ -280,7 +280,7 @@ export default function ScannerPage() {
               <img src={imgSrc} alt="" style={{ width: 120, height: 170, objectFit: 'cover', borderRadius: 12, border: `2px solid ${border}`, marginBottom: 24 }} />
             )}
             <div style={{ fontSize: 16, fontWeight: 700, color: text, marginBottom: 8 }}>Recherche en cours…</div>
-            <div style={{ fontSize: 13, color: muted, marginBottom: 20 }}>Correspondances visuelles eBay + identification IA</div>
+            <div style={{ fontSize: 13, color: muted, marginBottom: 20 }}>Correspondances visuelles eBay…</div>
             <div style={{ height: 4, background: border, borderRadius: 4, overflow: 'hidden', maxWidth: 200, margin: '0 auto' }}>
               <div style={{ height: '100%', background: blue, borderRadius: 4, animation: 'slideIn 1.6s ease-in-out infinite', width: '50%' }} />
             </div>
@@ -302,7 +302,7 @@ export default function ScannerPage() {
                   )}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  {!geminiDone && (
+                  {!geminiDone && imgSearchDone && imgMatches?.length === 0 && (
                     <div style={{ fontSize: 12, color: muted, animation: 'pulse 1.4s ease-in-out infinite' }}>Identification IA…</div>
                   )}
                   {card && (
