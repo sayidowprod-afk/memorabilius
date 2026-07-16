@@ -79,40 +79,26 @@ export async function GET(req: NextRequest) {
 
   // --- 3 posts ---
 
+  // Twitter limit: 280 chars (URLs count as 23). Keep captions short.
+  const top3Lines = ranking.slice(0, 3)
+    .map(r => `${medal(r.rank)} ${r.name} — ${r.count} carte${r.count > 1 ? 's' : ''}`)
+    .join('\n')
+
   const posts = [
     {
       type: 'cards',
       image_url: `${baseUrl}/api/cron/weekly-post/image`,
-      caption: `🃏 Les plus belles cartes ajoutées cette semaine sur Memorabilius !
-
-${bestCard ? `✨ Mention spéciale : ${bestCard.nom}${bestCard.annee ? ` ${bestCard.annee}` : ''}${bestCard.auto ? ' Auto' : ''}${bestCard.rc ? ' RC' : ''}${bestCard.num ? ` ${(bestCard.num.match(/\/\d+/) || [bestCard.num])[0]}` : ''}` : ''}
-
-Partage tes cartes sur memorabilius.fr 🏀
-
-#memorabilius #cartes #cards #NBA #collection #sportscards`,
+      caption: `🃏 Top cartes de la semaine sur Memorabilius !${bestCard ? `\n✨ ${bestCard.nom}${bestCard.rc ? ' RC' : ''}${bestCard.auto ? ' Auto' : ''}${bestCard.num ? ` ${(bestCard.num.match(/\/\d+/) || [bestCard.num])[0]}` : ''}` : ''}\n\nmemorabilius.fr\n#cards #NBA #sportscards #memorabilius`,
     },
     {
       type: 'ranking',
       image_url: `${baseUrl}/api/cron/weekly-post/ranking`,
-      caption: `🏆 Classement de la semaine — ${dateStr}
-
-${rankLines || 'Aucune activité cette semaine'}
-
-Rejoins la communauté et monte dans le classement 👇
-memorabilius.fr
-
-#memorabilius #classement #cartes #cards #NBA #collection`,
+      caption: `🏆 Classement semaine — ${dateStr}\n\n${top3Lines || 'Aucune activité'}\n\nmemorabilius.fr\n#cards #collection #memorabilius`,
     },
     {
       type: 'collector',
       image_url: `${baseUrl}/api/cron/weekly-post/collector`,
-      caption: `⭐ Collectionneur de la semaine : ${ranking[0]?.name || '???'} !
-
-${ranking[0] ? `🏆 ${ranking[0].count} carte${ranking[0].count > 1 ? 's' : ''} ajoutée${ranking[0].count > 1 ? 's' : ''} cette semaine` : ''}
-
-Découvre sa galerie sur memorabilius.fr 🔥
-
-#memorabilius #collectionneur #cartes #cards #NBA #sportscards`,
+      caption: `⭐ Collectionneur de la semaine : ${ranking[0]?.name || '???'} !${ranking[0] ? `\n🏆 ${ranking[0].count} carte${ranking[0].count > 1 ? 's' : ''} cette semaine` : ''}\n\nmemorabilius.fr\n#cards #NBA #memorabilius`,
     },
   ]
 
