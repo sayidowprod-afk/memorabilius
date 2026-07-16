@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     if (!oauthToken) return NextResponse.json({ items: [] })
 
     const res = await fetch(
-      'https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=12&filter=buyingOptions:{FIXED_PRICE|BEST_OFFER}',
+      'https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=20&filter=buyingOptions:{FIXED_PRICE|BEST_OFFER}',
       {
         method: 'POST',
         headers: {

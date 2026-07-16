@@ -179,15 +179,27 @@ export async function GET(req: NextRequest) {
   const keywordParts = [name, yearShort, set, variant, printRun || '', rc ? 'RC' : '', auto ? 'AUTO' : '', patch ? 'PATCH' : ''].filter(Boolean)
   const keywords = directQ || keywordParts.join(' ')
 
-  // Quand ?q= est fourni, on filtre sur les mots significatifs du titre (>3 chars, pas trop génériques)
+  // Pour la recherche vendues (Finding API), le titre complet eBay donne 0 résultat car l'API
+  // fait un AND strict sur tous les mots. On prend les 5 premiers mots non-génériques/non-#.
+  const soldKeywords = directQ
+    ? directQ.split(/\s+/)
+        .filter(w => w.length > 2 && !GENERIC.has(w.toLowerCase()) && !/^#/.test(w))
+        .slice(0, 5)
+        .join(' ')
+    : keywords
+
+  // mustTerms plus lâches pour directQ : 2 mots non-numériques pour éviter les faux-négatifs
+  // liés aux formats d'année (202223 vs 2223 selon les vendeurs)
   const mustTerms: string[] = directQ
-    ? directQ.split(/\s+/).filter(w => w.length > 3 && !GENERIC.has(w.toLowerCase())).slice(0, 4)
+    ? directQ.split(/\s+/)
+        .filter(w => w.length > 3 && !GENERIC.has(w.toLowerCase()) && !/^\d/.test(w) && !/^#/.test(w))
+        .slice(0, 2)
     : [name]
-  if (yearShort) mustTerms.push(yearShort)
-  if (printRun) mustTerms.push(printRun.replace('/', ''))
-  if (auto) mustTerms.push('auto')
-  if (rc) mustTerms.push('rc')
-  const mustSetWord = setWords[0] || ''
+  if (!directQ && yearShort) mustTerms.push(yearShort)
+  if (!directQ && printRun) mustTerms.push(printRun.replace('/', ''))
+  if (!directQ && auto) mustTerms.push('auto')
+  if (!directQ && rc) mustTerms.push('rc')
+  const mustSetWord = directQ ? '' : (setWords[0] || '')
   const isGraded = Boolean(grade && grade !== 'Raw' && grade !== 'Non gradée' && grade !== '')
 
   const token = await getOAuthToken(appId, certId)
@@ -204,7 +216,7 @@ export async function GET(req: NextRequest) {
     const timeout = setTimeout(() => controller.abort(), 20000)
 
     // Active listings + sold comps en parallèle
-    const soldPromise = fetchSoldItems(keywords, mustTerms, mustSetWord, isGraded, appId)
+    const soldPromise = fetchSoldItems(soldKeywords, mustTerms, mustSetWord, isGraded, appId)
 
     let rawItems: any[] = []
 
