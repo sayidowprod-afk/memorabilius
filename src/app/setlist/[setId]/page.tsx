@@ -50,6 +50,9 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
   const [totalOwned, setTotalOwned] = useState(0)
   const [entryToCard, setEntryToCard] = useState<Map<number, string>>(new Map())
   const [filterRc, setFilterRc] = useState(false)
+  const [mySetCards, setMySetCards] = useState<{ id: string; image: string; nom: string; variation: string }[]>([])
+  const [previewCard, setPreviewCard] = useState<{ image: string; nom: string; variation: string } | null>(null)
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id || null))
@@ -152,41 +155,46 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         }
 
         const autoMatchedIds: number[] = []
+        const norm = (s: string) => s?.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]/g, '') || ''
+        const words = (s: string) => s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2) || []
+        const BRAND_PARENT: Record<string, string> = {
+          hoops: 'panini', prizm: 'panini', select: 'panini', donruss: 'panini',
+          optic: 'panini', mosaic: 'panini', chronicles: 'panini', contenders: 'panini',
+          spectra: 'panini', noir: 'panini', obsidian: 'panini', immaculate: 'panini',
+          revolution: 'panini', eminence: 'panini', illusions: 'panini', nbahoops: 'panini',
+          flawless: 'panini', titanium: 'panini', nationaltreasures: 'panini',
+          flux: 'panini', origins: 'panini', courtkings: 'panini', certified: 'panini',
+          flagship: 'topps', finest: 'topps', bowman: 'topps', chrome: 'topps',
+          heritage: 'topps', stadium: 'topps', update: 'topps',
+        }
+        const normBrand = (b: string) => { const n = norm(b).replace('america', '').replace('sports', ''); return BRAND_PARENT[n] ?? n }
 
         if (galleryCards.length && setData.year) {
-          const norm = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]/g, '') || ''
-          const words = (s: string) => s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2) || []
-
           const y = setData.year!
-          const yearStr = String(y), yearNext = `${y}-${String(y+1).slice(2)}`, yearPrev = `${y-1}-${yearStr.slice(2)}`
-          const cardsThisYear = (galleryCards as any[]).filter(c => {
-            const cy = (c.annee||'').trim()
-            return cy === yearStr || cy === yearNext || cy === yearPrev
-          })
+          const yearStr = String(y)
+          const yearNext = `${y}-${String(y+1).slice(2)}`   // "2023-24"
+          const yearPrev = `${y-1}-${yearStr.slice(2)}`      // "2022-23"
+          const yearNextFull = String(y + 1)                  // "2024" (saison 2023-24 parfois saisie comme 2024)
+          const yearFull2 = `${y}-${y+1}`                    // "2023-2024"
 
           for (const e of allEntries) {
             if (completedEntryIds.has(e.id)) continue
 
-            const matched = (galleryCards as any[]).some(card => {
-              // 1. Joueur (normalisé)
+            const matchedCard = (galleryCards as any[]).find(card => {
+              // 1. Joueur (normalisé, diacritiques supprimées)
               if (norm(card.nom) !== norm(e.player_name)) return false
 
-              // 2. Année : "2023", "2023-24", ou "2022-23" pour un set year=2023
-              const y = setData.year!
-              const yearStr = String(y)                                    // "2023"
-              const yearNext = `${y}-${String(y + 1).slice(2)}`           // "2023-24"
-              const yearPrev = `${y - 1}-${yearStr.slice(2)}`             // "2022-23"
+              // 2. Année — formats acceptés : "2023", "2023-24", "2022-23", "2024", "2023-2024"
               const cardYear = (card.annee || '').trim()
-              if (cardYear !== yearStr && cardYear !== yearNext && cardYear !== yearPrev) return false
+              if (cardYear && cardYear !== yearStr && cardYear !== yearNext && cardYear !== yearPrev && cardYear !== yearNextFull && cardYear !== yearFull2) return false
 
-              // 3. Marque (fuzzy : l'un contient l'autre — ignoré si l'un des deux est vide)
+              // 3. Marque (avec résolution sous-marques Panini/Topps)
               if (setData.brand && card.marque) {
-                const nb = norm(card.marque), ns = norm(setData.brand)
+                const nb = normBrand(card.marque), ns = normBrand(setData.brand)
                 if (!nb.includes(ns) && !ns.includes(nb)) return false
               }
 
-              // 4. Collection (fuzzy : au moins 1 mot clé en commun — ignoré si vide)
-              // On teste collection ET collection_tag contre le nom du set
+              // 4. Collection (au moins 1 mot clé commun — ignoré si vide)
               const collToTest = card.collection || card.collection_tag || ''
               if (collToTest) {
                 const userWords = words(collToTest)
@@ -194,22 +202,16 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                 if (userWords.length > 0 && !userWords.some(w => setNorm.includes(w))) return false
               }
 
-              // 5. Variation : base vs parallèle
+              // 5. Variation : base↔base stricte, parallèle fuzzy
               const cardVar = (card.variation || '').trim()
               const entryVar = (e.variation || '').trim()
-
-              if (!cardVar) {
-                // Carte sans variation → seulement les entrées base (variation null)
-                return !entryVar
-              } else {
-                // Carte avec variation → fuzzy match (l'un contient l'autre ou mots en commun)
-                if (!entryVar) return false
-                const nc = norm(cardVar), ne = norm(entryVar)
-                return nc.includes(ne) || ne.includes(nc) || words(cardVar).some(w => ne.includes(w))
-              }
+              if (!cardVar) return !entryVar
+              if (!entryVar) return false
+              const nc = norm(cardVar), ne = norm(entryVar)
+              return nc.includes(ne) || ne.includes(nc) || words(cardVar).some(w => ne.includes(w))
             })
 
-            if (matched) {
+            if (matchedCard) {
               completedEntryIds.add(e.id)
               autoMatchedIds.push(e.id)
             }
@@ -225,7 +227,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
             await supabase.from('user_set_completion').upsert(rows, { onConflict: 'user_id,entry_id', ignoreDuplicates: true })
           }
 
-          // Construire la map entry → image galerie pour afficher les vignettes
+          // Map entry → première image galerie par joueur (vignettes dans les lignes)
           const playerToImg = new Map<string, string>()
           for (const card of galleryCards) {
             if (card.image_recto && !playerToImg.has(norm(card.nom))) {
@@ -240,6 +242,19 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
             }
           }
           setEntryToCard(cardMap)
+
+          // Section "Mes cartes" — toutes les cartes galerie dont le joueur est dans ce set
+          const ownedPlayers = new Set<string>()
+          for (const e of allEntries) {
+            if (completedEntryIds.has(e.id)) ownedPlayers.add(norm(e.player_name))
+          }
+          const myCards: { id: string; image: string; nom: string; variation: string }[] = []
+          for (const card of galleryCards) {
+            if (!card.image_recto) continue
+            if (!ownedPlayers.has(norm(card.nom))) continue
+            myCards.push({ id: card.id || '', image: card.image_recto, nom: card.nom, variation: card.variation || '' })
+          }
+          setMySetCards(myCards)
         }
 
         setTotalOwned(completedEntryIds.size)
@@ -462,10 +477,56 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         )}
       </div>
 
+      {/* Mes cartes dans ce set */}
+      {userId && mySetCards.length > 0 && (
+        <div style={{ background: dark ? '#111d33' : '#f0f4ff', borderRadius: 14, padding: '16px 20px', marginBottom: 24 }}>
+          <div style={{ fontWeight: 800, fontSize: 13, marginBottom: 12, color: dark ? '#7aabf7' : '#003DA6', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            🃏 Mes cartes · {mySetCards.length}
+          </div>
+          <div style={{ display: 'flex', gap: 12, overflowX: 'auto', paddingBottom: 4 }}>
+            {mySetCards.map((card, i) => (
+              <div key={i} onClick={() => setPreviewCard(card)} style={{ flexShrink: 0, cursor: 'pointer', width: 64, textAlign: 'center' }}>
+                <img src={card.image} alt={card.nom}
+                  style={{ width: 64, height: 90, objectFit: 'cover', borderRadius: 8, display: 'block', boxShadow: '0 3px 10px rgba(0,0,0,0.25)', transition: 'transform 0.15s' }}
+                  onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.07) translateY(-2px)')}
+                  onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+                />
+                <div style={{ fontSize: 10, fontWeight: 700, marginTop: 5, color: dark ? '#eee' : '#111', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {card.nom.split(' ').pop()}
+                </div>
+                {card.variation && (
+                  <div style={{ fontSize: 9, color: '#888', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.variation}</div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Modal preview carte galerie */}
+      {previewCard && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}
+          onClick={() => setPreviewCard(null)}>
+          <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 22, padding: '28px 24px', maxWidth: 320, width: '100%', textAlign: 'center', boxShadow: '0 16px 48px rgba(0,0,0,0.4)' }}
+            onClick={e => e.stopPropagation()}>
+            <img src={previewCard.image} alt={previewCard.nom}
+              style={{ width: '72%', borderRadius: 14, boxShadow: '0 6px 24px rgba(0,0,0,0.3)', display: 'block', margin: '0 auto 18px' }} />
+            <div style={{ fontWeight: 900, fontSize: 20, color: dark ? '#eee' : '#111', marginBottom: 4 }}>{previewCard.nom}</div>
+            {previewCard.variation && (
+              <div style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>{previewCard.variation}</div>
+            )}
+            <button onClick={() => setPreviewCard(null)}
+              style={{ padding: '10px 24px', borderRadius: 10, border: `1.5px solid ${dark ? '#444' : '#ddd'}`, background: 'none', color: dark ? '#ccc' : '#666', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+              Fermer
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Filtres */}
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 20 }}>
-        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher un joueur..."
-          style={{ flex: '1 1 200px', minWidth: 160, padding: '10px 14px', border: '1.5px solid #e0e0e0', borderRadius: 8, fontSize: 14, outline: 'none' }} />
+        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher un joueur ou #..."
+          style={{ flex: '1 1 200px', minWidth: 160, padding: '10px 14px', border: `1.5px solid ${search ? '#003DA6' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 8, fontSize: 14, outline: 'none', background: dark ? '#2a2a2a' : 'white', color: dark ? '#eee' : '#111' }} />
         <select value={filterTeam} onChange={e => setFilterTeam(e.target.value)}
           style={{ padding: '10px 14px', border: `1.5px solid ${filterTeam ? '#003DA6' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 8, fontSize: 13, background: dark ? '#2a2a2a' : 'white', cursor: 'pointer', fontWeight: filterTeam ? 700 : 400, color: filterTeam ? '#003DA6' : (dark ? '#bbb' : '#666'), minWidth: 160 }}>
           <option value="">Toutes les équipes</option>
@@ -483,8 +544,17 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         )}
         <button onClick={() => setFilterRc(v => !v)}
           style={{ padding: '10px 16px', border: `1.5px solid ${filterRc ? '#e67e22' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', background: filterRc ? '#e67e22' : (dark ? '#2a2a2a' : 'white'), color: filterRc ? 'white' : (dark ? '#eee' : '#333'), whiteSpace: 'nowrap' }}>
-          RC uniquement
+          RC
         </button>
+        {userId && filter === 'missing' && (
+          <button onClick={() => {
+            const missing = variations.flatMap(v => v.entries.filter(e => !e.owned)).map(e => `#${e.card_number || '?'} ${e.player_name}${e.team ? ` (${e.team})` : ''}`)
+            navigator.clipboard.writeText(missing.join('\n')).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000) })
+          }}
+            style={{ padding: '10px 16px', border: `1.5px solid ${copied ? '#2ecc71' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', background: copied ? '#2ecc71' : (dark ? '#2a2a2a' : 'white'), color: copied ? 'white' : (dark ? '#eee' : '#333'), whiteSpace: 'nowrap' }}>
+            {copied ? '✓ Copié !' : '📋 Copier la liste'}
+          </button>
+        )}
       </div>
 
       {/* Variations */}
@@ -552,7 +622,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                           <span style={{ fontSize: 12, color: '#bbb', fontWeight: 700 }}>{entry.card_number || '—'}</span>
                           <div style={{ width: 24, height: 34, flexShrink: 0 }}>
                             {cardImg ? (
-                              <img src={cardImg} alt="" style={{ width: 24, height: 34, objectFit: 'cover', borderRadius: 3, display: 'block', boxShadow: '0 1px 4px rgba(0,0,0,0.18)' }} />
+                              <img src={cardImg} alt="" onClick={ev => { ev.stopPropagation(); setPreviewCard({ image: cardImg, nom: entry.player_name, variation: entry.variation || '' }) }}
+                                style={{ width: 24, height: 34, objectFit: 'cover', borderRadius: 3, display: 'block', boxShadow: '0 1px 4px rgba(0,0,0,0.18)', cursor: 'zoom-in' }} />
                             ) : null}
                           </div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 6, overflow: 'hidden' }}>

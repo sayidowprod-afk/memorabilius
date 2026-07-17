@@ -56,6 +56,7 @@ export default function SetlistPage() {
   const [activeDecade, setActiveDecade] = useState<number | null>(null)
   const [searchSet, setSearchSet] = useState('')
   const [showOnlyOwned, setShowOnlyOwned] = useState(false)
+  const [sortSets, setSortSets] = useState<'az' | 'pct_desc' | 'pct_asc'>('az')
   const [syncing, setSyncing] = useState(false)
   const [syncProgress, setSyncProgress] = useState(0)
   const [syncDone, setSyncDone] = useState(false)
@@ -516,11 +517,17 @@ export default function SetlistPage() {
   const totalOwnedAllSets = sets.reduce((a, s) => a + (s.owned || 0), 0)
   const setsWithCards = sets.filter(s => (s.owned || 0) > 0).length
 
-  const displayedSets = seasonSets.filter(s => {
-    if (showOnlyOwned && !(s.owned && s.owned > 0)) return false
-    if (searchSet && !s.name.toLowerCase().includes(searchSet.toLowerCase())) return false
-    return true
-  })
+  const displayedSets = seasonSets
+    .filter(s => {
+      if (showOnlyOwned && !(s.owned && s.owned > 0)) return false
+      if (searchSet && !s.name.toLowerCase().includes(searchSet.toLowerCase())) return false
+      return true
+    })
+    .sort((a, b) => {
+      if (sortSets === 'pct_desc') return (b.pct || 0) - (a.pct || 0) || a.name.localeCompare(b.name)
+      if (sortSets === 'pct_asc') return (a.pct || 0) - (b.pct || 0) || a.name.localeCompare(b.name)
+      return a.name.localeCompare(b.name)
+    })
 
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 20px' }}>
@@ -882,6 +889,14 @@ export default function SetlistPage() {
               style={{ padding: '10px 18px', borderRadius: 10, border: `1.5px solid ${showOnlyOwned ? '#003DA6' : (dark ? '#444' : '#e0e0e0')}`, background: showOnlyOwned ? '#003DA6' : (dark ? '#2a2a2a' : 'white'), color: showOnlyOwned ? 'white' : (dark ? '#bbb' : '#666'), fontWeight: 700, fontSize: 13, cursor: 'pointer', whiteSpace: 'nowrap' }}
             >
               ✦ Mes sets ({setsWithCards})
+            </button>
+          )}
+          {userId && (
+            <button
+              onClick={() => setSortSets(s => s === 'az' ? 'pct_desc' : s === 'pct_desc' ? 'pct_asc' : 'az')}
+              style={{ padding: '10px 14px', borderRadius: 10, border: `1.5px solid ${sortSets !== 'az' ? '#003DA6' : (dark ? '#444' : '#e0e0e0')}`, background: sortSets !== 'az' ? '#003DA6' : (dark ? '#2a2a2a' : 'white'), color: sortSets !== 'az' ? 'white' : (dark ? '#bbb' : '#666'), fontWeight: 700, fontSize: 13, cursor: 'pointer', whiteSpace: 'nowrap' }}
+            >
+              {sortSets === 'az' ? 'A→Z' : sortSets === 'pct_desc' ? '% ↓' : '% ↑'}
             </button>
           )}
           {(searchSet || showOnlyOwned) && (
