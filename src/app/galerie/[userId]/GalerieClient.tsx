@@ -548,7 +548,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   }
 
   const applyCurrentSortAsDefault = async () => {
-    const newCards = [...filtered]
+    const filteredIds = new Set(filtered.map(getCardId))
+    const rest = cards.filter(c => !filteredIds.has(getCardId(c)))
+    const newCards = [...filtered, ...rest]
     setCards(newCards)
     setSortBy('default')
     setSortBy2('none')
