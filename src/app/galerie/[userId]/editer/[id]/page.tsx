@@ -234,6 +234,64 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     } catch (e: any) { setScanError(e.message) } finally { setScanning(false) }
   }
 
+  const reAnalyzeCard = async () => {
+    if (!form.image_recto) return
+    setScanning(true); setScanError(null)
+    try {
+      const { data: { session: scanSession } } = await supabase.auth.getSession()
+      if (!scanSession) { setScanError('Non connecté'); return }
+
+      const toBase64 = (url: string): Promise<string> =>
+        fetch(url).then(r => r.blob()).then(blob => new Promise<string>(res => {
+          const reader = new FileReader()
+          reader.onload = () => res((reader.result as string).split(',')[1])
+          reader.readAsDataURL(blob)
+        }))
+
+      const rectoBase64 = await toBase64(form.image_recto)
+      const versoBase64 = form.image_verso ? await toBase64(form.image_verso) : undefined
+
+      let ebayHints: string[] = []
+      try {
+        const ebayRes = await Promise.race([
+          fetch('/api/ebay-image-search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${scanSession.access_token}` },
+            body: JSON.stringify({ imageBase64: rectoBase64 }),
+          }).then(r => r.json()),
+          new Promise<null>(r => setTimeout(() => r(null), 3000)),
+        ])
+        if (ebayRes?.items?.length) {
+          ebayHints = (ebayRes.items as { title: string }[]).slice(0, 5).map(i => i.title).filter(Boolean)
+        }
+      } catch { /* non-fatal */ }
+
+      const resp = await fetch('/api/scan-card', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${scanSession.access_token}` },
+        body: JSON.stringify({ imageBase64: rectoBase64, imageBase64Verso: versoBase64, mimeType: 'image/jpeg', ebayHints }),
+      })
+      const card = await resp.json()
+      if (!resp.ok || card.error) { setScanError(card.error || `Erreur ${resp.status}`); return }
+
+      setForm(f => ({
+        ...f,
+        nom:        card.nom        || f.nom,
+        equipe:     card.equipe     || f.equipe,
+        annee:      card.annee      || f.annee,
+        marque:     card.marque     || f.marque,
+        collection: card.collection || f.collection,
+        variation:  card.variation  !== undefined ? card.variation : f.variation,
+        num:        card.num        || f.num,
+        grade:      card.grade      || f.grade,
+        rc:   card.rc   ?? f.rc,
+        auto: card.auto ?? f.auto,
+        patch: card.patch ?? f.patch,
+      }))
+      toast.success(lang === 'fr' ? 'Analyse terminée !' : 'Analysis complete!')
+    } catch (e: any) { setScanError(e.message) } finally { setScanning(false) }
+  }
+
   const getDist = (touches: React.TouchList) =>
     Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY)
 
@@ -414,6 +472,13 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             <ImageUploader side="il" label="Intérieur Gauche" preview={previewIL} uploading={uploadingIL} aspect="3.5/2.5" />
             <ImageUploader side="ir" label="Intérieur Droit" preview={previewIR} uploading={uploadingIR} aspect="3.5/2.5" />
           </div>
+        )}
+
+        {(form.image_recto || form.image_verso) && !scanning && (
+          <button type="button" onClick={reAnalyzeCard}
+            style={{ width: '100%', background: '#003DA6', color: 'white', border: 'none', borderRadius: 10, padding: '12px', fontSize: 14, fontWeight: 700, cursor: 'pointer', marginBottom: 8 }}>
+            🤖 {lang === 'fr' ? "Ré-analyser avec l'IA" : 'Re-analyze with AI'}
+          </button>
         )}
 
         {scanning && (
