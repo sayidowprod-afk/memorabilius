@@ -188,6 +188,7 @@ export interface EspnPlayerBio {
   currentTeamId: string | null
   currentTeamLogo: string | null
   career: { year: number; teamName: string }[]
+  honors: string[]
 }
 
 async function findEspnAthleteId(name: string, sport: string): Promise<string | null> {
@@ -232,6 +233,7 @@ export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<E
   let age: number | null = null
   let currentTeamId: string | null = null
   let currentTeamLogo: string | null = null
+  let honors: string[] = []
   try {
     const r = await fetch(
       `https://sports.core.api.espn.com/v2/sports/${espnSport}/leagues/${league}/athletes/${id}?lang=en&region=us`,
@@ -248,6 +250,20 @@ export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<E
       jersey = data.jersey || null
       nationality = data.citizenship || null
       age = data.age || null
+      // Honors/achievements (présents sur certaines fiches ESPN)
+      if (Array.isArray(data.honors)) {
+        for (const h of data.honors) {
+          if (typeof h === 'string') honors.push(h)
+          else if (h?.displayName) honors.push(h.displayName as string)
+          else if (h?.name) honors.push(h.name as string)
+        }
+      } else if (Array.isArray(data.awards)) {
+        for (const h of data.awards) {
+          if (typeof h === 'string') honors.push(h)
+          else if (h?.displayName) honors.push(h.displayName as string)
+          else if (h?.name) honors.push(h.name as string)
+        }
+      }
       // Logo équipe actuelle
       const teamRef: string | undefined = data.team?.$ref
       if (teamRef) {
@@ -273,8 +289,14 @@ export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<E
       // { teamId → Set<year> }
       const teamYears = new Map<string, Set<number>>()
       for (const entry of data.entries ?? []) {
-        const year: number | undefined = entry.year ?? entry.seasonYear ?? entry.season?.year
+        // L'année est dans entry.season.$ref (ex: ".../seasons/2026?...") pas dans .year
+        const seasonRef: string | undefined = entry.season?.$ref
+        const yearMatch = seasonRef ? /\/seasons\/(\d{4})/.exec(seasonRef) : null
+        const year: number | undefined =
+          entry.year ?? entry.seasonYear ?? entry.season?.year ??
+          (yearMatch ? parseInt(yearMatch[1]) : undefined)
         for (const s of entry.statistics ?? []) {
+          // Seules les entrées de type "team" ont un $ref d'équipe
           const ref: string | undefined = s?.team?.$ref
           const m = ref ? /\/teams\/(\d+)/.exec(ref) : null
           if (m) {
@@ -316,5 +338,6 @@ export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<E
     }
   } catch { /* ESPN unavailable */ }
 
-  return { birthDate, birthPlace, teams, position, height, weight, jersey, nationality, age, currentTeamId, currentTeamLogo, career }
+  return { birthDate, birthPlace, teams, position, height, weight, jersey, nationality, age, currentTeamId, currentTeamLogo, career, honors }
 }
+ 

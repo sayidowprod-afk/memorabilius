@@ -7,6 +7,87 @@ import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
 
 export const revalidate = 3600
 
+// ── Couleurs NBA par équipe ───────────────────────────────────────────────────
+const NBA_COLORS: Record<string, { primary: string; secondary: string; abbr: string }> = {
+  'Atlanta Hawks': { primary: '#E03A3E', secondary: '#C1D32F', abbr: 'ATL' },
+  'Boston Celtics': { primary: '#007A33', secondary: '#FFFFFF', abbr: 'BOS' },
+  'Brooklyn Nets': { primary: '#000000', secondary: '#FFFFFF', abbr: 'BKN' },
+  'Charlotte Hornets': { primary: '#1D1160', secondary: '#00788C', abbr: 'CHA' },
+  'Chicago Bulls': { primary: '#CE1141', secondary: '#FFFFFF', abbr: 'CHI' },
+  'Cleveland Cavaliers': { primary: '#860038', secondary: '#FDBB30', abbr: 'CLE' },
+  'Dallas Mavericks': { primary: '#00538C', secondary: '#FFFFFF', abbr: 'DAL' },
+  'Denver Nuggets': { primary: '#0E2240', secondary: '#FEC524', abbr: 'DEN' },
+  'Detroit Pistons': { primary: '#C8102E', secondary: '#1D428A', abbr: 'DET' },
+  'Golden State Warriors': { primary: '#1D428A', secondary: '#FFC72C', abbr: 'GSW' },
+  'Houston Rockets': { primary: '#CE1141', secondary: '#FFFFFF', abbr: 'HOU' },
+  'Indiana Pacers': { primary: '#002D62', secondary: '#FDBB30', abbr: 'IND' },
+  'Los Angeles Clippers': { primary: '#C8102E', secondary: '#1D428A', abbr: 'LAC' },
+  'Los Angeles Lakers': { primary: '#552583', secondary: '#FDB927', abbr: 'LAL' },
+  'Memphis Grizzlies': { primary: '#5D76A9', secondary: '#12173F', abbr: 'MEM' },
+  'Miami Heat': { primary: '#98002E', secondary: '#F9A01B', abbr: 'MIA' },
+  'Milwaukee Bucks': { primary: '#00471B', secondary: '#EEE1C6', abbr: 'MIL' },
+  'Minnesota Timberwolves': { primary: '#0C2340', secondary: '#236192', abbr: 'MIN' },
+  'New Orleans Pelicans': { primary: '#0C2340', secondary: '#85714D', abbr: 'NOP' },
+  'New York Knicks': { primary: '#006BB6', secondary: '#F58426', abbr: 'NYK' },
+  'Oklahoma City Thunder': { primary: '#007AC1', secondary: '#EF3B24', abbr: 'OKC' },
+  'Orlando Magic': { primary: '#0077C0', secondary: '#C4CED4', abbr: 'ORL' },
+  'Philadelphia 76ers': { primary: '#006BB6', secondary: '#ED174C', abbr: 'PHI' },
+  'Phoenix Suns': { primary: '#1D1160', secondary: '#E56020', abbr: 'PHX' },
+  'Portland Trail Blazers': { primary: '#E03A3E', secondary: '#000000', abbr: 'POR' },
+  'Sacramento Kings': { primary: '#5A2D81', secondary: '#63727A', abbr: 'SAC' },
+  'San Antonio Spurs': { primary: '#C4CED4', secondary: '#000000', abbr: 'SAS' },
+  'Toronto Raptors': { primary: '#CE1141', secondary: '#000000', abbr: 'TOR' },
+  'Utah Jazz': { primary: '#002B5C', secondary: '#00471B', abbr: 'UTA' },
+  'Washington Wizards': { primary: '#002B5C', secondary: '#E31837', abbr: 'WAS' },
+  // Historiques
+  'New Jersey Nets': { primary: '#000000', secondary: '#FFFFFF', abbr: 'NJN' },
+  'Seattle SuperSonics': { primary: '#00653A', secondary: '#FFC200', abbr: 'SEA' },
+  'Vancouver Grizzlies': { primary: '#29727C', secondary: '#E43C40', abbr: 'VAN' },
+  'New Orleans Hornets': { primary: '#002B5C', secondary: '#00788C', abbr: 'NOH' },
+  'Charlotte Bobcats': { primary: '#F26522', secondary: '#2D5DAA', abbr: 'BOB' },
+  'New Orleans/Oklahoma City Hornets': { primary: '#002B5C', secondary: '#00788C', abbr: 'NOK' },
+}
+
+function getTeamColors(teamName: string) {
+  return NBA_COLORS[teamName] ?? {
+    primary: '#444444',
+    secondary: '#FFFFFF',
+    abbr: teamName.split(' ').map((w: string) => w[0] ?? '').join('').slice(0, 3).toUpperCase(),
+  }
+}
+
+function getHonorStyle(honor: string): { background: string; color: string } {
+  // Honours dorés (championnats, MVP, records) vs gris (All-Star, All-NBA, etc.)
+  if (/champ|mvp|hall of fame|roy|scoring title|75th|anniversary|finalist/i.test(honor) &&
+    !/all.?star|all.?nba|all.?defensive|all.?rookie/i.test(honor)) {
+    return { background: '#6B4500', color: '#FFC72C' }
+  }
+  return { background: '#4a4a4a', color: '#e0e0e0' }
+}
+
+function JerseyIcon({ primary, secondary, abbr }: { primary: string; secondary: string; abbr: string }) {
+  return (
+    <svg width="40" height="50" viewBox="0 0 40 50" style={{ display: 'block' }}>
+      <path
+        d="M6 7 L0 19 L10 22 L10 48 L30 48 L30 22 L40 19 L34 7 C31 3 26 1 20 1 C14 1 9 3 6 7Z"
+        fill={primary}
+        stroke="rgba(0,0,0,0.18)"
+        strokeWidth="1"
+      />
+      <path d="M14 7 L20 14 L26 7" fill="none" stroke={secondary} strokeWidth="1.8" strokeLinecap="round"/>
+      <text
+        x="20" y="33"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fill={secondary}
+        fontSize={abbr.length > 2 ? '9' : '11'}
+        fontWeight="bold"
+        fontFamily="Arial, sans-serif"
+      >{abbr}</text>
+    </svg>
+  )
+}
+
 // Request coalescing: si plusieurs renders simultanés demandent le même slug
 // (dev mode HMR), on fait un seul appel Supabase au lieu de N → évite les timeouts
 const _inflight = new Map<string, Promise<any>>()
@@ -72,14 +153,11 @@ async function _fetchPlayer(slug: string) {
   const firstName = nameParts[0]
   const lastName = nameParts[nameParts.length - 1]
 
-  const [entriesRes, manuRes, profilesRes] = await Promise.all([
-    // Sans join card_sets pour éviter le timeout sur la table volumineuse
-    supabase
-      .from('card_set_entries')
-      .select('set_id, variation, is_rc, player_name')
-      .ilike('player_name', `${firstName}%`)
-      .ilike('player_name', `%${lastName}%`)
-      .limit(3000),
+  // RPC get_player_sets + manuelles + profiles en parallèle
+  // La RPC fait le JOIN + GROUP BY côté Postgres — aucune pagination OFFSET nécessaire
+  // Nécessite l'index trigram sur card_set_entries.player_name pour être rapide
+  const [setsRpcRes, manuRes, profilesRes] = await Promise.all([
+    supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName }),
     supabase
       .from('cartes_manuelles')
       .select('id, nom, annee, rc, marque, collection, variation, image_recto, is_horizontal, user_id, profiles(display_name, avatar_url, couleur_bordure)')
@@ -94,32 +172,49 @@ async function _fetchPlayer(slug: string) {
       .not('lien_csv', 'is', null),
   ])
 
-  const matchedEntries = (entriesRes.data || []).filter((e: any) => normalizeName(e.player_name || '').includes(normTarget))
-
-  // Récupérer les métadonnées des sets en une seule requête IN (rapide)
-  const uniqueSetIds = [...new Set(matchedEntries.map((e: any) => e.set_id as number))]
-  const setsDataRes = uniqueSetIds.length > 0
-    ? await supabase.from('card_sets').select('id, name, year, brand, sport').in('id', uniqueSetIds)
-    : { data: [] }
-  const setsById = new Map((setsDataRes.data || []).map((s: any) => [s.id, s]))
   const matchedManu = (manuRes.data || []).filter((m: any) => normalizeName(m.nom || '').includes(normTarget))
 
-  // Sets — on utilise setsById (fetched séparément pour éviter le join lent)
-  const setsMap = new Map<number, any>()
-  for (const e of matchedEntries) {
-    const cs = setsById.get(e.set_id)
-    if (!cs) continue
-    if (!setsMap.has(cs.id)) setsMap.set(cs.id, { ...cs, isRc: false, variations: [] })
-    const s = setsMap.get(cs.id)!
-    if (e.is_rc) s.isRc = true
-    if (e.variation && !s.variations.includes(e.variation)) s.variations.push(e.variation)
+  let rawSets: any[] = setsRpcRes.data || []
+
+  // Fallback si la RPC timeout (index trigram pas encore créé) :
+  // requête simple avec limit — couvre les 1000 premières entrées
+  if (setsRpcRes.error && !rawSets.length) {
+    const fallbackRes = await supabase
+      .from('card_set_entries')
+      .select('set_id, variation, is_rc, player_name')
+      .ilike('player_name', `${firstName}%`)
+      .ilike('player_name', `%${lastName}%`)
+      .limit(1000)
+    const entries = (fallbackRes.data || []).filter((e: any) => normalizeName(e.player_name || '').includes(normTarget))
+    const uniqueIds = [...new Set(entries.map((e: any) => e.set_id as number))]
+    if (uniqueIds.length > 0) {
+      const setsRes = await supabase.from('card_sets').select('id, name, year, brand, sport').in('id', uniqueIds)
+      const setsById = new Map((setsRes.data || []).map((s: any) => [s.id, s]))
+      const setsMap = new Map<number, any>()
+      for (const e of entries) {
+        const cs = setsById.get(e.set_id); if (!cs) continue
+        if (!setsMap.has(cs.id)) setsMap.set(cs.id, { ...cs, is_rc: false, variations: [] })
+        const s = setsMap.get(cs.id)!
+        if (e.is_rc) s.is_rc = true
+        if (e.variation && !s.variations.includes(e.variation)) s.variations.push(e.variation)
+      }
+      rawSets = [...setsMap.values()]
+    }
   }
-  const sets = [...setsMap.values()].sort((a, b) => (b.year || 0) - (a.year || 0))
+
+  // La RPC retourne déjà les sets dédupliqués avec is_rc et variations agrégés
+  const sets = rawSets.map((s: any) => ({
+    ...s,
+    isRc: s.is_rc,
+  })).sort((a: any, b: any) => (b.year || 0) - (a.year || 0))
   const primarySport = sets[0]?.sport || 'nba'
 
-  const rcFromSets = sets.find((s: any) => s.isRc)?.year as number | undefined
-  const rcFromManuelles = matchedManu.find((m: any) => m.rc)?.annee as string | undefined
-  const rcYear = rcFromSets || (rcFromManuelles ? parseInt(rcFromManuelles) : undefined)
+  // RC year = année la PLUS ANCIENNE des sets marqués RC (pas la première trouvée)
+  const rcSetYears = sets.filter((s: any) => s.isRc && s.year > 0).map((s: any) => s.year as number)
+  const rcFromSets = rcSetYears.length > 0 ? Math.min(...rcSetYears) : undefined
+  const manuRcYears = matchedManu.filter((m: any) => m.rc && m.annee).map((m: any) => parseInt(m.annee) || 0).filter((y: number) => y > 0)
+  const rcFromManuelles = manuRcYears.length > 0 ? Math.min(...manuRcYears) : undefined
+  const rcYear = rcFromSets && rcFromManuelles ? Math.min(rcFromSets, rcFromManuelles) : rcFromSets ?? rcFromManuelles
 
   const [csvAll, headshot, bio] = await Promise.all([
     fetchCsvCardsForProfiles(profilesRes.data || []),
@@ -210,7 +305,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
   const { slug } = await params
   const { playerName, sets, setsByYear, sortedYears, communityCards, rcYear, headshot, bio, uniqueCollectors, topVariations, primarySport } = await fetchPlayer(slug)
 
-  const sports = [...new Set(sets.map((s: any) => s.sport as string))]
+  const sports = [...new Set(sets.map((s: any) => s.sport as string))] as string[]
   const careerTimeline = bio?.career ? buildCareerTimeline(bio.career) : []
   const teamLogoUrl = bio?.currentTeamLogo
     ? `/api/team-logo?url=${encodeURIComponent(bio.currentTeamLogo)}`
@@ -302,7 +397,6 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
         .jp-card-hover { transition: transform 0.15s, box-shadow 0.15s; }
         .jp-card-hover:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.14); }
         .jp-set-hover:hover { border-color: var(--jp-accent) !important; background: var(--jp-surface2) !important; }
-        .jp-career-row:hover { background: rgba(0,61,166,0.05) !important; }
       `}</style>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
@@ -380,7 +474,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
               <div style={{ flex: 1, minWidth: 220 }}>
                 {/* Sport pills */}
                 <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
-                  {sports.map(s => (
+                  {sports.map((s: string) => (
                     <span key={s} style={{ fontSize: 11, fontWeight: 700, background: 'rgba(255,255,255,0.15)', borderRadius: 4, padding: '3px 9px', letterSpacing: '0.06em' }}>
                       {SPORT_LABELS[s] || s.toUpperCase()}
                     </span>
@@ -448,7 +542,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                 Parallèles les plus collectés
               </h2>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                {topVariations.map(([v, count]) => (
+                {topVariations.map(([v, count]: [string, number]) => (
                   <span key={v} style={{ fontSize: 12, fontWeight: 700, background: 'var(--jp-surface)', border: '1.5px solid var(--jp-border)', color: 'var(--jp-text2)', borderRadius: 20, padding: '5px 14px', display: 'flex', gap: 6, alignItems: 'center' }}>
                     {v}
                     <span style={{ fontSize: 10, fontWeight: 900, color: 'var(--jp-accent)', background: 'rgba(0,61,166,0.08)', borderRadius: 10, padding: '1px 6px' }}>×{count}</span>
@@ -512,41 +606,59 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
             </section>
           )}
 
-          {/* ── CARRIÈRE (jersey history) ── */}
-          {careerTimeline.length > 0 && (
+          {/* ── CARRIÈRE (BBRef style : honors pills + jersey icons) ── */}
+          {((bio?.honors && bio.honors.length > 0) || careerTimeline.length > 0) && (
             <section style={{ marginBottom: 52 }}>
-              <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--jp-text)', margin: '0 0 16px' }}>
-                Historique de carrière
+              <h2 style={{ fontSize: 13, fontWeight: 800, color: 'var(--jp-muted)', textTransform: 'uppercase', letterSpacing: '0.09em', margin: '0 0 16px' }}>
+                Carrière
               </h2>
-              <div style={{ background: 'var(--jp-surface)', borderRadius: 12, border: '1.5px solid var(--jp-border)', overflow: 'hidden' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
-                  <thead>
-                    <tr style={{ borderBottom: '2px solid var(--jp-border)', background: 'var(--jp-surface2)' }}>
-                      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 800, color: 'var(--jp-muted)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Saison</th>
-                      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 800, color: 'var(--jp-muted)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Équipe</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {careerTimeline.map((run, i) => (
-                      <tr
-                        key={`${run.teamName}-${run.startYear}`}
-                        className="jp-career-row"
-                        style={{
-                          borderBottom: i < careerTimeline.length - 1 ? '1px solid var(--jp-border)' : undefined,
-                          transition: 'background 0.1s',
-                        }}
+
+              {/* Honors/Awards pills */}
+              {bio?.honors && bio.honors.length > 0 && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
+                  {bio.honors.map((honor: string, i: number) => {
+                    const hs = getHonorStyle(honor)
+                    return (
+                      <span key={i} style={{
+                        display: 'inline-block',
+                        fontSize: 11,
+                        fontWeight: 700,
+                        background: hs.background,
+                        color: hs.color,
+                        padding: '4px 10px',
+                        borderRadius: 3,
+                        letterSpacing: '0.02em',
+                        whiteSpace: 'nowrap',
+                      }}>{honor}</span>
+                    )
+                  })}
+                </div>
+              )}
+
+              {/* Jersey icons */}
+              {careerTimeline.length > 0 && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, alignItems: 'flex-start' }}>
+                  {careerTimeline.map((run, i) => {
+                    const colors = getTeamColors(run.teamName)
+                    const label = seasonLabel(run.startYear, run.endYear, primarySport)
+                    return (
+                      <div
+                        key={`${run.teamName}-${run.startYear}-${i}`}
+                        title={`${run.teamName} · ${label}`}
+                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, cursor: 'default' }}
                       >
-                        <td style={{ padding: '11px 16px', color: 'var(--jp-muted)', fontWeight: 700, fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap' }}>
-                          {seasonLabel(run.startYear, run.endYear, primarySport)}
-                        </td>
-                        <td style={{ padding: '11px 16px', fontWeight: 700, color: 'var(--jp-text)' }}>
-                          {run.teamName}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                        <JerseyIcon primary={colors.primary} secondary={colors.secondary} abbr={colors.abbr} />
+                        <div style={{ fontSize: 9.5, fontWeight: 700, color: 'var(--jp-text2)', textAlign: 'center', lineHeight: 1.2 }}>
+                          {colors.abbr}
+                        </div>
+                        <div style={{ fontSize: 8.5, color: 'var(--jp-muted)', textAlign: 'center', whiteSpace: 'nowrap' }}>
+                          {label}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
             </section>
           )}
 
@@ -563,7 +675,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                {sortedYears.map(year => {
+                {sortedYears.map((year: number) => {
                   const yearSets = setsByYear.get(year) || []
                   const sport = yearSets[0]?.sport || primarySport
                   return (
