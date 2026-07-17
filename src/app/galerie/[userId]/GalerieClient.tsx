@@ -447,11 +447,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     })
 
     const cmp = (a: string, b: string) => a.localeCompare(b, undefined, { sensitivity: 'base' })
+    const lastName = (n: string) => n.trim().split(' ').slice(-1)[0] || n
     const val = (d: Card) => cardValues.get(d.f) ?? -Infinity
     const applySort = (key: string, a: Card, b: Card): number => {
       switch (key) {
-        case 'n':          return cmp(a.n, b.n)
-        case 'n_desc':     return cmp(b.n, a.n)
+        case 'n':          return cmp(lastName(a.n), lastName(b.n)) || cmp(a.n, b.n)
+        case 'n_desc':     return cmp(lastName(b.n), lastName(a.n)) || cmp(b.n, a.n)
         case 't':          return cmp(a.t, b.t)
         case 'y':          return cmp(a.y, b.y)
         case 'y_desc':     return cmp(b.y, a.y)
