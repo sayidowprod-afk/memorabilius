@@ -185,6 +185,9 @@ export interface EspnPlayerBio {
   jersey: string | null
   nationality: string | null
   age: number | null
+  currentTeamId: string | null
+  currentTeamLogo: string | null
+  career: { year: number; teamName: string }[]
 }
 
 async function findEspnAthleteId(name: string, sport: string): Promise<string | null> {
@@ -227,6 +230,8 @@ export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<E
   let jersey: string | null = null
   let nationality: string | null = null
   let age: number | null = null
+  let currentTeamId: string | null = null
+  let currentTeamLogo: string | null = null
   try {
     const r = await fetch(
       `https://sports.core.api.espn.com/v2/sports/${espnSport}/leagues/${league}/athletes/${id}?lang=en&region=us`,
@@ -243,10 +248,20 @@ export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<E
       jersey = data.jersey || null
       nationality = data.citizenship || null
       age = data.age || null
+      // Logo équipe actuelle
+      const teamRef: string | undefined = data.team?.$ref
+      if (teamRef) {
+        const m = /\/teams\/(\d+)/.exec(teamRef)
+        if (m) {
+          currentTeamId = m[1]
+          currentTeamLogo = `https://a.espncdn.com/i/teamlogos/${league}/500/${m[1]}.png`
+        }
+      }
     }
   } catch { /* ESPN unavailable */ }
 
   let teams: string[] = []
+  let career: { year: number; teamName: string }[] = []
   try {
     const r = await fetch(
       `https://sports.core.api.espn.com/v2/sports/${espnSport}/leagues/${league}/athletes/${id}/statisticslog?lang=en&region=us`,
@@ -255,14 +270,24 @@ export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<E
     if (r.ok) {
       const data = await r.json()
       const teamIds = new Set<string>()
+      // { teamId → Set<year> }
+      const teamYears = new Map<string, Set<number>>()
       for (const entry of data.entries ?? []) {
+        const year: number | undefined = entry.year ?? entry.seasonYear ?? entry.season?.year
         for (const s of entry.statistics ?? []) {
           const ref: string | undefined = s?.team?.$ref
           const m = ref ? /\/teams\/(\d+)/.exec(ref) : null
-          if (m) teamIds.add(m[1])
+          if (m) {
+            teamIds.add(m[1])
+            if (year) {
+              if (!teamYears.has(m[1])) teamYears.set(m[1], new Set())
+              teamYears.get(m[1])!.add(year)
+            }
+          }
         }
       }
-      const names = await Promise.all([...teamIds].map(async tid => {
+      const teamIdsArr = [...teamIds]
+      const names = await Promise.all(teamIdsArr.map(async tid => {
         try {
           const tr = await fetch(
             `https://sports.core.api.espn.com/v2/sports/${espnSport}/leagues/${league}/teams/${tid}?lang=en&region=us`,
@@ -274,8 +299,22 @@ export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<E
         } catch { return null }
       }))
       teams = names.filter((n): n is string => !!n)
+
+      // Construire l'historique : une entrée par (année, équipe)
+      const careerEntries: { year: number; teamName: string }[] = []
+      for (let i = 0; i < teamIdsArr.length; i++) {
+        const name = names[i]
+        if (!name) continue
+        const years = teamYears.get(teamIdsArr[i])
+        if (years) {
+          for (const y of years) careerEntries.push({ year: y, teamName: name })
+        } else {
+          careerEntries.push({ year: 0, teamName: name })
+        }
+      }
+      career = careerEntries.sort((a, b) => a.year - b.year)
     }
   } catch { /* ESPN unavailable */ }
 
-  return { birthDate, birthPlace, teams, position, height, weight, jersey, nationality, age }
+  return { birthDate, birthPlace, teams, position, height, weight, jersey, nationality, age, currentTeamId, currentTeamLogo, career }
 }

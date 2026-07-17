@@ -7,6 +7,17 @@ import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
 
 export const revalidate = 3600
 
+// Request coalescing: si plusieurs renders simultanés demandent le même slug
+// (dev mode HMR), on fait un seul appel Supabase au lieu de N → évite les timeouts
+const _inflight = new Map<string, Promise<any>>()
+function fetchPlayerOnce(slug: string, fn: () => Promise<any>) {
+  if (_inflight.has(slug)) return _inflight.get(slug)!
+  const p = fn()
+  _inflight.set(slug, p)
+  p.finally(() => _inflight.delete(slug))
+  return p
+}
+
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -16,10 +27,33 @@ function slugToName(slug: string) {
   return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
 }
 
-function seasonLabel(year: number, sport = 'nba') {
+function seasonLabel(startYear: number, endYear: number, sport = 'nba') {
+  if (['nfl', 'baseball', 'pokemon', 'mtg'].includes(sport)) {
+    return startYear === endYear ? String(startYear) : `${startYear}–${endYear}`
+  }
+  return startYear === endYear
+    ? `${startYear}–${String(startYear + 1).slice(2)}`
+    : `${startYear}–${String(endYear + 1).slice(2)}`
+}
+
+function seasonLabelSingle(year: number, sport = 'nba') {
   return ['nfl', 'baseball', 'pokemon', 'mtg'].includes(sport)
     ? String(year)
     : `${year}-${String(year + 1).slice(2)}`
+}
+
+function buildCareerTimeline(career: { year: number; teamName: string }[]) {
+  const sorted = [...career].filter(e => e.year > 0).sort((a, b) => a.year - b.year)
+  const runs: { teamName: string; startYear: number; endYear: number }[] = []
+  for (const { year, teamName } of sorted) {
+    const last = runs[runs.length - 1]
+    if (last && last.teamName === teamName && year <= last.endYear + 1) {
+      last.endYear = year
+    } else {
+      runs.push({ teamName, startYear: year, endYear: year })
+    }
+  }
+  return runs
 }
 
 const SPORT_LABELS: Record<string, string> = {
@@ -27,7 +61,11 @@ const SPORT_LABELS: Record<string, string> = {
   hockey: '🏒 Hockey', pokemon: '🎴 Pokémon', mtg: '🧙 MTG',
 }
 
-async function fetchPlayer(slug: string) {
+function fetchPlayer(slug: string) {
+  return fetchPlayerOnce(slug, () => _fetchPlayer(slug))
+}
+
+async function _fetchPlayer(slug: string) {
   const playerName = slugToName(slug)
   const normTarget = normalizeName(playerName)
   const nameParts = playerName.split(' ')
@@ -35,9 +73,10 @@ async function fetchPlayer(slug: string) {
   const lastName = nameParts[nameParts.length - 1]
 
   const [entriesRes, manuRes, profilesRes] = await Promise.all([
+    // Sans join card_sets pour éviter le timeout sur la table volumineuse
     supabase
       .from('card_set_entries')
-      .select('set_id, variation, is_rc, player_name, card_sets(id, name, year, brand, sport)')
+      .select('set_id, variation, is_rc, player_name')
       .ilike('player_name', `${firstName}%`)
       .ilike('player_name', `%${lastName}%`)
       .limit(3000),
@@ -55,13 +94,20 @@ async function fetchPlayer(slug: string) {
       .not('lien_csv', 'is', null),
   ])
 
-  const matchedEntries = (entriesRes.data || []).filter((e: any) => normalizeName(e.player_name || '') === normTarget)
+  const matchedEntries = (entriesRes.data || []).filter((e: any) => normalizeName(e.player_name || '').includes(normTarget))
+
+  // Récupérer les métadonnées des sets en une seule requête IN (rapide)
+  const uniqueSetIds = [...new Set(matchedEntries.map((e: any) => e.set_id as number))]
+  const setsDataRes = uniqueSetIds.length > 0
+    ? await supabase.from('card_sets').select('id, name, year, brand, sport').in('id', uniqueSetIds)
+    : { data: [] }
+  const setsById = new Map((setsDataRes.data || []).map((s: any) => [s.id, s]))
   const matchedManu = (manuRes.data || []).filter((m: any) => normalizeName(m.nom || '').includes(normTarget))
 
-  // Sets
+  // Sets — on utilise setsById (fetched séparément pour éviter le join lent)
   const setsMap = new Map<number, any>()
   for (const e of matchedEntries) {
-    const cs = (e as any).card_sets
+    const cs = setsById.get(e.set_id)
     if (!cs) continue
     if (!setsMap.has(cs.id)) setsMap.set(cs.id, { ...cs, isRc: false, variations: [] })
     const s = setsMap.get(cs.id)!
@@ -128,7 +174,6 @@ async function fetchPlayer(slug: string) {
 
   const uniqueCollectors = new Set(communityCards.map(c => c.user_id)).size
 
-  // Top variations dans la communauté
   const varCounts = new Map<string, number>()
   for (const c of communityCards) {
     if (c.variation && c.variation !== 'Base') {
@@ -137,7 +182,6 @@ async function fetchPlayer(slug: string) {
   }
   const topVariations = [...varCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6)
 
-  // Sets groupés par année
   const setsByYear = new Map<number, typeof sets>()
   for (const s of sets) {
     const y = s.year || 0
@@ -151,11 +195,9 @@ async function fetchPlayer(slug: string) {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const { playerName, sets, communityCards } = await fetchPlayer(slug)
-
+  const playerName = slugToName(slug)
   const title = `${playerName} — Cartes de collection | Memorabilius`
-  const desc = `Retrouvez toutes les cartes ${playerName} sur Memorabilius : ${sets.length} sets, ${communityCards.length} cartes en communauté. Prizm, Hoops, Select et bien plus.`
-
+  const desc = `Retrouvez toutes les cartes ${playerName} sur Memorabilius : sets Panini, Topps, Prizm, Hoops, Select et bien plus.`
   return {
     title,
     description: desc,
@@ -169,7 +211,10 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
   const { playerName, sets, setsByYear, sortedYears, communityCards, rcYear, headshot, bio, uniqueCollectors, topVariations, primarySport } = await fetchPlayer(slug)
 
   const sports = [...new Set(sets.map((s: any) => s.sport as string))]
-  const displayedCards = communityCards.slice(0, 30)
+  const careerTimeline = bio?.career ? buildCareerTimeline(bio.career) : []
+  const teamLogoUrl = bio?.currentTeamLogo
+    ? `/api/team-logo?url=${encodeURIComponent(bio.currentTeamLogo)}`
+    : null
 
   const personJsonLd = {
     '@context': 'https://schema.org',
@@ -230,33 +275,104 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
             --jp-hero-to: #001a5c;
           }
         }
+        :root[data-theme="dark"] {
+          --jp-bg: #0d0f14;
+          --jp-surface: #161a24;
+          --jp-surface2: #1e2232;
+          --jp-text: #f0f2f8;
+          --jp-text2: #b0b8cc;
+          --jp-muted: #666e88;
+          --jp-border: #252a3a;
+          --jp-accent: #4d82ff;
+          --jp-hero-from: #000a1f;
+          --jp-hero-to: #001a5c;
+        }
+        :root[data-theme="light"] {
+          --jp-bg: #f4f6fb;
+          --jp-surface: #ffffff;
+          --jp-surface2: #f8f9fc;
+          --jp-text: #111111;
+          --jp-text2: #555555;
+          --jp-muted: #888888;
+          --jp-border: #e8eaf0;
+          --jp-accent: #003DA6;
+          --jp-hero-from: #001a4d;
+          --jp-hero-to: #0048c8;
+        }
+        .jp-card-hover { transition: transform 0.15s, box-shadow 0.15s; }
         .jp-card-hover:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.14); }
         .jp-set-hover:hover { border-color: var(--jp-accent) !important; background: var(--jp-surface2) !important; }
+        .jp-career-row:hover { background: rgba(0,61,166,0.05) !important; }
       `}</style>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
-      <div style={{ background: 'var(--jp-bg)', minHeight: '100vh', fontFamily: 'Inter, sans-serif' }}>
+      {/* Full-bleed container — breaks out of layout.tsx's maxWidth/padding */}
+      <div style={{
+        background: 'var(--jp-bg)',
+        minHeight: '100vh',
+        fontFamily: 'Inter, sans-serif',
+        marginLeft: 'calc(50% - 50vw)',
+        width: '100vw',
+        marginTop: '-20px',
+      }}>
 
         {/* ── HERO ── */}
-        <div style={{ background: 'linear-gradient(135deg, var(--jp-hero-from) 0%, var(--jp-hero-to) 100%)', color: 'white', padding: '36px 16px 40px' }}>
-          <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+        <div style={{
+          background: 'linear-gradient(135deg, var(--jp-hero-from) 0%, var(--jp-hero-to) 100%)',
+          color: 'white',
+          padding: '44px 24px 48px',
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          {/* Team logo watermark */}
+          {teamLogoUrl && (
+            <img
+              src={teamLogoUrl}
+              alt=""
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                right: '-20px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '340px',
+                height: '340px',
+                objectFit: 'contain',
+                opacity: 0.18,
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, white 45%)',
+                maskImage: 'linear-gradient(to right, transparent 0%, white 45%)',
+                pointerEvents: 'none',
+              }}
+            />
+          )}
+
+          <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
             {/* Breadcrumb */}
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', marginBottom: 20, display: 'flex', gap: 6, alignItems: 'center' }}>
-              <Link href="/setlist" style={{ color: 'rgba(255,255,255,0.55)', textDecoration: 'none', fontWeight: 600 }}>Setlist</Link>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', marginBottom: 22, display: 'flex', gap: 6, alignItems: 'center' }}>
+              <Link href="/setlist" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontWeight: 600, transition: 'color 0.1s' }}>Setlist</Link>
               <span>/</span>
-              <span style={{ color: 'rgba(255,255,255,0.85)' }}>{playerName}</span>
+              <span style={{ color: 'rgba(255,255,255,0.8)' }}>{playerName}</span>
             </div>
 
-            <div style={{ display: 'flex', gap: 28, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
               {/* Headshot */}
               {headshot && (
                 <div style={{ flexShrink: 0 }}>
                   <img
                     src={headshot}
                     alt={playerName}
-                    style={{ width: 130, height: 130, borderRadius: '50%', objectFit: 'cover', objectPosition: 'top', border: '3px solid rgba(255,255,255,0.25)', background: 'rgba(255,255,255,0.1)' }}
+                    style={{
+                      width: 150,
+                      height: 150,
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                      objectPosition: 'top',
+                      border: '3px solid rgba(255,255,255,0.25)',
+                      background: 'rgba(255,255,255,0.1)',
+                      boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                    }}
                   />
                 </div>
               )}
@@ -271,34 +387,26 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                   ))}
                 </div>
 
-                <h1 style={{ fontSize: 38, fontWeight: 900, margin: '0 0 10px', lineHeight: 1.1, letterSpacing: '-0.02em' }}>{playerName}</h1>
+                <h1 style={{ fontSize: 42, fontWeight: 900, margin: '0 0 10px', lineHeight: 1.05, letterSpacing: '-0.025em', textWrap: 'balance' as any }}>{playerName}</h1>
 
-                {/* Bio row: position · jersey · height · weight */}
+                {/* Bio: position · jersey · height · weight */}
                 {bio && (bio.position || bio.jersey || bio.height || bio.weight) && (
                   <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', marginBottom: 10, display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-                    {bio.jersey && <span style={{ fontWeight: 800, fontSize: 15 }}>#{bio.jersey}</span>}
+                    {bio.jersey && <span style={{ fontWeight: 800, fontSize: 16 }}>#{bio.jersey}</span>}
                     {bio.position && <span>{bio.position}</span>}
-                    {(bio.position && (bio.height || bio.weight)) && <span style={{ opacity: 0.4 }}>·</span>}
+                    {(bio.position && (bio.height || bio.weight)) && <span style={{ opacity: 0.35 }}>·</span>}
                     {bio.height && <span>{bio.height}</span>}
                     {bio.weight && <span style={{ color: 'rgba(255,255,255,0.55)' }}>{bio.weight}</span>}
-                    {bio.nationality && <span style={{ opacity: 0.4 }}>·</span>}
-                    {bio.nationality && <span>{bio.nationality}</span>}
+                    {bio.nationality && <><span style={{ opacity: 0.35 }}>·</span><span>{bio.nationality}</span></>}
                   </div>
                 )}
 
-                {/* Birth + teams */}
-                {bio && (bio.birthDate || bio.birthPlace || bio.teams.length > 0) && (
-                  <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.6)', display: 'flex', flexDirection: 'column', gap: 3, marginBottom: 16 }}>
-                    {(bio.birthDate || bio.birthPlace) && (
-                      <span>
-                        🎂 {bio.birthDate && new Date(bio.birthDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
-                        {bio.birthPlace ? ` · ${bio.birthPlace}` : ''}
-                        {bio.age ? ` (${bio.age} ans)` : ''}
-                      </span>
-                    )}
-                    {bio.teams.length > 0 && (
-                      <span>🏟️ {bio.teams.join(' · ')}</span>
-                    )}
+                {/* Birth + current team */}
+                {bio && (bio.birthDate || bio.birthPlace) && (
+                  <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.6)', marginBottom: 16 }}>
+                    🎂 {bio.birthDate && new Date(bio.birthDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    {bio.birthPlace ? ` · ${bio.birthPlace}` : ''}
+                    {bio.age ? ` (${bio.age} ans)` : ''}
                   </div>
                 )}
 
@@ -309,9 +417,11 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                       RC {rcYear}
                     </span>
                   )}
-                  <span style={{ fontSize: 12, background: 'rgba(255,255,255,0.18)', color: 'white', padding: '4px 12px', borderRadius: 20, fontWeight: 700 }}>
-                    {sets.length} set{sets.length > 1 ? 's' : ''}
-                  </span>
+                  {sets.length > 0 && (
+                    <span style={{ fontSize: 12, background: 'rgba(255,255,255,0.18)', color: 'white', padding: '4px 12px', borderRadius: 20, fontWeight: 700 }}>
+                      {sets.length} set{sets.length > 1 ? 's' : ''}
+                    </span>
+                  )}
                   {communityCards.length > 0 && (
                     <span style={{ fontSize: 12, background: 'rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.85)', padding: '4px 12px', borderRadius: 20, fontWeight: 700 }}>
                       {communityCards.length} carte{communityCards.length > 1 ? 's' : ''} communauté
@@ -329,12 +439,12 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
         </div>
 
         {/* ── CONTENU ── */}
-        <div style={{ maxWidth: 1000, margin: '0 auto', padding: '32px 16px' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '36px 24px 48px' }}>
 
           {/* Top variations dans la communauté */}
           {topVariations.length > 0 && (
-            <div style={{ marginBottom: 36 }}>
-              <h2 style={{ fontSize: 14, fontWeight: 800, color: 'var(--jp-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>
+            <div style={{ marginBottom: 40 }}>
+              <h2 style={{ fontSize: 13, fontWeight: 800, color: 'var(--jp-muted)', textTransform: 'uppercase', letterSpacing: '0.09em', marginBottom: 12 }}>
                 Parallèles les plus collectés
               </h2>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -350,7 +460,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
 
           {/* Cartes de la communauté */}
           {communityCards.length > 0 && (
-            <section style={{ marginBottom: 48 }}>
+            <section style={{ marginBottom: 52 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
                 <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--jp-text)', margin: 0 }}>
                   Dans les collections
@@ -360,9 +470,9 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                 </span>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(148px, 1fr))', gap: 12 }}>
-                {displayedCards.map((card: any) => (
+                {communityCards.map((card: any) => (
                   <Link key={card.id} href={card.source === 'manuel' ? card.cardUrl : `/galerie/${card.user_id}`} style={{ textDecoration: 'none' }}>
-                    <div className="jp-card-hover" style={{ borderRadius: 12, overflow: 'hidden', background: 'var(--jp-surface)', border: '1.5px solid var(--jp-border)', transition: 'transform 0.15s, box-shadow 0.15s', height: '100%' }}>
+                    <div className="jp-card-hover" style={{ borderRadius: 12, overflow: 'hidden', background: 'var(--jp-surface)', border: '1.5px solid var(--jp-border)', height: '100%' }}>
                       <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', background: '#111' }}>
                         <img
                           src={card.img}
@@ -372,12 +482,9 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                             left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover',
                           } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                         />
-                        {/* Badges superposés */}
-                        <div style={{ position: 'absolute', top: 6, left: 6, display: 'flex', flexDirection: 'column', gap: 3 }}>
-                          {card.rc && (
-                            <span style={{ fontSize: 9, fontWeight: 900, background: '#e67e22', color: 'white', padding: '2px 6px', borderRadius: 3, lineHeight: 1.4 }}>RC</span>
-                          )}
-                        </div>
+                        {card.rc && (
+                          <span style={{ position: 'absolute', top: 6, left: 6, fontSize: 9, fontWeight: 900, background: '#e67e22', color: 'white', padding: '2px 6px', borderRadius: 3, lineHeight: 1.4 }}>RC</span>
+                        )}
                       </div>
                       <div style={{ padding: '8px 10px 10px' }}>
                         <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--jp-text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.nom}</div>
@@ -402,11 +509,44 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                   </Link>
                 ))}
               </div>
-              {communityCards.length > 30 && (
-                <p style={{ fontSize: 13, color: 'var(--jp-muted)', marginTop: 14, textAlign: 'center', fontWeight: 600 }}>
-                  + {communityCards.length - 30} carte{communityCards.length - 30 > 1 ? 's' : ''} supplémentaire{communityCards.length - 30 > 1 ? 's' : ''} dans la communauté
-                </p>
-              )}
+            </section>
+          )}
+
+          {/* ── CARRIÈRE (jersey history) ── */}
+          {careerTimeline.length > 0 && (
+            <section style={{ marginBottom: 52 }}>
+              <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--jp-text)', margin: '0 0 16px' }}>
+                Historique de carrière
+              </h2>
+              <div style={{ background: 'var(--jp-surface)', borderRadius: 12, border: '1.5px solid var(--jp-border)', overflow: 'hidden' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+                  <thead>
+                    <tr style={{ borderBottom: '2px solid var(--jp-border)', background: 'var(--jp-surface2)' }}>
+                      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 800, color: 'var(--jp-muted)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Saison</th>
+                      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 800, color: 'var(--jp-muted)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Équipe</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {careerTimeline.map((run, i) => (
+                      <tr
+                        key={`${run.teamName}-${run.startYear}`}
+                        className="jp-career-row"
+                        style={{
+                          borderBottom: i < careerTimeline.length - 1 ? '1px solid var(--jp-border)' : undefined,
+                          transition: 'background 0.1s',
+                        }}
+                      >
+                        <td style={{ padding: '11px 16px', color: 'var(--jp-muted)', fontWeight: 700, fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap' }}>
+                          {seasonLabel(run.startYear, run.endYear, primarySport)}
+                        </td>
+                        <td style={{ padding: '11px 16px', fontWeight: 700, color: 'var(--jp-text)' }}>
+                          {run.teamName}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </section>
           )}
 
@@ -429,7 +569,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                   return (
                     <div key={year}>
                       <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--jp-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 10 }}>
-                        <span>{year > 0 ? seasonLabel(year, sport) : 'Année inconnue'}</span>
+                        <span>{year > 0 ? seasonLabelSingle(year, sport) : 'Année inconnue'}</span>
                         <span style={{ color: 'var(--jp-border)', fontSize: 10 }}>— {yearSets.length} set{yearSets.length > 1 ? 's' : ''}</span>
                       </div>
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 8 }}>
