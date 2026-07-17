@@ -112,6 +112,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
   const [filterPrivate, setFilterPrivate] = useState(false)
   const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc' | 'num_asc' | 'date_desc' | 'date_asc'>(searchParams.get('sort') as any || 'default')
+  const [sortBy2, setSortBy2] = useState<'none' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'num_asc' | 'date_desc' | 'date_asc'>(searchParams.get('sort2') as any || 'none')
   const [searchInput, setSearchInput] = useState(searchParams.get('q') || '')
   const [search, setSearch] = useState(searchParams.get('q') || '')
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -447,8 +448,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
     const cmp = (a: string, b: string) => a.localeCompare(b, undefined, { sensitivity: 'base' })
     const val = (d: Card) => cardValues.get(d.f) ?? -Infinity
-    const sorted = [...f].sort((a, b) => {
-      switch (sortBy) {
+    const applySort = (key: string, a: Card, b: Card): number => {
+      switch (key) {
         case 'n':          return cmp(a.n, b.n)
         case 'n_desc':     return cmp(b.n, a.n)
         case 't':          return cmp(a.t, b.t)
@@ -468,12 +469,17 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         case 'date_asc':  return (a.created_at || '').localeCompare(b.created_at || '')
         default:           return 0
       }
+    }
+    const sorted = [...f].sort((a, b) => {
+      const primary = applySort(sortBy, a, b)
+      if (primary !== 0 || sortBy2 === 'none') return primary
+      return applySort(sortBy2, a, b)
     })
 
     setFiltered(sorted)
     setPage(1)
     setDisplayed(sorted.slice(0, PAGE_SIZE))
-  }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, privateCards, isOwner, sortBy, cardValues, tabSettings])
+  }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, privateCards, isOwner, sortBy, sortBy2, cardValues, tabSettings])
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -498,9 +504,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     if (fYear) sp.set('year', fYear)
     if (fCollectionTag) sp.set('tag', fCollectionTag)
     if (sortBy !== 'default') sp.set('sort', sortBy)
+    if (sortBy2 !== 'none') sp.set('sort2', sortBy2)
     const str = sp.toString()
     router.replace(str ? `?${str}` : window.location.pathname, { scroll: false })
-  }, [loaded, search, fTeam, fBrand, fYear, fCollectionTag, sortBy])
+  }, [loaded, search, fTeam, fBrand, fYear, fCollectionTag, sortBy, sortBy2])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -543,6 +550,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     const newCards = [...filtered]
     setCards(newCards)
     setSortBy('default')
+    setSortBy2('none')
     await saveGalleryOrder(newCards)
   }
 
@@ -1006,7 +1014,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>
               {lang === 'fr' ? 'Trier par' : 'Sort by'}
             </label>
-            <select value={sortBy} onChange={e => setSortBy(e.target.value as typeof sortBy)}
+            <select value={sortBy} onChange={e => { setSortBy(e.target.value as typeof sortBy); if (e.target.value === 'default') setSortBy2('none') }}
               style={{ background: sortBy !== 'default' ? (dark ? '#1a2240' : '#f0f4ff') : undefined, borderColor: sortBy !== 'default' ? '#003DA6' : undefined, color: sortBy !== 'default' ? (dark ? '#7aabf7' : '#003DA6') : undefined, fontWeight: sortBy !== 'default' ? 700 : undefined }}>
               <option value="default">{lang === 'fr' ? '— Ordre par défaut —' : '— Default order —'}</option>
               <optgroup label={lang === 'fr' ? 'Joueur' : 'Player'}>
@@ -1035,6 +1043,38 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 <option value="valeur_desc">{lang === 'fr' ? 'Valeur ↑ (moins cher en 1er)' : 'Value ↑ (lowest first)'}</option>
               </>}
             </select>
+            {sortBy !== 'default' && (
+              <div style={{ marginTop: 8 }}>
+                <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>
+                  {lang === 'fr' ? 'Puis par' : 'Then by'}
+                </label>
+                <select value={sortBy2} onChange={e => setSortBy2(e.target.value as typeof sortBy2)}
+                  style={{ background: sortBy2 !== 'none' ? (dark ? '#1a2240' : '#f0f4ff') : undefined, borderColor: sortBy2 !== 'none' ? '#003DA6' : undefined, color: sortBy2 !== 'none' ? (dark ? '#7aabf7' : '#003DA6') : undefined, fontWeight: sortBy2 !== 'none' ? 700 : undefined }}>
+                  <option value="none">{lang === 'fr' ? '— Aucun tri secondaire —' : '— No secondary sort —'}</option>
+                  <optgroup label={lang === 'fr' ? 'Joueur' : 'Player'}>
+                    <option value="n">{lang === 'fr' ? 'Joueur A → Z' : 'Player A → Z'}</option>
+                    <option value="n_desc">{lang === 'fr' ? 'Joueur Z → A' : 'Player Z → A'}</option>
+                  </optgroup>
+                  <optgroup label={lang === 'fr' ? 'Année' : 'Year'}>
+                    <option value="y">{lang === 'fr' ? 'Année croissante' : 'Year asc'}</option>
+                    <option value="y_desc">{lang === 'fr' ? 'Année décroissante' : 'Year desc'}</option>
+                  </optgroup>
+                  <optgroup label={lang === 'fr' ? 'Équipe' : 'Team'}>
+                    <option value="t">{lang === 'fr' ? 'Équipe A → Z' : 'Team A → Z'}</option>
+                  </optgroup>
+                  <optgroup label={lang === 'fr' ? 'Collection' : 'Brand'}>
+                    <option value="s">{lang === 'fr' ? 'Collection A → Z' : 'Brand A → Z'}</option>
+                  </optgroup>
+                  <optgroup label={lang === 'fr' ? 'Numérotation' : 'Numbering'}>
+                    <option value="num_asc">{lang === 'fr' ? 'Numérotation basse → haute' : 'Numbering low → high'}</option>
+                  </optgroup>
+                  <optgroup label={lang === 'fr' ? 'Date d\'ajout' : 'Date added'}>
+                    <option value="date_desc">{lang === 'fr' ? 'Plus récent en 1er' : 'Newest first'}</option>
+                    <option value="date_asc">{lang === 'fr' ? 'Plus ancien en 1er' : 'Oldest first'}</option>
+                  </optgroup>
+                </select>
+              </div>
+            )}
             {isOwner && sortBy !== 'default' && (
               <button onClick={applyCurrentSortAsDefault} title="Sauvegarder cet ordre et activer le drag & drop" style={{
                 marginTop: 4, width: '100%', padding: '5px 8px', fontSize: 10, fontWeight: 800,
