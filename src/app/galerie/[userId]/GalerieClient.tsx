@@ -163,6 +163,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [shareCopied, setShareCopied] = useState(false)
   const [bulkNewTag, setBulkNewTag] = useState('')
   const [showBulkNewTag, setShowBulkNewTag] = useState(false)
+  const [bulkEditQueue, setBulkEditQueue] = useState<string[]>([])
+  const [bulkEditIdx, setBulkEditIdx] = useState(0)
+  const [bulkEditForm, setBulkEditForm] = useState<Record<string, any> | null>(null)
+  const [bulkEditSaving, setBulkEditSaving] = useState(false)
+  const [bulkEditLoading, setBulkEditLoading] = useState(false)
   const [monthlyBadges, setMonthlyBadges] = useState<string[]>([])
   const [csvTags, setCsvTags] = useState<Map<string, string>>(new Map())
   const [grailCards, setGrailCards] = useState<{ card_key: string; position: number }[]>([])
@@ -332,6 +337,55 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       const id = c.isManuelle ? c.id_manuelle : c.f
       return id && selectedCards.has(id) ? { ...c, collections: [], collection_tag: '' } : c
     }))
+  }
+
+  const fetchBulkCard = async (id: string) => {
+    setBulkEditLoading(true)
+    const { data } = await supabase.from('cartes_manuelles')
+      .select('nom, equipe, annee, marque, collection, variation, rc, auto, patch, grade, card_number, num, image_recto')
+      .eq('id', id).single()
+    if (data) setBulkEditForm(data)
+    setBulkEditLoading(false)
+  }
+
+  const advanceBulkEdit = async (queue: string[], nextIdx: number) => {
+    if (nextIdx >= queue.length) {
+      setBulkEditQueue([]); setBulkEditIdx(0); setBulkEditForm(null)
+      toast.success('Modification groupée terminée !')
+      return
+    }
+    setBulkEditIdx(nextIdx)
+    await fetchBulkCard(queue[nextIdx])
+  }
+
+  const startBulkEdit = async () => {
+    const manualIds = [...selectedCards].filter(id => cards.some(c => c.id_manuelle === id))
+    if (!manualIds.length) { toast.error('Aucune carte modifiable sélectionnée (cartes CSV non prises en charge)'); return }
+    setBulkEditQueue(manualIds); setBulkEditIdx(0)
+    await fetchBulkCard(manualIds[0])
+  }
+
+  const saveBulkCard = async () => {
+    if (!bulkEditForm || !bulkEditQueue[bulkEditIdx] || !currentUser) return
+    setBulkEditSaving(true)
+    const id = bulkEditQueue[bulkEditIdx]
+    await supabase.from('cartes_manuelles').update({
+      nom: bulkEditForm.nom, equipe: bulkEditForm.equipe, annee: bulkEditForm.annee,
+      marque: bulkEditForm.marque, collection: bulkEditForm.collection,
+      variation: bulkEditForm.variation, rc: bulkEditForm.rc, auto: bulkEditForm.auto,
+      patch: bulkEditForm.patch, grade: bulkEditForm.grade,
+      card_number: bulkEditForm.card_number, num: bulkEditForm.num,
+    }).eq('id', id).eq('user_id', currentUser)
+    setCards(prev => prev.map(c => c.id_manuelle !== id ? c : {
+      ...c, n: bulkEditForm.nom || c.n, t: bulkEditForm.equipe || c.t,
+      y: bulkEditForm.annee || c.y, br: bulkEditForm.marque || c.br,
+      s: bulkEditForm.collection || c.s, v: bulkEditForm.variation || c.v,
+      rc: !!bulkEditForm.rc, auto: !!bulkEditForm.auto, patch: !!bulkEditForm.patch,
+      g: bulkEditForm.grade || c.g, card_number: bulkEditForm.card_number || c.card_number,
+      num: bulkEditForm.num || c.num,
+    }))
+    setBulkEditSaving(false)
+    await advanceBulkEdit(bulkEditQueue, bulkEditIdx + 1)
   }
 
   const loadCSV = async (url: string | null, tagsMap?: Map<string, string>, galleryOrder: string[] = []) => {
@@ -1580,9 +1634,118 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 ))}
               </select>
             )}
+            <button
+              onClick={startBulkEdit}
+              style={{ background: 'rgba(255,255,255,0.2)', border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 6, color: 'white', padding: '4px 12px', cursor: 'pointer', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}
+            >
+              ✏️ Modifier en groupe
+            </button>
             <button onClick={() => setSelectedCards(new Set())} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
               ✕ Désélectionner
             </button>
+          </div>
+        )}
+
+        {/* Modal modification groupée */}
+        {bulkEditQueue.length > 0 && (
+          <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}
+            onClick={() => { setBulkEditQueue([]); setBulkEditIdx(0); setBulkEditForm(null) }}>
+            <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 20, padding: '24px 28px', width: '100%', maxWidth: 680, maxHeight: '90vh', overflow: 'auto', boxShadow: '0 20px 60px rgba(0,0,0,0.4)' }}
+              onClick={e => e.stopPropagation()}>
+
+              {/* Header */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+                <div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: '#003DA6', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 2 }}>
+                    Modification groupée
+                  </div>
+                  <div style={{ fontWeight: 900, fontSize: 18, color: dark ? '#eee' : '#111' }}>
+                    Carte {bulkEditIdx + 1} / {bulkEditQueue.length}
+                    {bulkEditForm?.nom && <span style={{ fontWeight: 400, color: '#888', marginLeft: 8, fontSize: 15 }}>— {bulkEditForm.nom}</span>}
+                  </div>
+                  {/* Progress bar */}
+                  <div style={{ marginTop: 6, height: 4, borderRadius: 2, background: dark ? '#333' : '#f0f0f0', width: 200 }}>
+                    <div style={{ height: '100%', width: `${((bulkEditIdx + 1) / bulkEditQueue.length) * 100}%`, background: '#003DA6', borderRadius: 2, transition: 'width 0.3s' }} />
+                  </div>
+                </div>
+                <button onClick={() => { setBulkEditQueue([]); setBulkEditIdx(0); setBulkEditForm(null) }}
+                  style={{ background: 'none', border: 'none', fontSize: 22, cursor: 'pointer', color: '#aaa', padding: 4 }}>✕</button>
+              </div>
+
+              {bulkEditLoading ? (
+                <div style={{ textAlign: 'center', padding: 40, color: '#888' }}>Chargement…</div>
+              ) : bulkEditForm ? (
+                <div style={{ display: 'flex', gap: 20, alignItems: 'flex-start' }}>
+                  {/* Vignette carte */}
+                  {bulkEditForm.image_recto && (
+                    <div style={{ flexShrink: 0, width: 110, borderRadius: 10, overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.18)' }}>
+                      <img src={bulkEditForm.image_recto} alt="" style={{ width: '100%', display: 'block', objectFit: 'cover' }} />
+                    </div>
+                  )}
+
+                  {/* Formulaire */}
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                    {[
+                      { key: 'nom', label: 'Joueur', placeholder: 'Nom du joueur' },
+                      { key: 'equipe', label: 'Équipe', placeholder: 'Ex: Philadelphia 76ers' },
+                      { key: 'annee', label: 'Année', placeholder: 'Ex: 2024-25' },
+                      { key: 'marque', label: 'Marque', placeholder: 'Ex: Panini, Topps…' },
+                      { key: 'collection', label: 'Collection', placeholder: 'Ex: Prizm' },
+                      { key: 'variation', label: 'Variation', placeholder: 'Ex: Silver Prizm' },
+                      { key: 'grade', label: 'Grade', placeholder: 'Ex: PSA 10' },
+                      { key: 'card_number', label: 'N° carte', placeholder: 'Ex: #23' },
+                      { key: 'num', label: 'Tirage', placeholder: 'Ex: 48/99' },
+                    ].map(({ key, label, placeholder }) => (
+                      <div key={key} style={{ display: 'grid', gridTemplateColumns: '90px 1fr', alignItems: 'center', gap: 8 }}>
+                        <label style={{ fontSize: 12, fontWeight: 700, color: '#888', textAlign: 'right' }}>{label}</label>
+                        <input
+                          value={bulkEditForm[key] ?? ''}
+                          onChange={e => setBulkEditForm((f: any) => ({ ...f, [key]: e.target.value }))}
+                          placeholder={placeholder}
+                          style={{ padding: '8px 12px', border: `1.5px solid ${dark ? '#333' : '#e0e0e0'}`, borderRadius: 8, fontSize: 13, background: dark ? '#2a2a2a' : '#fafafa', color: dark ? '#eee' : '#111', outline: 'none' }}
+                        />
+                      </div>
+                    ))}
+
+                    {/* Toggles RC / Auto / Patch */}
+                    <div style={{ display: 'grid', gridTemplateColumns: '90px 1fr', alignItems: 'center', gap: 8 }}>
+                      <label style={{ fontSize: 12, fontWeight: 700, color: '#888', textAlign: 'right' }}>Attributs</label>
+                      <div style={{ display: 'flex', gap: 8 }}>
+                        {(['rc', 'auto', 'patch'] as const).map(attr => (
+                          <button key={attr} onClick={() => setBulkEditForm((f: any) => ({ ...f, [attr]: !f[attr] }))}
+                            style={{ padding: '5px 14px', borderRadius: 20, border: `2px solid ${bulkEditForm[attr] ? '#003DA6' : (dark ? '#444' : '#ddd')}`, background: bulkEditForm[attr] ? '#003DA6' : 'transparent', color: bulkEditForm[attr] ? 'white' : (dark ? '#bbb' : '#666'), fontWeight: 800, fontSize: 11, cursor: 'pointer', textTransform: 'uppercase' }}>
+                            {attr === 'rc' ? 'RC' : attr === 'auto' ? 'Auto' : 'Patch'}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+
+              {/* Actions */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 24, paddingTop: 18, borderTop: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}` }}>
+                <button
+                  onClick={() => advanceBulkEdit(bulkEditQueue, bulkEditIdx + 1)}
+                  disabled={bulkEditLoading}
+                  style={{ padding: '10px 20px', borderRadius: 10, border: `1.5px solid ${dark ? '#444' : '#ddd'}`, background: 'transparent', color: dark ? '#bbb' : '#666', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+                >
+                  Passer →
+                </button>
+                <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                  {bulkEditIdx + 1 < bulkEditQueue.length
+                    ? <span style={{ fontSize: 12, color: '#aaa' }}>{bulkEditQueue.length - bulkEditIdx - 1} restante{bulkEditQueue.length - bulkEditIdx - 1 > 1 ? 's' : ''}</span>
+                    : null}
+                  <button
+                    onClick={saveBulkCard}
+                    disabled={bulkEditSaving || bulkEditLoading}
+                    style={{ padding: '10px 22px', borderRadius: 10, border: 'none', background: bulkEditSaving ? '#ccc' : '#003DA6', color: 'white', fontWeight: 800, fontSize: 13, cursor: bulkEditSaving ? 'default' : 'pointer' }}
+                  >
+                    {bulkEditSaving ? 'Enregistrement…' : bulkEditIdx + 1 < bulkEditQueue.length ? '✓ Enregistrer et passer →' : '✓ Terminer'}
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
