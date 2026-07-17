@@ -48,6 +48,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
   const [checkingAll, setCheckingAll] = useState<string | null>(null)
   const [openVariations, setOpenVariations] = useState<Set<string>>(new Set(['Base']))
   const [totalOwned, setTotalOwned] = useState(0)
+  const [entryToCard, setEntryToCard] = useState<Map<number, string>>(new Map())
+  const [filterRc, setFilterRc] = useState(false)
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id || null))
@@ -74,7 +76,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     // Récupérer les completions de l'user pour ce set (juste entry_id)
     let completedEntryIds = new Set<number>()
     let completionDetails = new Map<number, { id: string; manually_checked: boolean }>()
-    let galleryCards: { nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string }[] = []
+    let galleryCards: { id?: string; nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string; image_recto?: string | null }[] = []
 
     if (userId) {
       // Charger tous les entry_ids du set (pagination pour dépasser max_rows=1000)
@@ -116,7 +118,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
         // Auto-match galerie (cartes_manuelles + CSV si présent)
         const { data: gc } = await supabase
           .from('cartes_manuelles')
-          .select('nom, annee, marque, collection, collection_tag, variation')
+          .select('id, nom, annee, marque, collection, collection_tag, variation, image_recto')
           .eq('user_id', userId)
         galleryCards = gc || []
 
@@ -222,6 +224,22 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
             }))
             await supabase.from('user_set_completion').upsert(rows, { onConflict: 'user_id,entry_id', ignoreDuplicates: true })
           }
+
+          // Construire la map entry → image galerie pour afficher les vignettes
+          const playerToImg = new Map<string, string>()
+          for (const card of galleryCards) {
+            if (card.image_recto && !playerToImg.has(norm(card.nom))) {
+              playerToImg.set(norm(card.nom), card.image_recto)
+            }
+          }
+          const cardMap = new Map<number, string>()
+          for (const e of allEntries) {
+            if (completedEntryIds.has(e.id)) {
+              const img = playerToImg.get(norm(e.player_name))
+              if (img) cardMap.set(e.id, img)
+            }
+          }
+          setEntryToCard(cardMap)
         }
 
         setTotalOwned(completedEntryIds.size)
@@ -414,7 +432,9 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
   return (
     <div style={{ maxWidth: 960, margin: '0 auto', padding: '32px 20px' }}>
       <div style={{ marginBottom: 20 }}>
-        <Link href="/setlist" style={{ color: '#003DA6', fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>← Setlist NBA</Link>
+        <Link href="/setlist" style={{ color: '#003DA6', fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>
+          ← Setlist {set.sport === 'nba' ? 'NBA' : set.sport === 'nfl' ? 'NFL' : set.sport === 'baseball' ? 'Baseball' : set.sport === 'hockey' ? 'Hockey' : set.sport === 'pokemon' ? 'Pokémon' : 'MTG'}
+        </Link>
       </div>
 
       {/* Header */}
@@ -452,7 +472,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
           {allTeams.map(t => <option key={t} value={t}>{t}</option>)}
         </select>
         {userId && (
-          <div style={{ display: 'flex', gap: 4 }}>
+          <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
             {(['all', 'owned', 'missing'] as const).map(f => (
               <button key={f} onClick={() => setFilter(f)}
                 style={{ padding: '10px 16px', border: '1.5px solid', borderColor: filter === f ? '#003DA6' : (dark ? '#444' : '#e0e0e0'), borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', background: filter === f ? '#003DA6' : (dark ? '#2a2a2a' : 'white'), color: filter === f ? 'white' : (dark ? '#eee' : '#333') }}>
@@ -461,6 +481,10 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
             ))}
           </div>
         )}
+        <button onClick={() => setFilterRc(v => !v)}
+          style={{ padding: '10px 16px', border: `1.5px solid ${filterRc ? '#e67e22' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', background: filterRc ? '#e67e22' : (dark ? '#2a2a2a' : 'white'), color: filterRc ? 'white' : (dark ? '#eee' : '#333'), whiteSpace: 'nowrap' }}>
+          RC uniquement
+        </button>
       </div>
 
       {/* Variations */}
@@ -471,10 +495,11 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
 
           const displayEntries = variation.loaded
             ? variation.entries.filter(e => {
-                if (search && !e.player_name.toLowerCase().includes(search.toLowerCase())) return false
+                if (search && !e.player_name.toLowerCase().includes(search.toLowerCase()) && !(e.card_number || '').toLowerCase().includes(search.toLowerCase())) return false
                 if (filterTeam && e.team !== filterTeam) return false
                 if (filter === 'owned' && !e.owned) return false
                 if (filter === 'missing' && e.owned) return false
+                if (filterRc && !e.is_rc) return false
                 return true
               })
             : []
@@ -514,17 +539,24 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                     <div style={{ padding: '20px', textAlign: 'center', color: '#aaa', fontSize: 13 }}>Chargement...</div>
                   ) : (
                     <>
-                      <div style={{ display: 'grid', gridTemplateColumns: '52px 1fr 150px 36px', padding: '8px 18px', background: dark ? '#252525' : '#fafafa', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#bbb', letterSpacing: '0.5px' }}>
-                        <span>#</span><span>Joueur</span><span>Équipe</span><span></span>
+                      <div style={{ display: 'grid', gridTemplateColumns: '52px 32px 1fr 140px 36px', padding: '8px 18px', background: dark ? '#252525' : '#fafafa', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#bbb', letterSpacing: '0.5px' }}>
+                        <span>#</span><span></span><span>Joueur</span><span>Équipe</span><span></span>
                       </div>
                       {displayEntries.length === 0 ? (
                         <div style={{ padding: '20px', textAlign: 'center', color: '#ccc', fontSize: 13 }}>Aucune carte</div>
-                      ) : displayEntries.map(entry => (
+                      ) : displayEntries.map(entry => {
+                        const cardImg = entryToCard.get(entry.id)
+                        return (
                         <div key={entry.id}
-                          style={{ display: 'grid', gridTemplateColumns: '52px 1fr 150px 36px', padding: '9px 18px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, background: entry.owned ? (dark ? '#0d2e1a' : '#f5fff7') : (dark ? '#1e1e1e' : 'white'), alignItems: 'center' }}>
+                          style={{ display: 'grid', gridTemplateColumns: '52px 32px 1fr 140px 36px', padding: '6px 18px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, background: entry.owned ? (dark ? '#0d2e1a' : '#f5fff7') : (dark ? '#1e1e1e' : 'white'), alignItems: 'center', minHeight: 44 }}>
                           <span style={{ fontSize: 12, color: '#bbb', fontWeight: 700 }}>{entry.card_number || '—'}</span>
+                          <div style={{ width: 24, height: 34, flexShrink: 0 }}>
+                            {cardImg ? (
+                              <img src={cardImg} alt="" style={{ width: 24, height: 34, objectFit: 'cover', borderRadius: 3, display: 'block', boxShadow: '0 1px 4px rgba(0,0,0,0.18)' }} />
+                            ) : null}
+                          </div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 6, overflow: 'hidden' }}>
-                            <Link href={`/joueur/${playerSlug(entry.player_name)}`} style={{ fontSize: 14, fontWeight: entry.owned ? 700 : 400, color: entry.owned ? '#111' : '#444', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }} onClick={e => e.stopPropagation()}>{entry.player_name}</Link>
+                            <Link href={`/joueur/${playerSlug(entry.player_name)}`} style={{ fontSize: 14, fontWeight: entry.owned ? 700 : 400, color: entry.owned ? (dark ? '#eee' : '#111') : (dark ? '#999' : '#444'), overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }} onClick={e => e.stopPropagation()}>{entry.player_name}</Link>
                             {entry.is_rc && <span style={{ fontSize: 10, fontWeight: 900, background: '#e67e22', color: 'white', borderRadius: 4, padding: '1px 5px', flexShrink: 0 }}>RC</span>}
                             {entry.manually_checked && <span style={{ fontSize: 10, color: '#2ecc71', fontWeight: 700, flexShrink: 0 }}>✓</span>}
                           </div>
@@ -536,7 +568,8 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                             </button>
                           ) : <span />}
                         </div>
-                      ))}
+                        )
+                      })}
                     </>
                   )}
                 </div>

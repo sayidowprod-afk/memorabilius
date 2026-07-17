@@ -54,6 +54,8 @@ export default function SetlistPage() {
   const [activeSport, setActiveSport] = useState<'nba' | 'nfl' | 'baseball' | 'hockey' | 'pokemon' | 'mtg'>('nba')
   const [activeSeason, setActiveSeason] = useState<number | null>(null)
   const [activeDecade, setActiveDecade] = useState<number | null>(null)
+  const [searchSet, setSearchSet] = useState('')
+  const [showOnlyOwned, setShowOnlyOwned] = useState(false)
   const [syncing, setSyncing] = useState(false)
   const [syncProgress, setSyncProgress] = useState(0)
   const [syncDone, setSyncDone] = useState(false)
@@ -514,6 +516,12 @@ export default function SetlistPage() {
   const totalOwnedAllSets = sets.reduce((a, s) => a + (s.owned || 0), 0)
   const setsWithCards = sets.filter(s => (s.owned || 0) > 0).length
 
+  const displayedSets = seasonSets.filter(s => {
+    if (showOnlyOwned && !(s.owned && s.owned > 0)) return false
+    if (searchSet && !s.name.toLowerCase().includes(searchSet.toLowerCase())) return false
+    return true
+  })
+
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 20px' }}>
       <div style={{ marginBottom: 28, display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
@@ -859,14 +867,39 @@ export default function SetlistPage() {
         </div>
       )}
 
+      {/* Recherche + filtre rapide */}
+      {!loading && seasonSets.length > 0 && (
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16, alignItems: 'center' }}>
+          <input
+            value={searchSet}
+            onChange={e => setSearchSet(e.target.value)}
+            placeholder="Rechercher un set..."
+            style={{ flex: '1 1 200px', minWidth: 160, padding: '10px 14px', border: `1.5px solid ${searchSet ? '#003DA6' : (dark ? '#444' : '#e0e0e0')}`, borderRadius: 10, fontSize: 14, background: dark ? '#2a2a2a' : 'white', color: dark ? '#eee' : '#111', outline: 'none' }}
+          />
+          {userId && setsWithCards > 0 && (
+            <button
+              onClick={() => setShowOnlyOwned(v => !v)}
+              style={{ padding: '10px 18px', borderRadius: 10, border: `1.5px solid ${showOnlyOwned ? '#003DA6' : (dark ? '#444' : '#e0e0e0')}`, background: showOnlyOwned ? '#003DA6' : (dark ? '#2a2a2a' : 'white'), color: showOnlyOwned ? 'white' : (dark ? '#bbb' : '#666'), fontWeight: 700, fontSize: 13, cursor: 'pointer', whiteSpace: 'nowrap' }}
+            >
+              ✦ Mes sets ({setsWithCards})
+            </button>
+          )}
+          {(searchSet || showOnlyOwned) && (
+            <span style={{ fontSize: 13, color: '#aaa' }}>{displayedSets.length} résultat{displayedSets.length !== 1 ? 's' : ''}</span>
+          )}
+        </div>
+      )}
+
       {/* Grille des sets */}
       {loading ? (
         <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlist_loading')}</div>
       ) : seasonSets.length === 0 ? (
         <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlist_no_collection')}</div>
+      ) : displayedSets.length === 0 ? (
+        <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>Aucun set ne correspond à cette recherche.</div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 12 }}>
-          {seasonSets.map(set => (
+          {displayedSets.map(set => (
             <Link key={set.id} href={`/setlist/${set.id}`} style={{ textDecoration: 'none' }}>
               <div
                 style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 14, padding: '18px 20px', border: `1.5px solid ${dark ? '#2a2a2a' : '#f0f0f0'}`, cursor: 'pointer', transition: 'box-shadow 0.15s, border-color 0.15s', height: '100%', boxSizing: 'border-box' }}
