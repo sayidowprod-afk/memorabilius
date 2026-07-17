@@ -179,6 +179,12 @@ export interface EspnPlayerBio {
   birthDate: string | null
   birthPlace: string | null
   teams: string[]
+  position: string | null
+  height: string | null
+  weight: string | null
+  jersey: string | null
+  nationality: string | null
+  age: number | null
 }
 
 async function findEspnAthleteId(name: string, sport: string): Promise<string | null> {
@@ -215,6 +221,12 @@ export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<E
 
   let birthDate: string | null = null
   let birthPlace: string | null = null
+  let position: string | null = null
+  let height: string | null = null
+  let weight: string | null = null
+  let jersey: string | null = null
+  let nationality: string | null = null
+  let age: number | null = null
   try {
     const r = await fetch(
       `https://sports.core.api.espn.com/v2/sports/${espnSport}/leagues/${league}/athletes/${id}?lang=en&region=us`,
@@ -225,6 +237,12 @@ export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<E
       birthDate = data.dateOfBirth ? String(data.dateOfBirth).slice(0, 10) : null
       const bp = data.birthPlace
       birthPlace = bp ? [bp.city, bp.state || bp.country].filter(Boolean).join(', ') : null
+      position = data.position?.displayName || data.position?.abbreviation || null
+      height = data.displayHeight || null
+      weight = data.displayWeight || null
+      jersey = data.jersey || null
+      nationality = data.citizenship || null
+      age = data.age || null
     }
   } catch { /* ESPN unavailable */ }
 
@@ -259,5 +277,5 @@ export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<E
     }
   } catch { /* ESPN unavailable */ }
 
-  return { birthDate, birthPlace, teams }
+  return { birthDate, birthPlace, teams, position, height, weight, jersey, nationality, age }
 }
