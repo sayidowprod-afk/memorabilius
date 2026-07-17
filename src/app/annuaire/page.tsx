@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState, Suspense } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
@@ -22,11 +22,21 @@ export default function Annuaire() {
 function AnnuaireContent() {
   const { t, lang } = useLang()
   const { dark } = useTheme()
+  const router = useRouter()
   const searchParams = useSearchParams()
   const teamIdFromUrl = searchParams.get('team_id') || ''
 
   const [collectors, setCollectors] = useState<Collector[]>([])
   const [loading, setLoading] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 600px)')
+    setIsMobile(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
   const [sortKey, setSortKey] = useState<'display_name' | 'total' | 'rc' | 'auto' | 'num' | 'patch'>('total')
   const [sortAsc, setSortAsc] = useState(false)
   const [teamFilter, setTeamFilter] = useState<string>(teamIdFromUrl)
@@ -75,26 +85,26 @@ function AnnuaireContent() {
     })))
     setLoading(false)
 
-    // Recalculer les stats si pas à jour depuis 24h
-    profiles.forEach(async p => {
+    // Recalculer les stats si pas à jour depuis 24h — limité à 5 profils par chargement
+    const stale = profiles.filter(p => {
       const lastUpdate = p.stats_updated_at ? new Date(p.stats_updated_at) : null
       const isStale = !lastUpdate || (Date.now() - lastUpdate.getTime() > 24 * 60 * 60 * 1000)
-      // Recalcule aussi si le total est un multiple de 1000 — signe d'un ancien plafond Supabase
       const isCapped = (p.stats_total || 0) > 0 && (p.stats_total || 0) % 1000 === 0
-      if (isStale || isCapped) {
-        try {
-          const r = await fetch('/api/recalc-user', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId: p.id }),
-          })
-          const data = await r.json()
-          if (data.stats) {
-            setCollectors(prev => prev.map(c => c.id === p.id ? { ...c, stats: data.stats } : c))
-          }
-        } catch { }
-      }
-    })
+      return isStale || isCapped
+    }).slice(0, 5)
+    for (const p of stale) {
+      try {
+        const r = await fetch('/api/recalc-user', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: p.id }),
+        })
+        const data = await r.json()
+        if (data.stats) {
+          setCollectors(prev => prev.map(c => c.id === p.id ? { ...c, stats: data.stats } : c))
+        }
+      } catch { }
+    }
   }
 
   const applyTeamFilter = async (tid: string) => {
@@ -120,10 +130,10 @@ function AnnuaireContent() {
       setTeamName('')
     }
     // Mettre à jour l'URL sans recharger
-    const url = new URL(window.location.href)
-    if (tid) url.searchParams.set('team_id', tid)
-    else url.searchParams.delete('team_id')
-    window.history.pushState({}, '', url.toString())
+    const params = new URLSearchParams(searchParams.toString())
+    if (tid) params.set('team_id', tid)
+    else params.delete('team_id')
+    router.replace(`?${params.toString()}`, { scroll: false })
   }
 
   const sorted = [...collectors].filter(c =>
@@ -141,9 +151,7 @@ function AnnuaireContent() {
     else { setSortKey(k); setSortAsc(false) }
   }
 
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 600
-
-  const th = (k: typeof sortKey, label: string) => (
+  const th =(k: typeof sortKey, label: string) => (
     <th onClick={() => handleSort(k)} style={{ background: dark ? '#252525' : '#fdfdfd', padding: isMobile ? '10px 6px' : '18px 15px', textAlign: isMobile ? 'center' : 'left', fontSize: isMobile ? 10 : 11, textTransform: 'uppercase', color: '#999', borderBottom: `2px solid ${dark ? '#333' : '#f0f0f0'}`, cursor: 'pointer', whiteSpace: 'nowrap' }}>
       {label}{sortKey === k ? (sortAsc ? ' ↑' : ' ↓') : ''}
     </th>
@@ -269,6 +277,15 @@ function AnnuaireContent() {
           <option value="">{t('directory_all_nba')}</option>
           {SPORTS_TEAMS.map(t => <option key={t.id} value={t.id}>{t.name} ({t.sport.toUpperCase()})</option>)}
         </select>
+        {(search || teamFilter || nbaFilter) && (
+          <button
+            type="button"
+            onClick={() => { setSearch(''); handleTeamChange(''); setNbaFilter('') }}
+            style={{ padding: '8px 14px', background: dark ? '#2a2a2a' : '#fff3e0', color: '#e67e22', border: '1px solid #ffe0b2', borderRadius: 8, fontWeight: 700, fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap', flexShrink: 0 }}
+          >
+            ✕ {lang === 'fr' ? 'Effacer les filtres' : 'Clear filters'}
+          </button>
+        )}
       </div>
 
       {loading ? <p style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>Chargement des collections...</p> : (

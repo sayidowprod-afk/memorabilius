@@ -1,4 +1,5 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -176,14 +177,14 @@ export default function ChatBubble() {
       const path = `chat/${userId}/${Date.now()}.jpg`
       const up = new File([blob], 'chat.jpg', { type: 'image/jpeg' })
       const { error } = await supabase.storage.from('avatars').upload(path, up, { upsert: true })
-      if (error) { alert('Erreur envoi image : ' + error.message); return }
+      if (error) { toast.error('Erreur envoi image : ' + error.message); return }
       const { data } = supabase.storage.from('avatars').getPublicUrl(path)
       await supabase.from('messages').insert({ from_user_id: userId, to_user_id: activeConv, contenu: IMG_PREFIX + data.publicUrl })
       loadMessages(activeConv)
       loadConversations(userId)
       notifyRecipient()
     } catch {
-      alert('Image illisible, réessayez.')
+      toast.error('Image illisible, réessayez.')
     } finally {
       setUploadingImg(false)
     }

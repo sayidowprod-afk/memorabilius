@@ -8,6 +8,7 @@ import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import ShareButton from './ShareButton'
 import QrModal from './QrModal'
 import CommentsModal from './CommentsModal'
+import { toast } from '@/lib/toast'
 import FolderIconPicker from './FolderIconPicker'
 import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
 
@@ -255,7 +256,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const name = prompt('Nom du dossier :')?.trim()
     if (!name) return
     const { data, error } = await supabase.from('binder_folders').insert({ user_id: userId, name, position: folders.length }).select().single()
-    if (error) { alert('Erreur : ' + error.message); return }
+    if (error) { toast.error('Erreur : ' + error.message); return }
     setFolders(prev => [...prev, data])
   }
 
@@ -269,14 +270,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   const saveFolderColor = async (folder: Folder, color: string) => {
     const { error } = await supabase.from('binder_folders').update({ color }).eq('id', folder.id)
-    if (error) { alert('Erreur : ' + error.message); return }
+    if (error) { toast.error('Erreur : ' + error.message); return }
     setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, color } : f))
   }
 
   const saveFolderIcon = async (folder: Folder, icon: string) => {
     const value = icon || null
     const { error } = await supabase.from('binder_folders').update({ icon: value }).eq('id', folder.id)
-    if (error) { alert('Erreur : ' + error.message); return }
+    if (error) { toast.error('Erreur : ' + error.message); return }
     setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, icon: value } : f))
     setCurrentFolder(c => c && c.id === folder.id ? { ...c, icon: value } : c)
     setIconPickerFolder(null)
@@ -355,12 +356,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   }
 
   const uploadCover = async (file: File) => {
-    if (file.size > 4 * 1024 * 1024) { alert('Image trop lourde (max 4 Mo)'); return }
+    if (file.size > 4 * 1024 * 1024) { toast.error('Image trop lourde (max 4 Mo)'); return }
     setUploadingCover(true)
     const ext = (file.name.split('.').pop() || 'jpg').toLowerCase()
     const path = `binders/${userId}/${Date.now()}.${ext}`
     const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
-    if (error) { alert('Erreur upload : ' + error.message); setUploadingCover(false); return }
+    if (error) { toast.error('Erreur upload : ' + error.message); setUploadingCover(false); return }
     const { data } = supabase.storage.from('avatars').getPublicUrl(path)
     setFCover(data.publicUrl)
     setUploadingCover(false)
@@ -373,14 +374,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       const { data, error } = await supabase.from('binders').insert({
         user_id: userId, layout: fLayout, position: binders.length, ...payload,
       }).select().single()
-      if (error) { alert('Erreur : ' + error.message); return }
+      if (error) { toast.error('Erreur : ' + error.message); return }
       setBinders(prev => [...prev, data])
       setFormOpen(null)
       openBinder(data)
     } else {
       const id = formOpen as number
       const { error } = await supabase.from('binders').update(payload).eq('id', id)
-      if (error) { alert('Erreur : ' + error.message); return }
+      if (error) { toast.error('Erreur : ' + error.message); return }
       setBinders(prev => prev.map(b => b.id === id ? { ...b, ...payload } : b))
       setSelected(s => s && s.id === id ? { ...s, ...payload } : s)
       setFormOpen(null)
@@ -484,7 +485,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         binder_id: selected.id, page_number: page, slot_index: idx,
         card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal,
       })
-      if (error) { alert('Erreur : ' + error.message); return }
+      if (error) { toast.error('Erreur : ' + error.message); return }
       setSlots(prev => new Map(prev).set(targetKey, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal }))
       setCardCounts(prev => ({ ...prev, [selected.id]: (prev[selected.id] || 0) + 1 }))
       setJustInserted(targetKey)
@@ -542,7 +543,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     // Supprimer les anciens slots puis insérer les nouveaux
     await Promise.all(deletes.map(d => supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', d.page).eq('slot_index', d.idx)))
     const { error: insErr } = await supabase.from('binder_slots').insert(inserts)
-    if (insErr) { alert('Erreur insertion : ' + insErr.message); openBinder(selected); return }
+    if (insErr) { toast.error('Erreur insertion : ' + insErr.message); openBinder(selected); return }
 
     setSlots(prev => {
       const m = new Map(prev)
@@ -644,10 +645,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       // Nombre de pages effectif après tri (peut être inférieur à page_count si le classeur avait des trous)
       const newPageCount = idx > 0 ? page : page - 1
       const { error: delErr } = await supabase.from('binder_slots').delete().eq('binder_id', selected.id)
-      if (delErr) { alert('Erreur tri (suppression) : ' + delErr.message); return }
+      if (delErr) { toast.error('Erreur tri (suppression) : ' + delErr.message); return }
       if (rows.length) {
         const { error: insErr } = await supabase.from('binder_slots').insert(rows)
-        if (insErr) { alert('Erreur tri (insertion) : ' + insErr.message); openBinder(selected); return }
+        if (insErr) { toast.error('Erreur tri (insertion) : ' + insErr.message); openBinder(selected); return }
       }
       if (newPageCount !== selected.page_count) {
         await supabase.from('binders').update({ page_count: newPageCount }).eq('id', selected.id)
@@ -694,7 +695,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: pageCount } : b))
     }
     const { error } = await supabase.from('binder_slots').insert(inserts)
-    if (error) { alert('Erreur : ' + error.message); openBinder(selected); return }
+    if (error) { toast.error('Erreur : ' + error.message); openBinder(selected); return }
     setSlots(prev => { const m = new Map(prev); for (const [k, v] of localAdds) m.set(k, v); return m })
     setCardCounts(prev => ({ ...prev, [selected.id]: (prev[selected.id] || 0) + inserts.length }))
     setPickerTarget(null)
@@ -726,7 +727,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     const rows = [{ binder_id: selected.id, page_number: toPage, slot_index: toIdx, card_key: fromSlot.card_key, img: fromSlot.img, img_back: fromSlot.img_back, nom: fromSlot.nom, is_horizontal: !!fromSlot.is_horizontal }]
     if (toSlot) rows.push({ binder_id: selected.id, page_number: fromPage, slot_index: fromIdx, card_key: toSlot.card_key, img: toSlot.img, img_back: toSlot.img_back, nom: toSlot.nom, is_horizontal: !!toSlot.is_horizontal })
     const { error } = await supabase.from('binder_slots').insert(rows)
-    if (error) { alert('Erreur : ' + error.message); openBinder(selected) }
+    if (error) { toast.error('Erreur : ' + error.message); openBinder(selected) }
   }
 
   // Déplacer une carte = APPUI LONG puis glisser (pour ne pas confondre avec le

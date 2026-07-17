@@ -1,4 +1,5 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useState, use, useRef, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -152,7 +153,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         setScannerModal({ side: side as 'recto' | 'verso', src: dataUrl })
       }
     } catch {
-      alert(lang === 'fr' ? 'Image illisible, réessayez.' : 'Unreadable image, please retry.')
+      toast.error(lang === 'fr' ? 'Image illisible, réessayez.' : 'Unreadable image, please retry.')
     }
   }
 
@@ -185,7 +186,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     const path = `cartes/${user.id}/${Date.now()}_${side}.jpg`
     const file = new File([blob], `${Date.now()}_${side}.jpg`, { type: 'image/jpeg' })
     const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
-    if (error) { alert('Erreur upload : ' + error.message); setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false); return }
+    if (error) { toast.error('Erreur upload : ' + error.message); setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false); return }
 
     const { data } = supabase.storage.from('avatars').getPublicUrl(path)
     const url = data.publicUrl
@@ -302,7 +303,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!form.nom) { alert(lang === 'fr' ? 'Le nom est obligatoire' : 'Name is required'); return }
+    if (!form.nom) { toast.error(lang === 'fr' ? 'Le nom est obligatoire' : 'Name is required'); return }
     setSaving(true)
 
     const { data: { user } } = await supabase.auth.getUser()
@@ -323,7 +324,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       beckett_designation: form.beckett_designation || null,
     }).eq('id', id).eq('user_id', user.id)
 
-    if (error) { alert('Erreur : ' + error.message); setSaving(false); return }
+    if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
     router.push(`/galerie/${userId}`)
   }
 

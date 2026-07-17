@@ -1,4 +1,5 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -39,7 +40,7 @@ export default function NouveauTrade() {
       ...form,
       user_id: userId,
     })
-    if (error) { alert('Erreur : ' + error.message); setLoading(false); return }
+    if (error) { toast.error('Erreur : ' + error.message); setLoading(false); return }
     router.push('/trades')
   }
 

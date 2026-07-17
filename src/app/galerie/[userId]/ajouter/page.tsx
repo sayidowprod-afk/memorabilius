@@ -1,4 +1,5 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useState, use, useRef, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
@@ -118,6 +119,49 @@ function parseDesignation(raw: string) {
   }
 
   return out
+}
+
+function ImageUploader({ side, label, preview, uploading, aspect, lang, onClear, onFileChange, onCameraClick }: {
+  side: 'recto' | 'verso' | 'il' | 'ir'; label: string; preview: string | null; uploading: boolean; aspect?: string
+  lang: string; onClear: () => void; onFileChange: (e: React.ChangeEvent<HTMLInputElement>, side: 'recto' | 'verso' | 'il' | 'ir') => void; onCameraClick: (side: 'recto' | 'verso' | 'il' | 'ir') => void
+}) {
+  return (
+    <div>
+      <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>{label}</label>
+      <div
+        style={{ border: '2px dashed #ddd', borderRadius: 12, overflow: 'hidden', aspectRatio: aspect || '2.5/3.5', position: 'relative', cursor: 'pointer', background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        onClick={() => document.getElementById(`upload-${side}`)?.click()}
+      >
+        {preview ? (
+          <img src={preview} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={label} />
+        ) : (
+          <div style={{ textAlign: 'center', color: '#bbb', padding: 10 }}>
+            <div style={{ fontSize: 32, marginBottom: 6 }}>📷</div>
+            <p style={{ fontSize: 12, fontWeight: 600, margin: 0 }}>{uploading ? '...' : (lang === 'fr' ? 'Cliquer pour ajouter' : 'Click to add')}</p>
+          </div>
+        )}
+        {uploading && (
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ color: 'white', fontWeight: 700 }}>Upload...</div>
+          </div>
+        )}
+      </div>
+      <input id={`upload-${side}`} type="file" accept="image/*" style={{ display: 'none' }} onChange={e => onFileChange(e, side)} />
+      {!preview && !uploading && (
+        <button type="button"
+          onClick={() => onCameraClick(side)}
+          style={{ marginTop: 6, width: '100%', background: '#f0f4ff', color: '#003DA6', border: 'none', borderRadius: 6, padding: '8px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+          {lang === 'fr' ? '📸 Prendre une photo' : '📸 Take a photo'}
+        </button>
+      )}
+      {preview && (
+        <button type="button" onClick={onClear}
+          style={{ marginTop: 6, width: '100%', background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 6, padding: '6px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+          {lang === 'fr' ? '🗑️ Supprimer' : '🗑️ Remove'}
+        </button>
+      )}
+    </div>
+  )
 }
 
 export default function AjouterCarte({ params }: { params: Promise<{ userId: string }> }) {
@@ -246,7 +290,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         setScannerModal({ side, src })
       }
     } catch {
-      alert(lang === 'fr' ? 'Image illisible, réessayez.' : 'Unreadable image, please retry.')
+      toast.error(lang === 'fr' ? 'Image illisible, réessayez.' : 'Unreadable image, please retry.')
     }
   }
 
@@ -289,7 +333,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     const path = `cartes/${user.id}/${Date.now()}_${side}.jpg`
     const file = new File([blob], `${Date.now()}_${side}.jpg`, { type: 'image/jpeg' })
     const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
-    if (error) { alert('Erreur upload : ' + error.message); setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false); return }
+    if (error) { toast.error('Erreur upload : ' + error.message); setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false); return }
 
     const { data } = supabase.storage.from('avatars').getPublicUrl(path)
     const url = data.publicUrl
@@ -485,7 +529,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       collection_tag: form.collection_tag || null,
       disponible_vente: form.disponible_vente,
     })
-    if (error) { alert('Erreur : ' + error.message); setSaving(false); return }
+    if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
     supabase.auth.getSession().then(({ data: { session } }) => {
       fetch('/api/card-added', {
         method: 'POST',
@@ -511,7 +555,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!form.nom) { alert(lang === 'fr' ? 'Le nom est obligatoire' : 'Name is required'); return }
+    if (!form.nom) { toast.error(lang === 'fr' ? 'Le nom est obligatoire' : 'Name is required'); return }
     setSaving(true)
 
     const { data: { user } } = await supabase.auth.getUser()
@@ -542,51 +586,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     await doInsert(user.id)
   }
 
-  const ImageUploader = ({ side, label, preview, uploading, aspect }: { side: 'recto' | 'verso' | 'il' | 'ir', label: string, preview: string | null, uploading: boolean, aspect?: string }) => {
-    const clearPreview = () => {
-      if (side === 'recto') { setForm(f => ({ ...f, image_recto: '' })); setPreviewRecto(null) }
-      else if (side === 'verso') { setForm(f => ({ ...f, image_verso: '' })); setPreviewVerso(null) }
-      else if (side === 'il') { setForm(f => ({ ...f, image_interieur_gauche: '' })); setPreviewIL(null) }
-      else { setForm(f => ({ ...f, image_interieur_droite: '' })); setPreviewIR(null) }
-    }
-    return (
-      <div>
-        <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>{label}</label>
-        <div
-          style={{ border: '2px dashed #ddd', borderRadius: 12, overflow: 'hidden', aspectRatio: aspect || '2.5/3.5', position: 'relative', cursor: 'pointer', background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          onClick={() => document.getElementById(`upload-${side}`)?.click()}
-        >
-          {preview ? (
-            <img src={preview} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt={label} />
-          ) : (
-            <div style={{ textAlign: 'center', color: '#bbb', padding: 10 }}>
-              <div style={{ fontSize: 32, marginBottom: 6 }}>📷</div>
-              <p style={{ fontSize: 12, fontWeight: 600, margin: 0 }}>{uploading ? '...' : (lang === 'fr' ? 'Cliquer pour ajouter' : 'Click to add')}</p>
-            </div>
-          )}
-          {uploading && (
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{ color: 'white', fontWeight: 700 }}>Upload...</div>
-            </div>
-          )}
-        </div>
-        <input id={`upload-${side}`} type="file" accept="image/*" style={{ display: 'none' }} onChange={e => handleFileChange(e, side)} />
-        {!preview && !uploading && (
-          <button type="button"
-            onClick={() => setCameraModal(side)}
-            style={{ marginTop: 6, width: '100%', background: '#f0f4ff', color: '#003DA6', border: 'none', borderRadius: 6, padding: '8px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
-            {lang === 'fr' ? '📸 Prendre une photo' : '📸 Take a photo'}
-          </button>
-        )}
-        {preview && (
-          <button type="button" onClick={clearPreview}
-            style={{ marginTop: 6, width: '100%', background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 6, padding: '6px', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
-            {lang === 'fr' ? '🗑️ Supprimer' : '🗑️ Remove'}
-          </button>
-        )}
-      </div>
-    )
-  }
+  // ImageUploader is defined at module scope (below) to prevent React from unmounting
+  // it on every parent re-render — a nested component definition creates a new reference each time.
 
   return (
     <div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'Inter, sans-serif', padding: '0 10px' }}>
@@ -600,8 +601,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       <form onSubmit={handleSubmit}>
         {/* Photos couvertures */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: form.booklet ? 16 : 24 }}>
-          <ImageUploader side="recto" label={lang === 'fr' ? (form.booklet ? 'Couverture avant *' : 'Photo Recto *') : (form.booklet ? 'Front cover *' : 'Front Photo *')} preview={previewRecto} uploading={uploadingRecto} aspect={getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined} />
-          <ImageUploader side="verso" label={lang === 'fr' ? (form.booklet ? 'Couverture arrière' : 'Photo Verso') : (form.booklet ? 'Back cover' : 'Back Photo')} preview={previewVerso} uploading={uploadingVerso} aspect={(form.verso_is_horizontal ?? (form.format === 'horizontal' || form.is_horizontal)) ? '3.5/2.5' : (getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined)} />
+          <ImageUploader side="recto" label={lang === 'fr' ? (form.booklet ? 'Couverture avant *' : 'Photo Recto *') : (form.booklet ? 'Front cover *' : 'Front Photo *')} preview={previewRecto} uploading={uploadingRecto} aspect={getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined} lang={lang} onClear={() => { setForm(f => ({ ...f, image_recto: '' })); setPreviewRecto(null) }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
+          <ImageUploader side="verso" label={lang === 'fr' ? (form.booklet ? 'Couverture arrière' : 'Photo Verso') : (form.booklet ? 'Back cover' : 'Back Photo')} preview={previewVerso} uploading={uploadingVerso} aspect={(form.verso_is_horizontal ?? (form.format === 'horizontal' || form.is_horizontal)) ? '3.5/2.5' : (getFormat(form.format).displayRatio !== '2.5/3.5' ? getFormat(form.format).displayRatio : undefined)} lang={lang} onClear={() => { setForm(f => ({ ...f, image_verso: '' })); setPreviewVerso(null) }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
         </div>
 
         {/* Photos intérieures (booklet seulement) */}
@@ -611,8 +612,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               📖 {lang === 'fr' ? 'Pages intérieures' : 'Interior pages'}
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
-              <ImageUploader side="il" label={lang === 'fr' ? 'Page gauche' : 'Left page'} preview={previewIL} uploading={uploadingIL} aspect="3.5/2.5" />
-              <ImageUploader side="ir" label={lang === 'fr' ? 'Page droite' : 'Right page'} preview={previewIR} uploading={uploadingIR} aspect="3.5/2.5" />
+              <ImageUploader side="il" label={lang === 'fr' ? 'Page gauche' : 'Left page'} preview={previewIL} uploading={uploadingIL} aspect="3.5/2.5" lang={lang} onClear={() => { setForm(f => ({ ...f, image_interieur_gauche: '' })); setPreviewIL(null) }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
+              <ImageUploader side="ir" label={lang === 'fr' ? 'Page droite' : 'Right page'} preview={previewIR} uploading={uploadingIR} aspect="3.5/2.5" lang={lang} onClear={() => { setForm(f => ({ ...f, image_interieur_droite: '' })); setPreviewIR(null) }} onFileChange={handleFileChange} onCameraClick={setCameraModal} />
             </div>
           </div>
         )}

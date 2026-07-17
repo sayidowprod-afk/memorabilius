@@ -1,5 +1,6 @@
 'use client'
-import { useRef, useState, useCallback } from 'react'
+import { useRef, useState, useCallback, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
 
@@ -62,6 +63,7 @@ type Phase = 'idle' | 'searching' | 'results' | 'loading-sold' | 'done' | 'error
 
 export default function ScannerPage() {
   const { dark } = useTheme()
+  const router = useRouter()
   const cameraRef  = useRef<HTMLInputElement>(null)
   const galleryRef = useRef<HTMLInputElement>(null)
   const versoRef   = useRef<HTMLInputElement>(null)
@@ -89,6 +91,12 @@ export default function ScannerPage() {
   const muted  = dark ? '#666'    : '#888'
   const border = dark ? '#252525' : '#e8eaed'
   const blue   = '#0046D1'
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      if (!data.user) router.push('/connexion?next=/scanner')
+    })
+  }, [])
 
   const reset = () => {
     setPhase('idle'); setImgSrc(null); setVersoSrc(null)
@@ -236,7 +244,7 @@ export default function ScannerPage() {
     <div style={{ minHeight: '100vh', background: bg, fontFamily: 'Inter, system-ui, sans-serif' }}>
       {/* Header */}
       <div style={{ position: 'sticky', top: 60, zIndex: 10, background: dark ? '#0f0f0f' : '#fff', borderBottom: `1px solid ${border}`, padding: '10px 16px', display: 'flex', alignItems: 'center', height: 48 }}>
-        <span style={{ fontWeight: 900, fontSize: 16, color: text }}>📷 Scanner</span>
+        <span style={{ fontWeight: 900, fontSize: 16, color: text }}>📷 Scanner de prix</span>
         {phase !== 'idle' && (
           <button onClick={reset} style={{ marginLeft: 'auto', fontSize: 12, color: muted, background: 'none', border: `1px solid ${border}`, borderRadius: 8, padding: '5px 12px', cursor: 'pointer', fontWeight: 700 }}>
             ✕ Nouvelle carte
@@ -327,12 +335,12 @@ export default function ScannerPage() {
 
               {/* Bouton vers recherche texte Gemini si l'IA a identifié mais user n'a pas choisi */}
               {card && geminiDone && !selectedMatch && imgMatches && imgMatches.length > 0 && phase !== 'loading-sold' && phase !== 'done' && (
-                <button onClick={() => loadSoldComps('', card)} style={{
+                <button type="button" onClick={() => loadSoldComps('', card)} aria-label="Utiliser l'identification IA pour les prix vendus" style={{
                   marginTop: 12, width: '100%', padding: '9px 0', background: 'none',
                   border: `1px solid ${border}`, borderRadius: 10, cursor: 'pointer',
                   color: muted, fontSize: 12, fontWeight: 700,
                 }}>
-                  Utiliser l'identification IA à la place →
+                  Utiliser l'identification IA à la place <span aria-hidden="true">→</span>
                 </button>
               )}
             </div>

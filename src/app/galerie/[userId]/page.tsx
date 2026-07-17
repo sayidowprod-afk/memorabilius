@@ -76,7 +76,7 @@ export async function generateMetadata({
 export default async function GaleriePage({ params }: { params: Promise<{ userId: string }> }) {
   const { userId } = await params
   return (
-    <Suspense>
+    <Suspense fallback={<div style={{ padding: '80px 20px', textAlign: 'center', color: '#999', fontSize: 14 }}>Chargement de la galerie…</div>}>
       <GalerieClient userId={userId} />
     </Suspense>
   )

@@ -1,9 +1,11 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef, use, useCallback } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 import LinkifiedText from '@/components/LinkifiedText'
 
 const ACCENT = '#003DA6'
@@ -13,6 +15,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const { teamId } = use(params)
   const router = useRouter()
   const { t, lang } = useLang()
+  const { dark } = useTheme()
 
   const [team, setTeam] = useState<any>(null)
   const [members, setMembers] = useState<any[]>([])
@@ -30,6 +33,10 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   const [activeTab, setActiveTab] = useState<'feed' | 'membres' | 'galerie' | 'chat' | 'candidatures'>('feed')
   const [loading, setLoading] = useState(true)
   const [copied, setCopied] = useState(false)
+  const [leaveConfirm, setLeaveConfirm] = useState(false)
+  const [deletePostConfirm, setDeletePostConfirm] = useState<number | null>(null)
+  const [excludeConfirm, setExcludeConfirm] = useState<string | null>(null)
+  const [galerieLimit, setGalerieLimit] = useState(48)
 
   const shareTeam = () => {
     const url = `${window.location.origin}/teams/${teamId}`
@@ -164,9 +171,10 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       .select('id, nom, annee, marque, image_recto, user_id, profiles(display_name, avatar_url)')
       .in('user_id', memberIds)
       .order('created_at', { ascending: false })
-      .limit(5000)
+      .limit(200)
     const shuffled = (data || []).sort(() => Math.random() - 0.5)
     setGalerieCards(shuffled)
+    setGalerieLimit(48)
   }
 
   const loadMyCards = async (uid: string) => {
@@ -179,14 +187,23 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
   }
 
   const loadMembersStats = async (membersList: any[]) => {
-    const stats = await Promise.all(membersList.map(async (m: any) => {
-      const profile = m.profiles
-      if (!profile) return null
-      const { data: p } = await supabase.from('profiles')
-        .select('stats_total, stats_rc, stats_auto, stats_num, stats_patch').eq('id', profile.id).single()
-      return { ...profile, stats: { total: p?.stats_total || 0, rc: p?.stats_rc || 0, auto: p?.stats_auto || 0, num: p?.stats_num || 0, patch: p?.stats_patch || 0 } }
-    }))
-    setMembersStats(stats.filter(Boolean).sort((a, b) => (b.stats?.total || 0) - (a.stats?.total || 0)))
+    if (!membersList.length) return
+    const ids = membersList.map((m: any) => m.profiles?.id).filter(Boolean)
+    if (!ids.length) return
+    const { data: profiles } = await supabase.from('profiles')
+      .select('id, stats_total, stats_rc, stats_auto, stats_num, stats_patch, display_name, avatar_url, couleur_bordure, is_donor')
+      .in('id', ids)
+    const statsMap = Object.fromEntries((profiles || []).map((p: any) => [p.id, p]))
+    const result = membersList
+      .map((m: any) => {
+        const profile = m.profiles
+        if (!profile) return null
+        const p = statsMap[profile.id] || {}
+        return { ...profile, stats: { total: p.stats_total || 0, rc: p.stats_rc || 0, auto: p.stats_auto || 0, num: p.stats_num || 0, patch: p.stats_patch || 0 } }
+      })
+      .filter(Boolean)
+      .sort((a: any, b: any) => (b.stats?.total || 0) - (a.stats?.total || 0))
+    setMembersStats(result)
   }
 
   function buildReactions(reacts: any[], ids: number[], uid: string | null, names: Record<string, string>, setter: any) {
@@ -238,13 +255,14 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
   const sendMessage = async () => {
     if ((!newMsg.trim() && !pendingCard) || !currentUser) return
-    await supabase.from('team_messages').insert({
+    const { error } = await supabase.from('team_messages').insert({
       team_id: parseInt(teamId),
       user_id: currentUser,
       contenu: newMsg.trim() || null,
       card_key: pendingCard?.card_key || null,
       card_user_id: pendingCard ? currentUser : null,
     })
+    if (error) { toast.error(lang === 'fr' ? 'Erreur d\'envoi.' : 'Send error.'); return }
     setNewMsg('')
     setPendingCard(null)
   }
@@ -262,7 +280,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       const { error } = await supabase.from('team_message_reactions').insert(
         { message_id: msgId, user_id: currentUser, emoji }
       )
-      if (error && error.code !== '23505') { console.error('[toggleMsgReaction insert]', error); alert(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
+      if (error && error.code !== '23505') { console.error('[toggleMsgReaction insert]', error); toast.error(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
     }
     const myName = members.find((x: any) => x.user_id === currentUser)?.profiles?.display_name || 'Vous'
     setMsgReactions(prev => {
@@ -285,7 +303,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       content: newPost.trim() || null,
       card_ids: postCards.map(c => c.id),
     })
-    if (error) { alert(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
+    if (error) { toast.error(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
     setNewPost('')
     setPostCards([])
     loadPosts(currentUser)
@@ -304,7 +322,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       const { error } = await supabase.from('team_post_reactions').insert(
         { post_id: postId, user_id: currentUser, emoji }
       )
-      if (error && error.code !== '23505') { console.error('[togglePostReaction insert]', error); alert(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
+      if (error && error.code !== '23505') { console.error('[togglePostReaction insert]', error); toast.error(lang === 'fr' ? `Erreur : ${error.message}` : `Error: ${error.message}`); return }
     }
     const myName = members.find((x: any) => x.user_id === currentUser)?.profiles?.display_name || 'Vous'
     setPostReactions(prev => {
@@ -348,7 +366,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
     const { data, error } = await supabase.from('team_post_comments').insert({
       post_id: postId, user_id: currentUser, content
     }).select('*').single()
-    if (error) { console.error('[addComment]', error); alert(lang === 'fr' ? 'Erreur lors de l\'envoi du commentaire' : 'Error sending comment'); return }
+    if (error) { console.error('[addComment]', error); toast.error(lang === 'fr' ? 'Erreur lors de l\'envoi du commentaire' : 'Error sending comment'); return }
     if (data) {
       const [enriched] = await enrichWithProfiles([data])
       setComments(prev => ({ ...prev, [postId]: [...(prev[postId] || []), enriched] }))
@@ -374,7 +392,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       body: JSON.stringify({ candidatureId: cand.id, teamId: parseInt(teamId), userId: cand.user_id, action: 'accept' }) })
     if (!res.ok) {
       const { error } = await res.json().catch(() => ({ error: 'Erreur inconnue' }))
-      alert(lang === 'fr' ? `Erreur lors de l'acceptation : ${error}` : `Error accepting: ${error}`)
+      toast.error(lang === 'fr' ? `Erreur lors de l'acceptation : ${error}` : `Error accepting: ${error}`)
       return
     }
     setCandidatures(prev => prev.filter(c => c.id !== cand.id))
@@ -387,7 +405,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       body: JSON.stringify({ candidatureId: cand.id, teamId: parseInt(teamId), userId: cand.user_id, action: 'refuse' }) })
     if (!res.ok) {
       const { error } = await res.json().catch(() => ({ error: 'Erreur inconnue' }))
-      alert(lang === 'fr' ? `Erreur : ${error}` : `Error: ${error}`)
+      toast.error(lang === 'fr' ? `Erreur : ${error}` : `Error: ${error}`)
       return
     }
     setCandidatures(prev => prev.filter(c => c.id !== cand.id))
@@ -440,7 +458,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
       `}</style>
 
       {/* Header */}
-      <div style={{ background: 'white', borderRadius: 16, padding: 28, marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
+      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 28, marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
           {team.avatar_url
             ? <img src={team.avatar_url} style={{ width: 70, height: 70, borderRadius: '50%', objectFit: 'cover', border: `3px solid ${ACCENT}`, flexShrink: 0 }} alt={team.name} />
@@ -472,11 +490,18 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
             {hasCandidature && !isMember && <span style={{ background: '#fff3e0', color: '#e67e22', padding: '10px 16px', borderRadius: 8, fontWeight: 700, fontSize: 13 }}>⏳ En attente</span>}
             {isMember && <span style={{ color: ACCENT, fontWeight: 700 }}>✓ Membre</span>}
             {isMember && !isChef && (
-              <button onClick={async () => {
-                if (!confirm('Quitter la team ?')) return
-                await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser)
-                router.push('/teams')
-              }} style={{ background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 8, padding: '8px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>{t('teams_leave')}</button>
+              leaveConfirm ? (
+                <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                  <span style={{ fontSize: 12, color: '#e74c3c', fontWeight: 700 }}>{lang === 'fr' ? 'Quitter ?' : 'Leave?'}</span>
+                  <button onClick={async () => {
+                    await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', currentUser)
+                    router.push('/teams')
+                  }} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, cursor: 'pointer', fontSize: 12 }}>Oui</button>
+                  <button onClick={() => setLeaveConfirm(false)} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, cursor: 'pointer', fontSize: 12 }}>Non</button>
+                </div>
+              ) : (
+                <button onClick={() => setLeaveConfirm(true)} style={{ background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 8, padding: '8px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>{t('teams_leave')}</button>
+              )
             )}
           </div>
         </div>
@@ -498,7 +523,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           {/* Créer un post */}
           {isMember && (
-            <div style={{ background: 'white', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+            <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
               <textarea value={newPost} onChange={e => setNewPost(e.target.value)}
                 placeholder="Partagez quelque chose avec votre team..."
                 style={{ width: '100%', border: '1.5px solid #e0e0e0', borderRadius: 10, padding: '12px 14px', fontSize: 14, resize: 'none', outline: 'none', fontFamily: 'Inter, sans-serif', boxSizing: 'border-box', minHeight: 80 }} />
@@ -556,7 +581,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
           {/* Liste des posts */}
           {posts.length === 0 && <div style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>Aucun post pour l'instant.</div>}
           {posts.map(post => (
-            <div key={post.id} style={{ background: 'white', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+            <div key={post.id} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
               {/* Header */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
                 <img src={post.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(post.profiles?.display_name || 'U')}&background=003DA6&color=fff`}
@@ -566,8 +591,14 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                   <div style={{ fontSize: 11, color: '#bbb' }}>{timeAgo(post.created_at)}</div>
                 </div>
                 {post.user_id === currentUser && (
-                  <button onClick={() => { if (confirm('Supprimer ce post ?')) deletePost(post.id) }}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontSize: 16, padding: 4 }}>🗑️</button>
+                  deletePostConfirm === post.id ? (
+                    <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
+                      <button onClick={() => { deletePost(post.id); setDeletePostConfirm(null) }} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '3px 8px', cursor: 'pointer', fontSize: 11, fontWeight: 700 }}>Oui</button>
+                      <button onClick={() => setDeletePostConfirm(null)} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 6, padding: '3px 8px', cursor: 'pointer', fontSize: 11 }}>Non</button>
+                    </div>
+                  ) : (
+                    <button onClick={() => setDeletePostConfirm(post.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#e74c3c', fontSize: 16, padding: 4 }}>🗑️</button>
+                  )
                 )}
               </div>
               {/* Contenu */}
@@ -645,7 +676,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
       {/* ── MEMBRES ── */}
       {activeTab === 'membres' && (
-        <div style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
+        <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead><tr>
               {['#', t('teams_collector'), t('teams_role'), 'Cartes', 'RC', 'Auto', 'Num', 'Patch', ...(isChef ? ['Actions'] : [])].map(h => (
@@ -690,11 +721,18 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
                             }} style={{ background: role === 'admin' ? '#fff5f5' : '#e8f5e9', color: role === 'admin' ? '#e74c3c' : '#2e7d32', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }}>
                               {role === 'admin' ? t('teams_demote') : t('teams_promote')}
                             </button>
-                            <button onClick={async () => {
-                              if (!confirm(`Exclure ${m.display_name} ?`)) return
-                              await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', m.id)
-                              init()
-                            }} style={{ background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }}>🚫</button>
+                            {excludeConfirm === m.id ? (
+                              <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
+                                <button onClick={async () => {
+                                  await supabase.from('team_members').delete().eq('team_id', parseInt(teamId)).eq('user_id', m.id)
+                                  setExcludeConfirm(null)
+                                  init()
+                                }} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '4px 8px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }}>Oui</button>
+                                <button onClick={() => setExcludeConfirm(null)} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 6, padding: '4px 8px', fontSize: 11, cursor: 'pointer' }}>Non</button>
+                              </div>
+                            ) : (
+                              <button onClick={() => setExcludeConfirm(m.id)} style={{ background: '#fff5f5', color: '#e74c3c', border: 'none', borderRadius: 6, padding: '5px 10px', fontWeight: 700, fontSize: 11, cursor: 'pointer' }} title={lang === 'fr' ? `Exclure ${m.display_name}` : `Exclude ${m.display_name}`}>🚫</button>
+                            )}
                           </div>
                         )}
                       </td>
@@ -712,7 +750,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
         <div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 10 }}>
             {galerieCards.length === 0 && <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#bbb', padding: 60 }}>Aucune carte trouvée.</p>}
-            {galerieCards.map(card => (
+            {galerieCards.slice(0, galerieLimit).map(card => (
               <Link key={card.id} href={`/galerie/${card.user_id}`} style={{ textDecoration: 'none' }}>
                 <div style={{ borderRadius: 10, overflow: 'hidden', background: 'white', boxShadow: '0 2px 8px rgba(0,0,0,0.08)', transition: 'transform 0.15s, box-shadow 0.15s' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 6px 20px rgba(0,0,0,0.14)' }}
@@ -735,12 +773,19 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
               </Link>
             ))}
           </div>
+          {galerieLimit < galerieCards.length && (
+            <div style={{ textAlign: 'center', marginTop: 16 }}>
+              <button onClick={() => setGalerieLimit(l => l + 48)} style={{ background: ACCENT, color: 'white', border: 'none', borderRadius: 20, padding: '10px 24px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+                {lang === 'fr' ? 'Voir plus' : 'Load more'} ({galerieCards.length - galerieLimit} {lang === 'fr' ? 'restantes' : 'remaining'})
+              </button>
+            </div>
+          )}
         </div>
       )}
 
       {/* ── CHAT ── */}
       {activeTab === 'chat' && isMember && (
-        <div style={{ background: 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', height: 560 }}>
+        <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', height: 560 }}>
           <div style={{ padding: '14px 18px', borderBottom: '1px solid #f0f0f0', fontWeight: 800, fontSize: 15 }}>💬 Chat en direct</div>
           <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
             {messages.length === 0 && <p style={{ textAlign: 'center', color: '#bbb', marginTop: 40 }}>{t('teams_no_message')}</p>}
@@ -823,7 +868,7 @@ export default function TeamPage({ params }: { params: Promise<{ teamId: string 
 
       {/* ── CANDIDATURES ── */}
       {activeTab === 'candidatures' && isChef && (
-        <div style={{ background: 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', overflow: 'hidden' }}>
+        <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', overflow: 'hidden' }}>
           <div style={{ padding: '14px 20px', borderBottom: '1px solid #f0f0f0', fontWeight: 800 }}>📋 Candidatures en attente</div>
           {candidatures.length === 0
             ? <p style={{ textAlign: 'center', padding: 40, color: '#bbb' }}>{t('teams_no_candidatures')}</p>

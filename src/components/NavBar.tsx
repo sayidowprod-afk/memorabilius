@@ -32,6 +32,21 @@ export default function Navbar() {
   )
 
   useEffect(() => {
+    const close = (e: MouseEvent | KeyboardEvent) => {
+      if (e instanceof KeyboardEvent && e.key !== 'Escape') return
+      if (e instanceof MouseEvent) {
+        if (communauteRef.current?.contains(e.target as Node)) return
+        if (outilsRef.current?.contains(e.target as Node)) return
+      }
+      setDropCommunaute(false)
+      setDropOutils(false)
+    }
+    document.addEventListener('mousedown', close)
+    document.addEventListener('keydown', close)
+    return () => { document.removeEventListener('mousedown', close); document.removeEventListener('keydown', close) }
+  }, [])
+
+  useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       setUser(data.user ?? null)
       if (data.user) { loadNotifs(data.user.id); updateLastSeen(data.user.id) }
@@ -89,13 +104,15 @@ export default function Navbar() {
     </span>
   ) : null
 
-  const DropTrigger = ({ label, open }: { label: string; open: boolean }) => (
-    <span style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: 4, cursor: 'default', userSelect: 'none' }}>
+  const DropTrigger = ({ label, open, onToggle }: { label: string; open: boolean; onToggle: () => void }) => (
+    <button onClick={onToggle} onKeyDown={e => e.key === 'Enter' || e.key === ' ' ? onToggle() : undefined}
+      aria-expanded={open} aria-haspopup="true"
+      style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: 4, cursor: 'pointer', userSelect: 'none', background: 'none', border: 'none', padding: 0, font: 'inherit' }}>
       {label}
       <svg width="10" height="6" viewBox="0 0 10 6" style={{ transition: '0.2s', transform: open ? 'rotate(180deg)' : 'none', opacity: 0.5 }}>
         <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
       </svg>
-    </span>
+    </button>
   )
 
   return (
@@ -111,32 +128,28 @@ export default function Navbar() {
         <div style={{ display: 'flex', gap: 4, alignItems: 'center' }} className="nav-desktop">
 
           {/* Dropdown Communauté */}
-          <div ref={communauteRef} style={{ position: 'relative' }}
-            onMouseEnter={() => setDropCommunaute(true)}
-            onMouseLeave={() => setDropCommunaute(false)}>
+          <div ref={communauteRef} style={{ position: 'relative' }}>
             <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center' }}>
-              <DropTrigger label="Communauté" open={dropCommunaute} />
+              <DropTrigger label="Communauté" open={dropCommunaute} onToggle={() => setDropCommunaute(v => !v)} />
             </div>
             {dropCommunaute && (
               <div style={{ position: 'absolute', top: 56, left: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 160, zIndex: 300 }}>
                 <Link href="/annuaire" style={dropItemStyle} onClick={() => setDropCommunaute(false)}>👥 {t('nav_annuaire')}</Link>
                 <Link href="/teams" style={dropItemStyle} onClick={() => setDropCommunaute(false)}>🏆 {t('nav_teams')}</Link>
                 <Link href="/trades" style={dropItemStyle} onClick={() => setDropCommunaute(false)}>🔄 {t('nav_trades')}</Link>
-                <Link href="/evenements" style={dropItemStyle} onClick={() => setDropCommunaute(false)}>📅 Events</Link>
+                <Link href="/evenements" style={dropItemStyle} onClick={() => setDropCommunaute(false)}>📅 {lang === 'fr' ? 'Événements' : 'Events'}</Link>
               </div>
             )}
           </div>
 
           {/* Dropdown Outils */}
-          <div ref={outilsRef} style={{ position: 'relative' }}
-            onMouseEnter={() => setDropOutils(true)}
-            onMouseLeave={() => setDropOutils(false)}>
+          <div ref={outilsRef} style={{ position: 'relative' }}>
             <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center' }}>
-              <DropTrigger label="Outils" open={dropOutils} />
+              <DropTrigger label="Outils" open={dropOutils} onToggle={() => setDropOutils(v => !v)} />
             </div>
             {dropOutils && (
               <div style={{ position: 'absolute', top: 56, left: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 160, zIndex: 300 }}>
-                <Link href="/scanner" style={dropItemStyle} onClick={() => setDropOutils(false)}>📷 Scanner</Link>
+                <Link href="/scanner" style={dropItemStyle} onClick={() => setDropOutils(false)}>📷 Scanner de prix</Link>
                 <Link href="/setlist" style={dropItemStyle} onClick={() => setDropOutils(false)}>📋 Setlist</Link>
                 <Link href="/recherche" style={dropItemStyle} onClick={() => setDropOutils(false)}>{t('nav_recherche')}</Link>
               </div>
@@ -169,7 +182,7 @@ export default function Navbar() {
           ) : user ? (
             <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
               <div style={{ padding: '0 8px', height: 60, display: 'flex', alignItems: 'center' }}>
-                <Link href="/notifications" style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: 4 }}>
+                <Link href="/notifications" aria-label="Notifications" style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: 4 }}>
                   🔔 <Badge count={notifs} />
                 </Link>
               </div>
@@ -213,9 +226,9 @@ export default function Navbar() {
           <Link href="/annuaire" style={ls} onClick={() => setMenuOpen(false)}>👥 {t('nav_annuaire')}</Link>
           <Link href="/teams" style={ls} onClick={() => setMenuOpen(false)}>🏆 {t('nav_teams')}</Link>
           <Link href="/trades" style={ls} onClick={() => setMenuOpen(false)}>🔄 {t('nav_trades')}</Link>
-          <Link href="/evenements" style={ls} onClick={() => setMenuOpen(false)}>📅 Events</Link>
+          <Link href="/evenements" style={ls} onClick={() => setMenuOpen(false)}>📅 {lang === 'fr' ? 'Événements' : 'Events'}</Link>
           <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>Outils</div>
-          <Link href="/scanner" style={ls} onClick={() => setMenuOpen(false)}>📷 Scanner</Link>
+          <Link href="/scanner" style={ls} onClick={() => setMenuOpen(false)}>📷 Scanner de prix</Link>
           <Link href="/setlist" style={ls} onClick={() => setMenuOpen(false)}>📋 Setlist</Link>
           <Link href="/recherche" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_recherche')}</Link>
           <Link href="/tuto" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_tuto')}</Link>

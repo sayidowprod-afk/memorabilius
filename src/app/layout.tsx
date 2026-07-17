@@ -3,6 +3,7 @@ import './globals.css'
 import Navbar from '@/components/NavBar'
 import Footer from '@/components/Footer'
 import ChatBubble from '@/components/ChatBubble'
+import Toaster from '@/components/Toaster'
 import { ThemeProvider } from '@/lib/ThemeContext'
 import { LangProvider } from '@/lib/LangContext'
 import { Analytics } from '@vercel/analytics/react'
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </main>
             <Footer />
             <ChatBubble />
+            <Toaster />
           </LangProvider>
         </ThemeProvider>
         <Analytics />

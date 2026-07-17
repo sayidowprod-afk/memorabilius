@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 
 interface WishItem {
   id: string; nom: string; annee: string; marque: string
@@ -19,8 +20,10 @@ export default function WishlistPage() {
   const [saving, setSaving] = useState(false)
   const [showForm, setShowForm] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [removingId, setRemovingId] = useState<string | null>(null)
   const router = useRouter()
   const { lang } = useLang()
+  const { dark } = useTheme()
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -42,9 +45,9 @@ export default function WishlistPage() {
   }
 
   const remove = async (id: string) => {
-    if (!window.confirm(lang === 'fr' ? 'Retirer cette carte de votre wishlist ?' : 'Remove this card from your wishlist?')) return
     await supabase.from('wishlist').delete().eq('id', id)
     setItems(prev => prev.filter(i => i.id !== id))
+    setRemovingId(null)
   }
 
   const tags = (item: WishItem) => [
@@ -71,7 +74,7 @@ export default function WishlistPage() {
 
       {/* Formulaire */}
       {showForm && (
-        <div style={{ background: 'white', borderRadius: 14, padding: 20, marginBottom: 24, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #eee' }}>
+        <form onSubmit={e => { e.preventDefault(); save() }} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 14, padding: 20, marginBottom: 24, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: `1px solid ${dark ? '#2a2a2a' : '#eee'}` }}>
           <h3 style={{ fontWeight: 800, margin: '0 0 16px', fontSize: 15 }}>Nouvelle carte recherchée</h3>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             <div style={{ gridColumn: '1/-1' }}>
@@ -104,7 +107,7 @@ export default function WishlistPage() {
             </div>
             <div style={{ gridColumn: '1/-1', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {(['rc', 'auto', 'patch'] as const).map(k => (
-                <button key={k} onClick={() => setForm(p => ({ ...p, [k]: !p[k] }))} style={{
+                <button type="button" key={k} onClick={() => setForm(p => ({ ...p, [k]: !p[k] }))} style={{
                   padding: '6px 14px', border: 'none', borderRadius: 6, cursor: 'pointer',
                   fontSize: 11, fontWeight: 800, textTransform: 'uppercase',
                   background: form[k] ? (k === 'rc' ? '#e67e22' : k === 'auto' ? '#2e7d32' : '#1976d2') : '#f0f0f0',
@@ -113,18 +116,25 @@ export default function WishlistPage() {
               ))}
             </div>
           </div>
-          <button onClick={save} disabled={saving || !form.nom.trim()} style={{
+          <button type="submit" disabled={saving || !form.nom.trim()} style={{
             marginTop: 16, width: '100%', background: form.nom.trim() ? '#003DA6' : '#ccc',
             color: 'white', border: 'none', borderRadius: 10, padding: '12px',
             fontWeight: 800, fontSize: 14, cursor: form.nom.trim() ? 'pointer' : 'default',
           }}>
             {saving ? 'Enregistrement...' : 'Ajouter à ma wishlist'}
           </button>
-        </div>
+        </form>
       )}
 
       {/* Liste */}
-      {loading && <p style={{ textAlign: 'center', padding: 40, color: '#999' }}>Chargement...</p>}
+      {loading && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {[1, 2, 3].map(i => (
+            <div key={i} style={{ background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 12, height: 72, animation: 'wl-pulse 1.4s ease infinite alternate' }} />
+          ))}
+          <style>{`@keyframes wl-pulse { from { opacity: 1 } to { opacity: 0.5 } }`}</style>
+        </div>
+      )}
       {!loading && items.length === 0 && !showForm && (
         <div style={{ textAlign: 'center', padding: '60px 20px', color: '#bbb' }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>🎯</div>
@@ -136,8 +146,8 @@ export default function WishlistPage() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {items.map(item => (
           <div key={item.id} style={{
-            background: 'white', borderRadius: 12, padding: '14px 18px',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.05)', border: '1px solid #f0f0f0',
+            background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: '14px 18px',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.05)', border: `1px solid ${dark ? '#2a2a2a' : '#f0f0f0'}`,
             display: 'flex', alignItems: 'center', gap: 12,
           }}>
             <div style={{ flex: 1, minWidth: 0 }}>
@@ -152,10 +162,17 @@ export default function WishlistPage() {
               </div>
               {item.notes && <div style={{ fontSize: 11, color: '#888', marginTop: 6, fontStyle: 'italic' }}>"{item.notes}"</div>}
             </div>
-            <button onClick={() => remove(item.id)} style={{
-              background: 'none', border: '1px solid #eee', borderRadius: 8,
-              padding: '6px 10px', cursor: 'pointer', color: '#e74c3c', fontSize: 13, flexShrink: 0,
-            }}>✕</button>
+            {removingId === item.id ? (
+              <div style={{ display: 'flex', gap: 4, flexShrink: 0 }}>
+                <button onClick={() => remove(item.id)} aria-label="Confirmer la suppression" style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>Oui</button>
+                <button onClick={() => setRemovingId(null)} aria-label="Annuler" style={{ background: 'none', border: '1px solid #eee', borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 12 }}>Non</button>
+              </div>
+            ) : (
+              <button onClick={() => setRemovingId(item.id)} aria-label={`Retirer ${item.nom} de la wishlist`} style={{
+                background: 'none', border: '1px solid #eee', borderRadius: 8,
+                padding: '6px 10px', cursor: 'pointer', color: '#e74c3c', fontSize: 13, flexShrink: 0,
+              }}>✕</button>
+            )}
           </div>
         ))}
       </div>

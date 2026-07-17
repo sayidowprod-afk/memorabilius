@@ -159,7 +159,7 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
           {[0, 1, 2, 3].map(i => (
             <div key={i} className={`mb-card mb-card-${i + 1}`}>
               <div className="mb-card-inner">
-                {cardImgs[i] && <img src={cardImgs[i]} alt="" loading="lazy" />}
+                {cardImgs[i] && <img src={cardImgs[i]} alt="" />}
                 <span className="mb-card-shine" />
               </div>
             </div>
@@ -188,7 +188,7 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
             <div style={{ position: 'absolute', top: -15, left: 20, background: '#003DA6', color: 'white', width: 35, height: 35, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 18 }}>{s.n}</div>
             <h4 style={{ margin: '15px 0 10px', fontWeight: 800, fontSize: 18 }}>{s.title}</h4>
             <p style={{ fontSize: 14, color: '#777', lineHeight: 1.5 }}>{s.desc}</p>
-            {s.link && <a href={s.link} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13, display: 'inline-block', marginTop: 10 }}>{s.linkText}</a>}
+            {s.link && <Link href={s.link} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13, display: 'inline-block', marginTop: 10 }}>{s.linkText}</Link>}
           </div>
         ))}
       </section>

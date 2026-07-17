@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
+import { toast } from '@/lib/toast'
 
 export default function Teams() {
   const router = useRouter()
@@ -40,19 +41,27 @@ export default function Teams() {
   }
 
   const loadTeamsStats = async (teamsList: any[]) => {
-    const stats = await Promise.all(teamsList.map(async (team) => {
-      const { data: members } = await supabase.from('team_members').select('profiles(stats_total)').eq('team_id', team.id)
-      const total = (members || []).reduce((acc: number, m: any) => acc + (m.profiles?.stats_total || 0), 0)
-      return { teamId: team.id, total }
-    }))
-    setTeamsStats(stats)
+    if (!teamsList.length) return
+    const ids = teamsList.map(t => t.id)
+    const { data: members } = await supabase.from('team_members').select('team_id, profiles(stats_total)').in('team_id', ids)
+    const totals = new Map<number, number>()
+    for (const m of members || []) {
+      const prev = totals.get(m.team_id) || 0
+      totals.set(m.team_id, prev + ((m.profiles as any)?.stats_total || 0))
+    }
+    setTeamsStats(ids.map(id => ({ teamId: id, total: totals.get(id) || 0 })))
   }
 
   const joinTeam = async (teamId: number) => {
     if (!userId) return
     setLoading(true)
-    await supabase.from('team_candidatures').insert({ team_id: teamId, user_id: userId })
-    setHasCandidature(prev => new Set([...prev, teamId]))
+    const { error } = await supabase.from('team_candidatures').insert({ team_id: teamId, user_id: userId })
+    if (error) {
+      toast.error(lang === 'fr' ? 'Erreur : ' + error.message : 'Error: ' + error.message)
+    } else {
+      setHasCandidature(prev => new Set([...prev, teamId]))
+      toast.success(lang === 'fr' ? 'Candidature envoyée !' : 'Request sent!')
+    }
     setLoading(false)
   }
 
@@ -114,7 +123,8 @@ export default function Teams() {
       )}
 
       <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 480 }}>
           <thead><tr>
             {['#', 'Team', t('teams_members'), t('teams_total_cards_label'), t('teams_action')].map(h => (
               <th key={h} style={{ background: dark ? '#252525' : '#fdfdfd', padding: '16px', textAlign: 'left', fontSize: 11, textTransform: 'uppercase', color: '#999', borderBottom: `2px solid ${dark ? '#333' : '#f0f0f0'}` }}>{h}</th>
@@ -160,8 +170,8 @@ export default function Teams() {
                     ) : pending ? (
                       <span style={{ color: '#e67e22', fontWeight: 700, fontSize: 13 }}>⏳ En attente</span>
                     ) : userId ? (
-                      <button onClick={() => joinTeam(team.id)} disabled={loading} style={{ background: '#e8f5e9', color: '#2e7d32', padding: '6px 14px', borderRadius: 6, border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 900 }}>
-                        Rejoindre
+                      <button onClick={() => joinTeam(team.id)} disabled={loading} aria-label={lang === 'fr' ? `Rejoindre ${team.name}` : `Join ${team.name}`} style={{ background: '#e8f5e9', color: '#2e7d32', padding: '6px 14px', borderRadius: 6, border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 900 }}>
+                        {lang === 'fr' ? 'Rejoindre' : 'Join'}
                       </button>
                     ) : (
                       <Link href={`/teams/${team.id}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13 }}>Voir →</Link>
@@ -172,6 +182,7 @@ export default function Teams() {
             })}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   )

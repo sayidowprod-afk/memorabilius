@@ -1,4 +1,5 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -57,6 +58,9 @@ function MessagesContent() {
   const [tradeOffersMap, setTradeOffersMap] = useState<Record<string, any>>({})
   const [loading, setLoading] = useState(true)
   const [contextTrade, setContextTrade] = useState<any>(null)
+  const [newConvOpen, setNewConvOpen] = useState(false)
+  const [newConvSearch, setNewConvSearch] = useState('')
+  const [newConvResults, setNewConvResults] = useState<any[]>([])
   const [uploading, setUploading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -180,12 +184,14 @@ function MessagesContent() {
 
   const sendMessage = async () => {
     if (!newMsg.trim() || !userId || !activeConv) return
-    await supabase.from('messages').insert({
+    const content = newMsg.trim()
+    const { error } = await supabase.from('messages').insert({
       from_user_id: userId,
       to_user_id: activeConv,
-      contenu: newMsg.trim(),
+      contenu: content,
       trade_id: tradeParam ? parseInt(tradeParam) : null,
     })
+    if (error) { toast.error('Erreur envoi : ' + error.message); return }
     setNewMsg('')
     loadMessages(userId, activeConv)
     loadConversations(userId)
@@ -208,7 +214,7 @@ function MessagesContent() {
       const blob = await compressImage(file)
       const path = `messages/${userId}/${Date.now()}.jpg`
       const { error } = await supabase.storage.from('avatars').upload(path, blob, { upsert: true, contentType: 'image/jpeg' })
-      if (error) { alert('Erreur upload : ' + error.message); return }
+      if (error) { toast.error('Erreur upload : ' + error.message); return }
       const { data } = supabase.storage.from('avatars').getPublicUrl(path)
       await supabase.from('messages').insert({
         from_user_id: userId,
@@ -219,7 +225,7 @@ function MessagesContent() {
       loadMessages(userId, activeConv)
       loadConversations(userId)
     } catch (e: any) {
-      alert('Erreur : ' + (e?.message || 'envoi impossible'))
+      toast.error('Erreur : ' + (e?.message || 'envoi impossible'))
     } finally {
       setUploading(false)
     }
@@ -230,12 +236,57 @@ function MessagesContent() {
     if (userId) loadMessages(userId, id)
   }
 
-  if (loading) return <p style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>Chargement...</p>
+  const searchNewConv = async (q: string) => {
+    setNewConvSearch(q)
+    if (q.trim().length < 2) { setNewConvResults([]); return }
+    const { data } = await supabase.from('profiles').select('id, display_name, avatar_url').ilike('display_name', `%${q}%`).neq('id', userId).limit(8)
+    setNewConvResults(data || [])
+  }
+
+  const startConv = (otherId: string, profile: any) => {
+    setProfiles(prev => ({ ...prev, [otherId]: profile }))
+    setActiveConv(otherId)
+    if (userId) loadMessages(userId, otherId)
+    setNewConvOpen(false)
+    setNewConvSearch('')
+    setNewConvResults([])
+  }
+
+  const fmtConvDate = (iso: string) => {
+    if (!iso) return ''
+    const d = new Date(iso)
+    const now = new Date()
+    const diffDays = Math.floor((now.getTime() - d.getTime()) / 86400000)
+    if (diffDays === 0) return d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+    if (diffDays === 1) return 'Hier'
+    if (diffDays < 7) return d.toLocaleDateString('fr-FR', { weekday: 'short' })
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })
+  }
+
+  if (loading) return (
+    <div style={{ maxWidth: 1000, margin: '20px auto', padding: '0 10px', display: 'flex', gap: 20, height: 'calc(100vh - 120px)' }}>
+      <div style={{ width: 280, background: dark ? '#222' : 'white', borderRadius: 16, overflow: 'hidden' }}>
+        {[1,2,3,4].map(i => (
+          <div key={i} style={{ padding: '14px 16px', display: 'flex', gap: 12, borderBottom: `1px solid ${dark ? '#333' : '#f0f0f0'}` }}>
+            <div style={{ width: 40, height: 40, borderRadius: '50%', background: dark ? '#333' : '#eee', flexShrink: 0 }} />
+            <div style={{ flex: 1 }}>
+              <div style={{ height: 13, background: dark ? '#333' : '#eee', borderRadius: 4, marginBottom: 6, width: '60%' }} />
+              <div style={{ height: 11, background: dark ? '#2a2a2a' : '#f5f5f5', borderRadius: 4, width: '85%' }} />
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ flex: 1, background: dark ? '#222' : 'white', borderRadius: 16 }} />
+      <style>{`@keyframes pulse { from{opacity:1} to{opacity:.5} } div[style*="background: #eee"],div[style*="background: #333"],div[style*="background: #2a2a2a"],div[style*="background: #f5f5f5"]{ animation: pulse 1.4s ease infinite alternate }`}</style>
+    </div>
+  )
 
   return (
     <div style={{ maxWidth: 1000, margin: '20px auto', fontFamily: 'Inter, sans-serif', height: 'calc(100vh - 120px)', display: 'flex', gap: 20, padding: '0 10px' }}>
       <style>{`
+        .msg-back { display: none; }
         @media (max-width: 768px) {
+          .msg-back { display: inline-block !important; }
           .msg-layout { flex-direction: column !important; height: calc(100vh - 80px) !important; gap: 0 !important; }
           .msg-list { width: 100% !important; display: ${activeConv ? 'none' : 'flex'} !important; border-radius: 12px 12px 0 0 !important; }
           .msg-chat { display: ${activeConv ? 'flex' : 'none'} !important; border-radius: 0 0 12px 12px !important; }
@@ -246,27 +297,53 @@ function MessagesContent() {
 
         {/* Liste conversations */}
         <div className="msg-list" style={{ width: 280, background: bgPanel, borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.12)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ padding: '20px 16px', borderBottom: `1px solid ${border}` }}>
+          <div style={{ padding: '16px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
             <h2 style={{ fontWeight: 900, fontSize: 18, margin: 0, color: textMain }}>{t('messages_title')}</h2>
+            <button onClick={() => setNewConvOpen(v => !v)} title="Nouvelle conversation" style={{ background: newConvOpen ? '#003DA6' : 'none', color: newConvOpen ? 'white' : '#003DA6', border: '1.5px solid #003DA6', borderRadius: 8, width: 30, height: 30, fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 900 }}>+</button>
           </div>
+          {newConvOpen && (
+            <div style={{ padding: '10px 12px', borderBottom: `1px solid ${border}` }}>
+              <input
+                autoFocus
+                value={newConvSearch}
+                onChange={e => searchNewConv(e.target.value)}
+                placeholder="Rechercher un utilisateur…"
+                style={{ width: '100%', fontSize: 13, background: dark ? '#2a2a2a' : undefined, color: dark ? '#fff' : undefined, borderColor: dark ? '#444' : undefined }}
+              />
+              {newConvResults.map(p => (
+                <div key={p.id} onClick={() => startConv(p.id, p)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 4px', cursor: 'pointer', borderRadius: 8 }}
+                  onMouseEnter={e => (e.currentTarget.style.background = bgHover)}
+                  onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
+                  <img src={p.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(p.display_name || 'U')}&background=003DA6&color=fff`} style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                  <span style={{ fontSize: 13, fontWeight: 700, color: textMain }}>{p.display_name}</span>
+                </div>
+              ))}
+              {newConvSearch.length >= 2 && newConvResults.length === 0 && (
+                <p style={{ fontSize: 12, color: textMuted, padding: '6px 4px', margin: 0 }}>Aucun résultat</p>
+              )}
+            </div>
+          )}
           <div style={{ overflowY: 'auto', flex: 1 }}>
             {conversations.length === 0 && (
               <p style={{ padding: 20, color: textMuted, fontSize: 13, textAlign: 'center' }}>{t('messages_none')}</p>
             )}
             {conversations.map(conv => (
               <div key={conv.id} onClick={() => selectConv(conv.id)} style={{
-                padding: '14px 16px', cursor: 'pointer', borderBottom: `1px solid ${border}`,
+                padding: '12px 16px', cursor: 'pointer', borderBottom: `1px solid ${border}`,
                 background: activeConv === conv.id ? bgHover : 'transparent',
                 display: 'flex', alignItems: 'center', gap: 12,
               }}>
                 <img src={profiles[conv.id]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[conv.id]?.display_name || 'U')}&background=003DA6&color=fff`}
                   style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ fontWeight: 800, fontSize: 13, margin: 0, color: textMain, display: 'flex', justifyContent: 'space-between' }}>
-                    <span>{profiles[conv.id]?.display_name || '...'}</span>
-                    {conv.unread > 0 && <span style={{ background: '#003DA6', color: 'white', borderRadius: '50%', width: 18, height: 18, fontSize: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>{conv.unread}</span>}
-                  </p>
-                  <p style={{ fontSize: 11, color: textMuted, margin: '2px 0 0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{isImageMsg(conv.lastMsg) ? '📷 Photo' : conv.lastMsg}</p>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 4 }}>
+                    <span style={{ fontWeight: 800, fontSize: 13, color: textMain, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{profiles[conv.id]?.display_name || '...'}</span>
+                    <span style={{ fontSize: 10, color: textMuted, flexShrink: 0 }}>{fmtConvDate(conv.date)}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 2 }}>
+                    <p style={{ fontSize: 11, color: textMuted, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1 }}>{isImageMsg(conv.lastMsg) ? '📷 Photo' : conv.lastMsg}</p>
+                    {conv.unread > 0 && <span style={{ background: '#003DA6', color: 'white', borderRadius: '50%', width: 18, height: 18, fontSize: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, flexShrink: 0, marginLeft: 4 }}>{conv.unread}</span>}
+                  </div>
                 </div>
               </div>
             ))}

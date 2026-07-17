@@ -1,5 +1,7 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef } from 'react'
+import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
@@ -110,7 +112,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
   const [filterPrivate, setFilterPrivate] = useState(false)
   const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc' | 'num_asc' | 'date_desc' | 'date_asc'>(searchParams.get('sort') as any || 'default')
+  const [searchInput, setSearchInput] = useState(searchParams.get('q') || '')
   const [search, setSearch] = useState(searchParams.get('q') || '')
+  const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [fTeam, setFTeam] = useState(searchParams.get('team') || '')
   const [fBrand, setFBrand] = useState(searchParams.get('brand') || '')
   const [fYear, setFYear] = useState(searchParams.get('year') || '')
@@ -127,6 +131,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [commentCard, setCommentCard] = useState<Card | null>(null)
   const [commentCounts, setCommentCounts] = useState<Map<string, number>>(new Map())
   const [deleteTagConfirm, setDeleteTagConfirm] = useState<string | null>(null)
+  const [deleteCardConfirm, setDeleteCardConfirm] = useState<string | null>(null)
+  const [deleteGrailConfirm, setDeleteGrailConfirm] = useState<string | null>(null)
   const [renameValue, setRenameValue] = useState('')
   const isGradient = (c: string) => c.startsWith('linear-gradient')
   // Retourne les styles de bordure corrects pour couleur unie ou dégradé
@@ -259,8 +265,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   // Nouvelle fonction pour supprimer définitivement une carte ajoutée à la main
   const handleDeleteCard = async (idManuelle: string, cardKey: string) => {
     if (!currentUser || currentUser !== userId) return
-    const confirmation = window.confirm(lang === 'fr' ? 'Supprimer définitivement cette carte de votre galerie ?' : 'Permanently delete this card from your gallery?')
-    if (!confirmation) return
 
     try {
       // 1. Mise à jour classement mensuel + stats_total (avant suppression pour lire created_at)
@@ -282,7 +286,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       setCards(prev => prev.filter(c => c.id_manuelle !== idManuelle))
       setPrivateCards(prev => { const s = new Set(prev); s.delete(cardKey); return s })
     } catch (e: any) {
-      alert('Erreur lors de la suppression : ' + e.message)
+      toast.error('Erreur lors de la suppression : ' + e.message)
     }
   }
 
@@ -612,7 +616,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px' }}>
 
         {/* Header profil */}
-        <div style={{ background: 'white', borderRadius: 16, padding: '24px 30px', marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
+        <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: '24px 30px', marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
           
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', flex: '1 1 300px' }}>
             <img
@@ -654,7 +658,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               </div>
 
               {profile?.bio && (
-                <p style={{ fontSize: 13, color: '#555', margin: '0 0 10px', lineHeight: 1.5, maxWidth: 400 }}>{profile.bio}</p>
+                <p style={{ fontSize: 13, color: dark ? '#aaa' : '#555', margin: '0 0 10px', lineHeight: 1.5, maxWidth: 400 }}>{profile.bio}</p>
               )}
 
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -676,12 +680,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   </span>
                 )}
                 {currentUser && currentUser !== userId && (
-                  <a href={`/messages?to=${userId}`} style={{
+                  <Link href={`/messages?to=${userId}`} style={{
                     display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 700,
                     color: 'white', background: accent, padding: '5px 12px', borderRadius: 20, textDecoration: 'none'
                   }}>
                     {t('gallery_message')}
-                  </a>
+                  </Link>
                 )}
               </div>
             </div>
@@ -772,14 +776,14 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
                 {/* CTA principal */}
                 {isOwner && !editMode && (
-                  <a href={`/galerie/${userId}/ajouter`} className="btn-ajouter" style={{
+                  <Link href={`/galerie/${userId}/ajouter`} className="btn-ajouter" style={{
                     background: '#003DA6', color: 'white',
                     border: 'none', borderRadius: 10, padding: '12px 28px',
                     fontWeight: 800, fontSize: 15, cursor: 'pointer',
                     textDecoration: 'none', display: 'inline-block', textAlign: 'center', whiteSpace: 'nowrap',
                   }}>
                     + {lang === 'fr' ? 'Ajouter' : 'Add'}
-                  </a>
+                  </Link>
                 )}
               </div>
             </div>
@@ -826,16 +830,19 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                     >
                       <div style={{ borderRadius: 8, overflow: 'hidden', background: 'white', position: 'relative' }}>
                       {isOwner && (
-                        <button onClick={async e => {
-                          e.stopPropagation()
-                          await supabase.from('grail_cards').delete().eq('user_id', userId).eq('card_key', card.f)
-                          setGrailCards(prev => prev.filter(g => g.card_key !== card.f))
-                        }} style={{
-                          position: 'absolute', top: 4, right: 4, zIndex: 3,
-                          background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%',
-                          width: 20, height: 20, color: 'white', fontSize: 10, cursor: 'pointer',
-                          display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900,
-                        }}>✕</button>
+                        deleteGrailConfirm === card.f ? (
+                          <div style={{ position: 'absolute', top: 4, right: 4, zIndex: 3, display: 'flex', gap: 2 }}>
+                            <button onClick={async e => { e.stopPropagation(); await supabase.from('grail_cards').delete().eq('user_id', userId).eq('card_key', card.f); setGrailCards(prev => prev.filter(g => g.card_key !== card.f)); setDeleteGrailConfirm(null) }} style={{ background: '#e74c3c', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>✓</button>
+                            <button onClick={e => { e.stopPropagation(); setDeleteGrailConfirm(null) }} style={{ background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>✕</button>
+                          </div>
+                        ) : (
+                          <button onClick={e => { e.stopPropagation(); setDeleteGrailConfirm(card.f) }} style={{
+                            position: 'absolute', top: 4, right: 4, zIndex: 3,
+                            background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%',
+                            width: 20, height: 20, color: 'white', fontSize: 10, cursor: 'pointer',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900,
+                          }}>✕</button>
+                        )
                       )}
                       {renderCardImage(card)}
                       <div style={{ padding: '6px 8px' }}>
@@ -879,7 +886,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               {grailPickerOpen && (
                 <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}
                   onClick={() => setGrailPickerOpen(false)}>
-                  <div onClick={e => e.stopPropagation()} style={{ background: 'white', borderRadius: 16, padding: 20, width: '100%', maxWidth: 480, maxHeight: '80vh', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  <div onClick={e => e.stopPropagation()} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, width: '100%', maxWidth: 480, maxHeight: '80vh', display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>💎 {lang === 'fr' ? 'Choisir une carte' : 'Choose a card'}</h3>
                       <button onClick={() => setGrailPickerOpen(false)} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>✕</button>
@@ -916,7 +923,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                                 onMouseLeave={e => { if (!isGradient(tabColor)) e.currentTarget.style.borderColor = tabColor + '55' }}
                               >
                                 {renderCardImage(card)}
-                                <div style={{ padding: '4px 6px', background: 'white' }}>
+                                <div style={{ padding: '4px 6px', background: dark ? '#2a2a2a' : 'white' }}>
                                   <p style={{ fontWeight: 800, fontSize: 10, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.n}</p>
                                   <p style={{ fontSize: 9, color: '#999', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{card.s}</p>
                                 </div>
@@ -967,7 +974,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         <div style={{ background: dark ? '#1e1e1e' : '#fff', padding: 10, borderRadius: 8, marginBottom: 15, border: dark ? '1px solid #333' : '1px solid #eee' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 10 }}>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_search_label')}</label>
-              <input value={search} onChange={e => setSearch(e.target.value)} placeholder={t('gallery_search')} /></div>
+              <input value={searchInput} onChange={e => { setSearchInput(e.target.value); if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current); searchDebounceRef.current = setTimeout(() => setSearch(e.target.value), 200) }} placeholder={t('gallery_search')} /></div>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_team_label')}</label>
               <select value={fTeam} onChange={e => setFTeam(e.target.value)}>
                 <option value="">{t('gallery_all')}</option>{teams.map(team => <option key={team}>{team}</option>)}
@@ -1573,18 +1580,25 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       {privateCards.has(d.f) ? t('gallery_make_public') : t('gallery_make_private')}
                     </button>
                     {d.isManuelle && d.id_manuelle && (<>
-                      <button onClick={e => { e.stopPropagation(); window.location.href = `/galerie/${userId}/editer/${d.id_manuelle}` }} style={{
+                      <button onClick={e => { e.stopPropagation(); router.push(`/galerie/${userId}/editer/${d.id_manuelle}`) }} style={{
                         background: '#f59e0b', color: 'white', border: 'none', borderRadius: 6,
                         padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
                       }} title={lang === 'fr' ? 'Modifier la carte' : 'Edit card'}>
                         ✏️
                       </button>
-                      <button onClick={e => { e.stopPropagation(); handleDeleteCard(d.id_manuelle!, d.f) }} style={{
-                        background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6,
-                        padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
-                      }} title={lang === 'fr' ? 'Supprimer la carte' : 'Delete card'}>
-                        🗑️
-                      </button>
+                      {deleteCardConfirm === d.id_manuelle ? (
+                        <>
+                          <button onClick={e => { e.stopPropagation(); handleDeleteCard(d.id_manuelle!, d.f); setDeleteCardConfirm(null) }} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '4px 5px', fontSize: 9, fontWeight: 900, cursor: 'pointer' }}>✓</button>
+                          <button onClick={e => { e.stopPropagation(); setDeleteCardConfirm(null) }} style={{ background: '#555', color: 'white', border: 'none', borderRadius: 6, padding: '4px 5px', fontSize: 9, fontWeight: 900, cursor: 'pointer' }}>✕</button>
+                        </>
+                      ) : (
+                        <button onClick={e => { e.stopPropagation(); setDeleteCardConfirm(d.id_manuelle!) }} style={{
+                          background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6,
+                          padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
+                        }} title={lang === 'fr' ? 'Supprimer la carte' : 'Delete card'}>
+                          🗑️
+                        </button>
+                      )}
                     </>)}
                   </div>
                 </div>
@@ -1681,6 +1695,15 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               </div>
             ) : filtered.length > 0 ? (
               <p style={{ color: '#bbb', fontSize: 12 }}>{filtered.length} {t('gallery_total')}</p>
+            ) : cards.length > 0 && filtered.length === 0 ? (
+              <div style={{ padding: '60px 20px', textAlign: 'center' }}>
+                <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
+                <p style={{ fontWeight: 800, fontSize: 15, marginBottom: 8 }}>{lang === 'fr' ? 'Aucun résultat' : 'No results'}</p>
+                <p style={{ color: '#999', fontSize: 13, marginBottom: 16 }}>{lang === 'fr' ? 'Aucune carte ne correspond à ces filtres.' : 'No cards match these filters.'}</p>
+                <button onClick={() => { setSearchInput(''); setSearch(''); setFTeam(''); setFBrand(''); setFYear(''); setFCollectionTag(''); setActiveFilters({ rc: false, auto: false, num: false, patch: false }) }} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 800, fontSize: 13, border: 'none', cursor: 'pointer' }}>
+                  {lang === 'fr' ? 'Effacer les filtres' : 'Clear filters'}
+                </button>
+              </div>
             ) : cards.length === 0 ? (
               <div style={{ padding: '60px 20px', textAlign: 'center' }}>
                 <div style={{ fontSize: 48, marginBottom: 16 }}>🃏</div>
@@ -1688,7 +1711,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   <>
                     <p style={{ fontWeight: 800, fontSize: 16, marginBottom: 8 }}>Ta galerie est vide</p>
                     <p style={{ color: '#999', fontSize: 13, marginBottom: 20 }}>Ajoute ta première carte ou connecte ton Google Sheets depuis le profil.</p>
-                    <a href={`/galerie/${userId}/ajouter`} style={{ background: '#003DA6', color: 'white', padding: '12px 24px', borderRadius: 50, fontWeight: 800, fontSize: 14, textDecoration: 'none', display: 'inline-block' }}>+ Ajouter une carte</a>
+                    <Link href={`/galerie/${userId}/ajouter`} style={{ background: '#003DA6', color: 'white', padding: '12px 24px', borderRadius: 50, fontWeight: 800, fontSize: 14, textDecoration: 'none', display: 'inline-block' }}>+ Ajouter une carte</Link>
                   </>
                 ) : (
                   <>

@@ -1,9 +1,11 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 import TeamPicker from '@/components/TeamPicker'
 import { subscribePush } from '@/components/PWAInstall'
 import ShowcaseWidget from '@/components/ShowcaseWidget'
@@ -11,6 +13,7 @@ import ShowcaseWidget from '@/components/ShowcaseWidget'
 export default function Profil() {
   const router = useRouter()
   const { t, lang } = useLang()
+  const { dark } = useTheme()
   const [userId, setUserId] = useState<string | null>(null)
   const [form, setForm] = useState({ display_name: '', bio: '', lien_csv: '', couleur_bordure: '#003DA6', instagram: '', twitter: '', discord: '' })
   const [favoriteTeams, setFavoriteTeams] = useState<string[]>([])
@@ -44,7 +47,7 @@ export default function Profil() {
       setUserId(data.user.id)
       // Mettre à jour last_seen
       await supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', data.user.id)
-      const { data: p } = await supabase.from('profiles').select('*').eq('id', data.user.id).single()
+      const { data: p } = await supabase.from('profiles').select('id,display_name,bio,lien_csv,couleur_bordure,instagram,twitter,discord,favorite_teams,wrap_opt_out,avatar_url').eq('id', data.user.id).single()
       if (p) {
         setForm({ display_name: p.display_name || '', bio: p.bio || '', lien_csv: p.lien_csv || '', couleur_bordure: p.couleur_bordure || '#003DA6', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '' })
         setFavoriteTeams(Array.isArray(p.favorite_teams) ? p.favorite_teams : [])
@@ -114,12 +117,12 @@ export default function Profil() {
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file || !userId) return
-    if (file.size > 2 * 1024 * 1024) { alert('Image trop lourde (max 2 Mo)'); return }
+    if (file.size > 2 * 1024 * 1024) { toast.error('Image trop lourde (max 2 Mo)'); return }
     setUploading(true)
     const ext = file.name.split('.').pop()
     const path = `${userId}/avatar.${ext}`
     const { error: upErr } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
-    if (upErr) { alert('Erreur upload : ' + upErr.message); setUploading(false); return }
+    if (upErr) { toast.error('Erreur upload : ' + upErr.message); setUploading(false); return }
     const { data: urlData } = supabase.storage.from('avatars').getPublicUrl(path)
     const publicUrl = urlData.publicUrl + '?t=' + Date.now()
     await supabase.from('profiles').update({ avatar_url: publicUrl }).eq('id', userId)
@@ -160,7 +163,7 @@ export default function Profil() {
       }
       setSaved(true)
       setTimeout(() => setSaved(false), 3000)
-    } else { alert('Erreur : ' + error.message) }
+    } else { toast.error('Erreur : ' + error.message) }
   }
 
   const handlePasswordChange = async (e: React.FormEvent) => {
@@ -185,7 +188,7 @@ export default function Profil() {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${session?.access_token}` },
       })
-      if (!res.ok) { alert('Erreur génération image'); return }
+      if (!res.ok) { toast.error('Erreur génération image'); return }
       const blob = await res.blob()
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
@@ -194,7 +197,7 @@ export default function Profil() {
       a.click()
       URL.revokeObjectURL(url)
     } catch (e: any) {
-      alert('Erreur : ' + e.message)
+      toast.error('Erreur : ' + e.message)
     } finally {
       setWrapImgLoading(null)
     }
@@ -225,11 +228,18 @@ export default function Profil() {
       const { data: { session } } = await supabase.auth.getSession()
       const r = await fetch('/api/delete-account', { method: 'DELETE', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` }, body: JSON.stringify({ userId }) })
       if (r.ok) { await supabase.auth.signOut(); window.location.href = '/' }
-      else { alert('Erreur lors de la suppression'); setDeleting(false) }
-    } catch { alert('Erreur'); setDeleting(false) }
+      else { toast.error('Erreur lors de la suppression'); setDeleting(false) }
+    } catch { toast.error('Erreur'); setDeleting(false) }
   }
 
-  if (loading) return <p style={{ textAlign: 'center', padding: 60 }}>Chargement...</p>
+  if (loading) return (
+    <div style={{ maxWidth: 600, margin: '40px auto' }}>
+      {[200, 120, 180].map((h, i) => (
+        <div key={i} style={{ background: '#f0f0f0', borderRadius: 16, height: h, marginBottom: 16, animation: 'pulse 1.4s ease infinite alternate' }} />
+      ))}
+      <style>{`@keyframes pulse { from { opacity:1 } to { opacity:0.5 } }`}</style>
+    </div>
+  )
 
   return (
     <div style={{ maxWidth: 600, margin: '40px auto' }}>
@@ -237,7 +247,7 @@ export default function Profil() {
 
 
       {/* Avatar */}
-      <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 16 }}>{t('profile_photo')}</label>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <div style={{ position: 'relative' }}>
@@ -256,7 +266,7 @@ export default function Profil() {
       </div>
 
       {/* Formulaire */}
-      <div style={{ background: 'white', borderRadius: 16, padding: 40, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 40, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('profile_pseudo')}</label>
@@ -273,7 +283,7 @@ export default function Profil() {
             <p style={{ fontSize: 11, color: '#999', marginTop: 4 }}>{t('profile_csv_hint')}</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 12 }}>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Instagram</label>
               <input value={form.instagram} onChange={e => setForm({ ...form, instagram: e.target.value })} placeholder="@pseudo" />
@@ -316,7 +326,7 @@ export default function Profil() {
       {userId && <ShowcaseWidget userId={userId} />}
 
       {/* Notifications push */}
-      <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <h3 style={{ fontWeight: 800, marginBottom: 8 }}>🔔 Notifications</h3>
         {!pushSupported ? (
           <p style={{ fontSize: 13, color: '#999' }}>
@@ -347,7 +357,7 @@ export default function Profil() {
       </div>
 
       {/* Test wrap mensuel */}
-      <div id="wrap-telecharger" style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+      <div id="wrap-telecharger" style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <h3 style={{ fontWeight: 800, marginBottom: 6 }}>📊 Wrap mensuel — test</h3>
         <p style={{ fontSize: 13, color: '#666', marginBottom: 16, lineHeight: 1.5 }}>
           Envoie un email de test du wrap mensuel à ton adresse pour vérifier le rendu et les données.
@@ -395,7 +405,7 @@ export default function Profil() {
       </div>
 
       {/* Modifier le mot de passe */}
-      <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
         <h3 style={{ fontWeight: 800, marginBottom: 8 }}>{t('profile_password')}</h3>
         {!showPasswordForm ? (
           <button onClick={() => setShowPasswordForm(true)} style={{ background: '#003DA6', color: 'white', border: 'none', padding: '10px 20px', borderRadius: 8, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
@@ -440,7 +450,7 @@ export default function Profil() {
       )}
 
       {/* Zone danger */}
-      <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #ffebee' }}>
+      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #ffebee' }}>
         <h3 style={{ fontWeight: 800, color: '#e74c3c', marginBottom: 8 }}>{t('profile_danger')}</h3>
         <p style={{ fontSize: 13, color: '#666', marginBottom: 16, lineHeight: 1.5 }}>{t('profile_delete_warning')}</p>
         {!showDelete ? (
@@ -449,15 +459,15 @@ export default function Profil() {
           </button>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <p style={{ fontSize: 13, color: '#e74c3c', fontWeight: 700 }}>Tapez <strong>SUPPRIMER</strong> pour confirmer :</p>
-            <input value={deleteConfirm} onChange={e => setDeleteConfirm(e.target.value)} placeholder="SUPPRIMER" style={{ border: '2px solid #e74c3c' }} />
+            <p style={{ fontSize: 13, color: '#e74c3c', fontWeight: 700 }}>{t('profile_delete_confirm')} <strong>{lang === 'fr' ? 'SUPPRIMER' : 'DELETE'}</strong></p>
+            <input value={deleteConfirm} onChange={e => setDeleteConfirm(e.target.value)} placeholder={lang === 'fr' ? 'SUPPRIMER' : 'DELETE'} style={{ border: '2px solid #e74c3c' }} />
             <div style={{ display: 'flex', gap: 10 }}>
-              <button onClick={handleDeleteAccount} disabled={deleteConfirm !== 'SUPPRIMER' || deleting} style={{
-                background: deleteConfirm === 'SUPPRIMER' ? '#e74c3c' : '#f0f0f0',
-                color: deleteConfirm === 'SUPPRIMER' ? 'white' : '#999',
+              <button onClick={handleDeleteAccount} disabled={deleteConfirm !== (lang === 'fr' ? 'SUPPRIMER' : 'DELETE') || deleting} style={{
+                background: deleteConfirm === (lang === 'fr' ? 'SUPPRIMER' : 'DELETE') ? '#e74c3c' : '#f0f0f0',
+                color: deleteConfirm === (lang === 'fr' ? 'SUPPRIMER' : 'DELETE') ? 'white' : '#999',
                 border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13
               }}>
-               {deleting ? 'Suppression...' : t('profile_delete_btn')}
+               {deleting ? (lang === 'fr' ? 'Suppression…' : 'Deleting…') : t('profile_delete_btn')}
               </button>
               <button onClick={() => { setShowDelete(false); setDeleteConfirm('') }} style={{ background: '#f0f0f0', color: '#333', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
                 Annuler
