@@ -1,7 +1,7 @@
 'use client'
 import { toast } from '@/lib/toast'
 import { useState, use, useRef, useEffect, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
@@ -35,7 +35,27 @@ function downscaleToDataURL(file: File, maxDim = 1600): Promise<string> {
 export default function EditerCarte({ params }: { params: Promise<{ userId: string; id: string }> }) {
   const { userId, id } = use(params)
   const router = useRouter()
+  const searchParams = useSearchParams()
   const { lang } = useLang()
+
+  // Mode modification groupée
+  const queueParam = searchParams.get('queue') || ''
+  const qidxParam = parseInt(searchParams.get('qidx') || '0', 10)
+  const queueIds = queueParam ? queueParam.split(',') : []
+  const isQueueMode = queueIds.length > 1
+  const queueTotal = queueIds.length
+  const queueCurrent = qidxParam + 1
+
+  const goNext = (skip = false) => {
+    const nextIdx = qidxParam + 1
+    if (nextIdx >= queueIds.length) {
+      toast.success(lang === 'fr' ? 'Modification groupée terminée !' : 'Bulk edit complete!')
+      router.push(`/galerie/${userId}`)
+      return
+    }
+    const nextId = queueIds[nextIdx]
+    router.push(`/galerie/${userId}/editer/${nextId}?queue=${queueParam}&qidx=${nextIdx}`)
+  }
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [uploadingRecto, setUploadingRecto] = useState(false)
@@ -383,6 +403,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     }).eq('id', id).eq('user_id', user.id)
 
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
+    if (isQueueMode) { goNext(); return }
     router.push(`/galerie/${userId}`)
   }
 
@@ -439,6 +460,41 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
   return (
     <div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'Inter, sans-serif', padding: '0 10px' }}>
+
+      {/* Bandeau modification groupée */}
+      {isQueueMode && (
+        <div style={{ background: '#003DA6', color: 'white', borderRadius: 12, padding: '12px 18px', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+          <div style={{ flex: 1, minWidth: 160 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, opacity: 0.75, marginBottom: 2 }}>
+              Modification groupée
+            </div>
+            <div style={{ fontWeight: 900, fontSize: 16 }}>
+              Carte {queueCurrent} / {queueTotal}
+              {form.nom && <span style={{ fontWeight: 400, opacity: 0.85, marginLeft: 8 }}>— {form.nom}</span>}
+            </div>
+            <div style={{ marginTop: 6, height: 3, borderRadius: 2, background: 'rgba(255,255,255,0.25)' }}>
+              <div style={{ height: '100%', width: `${(queueCurrent / queueTotal) * 100}%`, background: 'white', borderRadius: 2, transition: 'width 0.3s' }} />
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button
+              type="button"
+              onClick={() => goNext(true)}
+              style={{ padding: '8px 16px', borderRadius: 8, border: '1.5px solid rgba(255,255,255,0.5)', background: 'transparent', color: 'white', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+            >
+              Passer →
+            </button>
+            <button
+              type="button"
+              onClick={() => router.push(`/galerie/${userId}`)}
+              style={{ padding: '8px 14px', borderRadius: 8, border: 'none', background: 'rgba(255,255,255,0.15)', color: 'white', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+            >
+              ✕ Arrêter
+            </button>
+          </div>
+        </div>
+      )}
+
       <Link href={`/galerie/${userId}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 14, display: 'inline-block', marginBottom: 20 }}>
         ← {lang === 'fr' ? 'Retour à la galerie' : 'Back to gallery'}
       </Link>
@@ -626,7 +682,11 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           </div>
 
           <button type="submit" disabled={saving} className="btn-main btn-primary" style={{ marginTop: 8 }}>
-            {saving ? '...' : (lang === 'fr' ? '✅ Enregistrer les modifications' : '✅ Save changes')}
+            {saving ? '...' : isQueueMode
+              ? (queueCurrent < queueTotal
+                ? `✅ ${lang === 'fr' ? 'Enregistrer et passer →' : 'Save and next →'}`
+                : `✅ ${lang === 'fr' ? 'Terminer' : 'Finish'}`)
+              : (lang === 'fr' ? '✅ Enregistrer les modifications' : '✅ Save changes')}
           </button>
         </div>
       </form>
