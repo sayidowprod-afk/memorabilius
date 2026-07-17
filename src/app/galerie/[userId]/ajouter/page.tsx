@@ -366,10 +366,30 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         : { imageBase64: base64, mimeType: 'image/jpeg' }
 
       const { data: { session: scanSession } } = await supabase.auth.getSession()
+
+      // Recto uniquement : recherche eBay visuelle (max 3s) pour obtenir des titres de contexte
+      // Les titres eBay contiennent souvent l'année, le set et la variation exacts
+      let ebayHints: string[] = []
+      if (!isVerso && scanSession) {
+        try {
+          const ebayRes = await Promise.race([
+            fetch('/api/ebay-image-search', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${scanSession.access_token}` },
+              body: JSON.stringify({ imageBase64: base64 }),
+            }).then(r => r.json()),
+            new Promise<null>(r => setTimeout(() => r(null), 3000)),
+          ])
+          if (ebayRes?.items?.length) {
+            ebayHints = (ebayRes.items as { title: string }[]).slice(0, 5).map(i => i.title).filter(Boolean)
+          }
+        } catch { /* non-fatal */ }
+      }
+
       const resp = await fetch('/api/scan-card', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${scanSession?.access_token}` },
-        body: JSON.stringify(body),
+        body: JSON.stringify({ ...body, ebayHints }),
       })
       const card = await resp.json()
       if (!resp.ok || card.error) {

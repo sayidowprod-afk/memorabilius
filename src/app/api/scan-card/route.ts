@@ -9,203 +9,108 @@ const supabase = createClient(
 
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent'
 
-const PROMPT = `Tu es un expert en cartes de collection sportives (NBA, NFL, MLB, NHL, soccer) et TCG (Pokémon, Magic, etc.) avec une connaissance exhaustive des sets, parallèles et variations.
+const PROMPT = `Tu es un expert en cartes de collection sportives (NBA, NFL, MLB, NHL, soccer) et TCG (Pokémon, Magic, etc.).
 
 Analyse cette image de carte et extrais les informations en JSON strict.
 Réponds UNIQUEMENT avec un objet JSON valide, sans markdown, sans explication.
 
 {
   "nom": "Nom complet du joueur ou personnage",
-  "equipe": "Nom complet ville + surnom (ex: Los Angeles Lakers, Golden State Warriors). Vide si TCG ou non applicable.",
+  "equipe": "Nom complet ville + surnom (ex: Los Angeles Lakers). Vide si TCG.",
   "annee": "Année ou saison (ex: 2023-24, 2023, 2022)",
-  "marque": "Fabricant (ex: Panini, Topps, Upper Deck, Leaf, Fleer, Pokémon, Magic)",
-  "collection": "Nom du SET principal sans la marque (ex: Prizm, Chrome, Mosaic, Optic, Select, Hoops, Donruss, Bowman, Heritage, Stadium Club, National Treasures, Immaculate, Flawless, Obsidian, Revolution, Noir, Illusions, Court Kings)",
-  "variation": "Parallèle ou variante EXACTE visible sur la carte (voir guide ci-dessous). Vide si c'est la base standard.",
-  "num": "Numérotation sérielle au format X/Y ou /Y si visible et imprimée (ex: 48/99, /25, /10). Vide sinon.",
-  "card_number": "Numéro de la carte dans le set, imprimé au dos (ex: '48', 'HTR-IFS', 'EC-1', 'PP-LJ'). Souvent précédé de '#' au dos. NE PAS confondre avec la numérotation /99. Vide si absent.",
+  "marque": "Fabricant (ex: Panini, Topps, Upper Deck, Leaf, Pokémon)",
+  "collection": "Nom du SET sans la marque (ex: Prizm, Chrome, Mosaic, Optic, Select, Hoops, Donruss, Bowman, Heritage, National Treasures, Immaculate, Flawless)",
+  "variation": "Parallèle ou variante EXACTE. Vide si carte de base standard.",
+  "num": "Numérotation sérielle X/Y ou /Y imprimée (ex: 48/99, /10). Vide sinon.",
+  "card_number": "Numéro du set au verso (ex: '48', 'HTR-IFS'). Sans '#'. Vide si absent.",
   "grade": "Raw",
   "rc": false,
   "auto": false,
   "patch": false
 }
 
-═══ GUIDE DES VARIATIONS PAR MARQUE ═══
+═══ VARIATIONS — GUIDE ═══
 
-PANINI PRIZM (NBA/NFL/MLB):
-Base → variation = ""
-Silver Prizm → "Silver Prizm" (holographique argenté, le plus courant)
-Red Prizm → "Red Prizm"
-Blue Prizm → "Blue Prizm"
-Blue Ice Prizm → "Blue Ice Prizm"
-Gold Prizm /10 → "Gold Prizm"
-Black Prizm /1 → "Black Prizm"
-Green Prizm → "Green Prizm"
-Purple Prizm → "Purple Prizm"
-Pink Prizm → "Pink Prizm"
-Orange Prizm → "Orange Prizm"
-Red White Blue → "Red White Blue Prizm"
-Cracked Ice → "Cracked Ice Prizm"
-Hyper → "Hyper Prizm"
-Fast Break → "Fast Break Prizm"
-Disco → "Disco Prizm"
-Gold Vinyl /1 → "Gold Vinyl Prizm"
-Mojo → "Mojo Prizm"
+▸ PANINI — règle universelle valable pour TOUS les sets (Prizm, Optic, Mosaic, Select, Hoops, Donruss, Contenders, Chronicles, Flux, Origins, Court Kings, Revolution, Noir, Obsidian…)
 
-PANINI OPTIC:
-Base → ""
-Holo → "Holo"
-Blue → "Blue Optic"
-Red → "Red Optic"
-Gold /10 → "Gold Optic"
-Black /1 → "Black Optic"
-Pink → "Pink Optic"
-Purple → "Purple Optic"
-Green → "Green Optic"
-Orange → "Orange Optic"
-Pandora → "Pandora"
-Velocity → "Velocity"
-Shock → "Shock"
-Checkerboard → "Checkerboard"
-Rated Rookie → note rc=true
+Les parallèles suivent la même logique dans tous les sets Panini.
+Nom de variation = EFFET ou COULEUR + SET. Exemples : "Silver Prizm", "Holo Hoops", "Blue Mosaic", "Cracked Ice Prizm".
 
-PANINI MOSAIC — INSERTS (subsets avec leur propre design/cadre distinct) :
-ATTENTION : Mosaic contient beaucoup d'INSERTS qui ont leur propre nom, à ne pas confondre avec les parallèles couleur.
-Si le design de la bordure/cadre de la carte est clairement différent du style Mosaic standard (carreaux bleus), c'est probablement un INSERT.
+Aspect visuel :
+  Base standard → ""
+  Holographique irisé argenté → "Silver [Set]" ou "Holo [Set]"
+  Couleur unie (Blue, Red, Green, Purple, Orange, Pink) → "[Couleur] [Set]"
+  Doré (souvent /10) → "Gold [Set]"
+  Noir (souvent /1) → "Black [Set]"
+  Gold Vinyl, Logoman (/1) → noter tel quel
 
-Inserts Mosaic courants :
-  Bang! → bordure avec effet d'explosion/éclats, très colorée → variation = "Bang!" (base) ou "Bang! Silver Prizm" (holographique)
-  Jam! → joueur qui dunk, bordure dynamique → "Jam!" ou "Jam! Silver Prizm"
-  Stained Glass → effet vitrail → "Stained Glass" ou "Stained Glass Silver Prizm"
-  Will to Win → design motivationnel → "Will to Win"
-  Stare Down → gros plan visage → "Stare Down"
-  On the Rise → jeunes joueurs → "On the Rise"
-  Magnitude → bordure étoilée → "Magnitude"
-  Mosaic Memorabilia → relic → patch=true, "Mosaic Memorabilia"
+Effets texturaux (combiner avec la couleur si applicable) :
+  Cracked Ice / Shimmer → texture craquelée irisée → "Cracked Ice [Set]"
+  Disco → damier de points irisés → "Disco [Set]"
+  Fast Break → fines lignes diagonales argentées → "Fast Break [Set]"
+  Mojo → larges bandes arc-en-ciel → "Mojo [Set]"
+  Hyper → prismatique intense multicolore → "Hyper [Set]"
+  Laser → fines lignes laser colorées → "[Couleur] Laser [Set]" (ex: "Holo Blue Laser Donruss")
+  Velocity → lignes de vitesse parallèles → "Velocity [Set]"
+  Shock → marques d'impact/éclats → "Shock [Set]"
 
-Parallèles Mosaic (même design de base, couleur différente) :
-Base → ""
-Silver Prizm → "Silver Mosaic" (holographique argenté)
-Pink Camo → "Pink Camo"
-Blue → "Blue Mosaic" (teinte bleue uniforme, SANS design d'insert spécial)
-Gold → "Gold Mosaic"
-Reactive Blue → "Reactive Blue"
-Reactive Yellow → "Reactive Yellow"
-Camo → "Camo"
-Genesis → "Genesis"
+▸ INSERTS PANINI (fond/cadre DISTINCT de la base standard) :
+RÈGLE CLÉ : le nom de l'insert est presque TOUJOURS IMPRIMÉ sur la carte.
+→ Lis le texte imprimé en PRIORITÉ ABSOLUE. Si tu vois "BANG!" → "Bang!". Si "STAINED GLASS" → "Stained Glass".
+→ Ne devine PAS l'insert visuellement si aucun texte ne le confirme.
+→ Combinaison insert + parallèle possible : "Bang! Silver Prizm", "Stained Glass Gold Prizm"
 
-RÈGLE CLÉ MOSAIC : Si la carte a un design de cadre/fond DISTINCT du carrelage Mosaic standard → c'est un INSERT, mets le nom de l'insert en variation.
-Si c'est juste le design standard Mosaic en couleur différente → c'est un parallèle couleur.
-Combinaison possible : insert + parallèle → "Bang! Silver Prizm"
+▸ TOPPS / BOWMAN
+  Base papier → ""
+  Refractor (aspect miroir légèrement irisé) → "Refractor"
+  [Couleur] Refractor → "Blue Refractor", "Green Refractor", "Orange Refractor"
+  Gold Refractor /50 → "Gold Refractor" | Red Refractor /5 → "Red Refractor" | SuperFractor /1 → "SuperFractor"
+  Prism / Atomic / X-Fractor / Negative → noter l'effet exact
+  Heritage Short Print → "Short Print"
+  1st Bowman / 1st Card visible → rc=true
+  Inserts (Future Stars, etc.) : nom généralement imprimé sur la carte → lire le texte
 
-PANINI PRIZM — INSERTS courants :
-Prizm contient aussi des inserts distincts des parallèles :
-  Emergent → design futuriste → "Emergent" ou "Emergent Silver Prizm"
-  Fearless → "Fearless"
-  Get Hyped! → "Get Hyped!"
-  Sensational Swatches → relic → patch=true
-  Signatures → auto=true
-  Prizm Dominance → "Prizm Dominance"
-  Color Blast → fond multicolore éclaté → "Color Blast"
-  Far & Away → "Far & Away"
+▸ UPPER DECK (NHL/NBA)
+  Young Guns → rc=true, variation="Young Guns"
+  Canvas → "Canvas" | Clear Cut → "Clear Cut" | Exclusives /100 → "Exclusives" | French → "French"
 
-PANINI SELECT:
-Base (Concourse/Premier/Courtside tier) → ""
-Silver → "Silver Select"
-Blue/White → "Blue & White Select"
-Gold /10 → "Gold Select"
-Black /1 → "Black Select"
-Tie-Dye → "Tie-Dye"
-Light Blue Disco → "Light Blue Disco"
-
-PANINI NATIONAL TREASURES / IMMACULATE:
-Ces sets sont souvent numérotés et ont des relics/autos.
-Variation = couleur du fond ou bordure visible (Gold, Silver, Black, Platinum, etc.)
-
-TOPPS CHROME (MLB/NFL):
-Base → ""
-Refractor → "Refractor"
-Blue Refractor → "Blue Refractor"
-Orange Refractor → "Orange Refractor"
-Red Refractor /5 → "Red Refractor"
-Gold Refractor /50 → "Gold Refractor"
-SuperFractor /1 → "SuperFractor"
-Prism Refractor → "Prism Refractor"
-Atomic Refractor → "Atomic Refractor"
-Negative Refractor → "Negative Refractor"
-X-Fractor → "X-Fractor"
-
-TOPPS HERITAGE / BASE:
-Base → ""
-Short Print → "Short Print"
-High Number → "High Number"
-Chrome → "Chrome"
-Black → "Black"
-Blue → "Blue"
-Red → "Red"
-Gold /50 → "Gold"
-
-UPPER DECK (NHL/NBA):
-Young Guns → rc=true, variation="Young Guns"
-Canvas → "Canvas"
-French → "French"
-Clear Cut → "Clear Cut"
-Exclusives /100 → "Exclusives"
-
-POKÉMON:
-Holo Rare → "Holo Rare"
-Reverse Holo → "Reverse Holo"
-Full Art → "Full Art"
-Secret Rare → "Secret Rare"
-Rainbow Rare → "Rainbow Rare"
-Gold → "Gold"
-VMAX → note dans variation
-V → note dans variation
-ex → note dans variation
+▸ POKÉMON / TCG
+  Holo Rare → "Holo Rare" | Reverse Holo → "Reverse Holo" | Full Art → "Full Art"
+  Secret Rare → "Secret Rare" | Rainbow Rare → "Rainbow Rare"
+  VMAX / V / ex / GX → noter dans variation
 
 ═══ RÈGLES GÉNÉRALES ═══
 
-IDENTIFICATION DE LA VARIATION — ORDRE DE PRIORITÉ :
-1. INSERTS D'ABORD : Est-ce que le design général de la carte (fond, cadre, composition) est DIFFÉRENT du style de base du set ? Si oui → c'est un INSERT, identifie son nom (Bang!, Jam!, Stained Glass, Color Blast, Emergent, etc.)
-2. Cherche une indication TEXTUELLE sur la carte (nom de l'insert/parallèle imprimé)
-3. Observe la BORDURE : argentée/holographique = Silver/Refractor, dorée = Gold, colorée unie = noter la couleur
-4. Observe la TEXTURE : prismatique = Prizm/Holo, craquelée = Cracked Ice, rayures = Velocity
-5. Combine INSERT + PARALLÈLE si applicable : "Bang! Silver Prizm", "Stained Glass Gold"
-6. Regarde le numéro de tirage (/25 = souvent Gold ou Red, /10 = Gold, /1 = Black ou SuperFractor)
-7. Si design standard du set sans effet spécial ni couleur différente → variation = ""
-
-ERREUR FRÉQUENTE À ÉVITER : Une carte Mosaic avec une bordure bleue mais un design d'insert distinct (ex: Bang!, Jam!) N'EST PAS "Blue Mosaic" — c'est l'INSERT en question.
+VARIATION — ORDRE DE PRIORITÉ :
+1. Texte imprimé sur la carte → priorité absolue (lis avant de déduire visuellement)
+2. Numéro de tirage : /10 = souvent Gold, /1 = Black ou SuperFractor
+3. Effet visuel selon le guide ci-dessus
+4. Design standard sans effet spécial → ""
 
 ANNÉE :
-- Regarde le VERSO de la carte en priorité — l'année est presque toujours imprimée en bas du dos (ex: "© 2025 Panini", "2024-25", "2025 Topps")
-- Regarde aussi le RECTO (coin supérieur ou inférieur)
-- Copie EXACTEMENT ce qui est imprimé : si tu lis "2025" → retourne "2025". Si tu lis "2024-25" → retourne "2024-25". Rien de plus, rien de moins.
-- Ne déduis pas l'année depuis le joueur, le set, ou ta connaissance générale. Si vraiment illisible → ""
+- Verso en priorité : (1) copyright "© 2025 Panini America", (2) mention saison "2024-25 NBA", (3) logo/texte du set contenant l'année
+- Recto : coins supérieur/inférieur, bandeau, texte overlay
+- Slab PSA/BGS/CGC : étiquette du slab, source la plus fiable
+- Copie exactement ce qui est imprimé : "2025" → "2025", "2024-25" → "2024-25"
+- Si l'année n'est PAS lisible dans l'image mais que tu identifies le set avec certitude → utilise ta connaissance pour l'année probable
+- Vraiment impossible → ""
 
-COLLECTION (set) :
-- Lis le texte en bas ou en haut de la carte
-- Sur les slabs PSA/BGS, le set est souvent indiqué sur l'étiquette
-- Panini indique souvent le set sur le bas de la carte
-- Topps indique le set logo en haut
+COLLECTION : lis le texte en bas/haut/logo de la carte. Sur slab, l'étiquette indique souvent le set.
 
-RÈGLES BOOLÉENNES :
-- rc = true si tu vois "Rookie Card", "RC", logo rookie officiel (étoile jaune), ou "Young Guns" (Upper Deck)
-- auto = true si signature manuscrite visible OU "Autograph" OU "Auto" inscrit sur la carte
-- patch = true si morceau de tissu/jersey encapsulé visible OU "Patch" OU "Relic" inscrit
-- grade = "Raw" par défaut. Si slab PSA visible → "PSA X", BGS → "BGS X.X", CGC → "CGC X"
-- num : UNIQUEMENT si tu lis "X/Y" ou "/Y" imprimé sur la carte comme tirage limité. Pas le numéro de carte (#123), pas le numéro de maillot.
-- card_number : le numéro identifiant la carte dans le set, typiquement au dos (ex: "#48", "HTR-IFS", "EC-1"). Si visible, retourne UNIQUEMENT la valeur sans le '#' (ex: "48" pas "#48"). Le verso est souvent plus clair pour ça.
+BOOLÉENS :
+- rc : "Rookie Card", "RC", logo rookie étoile jaune, "Young Guns", "1st Bowman"
+- auto : signature manuscrite visible, "Autograph" ou "Auto" écrit sur la carte
+- patch : morceau de tissu/jersey encapsulé visible, "Patch" ou "Relic" écrit
+- grade : "Raw" par défaut. Slab PSA → "PSA X", BGS → "BGS X.X", CGC → "CGC X"
+- num : uniquement le tirage limité "/Y" ou "X/Y" imprimé (pas le numéro de carte dans le set)
+- card_number : numéro du set au verso, retourner sans '#' (ex: "48" et non "#48"). Vide si absent.
+Si info absente ou illisible → ""
 
-Si une info est absente ou vraiment illisible → chaîne vide "".
-Ne devine pas. Reste factuel à ce qui est visible.
-
-IMPORTANT — SI DEUX IMAGES SONT FOURNIES (RECTO + VERSO) :
-- La première image est le RECTO (face avant)
-- La deuxième image est le VERSO (face arrière)
-- Le verso contient souvent : nom exact du set, nom de l'insert en grand, numérotation, infos RC/Auto
-- Le verso FAIT AUTORITÉ sur le recto pour : collection, variation, num, rc, auto, patch
-- Si le verso indique "BANG!" en gros → variation contient "Bang!" (+ parallèle si visible au recto)
-- Si le verso dit "PRIZM" → le parallèle du recto est probablement Silver Prizm ou similaire
-- Croiser les deux faces pour avoir l'information la plus complète et précise possible.`
+SI DEUX IMAGES (RECTO + VERSO) :
+- Image 1 = RECTO (face avant), Image 2 = VERSO (face arrière)
+- Le verso FAIT AUTORITÉ pour : collection, variation, num, rc, auto, patch
+- Le verso contient souvent le nom de l'insert en grand, la numérotation exacte, le copyright avec l'année
+- Croiser les deux faces pour la meilleure précision`
 
 export async function POST(req: NextRequest) {
   const token = req.headers.get('authorization')?.replace('Bearer ', '')
@@ -219,8 +124,15 @@ export async function POST(req: NextRequest) {
   if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY non configurée' }, { status: 500 })
 
   try {
-    const { imageBase64, imageBase64Verso, mimeType = 'image/jpeg' } = await req.json()
+    const { imageBase64, imageBase64Verso, mimeType = 'image/jpeg', ebayHints } = await req.json()
     if (!imageBase64) return NextResponse.json({ error: 'Image manquante' }, { status: 400 })
+
+    // Injecter les titres eBay comme contexte fort quand disponibles
+    let fullPrompt = PROMPT
+    if (Array.isArray(ebayHints) && ebayHints.length > 0) {
+      fullPrompt += `\n\nRÉSULTATS RECHERCHE VISUELLE EBAY :\nCes titres de listings correspondent visuellement à cette carte. Utilise-les comme indices forts — ils font autorité sur tes déductions visuelles pour l'année, le set et la variation :\n` +
+        ebayHints.slice(0, 5).map((t: string, i: number) => `${i + 1}. "${t}"`).join('\n')
+    }
 
     const imageParts: object[] = [
       { inline_data: { mime_type: mimeType, data: imageBase64 } },
@@ -235,13 +147,13 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         contents: [{
           parts: [
-            { text: PROMPT },
+            { text: fullPrompt },
             ...imageParts,
           ],
         }],
         generationConfig: {
           temperature: 0,
-          maxOutputTokens: 1024,
+          maxOutputTokens: 2048,
           thinkingConfig: { thinkingBudget: 0 },
         },
       }),
@@ -254,7 +166,9 @@ export async function POST(req: NextRequest) {
 
     const data = await res.json()
     const parts = data.candidates?.[0]?.content?.parts ?? []
-    const text = parts.map((p: any) => p.text ?? '').join('')
+    // Exclure les parties "thought" (raisonnement interne de Gemini 2.5)
+    const answerParts = parts.filter((p: any) => !p.thought)
+    const text = answerParts.map((p: any) => p.text ?? '').join('')
 
     const match = text.match(/\{[\s\S]*\}/)
     if (!match) return NextResponse.json({ error: 'Réponse invalide' }, { status: 500 })
