@@ -120,6 +120,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [fBrand, setFBrand] = useState(searchParams.get('brand') || '')
   const [fYear, setFYear] = useState(searchParams.get('year') || '')
   const [fCollectionTag, setFCollectionTag] = useState(searchParams.get('tag') || '')
+  const [pinTeam, setPinTeam] = useState(searchParams.get('pin') || '')
   const [teams, setTeams] = useState<string[]>([])
   const [brands, setBrands] = useState<string[]>([])
   const [years, setYears] = useState<string[]>([])
@@ -472,6 +473,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       }
     }
     const sorted = [...f].sort((a, b) => {
+      if (pinTeam) {
+        const aPin = a.t === pinTeam
+        const bPin = b.t === pinTeam
+        if (aPin && !bPin) return -1
+        if (!aPin && bPin) return 1
+      }
       const primary = applySort(sortBy, a, b)
       if (primary !== 0 || sortBy2 === 'none') return primary
       return applySort(sortBy2, a, b)
@@ -480,7 +487,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     setFiltered(sorted)
     setPage(1)
     setDisplayed(sorted.slice(0, PAGE_SIZE))
-  }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, privateCards, isOwner, sortBy, sortBy2, cardValues, tabSettings])
+  }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -506,9 +513,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     if (fCollectionTag) sp.set('tag', fCollectionTag)
     if (sortBy !== 'default') sp.set('sort', sortBy)
     if (sortBy2 !== 'none') sp.set('sort2', sortBy2)
+    if (pinTeam) sp.set('pin', pinTeam)
     const str = sp.toString()
     router.replace(str ? `?${str}` : window.location.pathname, { scroll: false })
-  }, [loaded, search, fTeam, fBrand, fYear, fCollectionTag, sortBy, sortBy2])
+  }, [loaded, search, fTeam, fBrand, fYear, fCollectionTag, sortBy, sortBy2, pinTeam])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -1075,6 +1083,18 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                     <option value="date_desc">{lang === 'fr' ? 'Plus récent en 1er' : 'Newest first'}</option>
                     <option value="date_asc">{lang === 'fr' ? 'Plus ancien en 1er' : 'Oldest first'}</option>
                   </optgroup>
+                </select>
+              </div>
+            )}
+            {teams.length > 0 && (
+              <div style={{ marginTop: 8 }}>
+                <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>
+                  {lang === 'fr' ? '⭐ Équipe en tête' : '⭐ Team first'}
+                </label>
+                <select value={pinTeam} onChange={e => setPinTeam(e.target.value)}
+                  style={{ background: pinTeam ? (dark ? '#1a2240' : '#f0f4ff') : undefined, borderColor: pinTeam ? '#003DA6' : undefined, color: pinTeam ? (dark ? '#7aabf7' : '#003DA6') : undefined, fontWeight: pinTeam ? 700 : undefined }}>
+                  <option value="">{lang === 'fr' ? '— Aucune —' : '— None —'}</option>
+                  {teams.map(team => <option key={team} value={team}>{team}</option>)}
                 </select>
               </div>
             )}
@@ -1743,7 +1763,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
                 <p style={{ fontWeight: 800, fontSize: 15, marginBottom: 8 }}>{lang === 'fr' ? 'Aucun résultat' : 'No results'}</p>
                 <p style={{ color: '#999', fontSize: 13, marginBottom: 16 }}>{lang === 'fr' ? 'Aucune carte ne correspond à ces filtres.' : 'No cards match these filters.'}</p>
-                <button onClick={() => { setSearchInput(''); setSearch(''); setFTeam(''); setFBrand(''); setFYear(''); setFCollectionTag(''); setActiveFilters({ rc: false, auto: false, num: false, patch: false }) }} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 800, fontSize: 13, border: 'none', cursor: 'pointer' }}>
+                <button onClick={() => { setSearchInput(''); setSearch(''); setFTeam(''); setFBrand(''); setFYear(''); setFCollectionTag(''); setPinTeam(''); setActiveFilters({ rc: false, auto: false, num: false, patch: false }) }} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 800, fontSize: 13, border: 'none', cursor: 'pointer' }}>
                   {lang === 'fr' ? 'Effacer les filtres' : 'Clear filters'}
                 </button>
               </div>
