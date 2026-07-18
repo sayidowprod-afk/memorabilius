@@ -169,8 +169,6 @@ export default function ScannerPage() {
       const matches: ImageMatch[] = d.items || []
       setImgMatches(matches)
       setImgSearchDone(true)
-      // eBay a trouvé → Gemini pas nécessaire, marquer immédiatement pour éviter le spinner
-      if (matches.length > 0) setGeminiDone(true)
       setPhase('results')
       return matches
     }).catch(() => {
@@ -206,9 +204,14 @@ export default function ScannerPage() {
     const identified = await fetch('/api/scan-card', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
-      body: JSON.stringify({ imageBase64: aiB64, imageBase64Verso: versoB64, mimeType: mime }),
+      body: JSON.stringify({
+        imageBase64: aiB64,
+        imageBase64Verso: versoB64,
+        mimeType: mime,
+        ...(matches.length > 0 && { ebayHints: matches.slice(0, 5).map(m => m.title) }),
+      }),
     }).then(r => r.json()).then(d => {
-      if (d.error) return null
+      if (d.error) { setGeminiDone(true); return null }
       setCard(d)
       setGeminiDone(true)
       return d as CardInfo
@@ -326,8 +329,11 @@ export default function ScannerPage() {
                   )}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  {!geminiDone && imgSearchDone && imgMatches?.length === 0 && (
+                  {!geminiDone && imgSearchDone && (
                     <div style={{ fontSize: 12, color: muted, animation: 'pulse 1.4s ease-in-out infinite' }}>Identification IA…</div>
+                  )}
+                  {geminiDone && !card && (
+                    <div style={{ fontSize: 12, color: muted }}>Identification impossible</div>
                   )}
                   {card && (
                     <>
