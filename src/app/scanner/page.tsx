@@ -84,7 +84,7 @@ export default function ScannerPage() {
   const [selectedMatch, setSelectedMatch] = useState<ImageMatch | null>(null)
   const [soldTab,       setSoldTab]       = useState<'sold' | 'active'>('sold')
   const [err,           setErr]           = useState('')
-  const [ownedByPlayer, setOwnedByPlayer] = useState<Map<string, number>>(new Map())
+  const [ownedCards, setOwnedCards] = useState<{ nom: string; annee: string; collection: string; variation: string }[]>([])
   const [collectionLoaded, setCollectionLoaded] = useState(false)
 
   const bg     = dark ? '#0a0a0a' : '#f0f2f7'
@@ -99,15 +99,15 @@ export default function ScannerPage() {
       if (!data.user) { router.push('/connexion?next=/scanner'); return }
       const { data: cartes } = await supabase
         .from('cartes_manuelles')
-        .select('nom')
+        .select('nom, annee, collection, variation')
         .eq('user_id', data.user.id)
       if (cartes) {
-        const map = new Map<string, number>()
-        for (const c of cartes) {
-          const key = (c.nom || '').toLowerCase().trim()
-          if (key) map.set(key, (map.get(key) || 0) + 1)
-        }
-        setOwnedByPlayer(map)
+        setOwnedCards(cartes.map(c => ({
+          nom: c.nom || '',
+          annee: c.annee || '',
+          collection: c.collection || '',
+          variation: c.variation || '',
+        })))
       }
       setCollectionLoaded(true)
     })
@@ -351,15 +351,20 @@ export default function ScannerPage() {
                         {card.variation && <><br /><em>{card.variation}</em></>}
                       </div>
                       {collectionLoaded && selectedMatch && (() => {
-                        const titleLower = selectedMatch.title.toLowerCase()
-                        let count = 0
-                        for (const [playerName, cnt] of ownedByPlayer) {
-                          const words = playerName.split(/\s+/).filter(w => w.length > 2)
-                          if (words.length > 0 && words.every(w => titleLower.includes(w))) { count = cnt; break }
-                        }
+                        const n = (s: string) => (s || '').toLowerCase().trim()
+                        const title = n(selectedMatch.title)
+                        const count = ownedCards.filter(c => {
+                          const words = n(c.nom).split(/\s+/).filter(w => w.length > 2)
+                          const playerOk = words.length > 0 && words.every(w => title.includes(w))
+                          const yearOk = !n(c.annee) || title.includes(n(c.annee))
+                          const collOk = !n(c.collection) || title.includes(n(c.collection))
+                          const varNorm = n(c.variation).replace(/^base$/i, '')
+                          const varOk = !varNorm || title.includes(varNorm)
+                          return playerOk && yearOk && collOk && varOk
+                        }).length
                         return count > 0
-                          ? <div style={{ marginTop: 5, fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} carte{count > 1 ? 's' : ''} de ce joueur dans ta collection</div>
-                          : <div style={{ marginTop: 5, fontSize: 11, color: muted }}>Ce joueur n'est pas dans ta collection</div>
+                          ? <div style={{ marginTop: 5, fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} exemplaire{count > 1 ? 's' : ''} identique{count > 1 ? 's' : ''} dans ta collection</div>
+                          : <div style={{ marginTop: 5, fontSize: 11, color: muted }}>Pas dans ta collection</div>
                       })()}
                     </>
                   )}
