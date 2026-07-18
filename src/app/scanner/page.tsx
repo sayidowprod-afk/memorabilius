@@ -99,13 +99,14 @@ export default function ScannerPage() {
       if (!data.user) { router.push('/connexion?next=/scanner'); return }
       const { data: cartes } = await supabase
         .from('cartes_manuelles')
-        .select('nom')
+        .select('nom, annee, marque, collection, variation')
         .eq('user_id', data.user.id)
       if (cartes) {
+        const norm = (s: string | null) => (s || '').toLowerCase().trim().replace(/^base$/i, '')
         const map = new Map<string, number>()
         for (const c of cartes) {
-          const key = (c.nom || '').toLowerCase().trim()
-          if (key) map.set(key, (map.get(key) || 0) + 1)
+          const key = [norm(c.nom), norm(c.annee), norm(c.marque), norm(c.collection), norm(c.variation)].join('|')
+          if (norm(c.nom)) map.set(key, (map.get(key) || 0) + 1)
         }
         setOwnedByPlayer(map)
       }
@@ -351,10 +352,11 @@ export default function ScannerPage() {
                         {card.variation && <><br /><em>{card.variation}</em></>}
                       </div>
                       {collectionLoaded && card.nom && (() => {
-                        const key = card.nom.toLowerCase().trim()
+                        const norm = (s: string) => (s || '').toLowerCase().trim().replace(/^base$/i, '')
+                        const key = [norm(card.nom), norm(card.annee), norm(card.marque), norm(card.collection), norm(card.variation)].join('|')
                         const count = ownedByPlayer.get(key) || 0
                         return count > 0
-                          ? <div style={{ marginTop: 5, fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} carte{count > 1 ? 's' : ''} dans ta collection</div>
+                          ? <div style={{ marginTop: 5, fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} exemplaire{count > 1 ? 's' : ''} exact{count > 1 ? 's' : ''} dans ta collection</div>
                           : <div style={{ marginTop: 5, fontSize: 11, color: muted }}>Pas dans ta collection</div>
                       })()}
                     </>
