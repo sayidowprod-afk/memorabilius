@@ -190,18 +190,19 @@ export default function ScannerPage() {
       new Promise<null>(r => setTimeout(() => r(null), 5000)),
     ])
 
-    const [matches, corners] = await Promise.all([imageSearchPromise, cornersPromise])
+    // On attend eBay d'abord — pas la peine d'attendre les coins si eBay a trouvé
+    const matches = await imageSearchPromise
 
-    // Gemini tourne toujours — pour afficher infos carte + check collection
-    // même quand eBay a trouvé des correspondances visuelles
-    // Fallback crop si eBay n'a rien trouvé :
+    // Crop : utile uniquement si eBay a trouvé rien (améliore l'input Gemini)
     let aiB64 = b64
-    if (corners && (corners.confidence ?? 0) >= 0.65 && corners.topLeft) {
-      try {
-        aiB64 = await cropWithCorners(b64, corners)
-      } catch { /* fallback photo complète */ }
+    if (matches.length === 0) {
+      const corners = await cornersPromise
+      if (corners && (corners.confidence ?? 0) >= 0.65 && corners.topLeft) {
+        try { aiB64 = await cropWithCorners(b64, corners) } catch { /* fallback */ }
+      }
     }
 
+    // Gemini tourne toujours pour identifier la carte (infos + check collection)
     const identified = await fetch('/api/scan-card', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
@@ -216,7 +217,7 @@ export default function ScannerPage() {
       return null
     })
 
-    // N'auto-charge les prix que si eBay n'avait rien trouvé
+    // Prix vendus auto-chargés uniquement si eBay n'a rien trouvé
     if (identified && matches.length === 0) loadSoldComps('', identified)
   }, [loadSoldComps])
 

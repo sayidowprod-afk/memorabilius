@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { useTheme } from '@/lib/ThemeContext'
 import { createPortal } from 'react-dom'
 import dynamic from 'next/dynamic'
 import { supabase } from '@/lib/supabase'
@@ -118,6 +119,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   onOpenCard?: (img: string) => boolean
   initialBinderId?: number | null
 }) {
+  const { dark } = useTheme()
   const [binders, setBinders] = useState<Binder[]>([])
   const [folders, setFolders] = useState<Folder[]>([])
   const [currentFolder, setCurrentFolder] = useState<Folder | null>(null)
@@ -1483,14 +1485,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           <button onClick={() => setSelected(null)} className="btn-main btn-secondary" style={{ padding: isMobile ? '10px 14px' : '8px 16px', fontSize: 13, flexShrink: 0 }}>
             ←{!isMobile && ` Retour ${pendingCard ? 'aux classeurs' : 'à la bibliothèque'}`}
           </button>
-          <span style={{ fontWeight: 900, fontSize: isMobile ? 13 : 15, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }}>{selected.name}</span>
+          <span style={{ fontWeight: 900, fontSize: isMobile ? 13 : 15, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0, color: dark ? '#f0f0f0' : '#111' }}>{selected.name}</span>
 
           {/* Desktop : toutes les actions en ligne */}
           {!isMobile && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
               {!pendingCard && <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} />}
               {!pendingCard && (
-                <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1 }}>
+                <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
                   ▦
                 </button>
               )}
@@ -1508,7 +1510,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                     </button>
                     {showSortMenu && (
                       <div onMouseLeave={() => setShowSortMenu(false)}
-                        style={{ position: 'absolute', top: '100%', right: 0, zIndex: 200, background: 'white', border: '1px solid #e0e0e0', borderRadius: 10, boxShadow: '0 6px 24px rgba(0,0,0,0.15)', minWidth: 190, padding: 6 }}>
+                        style={{ position: 'absolute', top: '100%', right: 0, zIndex: 200, background: dark ? '#1e1e1e' : 'white', border: `1px solid ${dark ? '#333' : '#e0e0e0'}`, borderRadius: 10, boxShadow: '0 6px 24px rgba(0,0,0,0.15)', minWidth: 190, padding: 6 }}>
                         {([
                           ['nom_asc',   'Nom  A → Z'],
                           ['nom_desc',  'Nom  Z → A'],
@@ -1516,8 +1518,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                           ['annee_desc','Année  ↓ (récente en premier)'],
                         ] as const).map(([key, label]) => (
                           <button key={key} onClick={() => sortBinder(key)}
-                            style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '8px 12px', fontSize: 13, cursor: 'pointer', borderRadius: 6, color: '#222' }}
-                            onMouseEnter={e => (e.currentTarget.style.background = '#f0f4ff')}
+                            style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '8px 12px', fontSize: 13, cursor: 'pointer', borderRadius: 6, color: dark ? '#e0e0e0' : '#222' }}
+                            onMouseEnter={e => (e.currentTarget.style.background = dark ? '#2a2a2a' : '#f0f4ff')}
                             onMouseLeave={e => (e.currentTarget.style.background = 'none')}>{label}</button>
                         ))}
                       </div>
@@ -1535,7 +1537,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           {isMobile && !pendingCard && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
               <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} compact />
-              <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1 }}>▦</button>
+              <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>▦</button>
               <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, color: '#666', lineHeight: 1 }}>
                 💬{commentCount > 0 && <span style={{ fontSize: 11, fontWeight: 800, verticalAlign: 'middle' }}> {commentCount}</span>}
               </button>
