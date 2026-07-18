@@ -456,15 +456,58 @@ async function _fetchPlayer(slug: string) {
   }
   const topVariations = [...varCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6)
 
-  const setsByYear = new Map<number, typeof sets>()
-  for (const s of sets) {
+  // Derive extra sets from CSV files (brand + serie + year) and manual cards
+  const csvPlayerRaw = csvAll.filter(c => normalizeName(c.name).includes(normTarget))
+  const derivedSetsMap = new Map<string, { name: string; year: number; brand: string; isRc: boolean; variations: string[] }>()
+
+  for (const c of csvPlayerRaw) {
+    if (!c.brand && !c.serie) continue
+    const setName = [c.brand, c.serie].filter(Boolean).join(' ')
+    const yr = parseInt(c.year) || 0
+    const key = `${yr}|${c.brand}|${c.serie}`
+    if (!derivedSetsMap.has(key)) {
+      derivedSetsMap.set(key, { name: setName, year: yr, brand: c.brand, isRc: c.rc, variations: c.variant ? [c.variant] : [] })
+    } else {
+      const e = derivedSetsMap.get(key)!
+      if (c.rc) e.isRc = true
+      if (c.variant && !e.variations.includes(c.variant)) e.variations.push(c.variant)
+    }
+  }
+
+  for (const m of matchedManu) {
+    if (!m.marque) continue
+    const setName = [m.marque, m.collection].filter(Boolean).join(' ')
+    const yr = parseInt(m.annee) || 0
+    const key = `${yr}|${m.marque}|${m.collection || ''}`
+    if (!derivedSetsMap.has(key)) {
+      derivedSetsMap.set(key, { name: setName, year: yr, brand: m.marque || '', isRc: m.rc || false, variations: m.variation ? [m.variation] : [] })
+    } else {
+      const e = derivedSetsMap.get(key)!
+      if (m.rc) e.isRc = true
+    }
+  }
+
+  const extraSets = [...derivedSetsMap.values()].map((s, i) => ({
+    id: -(i + 1),
+    name: s.name,
+    year: s.year,
+    brand: s.brand,
+    sport: primarySport,
+    isRc: s.isRc,
+    is_rc: s.isRc,
+    variations: s.variations,
+  }))
+  const allSets = [...sets, ...extraSets].sort((a: any, b: any) => (b.year || 0) - (a.year || 0))
+
+  const setsByYear = new Map<number, typeof allSets>()
+  for (const s of allSets) {
     const y = s.year || 0
     if (!setsByYear.has(y)) setsByYear.set(y, [])
     setsByYear.get(y)!.push(s)
   }
   const sortedYears = [...setsByYear.keys()].sort((a, b) => b - a)
 
-  return { playerName, sets, setsByYear, sortedYears, communityCards, rcYear, headshot, bio, uniqueCollectors, topVariations, primarySport }
+  return { playerName, sets: allSets, setsByYear, sortedYears, communityCards, rcYear, headshot, bio, uniqueCollectors, topVariations, primarySport }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -867,7 +910,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                       </div>
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 8 }}>
                         {yearSets.map((set: any) => (
-                          <Link key={set.id} href={`/setlist/${set.id}`} style={{ textDecoration: 'none' }}>
+                          <Link key={set.id} href={set.id > 0 ? `/setlist/${set.id}` : `/setlist?q=${encodeURIComponent(set.name)}`} style={{ textDecoration: 'none' }}>
                             <div className="jp-set-hover" style={{ background: 'var(--jp-surface)', borderRadius: 10, padding: '12px 16px', border: '1.5px solid var(--jp-border)', transition: '0.15s', cursor: 'pointer' }}>
                               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>
                                 <div style={{ fontWeight: 800, fontSize: 13, color: 'var(--jp-text)', lineHeight: 1.3, flex: 1 }}>{set.name}</div>
