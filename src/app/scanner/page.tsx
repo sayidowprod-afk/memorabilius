@@ -99,14 +99,13 @@ export default function ScannerPage() {
       if (!data.user) { router.push('/connexion?next=/scanner'); return }
       const { data: cartes } = await supabase
         .from('cartes_manuelles')
-        .select('nom, annee, marque, collection, variation')
+        .select('nom')
         .eq('user_id', data.user.id)
       if (cartes) {
-        const norm = (s: string | null) => (s || '').toLowerCase().trim().replace(/^base$/i, '')
         const map = new Map<string, number>()
         for (const c of cartes) {
-          const key = [norm(c.nom), norm(c.annee), norm(c.marque), norm(c.collection), norm(c.variation)].join('|')
-          if (norm(c.nom)) map.set(key, (map.get(key) || 0) + 1)
+          const key = (c.nom || '').toLowerCase().trim()
+          if (key) map.set(key, (map.get(key) || 0) + 1)
         }
         setOwnedByPlayer(map)
       }
@@ -351,13 +350,16 @@ export default function ScannerPage() {
                         {[card.annee, card.marque, card.collection].filter(Boolean).join(' · ')}
                         {card.variation && <><br /><em>{card.variation}</em></>}
                       </div>
-                      {collectionLoaded && card.nom && (() => {
-                        const norm = (s: string) => (s || '').toLowerCase().trim().replace(/^base$/i, '')
-                        const key = [norm(card.nom), norm(card.annee), norm(card.marque), norm(card.collection), norm(card.variation)].join('|')
-                        const count = ownedByPlayer.get(key) || 0
+                      {collectionLoaded && selectedMatch && (() => {
+                        const titleLower = selectedMatch.title.toLowerCase()
+                        let count = 0
+                        for (const [playerName, cnt] of ownedByPlayer) {
+                          const words = playerName.split(/\s+/).filter(w => w.length > 2)
+                          if (words.length > 0 && words.every(w => titleLower.includes(w))) { count = cnt; break }
+                        }
                         return count > 0
-                          ? <div style={{ marginTop: 5, fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} exemplaire{count > 1 ? 's' : ''} exact{count > 1 ? 's' : ''} dans ta collection</div>
-                          : <div style={{ marginTop: 5, fontSize: 11, color: muted }}>Pas dans ta collection</div>
+                          ? <div style={{ marginTop: 5, fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} carte{count > 1 ? 's' : ''} de ce joueur dans ta collection</div>
+                          : <div style={{ marginTop: 5, fontSize: 11, color: muted }}>Ce joueur n'est pas dans ta collection</div>
                       })()}
                     </>
                   )}
