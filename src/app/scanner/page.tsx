@@ -84,6 +84,8 @@ export default function ScannerPage() {
   const [selectedMatch, setSelectedMatch] = useState<ImageMatch | null>(null)
   const [soldTab,       setSoldTab]       = useState<'sold' | 'active'>('sold')
   const [err,           setErr]           = useState('')
+  const [ownedByPlayer, setOwnedByPlayer] = useState<Map<string, number>>(new Map())
+  const [collectionLoaded, setCollectionLoaded] = useState(false)
 
   const bg     = dark ? '#0a0a0a' : '#f0f2f7'
   const cardBg = dark ? '#161616' : '#ffffff'
@@ -93,8 +95,21 @@ export default function ScannerPage() {
   const blue   = '#0046D1'
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      if (!data.user) router.push('/connexion?next=/scanner')
+    supabase.auth.getUser().then(async ({ data }) => {
+      if (!data.user) { router.push('/connexion?next=/scanner'); return }
+      const { data: cartes } = await supabase
+        .from('cartes_manuelles')
+        .select('nom')
+        .eq('user_id', data.user.id)
+      if (cartes) {
+        const map = new Map<string, number>()
+        for (const c of cartes) {
+          const key = (c.nom || '').toLowerCase().trim()
+          if (key) map.set(key, (map.get(key) || 0) + 1)
+        }
+        setOwnedByPlayer(map)
+      }
+      setCollectionLoaded(true)
     })
   }, [])
 
@@ -328,6 +343,13 @@ export default function ScannerPage() {
                         {[card.annee, card.marque, card.collection].filter(Boolean).join(' · ')}
                         {card.variation && <><br /><em>{card.variation}</em></>}
                       </div>
+                      {collectionLoaded && card.nom && (() => {
+                        const key = card.nom.toLowerCase().trim()
+                        const count = ownedByPlayer.get(key) || 0
+                        return count > 0
+                          ? <div style={{ marginTop: 5, fontSize: 11, fontWeight: 700, color: '#16a34a' }}>✓ {count} carte{count > 1 ? 's' : ''} dans ta collection</div>
+                          : <div style={{ marginTop: 5, fontSize: 11, color: muted }}>Pas dans ta collection</div>
+                      })()}
                     </>
                   )}
                 </div>

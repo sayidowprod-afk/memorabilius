@@ -111,8 +111,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [page, setPage] = useState(1)
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
   const [filterPrivate, setFilterPrivate] = useState(false)
-  const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc' | 'num_asc' | 'date_desc' | 'date_asc'>(searchParams.get('sort') as any || 'default')
-  const [sortBy2, setSortBy2] = useState<'none' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'num_asc' | 'date_desc' | 'date_asc'>(searchParams.get('sort2') as any || 'none')
+  const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc' | 'num_asc' | 'card_num_asc' | 'card_num_desc' | 'date_desc' | 'date_asc'>(searchParams.get('sort') as any || 'default')
+  const [sortBy2, setSortBy2] = useState<'none' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'num_asc' | 'card_num_asc' | 'card_num_desc' | 'date_desc' | 'date_asc'>(searchParams.get('sort2') as any || 'none')
   const [searchInput, setSearchInput] = useState(searchParams.get('q') || '')
   const [search, setSearch] = useState(searchParams.get('q') || '')
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -442,8 +442,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       if (!isOwner && privateCards.has(d.f)) return false
       return (
         (d.n.toLowerCase().includes(search.toLowerCase()) || d.v.toLowerCase().includes(search.toLowerCase())) &&
-        (!fTeam || d.t === fTeam) &&
-        (!fBrand || d.s === fBrand) &&
+        (!fTeam || d.t.toLowerCase().includes(fTeam.toLowerCase())) &&
+        (!fBrand || d.s.toLowerCase().includes(fBrand.toLowerCase())) &&
         (!fYear || d.y === fYear) &&
         (!fCollectionTag || (d.collections || []).some(c => matchCols.has(c))) &&
         (!activeFilters.rc || d.rc) &&
@@ -473,6 +473,16 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           const na = numValue(a.num) ?? Infinity
           const nb = numValue(b.num) ?? Infinity
           return na - nb
+        }
+        case 'card_num_asc': {
+          const na = cardNumValue(a.card_number) ?? Infinity
+          const nb = cardNumValue(b.card_number) ?? Infinity
+          return na !== nb ? na - nb : cmp(a.card_number || '', b.card_number || '')
+        }
+        case 'card_num_desc': {
+          const na = cardNumValue(a.card_number) ?? Infinity
+          const nb = cardNumValue(b.card_number) ?? Infinity
+          return na !== nb ? nb - na : cmp(b.card_number || '', a.card_number || '')
         }
         case 'date_desc': return (b.created_at || '').localeCompare(a.created_at || '')
         case 'date_asc':  return (a.created_at || '').localeCompare(b.created_at || '')
@@ -613,6 +623,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const gridRef = useRef<HTMLDivElement>(null)
 
   const numValue = (num: string) => { const m = num.trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : null }
+  const cardNumValue = (cn?: string) => { if (!cn) return null; const m = cn.trim().match(/(\d+)/); return m ? parseInt(m[1]) : null }
   const isOneOfOne = (num: string) => { const v = numValue(num); return v === 1 }
   const isLowNum = (num: string) => { const v = numValue(num); return v !== null && v >= 2 && v <= 10 }
   const isBronzeNum = (num: string) => { const v = numValue(num); return v !== null && v >= 11 && v <= 25 }
@@ -1002,13 +1013,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_search_label')}</label>
               <input value={searchInput} onChange={e => { setSearchInput(e.target.value); if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current); searchDebounceRef.current = setTimeout(() => setSearch(e.target.value), 200) }} placeholder={t('gallery_search')} /></div>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_team_label')}</label>
-              <select value={fTeam} onChange={e => setFTeam(e.target.value)}>
-                <option value="">{t('gallery_all')}</option>{teams.map(team => <option key={team}>{team}</option>)}
-              </select></div>
+              <input value={fTeam} onChange={e => setFTeam(e.target.value)} placeholder={t('gallery_all')} list="gallery-teams" style={{ width: '100%', boxSizing: 'border-box' }} />
+              <datalist id="gallery-teams">{teams.map(team => <option key={team} value={team} />)}</datalist>
+            </div>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_collection_label')}</label>
-              <select value={fBrand} onChange={e => setFBrand(e.target.value)}>
-                <option value="">{t('gallery_all')}</option>{brands.map(brand => <option key={brand}>{brand}</option>)}
-              </select></div>
+              <input value={fBrand} onChange={e => setFBrand(e.target.value)} placeholder={t('gallery_all')} list="gallery-brands" style={{ width: '100%', boxSizing: 'border-box' }} />
+              <datalist id="gallery-brands">{brands.map(brand => <option key={brand} value={brand} />)}</datalist>
+            </div>
             <div><label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>{t('gallery_year_label')}</label>
               <select value={fYear} onChange={e => setFYear(e.target.value)}>
                 <option value="">{t('gallery_all')}</option>{years.map(year => <option key={year}>{year}</option>)}
@@ -1052,6 +1063,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               <optgroup label={lang === 'fr' ? 'Numérotation' : 'Numbering'}>
                 <option value="num_asc">{lang === 'fr' ? 'Numérotation basse → haute' : 'Numbering low → high'}</option>
               </optgroup>
+              <optgroup label={lang === 'fr' ? '# Carte' : 'Card #'}>
+                <option value="card_num_asc">{lang === 'fr' ? '# Carte croissant' : 'Card # low → high'}</option>
+                <option value="card_num_desc">{lang === 'fr' ? '# Carte décroissant' : 'Card # high → low'}</option>
+              </optgroup>
               <optgroup label={lang === 'fr' ? 'Date d\'ajout' : 'Date added'}>
                 <option value="date_desc">{lang === 'fr' ? 'Plus récent en 1er' : 'Newest first'}</option>
                 <option value="date_asc">{lang === 'fr' ? 'Plus ancien en 1er' : 'Oldest first'}</option>
@@ -1085,6 +1100,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   </optgroup>
                   <optgroup label={lang === 'fr' ? 'Numérotation' : 'Numbering'}>
                     <option value="num_asc">{lang === 'fr' ? 'Numérotation basse → haute' : 'Numbering low → high'}</option>
+                  </optgroup>
+                  <optgroup label={lang === 'fr' ? '# Carte' : 'Card #'}>
+                    <option value="card_num_asc">{lang === 'fr' ? '# Carte croissant' : 'Card # low → high'}</option>
+                    <option value="card_num_desc">{lang === 'fr' ? '# Carte décroissant' : 'Card # high → low'}</option>
                   </optgroup>
                   <optgroup label={lang === 'fr' ? 'Date d\'ajout' : 'Date added'}>
                     <option value="date_desc">{lang === 'fr' ? 'Plus récent en 1er' : 'Newest first'}</option>

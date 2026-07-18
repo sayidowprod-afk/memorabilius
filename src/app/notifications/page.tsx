@@ -4,11 +4,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 import { subscribePush } from '@/components/PWAInstall'
 
 export default function Notifications() {
   const router = useRouter()
   const { t } = useLang()
+  const { dark } = useTheme()
   const [notifs, setNotifs] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [pushPerm, setPushPerm] = useState<NotificationPermission | null>(null)
@@ -157,18 +159,18 @@ export default function Notifications() {
         <div style={{ background: 'white', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
           {notifs.map((n, i) => (
             <div key={n.id} onClick={() => n.lien && router.push(n.lien)} style={{
-              padding: '16px 20px', borderBottom: i < notifs.length - 1 ? '1px solid #f5f5f5' : 'none',
+              padding: '16px 20px', borderBottom: i < notifs.length - 1 ? `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}` : 'none',
               display: 'flex', alignItems: 'center', gap: 16,
-              background: n.lu ? 'white' : '#f0f4ff',
+              background: n.lu ? (dark ? '#1e1e1e' : 'white') : (dark ? '#0f1f42' : '#f0f4ff'),
               cursor: n.lien ? 'pointer' : 'default',
               transition: '0.2s',
             }}
-              onMouseEnter={e => { if (n.lien) e.currentTarget.style.background = '#e8eeff' }}
-              onMouseLeave={e => e.currentTarget.style.background = n.lu ? 'white' : '#f0f4ff'}
+              onMouseEnter={e => { if (n.lien) e.currentTarget.style.background = dark ? '#1a2b57' : '#e8eeff' }}
+              onMouseLeave={e => e.currentTarget.style.background = n.lu ? (dark ? '#1e1e1e' : 'white') : (dark ? '#0f1f42' : '#f0f4ff')}
             >
               <span style={{ fontSize: 24, flexShrink: 0 }}>{getIcon(n.type)}</span>
               <div style={{ flex: 1 }}>
-                <p style={{ margin: 0, fontSize: 14, fontWeight: n.lu ? 400 : 700, color: '#121212' }}>{n.message}</p>
+                <p style={{ margin: 0, fontSize: 14, fontWeight: n.lu ? 400 : 700, color: dark ? '#f0f0f0' : '#121212' }}>{n.message}</p>
                 <p style={{ margin: '3px 0 0', fontSize: 12, color: '#999' }}>{timeAgo(n.created_at)}</p>
               </div>
               {!n.lu && <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#003DA6', flexShrink: 0 }} />}
