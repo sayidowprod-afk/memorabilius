@@ -7,7 +7,7 @@ import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
 
 export const revalidate = 3600
 
-// ── Couleurs NBA par équipe ───────────────────────────────────────────────────
+// ── Couleurs par équipe (NBA + NFL + NHL + MLB) ───────────────────────────────
 const NBA_COLORS: Record<string, { primary: string; secondary: string; abbr: string }> = {
   'Atlanta Hawks': { primary: '#E03A3E', secondary: '#C1D32F', abbr: 'ATL' },
   'Boston Celtics': { primary: '#007A33', secondary: '#FFFFFF', abbr: 'BOS' },
@@ -39,13 +39,120 @@ const NBA_COLORS: Record<string, { primary: string; secondary: string; abbr: str
   'Toronto Raptors': { primary: '#CE1141', secondary: '#000000', abbr: 'TOR' },
   'Utah Jazz': { primary: '#002B5C', secondary: '#00471B', abbr: 'UTA' },
   'Washington Wizards': { primary: '#002B5C', secondary: '#E31837', abbr: 'WAS' },
-  // Historiques
+  // NBA historiques
   'New Jersey Nets': { primary: '#000000', secondary: '#FFFFFF', abbr: 'NJN' },
   'Seattle SuperSonics': { primary: '#00653A', secondary: '#FFC200', abbr: 'SEA' },
   'Vancouver Grizzlies': { primary: '#29727C', secondary: '#E43C40', abbr: 'VAN' },
   'New Orleans Hornets': { primary: '#002B5C', secondary: '#00788C', abbr: 'NOH' },
   'Charlotte Bobcats': { primary: '#F26522', secondary: '#2D5DAA', abbr: 'BOB' },
   'New Orleans/Oklahoma City Hornets': { primary: '#002B5C', secondary: '#00788C', abbr: 'NOK' },
+  // ── NFL ──────────────────────────────────────────────────────────────────────
+  'Arizona Cardinals': { primary: '#97233F', secondary: '#FFB612', abbr: 'ARI' },
+  'Atlanta Falcons': { primary: '#A71930', secondary: '#000000', abbr: 'ATL' },
+  'Baltimore Ravens': { primary: '#241773', secondary: '#9E7C0C', abbr: 'BAL' },
+  'Buffalo Bills': { primary: '#00338D', secondary: '#C60C30', abbr: 'BUF' },
+  'Carolina Panthers': { primary: '#0085CA', secondary: '#101820', abbr: 'CAR' },
+  'Chicago Bears': { primary: '#0B162A', secondary: '#C83803', abbr: 'CHI' },
+  'Cincinnati Bengals': { primary: '#FB4F14', secondary: '#000000', abbr: 'CIN' },
+  'Cleveland Browns': { primary: '#311D00', secondary: '#FF3C00', abbr: 'CLE' },
+  'Dallas Cowboys': { primary: '#003594', secondary: '#869397', abbr: 'DAL' },
+  'Denver Broncos': { primary: '#FB4F14', secondary: '#002244', abbr: 'DEN' },
+  'Detroit Lions': { primary: '#0076B6', secondary: '#B0B7BC', abbr: 'DET' },
+  'Green Bay Packers': { primary: '#203731', secondary: '#FFB612', abbr: 'GB' },
+  'Houston Texans': { primary: '#03202F', secondary: '#A71930', abbr: 'HOU' },
+  'Indianapolis Colts': { primary: '#002C5F', secondary: '#A2AAAD', abbr: 'IND' },
+  'Jacksonville Jaguars': { primary: '#101820', secondary: '#D7A22A', abbr: 'JAX' },
+  'Kansas City Chiefs': { primary: '#E31837', secondary: '#FFB81C', abbr: 'KC' },
+  'Las Vegas Raiders': { primary: '#000000', secondary: '#A5ACAF', abbr: 'LV' },
+  'Los Angeles Chargers': { primary: '#0080C6', secondary: '#FFC20E', abbr: 'LAC' },
+  'Los Angeles Rams': { primary: '#003594', secondary: '#FFA300', abbr: 'LAR' },
+  'Miami Dolphins': { primary: '#008E97', secondary: '#FC4C02', abbr: 'MIA' },
+  'Minnesota Vikings': { primary: '#4F2683', secondary: '#FFC62F', abbr: 'MIN' },
+  'New England Patriots': { primary: '#002244', secondary: '#C60C30', abbr: 'NE' },
+  'New Orleans Saints': { primary: '#101820', secondary: '#D3BC8D', abbr: 'NO' },
+  'New York Giants': { primary: '#0B2265', secondary: '#A71930', abbr: 'NYG' },
+  'New York Jets': { primary: '#125740', secondary: '#FFFFFF', abbr: 'NYJ' },
+  'Philadelphia Eagles': { primary: '#004C54', secondary: '#A5ACAF', abbr: 'PHI' },
+  'Pittsburgh Steelers': { primary: '#101820', secondary: '#FFB612', abbr: 'PIT' },
+  'San Francisco 49ers': { primary: '#AA0000', secondary: '#B3995D', abbr: 'SF' },
+  'Seattle Seahawks': { primary: '#002244', secondary: '#69BE28', abbr: 'SEA' },
+  'Tampa Bay Buccaneers': { primary: '#D50A0A', secondary: '#FF7900', abbr: 'TB' },
+  'Tennessee Titans': { primary: '#0C2340', secondary: '#4B92DB', abbr: 'TEN' },
+  'Washington Commanders': { primary: '#5A1414', secondary: '#FFB612', abbr: 'WAS' },
+  'Oakland Raiders': { primary: '#000000', secondary: '#A5ACAF', abbr: 'OAK' },
+  'San Diego Chargers': { primary: '#0073CF', secondary: '#FFC20E', abbr: 'SD' },
+  'St. Louis Rams': { primary: '#003594', secondary: '#FFA300', abbr: 'STL' },
+  'Washington Redskins': { primary: '#773141', secondary: '#FFB612', abbr: 'WAS' },
+  'Washington Football Team': { primary: '#5A1414', secondary: '#FFB612', abbr: 'WFT' },
+  // ── NHL ──────────────────────────────────────────────────────────────────────
+  'Anaheim Ducks': { primary: '#F47A38', secondary: '#B9975B', abbr: 'ANA' },
+  'Boston Bruins': { primary: '#FFB81C', secondary: '#000000', abbr: 'BOS' },
+  'Buffalo Sabres': { primary: '#002654', secondary: '#FCB514', abbr: 'BUF' },
+  'Calgary Flames': { primary: '#C8102E', secondary: '#F1BE48', abbr: 'CGY' },
+  'Carolina Hurricanes': { primary: '#CC0000', secondary: '#000000', abbr: 'CAR' },
+  'Chicago Blackhawks': { primary: '#CF0A2C', secondary: '#FF6720', abbr: 'CHI' },
+  'Colorado Avalanche': { primary: '#6F263D', secondary: '#236192', abbr: 'COL' },
+  'Columbus Blue Jackets': { primary: '#002654', secondary: '#CE1126', abbr: 'CBJ' },
+  'Dallas Stars': { primary: '#006847', secondary: '#8F8F8C', abbr: 'DAL' },
+  'Detroit Red Wings': { primary: '#CE1126', secondary: '#FFFFFF', abbr: 'DET' },
+  'Edmonton Oilers': { primary: '#FF4C00', secondary: '#041E42', abbr: 'EDM' },
+  'Florida Panthers': { primary: '#041E42', secondary: '#C8102E', abbr: 'FLA' },
+  'Los Angeles Kings': { primary: '#111111', secondary: '#A2AAAD', abbr: 'LAK' },
+  'Minnesota Wild': { primary: '#154734', secondary: '#A6192E', abbr: 'MIN' },
+  'Montréal Canadiens': { primary: '#AF1E2D', secondary: '#192168', abbr: 'MTL' },
+  'Nashville Predators': { primary: '#041E42', secondary: '#FFB81C', abbr: 'NSH' },
+  'New Jersey Devils': { primary: '#CE1126', secondary: '#000000', abbr: 'NJD' },
+  'New York Islanders': { primary: '#00539B', secondary: '#F47D30', abbr: 'NYI' },
+  'New York Rangers': { primary: '#0038A8', secondary: '#CE1126', abbr: 'NYR' },
+  'Ottawa Senators': { primary: '#E31837', secondary: '#C69214', abbr: 'OTT' },
+  'Philadelphia Flyers': { primary: '#F74902', secondary: '#000000', abbr: 'PHI' },
+  'Pittsburgh Penguins': { primary: '#000000', secondary: '#FCB514', abbr: 'PIT' },
+  'San Jose Sharks': { primary: '#006D75', secondary: '#EA7200', abbr: 'SJS' },
+  'Seattle Kraken': { primary: '#001628', secondary: '#99D9D9', abbr: 'SEA' },
+  'St. Louis Blues': { primary: '#002F87', secondary: '#FCB514', abbr: 'STL' },
+  'Tampa Bay Lightning': { primary: '#002868', secondary: '#FFFFFF', abbr: 'TBL' },
+  'Toronto Maple Leafs': { primary: '#00205B', secondary: '#FFFFFF', abbr: 'TOR' },
+  'Utah Hockey Club': { primary: '#6CACE4', secondary: '#010101', abbr: 'UTA' },
+  'Vancouver Canucks': { primary: '#00205B', secondary: '#00843D', abbr: 'VAN' },
+  'Vegas Golden Knights': { primary: '#B4975A', secondary: '#333F42', abbr: 'VGK' },
+  'Washington Capitals': { primary: '#041E42', secondary: '#C8102E', abbr: 'WSH' },
+  'Winnipeg Jets': { primary: '#041E42', secondary: '#004C97', abbr: 'WPG' },
+  'Phoenix Coyotes': { primary: '#8C2633', secondary: '#E2D6B5', abbr: 'PHX' },
+  'Arizona Coyotes': { primary: '#8C2633', secondary: '#E2D6B5', abbr: 'ARI' },
+  // ── MLB ──────────────────────────────────────────────────────────────────────
+  'Arizona Diamondbacks': { primary: '#A71930', secondary: '#E3D4AD', abbr: 'ARI' },
+  'Atlanta Braves': { primary: '#CE1141', secondary: '#13274F', abbr: 'ATL' },
+  'Baltimore Orioles': { primary: '#DF4601', secondary: '#000000', abbr: 'BAL' },
+  'Boston Red Sox': { primary: '#BD3039', secondary: '#0C2340', abbr: 'BOS' },
+  'Chicago Cubs': { primary: '#0E3386', secondary: '#CC3433', abbr: 'CHC' },
+  'Chicago White Sox': { primary: '#27251F', secondary: '#C4CED4', abbr: 'CWS' },
+  'Cincinnati Reds': { primary: '#C6011F', secondary: '#000000', abbr: 'CIN' },
+  'Cleveland Guardians': { primary: '#00385D', secondary: '#E31937', abbr: 'CLE' },
+  'Colorado Rockies': { primary: '#33006F', secondary: '#C4CED4', abbr: 'COL' },
+  'Detroit Tigers': { primary: '#0C2340', secondary: '#FA4616', abbr: 'DET' },
+  'Houston Astros': { primary: '#002D62', secondary: '#EB6E1F', abbr: 'HOU' },
+  'Kansas City Royals': { primary: '#004687', secondary: '#C09A5B', abbr: 'KC' },
+  'Los Angeles Angels': { primary: '#BA0021', secondary: '#003263', abbr: 'LAA' },
+  'Los Angeles Dodgers': { primary: '#005A9C', secondary: '#EF3E42', abbr: 'LAD' },
+  'Miami Marlins': { primary: '#00A3E0', secondary: '#EF3340', abbr: 'MIA' },
+  'Milwaukee Brewers': { primary: '#FFC52F', secondary: '#12284B', abbr: 'MIL' },
+  'Minnesota Twins': { primary: '#002B5C', secondary: '#D31145', abbr: 'MIN' },
+  'New York Mets': { primary: '#002D72', secondary: '#FF5910', abbr: 'NYM' },
+  'New York Yankees': { primary: '#132448', secondary: '#C4CED4', abbr: 'NYY' },
+  'Oakland Athletics': { primary: '#003831', secondary: '#EFB21E', abbr: 'OAK' },
+  'Philadelphia Phillies': { primary: '#E81828', secondary: '#002D72', abbr: 'PHI' },
+  'Pittsburgh Pirates': { primary: '#27251F', secondary: '#FDB827', abbr: 'PIT' },
+  'San Diego Padres': { primary: '#2F241D', secondary: '#FFC425', abbr: 'SD' },
+  'San Francisco Giants': { primary: '#FD5A1E', secondary: '#27251F', abbr: 'SF' },
+  'Seattle Mariners': { primary: '#0C2C56', secondary: '#005C5C', abbr: 'SEA' },
+  'St. Louis Cardinals': { primary: '#C41E3A', secondary: '#0C2340', abbr: 'STL' },
+  'Tampa Bay Rays': { primary: '#092C5C', secondary: '#8FBCE6', abbr: 'TB' },
+  'Texas Rangers': { primary: '#003278', secondary: '#C0111F', abbr: 'TEX' },
+  'Toronto Blue Jays': { primary: '#134A8E', secondary: '#1D2D5C', abbr: 'TOR' },
+  'Washington Nationals': { primary: '#AB0003', secondary: '#14225A', abbr: 'WSH' },
+  'Cleveland Indians': { primary: '#00385D', secondary: '#E31937', abbr: 'CLE' },
+  'Anaheim Angels': { primary: '#BA0021', secondary: '#003263', abbr: 'ANA' },
+  'Montreal Expos': { primary: '#003087', secondary: '#E4002B', abbr: 'MON' },
 }
 
 function getTeamColors(teamName: string) {
@@ -65,25 +172,92 @@ function getHonorStyle(honor: string): { background: string; color: string } {
   return { background: '#4a4a4a', color: '#e0e0e0' }
 }
 
-function JerseyIcon({ primary, secondary, abbr }: { primary: string; secondary: string; abbr: string }) {
+function JerseyIcon({ primary, secondary, abbr, number, sport = 'nba' }: {
+  primary: string; secondary: string; abbr: string; number?: string; sport?: string
+}) {
+  const displayText = number ?? abbr
+  const sz = number ? (number.length <= 2 ? '15' : '11') : (abbr.length > 2 ? '8' : '10')
+  const font = "Impact,'Arial Narrow',Arial,sans-serif"
+
+  // NFL – football américain : larges épaules (épaulières), col rond, bande de manche
+  if (sport === 'nfl') return (
+    <svg width="40" height="50" viewBox="0 0 40 50" style={{ display: 'block' }}>
+      {/* Corps + manches : large au niveau des épaules, se resserre sur le corps */}
+      <path d="M 9 50 L 9 26 Q 3 22 1 13 L 1 7 Q 2 2 10 2 L 15 2 Q 20 5 25 2 L 30 2 Q 38 2 39 7 L 39 13 Q 37 22 31 26 L 31 50 Z"
+        fill={primary} stroke="rgba(0,0,0,0.22)" strokeWidth="0.8"/>
+      {/* Bande de couleur sur les manches */}
+      <line x1="1" y1="10" x2="1" y2="15" stroke={secondary} strokeWidth="6" strokeLinecap="butt"/>
+      <line x1="39" y1="10" x2="39" y2="15" stroke={secondary} strokeWidth="6" strokeLinecap="butt"/>
+      {/* Col rond */}
+      <path d="M 15 2 Q 20 7 25 2" fill="none" stroke={secondary} strokeWidth="2.5" strokeLinecap="round"/>
+      <text x="20" y="40" textAnchor="middle" dominantBaseline="middle"
+        fill={secondary} fontSize={sz} fontWeight="bold" fontFamily={font}>{displayText}</text>
+    </svg>
+  )
+
+  // NHL – hockey sur glace : manches longues, bande horizontale, col bicolore
+  if (sport === 'hockey') return (
+    <svg width="40" height="50" viewBox="0 0 40 50" style={{ display: 'block' }}>
+      {/* Corps + longues manches */}
+      <path d="M 9 50 L 9 30 Q 3 25 1 17 L 1 7 Q 2 2 10 2 L 16 2 Q 20 6 24 2 L 30 2 Q 38 2 39 7 L 39 17 Q 37 25 31 30 L 31 50 Z"
+        fill={primary} stroke="rgba(0,0,0,0.22)" strokeWidth="0.8"/>
+      {/* Bande horizontale caractéristique hockey sur le bas du corps */}
+      <rect x="9" y="37" width="22" height="5" fill={secondary} opacity="0.85"/>
+      {/* Col coloré */}
+      <path d="M 16 2 Q 20 8 24 2 Q 20 4 16 2 Z" fill={secondary}/>
+      {/* Bandes sur les manches */}
+      <line x1="1" y1="12" x2="1" y2="17" stroke={secondary} strokeWidth="5" strokeLinecap="butt"/>
+      <line x1="39" y1="12" x2="39" y2="17" stroke={secondary} strokeWidth="5" strokeLinecap="butt"/>
+      <text x="20" y="46" textAnchor="middle" dominantBaseline="middle"
+        fill={secondary} fontSize={sz} fontWeight="bold" fontFamily={font}>{displayText}</text>
+    </svg>
+  )
+
+  // MLB – baseball : col V + boutonnage, manches courtes
+  if (sport === 'baseball') return (
+    <svg width="40" height="50" viewBox="0 0 40 50" style={{ display: 'block' }}>
+      {/* Corps + manches courtes */}
+      <path d="M 9 50 L 9 27 Q 5 23 3 14 L 3 6 Q 4 2 12 2 L 16 2 L 16 8 Q 20 11 24 8 L 24 2 L 28 2 Q 36 2 37 6 L 37 14 Q 35 23 31 27 L 31 50 Z"
+        fill={primary} stroke="rgba(0,0,0,0.22)" strokeWidth="0.8"/>
+      {/* Col + placket couleur secondaire */}
+      <path d="M 16 2 L 16 8 Q 20 11 24 8 L 24 2 Q 20 5 16 2 Z" fill={secondary} opacity="0.9"/>
+      {/* Boutons */}
+      {[16, 22, 28, 34, 41].map(y => (
+        <circle key={y} cx="20" cy={y} r="1.1" fill={secondary} opacity="0.7"/>
+      ))}
+      <text x="20" y="41" textAnchor="middle" dominantBaseline="middle"
+        fill={secondary} fontSize={sz} fontWeight="bold" fontFamily={font}>{displayText}</text>
+    </svg>
+  )
+
+  // Football (soccer) – maillot slim : col en V, manches courtes, bandes d'épaule
+  if (sport === 'football') return (
+    <svg width="40" height="50" viewBox="0 0 40 50" style={{ display: 'block' }}>
+      {/* Corps + manches courtes, plus slim que les autres sports */}
+      <path d="M 10 50 L 10 27 Q 6 23 5 14 L 5 7 Q 5 2 12 2 L 17 2 Q 20 0 23 2 L 28 2 Q 35 2 35 7 L 35 14 Q 34 23 30 27 L 30 50 Z"
+        fill={primary} stroke="rgba(0,0,0,0.22)" strokeWidth="0.8"/>
+      {/* Col en V */}
+      <path d="M 17 2 L 20 10 L 23 2 Z" fill={secondary} opacity="0.9"/>
+      {/* Bandes d'épaule */}
+      <line x1="5" y1="9" x2="5" y2="14" stroke={secondary} strokeWidth="4" strokeLinecap="butt"/>
+      <line x1="35" y1="9" x2="35" y2="14" stroke={secondary} strokeWidth="4" strokeLinecap="butt"/>
+      <text x="20" y="40" textAnchor="middle" dominantBaseline="middle"
+        fill={secondary} fontSize={sz} fontWeight="bold" fontFamily={font}>{displayText}</text>
+    </svg>
+  )
+
+  // NBA (défaut) – débardeur sans manches : deux bretelles + emmanchure visible (evenodd)
   return (
     <svg width="40" height="50" viewBox="0 0 40 50" style={{ display: 'block' }}>
-      <path
-        d="M6 7 L0 19 L10 22 L10 48 L30 48 L30 22 L40 19 L34 7 C31 3 26 1 20 1 C14 1 9 3 6 7Z"
-        fill={primary}
-        stroke="rgba(0,0,0,0.18)"
-        strokeWidth="1"
-      />
-      <path d="M14 7 L20 14 L26 7" fill="none" stroke={secondary} strokeWidth="1.8" strokeLinecap="round"/>
-      <text
-        x="20" y="33"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fill={secondary}
-        fontSize={abbr.length > 2 ? '9' : '11'}
-        fontWeight="bold"
-        fontFamily="Arial, sans-serif"
-      >{abbr}</text>
+      {/* La zone centrale (x=14-26, y=2-22) est transparente → emmanchures visibles */}
+      <path fillRule="evenodd"
+        d="M 9 2 L 31 2 L 31 48 L 9 48 Z M 14 2 L 26 2 L 26 22 L 14 22 Z"
+        fill={primary} stroke="rgba(0,0,0,0.22)" strokeWidth="0.8"/>
+      {/* Col en V tracé sur le bord de l'emmanchure */}
+      <path d="M 14 2 L 20 9 L 26 2" fill="none" stroke={secondary} strokeWidth="2"
+        strokeLinejoin="round" strokeLinecap="round"/>
+      <text x="20" y="37" textAnchor="middle" dominantBaseline="middle"
+        fill={secondary} fontSize={sz} fontWeight="bold" fontFamily={font}>{displayText}</text>
     </svg>
   )
 }
@@ -207,7 +381,6 @@ async function _fetchPlayer(slug: string) {
     ...s,
     isRc: s.is_rc,
   })).sort((a: any, b: any) => (b.year || 0) - (a.year || 0))
-  const primarySport = sets[0]?.sport || 'nba'
 
   // RC year = année la PLUS ANCIENNE des sets marqués RC (pas la première trouvée)
   const rcSetYears = sets.filter((s: any) => s.isRc && s.year > 0).map((s: any) => s.year as number)
@@ -216,10 +389,16 @@ async function _fetchPlayer(slug: string) {
   const rcFromManuelles = manuRcYears.length > 0 ? Math.min(...manuRcYears) : undefined
   const rcYear = rcFromSets && rcFromManuelles ? Math.min(rcFromSets, rcFromManuelles) : rcFromSets ?? rcFromManuelles
 
-  const [csvAll, headshot, bio] = await Promise.all([
+  // ESPN détecte le sport via defaultLeagueSlug.
+  // Le sport des sets sert de hint pour la recherche ESPN (guide vers le bon joueur),
+  // mais c'est bio.sport (retourné par ESPN) qui gagne — sauf si ESPN ne peut pas détecter.
+  const setsBasedSport = sets[0]?.sport || 'nba'
+  const bio = await fetchEspnPlayerBio(playerName, setsBasedSport)
+  const primarySport = bio?.sport ?? setsBasedSport
+
+  const [csvAll, headshot] = await Promise.all([
     fetchCsvCardsForProfiles(profilesRes.data || []),
     fetchEspnHeadshot(playerName, primarySport),
-    fetchEspnPlayerBio(playerName, primarySport),
   ])
 
   const manuellesCards = matchedManu.map((m: any) => ({
@@ -305,8 +484,10 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
   const { slug } = await params
   const { playerName, sets, setsByYear, sortedYears, communityCards, rcYear, headshot, bio, uniqueCollectors, topVariations, primarySport } = await fetchPlayer(slug)
 
-  const sports = [...new Set(sets.map((s: any) => s.sport as string))] as string[]
+  const sportsFromSets = [...new Set(sets.map((s: any) => s.sport).filter(Boolean))] as string[]
+  const sports = sportsFromSets.length > 0 ? sportsFromSets : (primarySport ? [primarySport] : [])
   const careerTimeline = bio?.career ? buildCareerTimeline(bio.career) : []
+  const careerMaxEndYear = careerTimeline.length > 0 ? Math.max(...careerTimeline.map(r => r.endYear)) : 0
   const teamLogoUrl = bio?.currentTeamLogo
     ? `/api/team-logo?url=${encodeURIComponent(bio.currentTeamLogo)}`
     : null
@@ -529,6 +710,62 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                 </div>
               </div>
             </div>
+
+            {/* ── CARRIÈRE dans le hero (BBRef style) ── */}
+            {((bio?.honors && bio.honors.length > 0) || careerTimeline.length > 0) && (
+              <div style={{ marginTop: 28, paddingTop: 22, borderTop: '1px solid rgba(255,255,255,0.12)' }}>
+                {/* Honors/Awards pills */}
+                {bio?.honors && bio.honors.length > 0 && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 16 }}>
+                    {bio.honors.map((honor: string, i: number) => {
+                      const isGold = /champion|most valuable|finals mvp|hall of fame|scoring title|75th|anniversary|finalist|roy|rookie of the year|defensive player/i.test(honor) &&
+                        !/all.?star|all.?nba|all.?defensive|all.?rookie/i.test(honor)
+                      return (
+                        <span key={i} style={{
+                          display: 'inline-block',
+                          fontSize: 11,
+                          fontWeight: 700,
+                          background: isGold ? 'rgba(255,199,44,0.22)' : 'rgba(255,255,255,0.12)',
+                          color: isGold ? '#FFC72C' : 'rgba(255,255,255,0.85)',
+                          border: `1px solid ${isGold ? 'rgba(255,199,44,0.35)' : 'rgba(255,255,255,0.18)'}`,
+                          padding: '4px 10px',
+                          borderRadius: 4,
+                          letterSpacing: '0.02em',
+                          whiteSpace: 'nowrap',
+                        }}>{honor}</span>
+                      )
+                    })}
+                  </div>
+                )}
+                {/* Jersey icons timeline */}
+                {careerTimeline.length > 0 && (
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'flex-start' }}>
+                      {careerTimeline.map((run, i) => {
+                        const colors = getTeamColors(run.teamName)
+                        const label = seasonLabel(run.startYear, run.endYear, primarySport)
+                        const jerseyNumber =
+                          bio?.jerseyHistory?.find(h => h.teamName === run.teamName && h.startYear === run.startYear)?.jersey
+                          ?? (run.endYear === careerMaxEndYear ? bio?.jersey ?? undefined : undefined)
+                        return (
+                          <div
+                            key={`${run.teamName}-${run.startYear}-${i}`}
+                            title={`${run.teamName} · ${label}`}
+                            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, cursor: 'default' }}
+                          >
+                            <JerseyIcon primary={colors.primary} secondary={colors.secondary} abbr={colors.abbr} number={jerseyNumber} sport={primarySport} />
+                            <div style={{ fontSize: 9.5, fontWeight: 700, color: 'rgba(255,255,255,0.75)', textAlign: 'center', lineHeight: 1.2 }}>
+                              {colors.abbr}
+                            </div>
+                            <div style={{ fontSize: 8.5, color: 'rgba(255,255,255,0.5)', textAlign: 'center', whiteSpace: 'nowrap' }}>
+                              {label}
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -603,62 +840,6 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                   </Link>
                 ))}
               </div>
-            </section>
-          )}
-
-          {/* ── CARRIÈRE (BBRef style : honors pills + jersey icons) ── */}
-          {((bio?.honors && bio.honors.length > 0) || careerTimeline.length > 0) && (
-            <section style={{ marginBottom: 52 }}>
-              <h2 style={{ fontSize: 13, fontWeight: 800, color: 'var(--jp-muted)', textTransform: 'uppercase', letterSpacing: '0.09em', margin: '0 0 16px' }}>
-                Carrière
-              </h2>
-
-              {/* Honors/Awards pills */}
-              {bio?.honors && bio.honors.length > 0 && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
-                  {bio.honors.map((honor: string, i: number) => {
-                    const hs = getHonorStyle(honor)
-                    return (
-                      <span key={i} style={{
-                        display: 'inline-block',
-                        fontSize: 11,
-                        fontWeight: 700,
-                        background: hs.background,
-                        color: hs.color,
-                        padding: '4px 10px',
-                        borderRadius: 3,
-                        letterSpacing: '0.02em',
-                        whiteSpace: 'nowrap',
-                      }}>{honor}</span>
-                    )
-                  })}
-                </div>
-              )}
-
-              {/* Jersey icons */}
-              {careerTimeline.length > 0 && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, alignItems: 'flex-start' }}>
-                  {careerTimeline.map((run, i) => {
-                    const colors = getTeamColors(run.teamName)
-                    const label = seasonLabel(run.startYear, run.endYear, primarySport)
-                    return (
-                      <div
-                        key={`${run.teamName}-${run.startYear}-${i}`}
-                        title={`${run.teamName} · ${label}`}
-                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, cursor: 'default' }}
-                      >
-                        <JerseyIcon primary={colors.primary} secondary={colors.secondary} abbr={colors.abbr} />
-                        <div style={{ fontSize: 9.5, fontWeight: 700, color: 'var(--jp-text2)', textAlign: 'center', lineHeight: 1.2 }}>
-                          {colors.abbr}
-                        </div>
-                        <div style={{ fontSize: 8.5, color: 'var(--jp-muted)', textAlign: 'center', whiteSpace: 'nowrap' }}>
-                          {label}
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              )}
             </section>
           )}
 

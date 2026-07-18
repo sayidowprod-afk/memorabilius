@@ -130,6 +130,8 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [commentCount, setCommentCount] = useState(0)
   const [showSortMenu, setShowSortMenu] = useState(false)
   const [sorting, setSorting] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [showOwnerMenu, setShowOwnerMenu] = useState(false)
   const [slots, setSlots] = useState<Map<string, Slot>>(new Map())
   // Page gauche du double-feuillet, PAIRE (0, 2, 4…). Comme un vrai classeur :
   // 0 = intérieur de couverture (gauche) + page 1 seule à droite, puis 2–3, 4–5…
@@ -230,6 +232,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     window.addEventListener('pointerup', reset)
     window.addEventListener('pointercancel', reset)
     return () => { window.removeEventListener('pointerup', reset); window.removeEventListener('pointercancel', reset) }
+  }, [])
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 560)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
   }, [])
 
   const loadBinders = async () => {
@@ -1252,12 +1261,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
         )}
 
         {isOwner && (
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-            <span style={{ fontSize: 11, color: '#aaa', fontStyle: 'italic' }}>
-              💡 Glisse un classeur sur une section pour l'y ranger
-            </span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, gap: 8 }}>
+            {!isMobile && (
+              <span style={{ fontSize: 11, color: '#aaa', fontStyle: 'italic' }}>
+                💡 Glisse un classeur sur une section pour l'y ranger
+              </span>
+            )}
             <button onClick={createFolder}
-              style={{ background: 'none', border: '1.5px dashed #ccc', borderRadius: 10, padding: '6px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 12, color: '#888' }}>
+              style={{ background: 'none', border: '1.5px dashed #ccc', borderRadius: 10, padding: isMobile ? '10px 18px' : '6px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 12, color: '#888', marginLeft: 'auto' }}>
               + Nouvelle section
             </button>
           </div>
@@ -1467,58 +1478,113 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
-        <button onClick={() => setSelected(null)} className="btn-main btn-secondary" style={{ padding: '8px 16px', fontSize: 13 }}>
-          ← Retour {pendingCard ? 'aux classeurs' : 'à la bibliothèque'}
-        </button>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ fontWeight: 900, fontSize: 15 }}>{selected.name}</span>
-          {!pendingCard && <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} />}
-          {!pendingCard && (
-            <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1 }}>
-              ▦
-            </button>
-          )}
-          {!pendingCard && (
-            <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '6px 12px', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: '#666' }}>
-              💬 Commentaires{commentCount > 0 ? ` (${commentCount})` : ''}
-            </button>
-          )}
-          {isOwner && !pendingCard && (
-            <>
-              {/* Bouton Trier */}
-              <div style={{ position: 'relative' }}>
-                <button
-                  onClick={() => setShowSortMenu(v => !v)}
-                  disabled={sorting || slots.size === 0}
-                  style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700, opacity: sorting ? 0.5 : 1 }}
-                >
-                  {sorting ? '⏳ Tri…' : '⇅ Trier'}
+      <div style={{ marginBottom: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 6 : 10, flexWrap: isMobile ? 'nowrap' : 'wrap' }}>
+          <button onClick={() => setSelected(null)} className="btn-main btn-secondary" style={{ padding: isMobile ? '10px 14px' : '8px 16px', fontSize: 13, flexShrink: 0 }}>
+            ←{!isMobile && ` Retour ${pendingCard ? 'aux classeurs' : 'à la bibliothèque'}`}
+          </button>
+          <span style={{ fontWeight: 900, fontSize: isMobile ? 13 : 15, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }}>{selected.name}</span>
+
+          {/* Desktop : toutes les actions en ligne */}
+          {!isMobile && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+              {!pendingCard && <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} />}
+              {!pendingCard && (
+                <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1 }}>
+                  ▦
                 </button>
-                {showSortMenu && (
-                  <div
-                    onMouseLeave={() => setShowSortMenu(false)}
-                    style={{ position: 'absolute', top: '100%', right: 0, zIndex: 200, background: 'white', border: '1px solid #e0e0e0', borderRadius: 10, boxShadow: '0 6px 24px rgba(0,0,0,0.15)', minWidth: 190, padding: 6 }}
-                  >
-                    {([
-                      ['nom_asc',   'Nom  A → Z'],
-                      ['nom_desc',  'Nom  Z → A'],
-                      ['annee_asc', 'Année  ↑ (ancienne en premier)'],
-                      ['annee_desc','Année  ↓ (récente en premier)'],
-                    ] as const).map(([key, label]) => (
-                      <button key={key} onClick={() => sortBinder(key)}
-                        style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '8px 12px', fontSize: 13, cursor: 'pointer', borderRadius: 6, color: '#222' }}
-                        onMouseEnter={e => (e.currentTarget.style.background = '#f0f4ff')}
-                        onMouseLeave={e => (e.currentTarget.style.background = 'none')}
-                      >{label}</button>
-                    ))}
+              )}
+              {!pendingCard && (
+                <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '6px 12px', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: '#666' }}>
+                  💬 Commentaires{commentCount > 0 ? ` (${commentCount})` : ''}
+                </button>
+              )}
+              {isOwner && !pendingCard && (
+                <>
+                  <div style={{ position: 'relative' }}>
+                    <button onClick={() => setShowSortMenu(v => !v)} disabled={sorting || slots.size === 0}
+                      style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700, opacity: sorting ? 0.5 : 1 }}>
+                      {sorting ? '⏳ Tri…' : '⇅ Trier'}
+                    </button>
+                    {showSortMenu && (
+                      <div onMouseLeave={() => setShowSortMenu(false)}
+                        style={{ position: 'absolute', top: '100%', right: 0, zIndex: 200, background: 'white', border: '1px solid #e0e0e0', borderRadius: 10, boxShadow: '0 6px 24px rgba(0,0,0,0.15)', minWidth: 190, padding: 6 }}>
+                        {([
+                          ['nom_asc',   'Nom  A → Z'],
+                          ['nom_desc',  'Nom  Z → A'],
+                          ['annee_asc', 'Année  ↑ (ancienne en premier)'],
+                          ['annee_desc','Année  ↓ (récente en premier)'],
+                        ] as const).map(([key, label]) => (
+                          <button key={key} onClick={() => sortBinder(key)}
+                            style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '8px 12px', fontSize: 13, cursor: 'pointer', borderRadius: 6, color: '#222' }}
+                            onMouseEnter={e => (e.currentTarget.style.background = '#f0f4ff')}
+                            onMouseLeave={e => (e.currentTarget.style.background = 'none')}>{label}</button>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-              <button onClick={() => setMultiPicker(true)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>＋ Ajouter des cartes</button>
-              <button onClick={() => openEditForm(selected)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>✏️ Modifier</button>
-              <button onClick={() => deleteBinder(selected.id)} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12 }}>🗑️</button>
-            </>
+                  <button onClick={() => setMultiPicker(true)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>＋ Ajouter des cartes</button>
+                  <button onClick={() => openEditForm(selected)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>✏️ Modifier</button>
+                  <button onClick={() => deleteBinder(selected.id)} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12 }}>🗑️</button>
+                </>
+              )}
+            </div>
+          )}
+
+          {/* Mobile : icônes compactes + menu ··· pour les actions owner */}
+          {isMobile && !pendingCard && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+              <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} compact />
+              <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1 }}>▦</button>
+              <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, color: '#666', lineHeight: 1 }}>
+                💬{commentCount > 0 && <span style={{ fontSize: 11, fontWeight: 800, verticalAlign: 'middle' }}> {commentCount}</span>}
+              </button>
+              {isOwner && (
+                <div style={{ position: 'relative' }}>
+                  <button onClick={() => setShowOwnerMenu(v => !v)}
+                    style={{ background: showOwnerMenu ? '#f0f0f0' : 'none', border: '1px solid #ddd', borderRadius: 8, padding: '10px 12px', cursor: 'pointer', fontSize: 16, color: '#555', lineHeight: 1, fontWeight: 900 }}>
+                    ···
+                  </button>
+                  {showOwnerMenu && (
+                    <>
+                      <div style={{ position: 'fixed', inset: 0, zIndex: 299 }} onClick={() => setShowOwnerMenu(false)} />
+                      <div style={{ position: 'absolute', top: 'calc(100% + 6px)', right: 0, zIndex: 300, background: 'white', border: '1px solid #e8e8e8', borderRadius: 14, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 220, padding: 6 }}>
+                        <div style={{ padding: '4px 14px 2px', fontSize: 10, fontWeight: 700, color: '#bbb', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Trier les cartes</div>
+                        {sorting ? (
+                          <div style={{ padding: '8px 14px', fontSize: 13, color: '#aaa' }}>⏳ Tri en cours…</div>
+                        ) : slots.size === 0 ? (
+                          <div style={{ padding: '8px 14px', fontSize: 12, color: '#ccc' }}>Classeur vide</div>
+                        ) : (
+                          ([
+                            ['nom_asc', 'Nom A → Z'], ['nom_desc', 'Nom Z → A'],
+                            ['annee_asc', 'Ancienne en premier'], ['annee_desc', 'Récente en premier'],
+                          ] as const).map(([key, label]) => (
+                            <button key={key} onClick={() => { sortBinder(key); setShowOwnerMenu(false) }}
+                              style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '10px 14px', fontSize: 14, cursor: 'pointer', color: '#333', borderRadius: 8 }}>
+                              ⇅ {label}
+                            </button>
+                          ))
+                        )}
+                        <div style={{ height: 1, background: '#f0f0f0', margin: '4px 6px' }} />
+                        <button onClick={() => { setMultiPicker(true); setShowOwnerMenu(false) }}
+                          style={{ display: 'flex', width: '100%', textAlign: 'left', alignItems: 'center', gap: 10, background: 'none', border: 'none', padding: '12px 14px', fontSize: 14, cursor: 'pointer', color: '#333', fontWeight: 600, borderRadius: 8 }}>
+                          ＋ Ajouter des cartes
+                        </button>
+                        <button onClick={() => { openEditForm(selected); setShowOwnerMenu(false) }}
+                          style={{ display: 'flex', width: '100%', textAlign: 'left', alignItems: 'center', gap: 10, background: 'none', border: 'none', padding: '12px 14px', fontSize: 14, cursor: 'pointer', color: '#333', fontWeight: 600, borderRadius: 8 }}>
+                          ✏️ Modifier le classeur
+                        </button>
+                        <div style={{ height: 1, background: '#f0f0f0', margin: '4px 6px' }} />
+                        <button onClick={() => { setShowOwnerMenu(false); deleteBinder(selected.id) }}
+                          style={{ display: 'flex', width: '100%', textAlign: 'left', alignItems: 'center', gap: 10, background: 'none', border: 'none', padding: '12px 14px', fontSize: 14, cursor: 'pointer', color: '#e74c3c', fontWeight: 600, borderRadius: 8 }}>
+                          🗑️ Supprimer
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
           )}
         </div>
       </div>
@@ -1621,7 +1687,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <button
               onClick={() => canPrev ? clickFlip('prev') : setIsOpen(false)}
               disabled={!!flip} className="btn-main btn-secondary"
-              style={{ padding: '8px 14px', fontSize: 13 }} aria-label={canPrev ? 'Page précédente' : 'Fermer'}>
+              style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13 }} aria-label={canPrev ? 'Page précédente' : 'Fermer'}>
               ←<span className="binder-nav-label"> {canPrev ? 'Page précédente' : 'Fermer'}</span>
             </button>
             <span style={{ fontSize: 12, color: '#999', whiteSpace: 'nowrap' }}>
@@ -1640,12 +1706,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             </span>
             <div style={{ display: 'flex', gap: 8 }}>
               {isOwner && !canNext && (
-                <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: '8px 12px', fontSize: 12 }} aria-label="Ajouter une page">
+                <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12 }} aria-label="Ajouter une page">
                   +<span className="binder-nav-label"> Ajouter une page</span>
                 </button>
               )}
               <button onClick={() => clickFlip('next')} disabled={!canNext || !!flip} className="btn-main btn-primary"
-                style={{ padding: '8px 14px', fontSize: 13, opacity: !canNext ? 0.4 : 1 }} aria-label="Page suivante">
+                style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13, opacity: !canNext ? 0.4 : 1 }} aria-label="Page suivante">
                 <span className="binder-nav-label">Page suivante </span>→
               </button>
             </div>

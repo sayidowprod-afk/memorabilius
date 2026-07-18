@@ -52,13 +52,24 @@ async function fetchNbaHeadshot(name: string): Promise<string | null> {
 // ── ESPN search/v2 (fallback pour sports non-NBA et joueurs non matchés) ──────
 const SPORT_MAP: Record<string, string> = {
   nba: 'basketball', nfl: 'football', nhl: 'hockey', mlb: 'baseball', football: 'soccer',
+  hockey: 'hockey', baseball: 'baseball',
 }
 
-// Ligue ESPN attendue par sport interne — sert à écarter les homonymes d'autres
-// sports/ligues que l'API de recherche ESPN renvoie parfois (ex: chercher
-// "Michael Jordan" en NBA retourne aussi un joueur de football universitaire
-// du même nom ; "defaultLeagueSlug" permet de les distinguer précisément)
-const LEAGUE_MAP: Record<string, string> = { nba: 'nba', nfl: 'nfl', nhl: 'nhl', mlb: 'mlb' }
+// Ligue ESPN attendue par sport interne
+const LEAGUE_MAP: Record<string, string> = {
+  nba: 'nba', nfl: 'nfl', nhl: 'nhl', mlb: 'mlb',
+  hockey: 'nhl', baseball: 'mlb',
+}
+
+// ESPN defaultLeagueSlug → notre nom de sport interne
+const ESPN_LEAGUE_TO_SPORT: Record<string, string> = {
+  nba: 'nba', wnba: 'nba', fiba: 'nba',
+  nfl: 'nfl',
+  nhl: 'hockey',
+  mlb: 'baseball',
+  mls: 'football', 'premier-league': 'football', 'serie-a': 'football',
+  'ligue-1': 'football', bundesliga: 'football', laliga: 'football',
+}
 
 // Normalise pour comparaison insensible aux accents, ponctuation et casse
 // "O.G. Anunoby" → "og anunoby" | "Nikola Jokić" → "nikola jokic"
@@ -95,6 +106,121 @@ async function fetchEspnMap(query: string, sport = 'nba'): Promise<Map<string, s
     }
   } catch { /* ESPN unavailable */ }
   return result
+}
+
+// ── NBA Stats : IDs équipe pour récupérer les rosters historiques ─────────────
+const NBA_TEAM_IDS: Record<string, number> = {
+  'Atlanta Hawks': 1610612737,
+  'Boston Celtics': 1610612738,
+  'Brooklyn Nets': 1610612751,
+  'Charlotte Hornets': 1610612766,
+  'Chicago Bulls': 1610612741,
+  'Cleveland Cavaliers': 1610612739,
+  'Dallas Mavericks': 1610612742,
+  'Denver Nuggets': 1610612743,
+  'Detroit Pistons': 1610612765,
+  'Golden State Warriors': 1610612744,
+  'Houston Rockets': 1610612745,
+  'Indiana Pacers': 1610612754,
+  'Los Angeles Clippers': 1610612746,
+  'Los Angeles Lakers': 1610612747,
+  'Memphis Grizzlies': 1610612763,
+  'Miami Heat': 1610612748,
+  'Milwaukee Bucks': 1610612749,
+  'Minnesota Timberwolves': 1610612750,
+  'New Orleans Pelicans': 1610612740,
+  'New York Knicks': 1610612752,
+  'Oklahoma City Thunder': 1610612760,
+  'Orlando Magic': 1610612753,
+  'Philadelphia 76ers': 1610612755,
+  'Phoenix Suns': 1610612756,
+  'Portland Trail Blazers': 1610612757,
+  'Sacramento Kings': 1610612758,
+  'San Antonio Spurs': 1610612759,
+  'Toronto Raptors': 1610612761,
+  'Utah Jazz': 1610612762,
+  'Washington Wizards': 1610612764,
+  // Franchises historiques
+  'New Jersey Nets': 1610612751,
+  'Seattle SuperSonics': 1610612760,
+  'Vancouver Grizzlies': 1610612763,
+  'New Orleans Hornets': 1610612740,
+  'New Orleans/Oklahoma City Hornets': 1610612740,
+  'Charlotte Bobcats': 1610612766,
+}
+
+const NBA_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+  'Referer': 'https://www.nba.com/',
+  'Accept': 'application/json, text/plain, */*',
+  'x-nba-stats-origin': 'stats',
+  'x-nba-stats-token': 'true',
+}
+
+function buildStints(career: { year: number; teamName: string }[]) {
+  const sorted = [...career].filter(e => e.year > 0).sort((a, b) => a.year - b.year)
+  const runs: { teamName: string; startYear: number; endYear: number }[] = []
+  for (const { year, teamName } of sorted) {
+    const last = runs[runs.length - 1]
+    if (last && last.teamName === teamName && year <= last.endYear + 1) last.endYear = year
+    else runs.push({ teamName, startYear: year, endYear: year })
+  }
+  return runs
+}
+
+async function fetchRosterJersey(playerName: string, teamId: number, season: string): Promise<string | null> {
+  try {
+    const r = await fetch(
+      `https://stats.nba.com/stats/commonteamroster?TeamID=${teamId}&Season=${season}`,
+      { headers: NBA_HEADERS, signal: AbortSignal.timeout(3000), next: { revalidate: 86400 } } as RequestInit
+    )
+    if (!r.ok) return null
+    const data = await r.json()
+    const headers: string[] = data?.resultSets?.[0]?.headers ?? []
+    const rows: any[][] = data?.resultSets?.[0]?.rowSet ?? []
+    const playerIdx = headers.indexOf('PLAYER')
+    const jerseyIdx = headers.indexOf('NUM')
+    if (playerIdx < 0 || jerseyIdx < 0) return null
+    const nameParts = playerName.toLowerCase().split(' ')
+    for (const row of rows) {
+      const rn = (row[playerIdx] as string || '').toLowerCase()
+      if (nameParts.every(p => rn.includes(p))) return String(row[jerseyIdx] ?? '').trim() || null
+    }
+    return null
+  } catch { return null }
+}
+
+async function fetchNbaPlayerAwards(playerName: string): Promise<string[]> {
+  const map = await getNbaPlayerMap()
+  const id = map.get(playerName.toLowerCase())
+  if (!id) return []
+  try {
+    const r = await fetch(
+      `https://stats.nba.com/stats/playerawards?PlayerID=${id}`,
+      { headers: NBA_HEADERS, signal: AbortSignal.timeout(4000), next: { revalidate: 86400 } } as RequestInit
+    )
+    if (!r.ok) return []
+    const data = await r.json()
+    const hdrs: string[] = data?.resultSets?.[0]?.headers ?? []
+    const rows: any[][] = data?.resultSets?.[0]?.rowSet ?? []
+    const descIdx = hdrs.indexOf('DESCRIPTION')
+    if (descIdx < 0) return []
+    const counts = new Map<string, number>()
+    for (const row of rows) {
+      const desc = String(row[descIdx] || '').trim()
+      if (desc) counts.set(desc, (counts.get(desc) || 0) + 1)
+    }
+    const priority: Record<string, number> = {
+      'NBA Champion': 10, 'NBA Finals Most Valuable Player': 9, 'Most Valuable Player': 8,
+      'Scoring Title': 7, 'Defensive Player of the Year': 6, 'Rookie of the Year': 5,
+      'All-Star': 4, 'All-NBA First Team': 4, 'All-NBA Second Team': 3, 'All-NBA Third Team': 2,
+      'All-Defensive First Team': 3, 'All-Defensive Second Team': 2,
+      'Sixth Man of the Year': 2, 'Most Improved Player': 2,
+    }
+    return [...counts.entries()]
+      .sort((a, b) => (priority[b[0]] ?? 1) - (priority[a[0]] ?? 1))
+      .map(([desc, count]) => count > 1 ? `${desc} ×${count}` : desc)
+  } catch { return [] }
 }
 
 // ── API publique ───────────────────────────────────────────────────────────────
@@ -176,6 +302,7 @@ export async function fetchEspnHeadshot(name: string, sport = 'nba'): Promise<st
 // ── Bio ESPN (date de naissance, lieu, historique d'équipes) ──────────────────
 
 export interface EspnPlayerBio {
+  sport: string | null
   birthDate: string | null
   birthPlace: string | null
   teams: string[]
@@ -189,27 +316,30 @@ export interface EspnPlayerBio {
   currentTeamLogo: string | null
   career: { year: number; teamName: string }[]
   honors: string[]
+  jerseyHistory: { teamName: string; startYear: number; jersey: string }[]
 }
 
-async function findEspnAthleteId(name: string, sport: string): Promise<string | null> {
-  const espnSport = SPORT_MAP[sport] || 'basketball'
-  const expectedLeague = LEAGUE_MAP[sport]
+async function findEspnAthleteId(name: string, sportHint?: string): Promise<{ id: string; sport: string } | null> {
+  const espnSport = sportHint ? (SPORT_MAP[sportHint] || 'basketball') : undefined
+  const expectedLeague = sportHint ? LEAGUE_MAP[sportHint] : undefined
   try {
-    const url = `https://site.api.espn.com/apis/search/v2?query=${encodeURIComponent(name)}&limit=20&type=player&sport=${espnSport}`
+    const url = espnSport
+      ? `https://site.api.espn.com/apis/search/v2?query=${encodeURIComponent(name)}&limit=20&type=player&sport=${espnSport}`
+      : `https://site.api.espn.com/apis/search/v2?query=${encodeURIComponent(name)}&limit=20&type=player`
     const r = await fetch(url, { signal: AbortSignal.timeout(3000), next: { revalidate: 86400 } } as RequestInit)
     if (!r.ok) return null
     const data = await r.json()
     const target = norm(name)
-    let fallback: string | null = null
+    let fallback: { id: string; sport: string } | null = null
     for (const section of data.results ?? []) {
       for (const a of section.contents ?? []) {
         if (!a.displayName || norm(a.displayName) !== target || !a.uid) continue
         const m = /a:(\d+)/.exec(a.uid)
         if (!m) continue
-        // Priorité à la ligue attendue ; sinon on garde en réserve (cas LeBron
-        // James parfois classé "fiba" par ESPN malgré son profil NBA principal)
-        if (expectedLeague && a.defaultLeagueSlug === expectedLeague) return m[1]
-        if (!fallback) fallback = m[1]
+        const espnLeague = (a.defaultLeagueSlug as string) || ''
+        const detectedSport = ESPN_LEAGUE_TO_SPORT[espnLeague] ?? sportHint ?? 'nba'
+        if (expectedLeague && a.defaultLeagueSlug === expectedLeague) return { id: m[1], sport: detectedSport }
+        if (!fallback) fallback = { id: m[1], sport: detectedSport }
       }
     }
     return fallback
@@ -217,11 +347,12 @@ async function findEspnAthleteId(name: string, sport: string): Promise<string | 
   return null
 }
 
-export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<EspnPlayerBio | null> {
+export async function fetchEspnPlayerBio(name: string, sportHint?: string): Promise<EspnPlayerBio | null> {
+  const found = await findEspnAthleteId(name, sportHint)
+  if (!found) return null
+  const { id, sport } = found
   const league = LEAGUE_MAP[sport] || 'nba'
   const espnSport = SPORT_MAP[sport] || 'basketball'
-  const id = await findEspnAthleteId(name, sport)
-  if (!id) return null
 
   let birthDate: string | null = null
   let birthPlace: string | null = null
@@ -338,6 +469,26 @@ export async function fetchEspnPlayerBio(name: string, sport = 'nba'): Promise<E
     }
   } catch { /* ESPN unavailable */ }
 
-  return { birthDate, birthPlace, teams, position, height, weight, jersey, nationality, age, currentTeamId, currentTeamLogo, career, honors }
+  // Numéros de maillot historiques via NBA Stats roster (un appel par stint, en parallèle)
+  const jerseyHistory: { teamName: string; startYear: number; jersey: string }[] = []
+  if (career.length > 0) {
+    const stints = buildStints(career)
+    const results = await Promise.all(stints.map(async stint => {
+      const teamId = NBA_TEAM_IDS[stint.teamName]
+      if (!teamId) return null
+      const season = `${stint.startYear}-${String(stint.startYear + 1).slice(2)}`
+      const j = await fetchRosterJersey(name, teamId, season)
+      return j ? { teamName: stint.teamName, startYear: stint.startYear, jersey: j } : null
+    }))
+    for (const r of results) { if (r) jerseyHistory.push(r) }
+  }
+
+  // Pour NBA : NBA Stats playerawards est plus complet que l'API ESPN
+  if (sport === 'nba') {
+    const nbaAwards = await fetchNbaPlayerAwards(name)
+    if (nbaAwards.length > 0) honors = nbaAwards
+  }
+
+  return { sport, birthDate, birthPlace, teams, position, height, weight, jersey, nationality, age, currentTeamId, currentTeamLogo, career, honors, jerseyHistory }
 }
  
