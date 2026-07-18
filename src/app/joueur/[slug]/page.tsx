@@ -744,7 +744,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                         const colors = getTeamColors(run.teamName)
                         const label = seasonLabel(run.startYear, run.endYear, primarySport)
                         const jerseyNumber =
-                          bio?.jerseyHistory?.find(h => h.teamName === run.teamName && h.startYear === run.startYear)?.jersey
+                          bio?.jerseyHistory?.find((h: { teamName: string; startYear: number; jersey: string }) => h.teamName === run.teamName && h.startYear === run.startYear)?.jersey
                           ?? (run.endYear === careerMaxEndYear ? bio?.jersey ?? undefined : undefined)
                         return (
                           <div
