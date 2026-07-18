@@ -97,18 +97,38 @@ export default function ScannerPage() {
   useEffect(() => {
     supabase.auth.getUser().then(async ({ data }) => {
       if (!data.user) { router.push('/connexion?next=/scanner'); return }
-      const { data: cartes } = await supabase
-        .from('cartes_manuelles')
-        .select('nom, annee, collection, variation')
-        .eq('user_id', data.user.id)
-      if (cartes) {
-        setOwnedCards(cartes.map(c => ({
-          nom: c.nom || '',
-          annee: c.annee || '',
-          collection: c.collection || '',
-          variation: c.variation || '',
-        })))
+
+      const [cartesRes, profileRes] = await Promise.all([
+        supabase.from('cartes_manuelles').select('nom, annee, collection, variation').eq('user_id', data.user.id),
+        supabase.from('profiles').select('lien_csv').eq('id', data.user.id).single(),
+      ])
+
+      const all: { nom: string; annee: string; collection: string; variation: string }[] = []
+
+      for (const c of cartesRes.data || []) {
+        all.push({ nom: c.nom || '', annee: c.annee || '', collection: c.collection || '', variation: c.variation || '' })
       }
+
+      if (profileRes.data?.lien_csv) {
+        try {
+          const r = await fetch(profileRes.data.lien_csv, { signal: AbortSignal.timeout(5000) })
+          if (r.ok) {
+            const rows = (await r.text()).split(/\r?\n/).slice(4)
+            for (const row of rows) {
+              const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+              if (!c[0]?.includes('http')) continue
+              all.push({
+                nom:        (c[2] || '').replace(/^"|"$/g, ''),
+                annee:      (c[4] || '').replace(/^"|"$/g, ''),
+                collection: (c[6] || '').replace(/^"|"$/g, ''),
+                variation:  (c[7] || '').replace(/^"|"$/g, ''),
+              })
+            }
+          }
+        } catch { /* CSV inaccessible */ }
+      }
+
+      setOwnedCards(all)
       setCollectionLoaded(true)
     })
   }, [])
