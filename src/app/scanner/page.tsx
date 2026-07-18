@@ -146,10 +146,23 @@ export default function ScannerPage() {
     setPhase('done')
   }, [])
 
-  const pickMatch = useCallback((match: ImageMatch, currentCard: CardInfo | null) => {
+  const pickMatch = useCallback(async (match: ImageMatch) => {
     setSelectedMatch(match)
-    loadSoldComps(match.title, currentCard)
-  }, [loadSoldComps])
+    loadSoldComps(match.title, null)
+
+    // Re-identifier la carte avec le titre eBay sélectionné comme contexte fort
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session || !rectoB64) return
+    setGeminiDone(false)
+    fetch('/api/scan-card', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+      body: JSON.stringify({ imageBase64: rectoB64, mimeType: rectoMime, ebayHints: [match.title] }),
+    }).then(r => r.json()).then(d => {
+      if (!d.error) setCard(d)
+      setGeminiDone(true)
+    }).catch(() => setGeminiDone(true))
+  }, [loadSoldComps, rectoB64, rectoMime])
 
   const doScan = useCallback(async (b64: string, mime: string, versoB64?: string) => {
     setImgMatches(null); setImgSearchDone(false)
@@ -416,7 +429,7 @@ export default function ScannerPage() {
                   {imgMatches.map(m => {
                     const selected = selectedMatch?.id === m.id
                     return (
-                      <button key={m.id} onClick={() => pickMatch(m, card)}
+                      <button key={m.id} onClick={() => pickMatch(m)}
                         style={{
                           background: selected ? (dark ? '#001a5c' : '#e8f0ff') : (dark ? '#111' : '#f8f9fb'),
                           border: `2px solid ${selected ? blue : border}`,
