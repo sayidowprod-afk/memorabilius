@@ -192,10 +192,9 @@ export default function ScannerPage() {
 
     const [matches, corners] = await Promise.all([imageSearchPromise, cornersPromise])
 
-    // eBay a trouvé des correspondances → Gemini inutile, terminé
-    if (matches.length > 0) return
-
-    // Fallback : eBay n'a rien trouvé → crop + Gemini pour identifier
+    // Gemini tourne toujours — pour afficher infos carte + check collection
+    // même quand eBay a trouvé des correspondances visuelles
+    // Fallback crop si eBay n'a rien trouvé :
     let aiB64 = b64
     if (corners && (corners.confidence ?? 0) >= 0.65 && corners.topLeft) {
       try {
@@ -217,7 +216,8 @@ export default function ScannerPage() {
       return null
     })
 
-    if (identified) loadSoldComps('', identified)
+    // N'auto-charge les prix que si eBay n'avait rien trouvé
+    if (identified && matches.length === 0) loadSoldComps('', identified)
   }, [loadSoldComps])
 
   const handleRecto = async (file: File) => {

@@ -172,7 +172,7 @@ async function fetchRosterJersey(playerName: string, teamId: number, season: str
   try {
     const r = await fetch(
       `https://stats.nba.com/stats/commonteamroster?TeamID=${teamId}&Season=${season}`,
-      { headers: NBA_HEADERS, signal: AbortSignal.timeout(3000), next: { revalidate: 86400 } } as RequestInit
+      { headers: NBA_HEADERS, signal: AbortSignal.timeout(5000), next: { revalidate: 86400 } } as RequestInit
     )
     if (!r.ok) return null
     const data = await r.json()
@@ -197,7 +197,7 @@ async function fetchNbaPlayerAwards(playerName: string): Promise<string[]> {
   try {
     const r = await fetch(
       `https://stats.nba.com/stats/playerawards?PlayerID=${id}`,
-      { headers: NBA_HEADERS, signal: AbortSignal.timeout(4000), next: { revalidate: 86400 } } as RequestInit
+      { headers: NBA_HEADERS, signal: AbortSignal.timeout(8000), next: { revalidate: 86400 } } as RequestInit
     )
     if (!r.ok) return []
     const data = await r.json()
