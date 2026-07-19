@@ -224,13 +224,12 @@ export default function ScannerPage() {
     // On attend eBay d'abord — pas la peine d'attendre les coins si eBay a trouvé
     const matches = await imageSearchPromise
 
-    // Crop : utile uniquement si eBay a trouvé rien (améliore l'input Gemini)
+    // Crop toujours si coins fiables — améliore identification et variation
+    // même quand eBay a trouvé des résultats (scan-card voit la carte seule, sans fond)
     let aiB64 = b64
-    if (matches.length === 0) {
-      const corners = await cornersPromise
-      if (corners && (corners.confidence ?? 0) >= 0.65 && corners.topLeft) {
-        try { aiB64 = await cropWithCorners(b64, corners) } catch { /* fallback */ }
-      }
+    const corners = await cornersPromise
+    if (corners && (corners.confidence ?? 0) >= 0.65 && corners.topLeft) {
+      try { aiB64 = await cropWithCorners(b64, corners) } catch { /* fallback */ }
     }
 
     // Gemini tourne toujours pour identifier la carte (infos + check collection)
