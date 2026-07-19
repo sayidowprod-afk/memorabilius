@@ -298,7 +298,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [scanError, setScanError] = useState<string | null>(null)
   type DupCard = { id: string; nom: string; annee: number | null; marque: string | null; num: string | null; image_recto: string | null }
   const [dupWarning, setDupWarning] = useState<{ cards: DupCard[]; userId: string } | null>(null)
-  const rectoBase64Ref = useRef<string | null>(null)
+  const rectoBase64Ref    = useRef<string | null>(null)
+  const geminiPrediction  = useRef<Record<string, any> | null>(null)
   // Après l'insertion : propose de ranger la carte dans un classeur de la bibliothèque
   const [binderPrompt, setBinderPrompt] = useState<{ userId: string; img: string; nom: string } | null>(null)
   const [showBinderPicker, setShowBinderPicker] = useState(false)
@@ -396,6 +397,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         setScanError(card.error || `Erreur ${resp.status}`)
         return
       }
+      geminiPrediction.current = card
       setForm(f => ({
         ...f,
         // Verso avec recto : toujours écraser variation/collection/num (le verso fait autorité)
@@ -531,7 +533,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     setPreviewRecto(null); setPreviewVerso(null); setPreviewIL(null); setPreviewIR(null)
     setBinderPrompt(null); setShowBinderPicker(false)
     setDesignation(''); setDesignationDone(false); setShowDesignation(false)
-    setScanError(null); rectoBase64Ref.current = null
+    setScanError(null); rectoBase64Ref.current = null; geminiPrediction.current = null
   }
 
   const doInsert = async (uid: string) => {
@@ -550,6 +552,16 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       disponible_vente: form.disponible_vente,
     })
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
+    if (geminiPrediction.current) {
+      const pred = geminiPrediction.current
+      const final = { nom: form.nom, equipe: form.equipe, annee: form.annee, marque: form.marque, collection: form.collection, variation: form.variation, num: form.num, rc: form.rc, auto: form.auto, patch: form.patch }
+      const changed = (Object.keys(final) as (keyof typeof final)[]).filter(k => String(pred[k] ?? '') !== String(final[k] ?? ''))
+      if (changed.length > 0) {
+        supabase.from('scan_corrections').insert({
+          user_id: uid, gemini_output: pred, final_output: final, corrected_fields: changed, source: 'galerie',
+        }).then(() => {})
+      }
+    }
     supabase.auth.getSession().then(({ data: { session } }) => {
       fetch('/api/card-added', {
         method: 'POST',
