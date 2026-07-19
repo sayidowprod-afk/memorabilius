@@ -9,31 +9,45 @@ const supabase = createClient(
 
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'
 
-const PROMPT = `You are a precise computer vision system for detecting trading card boundaries.
+const PROMPT = `You are a precise computer vision system. Locate the exact physical boundary of a trading card and return its 4 corners as coordinate fractions.
 
-CARD TYPES — detect accordingly:
-• Raw card: flat rectangle on a surface, may be inside a soft plastic sleeve → find the card's own printed border
-• Toploader / one-touch rigid holder: clear plastic case — find the CARD'S printed border inside it (not the plastic edge; card is slightly inset from toploader walls)
-• PSA / BGS / CGC graded slab: thick hard plastic case with label — find the OUTER edge of the ENTIRE SLAB (the slab is the unit to locate)
-• When uncertain between toploader and slab: choose the outermost clearly-bounded rectangle
+CARD: physical rectangle, portrait ratio ≈0.714 (2.5×3.5 in) or landscape ≈1.40, never square. Glossy/matte/foil surface different from background. Faint shadow at each edge. Printed design always inset from physical edge.
 
-Size reference (helps identify which rectangle is the card):
-  Standard trading card: 2.5×3.5 in → portrait ratio ≈ 0.714, landscape ratio ≈ 1.40
-  Mini card: ~1.75×2.5 in (same ratio, smaller)
-  PSA/BGS slab: ~3×4 in portrait, slightly wider than the card inside
+CONTAINERS:
+Raw card → outermost physical edge
+Soft sleeve → card edge inside (~1 mm gap, near-invisible)
+Toploader / one-touch → card's printed edge INSIDE (plastic rim is several mm thick — ignore it)
+Slab PSA/BGS/CGC/SGC → outer edge of entire slab including label
 
-Instructions:
-1. Identify the card or slab as a whole physical object — ignore art, text, and holograms printed ON the card.
-2. Find the 4 outermost corners where straight edges meet at approximately 90° angles, accounting for perspective distortion.
-3. Express each point as a fraction of image dimensions (x: 0.0 = left edge → 1.0 = right edge; y: 0.0 = top → 1.0 = bottom).
-4. The 4 points must form a convex quadrilateral inset at least 2% from the image edge on every side.
-5. Set confidence honestly — do not inflate it:
-   - 0.90–1.00: all 4 corners clearly visible, sharp edges, unambiguous
-   - 0.60–0.89: card identified but one or more corners slightly blurred, cut off, or partially occluded
-   - 0.00–0.59: heavy blur, multiple overlapping cards, corner(s) hidden, heavy shadow, or significant uncertainty → use freely when in doubt
+THINK FIRST: one sentence — card type, container, background, position, corners visible? Then JSON.
+Example: "Raw NBA Prizm portrait on dark fabric, centered, all corners clear."
 
-Return ONLY valid JSON (no markdown, no explanation):
-{"topLeft":{"x":0.12,"y":0.08},"topRight":{"x":0.88,"y":0.06},"bottomRight":{"x":0.90,"y":0.94},"bottomLeft":{"x":0.10,"y":0.96},"confidence":0.95}`
+PROCESS:
+1. Identify card as one physical object. Exclude: background, hands, non-card rectangles (books, phones, frames, tiles, screens).
+2. Find 4 PHYSICAL CORNERS where straight edges meet — NOT corners of artwork, patch windows, holograms, text boxes.
+3. Label clockwise from image corner nearest each: topLeft → topRight → bottomRight → bottomLeft (even when card is tilted).
+4. Tilted cards: corners appear skewed — expected. Project edge lines to find true intersections.
+5. Encode 3 decimal places: x 0.000=left 1.000=right; y 0.000=top 1.000=bottom. All 4 points ≥2% inside image edges.
+6. Self-check: quad ratio must be ≈0.714 or ≈1.40. If ≈1.0 (square) → wrong object, reconsider.
+
+HARD CASES:
+Dark-on-dark / light-on-light → shadow line at card edge + texture change (card=glossy, background=rough)
+Glare on card → it's inside the boundary; project visible edges to find corners behind glare
+Partial off-frame → project visible edges; lower confidence
+Multiple cards → most central/sharpest | Hand → ignore it
+
+AVOID: ✗ image-frame corners ✗ internal design element corners ✗ toploader outer rim ✗ square result ✗ high confidence when uncertain
+
+CONFIDENCE:
+0.90–1.00 all 4 sharp, unambiguous
+0.70–0.89 card certain, 1–2 corners slightly blurred/clipped
+0.40–0.69 card found, 1–2 corners uncertain
+0.15–0.39 barely visible, mostly estimates
+0.00–0.14 no card found
+Wrong + high confidence is worse than honest low confidence.
+
+One sentence, then JSON (no markdown):
+{"topLeft":{"x":0.120,"y":0.080},"topRight":{"x":0.882,"y":0.063},"bottomRight":{"x":0.901,"y":0.941},"bottomLeft":{"x":0.098,"y":0.957},"confidence":0.95}`
 
 export async function POST(req: NextRequest) {
   const token = req.headers.get('authorization')?.replace('Bearer ', '')
@@ -60,7 +74,7 @@ export async function POST(req: NextRequest) {
         ]}],
         generationConfig: {
           temperature: 0,
-          maxOutputTokens: 256,
+          maxOutputTokens: 400,
           thinkingConfig: { thinkingBudget: 0 }
         }
       })

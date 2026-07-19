@@ -584,16 +584,7 @@ async function imageToBase64(img: HTMLImageElement, maxSize = 800, enhance = fal
   // Pour la détection de coins : boost de contraste qui rend les bords d'une carte
   // sombre sur fond sombre bien plus visibles pour le modèle vision.
   if (enhance) {
-    // Mesure la luminosité moyenne pour adapter le filtre (carte sombre vs normale)
-    ctx.drawImage(img, 0, 0, W, H)
-    const px = ctx.getImageData(0, 0, W, H).data
-    let gSum = 0
-    for (let i = 0; i < px.length; i += 4) gSum += px[i] * 0.299 + px[i+1] * 0.587 + px[i+2] * 0.114
-    const avg = gSum / (W * H)
-    // Plus sombre = boost agressif pour rendre les bords visibles à Gemini
-    ctx.filter = avg < 60  ? 'brightness(600%) contrast(120%)'
-               : avg < 110 ? 'brightness(300%) contrast(140%)'
-               :              'brightness(180%) contrast(160%)'
+    ctx.filter = 'brightness(150%) contrast(180%)'
     ctx.drawImage(img, 0, 0, W, H)
   } else {
     ctx.drawImage(img, 0, 0, W, H)
@@ -737,7 +728,7 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
   // ── Étape 1 : Gemini Pro sur l'image entière (premier, le plus précis) ──
   try {
     await yieldThread() // laisse le browser peindre avant le travail sync
-    const { b64 } = await imageToBase64(img, 1024, true)  // contraste boosté pour la détection de bords
+    const { b64 } = await imageToBase64(img, 800, true)
     await yieldThread()
     const ctrl = new AbortController()
     const t = setTimeout(() => ctrl.abort(), 6000)
