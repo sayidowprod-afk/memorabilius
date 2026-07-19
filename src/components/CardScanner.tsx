@@ -1005,11 +1005,11 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           } catch {}
         }
       } else {
-        // Upload fichier : Gemini seulement (pas d'OpenCV — évite le blocage main thread)
+        // Upload fichier : Gemini 2.5 Flash d'abord, puis OpenCV + JS pur en fallback
         try {
           result = await Promise.race([
-            detectCard(img, { geminiOnly: true }),
-            new Promise<null>(r => setTimeout(() => r(null), 4500)),
+            detectCard(img),
+            new Promise<null>(r => setTimeout(() => r(null), 7000)),
           ])
         } catch {}
       }
