@@ -727,10 +727,15 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
     const { b64 } = await imageToBase64(img, 1024, true)  // contraste boosté pour la détection de bords
     await yieldThread()
     const ctrl = new AbortController()
-    const t = setTimeout(() => ctrl.abort(), 3000)
+    const t = setTimeout(() => ctrl.abort(), 4000)
     let res: Response
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const sessionResult = await Promise.race([
+        supabase.auth.getSession(),
+        new Promise<null>(r => setTimeout(() => r(null), 2000)),
+      ])
+      if (!sessionResult) throw new Error('session timeout')
+      const { data: { session } } = sessionResult
       res = await fetch('/api/detect-corners', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
@@ -971,69 +976,23 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       let result: Pt[] | null = null
 
       if (frameRect) {
-        // Essai 1 : JS pur depuis le cadre overlay (rapide, pas de serveur)
+        // Étape 1 : JS pur depuis le cadre overlay (gratuit, instantané)
         result = detectCardFromFrame(img, frameRect)
 
-        // Essai 2 : OpenCV sur le crop du cadre si JS échoue
-        if (!result) {
-          try {
-            const cv = await Promise.race([loadOpenCV(), new Promise<null>(r => setTimeout(() => r(null), 3500))])
-            if (cv) {
-              const PAD = 0.12
-              const cx2 = Math.max(0, frameRect.x - frameRect.w * PAD)
-              const cy2 = Math.max(0, frameRect.y - frameRect.h * PAD)
-              const cw2 = Math.min(img.naturalWidth  - cx2, frameRect.w * (1 + PAD * 2))
-              const ch2 = Math.min(img.naturalHeight - cy2, frameRect.h * (1 + PAD * 2))
-              // Plafonner à 800px pour éviter OOM sur mobile
-              const cropScale = Math.min(1, 800 / Math.max(cw2, ch2))
-              const ccW = Math.round(cw2 * cropScale), ccH = Math.round(ch2 * cropScale)
-              const cc  = document.createElement('canvas')
-              cc.width = ccW; cc.height = ccH
-              cc.getContext('2d')!.drawImage(img, cx2, cy2, cw2, ch2, 0, 0, ccW, ccH)
-              const ci  = new Image()
-              ci.src = cc.toDataURL('image/jpeg', 0.92)
-              await new Promise(r => { ci.onload = r })
-              const cropCorners = await detectCardInCrop(ci, cv)
-              if (cropCorners) result = cropCorners.map(p => ({
-                x: p.x / cropScale + cx2,
-                y: p.y / cropScale + cy2,
-              }))
-            }
-          } catch {}
-        }
-
-        // Essai 3 : Gemini sur l'image complète (JS + OpenCV ont tous les deux échoué)
+        // Étape 2 : Gemini si JS échoue
         if (!result) {
           try {
             result = await Promise.race([
-              detectCard(img),
-              new Promise<null>(r => setTimeout(() => r(null), 4000)),  // 8000→4000
+              detectCard(img, { geminiOnly: true }),
+              new Promise<null>(r => setTimeout(() => r(null), 5000)),
             ])
           } catch {}
         }
       } else {
-        // Upload fichier : local d'abord (rapide, gratuit), Gemini en dernier recours
-        // Note : OpenCV retourne null proprement sur fond sombre → Gemini est atteint
-
-        // Étape 1 : JS pur (instantané)
+        // Étape 1 : JS pur (gratuit, instantané)
         result = detectCardPureJS(img)
 
-        // Étape 2 : OpenCV si JS échoue (~1-2s)
-        if (!result) {
-          try {
-            const cv = await Promise.race([
-              loadOpenCV(),
-              new Promise<null>(r => setTimeout(() => r(null), 3000)),
-            ])
-            if (cv) {
-              await yieldThread()
-              result = await detectCardOpenCV(img, cv)
-              await yieldThread()
-            }
-          } catch {}
-        }
-
-        // Étape 3 : Gemini 2.0 Flash pour les cas difficiles (fond similaire, slab…)
+        // Étape 2 : Gemini si JS échoue (fond sombre/similaire, slab…)
         if (!result) {
           try {
             result = await Promise.race([
@@ -1049,10 +1008,9 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
 
     let detectedCorners: Pt[] | null = null
     try {
-      // Upload = Gemini 2.0 Flash en premier → jusqu'à 9s ; caméra = local d'abord → 6s
       detectedCorners = await Promise.race([
         detectPipeline(),
-        new Promise<null>(r => setTimeout(() => r(null), frameRect ? 6000 : 9000)),
+        new Promise<null>(r => setTimeout(() => r(null), 7000)),
       ])
     } catch {
       detectedCorners = null
