@@ -91,7 +91,13 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
 
   try {
     cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY)
-    cv.GaussianBlur(gray, blur, new cv.Size(7, 7), 0)
+    // Égalisation d'histogramme : redistribue les niveaux sur 0-255,
+    // ce qui rend les bords d'une carte sombre sur fond sombre beaucoup plus visibles.
+    const equalized = new cv.Mat()
+    try {
+      cv.equalizeHist(gray, equalized)
+      cv.GaussianBlur(equalized, blur, new cv.Size(7, 7), 0)
+    } finally { equalized.delete() }
   } catch (e) {
     src.delete(); gray.delete(); blur.delete()
     throw e
@@ -136,15 +142,28 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
         const approx = new cv.Mat()
         try {
           cv.approxPolyDP(cnt, approx, 0.03 * peri, true)
+          let pts: Pt[] | null = null
           if (approx.rows === 4) {
-            const pts: Pt[] = []
+            const raw: Pt[] = []
             for (let j = 0; j < 4; j++)
-              pts.push({ x: approx.data32S[j * 2] / scale, y: approx.data32S[j * 2 + 1] / scale })
-            const ordered = orderCorners(pts)
-            const ratio   = quadRatio(ordered)
+              raw.push({ x: approx.data32S[j * 2] / scale, y: approx.data32S[j * 2 + 1] / scale })
+            pts = orderCorners(raw)
+          } else if (approx.rows > 4) {
+            // Contour complexe (patch, fenêtre, bordure irrégulière) → rectangle orienté minimal
+            const boxMat = new cv.Mat()
+            try {
+              cv.boxPoints(cv.minAreaRect(cnt), boxMat)
+              const raw: Pt[] = []
+              for (let j = 0; j < 4; j++)
+                raw.push({ x: boxMat.data32F[j * 2] / scale, y: boxMat.data32F[j * 2 + 1] / scale })
+              pts = orderCorners(raw)
+            } finally { boxMat.delete() }
+          }
+          if (pts) {
+            const ratio = quadRatio(pts)
             if (isCardRatio(ratio)) {
               const score = ratioScore(ratio)
-              if (score < bestScore) { bestScore = score; best = ordered }
+              if (score < bestScore) { bestScore = score; best = pts }
             }
           }
         } finally { approx.delete(); cnt.delete() }
@@ -571,13 +590,17 @@ function detectCardPureJS(img: HTMLImageElement): Pt[] | null {
 
 // ── Détection Roboflow → bbox → OpenCV corners ───────────────────────────
 
-async function imageToBase64(img: HTMLImageElement, maxSize = 800): Promise<{ b64: string; scale: number }> {
+async function imageToBase64(img: HTMLImageElement, maxSize = 800, enhance = false): Promise<{ b64: string; scale: number }> {
   const scale = Math.min(maxSize / img.naturalWidth, maxSize / img.naturalHeight, 1)
   const W = Math.round(img.naturalWidth * scale)
   const H = Math.round(img.naturalHeight * scale)
   const c = document.createElement('canvas')
   c.width = W; c.height = H
-  c.getContext('2d')!.drawImage(img, 0, 0, W, H)
+  const ctx = c.getContext('2d')!
+  // Pour la détection de coins : boost de contraste qui rend les bords d'une carte
+  // sombre sur fond sombre bien plus visibles pour le modèle vision.
+  if (enhance) ctx.filter = 'brightness(180%) contrast(160%)'
+  ctx.drawImage(img, 0, 0, W, H)
   const dataUrl = c.toDataURL('image/jpeg', 0.85)
   c.width = 0
   return { b64: dataUrl.split(',')[1], scale }
@@ -717,7 +740,7 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
   // ── Étape 1 : Gemini Pro sur l'image entière (premier, le plus précis) ──
   try {
     await yieldThread() // laisse le browser peindre avant le travail sync
-    const { b64 } = await imageToBase64(img, 1024)
+    const { b64 } = await imageToBase64(img, 1024, true)  // contraste boosté pour la détection de bords
     await yieldThread()
     const ctrl = new AbortController()
     const t = setTimeout(() => ctrl.abort(), 3000)
