@@ -1012,11 +1012,36 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           } catch {}
         }
       } else {
-        // Upload fichier : Gemini en premier (robuste sur fond sombre/similaire),
-        // méthodes locales seulement si Gemini échoue (timeout, erreur API)
-        try {
-          result = await detectCard(img)
-        } catch {}
+        // Upload fichier : local d'abord (rapide, gratuit), Gemini en dernier recours
+        // Note : OpenCV retourne null proprement sur fond sombre → Gemini est atteint
+
+        // Étape 1 : JS pur (instantané)
+        result = detectCardPureJS(img)
+
+        // Étape 2 : OpenCV si JS échoue (~1-2s)
+        if (!result) {
+          try {
+            const cv = await Promise.race([
+              loadOpenCV(),
+              new Promise<null>(r => setTimeout(() => r(null), 3000)),
+            ])
+            if (cv) {
+              await yieldThread()
+              result = await detectCardOpenCV(img, cv)
+              await yieldThread()
+            }
+          } catch {}
+        }
+
+        // Étape 3 : Gemini 2.0 Flash pour les cas difficiles (fond similaire, slab…)
+        if (!result) {
+          try {
+            result = await Promise.race([
+              detectCard(img, { geminiOnly: true }),
+              new Promise<null>(r => setTimeout(() => r(null), 5000)),
+            ])
+          } catch {}
+        }
       }
 
       return result
