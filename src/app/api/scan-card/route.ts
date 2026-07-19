@@ -60,24 +60,55 @@ RÈGLE CLÉ : le nom de l'insert est presque TOUJOURS IMPRIMÉ sur la carte.
 → Ne devine PAS l'insert visuellement si aucun texte ne le confirme.
 → Combinaison insert + parallèle possible : "Bang! Silver Prizm", "Stained Glass Gold Prizm"
 
+▸ PANINI SELECT — parallèles spécifiques
+  Niveaux de la carte (≠ variation) : Concourse (commun) / Field Level (bleu) / Premier Level (violet/foncé)
+  Vrais parallèles : Silver /149 → "Silver Select" | Neon Green /75 → "Neon Green Select"
+  Tri-Color /49 → "Tri-Color Select" | Zebra /35 → "Zebra Select" | Mojo /25 → "Mojo Select"
+  Gold /10 → "Gold Select" | Black /1 → "Black Select"
+  Inserts distincts : Die-Cut, Phenomenon, In The Clutch → nom imprimé sur la carte
+
+▸ PANINI PRIZM — parallèles complémentaires
+  Pink Ice → "Pink Ice Prizm" | Tiger Stripe → "Tiger Stripe Prizm" | Starburst → "Starburst Prizm"
+  Wave → "Wave Prizm" | White Sparkle /10 → "White Sparkle Prizm" | Gold Vinyl /1 → "Gold Vinyl Prizm"
+  Fast Break → "Fast Break Prizm" | Hyper → "Hyper Prizm"
+
+▸ PANINI PREMIUM (Immaculate / National Treasures / Noir / Obsidian)
+  Ces produits ultra-premium ont leurs propres parallèles — lire le TEXTE IMPRIMÉ en priorité absolue
+  Immaculate : Gold /10 → "Gold Immaculate" | Ruby /5 → "Ruby Immaculate" | Black /1 → "Black Immaculate"
+  National Treasures : Gold /10, Ruby /5, Laundry Tag /1, Logoman /1 → noter tel quel
+  Noir : Amber /79, Gold /25, Ruby /10, Black /1
+  Obsidian : Galaxy /35, Electric Eel /55, Lava /20, Purple /10, Black /1
+
 ▸ TOPPS / BOWMAN
   Base papier → ""
   Refractor (aspect miroir légèrement irisé) → "Refractor"
-  [Couleur] Refractor → "Blue Refractor", "Green Refractor", "Orange Refractor"
-  Gold Refractor /50 → "Gold Refractor" | Red Refractor /5 → "Red Refractor" | SuperFractor /1 → "SuperFractor"
-  Prism / Atomic / X-Fractor / Negative → noter l'effet exact
-  Heritage Short Print → "Short Print"
-  1st Bowman / 1st Card visible → rc=true
-  Inserts (Future Stars, etc.) : nom généralement imprimé sur la carte → lire le texte
+  Parallèles Refractor : "Blue Refractor" /150 | "Green Refractor" /99 | "Purple Refractor" /250
+  "Sepia Refractor" /75 | "Orange Refractor" /25 | "Gold Refractor" /50
+  "Red Refractor" /5 | "SuperFractor" /1
+  Effets : "Prism Refractor" | "Atomic Refractor" | "X-Fractor" | "Negative" | "Speckle"
+  Chrome parallèles non-Refractor : "Gold" /50 | "Black" /25 | "Pink" /25 | "Purple" /250
+  Topps base sets : "Gold" (numéroté à l'année ex /2025) | "Rainbow Foil" | "Independence Day" /76
+  "Black" /63 | "Platinum" /1 | "Pink" /50 | "Orange" /50
+  Heritage : "Short Print" (SP) | "Chrome" variante spécifique | "Black" /63
+  1st Bowman (logo 1st sur la carte) → rc=true, variation=""
+  Inserts (Future Stars, Prospects, etc.) : nom généralement imprimé → lire le texte
 
 ▸ UPPER DECK (NHL/NBA)
   Young Guns → rc=true, variation="Young Guns"
-  Canvas → "Canvas" | Clear Cut → "Clear Cut" | Exclusives /100 → "Exclusives" | French → "French"
+  Canvas → "Canvas" | OPC Retro → "O-Pee-Chee Retro" | Clear Cut → "Clear Cut"
+  Exclusives /100 → "Exclusives" | French → "French" | Spectrum FoilX → "Spectrum FoilX"
 
 ▸ POKÉMON / TCG
   Holo Rare → "Holo Rare" | Reverse Holo → "Reverse Holo" | Full Art → "Full Art"
-  Secret Rare → "Secret Rare" | Rainbow Rare → "Rainbow Rare"
-  VMAX / V / ex / GX → noter dans variation
+  Secret Rare → "Secret Rare" | Rainbow Rare → "Rainbow Rare" | Alt Art → "Alt Art"
+  VMAX / V / ex / GX / EX / LV.X → noter dans variation
+  Gold card / Gold Secret → "Gold Secret Rare"
+
+▸ VINTAGE / CLASSIQUES (pré-2000) — Fleer, Score, SkyBox, Hoops, Classic, Leaf, Pro Set
+  La plupart sont des bases → variation=""
+  Inserts imprimés sur la carte → lire le texte (Fleer Metal Universe, SkyBox Premium, etc.)
+  Upper Deck SP (Special Edition) → variation="SP" | SPx → lire le texte du set
+  Score/Pinnacle/Donruss anciens : parallèles rares, souvent imprimés (Score Gold Rush, etc.)
 
 ═══ RÈGLES GÉNÉRALES ═══
 
@@ -130,7 +161,7 @@ export async function POST(req: NextRequest) {
     // Injecter les titres eBay comme contexte fort quand disponibles
     let fullPrompt = PROMPT
     if (Array.isArray(ebayHints) && ebayHints.length > 0) {
-      fullPrompt += `\n\nRÉSULTATS RECHERCHE VISUELLE EBAY :\nCes titres de listings correspondent visuellement à cette carte. Utilise-les comme indices forts — ils font autorité sur tes déductions visuelles pour l'année, le set et la variation :\n` +
+      fullPrompt += `\n\n═══ TITRES EBAY — INDICES PRIORITAIRES ═══\nCes listings correspondent visuellement à cette carte exacte. RÈGLES OBLIGATOIRES :\n• Copie la variation VERBATIM depuis le titre (ex: titre contient "Silver Prizm" → variation="Silver Prizm", titre contient "Blue Hyper Prizm" → variation="Blue Hyper Prizm")\n• Copie l'année VERBATIM (ex: "2023-24 Panini" → annee="2023-24")\n• Si le titre mentionne "RC" ou "Rookie" → rc=true\n• Si le titre mentionne "Auto" ou "Autograph" → auto=true\n• Si le titre contient "/XX" ou "XX/XX" → num="/XX" ou "XX/XX"\n• Ces indices font AUTORITÉ sur tes déductions visuelles — utilise-les sauf contradiction flagrante avec l'image\n` +
         ebayHints.slice(0, 5).map((t: string, i: number) => `${i + 1}. "${t}"`).join('\n')
     }
 

@@ -538,6 +538,37 @@ async function detectCardInCrop(cropImg: HTMLImageElement, cv: any): Promise<Pt[
   return best
 }
 
+// ── Détection JS pure (threshold + Hough) — fallback gratuit sans OpenCV ─
+// Utilisé quand Gemini échoue sur un upload fichier, et comme dernier recours
+// après OpenCV sur les captures caméra.
+
+function detectCardPureJS(img: HTMLImageElement): Pt[] | null {
+  try {
+    const MAX = 600
+    const scale = Math.min(MAX / img.naturalWidth, MAX / img.naturalHeight, 1)
+    const W = Math.round(img.naturalWidth * scale)
+    const H = Math.round(img.naturalHeight * scale)
+    const c = document.createElement('canvas')
+    c.width = W; c.height = H
+    c.getContext('2d')!.drawImage(img, 0, 0, W, H)
+    const { data } = c.getContext('2d')!.getImageData(0, 0, W, H)
+    c.width = 0
+
+    // Méthode 1 : seuillage Otsu + plus grand blob
+    const t = detectByThreshold(data, W, H)
+    if (t) return t.map(p => ({ x: p.x / scale, y: p.y / scale }))
+
+    // Méthode 2 : Hough sur les bords périphériques uniquement
+    const gray    = normalize(toGray(data, W, H))
+    const blurred = gaussBlur(gray, W, H)
+    const edges   = sobel(blurred, W, H)
+    const masked  = peripheralMask(edges, W, H)
+    const h = detectCornersHough(masked, W, H)
+    if (h) return h.map(p => ({ x: p.x / scale, y: p.y / scale }))
+  } catch {}
+  return null
+}
+
 // ── Détection Roboflow → bbox → OpenCV corners ───────────────────────────
 
 async function imageToBase64(img: HTMLImageElement, maxSize = 800): Promise<{ b64: string; scale: number }> {
@@ -724,9 +755,13 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
     }
   } catch { /* fallback OpenCV si pas geminiOnly */ }
 
-  // ── Étape 2 : OpenCV fallback (caméra uniquement — pas pour les uploads fichier) ──
-  if (geminiOnly) return null
+  // ── Étape 2 : fallback selon le mode ─────────────────────────────────────
+  if (geminiOnly) {
+    // Upload fichier : pas d'OpenCV (main thread), mais JS pur gratuit
+    return detectCardPureJS(img)
+  }
 
+  // ── Étape 3 : OpenCV (caméra) ─────────────────────────────────────────
   await yieldThread()
   try {
     const cv = await Promise.race([
@@ -741,7 +776,8 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
     }
   } catch { /* rien */ }
 
-  return null
+  // ── Étape 4 : JS pur (dernier recours, caméra) ───────────────────────
+  return detectCardPureJS(img)
 }
 
 // ── Perspective warp pure JS (homographie) ────────────────────────────────

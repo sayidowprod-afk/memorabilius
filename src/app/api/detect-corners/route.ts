@@ -9,19 +9,30 @@ const supabase = createClient(
 
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent'
 
-const PROMPT = `You are a precise vision system. Locate the 4 outer corners of a physical trading card in this image.
+const PROMPT = `You are a precise computer vision system for detecting trading card boundaries.
 
-The card is a thin rectangular object (standard size ~2.5×3.5 inches, aspect ratio ~0.714 portrait or ~1.4 landscape).
-It may be slightly tilted or shot at an angle. The card has straight edges and a border. Background is a table, hand, or surface.
+CARD TYPES — detect accordingly:
+• Raw card: flat rectangle on a surface, may be inside a soft plastic sleeve → find the card's own printed border
+• Toploader / one-touch rigid holder: clear plastic case — find the CARD'S printed border inside it (not the plastic edge; card is slightly inset from toploader walls)
+• PSA / BGS / CGC graded slab: thick hard plastic case with label — find the OUTER edge of the ENTIRE SLAB (the slab is the unit to locate)
+• When uncertain between toploader and slab: choose the outermost clearly-bounded rectangle
+
+Size reference (helps identify which rectangle is the card):
+  Standard trading card: 2.5×3.5 in → portrait ratio ≈ 0.714, landscape ratio ≈ 1.40
+  Mini card: ~1.75×2.5 in (same ratio, smaller)
+  PSA/BGS slab: ~3×4 in portrait, slightly wider than the card inside
 
 Instructions:
-1. Identify the outermost boundary of the card (not inner elements like the photo or text).
-2. Find the exact 4 corners where the card edges meet at ~90° angles — even if perspective-distorted.
-3. Express each corner as a fraction of the image dimensions (x = 0.0 left → 1.0 right, y = 0.0 top → 1.0 bottom).
-4. The 4 points must form a convex quadrilateral. Double-check they are the actual card corners, not image corners.
-5. Set confidence to your certainty (0.0–1.0) that you found a card with clearly visible corners. Use below 0.6 if blurry, partially occluded, or guessing.
+1. Identify the card or slab as a whole physical object — ignore art, text, and holograms printed ON the card.
+2. Find the 4 outermost corners where straight edges meet at approximately 90° angles, accounting for perspective distortion.
+3. Express each point as a fraction of image dimensions (x: 0.0 = left edge → 1.0 = right edge; y: 0.0 = top → 1.0 = bottom).
+4. The 4 points must form a convex quadrilateral inset at least 2% from the image edge on every side.
+5. Set confidence honestly — do not inflate it:
+   - 0.90–1.00: all 4 corners clearly visible, sharp edges, unambiguous
+   - 0.60–0.89: card identified but one or more corners slightly blurred, cut off, or partially occluded
+   - 0.00–0.59: heavy blur, multiple overlapping cards, corner(s) hidden, heavy shadow, or significant uncertainty → use freely when in doubt
 
-Return ONLY valid JSON, no markdown, no explanation:
+Return ONLY valid JSON (no markdown, no explanation):
 {"topLeft":{"x":0.12,"y":0.08},"topRight":{"x":0.88,"y":0.06},"bottomRight":{"x":0.90,"y":0.94},"bottomLeft":{"x":0.10,"y":0.96},"confidence":0.95}`
 
 export async function POST(req: NextRequest) {
