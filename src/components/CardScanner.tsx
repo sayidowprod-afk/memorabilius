@@ -989,18 +989,14 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           } catch {}
         }
       } else {
-        // Étape 1 : JS pur (gratuit, instantané)
-        result = detectCardPureJS(img)
-
-        // Étape 2 : Gemini si JS échoue (fond sombre/similaire, slab…)
-        if (!result) {
-          try {
-            result = await Promise.race([
-              detectCard(img, { geminiOnly: true }),
-              new Promise<null>(r => setTimeout(() => r(null), 5000)),
-            ])
-          } catch {}
-        }
+        // Upload fichier : Gemini directement (JS pur cause des faux positifs
+        // sur cartes sombres — il détecte la zone lumineuse plutôt que la carte entière)
+        try {
+          result = await Promise.race([
+            detectCard(img, { geminiOnly: true }),
+            new Promise<null>(r => setTimeout(() => r(null), 5000)),
+          ])
+        } catch {}
       }
 
       return result
