@@ -583,8 +583,21 @@ async function imageToBase64(img: HTMLImageElement, maxSize = 800, enhance = fal
   const ctx = c.getContext('2d')!
   // Pour la détection de coins : boost de contraste qui rend les bords d'une carte
   // sombre sur fond sombre bien plus visibles pour le modèle vision.
-  if (enhance) ctx.filter = 'brightness(180%) contrast(160%)'
-  ctx.drawImage(img, 0, 0, W, H)
+  if (enhance) {
+    // Mesure la luminosité moyenne pour adapter le filtre (carte sombre vs normale)
+    ctx.drawImage(img, 0, 0, W, H)
+    const px = ctx.getImageData(0, 0, W, H).data
+    let gSum = 0
+    for (let i = 0; i < px.length; i += 4) gSum += px[i] * 0.299 + px[i+1] * 0.587 + px[i+2] * 0.114
+    const avg = gSum / (W * H)
+    // Plus sombre = boost agressif pour rendre les bords visibles à Gemini
+    ctx.filter = avg < 60  ? 'brightness(600%) contrast(120%)'
+               : avg < 110 ? 'brightness(300%) contrast(140%)'
+               :              'brightness(180%) contrast(160%)'
+    ctx.drawImage(img, 0, 0, W, H)
+  } else {
+    ctx.drawImage(img, 0, 0, W, H)
+  }
   const dataUrl = c.toDataURL('image/jpeg', 0.85)
   c.width = 0
   return { b64: dataUrl.split(',')[1], scale }
@@ -727,7 +740,7 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
     const { b64 } = await imageToBase64(img, 1024, true)  // contraste boosté pour la détection de bords
     await yieldThread()
     const ctrl = new AbortController()
-    const t = setTimeout(() => ctrl.abort(), 4000)
+    const t = setTimeout(() => ctrl.abort(), 6000)
     let res: Response
     try {
       const sessionResult = await Promise.race([
@@ -746,8 +759,8 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
 
     if (res!.ok) {
       const { topLeft: tl, topRight: tr, bottomRight: br, bottomLeft: bl, confidence } = await res!.json()
-      // En mode geminiOnly, on accepte un seuil plus bas (pas de fallback OpenCV possible)
-      const minConf = geminiOnly ? 0.40 : 0.55
+      // Seuil bas en geminiOnly : mieux vaut les coins Gemini imparfaits que JS pur faux
+      const minConf = geminiOnly ? 0.20 : 0.55
       if (confidence !== null && confidence !== undefined && confidence < minConf) {
         if (!geminiOnly) throw new Error('low confidence')
       } else if (tl && tr && br && bl) {
@@ -769,8 +782,9 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
 
   // ── Étape 2 : fallback selon le mode ─────────────────────────────────────
   if (geminiOnly) {
-    // Upload fichier : pas d'OpenCV (main thread), mais JS pur gratuit
-    return detectCardPureJS(img)
+    // Upload fichier : si Gemini échoue, rectangle par défaut (pas de JS pur
+    // qui donne de faux coins sur cartes sombres)
+    return null
   }
 
   // ── Étape 3 : OpenCV (caméra) ─────────────────────────────────────────
@@ -989,12 +1003,11 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           } catch {}
         }
       } else {
-        // Upload fichier : Gemini directement (JS pur cause des faux positifs
-        // sur cartes sombres — il détecte la zone lumineuse plutôt que la carte entière)
+        // Upload fichier : Gemini direct, timeout 9s (session 2s + fetch 6s + marge)
         try {
           result = await Promise.race([
             detectCard(img, { geminiOnly: true }),
-            new Promise<null>(r => setTimeout(() => r(null), 5000)),
+            new Promise<null>(r => setTimeout(() => r(null), 9000)),
           ])
         } catch {}
       }
