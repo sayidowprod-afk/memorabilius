@@ -210,34 +210,14 @@ export default function ScannerPage() {
       return [] as ImageMatch[]
     })
 
-    // Détection coins : uniquement utile si eBay ne trouve rien (fallback Gemini)
-    // On lance en parallèle pour ne pas perdre de temps si on en a besoin
-    const cornersPromise: Promise<Record<string, {x:number;y:number}> & {confidence?: number} | null> = Promise.race([
-      fetch('/api/detect-corners', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
-        body: JSON.stringify({ imageBase64: b64, mimeType: mime }),
-      }).then(r => r.json()).catch(() => null),
-      new Promise<null>(r => setTimeout(() => r(null), 5000)),
-    ])
-
-    // On attend eBay d'abord — pas la peine d'attendre les coins si eBay a trouvé
     const matches = await imageSearchPromise
-
-    // Crop toujours si coins fiables — améliore identification et variation
-    // même quand eBay a trouvé des résultats (scan-card voit la carte seule, sans fond)
-    let aiB64 = b64
-    const corners = await cornersPromise
-    if (corners && (corners.confidence ?? 0) >= 0.65 && corners.topLeft) {
-      try { aiB64 = await cropWithCorners(b64, corners) } catch { /* fallback */ }
-    }
 
     // Gemini tourne toujours pour identifier la carte (infos + check collection)
     const identified = await fetch('/api/scan-card', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
       body: JSON.stringify({
-        imageBase64: aiB64,
+        imageBase64: b64,
         imageBase64Verso: versoB64,
         mimeType: mime,
         ...(matches.length > 0 && { ebayHints: matches.slice(0, 5).map(m => m.title) }),

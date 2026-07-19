@@ -750,8 +750,8 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
 
     if (res!.ok) {
       const { topLeft: tl, topRight: tr, bottomRight: br, bottomLeft: bl, confidence } = await res!.json()
-      // Seuil bas en geminiOnly : mieux vaut les coins Gemini imparfaits que JS pur faux
-      const minConf = geminiOnly ? 0.20 : 0.55
+      // geminiOnly : seuil plus strict — mieux vaut defaultCorners ajustables que coins faux
+      const minConf = geminiOnly ? 0.40 : 0.55
       if (confidence !== null && confidence !== undefined && confidence < minConf) {
         if (!geminiOnly) throw new Error('low confidence')
       } else if (tl && tr && br && bl) {
@@ -766,7 +766,7 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
         const ratio = w / (h || 1)
         const CARD_RATIO = 2.5 / 3.5
         const rScore = Math.min(Math.abs(ratio - CARD_RATIO), Math.abs(ratio - 1 / CARD_RATIO))
-        if (rScore < 0.45) return corners
+        if (rScore < 0.28) return corners
       }
     }
   } catch { /* fallback OpenCV si pas geminiOnly */ }
