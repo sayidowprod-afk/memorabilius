@@ -91,13 +91,7 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
 
   try {
     cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY)
-    // Égalisation d'histogramme : redistribue les niveaux sur 0-255,
-    // ce qui rend les bords d'une carte sombre sur fond sombre beaucoup plus visibles.
-    const equalized = new cv.Mat()
-    try {
-      cv.equalizeHist(gray, equalized)
-      cv.GaussianBlur(equalized, blur, new cv.Size(7, 7), 0)
-    } finally { equalized.delete() }
+    cv.GaussianBlur(gray, blur, new cv.Size(7, 7), 0)
   } catch (e) {
     src.delete(); gray.delete(); blur.delete()
     throw e
@@ -148,16 +142,6 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
             for (let j = 0; j < 4; j++)
               raw.push({ x: approx.data32S[j * 2] / scale, y: approx.data32S[j * 2 + 1] / scale })
             pts = orderCorners(raw)
-          } else if (approx.rows > 4) {
-            // Contour complexe (patch, fenêtre, bordure irrégulière) → rectangle orienté minimal
-            const boxMat = new cv.Mat()
-            try {
-              cv.boxPoints(cv.minAreaRect(cnt), boxMat)
-              const raw: Pt[] = []
-              for (let j = 0; j < 4; j++)
-                raw.push({ x: boxMat.data32F[j * 2] / scale, y: boxMat.data32F[j * 2 + 1] / scale })
-              pts = orderCorners(raw)
-            } finally { boxMat.delete() }
           }
           if (pts) {
             const ratio = quadRatio(pts)
@@ -1028,35 +1012,11 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           } catch {}
         }
       } else {
-        // Upload fichier : client-side gratuit d'abord, Gemini seulement si tout échoue
-
-        // Étape 1 : JS pur (instantané, gratuit)
-        result = detectCardPureJS(img)
-
-        // Étape 2 : OpenCV si JS échoue (gratuit, ~1-2s)
-        if (!result) {
-          try {
-            const cv = await Promise.race([
-              loadOpenCV(),
-              new Promise<null>(r => setTimeout(() => r(null), 3500)),
-            ])
-            if (cv) {
-              await yieldThread()
-              result = await detectCardOpenCV(img, cv)
-              await yieldThread()
-            }
-          } catch {}
-        }
-
-        // Étape 3 : Gemini 2.0 Flash seulement si client-side échoue (cas difficiles)
-        if (!result) {
-          try {
-            result = await Promise.race([
-              detectCard(img, { geminiOnly: true }),
-              new Promise<null>(r => setTimeout(() => r(null), 4500)),
-            ])
-          } catch {}
-        }
+        // Upload fichier : Gemini en premier (robuste sur fond sombre/similaire),
+        // méthodes locales seulement si Gemini échoue (timeout, erreur API)
+        try {
+          result = await detectCard(img)
+        } catch {}
       }
 
       return result
@@ -1064,9 +1024,10 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
 
     let detectedCorners: Pt[] | null = null
     try {
+      // Upload = Gemini 2.0 Flash en premier → jusqu'à 9s ; caméra = local d'abord → 6s
       detectedCorners = await Promise.race([
         detectPipeline(),
-        new Promise<null>(r => setTimeout(() => r(null), 6000)),  // 11000→6000 : max 6s
+        new Promise<null>(r => setTimeout(() => r(null), frameRect ? 6000 : 9000)),
       ])
     } catch {
       detectedCorners = null
