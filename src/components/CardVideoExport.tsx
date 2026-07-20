@@ -17,7 +17,6 @@ const VIDEO_FORMATS = {
 } as const
 type VideoFormat = keyof typeof VIDEO_FORMATS
 
-// Particules stables (déterministes) — moins sur mobile pour les perfs
 const PARTICLE_COUNT = IS_MOBILE ? 20 : 50
 const PARTICLES = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
   x: (i * 137.508) % 1,
@@ -26,6 +25,14 @@ const PARTICLES = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
   speed: 0.05 + (i % 6) * 0.02,
   phase: i * 0.73,
 }))
+
+
+function truncate(ctx: CanvasRenderingContext2D, text: string, maxW: number): string {
+  if (!text || ctx.measureText(text).width <= maxW) return text
+  let t = text
+  while (t.length > 1 && ctx.measureText(t + '…').width > maxW) t = t.slice(0, -1)
+  return t + '…'
+}
 
 export default function CardVideoExport({ card, accent, onClose }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -59,7 +66,6 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     })
   }, [])
 
-  // Sync canvas size + dessine un aperçu statique du rendu
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -108,36 +114,57 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const textMain = isDark ? '#ffffff' : '#111111'
     const textSub  = isDark ? 'rgba(255,255,255,0.52)' : 'rgba(0,0,0,0.48)'
 
-    // ── Fond statique (mis en cache) : base + halo accent + dégradé vertical ─
+    // ── Fond statique mis en cache ────────────────────────────────────────────
     const bgKey = `${W}x${H}-${isDark}-${accent}`
     if (!bgCache.current || bgCache.current.key !== bgKey) {
       const oc = document.createElement('canvas')
       oc.width = W; oc.height = H
       const octx = oc.getContext('2d')!
+
       octx.fillStyle = bgBase; octx.fillRect(0, 0, W, H)
+
+      // Halo principal — haut-droite, couleur accent
       const halo = octx.createRadialGradient(W * 0.85, H * 0.08, 0, W * 0.85, H * 0.08, W * 1.1)
-      halo.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.28 : 0.14})`)
-      halo.addColorStop(0.5, `rgba(${ar},${ag},${ab},${isDark ? 0.07 : 0.04})`)
+      halo.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.32 : 0.16})`)
+      halo.addColorStop(0.4, `rgba(${ar},${ag},${ab},${isDark ? 0.08 : 0.05})`)
       halo.addColorStop(1, 'rgba(0,0,0,0)')
       octx.fillStyle = halo; octx.fillRect(0, 0, W, H)
+
+      // Halo secondaire — bas-gauche, teinte complémentaire pour la profondeur
+      const cr = Math.min(255, 255 - ar + 40)
+      const cg = Math.min(255, 255 - ag + 40)
+      const cb = Math.min(255, ab + 60)
+      const halo2 = octx.createRadialGradient(W * 0.1, H * 0.92, 0, W * 0.1, H * 0.92, W * 0.75)
+      halo2.addColorStop(0, `rgba(${cr},${cg},${cb},${isDark ? 0.14 : 0.07})`)
+      halo2.addColorStop(1, 'rgba(0,0,0,0)')
+      octx.fillStyle = halo2; octx.fillRect(0, 0, W, H)
+
+      // Dégradé vertical vers le bas
       const bgGrad = octx.createLinearGradient(0, 0, 0, H)
       bgGrad.addColorStop(0, 'rgba(0,0,0,0)'); bgGrad.addColorStop(1, bgBot + '99')
       octx.fillStyle = bgGrad; octx.fillRect(0, 0, W, H)
+
+      // Vignette — assombrit les coins pour la profondeur premium
+      const vig = octx.createRadialGradient(W / 2, H * 0.44, H * 0.30, W / 2, H * 0.44, H * 0.82)
+      vig.addColorStop(0, 'rgba(0,0,0,0)')
+      vig.addColorStop(1, `rgba(0,0,0,${isDark ? 0.52 : 0.20})`)
+      octx.fillStyle = vig; octx.fillRect(0, 0, W, H)
+
       bgCache.current = { key: bgKey, canvas: oc }
     }
     ctx.drawImage(bgCache.current.canvas, 0, 0)
 
-    // ── Particules ─────────────────────────────────────────────────────────
+    // ── Particules montantes ──────────────────────────────────────────────────
     PARTICLES.forEach(({ x, y, r, speed, phase }) => {
       const py = ((y * H - p * speed * H * 3) % H + H) % H
-      const a = (isDark ? 0.05 : 0.08) + 0.03 * Math.sin(p * Math.PI * 5 + phase)
+      const a = (isDark ? 0.06 : 0.10) + 0.04 * Math.sin(p * Math.PI * 5 + phase)
       ctx.beginPath(); ctx.arc(x * W, py, r, 0, Math.PI * 2)
       ctx.fillStyle = isDark ? `rgba(${ar},${ag},${ab + 60},${a})` : `rgba(80,80,220,${a})`
       ctx.fill()
     })
 
-    // ── Layout dynamique ───────────────────────────────────────────────────
-    const INFO_H  = Math.round(H * 0.19)   // 19% pour les infos
+    // ── Layout ────────────────────────────────────────────────────────────────
+    const INFO_H     = Math.round(H * 0.19)
     const CARD_ZONE_H = H - INFO_H
     const CARD_MAX_W  = W * 0.82
     const CARD_MAX_H  = CARD_ZONE_H * 0.88
@@ -146,19 +173,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const BASE_H = BASE_W * CARD_RATIO
     const CARD_CY = CARD_ZONE_H / 2
 
-    // ── Spotlight ──────────────────────────────────────────────────────────
-    const pulse = 1 + 0.07 * Math.sin(p * Math.PI * 3)
-    const spotR = BASE_W * 0.9 * pulse
-    const spot = ctx.createRadialGradient(W / 2, CARD_CY, 0, W / 2, CARD_CY, spotR)
-    spot.addColorStop(0, `rgba(${ar},${ag},${ab},${isDark ? 0.18 : 0.10})`)
-    spot.addColorStop(1, 'rgba(0,0,0,0)')
-    // Remplissage borné au disque du spot (pas plein écran) → moins coûteux
-    ctx.fillStyle = spot
-    ctx.fillRect(W / 2 - spotR, CARD_CY - spotR, spotR * 2, spotR * 2)
-
-    // ── Animation carte — présente le recto, retourne, présente le verso ────
-    // Rotation avec paliers (dwell) + easing plutôt qu'une rotation continue :
-    // rendu bien plus élégant qu'un simple spin.
+    // ── Animation de la carte ─────────────────────────────────────────────────
     const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2)
     const seg = (t: number, a: number, b: number) => Math.max(0, Math.min(1, (t - a) / (b - a)))
     let rot: number
@@ -166,104 +181,145 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     else if (p < 0.48) rot = Math.PI * easeInOut(seg(p, 0.32, 0.48))
     else if (p < 0.78) rot = Math.PI
     else if (p < 0.92) rot = Math.PI + Math.PI * easeInOut(seg(p, 0.78, 0.92))
-    else               rot = 0   // palier recto en fin de vidéo → boucle parfaite avec le début
+    else               rot = 0
 
-    const scaleX = Math.cos(rot)
+    const scaleX   = Math.cos(rot)
+    const absScale = Math.abs(scaleX)
     const showBack = scaleX < 0
-    const face = showBack ? backImg : frontImg
-    const bob  = Math.sin(p * Math.PI * 2) * H * 0.006   // léger flottement
-    const zoom = 1 + 0.03 * Math.sin(p * Math.PI * 2)
-    const cardW = BASE_W * Math.abs(scaleX) * zoom
-    const cardH = BASE_H * zoom
-    const cardCY = CARD_CY + bob
-    const cardX = W / 2 - cardW / 2
-    const cardTop = cardCY - cardH / 2
+    const face     = showBack ? backImg : frontImg
+    const bob      = Math.sin(p * Math.PI * 2) * H * 0.006
+    const zoom     = 1 + 0.03 * Math.sin(p * Math.PI * 2)
+    const cardW    = BASE_W * absScale * zoom
+    const cardH    = BASE_H * zoom
+    const cardCY   = CARD_CY + bob
+    const cardX    = W / 2 - cardW / 2
+    const cardTop  = cardCY - cardH / 2
+    // ── Spotlight animé — suit la carte pendant le flip ───────────────────────
+    const pulse  = 1 + 0.08 * Math.sin(p * Math.PI * 3)
+    const spotR  = BASE_W * 1.15 * pulse
+    const spotX  = W / 2 + Math.sin(rot) * BASE_W * 0.18
+    const spotA0 = isDark ? 0.24 : 0.13
+    const spot   = ctx.createRadialGradient(spotX, CARD_CY, 0, spotX, CARD_CY, spotR)
+    spot.addColorStop(0, `rgba(${ar},${ag},${ab},${spotA0})`)
+    spot.addColorStop(0.45, `rgba(${ar},${ag},${ab},${spotA0 * 0.25})`)
+    spot.addColorStop(1, 'rgba(0,0,0,0)')
+    ctx.fillStyle = spot
+    ctx.fillRect(spotX - spotR, CARD_CY - spotR, spotR * 2, spotR * 2)
 
     if (cardW > 2) {
-      // Reflet au sol (coins droits)
       const floorY = cardCY + cardH / 2
+
+      // ── Reflet sol ────────────────────────────────────────────────────────
       ctx.save()
       ctx.beginPath()
-      ctx.rect(cardX, floorY, cardW, cardH)
+      ctx.rect(cardX, floorY, cardW, cardH * 0.52)
       ctx.clip()
       ctx.translate(W / 2, floorY)
       ctx.scale(1, -1)
-      ctx.globalAlpha = 0.14 * Math.abs(scaleX)
+      ctx.globalAlpha = 0.20 * absScale
       ctx.drawImage(face, -cardW / 2, 0, cardW, cardH)
       ctx.restore()
-      const reflFade = ctx.createLinearGradient(0, floorY, 0, floorY + cardH * 0.5)
-      reflFade.addColorStop(0, 'rgba(0,0,0,0)'); reflFade.addColorStop(1, bgBot)
-      ctx.fillStyle = reflFade; ctx.fillRect(0, floorY, W, cardH * 0.5)
+      // Fondu du reflet
+      const reflFade = ctx.createLinearGradient(0, floorY, 0, floorY + cardH * 0.52)
+      reflFade.addColorStop(0, isDark ? 'rgba(0,0,0,0)' : 'rgba(240,244,255,0)')
+      reflFade.addColorStop(0.65, bgBot)
+      ctx.fillStyle = reflFade
+      ctx.fillRect(cardX - 2, floorY, cardW + 4, cardH * 0.52)
 
-      // Ombre portée sous la carte — blur réduit sur mobile (shadowBlur est coûteux)
+      // ── Ombre portée ──────────────────────────────────────────────────────
       ctx.save()
-      ctx.shadowColor = `rgba(0,0,0,${isDark ? 0.6 : 0.35})`
-      ctx.shadowBlur = BASE_W * (IS_MOBILE ? 0.05 : 0.11)
-      ctx.shadowOffsetY = BASE_H * 0.03
-      ctx.fillStyle = '#000'
+      ctx.shadowColor = `rgba(0,0,0,${isDark ? 0.80 : 0.45})`
+      ctx.shadowBlur   = BASE_W * (IS_MOBILE ? 0.06 : 0.15)
+      ctx.shadowOffsetY = BASE_H * 0.038
+      ctx.fillStyle = `rgba(0,0,0,0.85)`
       ctx.fillRect(cardX, cardTop, cardW, cardH)
       ctx.restore()
 
-      // Carte (image, coins droits)
+      // ── Image de la carte ─────────────────────────────────────────────────
       ctx.drawImage(face, cardX, cardTop, cardW, cardH)
 
-      // Reflet glossy diagonal qui balaie la carte
+      // ── Gloss blanc diagonal ──────────────────────────────────────────────
       ctx.save()
-      ctx.beginPath()
-      ctx.rect(cardX, cardTop, cardW, cardH)
-      ctx.clip()
-      const sweep = ((p * 1.6) % 1) * 2 - 0.5
-      const gloss = ctx.createLinearGradient(
-        cardX + sweep * cardW - cardW * 0.25, cardTop,
-        cardX + sweep * cardW + cardW * 0.25, cardCY + cardH / 2)
+      ctx.beginPath(); ctx.rect(cardX, cardTop, cardW, cardH); ctx.clip()
+      const sweep  = ((p * 1.6) % 1) * 2 - 0.5
+      const sw0    = cardX + sweep * cardW - cardW * 0.30
+      const sw1    = cardX + sweep * cardW + cardW * 0.30
+      const sweepA = 0.20 * absScale
+      const gloss = ctx.createLinearGradient(sw0, cardTop, sw1, cardTop + cardH)
       gloss.addColorStop(0,   'rgba(255,255,255,0)')
-      gloss.addColorStop(0.5, `rgba(255,255,255,${0.16 * Math.abs(scaleX)})`)
+      gloss.addColorStop(0.5, `rgba(255,255,255,${sweepA})`)
       gloss.addColorStop(1,   'rgba(255,255,255,0)')
       ctx.fillStyle = gloss
       ctx.fillRect(cardX, cardTop, cardW, cardH)
-      ctx.restore()
 
-      // Liseré lumineux sur le bord de la carte
-      ctx.lineWidth = Math.max(1, W * 0.0022)
-      ctx.strokeStyle = `rgba(255,255,255,${0.10 + 0.14 * (1 - Math.abs(scaleX))})`
+      // ── Rim light — glow accent sur les bords de la carte ─────────────────
+      const rimA = (isDark ? 0.22 : 0.15) * absScale
+      const rimL = ctx.createLinearGradient(cardX, 0, cardX + cardW * 0.18, 0)
+      rimL.addColorStop(0, `rgba(${ar},${ag},${ab},${rimA})`)
+      rimL.addColorStop(1, 'rgba(0,0,0,0)')
+      ctx.fillStyle = rimL; ctx.fillRect(cardX, cardTop, cardW * 0.18, cardH)
+      const rimR = ctx.createLinearGradient(cardX + cardW, 0, cardX + cardW * 0.82, 0)
+      rimR.addColorStop(0, `rgba(${ar},${ag},${ab},${rimA * 0.7})`)
+      rimR.addColorStop(1, 'rgba(0,0,0,0)')
+      ctx.fillStyle = rimR; ctx.fillRect(cardX + cardW * 0.82, cardTop, cardW * 0.18, cardH)
+
+      // ── Highlight du bord supérieur (lumière zénithale) ───────────────────
+      const topH = ctx.createLinearGradient(0, cardTop, 0, cardTop + cardH * 0.13)
+      topH.addColorStop(0, `rgba(255,255,255,${0.16 * absScale})`)
+      topH.addColorStop(1, 'rgba(255,255,255,0)')
+      ctx.fillStyle = topH; ctx.fillRect(cardX, cardTop, cardW, cardH * 0.13)
+
+      ctx.restore() // fin du clip gloss
+
+      // ── Liseré lumineux (bord de la carte) ────────────────────────────────
+      ctx.lineWidth = Math.max(1.5, W * 0.0025)
+      ctx.strokeStyle = `rgba(255,255,255,${0.12 + 0.22 * (1 - absScale)})`
       ctx.strokeRect(cardX, cardTop, cardW, cardH)
 
-      // Éclat quand la carte est de profil (la lumière accroche le bord)
-      if (Math.abs(scaleX) < 0.28) {
-        const glint = 1 - Math.abs(scaleX) / 0.28
-        const gg = ctx.createLinearGradient(W / 2 - 4, 0, W / 2 + 4, 0)
-        gg.addColorStop(0, 'rgba(255,255,255,0)')
-        gg.addColorStop(0.5, `rgba(255,255,255,${0.5 * glint})`)
-        gg.addColorStop(1, 'rgba(255,255,255,0)')
+      // ── Éclat de tranche avec aberration chromatique ──────────────────────
+      if (absScale < 0.28) {
+        const glint   = 1 - absScale / 0.28
+        const edgeX   = W / 2
+        const glintW  = Math.max(8, cardW * 2 + 16)
+        const gg = ctx.createLinearGradient(edgeX - glintW / 2, 0, edgeX + glintW / 2, 0)
+        gg.addColorStop(0,    'rgba(255,255,255,0)')
+        // Frange chromatique RGB autour de l'éclat central
+        gg.addColorStop(0.35, `rgba(${ar},${Math.min(255, ag + 40)},255,${0.30 * glint})`)
+        gg.addColorStop(0.48, `rgba(255,255,255,${0.70 * glint})`)
+        gg.addColorStop(0.52, `rgba(255,255,255,${0.70 * glint})`)
+        gg.addColorStop(0.65, `rgba(255,${Math.min(255, ag + 40)},${ab},${0.30 * glint})`)
+        gg.addColorStop(1,    'rgba(255,255,255,0)')
         ctx.fillStyle = gg
-        ctx.fillRect(W / 2 - Math.max(2, cardW), cardTop, Math.max(4, cardW * 2), cardH)
+        ctx.fillRect(edgeX - glintW / 2, cardTop, glintW, cardH)
       }
     }
 
-    // ── Zone infos ─────────────────────────────────────────────────────────
+    // ── Zone infos ────────────────────────────────────────────────────────────
     const infoY = H - INFO_H
-    // Fondu progressif
-    const fadeGrad = ctx.createLinearGradient(0, infoY - INFO_H * 0.35, 0, infoY + 10)
+    const fadeGrad = ctx.createLinearGradient(0, infoY - INFO_H * 0.42, 0, infoY + 10)
     fadeGrad.addColorStop(0, 'rgba(0,0,0,0)'); fadeGrad.addColorStop(1, infoBg)
-    ctx.fillStyle = fadeGrad; ctx.fillRect(0, infoY - INFO_H * 0.35, W, INFO_H * 0.45)
+    ctx.fillStyle = fadeGrad; ctx.fillRect(0, infoY - INFO_H * 0.42, W, INFO_H * 0.52)
     ctx.fillStyle = infoBg; ctx.fillRect(0, infoY + 10, W, INFO_H)
 
-    // Ligne accent
-    const lineGrad = ctx.createLinearGradient(W * 0.15, 0, W * 0.85, 0)
-    lineGrad.addColorStop(0, 'rgba(0,0,0,0)')
-    lineGrad.addColorStop(0.3, accent); lineGrad.addColorStop(0.7, accent)
-    lineGrad.addColorStop(1, 'rgba(0,0,0,0)')
+    // Ligne accent avec légère respiration
+    const linePulse = 0.72 + 0.28 * Math.sin(p * Math.PI * 4)
+    const lineGrad  = ctx.createLinearGradient(W * 0.08, 0, W * 0.92, 0)
+    lineGrad.addColorStop(0,   'rgba(0,0,0,0)')
+    lineGrad.addColorStop(0.2, `rgba(${ar},${ag},${ab},${linePulse})`)
+    lineGrad.addColorStop(0.5, `rgba(${ar},${ag},${ab},${linePulse})`)
+    lineGrad.addColorStop(0.8, `rgba(${ar},${ag},${ab},${linePulse})`)
+    lineGrad.addColorStop(1,   'rgba(0,0,0,0)')
     ctx.fillStyle = lineGrad; ctx.fillRect(0, infoY, W, 2)
 
     ctx.textAlign = 'center'; ctx.textBaseline = 'top'
     const tx = W / 2
-    let ty = infoY + INFO_H * 0.09
+    let ty   = infoY + INFO_H * 0.09
 
-    // ── Badges ──────────────────────────────────────────────────────────────
+    // ── Badges ─────────────────────────────────────────────────────────────
     const badgeFs  = Math.round(W * 0.026)
     const badgeH   = Math.round(W * 0.042)
     const badgePad = Math.round(W * 0.026)
-    const badgeR   = badgeH / 2  // pill complet
+    const badgeR   = badgeH / 2
 
     type BadgeEntry = { label: string; solid?: string; grad?: [string, string]; textColor: string }
     const tags: BadgeEntry[] = []
@@ -272,22 +328,22 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     if (card.num) {
       const m = card.num.trim().match(/\/(\d+)$/)
       const n = m ? parseInt(m[1]) : null
-      if (n === 1)        tags.push({ label: card.num, grad: ['#b8860b', '#ffd700'], textColor: '#3d2800' })
-      else if (n !== null && n <= 10)  tags.push({ label: card.num, grad: ['#555', '#c0c0c0'], textColor: '#111' })
-      else if (n !== null && n <= 25)  tags.push({ label: card.num, grad: ['#6d3a00', '#cd7f32'], textColor: '#fff' })
-      else                tags.push({ label: card.num, solid: '#7b1fa2', textColor: '#fff' })
+      if (n === 1)                    tags.push({ label: card.num, grad: ['#b8860b', '#ffd700'], textColor: '#3d2800' })
+      else if (n !== null && n <= 10) tags.push({ label: card.num, grad: ['#555', '#c0c0c0'], textColor: '#111' })
+      else if (n !== null && n <= 25) tags.push({ label: card.num, grad: ['#6d3a00', '#cd7f32'], textColor: '#fff' })
+      else                            tags.push({ label: card.num, solid: '#7b1fa2', textColor: '#fff' })
     }
     if (card.patch) tags.push({ label: 'PATCH', solid: '#1565c0', textColor: '#fff' })
 
     if (tags.length > 0) {
       ctx.font = `800 ${badgeFs}px Inter, sans-serif`
-      const widths = tags.map(t => ctx.measureText(t.label).width + badgePad * 2)
-      const gap = Math.round(W * 0.014)
-      const totalW = widths.reduce((a, b) => a + b, 0) + gap * (tags.length - 1)
+      const widths  = tags.map(t => ctx.measureText(t.label).width + badgePad * 2)
+      const gap     = Math.round(W * 0.014)
+      const totalW  = widths.reduce((a, b) => a + b, 0) + gap * (tags.length - 1)
       let bx = tx - totalW / 2
 
       tags.forEach((tag, i) => {
-        const bw = widths[i]
+        const bw  = widths[i]
         const bcy = ty + badgeH / 2
 
         if (tag.grad) {
@@ -297,19 +353,17 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
         } else {
           ctx.fillStyle = tag.solid!
         }
-        // Glow
         ctx.shadowColor = tag.solid || tag.grad![0]
         ctx.shadowBlur  = Math.round(W * 0.018)
         ctx.beginPath(); ctx.roundRect(bx, ty, bw, badgeH, badgeR); ctx.fill()
-        ctx.shadowBlur = 0
+        ctx.shadowBlur  = 0
 
-        // Reflet interne (liseré haut)
+        // Reflet interne
         const shine = ctx.createLinearGradient(bx, ty, bx, ty + badgeH * 0.5)
-        shine.addColorStop(0, 'rgba(255,255,255,0.25)'); shine.addColorStop(1, 'rgba(255,255,255,0)')
+        shine.addColorStop(0, 'rgba(255,255,255,0.28)'); shine.addColorStop(1, 'rgba(255,255,255,0)')
         ctx.fillStyle = shine
         ctx.beginPath(); ctx.roundRect(bx, ty, bw, badgeH * 0.55, [badgeR, badgeR, 0, 0]); ctx.fill()
 
-        // Texte centré verticalement
         ctx.fillStyle = tag.textColor
         ctx.textBaseline = 'middle'
         ctx.fillText(tag.label, bx + bw / 2, bcy)
@@ -319,38 +373,38 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       ty += badgeH + Math.round(INFO_H * 0.07)
     }
 
-    // ── Nom joueur ───────────────────────────────────────────────────────────
+    // ── Nom du joueur ─────────────────────────────────────────────────────────
     const nameFs = Math.round(W * 0.054)
     ctx.fillStyle = textMain
     ctx.font = `900 ${nameFs}px Inter, sans-serif`
-    ctx.fillText(card.n, tx, ty)
+    ctx.fillText(truncate(ctx, card.n, W * 0.88), tx, ty)
     ty += nameFs * 1.15
 
-    // ── Variation ────────────────────────────────────────────────────────────
+    // ── Variation ─────────────────────────────────────────────────────────────
     if (card.v) {
       const varFs = Math.round(W * 0.030)
       ctx.fillStyle = accent
       ctx.font = `600 italic ${varFs}px Inter, sans-serif`
-      ctx.fillText(card.v, tx, ty)
+      ctx.fillText(truncate(ctx, card.v, W * 0.84), tx, ty)
       ty += varFs * 1.3
     }
 
-    // ── Équipe (ligne 1) ─────────────────────────────────────────────────────
+    // ── Équipe ────────────────────────────────────────────────────────────────
     if (card.t) {
       const teamFs = Math.round(W * 0.026)
       ctx.fillStyle = textSub
       ctx.font = `700 ${teamFs}px Inter, sans-serif`
-      ctx.fillText(card.t, tx, ty)
+      ctx.fillText(truncate(ctx, card.t, W * 0.80), tx, ty)
       ty += teamFs * 1.35
     }
 
-    // ── Année · Marque · Collection (ligne 2) ────────────────────────────────
+    // ── Année · Marque · Collection ───────────────────────────────────────────
     const meta2 = [card.y, [card.br, card.s].filter(Boolean).join(' ')].filter(Boolean).join(' · ')
     if (meta2) {
       const metaFs = Math.round(W * 0.022)
       ctx.fillStyle = isDark ? 'rgba(255,255,255,0.32)' : 'rgba(0,0,0,0.32)'
       ctx.font = `400 ${metaFs}px Inter, sans-serif`
-      ctx.fillText(meta2, tx, ty)
+      ctx.fillText(truncate(ctx, meta2, W * 0.80), tx, ty)
     }
 
     // ── Logo watermark ────────────────────────────────────────────────────────
@@ -379,23 +433,16 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const ctx = canvas.getContext('2d')!
     const [frontImg, backImg] = await Promise.all([loadImage(card.f), loadImage(card.b || card.f)])
 
-    // Meilleur rendu texte
     ctx.imageSmoothingEnabled = true
     ctx.imageSmoothingQuality = 'high'
 
-    // ── Rendu direct pendant la capture (aucune compression JPEG, peu de
-    //    mémoire → sûr sur mobile). On dessine chaque frame en temps réel et
-    //    captureStream échantillonne le canvas à FPS.
     const mimeType =
       codec === 'mp4' && MediaRecorder.isTypeSupported('video/mp4') ? 'video/mp4'
       : MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9'
       : 'video/webm'
-    // videoBitsPerSecond est un hint, pas un cap strict : Chrome dépasse
-    // typiquement de 30-50 %. On divise par 1.5 pour garantir ≤ 14.9 Mo
-    // dans tous les cas (test réel : 15 Mbps → 17.7 Mo, ratio ≈ 1.35×).
     const HOLD = 700
     const totalSecs = (DURATION + HOLD + 300) / 1000
-    const sizeCap = Math.floor((14.9 * 8_000_000) / totalSecs / 1.5) // ~11.3 Mbps
+    const sizeCap = Math.floor((14.9 * 8_000_000) / totalSecs / 1.5)
     const pixels = w * h
     const qualityBitrate = Math.round(pixels * (isMobile ? 9 : 14))
     const stream = canvas.captureStream(FPS)
@@ -411,16 +458,11 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     }
     recorder.start()
 
-    // Boucle rendu en temps réel basée sur l'horloge. On maintient la face
-    // recto affichée HOLD ms après la fin de l'animation → la vidéo ne se coupe
-    // plus trop tôt et la boucle recto↔recto reste parfaite.
     const frameInterval = 1000 / FPS
     const start = performance.now()
     let lastDraw = -1
     await new Promise<void>(resolve => {
       const tick = (now: number) => {
-        // Throttle au FPS cible : évite de sur-dessiner (écrans 60/120 Hz) et
-        // de saturer le CPU mobile, cause principale des saccades.
         if (lastDraw < 0 || now - lastDraw >= frameInterval - 1) {
           lastDraw = now
           const elapsed = now - start
@@ -433,7 +475,6 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       }
       requestAnimationFrame(tick)
     })
-    // Laisse les derniers frames être capturés avant d'arrêter
     await new Promise(r => setTimeout(r, 200))
     recorder.stop()
   }
@@ -522,18 +563,18 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
               <button onClick={startRecording} style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)', border: 'none', borderRadius: 10, padding: '11px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
                 🔄 {lang === 'fr' ? 'Refaire' : 'Redo'}
               </button>
-              </>
-            )}
-            <button onClick={onClose} style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.4)', border: 'none', borderRadius: 10, padding: '11px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
-              {lang === 'fr' ? 'Fermer' : 'Close'}
-            </button>
-          </div>
-
-          {done && codec === 'webm' && (
-            <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: 11, marginTop: 12, lineHeight: 1.5 }}>
-              💡 {lang === 'fr' ? 'Convertir en MP4 sur cloudconvert.com' : 'Convert to MP4 at cloudconvert.com'}
-            </p>
+            </>
           )}
+          <button onClick={onClose} style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.4)', border: 'none', borderRadius: 10, padding: '11px 16px', fontWeight: 700, cursor: 'pointer', fontSize: 13 }}>
+            {lang === 'fr' ? 'Fermer' : 'Close'}
+          </button>
+        </div>
+
+        {done && codec === 'webm' && (
+          <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: 11, marginTop: 12, lineHeight: 1.5 }}>
+            💡 {lang === 'fr' ? 'Convertir en MP4 sur cloudconvert.com' : 'Convert to MP4 at cloudconvert.com'}
+          </p>
+        )}
       </div>
     </div>
   )
