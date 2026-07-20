@@ -1,0 +1,1495 @@
+{
+  "year": 2001,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 36653,
+        "name": "2001 Pacific Private Stock Titanium Postseason Edition"
+      },
+      "unique": [
+        {
+          "card_number": "4",
+          "player_name": "Rob Moore",
+          "team": "Arizona Cardinals",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Michael Pittman",
+          "team": "Arizona Cardinals",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "David Boston",
+          "team": "Arizona Cardinals",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Chris Greisen",
+          "team": "Arizona Cardinals",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Thomas Jones",
+          "team": "Arizona Cardinals",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Rob Moore",
+          "team": "Arizona Cardinals",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Michael Pittman",
+          "team": "Arizona Cardinals",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Terance Mathis",
+          "team": "Atlanta Falcons",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Terance Mathis",
+          "team": "Atlanta Falcons",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Randall Cunningham",
+          "team": "Baltimore Ravens",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Moe Williams",
+          "team": "Baltimore Ravens",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Randall Cunningham",
+          "team": "Baltimore Ravens",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Moe Williams",
+          "team": "Baltimore Ravens",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kwame Cavil",
+          "team": "Buffalo Bills",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Kwame Cavil",
+          "team": "Buffalo Bills",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Reggie Germany",
+          "team": "Buffalo Bills",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Travis Henry",
+          "team": "Buffalo Bills",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Rob Johnson",
+          "team": "Buffalo Bills",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dee Brown",
+          "team": "Carolina Panthers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Patrick Jeffers",
+          "team": "Carolina Panthers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Dan Morgan",
+          "team": "Carolina Panthers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chris Weinke",
+          "team": "Carolina Panthers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Michael Bates",
+          "team": "Carolina Panthers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dee Brown",
+          "team": "Carolina Panthers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Patrick Jeffers",
+          "team": "Carolina Panthers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Dan Morgan",
+          "team": "Carolina Panthers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Chris Weinke",
+          "team": "Carolina Panthers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "James Allen",
+          "team": "Chicago Bears",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Marlon Barnes",
+          "team": "Chicago Bears",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Macey Brooks",
+          "team": "Chicago Bears",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "David Terrell",
+          "team": "Chicago Bears",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Bobby Engram",
+          "team": "Chicago Bears",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "James Allen",
+          "team": "Chicago Bears",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Marlon Barnes",
+          "team": "Chicago Bears",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Macey Brooks",
+          "team": "Chicago Bears",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "David Terrell",
+          "team": "Chicago Bears",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "T.J. Houshmandzadeh",
+          "team": "Cincinnati Bengals",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Curtis Keaton",
+          "team": "Cincinnati Bengals",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Peter Warrick",
+          "team": "Cincinnati Bengals",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "T.J. Houshmandzadeh",
+          "team": "Cincinnati Bengals",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Curtis Keaton",
+          "team": "Cincinnati Bengals",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Peter Warrick",
+          "team": "Cincinnati Bengals",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Rickey Dudley",
+          "team": "Cleveland Browns",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Curtis Enis",
+          "team": "Cleveland Browns",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "James Jackson",
+          "team": "Cleveland Browns",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Andre King",
+          "team": "Cleveland Browns",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Quincy Morgan",
+          "team": "Cleveland Browns",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Travis Prentice",
+          "team": "Cleveland Browns",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "David Patten",
+          "team": "Cleveland Browns",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Rickey Dudley",
+          "team": "Cleveland Browns",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Curtis Enis",
+          "team": "Cleveland Browns",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "James Jackson",
+          "team": "Cleveland Browns",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Andre King",
+          "team": "Cleveland Browns",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Quincy Morgan",
+          "team": "Cleveland Browns",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Travis Prentice",
+          "team": "Cleveland Browns",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Quincy Carter",
+          "team": "Dallas Cowboys",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Quincy Carter",
+          "team": "Dallas Cowboys",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Mike Anderson",
+          "team": "Denver Broncos",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Olandis Gary",
+          "team": "Denver Broncos",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Eddie Kennison",
+          "team": "Denver Broncos",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Mike Anderson",
+          "team": "Denver Broncos",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Olandis Gary",
+          "team": "Denver Broncos",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Eddie Kennison",
+          "team": "Denver Broncos",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Trent Green",
+          "team": "Kansas City Chiefs",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Trent Green",
+          "team": "Kansas City Chiefs",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Chris Chambers",
+          "team": "Miami Dolphins",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Josh Heupel",
+          "team": "Miami Dolphins",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Ray Lucas",
+          "team": "Miami Dolphins",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Travis Minor",
+          "team": "Miami Dolphins",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Dedric Ward",
+          "team": "Miami Dolphins",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Chris Chambers",
+          "team": "Miami Dolphins",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Josh Heupel",
+          "team": "Miami Dolphins",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Ray Lucas",
+          "team": "Miami Dolphins",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Travis Minor",
+          "team": "Miami Dolphins",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Dedric Ward",
+          "team": "Miami Dolphins",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "David Patten",
+          "team": "New England Patriots",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Onome Ojo",
+          "team": "New Orleans Saints",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Ricky Williams",
+          "team": "New Orleans Saints",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Onome Ojo",
+          "team": "New Orleans Saints",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Ricky Williams",
+          "team": "New Orleans Saints",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Ron Dayne",
+          "team": "New York Giants",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Ron Dayne",
+          "team": "New York Giants",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Ike Hilliard",
+          "team": "New York Giants",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Wayne Chrebet",
+          "team": "New York Jets",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Marques Tuiasosopo",
+          "team": "Oakland Raiders",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Marques Tuiasosopo",
+          "team": "Oakland Raiders",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Tyrone Wheatley",
+          "team": "Oakland Raiders",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Freddie Mitchell",
+          "team": "Philadelphia Eagles",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Freddie Mitchell",
+          "team": "Philadelphia Eagles",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Tim Dwight",
+          "team": "San Diego Chargers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Tim Dwight",
+          "team": "San Diego Chargers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Karsten Bailey",
+          "team": "Seattle Seahawks",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Alex Bannister",
+          "team": "Seattle Seahawks",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Koren Robinson",
+          "team": "Seattle Seahawks",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Karsten Bailey",
+          "team": "Seattle Seahawks",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Alex Bannister",
+          "team": "Seattle Seahawks",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Bobby Engram",
+          "team": "Seattle Seahawks",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Koren Robinson",
+          "team": "Seattle Seahawks",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Ricky Watters",
+          "team": "Seattle Seahawks",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Adam Archuleta",
+          "team": "St. Louis Rams",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Aeneas Williams",
+          "team": "St. Louis Rams",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Adam Archuleta",
+          "team": "St. Louis Rams",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Aeneas Williams",
+          "team": "St. Louis Rams",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Jersey Patch Variations",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Michael Bates",
+          "team": "Washington Redskins",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Rod Gardner",
+          "team": "Washington Redskins",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Sage Rosenfels",
+          "team": "Washington Redskins",
+          "variation": "Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Pacific"
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "year": 2008,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 8870,
+        "name": "2008 Bowman Chrome"
+      },
+      "unique": [
+        {
+          "card_number": "BRC-MS",
+          "player_name": "Mike Smith",
+          "team": "Atlanta Falcons",
+          "variation": "Rookie Coaches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RPR-MR",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BRC-JH",
+          "player_name": "John Harbaugh",
+          "team": "Baltimore Ravens",
+          "variation": "Rookie Coaches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RPR-JF",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RPR-RR",
+          "player_name": "Ray Rice",
+          "team": "Baltimore Ravens",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RPR-JH",
+          "player_name": "James Hardy",
+          "team": "Buffalo Bills",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RPR-JS",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RPR-FJ",
+          "player_name": "Felix Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RPR-BB",
+          "player_name": "Brian Brohm",
+          "team": "Green Bay Packers",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BRC-TS",
+          "player_name": "Tony Sparano",
+          "team": "Miami Dolphins",
+          "variation": "Rookie Coaches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RPR-CH",
+          "player_name": "Chad Henne",
+          "team": "Miami Dolphins",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RPR-DM",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RPR-LS",
+          "player_name": "Limas Sweed",
+          "team": "Pittsburgh Steelers",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RPR-RM",
+          "player_name": "Rashard Mendenhall",
+          "team": "Pittsburgh Steelers",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RPR-DA",
+          "player_name": "Donnie Avery",
+          "team": "St. Louis Rams",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RPR-CJ",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "BRC-JZ",
+          "player_name": "Jim Zorn",
+          "team": "Washington Redskins",
+          "variation": "Rookie Coaches Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RPR-MK",
+          "player_name": "Malcolm Kelly",
+          "team": "Washington Redskins",
+          "variation": "Topps Rookie Premiere Jersey Chrome Patch",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Bowman"
+    }
+  ]
+}

@@ -1,0 +1,4647 @@
+{
+  "year": 1999,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 4294,
+        "name": "1999 Flair Showcase"
+      },
+      "unique": [
+        {
+          "card_number": "24",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "David Boston",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24L",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82L",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165L",
+          "player_name": "David Boston",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "186L",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24M",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82M",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165M",
+          "player_name": "David Boston",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "186M",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Promotional Samples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Promotional Samples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Promotional Samples",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jamal Anderson",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jamal Anderson",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Jamal Anderson",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Chris Chandler",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2L",
+          "player_name": "Jamal Anderson",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35L",
+          "player_name": "Jamal Anderson",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98L",
+          "player_name": "Jamal Anderson",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106L",
+          "player_name": "Chris Chandler",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2M",
+          "player_name": "Jamal Anderson",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35M",
+          "player_name": "Jamal Anderson",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98M",
+          "player_name": "Jamal Anderson",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106M",
+          "player_name": "Chris Chandler",
+          "team": "Atlanta Falcons",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Priest Holmes",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Scott Mitchell",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Priest Holmes",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Scott Mitchell",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64L",
+          "player_name": "Priest Holmes",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77L",
+          "player_name": "Scott Mitchell",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131L",
+          "player_name": "Priest Holmes",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143L",
+          "player_name": "Scott Mitchell",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64M",
+          "player_name": "Priest Holmes",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77M",
+          "player_name": "Scott Mitchell",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131M",
+          "player_name": "Priest Holmes",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143M",
+          "player_name": "Scott Mitchell",
+          "team": "Baltimore Ravens",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Doug Flutie",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Doug Flutie",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Doug Flutie",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "187",
+          "player_name": "Peerless Price",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "14L",
+          "player_name": "Doug Flutie",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27L",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53L",
+          "player_name": "Doug Flutie",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79L",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87L",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118L",
+          "player_name": "Doug Flutie",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145L",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "152L",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "187L",
+          "player_name": "Peerless Price",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14M",
+          "player_name": "Doug Flutie",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27M",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53M",
+          "player_name": "Doug Flutie",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79M",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87M",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118M",
+          "player_name": "Doug Flutie",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145M",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "152M",
+          "player_name": "Antowain Smith",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "187M",
+          "player_name": "Peerless Price",
+          "team": "Buffalo Bills",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Tim Biakabutuka",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101L",
+          "player_name": "Tim Biakabutuka",
+          "team": "Carolina Panthers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101M",
+          "player_name": "Tim Biakabutuka",
+          "team": "Carolina Panthers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Curtis Enis",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Curtis Enis",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Curtis Enis",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "D'Wayne Bates",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "183",
+          "player_name": "Cade McNown",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "11L",
+          "player_name": "Curtis Enis",
+          "team": "Chicago Bears",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50L",
+          "player_name": "Curtis Enis",
+          "team": "Chicago Bears",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116L",
+          "player_name": "Curtis Enis",
+          "team": "Chicago Bears",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164L",
+          "player_name": "D'Wayne Bates",
+          "team": "Chicago Bears",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "183L",
+          "player_name": "Cade McNown",
+          "team": "Chicago Bears",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11M",
+          "player_name": "Curtis Enis",
+          "team": "Chicago Bears",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50M",
+          "player_name": "Curtis Enis",
+          "team": "Chicago Bears",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116M",
+          "player_name": "Curtis Enis",
+          "team": "Chicago Bears",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164M",
+          "player_name": "D'Wayne Bates",
+          "team": "Chicago Bears",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "183M",
+          "player_name": "Cade McNown",
+          "team": "Chicago Bears",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "189",
+          "player_name": "Akili Smith",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "9L",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47L",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113L",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "189L",
+          "player_name": "Akili Smith",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9M",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47M",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113M",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "189M",
+          "player_name": "Akili Smith",
+          "team": "Cincinnati Bengals",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Terry Kirby",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "178",
+          "player_name": "Kevin Johnson",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "135L",
+          "player_name": "Terry Kirby",
+          "team": "Cleveland Browns",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "168L",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "178L",
+          "player_name": "Kevin Johnson",
+          "team": "Cleveland Browns",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135M",
+          "player_name": "Terry Kirby",
+          "team": "Cleveland Browns",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "168M",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "178M",
+          "player_name": "Kevin Johnson",
+          "team": "Cleveland Browns",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Deion Sanders",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1L",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28L",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33L",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65L",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88L",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132L",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150L",
+          "player_name": "Deion Sanders",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161L",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "190L",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1M",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28M",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33M",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65M",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88M",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132M",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150M",
+          "player_name": "Deion Sanders",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161M",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "190M",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8L",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16L",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45L",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60L",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73L",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86L",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89L",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127L",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138L",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "151L",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153L",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170L",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8M",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16M",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45M",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60M",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73M",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86M",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89M",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127M",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138M",
+          "player_name": "Ed McCaffrey",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "151M",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153M",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170M",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Charlie Batch",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Charlie Batch",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Charlie Batch",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Herman Moore",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "175",
+          "player_name": "Sedrick Irvin",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "188",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3L",
+          "player_name": "Charlie Batch",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26L",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36L",
+          "player_name": "Charlie Batch",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85L",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99L",
+          "player_name": "Charlie Batch",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144L",
+          "player_name": "Herman Moore",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "175L",
+          "player_name": "Sedrick Irvin",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "188L",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3M",
+          "player_name": "Charlie Batch",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26M",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36M",
+          "player_name": "Charlie Batch",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85M",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99M",
+          "player_name": "Charlie Batch",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144M",
+          "player_name": "Herman Moore",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "175M",
+          "player_name": "Sedrick Irvin",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "188M",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mark Chmura",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Antonio Freeman",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Dorsey Levens",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Mark Chmura",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Antonio Freeman",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Dorsey Levens",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13L",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41L",
+          "player_name": "Mark Chmura",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52L",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54L",
+          "player_name": "Antonio Freeman",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69L",
+          "player_name": "Dorsey Levens",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107L",
+          "player_name": "Mark Chmura",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119L",
+          "player_name": "Antonio Freeman",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136L",
+          "player_name": "Dorsey Levens",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "173L",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13M",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41M",
+          "player_name": "Mark Chmura",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52M",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54M",
+          "player_name": "Antonio Freeman",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69M",
+          "player_name": "Dorsey Levens",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107M",
+          "player_name": "Mark Chmura",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119M",
+          "player_name": "Antonio Freeman",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136M",
+          "player_name": "Dorsey Levens",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "173M",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18L",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61L",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70L",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128L",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "176L",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "180L",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18M",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61M",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70M",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128M",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "176M",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "180M",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Keenan McCardell",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Keenan McCardell",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "191",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6L",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31L",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39L",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74L",
+          "player_name": "Keenan McCardell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93L",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104L",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139L",
+          "player_name": "Keenan McCardell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "191L",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6M",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31M",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39M",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74M",
+          "player_name": "Keenan McCardell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93M",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104M",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139M",
+          "player_name": "Keenan McCardell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "191M",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Elvis Grbac",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Andre Rison",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Elvis Grbac",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Andre Rison",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Michael Cloud",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "57L",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58L",
+          "player_name": "Elvis Grbac",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84L",
+          "player_name": "Andre Rison",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124L",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125L",
+          "player_name": "Elvis Grbac",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149L",
+          "player_name": "Andre Rison",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166L",
+          "player_name": "Michael Cloud",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57M",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58M",
+          "player_name": "Elvis Grbac",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84M",
+          "player_name": "Andre Rison",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124M",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125M",
+          "player_name": "Elvis Grbac",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149M",
+          "player_name": "Andre Rison",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166M",
+          "player_name": "Michael Cloud",
+          "team": "Kansas City Chiefs",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "O.J. McDuffie",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "O.J. McDuffie",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Cecil Collins",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "James Johnson",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "181",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19L",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71L",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75L",
+          "player_name": "O.J. McDuffie",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140L",
+          "player_name": "O.J. McDuffie",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167L",
+          "player_name": "Cecil Collins",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "177L",
+          "player_name": "James Johnson",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "181L",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19M",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71M",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75M",
+          "player_name": "O.J. McDuffie",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140M",
+          "player_name": "O.J. McDuffie",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167M",
+          "player_name": "Cecil Collins",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "177M",
+          "player_name": "James Johnson",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "181M",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Randall Cunningham",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Randall Cunningham",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Randall Cunningham",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "169",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7L",
+          "player_name": "Randall Cunningham",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22L",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40L",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44L",
+          "player_name": "Randall Cunningham",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78L",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105L",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111L",
+          "player_name": "Randall Cunningham",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "169L",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "185L",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7M",
+          "player_name": "Randall Cunningham",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22M",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40M",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44M",
+          "player_name": "Randall Cunningham",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78M",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105M",
+          "player_name": "Cris Carter",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111M",
+          "player_name": "Randall Cunningham",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "169M",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "185M",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Drew Bledsoe",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Drew Bledsoe",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Terry Glenn",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Drew Bledsoe",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Ben Coates",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Terry Glenn",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Kevin Faulk",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "5L",
+          "player_name": "Drew Bledsoe",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38L",
+          "player_name": "Drew Bledsoe",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56L",
+          "player_name": "Terry Glenn",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102L",
+          "player_name": "Drew Bledsoe",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109L",
+          "player_name": "Ben Coates",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123L",
+          "player_name": "Terry Glenn",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172L",
+          "player_name": "Kevin Faulk",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5M",
+          "player_name": "Drew Bledsoe",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38M",
+          "player_name": "Drew Bledsoe",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56M",
+          "player_name": "Terry Glenn",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102M",
+          "player_name": "Drew Bledsoe",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109M",
+          "player_name": "Ben Coates",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123M",
+          "player_name": "Terry Glenn",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172M",
+          "player_name": "Kevin Faulk",
+          "team": "New England Patriots",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "192",
+          "player_name": "Ricky Williams",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "192L",
+          "player_name": "Ricky Williams",
+          "team": "New Orleans Saints",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "192M",
+          "player_name": "Ricky Williams",
+          "team": "New Orleans Saints",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "184",
+          "player_name": "Joe Montgomery",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "43L",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110L",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "184L",
+          "player_name": "Joe Montgomery",
+          "team": "New York Giants",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43M",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110M",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "184M",
+          "player_name": "Joe Montgomery",
+          "team": "New York Giants",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Wayne Chrebet",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Vinny Testaverde",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Wayne Chrebet",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Vinny Testaverde",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "179",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17L",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20L",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42L",
+          "player_name": "Wayne Chrebet",
+          "team": "New York Jets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67L",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72L",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94L",
+          "player_name": "Vinny Testaverde",
+          "team": "New York Jets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108L",
+          "player_name": "Wayne Chrebet",
+          "team": "New York Jets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137L",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "157L",
+          "player_name": "Vinny Testaverde",
+          "team": "New York Jets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "179L",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17M",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20M",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42M",
+          "player_name": "Wayne Chrebet",
+          "team": "New York Jets",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67M",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72M",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94M",
+          "player_name": "Vinny Testaverde",
+          "team": "New York Jets",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108M",
+          "player_name": "Wayne Chrebet",
+          "team": "New York Jets",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137M",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "157M",
+          "player_name": "Vinny Testaverde",
+          "team": "New York Jets",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "179M",
+          "player_name": "Keyshawn Johnson",
+          "team": "New York Jets",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Napoleon Kaufman",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Napoleon Kaufman",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68L",
+          "player_name": "Napoleon Kaufman",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103L",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121L",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134L",
+          "player_name": "Napoleon Kaufman",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68M",
+          "player_name": "Napoleon Kaufman",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103M",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121M",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134M",
+          "player_name": "Napoleon Kaufman",
+          "team": "Oakland Raiders",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "182",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "90L",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "154L",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "182L",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90M",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "154M",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "182M",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "Troy Edwards",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "4L",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29L",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37L",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91L",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100L",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155L",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "171L",
+          "player_name": "Troy Edwards",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4M",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29M",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37M",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91M",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100M",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155M",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "171M",
+          "player_name": "Troy Edwards",
+          "team": "Pittsburgh Steelers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Natrone Means",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142L",
+          "player_name": "Natrone Means",
+          "team": "San Diego Chargers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142M",
+          "player_name": "Natrone Means",
+          "team": "San Diego Chargers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "J.J. Stokes",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Lawrence Phillips",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "J.J. Stokes",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Lawrence Phillips",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "J.J. Stokes",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23L",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25L",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30L",
+          "player_name": "J.J. Stokes",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32L",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62L",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80L",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81L",
+          "player_name": "Lawrence Phillips",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83L",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92L",
+          "player_name": "J.J. Stokes",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96L",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129L",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146L",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147L",
+          "player_name": "Lawrence Phillips",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148L",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156L",
+          "player_name": "J.J. Stokes",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "160L",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23M",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25M",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30M",
+          "player_name": "J.J. Stokes",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32M",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62M",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80M",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81M",
+          "player_name": "Lawrence Phillips",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83M",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92M",
+          "player_name": "J.J. Stokes",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96M",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129M",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146M",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147M",
+          "player_name": "Lawrence Phillips",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148M",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156M",
+          "player_name": "J.J. Stokes",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "160M",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Ricky Watters",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Joey Galloway",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Ricky Watters",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Karsten Bailey",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "95L",
+          "player_name": "Ricky Watters",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120L",
+          "player_name": "Joey Galloway",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "159L",
+          "player_name": "Ricky Watters",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "163L",
+          "player_name": "Karsten Bailey",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95M",
+          "player_name": "Ricky Watters",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120M",
+          "player_name": "Joey Galloway",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "159M",
+          "player_name": "Ricky Watters",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "163M",
+          "player_name": "Karsten Bailey",
+          "team": "Seattle Seahawks",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "174",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "12L",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51L",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117L",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "174L",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12M",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51M",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117M",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "174M",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Trent Dilfer",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jacquez Green",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Trent Dilfer",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Jacquez Green",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10L",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34L",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46L",
+          "player_name": "Trent Dilfer",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48L",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59L",
+          "player_name": "Jacquez Green",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97L",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112L",
+          "player_name": "Trent Dilfer",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114L",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126L",
+          "player_name": "Jacquez Green",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10M",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34M",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46M",
+          "player_name": "Trent Dilfer",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48M",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59M",
+          "player_name": "Jacquez Green",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97M",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112M",
+          "player_name": "Trent Dilfer",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114M",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126M",
+          "player_name": "Jacquez Green",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Kevin Dyson",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Kevin Dyson",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Yancey Thigpen",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15L",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21L",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49L",
+          "player_name": "Kevin Dyson",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55L",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76L",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115L",
+          "player_name": "Kevin Dyson",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122L",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141L",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "158L",
+          "player_name": "Yancey Thigpen",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15M",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21M",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49M",
+          "player_name": "Kevin Dyson",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55M",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76M",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115M",
+          "player_name": "Kevin Dyson",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122M",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141M",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "158M",
+          "player_name": "Yancey Thigpen",
+          "team": "Tennessee Titans",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Skip Hicks",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Brad Johnson",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Skip Hicks",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Brad Johnson",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Champ Bailey",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "63L",
+          "player_name": "Skip Hicks",
+          "team": "Washington Redskins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66L",
+          "player_name": "Brad Johnson",
+          "team": "Washington Redskins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130L",
+          "player_name": "Skip Hicks",
+          "team": "Washington Redskins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133L",
+          "player_name": "Brad Johnson",
+          "team": "Washington Redskins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162L",
+          "player_name": "Champ Bailey",
+          "team": "Washington Redskins",
+          "variation": "Legacy Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63M",
+          "player_name": "Skip Hicks",
+          "team": "Washington Redskins",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66M",
+          "player_name": "Brad Johnson",
+          "team": "Washington Redskins",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130M",
+          "player_name": "Skip Hicks",
+          "team": "Washington Redskins",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133M",
+          "player_name": "Brad Johnson",
+          "team": "Washington Redskins",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162M",
+          "player_name": "Champ Bailey",
+          "team": "Washington Redskins",
+          "variation": "Legacy Collection Masterpiece",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

@@ -1,0 +1,3214 @@
+{
+  "year": 1998,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 2777,
+        "name": "1998-99 SkyBox Molten Metal"
+      },
+      "unique": [
+        {
+          "card_number": "7",
+          "player_name": "Roshown McLeod",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Mookie Blaylock",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Alan Henderson",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dikembe Mutombo",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5F",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5F",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Roshown McLeod",
+          "team": "Atlanta Hawks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Mookie Blaylock",
+          "team": "Atlanta Hawks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Alan Henderson",
+          "team": "Atlanta Hawks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Dikembe Mutombo",
+          "team": "Atlanta Hawks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Walter McCarty",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2F",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28F",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50F",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2F",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28F",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50F",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Walter McCarty",
+          "team": "Boston Celtics",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "David Wesley",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Bobby Phills",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Glen Rice",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20F",
+          "player_name": "Glen Rice",
+          "team": "Charlotte Hornets",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20F",
+          "player_name": "Glen Rice",
+          "team": "Charlotte Hornets",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "David Wesley",
+          "team": "Charlotte Hornets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Bobby Phills",
+          "team": "Charlotte Hornets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Glen Rice",
+          "team": "Charlotte Hornets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ron Harper",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41F",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46F",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47F",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41F",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46F",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47F",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ron Harper",
+          "team": "Chicago Bulls",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Michael Jordan",
+          "team": "Chicago Bulls",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Scottie Pippen",
+          "team": "Chicago Bulls",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Dennis Rodman",
+          "team": "Chicago Bulls",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Wesley Person",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17F",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19F",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42F",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17F",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19F",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42F",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Zydrunas Ilgauskas",
+          "team": "Cleveland Cavaliers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Wesley Person",
+          "team": "Cleveland Cavaliers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Chris Anstey",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Shawn Bradley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "A.C. Green",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Chris Anstey",
+          "team": "Dallas Mavericks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Shawn Bradley",
+          "team": "Dallas Mavericks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "A.C. Green",
+          "team": "Dallas Mavericks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Johnny Newman",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Keon Clark",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Bobby Jackson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "LaPhonso Ellis",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Danny Fortson",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Johnny Newman",
+          "team": "Denver Nuggets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Keon Clark",
+          "team": "Denver Nuggets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Bobby Jackson",
+          "team": "Denver Nuggets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "LaPhonso Ellis",
+          "team": "Denver Nuggets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Danny Fortson",
+          "team": "Denver Nuggets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Bison Dele",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15F",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37F",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15F",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37F",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Bison Dele",
+          "team": "Detroit Pistons",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jim Jackson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Clarence Weatherspoon",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Tony Delk",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "40F",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40F",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jim Jackson",
+          "team": "Golden State Warriors",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Clarence Weatherspoon",
+          "team": "Golden State Warriors",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Tony Delk",
+          "team": "Golden State Warriors",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Dickerson",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Bryce Drew",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Mario Elie",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Matt Maloney",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10F",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13F",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10F",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13F",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Dickerson",
+          "team": "Houston Rockets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Bryce Drew",
+          "team": "Houston Rockets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Mario Elie",
+          "team": "Houston Rockets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Matt Maloney",
+          "team": "Houston Rockets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jalen Rose",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Chris Mullin",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8F",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8F",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Jalen Rose",
+          "team": "Indiana Pacers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Chris Mullin",
+          "team": "Indiana Pacers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Isaac Austin",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Lorenzen Wright",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Lamond Murray",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Rodney Rogers",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "44F",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44F",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Isaac Austin",
+          "team": "Los Angeles Clippers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Lorenzen Wright",
+          "team": "Los Angeles Clippers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Lamond Murray",
+          "team": "Los Angeles Clippers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Rodney Rogers",
+          "team": "Los Angeles Clippers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Elden Campbell",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Derek Fisher",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Eddie Jones",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Tyronn Lue",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33F",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45F",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33F",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45F",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Elden Campbell",
+          "team": "Los Angeles Lakers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Derek Fisher",
+          "team": "Los Angeles Lakers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Eddie Jones",
+          "team": "Los Angeles Lakers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Tyronn Lue",
+          "team": "Los Angeles Lakers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "P.J. Brown",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Dan Majerle",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3F",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6F",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3F",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6F",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "P.J. Brown",
+          "team": "Miami Heat",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Dan Majerle",
+          "team": "Miami Heat",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Tyrone Hill",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Terrell Brandon",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1F",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25F",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1F",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25F",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Tyrone Hill",
+          "team": "Milwaukee Bucks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Terrell Brandon",
+          "team": "Milwaukee Bucks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Sam Mitchell",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Cherokee Parks",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Tom Gugliotta",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Stephon Marbury",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23F",
+          "player_name": "Tom Gugliotta",
+          "team": "Minnesota Timberwolves",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36F",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43F",
+          "player_name": "Stephon Marbury",
+          "team": "Minnesota Timberwolves",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23F",
+          "player_name": "Tom Gugliotta",
+          "team": "Minnesota Timberwolves",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36F",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43F",
+          "player_name": "Stephon Marbury",
+          "team": "Minnesota Timberwolves",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Sam Mitchell",
+          "team": "Minnesota Timberwolves",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Cherokee Parks",
+          "team": "Minnesota Timberwolves",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Tom Gugliotta",
+          "team": "Minnesota Timberwolves",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Stephon Marbury",
+          "team": "Minnesota Timberwolves",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Kendall Gill",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Sam Cassell",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29F",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49F",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29F",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49F",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Kendall Gill",
+          "team": "New Jersey Nets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Sam Cassell",
+          "team": "New Jersey Nets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "John Starks",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Larry Johnson",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Marcus Camby",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4F",
+          "player_name": "Marcus Camby",
+          "team": "New York Knicks",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24F",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4F",
+          "player_name": "Marcus Camby",
+          "team": "New York Knicks",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24F",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "John Starks",
+          "team": "New York Knicks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Larry Johnson",
+          "team": "New York Knicks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Marcus Camby",
+          "team": "New York Knicks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Charles Outlaw",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26F",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26F",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Charles Outlaw",
+          "team": "Orlando Magic",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Theo Ratliff",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joe Smith",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Tim Thomas",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30F",
+          "player_name": "Tim Thomas",
+          "team": "Philadelphia 76ers",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38F",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39F",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30F",
+          "player_name": "Tim Thomas",
+          "team": "Philadelphia 76ers",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38F",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39F",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Theo Ratliff",
+          "team": "Philadelphia 76ers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Joe Smith",
+          "team": "Philadelphia 76ers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Tim Thomas",
+          "team": "Philadelphia 76ers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Rex Chapman",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Pat Garrity",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Clifford Robinson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Dennis Scott",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Antonio McDyess",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12F",
+          "player_name": "Antonio McDyess",
+          "team": "Phoenix Suns",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27F",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12F",
+          "player_name": "Antonio McDyess",
+          "team": "Phoenix Suns",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27F",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Rex Chapman",
+          "team": "Phoenix Suns",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Pat Garrity",
+          "team": "Phoenix Suns",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Clifford Robinson",
+          "team": "Phoenix Suns",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Dennis Scott",
+          "team": "Phoenix Suns",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Antonio McDyess",
+          "team": "Phoenix Suns",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kelvin Cato",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Arvydas Sabonis",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48F",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48F",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Kelvin Cato",
+          "team": "Portland Trail Blazers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Arvydas Sabonis",
+          "team": "Portland Trail Blazers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Anthony Johnson",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Mitch Richmond",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Billy Owens",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Corliss Williamson",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Tariq Abdul-Wahad",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Anthony Johnson",
+          "team": "Sacramento Kings",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Mitch Richmond",
+          "team": "Sacramento Kings",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Billy Owens",
+          "team": "Sacramento Kings",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Corliss Williamson",
+          "team": "Sacramento Kings",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Tariq Abdul-Wahad",
+          "team": "Sacramento Kings",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Avery Johnson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sean Elliott",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21F",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35F",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21F",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35F",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Avery Johnson",
+          "team": "San Antonio Spurs",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Sean Elliott",
+          "team": "San Antonio Spurs",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Hersey Hawkins",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Sam Perkins",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Detlef Schrempf",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18F",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22F",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18F",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22F",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Hersey Hawkins",
+          "team": "Seattle SuperSonics",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Sam Perkins",
+          "team": "Seattle SuperSonics",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Detlef Schrempf",
+          "team": "Seattle SuperSonics",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Gary Trent",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Chauncey Billups",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "John Wallace",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "16F",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34F",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16F",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34F",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Gary Trent",
+          "team": "Toronto Raptors",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Chauncey Billups",
+          "team": "Toronto Raptors",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "John Wallace",
+          "team": "Toronto Raptors",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Jeff Hornacek",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Shandon Anderson",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11F",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14F",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11F",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14F",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Jeff Hornacek",
+          "team": "Utah Jazz",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Shandon Anderson",
+          "team": "Utah Jazz",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "George Lynch",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Bryant Reeves",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Sam Mack",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "31F",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32F",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31F",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32F",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "George Lynch",
+          "team": "Vancouver Grizzlies",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Bryant Reeves",
+          "team": "Vancouver Grizzlies",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Sam Mack",
+          "team": "Vancouver Grizzlies",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Calbert Cheaney",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tracy Murray",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7F",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9F",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7F",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9F",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Titanium Fusion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Calbert Cheaney",
+          "team": "Washington Wizards",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Tracy Murray",
+          "team": "Washington Wizards",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Xplosion",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "SkyBox"
+    }
+  ]
+}

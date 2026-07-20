@@ -1,0 +1,3127 @@
+{
+  "year": 2002,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 4588,
+        "name": "2002 Upper Deck Sweet Spot"
+      },
+      "unique": [
+        {
+          "card_number": "16",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Thomas Jones",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "David Boston",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Josh McCown",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Damien Anderson",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Wendell Bryant",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Jason McAddley",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Preston Parsons",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-TJ",
+          "player_name": "Thomas Jones",
+          "team": "Arizona Cardinals",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-TJ",
+          "player_name": "Thomas Jones",
+          "team": "Arizona Cardinals",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-JM",
+          "player_name": "Josh McCown",
+          "team": "Arizona Cardinals",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-JM",
+          "player_name": "Josh McCown",
+          "team": "Arizona Cardinals",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JP",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JP",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-JP",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-JP",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "T.J. Duckett",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Kurt Kittner",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Kahlil Hill",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-TJ",
+          "player_name": "T.J. Duckett",
+          "team": "Atlanta Falcons",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-TJ",
+          "player_name": "T.J. Duckett",
+          "team": "Atlanta Falcons",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Chris Redman",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Ed Reed",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Anthony Weaver",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Chester Taylor",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Tellis Redmon",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Ron Johnson",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "155",
+          "player_name": "Ron Johnson",
+          "team": "Baltimore Ravens",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-CR",
+          "player_name": "Chris Redman",
+          "team": "Baltimore Ravens",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-CR",
+          "player_name": "Chris Redman",
+          "team": "Baltimore Ravens",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-ER",
+          "player_name": "Ed Reed",
+          "team": "Baltimore Ravens",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-ER",
+          "player_name": "Ed Reed",
+          "team": "Baltimore Ravens",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Travis Henry",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Josh Reed",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Mike Williams",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-JR",
+          "player_name": "Josh Reed",
+          "team": "Buffalo Bills",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-JR",
+          "player_name": "Josh Reed",
+          "team": "Buffalo Bills",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-DB",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-MW",
+          "player_name": "Mike Williams",
+          "team": "Buffalo Bills",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-DB",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "46",
+          "player_name": "Rodney Peete",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Muhsin Muhammad",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "DeShaun Foster",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Randy Fasani",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "163",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "153",
+          "player_name": "Randy Fasani",
+          "team": "Carolina Panthers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "163",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-DF",
+          "player_name": "DeShaun Foster",
+          "team": "Carolina Panthers",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-DF",
+          "player_name": "DeShaun Foster",
+          "team": "Carolina Panthers",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-DF",
+          "player_name": "DeShaun Foster",
+          "team": "Carolina Panthers",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-DF",
+          "player_name": "DeShaun Foster",
+          "team": "Carolina Panthers",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Jim Miller",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Marty Booker",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Adrian Peterson",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Alex Brown",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Jamin Elliott",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-AT",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-BU",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-AT",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-BU",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AT",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AT",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-JM",
+          "player_name": "Jim Miller",
+          "team": "Chicago Bears",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-JM",
+          "player_name": "Jim Miller",
+          "team": "Chicago Bears",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jon Kitna",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Michael Westbrook",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Lamont Thompson",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-PW",
+          "player_name": "Peter Warrick",
+          "team": "Cincinnati Bengals",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-PW",
+          "player_name": "Peter Warrick",
+          "team": "Cincinnati Bengals",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Kevin Johnson",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Andre Davis",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "162",
+          "player_name": "Andre Davis",
+          "team": "Cleveland Browns",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-WG",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-WG",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-WG",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-WG",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TC",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TC",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-QM",
+          "player_name": "Quincy Morgan",
+          "team": "Cleveland Browns",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Quincy Carter",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Joey Galloway",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Chad Hutchinson",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "151",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-AB",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-QC",
+          "player_name": "Quincy Carter",
+          "team": "Dallas Cowboys",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-RO",
+          "player_name": "Roy Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-AB",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-QC",
+          "player_name": "Quincy Carter",
+          "team": "Dallas Cowboys",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-RO",
+          "player_name": "Roy Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-AB",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-AB",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Olandis Gary",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "166",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "164",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "166",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-AL",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-PO",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-AL",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-PO",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-AL",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-CP",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-AL",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-CP",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "James Stewart",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Az-Zahir Hakim",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-JH",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-JH",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-JH",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-JH",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Terry Glenn",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Javon Walker",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Najeh Davenport",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-JW",
+          "player_name": "Javon Walker",
+          "team": "Green Bay Packers",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-JW",
+          "player_name": "Javon Walker",
+          "team": "Green Bay Packers",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-JW",
+          "player_name": "Javon Walker",
+          "team": "Green Bay Packers",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-JW",
+          "player_name": "Javon Walker",
+          "team": "Green Bay Packers",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "James Allen",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Corey Bradford",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Jonathan Wells",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "165",
+          "player_name": "Jabar Gaffney",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "161",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "165",
+          "player_name": "Jabar Gaffney",
+          "team": "Houston Texans",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-JG",
+          "player_name": "Jabar Gaffney",
+          "team": "Houston Texans",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-JG",
+          "player_name": "Jabar Gaffney",
+          "team": "Houston Texans",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-DC",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-JG",
+          "player_name": "Jabar Gaffney",
+          "team": "Houston Texans",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-DC",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-JG",
+          "player_name": "Jabar Gaffney",
+          "team": "Houston Texans",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Ricky Williams",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Dwight Freeney",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Larry Tripplett",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-PM1",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-PM2",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-PM3",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-PM4",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-PM1",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-PM2",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-PM3",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-PM4",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "David Garrard",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Quinn Gray",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Trent Green",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Eddie Kennison",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Ryan Sims",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-TG",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-TG",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "34",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jay Fiedler",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Chris Chambers",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Randy McMichael",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-JF",
+          "player_name": "Jay Fiedler",
+          "team": "Miami Dolphins",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-SR",
+          "player_name": "Sage Rosenfels",
+          "team": "Miami Dolphins",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-SR",
+          "player_name": "Sage Rosenfels",
+          "team": "Miami Dolphins",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Moe Williams",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Shaun Hill",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-MB",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-MB",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Antowain Smith",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "David Patten",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Troy Brown",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Daniel Graham",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Deion Branch",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Rohan Davey",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "152",
+          "player_name": "Rohan Davey",
+          "team": "New England Patriots",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RG-RD",
+          "player_name": "Rohan Davey",
+          "team": "New England Patriots",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-RD",
+          "player_name": "Rohan Davey",
+          "team": "New England Patriots",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-AS",
+          "player_name": "Antowain Smith",
+          "team": "New England Patriots",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-AS",
+          "player_name": "Antowain Smith",
+          "team": "New England Patriots",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Donte Stallworth",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "J.T. O'Sullivan",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "154",
+          "player_name": "J.T. O'Sullivan",
+          "team": "New Orleans Saints",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-DS",
+          "player_name": "Donte Stallworth",
+          "team": "New Orleans Saints",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-MC",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-DS",
+          "player_name": "Donte Stallworth",
+          "team": "New Orleans Saints",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-MC",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-DS",
+          "player_name": "Donte Stallworth",
+          "team": "New Orleans Saints",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-DS",
+          "player_name": "Donte Stallworth",
+          "team": "New Orleans Saints",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-AB",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-AB",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Ron Dayne",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Tim Carter",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Daryl Jones",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-RD",
+          "player_name": "Ron Dayne",
+          "team": "New York Giants",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-RD",
+          "player_name": "Ron Dayne",
+          "team": "New York Giants",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-TC",
+          "player_name": "Tim Carter",
+          "team": "New York Giants",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-TC",
+          "player_name": "Tim Carter",
+          "team": "New York Giants",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-TC",
+          "player_name": "Tim Carter",
+          "team": "New York Giants",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-TC",
+          "player_name": "Tim Carter",
+          "team": "New York Giants",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Vinny Testaverde",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Wayne Chrebet",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Bryan Thomas",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-CP",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-SM",
+          "player_name": "Santana Moss",
+          "team": "New York Jets",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-CP",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-SM",
+          "player_name": "Santana Moss",
+          "team": "New York Jets",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-SM",
+          "player_name": "Santana Moss",
+          "team": "New York Jets",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-SM",
+          "player_name": "Santana Moss",
+          "team": "New York Jets",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Phillip Buchanon",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Napoleon Harris",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-JR",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-JR",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JR",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JR",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Freddie Milons",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Michael Lewis",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Lito Sheppard",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-CS",
+          "player_name": "Corey Simon",
+          "team": "Philadelphia Eagles",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-CS",
+          "player_name": "Corey Simon",
+          "team": "Philadelphia Eagles",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-FM",
+          "player_name": "Freddie Mitchell",
+          "team": "Philadelphia Eagles",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-FM",
+          "player_name": "Freddie Mitchell",
+          "team": "Philadelphia Eagles",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Lee Mays",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "158",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RG-EL",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-EL",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Junior Seau",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Reche Caldwell",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Quentin Jammer",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Seth Burford",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Jesse Chatman",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Ben Leber",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-DB",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-DB",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-RC",
+          "player_name": "Reche Caldwell",
+          "team": "San Diego Chargers",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-RC",
+          "player_name": "Reche Caldwell",
+          "team": "San Diego Chargers",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-BR",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-BR",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Brandon Doman",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Mike Rumph",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SI-GH",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": "Sweet Impressions Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SI-GH",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": "Sweet Impressions Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Trent Dilfer",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Maurice Morris",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "156",
+          "player_name": "Maurice Morris",
+          "team": "Seattle Seahawks",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "157",
+          "player_name": "Kahlil Hill",
+          "team": "Seattle Seahawks",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-MM",
+          "player_name": "Maurice Morris",
+          "team": "Seattle Seahawks",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-SA",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-MM",
+          "player_name": "Maurice Morris",
+          "team": "Seattle Seahawks",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-SA",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-MM",
+          "player_name": "Maurice Morris",
+          "team": "Seattle Seahawks",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-MM",
+          "player_name": "Maurice Morris",
+          "team": "Seattle Seahawks",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Marc Bulger",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Lamar Gordon",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Robert Thomas",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-KW",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-KW",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-EC",
+          "player_name": "Eric Crouch",
+          "team": "St. Louis Rams",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-EC",
+          "player_name": "Eric Crouch",
+          "team": "St. Louis Rams",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KW",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KW",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Keenan McCardell",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Travis Stephens",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Marquise Walker",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-KJ",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-MW",
+          "player_name": "Marquise Walker",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-TS",
+          "player_name": "Travis Stephens",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-KJ",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-MW",
+          "player_name": "Marquise Walker",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-TS",
+          "player_name": "Travis Stephens",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-MW",
+          "player_name": "Marquise Walker",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-TS",
+          "player_name": "Travis Stephens",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-MW",
+          "player_name": "Marquise Walker",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-TS",
+          "player_name": "Travis Stephens",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KJ",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Sunday Stars Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-KJ",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Sunday Stars Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Darrell Hill",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Tank Williams",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Stephen Davis",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Rod Gardner",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Cliff Russell",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "160",
+          "player_name": "Ladell Betts",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "159",
+          "player_name": "Cliff Russell",
+          "team": "Washington Redskins",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "160",
+          "player_name": "Ladell Betts",
+          "team": "Washington Redskins",
+          "variation": "Gold Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "HS-PR",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "HS-SD",
+          "player_name": "Stephen Davis",
+          "team": "Washington Redskins",
+          "variation": "Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-PR",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "OHS-SD",
+          "player_name": "Stephen Davis",
+          "team": "Washington Redskins",
+          "variation": "Official Hot Spots Football",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-PR",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": "Rookie Gallery Jersey",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "RG-PR",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": "Rookie Gallery Jersey Gold",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

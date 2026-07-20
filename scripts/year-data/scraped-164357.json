@@ -1,0 +1,47 @@
+{
+  "year": 1992,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 164357,
+        "name": "1992 Enor Pro Football HOF Update"
+      },
+      "unique": [
+        {
+          "card_number": "163",
+          "player_name": "John Mackey",
+          "team": "Baltimore Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Lem Barney",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Al Davis",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "John Riggins",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

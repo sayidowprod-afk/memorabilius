@@ -191,7 +191,10 @@ function CommentItem({
   )
 }
 
-export default function GalerieComments({ galerieUserId, accent, isOwner }: { galerieUserId: string; accent: string; isOwner: boolean }) {
+export default function GalerieComments({ galerieUserId, accent, isOwner, cardKey, binderId, notifyUserId, emptyLabel }: {
+  galerieUserId: string; accent: string; isOwner: boolean
+  cardKey?: string; binderId?: number; notifyUserId?: string; emptyLabel?: string
+}) {
   const [comments, setComments] = useState<Comment[]>([])
   const [message, setMessage] = useState('')
   const [currentUserId, setCurrentUserId] = useState<string | null>(null)
@@ -217,17 +220,21 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setCurrentUserId(data.user?.id || null))
     load()
-  }, [galerieUserId])
+  }, [galerieUserId, cardKey, binderId])
 
   const load = async () => {
     const { data: { user } } = await supabase.auth.getUser()
     const uid = user?.id || null
 
+    let query = supabase.from('galerie_comments')
+      .select('id, message, created_at, author_id, parent_id')
+      .order('created_at', { ascending: true })
+    if (binderId) query = query.eq('binder_id', binderId)
+    else if (cardKey) query = query.eq('galerie_user_id', galerieUserId).eq('card_key', cardKey)
+    else query = query.eq('galerie_user_id', galerieUserId).is('card_key', null).is('binder_id', null)
+
     const [{ data: rows }, { data: likes }] = await Promise.all([
-      supabase.from('galerie_comments')
-        .select('id, message, created_at, author_id, parent_id')
-        .eq('galerie_user_id', galerieUserId)
-        .order('created_at', { ascending: true }),
+      query,
       supabase.from('galerie_comment_likes').select('comment_id, user_id'),
     ])
 
@@ -272,17 +279,29 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
     return data?.display_name || 'Quelqu\'un'
   }
 
+  // Renvoie directement sur la carte/le classeur commenté, pas juste l'onglet commentaires général
+  const commentLink = () => {
+    if (binderId) return `/galerie/${galerieUserId}?tab=library&binder=${binderId}`
+    if (cardKey) return `/galerie/${galerieUserId}?card=${encodeURIComponent(cardKey)}`
+    return `/galerie/${galerieUserId}?tab=comments`
+  }
+
   const send = async () => {
     if (!message.trim() || !currentUserId) return
     setSending(true)
-    await supabase.from('galerie_comments').insert({ galerie_user_id: galerieUserId, author_id: currentUserId, message: message.trim() })
-    // Notifier le propriétaire de la galerie (pas si c'est lui qui commente)
-    if (currentUserId !== galerieUserId) {
+    await supabase.from('galerie_comments').insert({
+      galerie_user_id: galerieUserId, author_id: currentUserId, message: message.trim(),
+      card_key: cardKey || null, binder_id: binderId || null,
+    })
+    // Notifier le propriétaire (pas si c'est lui qui commente)
+    const target = notifyUserId ?? galerieUserId
+    if (currentUserId !== target) {
       const name = await getMyName()
+      const what = binderId ? 'votre classeur' : cardKey ? 'votre carte' : 'votre galerie'
       await supabase.from('notifications').insert({
-        user_id: galerieUserId, type: 'comment', lu: false,
-        message: `${name} a commenté votre galerie : "${message.trim().slice(0, 60)}${message.length > 60 ? '…' : ''}"`,
-        lien: `/galerie/${galerieUserId}?tab=comments`,
+        user_id: target, type: 'comment', lu: false,
+        message: `${name} a commenté ${what} : "${message.trim().slice(0, 60)}${message.length > 60 ? '…' : ''}"`,
+        lien: commentLink(),
       })
     }
     setMessage('')
@@ -310,7 +329,10 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
 
   const handleReply = async (parentId: string, msg: string) => {
     if (!currentUserId) return
-    await supabase.from('galerie_comments').insert({ galerie_user_id: galerieUserId, author_id: currentUserId, message: msg, parent_id: parentId })
+    await supabase.from('galerie_comments').insert({
+      galerie_user_id: galerieUserId, author_id: currentUserId, message: msg, parent_id: parentId,
+      card_key: cardKey || null, binder_id: binderId || null,
+    })
     // Notifier l'auteur du commentaire parent (pas si c'est soi-même)
     const parentComment = comments.find(c => c.id === parentId) || comments.flatMap(c => c.replies).find(c => c.id === parentId)
     if (parentComment && parentComment.author_id !== currentUserId) {
@@ -318,7 +340,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
       await supabase.from('notifications').insert({
         user_id: parentComment.author_id, type: 'comment', lu: false,
         message: `${name} a répondu à votre commentaire : "${msg.slice(0, 60)}${msg.length > 60 ? '…' : ''}"`,
-        lien: `/galerie/${galerieUserId}?tab=comments`,
+        lien: commentLink(),
       })
     }
     load()
@@ -370,7 +392,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner }: { ga
         <div style={{ textAlign: 'center', padding: '60px 20px', color: textMuted }}>
           <div style={{ fontSize: 40, marginBottom: 8 }}>💬</div>
           <p style={{ fontWeight: 700 }}>Aucun commentaire</p>
-          <p style={{ fontSize: 13, marginTop: 4 }}>Soyez le premier à commenter cette galerie</p>
+          <p style={{ fontSize: 13, marginTop: 4 }}>{emptyLabel || 'Soyez le premier à commenter cette galerie'}</p>
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>

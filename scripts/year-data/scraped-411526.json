@@ -1,0 +1,1431 @@
+{
+  "year": 2024,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 411526,
+        "name": "2024 Topps Archives Signature Series Active Player Edition"
+      },
+      "unique": [
+        {
+          "card_number": "579",
+          "player_name": "Lourdes Gurriel Jr.",
+          "team": "Arizona Diamondbacks",
+          "variation": "Lourdes Gurriel Jr.",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Starling Marte",
+          "team": "Arizona Diamondbacks",
+          "variation": "Starling Marte",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "98",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "143",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "149",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "161",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "207",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "262",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "294",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "343",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "412",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "440",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "562",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSR-91",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FFDC-ZG",
+          "player_name": "Zac Gallen",
+          "team": "Arizona Diamondbacks",
+          "variation": "Zac Gallen",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Ozzie Albies",
+          "team": "Atlanta Braves",
+          "variation": "Ozzie Albies",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "260",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Triple Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "40",
+          "player_name": "Adley Rutschman",
+          "team": "Baltimore Orioles",
+          "variation": "Adley Rutschman",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Cedric Mullins",
+          "team": "Baltimore Orioles",
+          "variation": "Cedric Mullins",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Cedric Mullins",
+          "team": "Baltimore Orioles",
+          "variation": "Cedric Mullins",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Cedric Mullins",
+          "team": "Baltimore Orioles",
+          "variation": "Cedric Mullins",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "Cedric Mullins",
+          "team": "Baltimore Orioles",
+          "variation": "Cedric Mullins",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "118",
+          "player_name": "Cedric Mullins",
+          "team": "Baltimore Orioles",
+          "variation": "Cedric Mullins",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "120",
+          "player_name": "Cedric Mullins",
+          "team": "Baltimore Orioles",
+          "variation": "Cedric Mullins",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "126",
+          "player_name": "Cedric Mullins",
+          "team": "Baltimore Orioles",
+          "variation": "Cedric Mullins",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "317",
+          "player_name": "Cedric Mullins",
+          "team": "Baltimore Orioles",
+          "variation": "Cedric Mullins",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "318",
+          "player_name": "Cedric Mullins",
+          "team": "Baltimore Orioles",
+          "variation": "Cedric Mullins",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "356",
+          "player_name": "Cedric Mullins",
+          "team": "Baltimore Orioles",
+          "variation": "Cedric Mullins",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "487",
+          "player_name": "Cedric Mullins",
+          "team": "Baltimore Orioles",
+          "variation": "Cedric Mullins",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ian Happ",
+          "team": "Chicago Cubs",
+          "variation": "Ian Happ",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "448",
+          "player_name": "Ian Happ",
+          "team": "Chicago Cubs",
+          "variation": "Ian Happ",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-13",
+          "player_name": "Oscar Colas",
+          "team": "Chicago White Sox",
+          "variation": "Oscar Colas",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "241",
+          "player_name": "Tim Anderson",
+          "team": "Chicago White Sox",
+          "variation": "Tim Anderson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Jonathan India",
+          "team": "Cincinnati Reds",
+          "variation": "Jonathan India",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "99",
+          "player_name": "Luis Castillo",
+          "team": "Cincinnati Reds",
+          "variation": "Luis Castillo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "107",
+          "player_name": "Luis Castillo",
+          "team": "Cincinnati Reds",
+          "variation": "Luis Castillo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "297",
+          "player_name": "Luis Castillo",
+          "team": "Cincinnati Reds",
+          "variation": "Luis Castillo",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "213",
+          "player_name": "Owen Miller",
+          "team": "Cleveland Guardians",
+          "variation": "Owen Miller",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "598",
+          "player_name": "Owen Miller",
+          "team": "Cleveland Guardians",
+          "variation": "Owen Miller",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "246",
+          "player_name": "Houston Astros",
+          "team": null,
+          "variation": "Triple Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-146",
+          "player_name": "Bobby Witt Jr.",
+          "team": "Kansas City Royals",
+          "variation": "Bobby Witt Jr.",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Kansas City Royals",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "37",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "98",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "105",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "107",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "144",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "174",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "187",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "192",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "245",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "267",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "304",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "327",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "616",
+          "player_name": "Whit Merrifield",
+          "team": "Kansas City Royals",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "396",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Mike Trout",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Mike Trout",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "100",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Mike Trout",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "285",
+          "player_name": "Mike Trout",
+          "team": "Los Angeles Angels",
+          "variation": "Mike Trout",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "246",
+          "player_name": "Los Angeles Angels",
+          "team": null,
+          "variation": "Triple Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "64",
+          "player_name": "Los Angeles Dodgers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "31",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "104",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "129",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "167",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "225",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "239",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "240",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "261",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "292",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "619",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "AGRA-CBU",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "CCR-CB",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "FF-CB",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PAG-21",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PHT-CB",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TOP-88",
+          "player_name": "Corbin Burnes",
+          "team": "Milwaukee Brewers",
+          "variation": "Corbin Burnes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "207",
+          "player_name": "Milwaukee Brewers",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "201",
+          "player_name": "Minnesota Twins",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "65",
+          "player_name": "Simeon Woods Richardson",
+          "team": "Minnesota Twins",
+          "variation": "Simeon Woods Richardson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Simeon Woods Richardson",
+          "team": "Minnesota Twins",
+          "variation": "Simeon Woods Richardson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "479",
+          "player_name": "Simeon Woods Richardson",
+          "team": "Minnesota Twins",
+          "variation": "Simeon Woods Richardson",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "201",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "90",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "98",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "116",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "130",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "133",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "203",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "357",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "389",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "426",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "489",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BSR-91",
+          "player_name": "Jeff McNeil",
+          "team": "New York Mets",
+          "variation": "Jeff McNeil",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "260",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Triple Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SMLB-14",
+          "player_name": "Aaron Judge",
+          "team": "New York Yankees",
+          "variation": "Aaron Judge",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "116",
+          "player_name": "Clay Holmes",
+          "team": "New York Yankees",
+          "variation": "Clay Holmes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "207",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "117",
+          "player_name": "Nestor Cortes",
+          "team": "New York Yankees",
+          "variation": "Nestor Cortes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "302",
+          "player_name": "Nestor Cortes",
+          "team": "New York Yankees",
+          "variation": "Nestor Cortes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "246",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Triple Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "Marcus Semien",
+          "team": "Oakland Athletics",
+          "variation": "Marcus Semien",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Paul Blackburn",
+          "team": "Oakland Athletics",
+          "variation": "Paul Blackburn",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "272",
+          "player_name": "Paul Blackburn",
+          "team": "Oakland Athletics",
+          "variation": "Paul Blackburn",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Sonny Gray",
+          "team": "Oakland Athletics",
+          "variation": "Sonny Gray",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "Sonny Gray",
+          "team": "Oakland Athletics",
+          "variation": "Sonny Gray",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "164",
+          "player_name": "Sonny Gray",
+          "team": "Oakland Athletics",
+          "variation": "Sonny Gray",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "260",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Triple Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "81",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "98",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "123",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "314",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "372",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-71",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-59",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-71",
+          "player_name": "Ke'Bryan Hayes",
+          "team": "Pittsburgh Pirates",
+          "variation": "Ke'Bryan Hayes",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BCP-102",
+          "player_name": "Owen Miller",
+          "team": "San Diego Padres",
+          "variation": "Owen Miller",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-186",
+          "player_name": "Owen Miller",
+          "team": "San Diego Padres",
+          "variation": "Owen Miller",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-102",
+          "player_name": "Owen Miller",
+          "team": "San Diego Padres",
+          "variation": "Owen Miller",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "330",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Julio Rodriguez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "700",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Julio Rodriguez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-45",
+          "player_name": "Julio Rodriguez",
+          "team": "Seattle Mariners",
+          "variation": "Julio Rodriguez",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "332",
+          "player_name": "St. Louis Cardinals",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "578",
+          "player_name": "Dylan Carlson",
+          "team": "St. Louis Cardinals",
+          "variation": "Dylan Carlson",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Randy Arozarena",
+          "team": "St. Louis Cardinals",
+          "variation": "Randy Arozarena",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Josh Lowe",
+          "team": "Tampa Bay Rays",
+          "variation": "Josh Lowe",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "53",
+          "player_name": "Kevin Kiermaier",
+          "team": "Tampa Bay Rays",
+          "variation": "Kevin Kiermaier",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "246",
+          "player_name": "Kevin Kiermaier",
+          "team": "Tampa Bay Rays",
+          "variation": "Kevin Kiermaier",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "265",
+          "player_name": "Kevin Kiermaier",
+          "team": "Tampa Bay Rays",
+          "variation": "Kevin Kiermaier",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "272",
+          "player_name": "Kevin Kiermaier",
+          "team": "Tampa Bay Rays",
+          "variation": "Kevin Kiermaier",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "280",
+          "player_name": "Kevin Kiermaier",
+          "team": "Tampa Bay Rays",
+          "variation": "Kevin Kiermaier",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "319",
+          "player_name": "Kevin Kiermaier",
+          "team": "Tampa Bay Rays",
+          "variation": "Kevin Kiermaier",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "454",
+          "player_name": "Kevin Kiermaier",
+          "team": "Tampa Bay Rays",
+          "variation": "Kevin Kiermaier",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "619",
+          "player_name": "Kevin Kiermaier",
+          "team": "Tampa Bay Rays",
+          "variation": "Kevin Kiermaier",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLM-KK",
+          "player_name": "Kevin Kiermaier",
+          "team": "Tampa Bay Rays",
+          "variation": "Kevin Kiermaier",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "196",
+          "player_name": "Randy Arozarena",
+          "team": "Tampa Bay Rays",
+          "variation": "Randy Arozarena",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "175",
+          "player_name": "Alejandro Kirk",
+          "team": "Toronto Blue Jays",
+          "variation": "Alejandro Kirk",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "413",
+          "player_name": "Alejandro Kirk",
+          "team": "Toronto Blue Jays",
+          "variation": "Alejandro Kirk",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "551",
+          "player_name": "Alejandro Kirk",
+          "team": "Toronto Blue Jays",
+          "variation": "Alejandro Kirk",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BD-193",
+          "player_name": "Alejandro Kirk",
+          "team": "Toronto Blue Jays",
+          "variation": "Alejandro Kirk",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "121",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Alek Manoah",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "248",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Alek Manoah",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "BP-149",
+          "player_name": "Alek Manoah",
+          "team": "Toronto Blue Jays",
+          "variation": "Alek Manoah",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "224",
+          "player_name": "Daulton Varsho",
+          "team": "Toronto Blue Jays",
+          "variation": "Daulton Varsho",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "501",
+          "player_name": "Daulton Varsho",
+          "team": "Toronto Blue Jays",
+          "variation": "Daulton Varsho",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "332",
+          "player_name": "Toronto Blue Jays",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "396",
+          "player_name": "Toronto Blue Jays",
+          "team": null,
+          "variation": "Dual Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "54",
+          "player_name": "Lourdes Gurriel Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Lourdes Gurriel Jr.",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "218",
+          "player_name": "Lourdes Gurriel Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Lourdes Gurriel Jr.",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "136",
+          "player_name": "Whit Merrifield",
+          "team": "Toronto Blue Jays",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "381",
+          "player_name": "Whit Merrifield",
+          "team": "Toronto Blue Jays",
+          "variation": "Whit Merrifield",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

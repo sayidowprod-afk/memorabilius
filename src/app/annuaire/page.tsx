@@ -1,9 +1,10 @@
 'use client'
 import { useEffect, useState, Suspense } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import { useTheme } from '@/lib/ThemeContext'
 import { SPORTS_TEAMS, getSpeciality, getTeamById } from '@/lib/sportsTeams'
 import TeamBadge from '@/components/TeamBadge'
 
@@ -20,11 +21,22 @@ export default function Annuaire() {
 
 function AnnuaireContent() {
   const { t, lang } = useLang()
+  const { dark } = useTheme()
+  const router = useRouter()
   const searchParams = useSearchParams()
   const teamIdFromUrl = searchParams.get('team_id') || ''
 
   const [collectors, setCollectors] = useState<Collector[]>([])
   const [loading, setLoading] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 600px)')
+    setIsMobile(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
   const [sortKey, setSortKey] = useState<'display_name' | 'total' | 'rc' | 'auto' | 'num' | 'patch'>('total')
   const [sortAsc, setSortAsc] = useState(false)
   const [teamFilter, setTeamFilter] = useState<string>(teamIdFromUrl)
@@ -55,6 +67,7 @@ function AnnuaireContent() {
       .select('id, display_name, avatar_url, lien_csv, stats_total, stats_rc, stats_auto, stats_num, stats_patch, stats_updated_at, favorite_teams, is_donor')
       .not('display_name', 'is', null)
       .neq('display_name', '')
+      .limit(10000)
 
     if (!profiles) { setLoading(false); return }
 
@@ -72,24 +85,26 @@ function AnnuaireContent() {
     })))
     setLoading(false)
 
-    // Recalculer les stats si pas à jour depuis 24h
-    profiles.forEach(async p => {
+    // Recalculer les stats si pas à jour depuis 24h — limité à 5 profils par chargement
+    const stale = profiles.filter(p => {
       const lastUpdate = p.stats_updated_at ? new Date(p.stats_updated_at) : null
-      const isStale = !lastUpdate || (Date.now() - lastUpdate.getTime() > 60 * 60 * 1000)
-      if (isStale) {
-        try {
-          const r = await fetch('/api/update-stats', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId: p.id, csvUrl: p.lien_csv || null }),
-          })
-          const data = await r.json()
-          if (data.stats) {
-            setCollectors(prev => prev.map(c => c.id === p.id ? { ...c, stats: data.stats } : c))
-          }
-        } catch { }
-      }
-    })
+      const isStale = !lastUpdate || (Date.now() - lastUpdate.getTime() > 24 * 60 * 60 * 1000)
+      const isCapped = (p.stats_total || 0) > 0 && (p.stats_total || 0) % 1000 === 0
+      return isStale || isCapped
+    }).slice(0, 5)
+    for (const p of stale) {
+      try {
+        const r = await fetch('/api/recalc-user', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: p.id }),
+        })
+        const data = await r.json()
+        if (data.stats) {
+          setCollectors(prev => prev.map(c => c.id === p.id ? { ...c, stats: data.stats } : c))
+        }
+      } catch { }
+    }
   }
 
   const applyTeamFilter = async (tid: string) => {
@@ -115,10 +130,10 @@ function AnnuaireContent() {
       setTeamName('')
     }
     // Mettre à jour l'URL sans recharger
-    const url = new URL(window.location.href)
-    if (tid) url.searchParams.set('team_id', tid)
-    else url.searchParams.delete('team_id')
-    window.history.pushState({}, '', url.toString())
+    const params = new URLSearchParams(searchParams.toString())
+    if (tid) params.set('team_id', tid)
+    else params.delete('team_id')
+    router.replace(`?${params.toString()}`, { scroll: false })
   }
 
   const sorted = [...collectors].filter(c =>
@@ -136,10 +151,8 @@ function AnnuaireContent() {
     else { setSortKey(k); setSortAsc(false) }
   }
 
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 600
-
-  const th = (k: typeof sortKey, label: string) => (
-    <th onClick={() => handleSort(k)} style={{ background: '#fdfdfd', padding: isMobile ? '10px 6px' : '18px 15px', textAlign: isMobile ? 'center' : 'left', fontSize: isMobile ? 10 : 11, textTransform: 'uppercase', color: '#999', borderBottom: '2px solid #f0f0f0', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+  const th =(k: typeof sortKey, label: string) => (
+    <th onClick={() => handleSort(k)} style={{ background: dark ? '#252525' : '#fdfdfd', padding: isMobile ? '10px 6px' : '18px 15px', textAlign: isMobile ? 'center' : 'left', fontSize: isMobile ? 10 : 11, textTransform: 'uppercase', color: '#999', borderBottom: `2px solid ${dark ? '#333' : '#f0f0f0'}`, cursor: 'pointer', whiteSpace: 'nowrap' }}>
       {label}{sortKey === k ? (sortAsc ? ' ↑' : ' ↓') : ''}
     </th>
   )
@@ -158,7 +171,6 @@ function AnnuaireContent() {
           justify-content: center;
           cursor: default;
           line-height: 1;
-          filter: drop-shadow(0 0 0 white) drop-shadow(0 0 2px white) drop-shadow(0 0 3px white);
           transition: transform 0.15s;
         }
         .sticker-badge-sm:hover { transform: scale(1.2); }
@@ -245,7 +257,7 @@ function AnnuaireContent() {
         </h1>
         {teamName && (
           <button onClick={() => handleTeamChange('')} style={{ fontSize: 12, color: '#999', background: 'none', border: '1px solid #ddd', borderRadius: 6, padding: '4px 10px', cursor: 'pointer' }}>
-            ← Toutes les teams
+            {t('directory_back_all_teams')}
           </button>
         )}
       </div>
@@ -254,7 +266,7 @@ function AnnuaireContent() {
         <input
           value={search}
           onChange={e => setSearch(e.target.value)}
-          placeholder={lang === 'fr' ? 'Rechercher un collectionneur…' : 'Search collector…'}
+          placeholder={t('directory_search_placeholder')}
           style={{ flex: '1 1 200px', minWidth: 180 }}
         />
         <select value={teamFilter} onChange={e => handleTeamChange(e.target.value)} style={{ flex: '1 1 160px', minWidth: 140 }}>
@@ -262,14 +274,23 @@ function AnnuaireContent() {
           {teams.map(t => <option key={t.id} value={String(t.id)}>{t.name}</option>)}
         </select>
         <select value={nbaFilter} onChange={e => setNbaFilter(e.target.value)} style={{ flex: '1 1 160px', minWidth: 140 }}>
-          <option value="">🏀 Toutes les équipes NBA</option>
+          <option value="">{t('directory_all_nba')}</option>
           {SPORTS_TEAMS.map(t => <option key={t.id} value={t.id}>{t.name} ({t.sport.toUpperCase()})</option>)}
         </select>
+        {(search || teamFilter || nbaFilter) && (
+          <button
+            type="button"
+            onClick={() => { setSearch(''); handleTeamChange(''); setNbaFilter('') }}
+            style={{ padding: '8px 14px', background: dark ? '#2a2a2a' : '#fff3e0', color: '#e67e22', border: '1px solid #ffe0b2', borderRadius: 8, fontWeight: 700, fontSize: 12, cursor: 'pointer', whiteSpace: 'nowrap', flexShrink: 0 }}
+          >
+            ✕ {lang === 'fr' ? 'Effacer les filtres' : 'Clear filters'}
+          </button>
+        )}
       </div>
 
       {loading ? <p style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>Chargement des collections...</p> : (
         <div style={{ borderRadius: 12, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', background: 'white', tableLayout: 'fixed' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', background: dark ? '#1e1e1e' : 'white', tableLayout: 'fixed' }}>
             <colgroup>
               <col style={{ width: isMobile ? '42%' : '40%' }} />
               <col style={{ width: isMobile ? '12%' : '12%' }} />
@@ -292,11 +313,11 @@ function AnnuaireContent() {
               )}
               {sorted.map(c => (
                 <tr key={c.id}>
-                  <td style={{ padding: isMobile ? '10px 8px' : 15, borderBottom: '1px solid #f5f5f5', overflow: 'hidden' }}>
+                  <td style={{ padding: isMobile ? '10px 8px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, overflow: 'hidden' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 15, minWidth: 0 }}>
-                      <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: '2px solid #eee', objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
+                      <img src={c.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.display_name || 'U')}&background=003DA6&color=fff`} style={{ width: isMobile ? 28 : 42, height: isMobile ? 28 : 42, borderRadius: '50%', border: `2px solid ${dark ? '#333' : '#eee'}`, objectFit: 'cover', flexShrink: 0 }} alt={c.display_name} />
                       <div style={{ minWidth: 0 }}>
-                        <Link href={`/galerie/${c.id}`} className={c.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: c.is_donor ? undefined : '#121212', fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
+                        <Link href={`/galerie/${c.id}`} className={c.is_donor ? 'holo-name' : ''} style={{ fontWeight: 800, color: c.is_donor ? undefined : (dark ? '#f0f0f0' : '#121212'), fontSize: isMobile ? 12 : 14, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', textDecoration: 'none' }}>{c.display_name || 'Collectionneur'}</Link>
                         {(() => {
                           const teams = c.favorite_teams || []
                           const spec = getSpeciality(c.stats)
@@ -321,11 +342,11 @@ function AnnuaireContent() {
                       </div>
                     </div>
                   </td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>{badge(c.stats?.total ?? 0, '#f0f0f0', '#333')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>{badge(c.stats?.rc ?? 0, '#e67e22', 'white')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>{badge(c.stats?.auto ?? 0, '#2e7d32', 'white')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>{badge(c.stats?.num ?? 0, '#7b1fa2', 'white')}</td>
-                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: '1px solid #f5f5f5', textAlign: 'center' }}>{badge(c.stats?.patch ?? 0, '#1976d2', 'white')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.total ?? 0, dark ? '#333' : '#f0f0f0', dark ? '#eee' : '#333')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.rc ?? 0, '#e67e22', 'white')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.auto ?? 0, '#2e7d32', 'white')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.num ?? 0, '#7b1fa2', 'white')}</td>
+                  <td style={{ padding: isMobile ? '10px 4px' : 15, borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, textAlign: 'center' }}>{badge(c.stats?.patch ?? 0, '#1976d2', 'white')}</td>
                 </tr>
               ))}
             </tbody>

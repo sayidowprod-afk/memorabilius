@@ -1,0 +1,3463 @@
+{
+  "year": 2003,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 4599,
+        "name": "2003 Flair"
+      },
+      "unique": [
+        {
+          "card_number": "6",
+          "player_name": "Marcel Shipp",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Bryant Johnson",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Marcel Shipp",
+          "team": "Arizona Cardinals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Bryant Johnson",
+          "team": "Arizona Cardinals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Arizona Cardinals",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ACA-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "A Cut Above",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FC-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Final Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-PP",
+          "player_name": "Peerless Price",
+          "team": "Atlanta Falcons",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Todd Heap",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Terrell Suggs",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Musa Smith",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Kyle Boller",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Todd Heap",
+          "team": "Baltimore Ravens",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Terrell Suggs",
+          "team": "Baltimore Ravens",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Musa Smith",
+          "team": "Baltimore Ravens",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Kyle Boller",
+          "team": "Baltimore Ravens",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JL",
+          "player_name": "Baltimore Ravens",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-WG",
+          "player_name": "Baltimore Ravens",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-JL",
+          "player_name": "Baltimore Ravens",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-WG",
+          "player_name": "Baltimore Ravens",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Travis Henry",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Willis McGahee",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ACA-DB",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": "A Cut Above",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Eric Moulds",
+          "team": "Buffalo Bills",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Travis Henry",
+          "team": "Buffalo Bills",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Peerless Price",
+          "team": "Buffalo Bills",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Willis McGahee",
+          "team": "Buffalo Bills",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FC-DB",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": "Final Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DB",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DB",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSAO-WM",
+          "player_name": "Willis McGahee",
+          "team": "Buffalo Bills",
+          "variation": "Sweet Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSAO-WM",
+          "player_name": "Willis McGahee",
+          "team": "Buffalo Bills",
+          "variation": "Sweet Swatch Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSAO-WM",
+          "player_name": "Willis McGahee",
+          "team": "Buffalo Bills",
+          "variation": "Sweet Swatch Autographs Masterpieces",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "49",
+          "player_name": "Stephen Davis",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Stephen Davis",
+          "team": "Carolina Panthers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JP",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-JP",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Marty Booker",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Rex Grossman",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Bobby Wade",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Justin Gage",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Marty Booker",
+          "team": "Chicago Bears",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Rex Grossman",
+          "team": "Chicago Bears",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Bobby Wade",
+          "team": "Chicago Bears",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Justin Gage",
+          "team": "Chicago Bears",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AG",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BU",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-AG",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-BU",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Kelley Washington",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Kelley Washington",
+          "team": "Cincinnati Bengals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Lee Suggs",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Lee Suggs",
+          "team": "Cleveland Browns",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JL",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-WG",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-JL",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-WG",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Joey Galloway",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Chad Hutchinson",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Terence Newman",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Joey Galloway",
+          "team": "Dallas Cowboys",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Chad Hutchinson",
+          "team": "Dallas Cowboys",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Terence Newman",
+          "team": "Dallas Cowboys",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Jake Plummer",
+          "team": "Denver Broncos",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CP",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-CP",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Charles Rogers",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Charles Rogers",
+          "team": "Detroit Lions",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-JH",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-JH",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-JH",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-JH",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Donald Driver",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Donald Driver",
+          "team": "Green Bay Packers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AG",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-BU",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-AG",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-BU",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Dave Ragone",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Dave Ragone",
+          "team": "Houston Texans",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JP",
+          "player_name": "Houston Texans",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-JP",
+          "player_name": "Houston Texans",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-DC",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-DC",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-DC",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-DC",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Dallas Clark",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ACA-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "A Cut Above",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Dallas Clark",
+          "team": "Indianapolis Colts",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FC-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Final Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CC",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MH",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-CC",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-MH",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-SM",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Byron Leftwich",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "LaBrandon Toefield",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Byron Leftwich",
+          "team": "Jacksonville Jaguars",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "LaBrandon Toefield",
+          "team": "Jacksonville Jaguars",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-EG",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-FT",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-EG",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-FT",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-PH",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-TG",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-PH",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-TG",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-PH",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-TG",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-PH",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-TG",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Zach Thomas",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Chris Chambers",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Zach Thomas",
+          "team": "Miami Dolphins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Chris Chambers",
+          "team": "Miami Dolphins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CC",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MH",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-CC",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-MH",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Onterrio Smith",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ACA-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "A Cut Above",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Onterrio Smith",
+          "team": "Minnesota Vikings",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FC-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Final Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-MB",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-MB",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-MB",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-MB",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Kliff Kingsbury",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Kliff Kingsbury",
+          "team": "New England Patriots",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DB",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DB",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSAO-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Sweet Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSAO-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Sweet Swatch Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSAO-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Sweet Swatch Autographs Masterpieces",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Donté Stallworth",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Kareem Kelly",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Talman Gardner",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ACA-JH",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": "A Cut Above",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Donte Stallworth",
+          "team": "New Orleans Saints",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Kareem Kelly",
+          "team": "New Orleans Saints",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Talman Gardner",
+          "team": "New Orleans Saints",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FC-JH",
+          "player_name": "Joe Horn",
+          "team": "New Orleans Saints",
+          "variation": "Final Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM2",
+          "player_name": "New Orleans Saints",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DM2",
+          "player_name": "New Orleans Saints",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-AB",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-DM",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-AB",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-DM",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-AB",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-DM",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-AB",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-DM",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Amani Toomer",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "William Joseph",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Amani Toomer",
+          "team": "New York Giants",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "William Joseph",
+          "team": "New York Giants",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JS",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DM",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-JS",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "DeWayne Robertson",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "DeWayne Robertson",
+          "team": "New York Jets",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-CM",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-CP",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-CM",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-CP",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-CM",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-CP",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-CM",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-CP",
+          "player_name": "Chad Pennington",
+          "team": "New York Jets",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jerry Porter",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Doug Gabriel",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Justin Fargas",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Teyo Johnson",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ACA-TB",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": "A Cut Above",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Jerry Porter",
+          "team": "Oakland Raiders",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Doug Gabriel",
+          "team": "Oakland Raiders",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Justin Fargas",
+          "team": "Oakland Raiders",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Teyo Johnson",
+          "team": "Oakland Raiders",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FC-TB",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": "Final Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RG",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-RG",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JS",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DM",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-JS",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Tommy Maddox",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Kendrell Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Brian St. Pierre",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Tommy Maddox",
+          "team": "Pittsburgh Steelers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Plaxico Burress",
+          "team": "Pittsburgh Steelers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Kendrell Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Brian St. Pierre",
+          "team": "Pittsburgh Steelers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-HW",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-KB",
+          "player_name": "Kendrell Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-HW",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-HW",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-KB",
+          "player_name": "Kendrell Bell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-HW",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "David Boston",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Andrew Pinnock",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "David Boston",
+          "team": "San Diego Chargers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Andrew Pinnock",
+          "team": "San Diego Chargers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CP",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-RG",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-CP",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-RG",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSAO-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatch Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSAO-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatch Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSAO-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatch Autographs Masterpieces",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSJR-DB",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJR-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatch Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-DB",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSJE-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatch Jerseys Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-DB",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPR-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatch Jerseys Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-DB0",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSPE-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Sweet Swatch Jerseys Patches Jumbo",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Brandon Lloyd",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Ken Dorsey",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Arnaz Battle",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Brandon Lloyd",
+          "team": "San Francisco 49ers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Ken Dorsey",
+          "team": "San Francisco 49ers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Arnaz Battle",
+          "team": "San Francisco 49ers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Koren Robinson",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Marcus Trufant",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Seneca Wallace",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Koren Robinson",
+          "team": "Seattle Seahawks",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Marcus Trufant",
+          "team": "Seattle Seahawks",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Seneca Wallace",
+          "team": "Seattle Seahawks",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ACA-IB",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": "A Cut Above",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ACA-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "A Cut Above",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FC-IB",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": "Final Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FC-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Final Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Ronde Barber",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Chris Simms",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ACA-KJ",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "A Cut Above",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ACA-MA",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "A Cut Above",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Ronde Barber",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Warren Sapp",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Chris Simms",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FC-KJ",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Final Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "FC-MA",
+          "player_name": "Mike Alstott",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Final Cut",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DM2",
+          "player_name": "Tampa Bay Buccaneers",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-DM2",
+          "player_name": "Tampa Bay Buccaneers",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Derrick Mason",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Tyrone Calico",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Derrick Mason",
+          "team": "Tennessee Titans",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Tyrone Calico",
+          "team": "Tennessee Titans",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Chris Brown",
+          "team": "Tennessee Titans",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-EG",
+          "player_name": "Tennessee Titans",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-FT",
+          "player_name": "Tennessee Titans",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Tennessee Titans",
+          "team": null,
+          "variation": "Sunday Showdown",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-EG",
+          "player_name": "Tennessee Titans",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-FT",
+          "player_name": "Tennessee Titans",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSP-SM",
+          "player_name": "Tennessee Titans",
+          "team": null,
+          "variation": "Sunday Showdown Patches",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Laveranues Coles",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Rod Gardner",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Taylor Jacobs",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Laveranues Coles",
+          "team": "Washington Redskins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Rod Gardner",
+          "team": "Washington Redskins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Taylor Jacobs",
+          "team": "Washington Redskins",
+          "variation": "Collection",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

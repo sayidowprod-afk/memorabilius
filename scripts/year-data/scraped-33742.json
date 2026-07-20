@@ -1,0 +1,679 @@
+{
+  "year": 1994,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 33742,
+        "name": "1994 Action Packed All-Madden"
+      },
+      "unique": [
+        {
+          "card_number": "19G",
+          "player_name": "Ron Moore",
+          "team": "Arizona Cardinals",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40G",
+          "player_name": "Gary Clark",
+          "team": "Arizona Cardinals",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Chris Doleman",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35G",
+          "player_name": "Chris Doleman",
+          "team": "Atlanta Falcons",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Donnell Woolford",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Chris Zorich",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15G",
+          "player_name": "Donnell Woolford",
+          "team": "Chicago Bears",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28G",
+          "player_name": "Chris Zorich",
+          "team": "Chicago Bears",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Bill Bates",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Erik Williams",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Charles Haley",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Nate Newton",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1G",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10G",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20G",
+          "player_name": "Bill Bates",
+          "team": "Dallas Cowboys",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26G",
+          "player_name": "Erik Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29G",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30G",
+          "player_name": "Charles Haley",
+          "team": "Dallas Cowboys",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36G",
+          "player_name": "Nate Newton",
+          "team": "Dallas Cowboys",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25G",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Reggie White",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "LeRoy Butler",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Sterling Sharpe",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16G",
+          "player_name": "Reggie White",
+          "team": "Green Bay Packers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39G",
+          "player_name": "LeRoy Butler",
+          "team": "Green Bay Packers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41G",
+          "player_name": "Sterling Sharpe",
+          "team": "Green Bay Packers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Bruce Matthews",
+          "team": "Houston Oilers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18G",
+          "player_name": "Bruce Matthews",
+          "team": "Houston Oilers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Joe Montana",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Joe Montana",
+          "team": "Kansas City Chiefs",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11G",
+          "player_name": "Joe Montana",
+          "team": "Kansas City Chiefs",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Kevin Gogan",
+          "team": "Los Angeles Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33G",
+          "player_name": "Kevin Gogan",
+          "team": "Los Angeles Raiders",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jerome Bettis",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Sean Gilbert",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Jackie Slater",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2G",
+          "player_name": "Jerome Bettis",
+          "team": "Los Angeles Rams",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32G",
+          "player_name": "Sean Gilbert",
+          "team": "Los Angeles Rams",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37G",
+          "player_name": "Jackie Slater",
+          "team": "Los Angeles Rams",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Keith Byars",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9G",
+          "player_name": "Keith Byars",
+          "team": "Miami Dolphins",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Mark Collins",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Phil Simms",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Rodney Hampton",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24G",
+          "player_name": "Mark Collins",
+          "team": "New York Giants",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27G",
+          "player_name": "Phil Simms",
+          "team": "New York Giants",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34G",
+          "player_name": "Rodney Hampton",
+          "team": "New York Giants",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Ronnie Lott",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14G",
+          "player_name": "Ronnie Lott",
+          "team": "New York Jets",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Eric Allen",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22G",
+          "player_name": "Eric Allen",
+          "team": "Philadelphia Eagles",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Ron Moore",
+          "team": "Phoenix Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Gary Clark",
+          "team": "Phoenix Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Junior Seau",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Steve Hendrickson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6G",
+          "player_name": "Junior Seau",
+          "team": "San Diego Chargers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21G",
+          "player_name": "Steve Hendrickson",
+          "team": "San Diego Chargers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Richard Dent",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Harris Barton",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Steve Wallace",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jesse Sapolu",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Rickey Jackson",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "John Taylor",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Ricky Watters",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3G",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4G",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5G",
+          "player_name": "Richard Dent",
+          "team": "San Francisco 49ers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7G",
+          "player_name": "Harris Barton",
+          "team": "San Francisco 49ers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8G",
+          "player_name": "Steve Wallace",
+          "team": "San Francisco 49ers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12G",
+          "player_name": "Jesse Sapolu",
+          "team": "San Francisco 49ers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13G",
+          "player_name": "Rickey Jackson",
+          "team": "San Francisco 49ers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17G",
+          "player_name": "John Taylor",
+          "team": "San Francisco 49ers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38G",
+          "player_name": "Ricky Watters",
+          "team": "San Francisco 49ers",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Monte Coleman",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Darrell Green",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23G",
+          "player_name": "Monte Coleman",
+          "team": "Washington Redskins",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31G",
+          "player_name": "Darrell Green",
+          "team": "Washington Redskins",
+          "variation": "Action Packed All-Madden 24K - Gold",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

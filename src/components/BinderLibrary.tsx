@@ -1,10 +1,40 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { useTheme } from '@/lib/ThemeContext'
 import { createPortal } from 'react-dom'
 import dynamic from 'next/dynamic'
 import { supabase } from '@/lib/supabase'
 import CardPicker, { PickableCard } from './CardPicker'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
+import ShareButton from './ShareButton'
+import QrModal from './QrModal'
+import CommentsModal from './CommentsModal'
+import { toast } from '@/lib/toast'
+import FolderIconPicker from './FolderIconPicker'
+import { getTeamById, teamLogoUrl } from '@/lib/sportsTeams'
+
+// Rend l'icône d'un dossier : emoji, logo d'équipe (team:<id>) ou 📁 par défaut
+function FolderIcon({ icon, size = 16 }: { icon?: string | null; size?: number }) {
+  if (icon && icon.startsWith('team:')) {
+    const team = getTeamById(icon.slice(5))
+    if (team) {
+      const url = teamLogoUrl(team)
+      if (url) return (
+        <span style={{
+          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          width: size, height: size, borderRadius: '50%',
+          background: 'white', verticalAlign: 'middle', flexShrink: 0,
+          overflow: 'hidden', boxShadow: '0 0 0 0.75px rgba(0,0,0,0.10)',
+        }}>
+          <img src={url} alt="" style={{ width: Math.round(size * 0.82), height: Math.round(size * 0.82), objectFit: 'contain', display: 'block' }} />
+        </span>
+      )
+      // Pas de logo → cercle coloré sans texte
+      return <span style={{ display: 'inline-block', width: size, height: size, borderRadius: '50%', background: team.color, verticalAlign: 'middle', flexShrink: 0 }} />
+    }
+  }
+  return <span style={{ fontSize: size }}>{icon || '📁'}</span>
+}
 
 const Viewer3D = dynamic(() => import('./Viewer3D'), { ssr: false })
 
@@ -18,7 +48,11 @@ interface Binder {
   page_count: number
   position: number
   binder_type: 'portfolio' | 'rings'
+  folder_id: number | null
+  is_public?: boolean
 }
+
+interface Folder { id: number; name: string; position: number; icon?: string | null; color?: string | null }
 
 interface Slot {
   page_number: number
@@ -27,15 +61,44 @@ interface Slot {
   img: string
   img_back: string | null
   nom: string | null
+  is_horizontal?: boolean
 }
 
 const LAYOUTS = [4, 6, 9, 12, 16]
 const COLS: Record<number, number> = { 4: 2, 6: 2, 9: 3, 12: 3, 16: 4 }
 const BINDER_COLORS = ['#c0392b', '#e2b13c', '#1a1a1a', '#e8dcc4', '#1f3a5f', '#2c2c2c', '#6b2737', '#3d5a3d']
+const FOLDER_SHELF_COLORS = ['#4a6741', '#1f3a5f', '#6b2737', '#7a5c00', '#374a6b', '#4a3d6b', '#2d4a4a', '#3d3d3d']
 const SHELF_ROW_SIZE = 12
 const PAGE_MAX_W = 620
 const PAGE_RATIO = 310 / 230 // hauteur / largeur d'une page
 const FLIP_MS = 620
+
+// Détecte l'orientation réelle de l'image (fiable pour toutes les sources : cartes
+// manuelles, CSV... contrairement au champ `format` en base qui n'existe pas pour
+// les cartes CSV et peut être absent/incorrect pour d'anciennes cartes manuelles).
+function detectIsHorizontal(src: string): Promise<boolean> {
+  return new Promise(resolve => {
+    const img = new Image()
+    img.onload = () => resolve(img.naturalWidth > img.naturalHeight)
+    img.onerror = () => resolve(false)
+    img.src = src
+  })
+}
+
+// Style de l'image d'une carte dans une pochette (aspect 2.5/3.5 fixe). Pour une
+// carte horizontale, on pré-pivote une boîte aux dimensions inversées (140% ×
+// 71.43% = l'exact inverse du ratio 2.5/3.5) puis on la fait tourner de 90° :
+// le rendu final occupe alors toute la pochette, à la verticale.
+function cardImgStyle(isHorizontal?: boolean): React.CSSProperties {
+  const base: React.CSSProperties = { objectFit: 'cover', display: 'block', pointerEvents: 'none' }
+  if (!isHorizontal) return { ...base, width: '100%', height: '100%' }
+  return {
+    ...base,
+    position: 'absolute', top: '50%', left: '50%',
+    width: '140%', height: '71.4286%',
+    transform: 'translate(-50%, -50%) rotate(90deg)',
+  }
+}
 
 function slotKey(page: number, idx: number) { return `${page}:${idx}` }
 
@@ -49,15 +112,28 @@ function PlasticSheen() {
   )
 }
 
-export default function BinderLibrary({ userId, isOwner, accent, pendingCard, onPlaced, onOpenCard }: {
+export default function BinderLibrary({ userId, isOwner, accent, pendingCard, onPlaced, onOpenCard, initialBinderId }: {
   userId: string; isOwner: boolean; accent: string
   pendingCard?: PickableCard | null
   onPlaced?: () => void
   onOpenCard?: (img: string) => boolean
+  initialBinderId?: number | null
 }) {
+  const { dark } = useTheme()
   const [binders, setBinders] = useState<Binder[]>([])
+  const [folders, setFolders] = useState<Folder[]>([])
+  const [currentFolder, setCurrentFolder] = useState<Folder | null>(null)
+  const [iconPickerFolder, setIconPickerFolder] = useState<Folder | null>(null)
+  const [menuFolder, setMenuFolder] = useState<number | null>(null)
   const [loading, setLoading] = useState(true)
   const [selected, setSelected] = useState<Binder | null>(null)
+  const [showComments, setShowComments] = useState(false)
+  const [showQr, setShowQr] = useState(false)
+  const [commentCount, setCommentCount] = useState(0)
+  const [showSortMenu, setShowSortMenu] = useState(false)
+  const [sorting, setSorting] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [showOwnerMenu, setShowOwnerMenu] = useState(false)
   const [slots, setSlots] = useState<Map<string, Slot>>(new Map())
   // Page gauche du double-feuillet, PAIRE (0, 2, 4…). Comme un vrai classeur :
   // 0 = intérieur de couverture (gauche) + page 1 seule à droite, puis 2–3, 4–5…
@@ -82,13 +158,35 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
   const [fLayout, setFLayout] = useState(9)
   const [fType, setFType] = useState<'portfolio' | 'rings'>('portfolio')
   const [fColor, setFColor] = useState(BINDER_COLORS[0])
+  const [fFolderId, setFFolderId] = useState<number | null>(null)
   const [fCover, setFCover] = useState<string | null>(null)
+  const [fIsPublic, setFIsPublic] = useState(true)
   const [uploadingCover, setUploadingCover] = useState(false)
   const coverInputRef = useRef<HTMLInputElement>(null)
+  const binderColorInputRef = useRef<HTMLInputElement>(null)
+
+  const [cardCounts, setCardCounts] = useState<Record<number, number>>({})
 
   const [pageW, setPageW] = useState(PAGE_MAX_W)
   const stageRef = useRef<HTMLDivElement>(null)
   const pageH = Math.round(pageW * PAGE_RATIO)
+
+  const [shelfRowSize, setShelfRowSize] = useState(SHELF_ROW_SIZE)
+  const shelfContainerRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (loading || selected) return
+    const el = shelfContainerRef.current
+    if (!el) return
+    const measure = () => {
+      // 28px outer padding (14×2), 12px row padding (6×2), 44px per spine (40 + 4 gap)
+      const innerW = el.clientWidth - 28 - 12
+      setShelfRowSize(Math.max(1, Math.floor((innerW + 4) / 44)))
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [selected, loading])
 
   useEffect(() => {
     const el = stageRef.current
@@ -117,6 +215,13 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   useEffect(() => { loadBinders() }, [userId])
 
+  // Ouverture directe d'un classeur partagé via lien (?binder=<id>)
+  useEffect(() => {
+    if (!initialBinderId || !binders.length || selected) return
+    const b = binders.find(bi => bi.id === initialBinderId)
+    if (b) openBinder(b)
+  }, [initialBinderId, binders])
+
   // Filet de sécurité : si un pointeur est relâché/annulé n'importe où et que le
   // garde-fou anti-clic est resté « à l'infini » sans glissé actif, on le réarme.
   useEffect(() => {
@@ -131,16 +236,88 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     return () => { window.removeEventListener('pointerup', reset); window.removeEventListener('pointercancel', reset) }
   }, [])
 
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 560)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
   const loadBinders = async () => {
-    const { data } = await supabase.from('binders').select('*').eq('user_id', userId).order('position').order('id')
-    setBinders(data || [])
+    const [{ data }, { data: fdata }] = await Promise.all([
+      supabase.from('binders').select('*').eq('user_id', userId).order('position').order('id'),
+      supabase.from('binder_folders').select('*').eq('user_id', userId).order('position').order('id'),
+    ])
+    const allBinders = data || []
+    setBinders(allBinders)
+    setFolders(fdata || [])
+    if (allBinders.length) {
+      const { data: slotRows } = await supabase
+        .from('binder_slots')
+        .select('binder_id')
+        .in('binder_id', allBinders.map(b => b.id))
+      const counts: Record<number, number> = {}
+      for (const row of slotRows || []) counts[row.binder_id] = (counts[row.binder_id] || 0) + 1
+      setCardCounts(counts)
+    }
     setLoading(false)
+  }
+
+  const createFolder = async () => {
+    const name = prompt('Nom du dossier :')?.trim()
+    if (!name) return
+    const { data, error } = await supabase.from('binder_folders').insert({ user_id: userId, name, position: folders.length }).select().single()
+    if (error) { toast.error('Erreur : ' + error.message); return }
+    setFolders(prev => [...prev, data])
+  }
+
+  const renameFolder = async (folder: Folder) => {
+    const name = prompt('Renommer le dossier :', folder.name)?.trim()
+    if (!name || name === folder.name) return
+    await supabase.from('binder_folders').update({ name }).eq('id', folder.id)
+    setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, name } : f))
+    setCurrentFolder(c => c && c.id === folder.id ? { ...c, name } : c)
+  }
+
+  const saveFolderColor = async (folder: Folder, color: string) => {
+    const { error } = await supabase.from('binder_folders').update({ color }).eq('id', folder.id)
+    if (error) { toast.error('Erreur : ' + error.message); return }
+    setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, color } : f))
+  }
+
+  const saveFolderIcon = async (folder: Folder, icon: string) => {
+    const value = icon || null
+    const { error } = await supabase.from('binder_folders').update({ icon: value }).eq('id', folder.id)
+    if (error) { toast.error('Erreur : ' + error.message); return }
+    setFolders(prev => prev.map(f => f.id === folder.id ? { ...f, icon: value } : f))
+    setCurrentFolder(c => c && c.id === folder.id ? { ...c, icon: value } : c)
+    setIconPickerFolder(null)
+  }
+
+  const moveBinderToFolder = async (binderId: number, folderId: number | null) => {
+    await supabase.from('binders').update({ folder_id: folderId }).eq('id', binderId)
+    setBinders(prev => prev.map(b => b.id === binderId ? { ...b, folder_id: folderId } : b))
+    try { (navigator as any).vibrate?.(15) } catch {}
+  }
+
+  const deleteFolder = async (folder: Folder) => {
+    if (!confirm(`Supprimer le dossier « ${folder.name} » ? Les classeurs qu'il contient repasseront à la racine.`)) return
+    await supabase.from('binder_folders').delete().eq('id', folder.id)
+    setFolders(prev => prev.filter(f => f.id !== folder.id))
+    setBinders(prev => prev.map(b => b.folder_id === folder.id ? { ...b, folder_id: null } : b))
+    setCurrentFolder(null)
+  }
+
+  const loadCommentCount = async (binderId: number) => {
+    const { count } = await supabase.from('galerie_comments').select('*', { count: 'exact', head: true }).eq('binder_id', binderId)
+    setCommentCount(count || 0)
   }
 
   const openBinder = async (binder: Binder) => {
     setSelected(binder)
     setPageIndex(0)
     setIsOpen(false)
+    loadCommentCount(binder.id)
     const { data } = await supabase.from('binder_slots').select('*').eq('binder_id', binder.id)
     const map = new Map<string, Slot>()
     for (const s of data || []) map.set(slotKey(s.page_number, s.slot_index), { ...s, img_back: s.img_back ?? null })
@@ -178,22 +355,24 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     }
   }
 
-  const openCreateForm = () => {
-    setFName(''); setFSubtitle(''); setFLayout(9); setFType('portfolio'); setFColor(BINDER_COLORS[0]); setFCover(null)
+  const openCreateForm = (inFolderId?: number | null) => {
+    setFName(''); setFSubtitle(''); setFLayout(9); setFType('portfolio'); setFColor(BINDER_COLORS[0]); setFCover(null); setFIsPublic(true)
+    setFFolderId(inFolderId !== undefined ? inFolderId : currentFolder?.id ?? null)
     setFormOpen('create')
   }
   const openEditForm = (b: Binder) => {
-    setFName(b.name); setFSubtitle(b.subtitle || ''); setFLayout(b.layout); setFType(b.binder_type || 'portfolio'); setFColor(b.color || BINDER_COLORS[0]); setFCover(b.cover_img)
+    setFName(b.name); setFSubtitle(b.subtitle || ''); setFLayout(b.layout); setFType(b.binder_type || 'portfolio'); setFColor(b.color || BINDER_COLORS[0]); setFCover(b.cover_img); setFIsPublic(b.is_public ?? true)
+    setFFolderId(b.folder_id ?? null)
     setFormOpen(b.id)
   }
 
   const uploadCover = async (file: File) => {
-    if (file.size > 4 * 1024 * 1024) { alert('Image trop lourde (max 4 Mo)'); return }
+    if (file.size > 4 * 1024 * 1024) { toast.error('Image trop lourde (max 4 Mo)'); return }
     setUploadingCover(true)
     const ext = (file.name.split('.').pop() || 'jpg').toLowerCase()
     const path = `binders/${userId}/${Date.now()}.${ext}`
     const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
-    if (error) { alert('Erreur upload : ' + error.message); setUploadingCover(false); return }
+    if (error) { toast.error('Erreur upload : ' + error.message); setUploadingCover(false); return }
     const { data } = supabase.storage.from('avatars').getPublicUrl(path)
     setFCover(data.publicUrl)
     setUploadingCover(false)
@@ -201,19 +380,19 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   const saveForm = async () => {
     if (!fName.trim()) return
-    const payload = { name: fName.trim(), subtitle: fSubtitle.trim() || null, color: fColor, cover_img: fCover, binder_type: fType }
+    const payload = { name: fName.trim(), subtitle: fSubtitle.trim() || null, color: fColor, cover_img: fCover, binder_type: fType, folder_id: fFolderId, is_public: fIsPublic }
     if (formOpen === 'create') {
       const { data, error } = await supabase.from('binders').insert({
         user_id: userId, layout: fLayout, position: binders.length, ...payload,
       }).select().single()
-      if (error) { alert('Erreur : ' + error.message); return }
+      if (error) { toast.error('Erreur : ' + error.message); return }
       setBinders(prev => [...prev, data])
       setFormOpen(null)
       openBinder(data)
     } else {
       const id = formOpen as number
       const { error } = await supabase.from('binders').update(payload).eq('id', id)
-      if (error) { alert('Erreur : ' + error.message); return }
+      if (error) { toast.error('Erreur : ' + error.message); return }
       setBinders(prev => prev.map(b => b.id === id ? { ...b, ...payload } : b))
       setSelected(s => s && s.id === id ? { ...s, ...payload } : s)
       setFormOpen(null)
@@ -280,33 +459,130 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setReorderingId(null)
     if (!r.active) return
     suppressClickUntil.current = Date.now() + 300
+    // Déposé sur un dossier (ou la racine) → ranger le classeur dedans.
+    // La zone de drop couvre toute la section (pas seulement l'en-tête).
+    const folderEl = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-folder-drop]') as HTMLElement | null
+    if (folderEl) {
+      const raw = folderEl.dataset.folderDrop
+      const fid = raw === 'root' ? null : Number(raw)
+      if ((r.binder.folder_id ?? null) !== (fid ?? null)) {
+        moveBinderToFolder(r.binder.id, fid)
+        return
+      }
+      // Même dossier → continuer vers la logique de réordonnancement
+    }
     const targetEl = (document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest('[data-binder-spine]') as HTMLElement | null
     const overId = targetEl ? Number(targetEl.dataset.binderSpine) : NaN
     if (Number.isNaN(overId) || overId === r.binder.id) return
-    setBinders(prev => {
-      const from = prev.findIndex(b => b.id === r.binder.id)
-      const to = prev.findIndex(b => b.id === overId)
-      if (from < 0 || to < 0) return prev
-      const next = [...prev]
-      const [moved] = next.splice(from, 1)
-      next.splice(to, 0, moved)
-      next.forEach((b, i) => { supabase.from('binders').update({ position: i }).eq('id', b.id) })
-      return next
-    })
+    const from = binders.findIndex(b => b.id === r.binder.id)
+    const to = binders.findIndex(b => b.id === overId)
+    if (from < 0 || to < 0) return
+    const next = [...binders]
+    const [moved] = next.splice(from, 1)
+    next.splice(to, 0, moved)
+    setBinders(next)
+    Promise.all(next.map((b, i) => supabase.from('binders').update({ position: i }).eq('id', b.id)))
   }
 
   const placeCard = async (page: number, idx: number, card: PickableCard) => {
     if (!selected) return
-    const { error } = await supabase.from('binder_slots').insert({
-      binder_id: selected.id, page_number: page, slot_index: idx,
-      card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom,
+    const isHorizontal = await detectIsHorizontal(card.img)
+    const targetKey = slotKey(page, idx)
+    const occupied = slots.has(targetKey)
+
+    if (!occupied) {
+      // Pochette vide — insertion simple
+      const { error } = await supabase.from('binder_slots').insert({
+        binder_id: selected.id, page_number: page, slot_index: idx,
+        card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal,
+      })
+      if (error) { toast.error('Erreur : ' + error.message); return }
+      setSlots(prev => new Map(prev).set(targetKey, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal }))
+      setCardCounts(prev => ({ ...prev, [selected.id]: (prev[selected.id] || 0) + 1 }))
+      setJustInserted(targetKey)
+      setTimeout(() => setJustInserted(null), 550)
+      setPickerTarget(null)
+      return
+    }
+
+    // Pochette occupée — décaler toutes les cartes de idx jusqu'à la première pochette libre
+    // Trouver la première pochette libre à partir de (page, idx)
+    let freePage = page, freeIdx = idx
+    let newPageCount = selected.page_count
+    outer: while (true) {
+      const startIdx = freePage === page ? freeIdx : 0
+      for (let i = startIdx; i < selected.layout; i++) {
+        if (!slots.has(slotKey(freePage, i))) { freeIdx = i; break outer }
+      }
+      freePage++
+      if (freePage > newPageCount) { newPageCount = freePage; break } // nouvelle page
+    }
+
+    // Collecter les cartes à décaler (de (page,idx) jusqu'à juste avant la case libre)
+    const toShift: Slot[] = []
+    let p = page, i = idx
+    while (!(p === freePage && i === freeIdx)) {
+      const s = slots.get(slotKey(p, i))
+      if (s) toShift.push(s)
+      i++
+      if (i >= selected.layout) { i = 0; p++ }
+    }
+
+    // Calculer les nouvelles positions (décalées de +1)
+    const deletes: Array<{ page: number; idx: number }> = []
+    const inserts: any[] = []
+    const localUpdates = new Map<string, Slot>()
+
+    for (const slot of toShift) {
+      deletes.push({ page: slot.page_number, idx: slot.slot_index })
+      let np = slot.page_number, ni = slot.slot_index + 1
+      if (ni >= selected.layout) { ni = 0; np++ }
+      inserts.push({ binder_id: selected.id, page_number: np, slot_index: ni, card_key: slot.card_key, img: slot.img, img_back: slot.img_back, nom: slot.nom, is_horizontal: !!slot.is_horizontal })
+      localUpdates.set(slotKey(np, ni), { ...slot, page_number: np, slot_index: ni })
+    }
+    // La nouvelle carte va en (page, idx)
+    inserts.push({ binder_id: selected.id, page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal })
+    localUpdates.set(targetKey, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal })
+
+    // Mettre à jour le page_count si besoin
+    if (newPageCount !== selected.page_count) {
+      await supabase.from('binders').update({ page_count: newPageCount }).eq('id', selected.id)
+      setSelected(s => s ? { ...s, page_count: newPageCount } : s)
+      setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newPageCount } : b))
+    }
+
+    // Supprimer les anciens slots puis insérer les nouveaux
+    await Promise.all(deletes.map(d => supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', d.page).eq('slot_index', d.idx)))
+    const { error: insErr } = await supabase.from('binder_slots').insert(inserts)
+    if (insErr) { toast.error('Erreur insertion : ' + insErr.message); openBinder(selected); return }
+
+    setSlots(prev => {
+      const m = new Map(prev)
+      for (const d of deletes) m.delete(slotKey(d.page, d.idx))
+      for (const [k, v] of localUpdates) m.set(k, v)
+      return m
     })
-    if (error) { alert('Erreur : ' + error.message); return }
-    const k = slotKey(page, idx)
-    setSlots(prev => new Map(prev).set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom }))
-    setJustInserted(k)
+    setCardCounts(prev => ({ ...prev, [selected.id]: (prev[selected.id] || 0) + 1 }))
+    setJustInserted(targetKey)
     setTimeout(() => setJustInserted(null), 550)
     setPickerTarget(null)
+  }
+
+  // Auto-correction : si une pochette existante (insérée avant ce fix, ou via une
+  // source sans info d'orientation comme le CSV) a un is_horizontal faux, on le
+  // corrige dès que le navigateur charge l'image réelle et voit ses vraies dimensions.
+  const fixOrientationIfLoaded = (page: number, idx: number, slot: Slot) => (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget
+    const actual = img.naturalWidth > img.naturalHeight
+    if (actual === !!slot.is_horizontal || !selected) return
+    const k = slotKey(page, idx)
+    setSlots(prev => {
+      const cur = prev.get(k)
+      if (!cur) return prev
+      return new Map(prev).set(k, { ...cur, is_horizontal: actual })
+    })
+    supabase.from('binder_slots').update({ is_horizontal: actual })
+      .eq('binder_id', selected.id).eq('page_number', page).eq('slot_index', idx)
   }
 
   const removeCard = async (page: number, idx: number) => {
@@ -314,6 +590,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     await supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', page).eq('slot_index', idx)
     const k = slotKey(page, idx)
     setSlots(prev => { const m = new Map(prev); m.delete(k); return m })
+    setCardCounts(prev => ({ ...prev, [selected.id]: Math.max(0, (prev[selected.id] || 1) - 1) }))
   }
 
   const addPage = async () => {
@@ -324,23 +601,102 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newCount } : b))
   }
 
-  // Ajoute plusieurs cartes d'un coup dans les premières pochettes vides (crée des pages si besoin)
-  const placeMany = async (cards: PickableCard[]) => {
+  // Trie toutes les cartes du classeur et réécrit les slots dans le nouvel ordre
+  const sortBinder = async (by: 'nom_asc' | 'nom_desc' | 'annee_asc' | 'annee_desc') => {
+    if (!selected || sorting) return
+    setShowSortMenu(false)
+    setSorting(true)
+    try {
+      const allSlots = [...slots.values()]
+
+      // Tri par année de la carte (ex: "2021-22" < "2022-23" < "2023-24")
+      // img→annee raw string, comparaison lexicographique sur la partie normalisée
+      const yearMap = new Map<string, string>()
+      const normYear = (s: string) => {
+        // "2021-22", "2022", "2021-2022" → extrait "20XX..." pour comparaison stable
+        const m = (s || '').match(/((?:19|20)\d{2}(?:[-\/]\d{2,4})?)/)
+        return m ? m[1] : ''
+      }
+      if (by === 'annee_asc' || by === 'annee_desc') {
+        const [{ data: cartes }, { data: csvProfile }] = await Promise.all([
+          supabase.from('cartes_manuelles').select('image_recto, annee').eq('user_id', userId).limit(10000),
+          supabase.from('profiles').select('id, display_name, avatar_url, lien_csv').eq('id', userId).single(),
+        ])
+        for (const c of cartes || []) {
+          if (c.annee && c.image_recto) yearMap.set(c.image_recto, c.annee)
+        }
+        if (csvProfile?.lien_csv) {
+          const csvCards = await fetchCsvCardsForProfiles([{ ...csvProfile, couleur_bordure: null }])
+          for (const c of csvCards) {
+            if (!yearMap.has(c.img) && c.year) yearMap.set(c.img, c.year)
+          }
+        }
+      }
+
+      const sorted = [...allSlots].sort((a, b) => {
+        const na = a.nom || '', nb = b.nom || ''
+        if (by === 'nom_asc') return na.localeCompare(nb, 'fr', { sensitivity: 'base' })
+        if (by === 'nom_desc') return nb.localeCompare(na, 'fr', { sensitivity: 'base' })
+        const ya = normYear(yearMap.get(a.img) || '')
+        const yb = normYear(yearMap.get(b.img) || '')
+        if (by === 'annee_asc') return ya.localeCompare(yb) || (a.nom || '').localeCompare(b.nom || '')
+        if (by === 'annee_desc') return yb.localeCompare(ya) || (b.nom || '').localeCompare(a.nom || '')
+        return 0
+      })
+      const newSlots = new Map<string, Slot>()
+      const rows: any[] = []
+      let page = 1, idx = 0
+      for (const s of sorted) {
+        if (idx >= selected.layout) { page++; idx = 0 }
+        const k = slotKey(page, idx)
+        newSlots.set(k, { ...s, page_number: page, slot_index: idx })
+        rows.push({ binder_id: selected.id, page_number: page, slot_index: idx, card_key: s.card_key, img: s.img, img_back: s.img_back, nom: s.nom, is_horizontal: !!s.is_horizontal })
+        idx++
+      }
+      // Nombre de pages effectif après tri (peut être inférieur à page_count si le classeur avait des trous)
+      const newPageCount = idx > 0 ? page : page - 1
+      const { error: delErr } = await supabase.from('binder_slots').delete().eq('binder_id', selected.id)
+      if (delErr) { toast.error('Erreur tri (suppression) : ' + delErr.message); return }
+      if (rows.length) {
+        const { error: insErr } = await supabase.from('binder_slots').insert(rows)
+        if (insErr) { toast.error('Erreur tri (insertion) : ' + insErr.message); openBinder(selected); return }
+      }
+      if (newPageCount !== selected.page_count) {
+        await supabase.from('binders').update({ page_count: newPageCount }).eq('id', selected.id)
+        setSelected(s => s ? { ...s, page_count: newPageCount } : s)
+        setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: newPageCount } : b))
+      }
+      setSlots(newSlots)
+      setPageIndex(0)
+      setIsOpen(false)
+    } finally {
+      setSorting(false)
+    }
+  }
+
+  // Ajoute plusieurs cartes à partir d'une position donnée, puis dans les pochettes vides suivantes
+  const placeManyFrom = async (startPage: number, startIdx: number, cards: PickableCard[]) => {
     if (!selected || !cards.length) return
+    const orientations = new Map<string, boolean>(
+      await Promise.all(cards.map(async c => [c.key, await detectIsHorizontal(c.img)] as [string, boolean]))
+    )
     const remaining = [...cards]
     const inserts: any[] = []
     const localAdds = new Map<string, Slot>()
-    let page = 1
     let pageCount = selected.page_count
+
+    let page = startPage
     while (remaining.length) {
-      if (page > pageCount) pageCount++ // nouvelle page vide
-      for (let idx = 0; idx < selected.layout && remaining.length; idx++) {
+      if (page > pageCount) pageCount++
+      const fromIdx = page === startPage ? startIdx : 0
+      for (let idx = fromIdx; idx < selected.layout && remaining.length; idx++) {
         const k = slotKey(page, idx)
         if (slots.has(k) || localAdds.has(k)) continue
         const card = remaining.shift()!
-        const row = { binder_id: selected.id, page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom }
+        const isHorizontal = orientations.get(card.key) ?? false
+        const row = { binder_id: selected.id, page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal }
         inserts.push(row)
-        localAdds.set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom })
+        localAdds.set(k, { page_number: page, slot_index: idx, card_key: card.key, img: card.img, img_back: card.back || null, nom: card.nom, is_horizontal: isHorizontal })
       }
       page++
     }
@@ -350,9 +706,14 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       setBinders(prev => prev.map(b => b.id === selected.id ? { ...b, page_count: pageCount } : b))
     }
     const { error } = await supabase.from('binder_slots').insert(inserts)
-    if (error) { alert('Erreur : ' + error.message); openBinder(selected); return }
+    if (error) { toast.error('Erreur : ' + error.message); openBinder(selected); return }
     setSlots(prev => { const m = new Map(prev); for (const [k, v] of localAdds) m.set(k, v); return m })
+    setCardCounts(prev => ({ ...prev, [selected.id]: (prev[selected.id] || 0) + inserts.length }))
+    setPickerTarget(null)
   }
+
+  // Ajoute plusieurs cartes d'un coup dans les premières pochettes vides (crée des pages si besoin)
+  const placeMany = async (cards: PickableCard[]) => placeManyFrom(1, 0, cards)
 
   // Déplace une carte d'une pochette vers une autre (échange si la cible est occupée)
   const moveSlot = async (fromPage: number, fromIdx: number, toPage: number, toIdx: number) => {
@@ -374,10 +735,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
     // Persistance : on supprime puis réinsère les lignes concernées (contrainte unique)
     await supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', fromPage).eq('slot_index', fromIdx)
     if (toSlot) await supabase.from('binder_slots').delete().eq('binder_id', selected.id).eq('page_number', toPage).eq('slot_index', toIdx)
-    const rows = [{ binder_id: selected.id, page_number: toPage, slot_index: toIdx, card_key: fromSlot.card_key, img: fromSlot.img, img_back: fromSlot.img_back, nom: fromSlot.nom }]
-    if (toSlot) rows.push({ binder_id: selected.id, page_number: fromPage, slot_index: fromIdx, card_key: toSlot.card_key, img: toSlot.img, img_back: toSlot.img_back, nom: toSlot.nom })
+    const rows = [{ binder_id: selected.id, page_number: toPage, slot_index: toIdx, card_key: fromSlot.card_key, img: fromSlot.img, img_back: fromSlot.img_back, nom: fromSlot.nom, is_horizontal: !!fromSlot.is_horizontal }]
+    if (toSlot) rows.push({ binder_id: selected.id, page_number: fromPage, slot_index: fromIdx, card_key: toSlot.card_key, img: toSlot.img, img_back: toSlot.img_back, nom: toSlot.nom, is_horizontal: !!toSlot.is_horizontal })
     const { error } = await supabase.from('binder_slots').insert(rows)
-    if (error) { alert('Erreur : ' + error.message); openBinder(selected) }
+    if (error) { toast.error('Erreur : ' + error.message); openBinder(selected) }
   }
 
   // Déplacer une carte = APPUI LONG puis glisser (pour ne pas confondre avec le
@@ -599,7 +960,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 title={slot.nom || ''}
               >
                 {slot.img_back
-                  ? <img src={slot.img_back} alt={slot.nom || ''} loading="lazy" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', pointerEvents: 'none' }} />
+                  ? <img src={slot.img_back} alt={slot.nom || ''} loading="lazy" draggable={false} style={cardImgStyle(slot.is_horizontal)} onLoad={fixOrientationIfLoaded(page, idx, slot)} />
                   : cardBackPlaceholder}
                 <PlasticSheen />
               </div>
@@ -608,21 +969,23 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
           // ── Face RECTO : interactive (ajout, déplacement, retrait) ──
           if (slot) {
+            const isDragSource = cardDrag && cardDragRef.current?.active && cardDragRef.current?.page === page && cardDragRef.current?.idx === idx
             return (
               <div key={idx} data-pocket data-page={page} data-idx={idx}
                 className={`binder-slot-card${justInserted === k ? ' binder-slot-card-enter' : ''}`}
-                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', boxShadow: '0 0 0 1px rgba(150,165,180,0.4)', touchAction: 'none', opacity: cardDrag && cardDragRef.current?.active && cardDragRef.current?.page === page && cardDragRef.current?.idx === idx ? 0.35 : 1 }}
-                onPointerDown={cardPointerDown(page, idx, slot)}
-                onPointerMove={cardPointerMove}
-                onPointerUp={cardPointerUp}
-                onPointerCancel={cardPointerCancel}
+                style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', boxShadow: pendingCard && isOwner ? '0 0 0 2px #003DA6' : '0 0 0 1px rgba(150,165,180,0.4)', touchAction: 'none', opacity: isDragSource ? 0.35 : 1, cursor: pendingCard && isOwner ? 'cell' : undefined }}
+                onPointerDown={pendingCard ? undefined : cardPointerDown(page, idx, slot)}
+                onPointerMove={pendingCard ? undefined : cardPointerMove}
+                onPointerUp={pendingCard ? undefined : cardPointerUp}
+                onPointerCancel={pendingCard ? undefined : cardPointerCancel}
                 onClick={() => {
                   if (flip || clickSuppressed()) return
+                  if (pendingCard && isOwner) { placeCard(page, idx, pendingCard); onPlaced?.(); return }
                   if (!onOpenCard || !onOpenCard(slot.img)) setViewerSlot(slot)
                 }}
-                title={isOwner ? 'Appui long pour déplacer · clic pour ouvrir' : (slot.nom || '')}
+                title={pendingCard && isOwner ? 'Insérer ici (décale les cartes suivantes)' : isOwner ? 'Appui long pour déplacer · clic pour ouvrir' : (slot.nom || '')}
               >
-                <img src={slot.img} alt={slot.nom || ''} loading="lazy" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', pointerEvents: 'none' }} />
+                <img src={slot.img} alt={slot.nom || ''} loading="lazy" draggable={false} style={cardImgStyle(slot.is_horizontal)} onLoad={fixOrientationIfLoaded(page, idx, slot)} />
                 <PlasticSheen />
                 {isOwner && (
                   <button
@@ -751,7 +1114,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
         <div>
           <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Couleur</label>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
             {BINDER_COLORS.map(c => (
               <button key={c} onClick={() => setFColor(c)} style={{
                 width: 30, height: 30, borderRadius: '50%', cursor: 'pointer', background: c,
@@ -759,8 +1122,59 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                 boxShadow: fColor === c ? 'none' : '0 0 0 1px #ddd',
               }} />
             ))}
+            {/* Bouton couleur personnalisée */}
+            <button
+              onClick={() => binderColorInputRef.current?.click()}
+              title="Couleur personnalisée"
+              style={{
+                width: 30, height: 30, borderRadius: '50%', cursor: 'pointer', padding: 0, border: 'none',
+                background: 'conic-gradient(red 0%, yellow 17%, lime 33%, cyan 50%, blue 67%, magenta 83%, red 100%)',
+                boxShadow: !BINDER_COLORS.includes(fColor) ? `0 0 0 3px ${accent}` : '0 0 0 1px #ddd',
+                flexShrink: 0,
+              }}
+            />
+            <input
+              ref={binderColorInputRef}
+              type="color"
+              value={fColor}
+              onChange={e => setFColor(e.target.value)}
+              style={{ display: 'none' }}
+            />
+            {!BINDER_COLORS.includes(fColor) && (
+              <span style={{ fontSize: 11, color: '#888', fontFamily: 'monospace' }}>{fColor}</span>
+            )}
           </div>
         </div>
+
+        <div>
+          <label style={{ fontSize: 12, fontWeight: 700, color: '#888', display: 'block', marginBottom: 6 }}>Dossier (sous-bibliothèque)</label>
+          <select value={fFolderId ?? ''} onChange={e => setFFolderId(e.target.value ? Number(e.target.value) : null)}
+            style={{ width: '100%', padding: '9px 10px', borderRadius: 8, border: '1.5px solid #ddd', fontSize: 13, fontWeight: 600, background: 'white', color: '#333', boxSizing: 'border-box' }}>
+            <option value="">— Aucun (racine) —</option>
+            {folders.map(f => <option key={f.id} value={f.id}>📁 {f.name}</option>)}
+          </select>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setFIsPublic(v => !v)}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 10, width: '100%',
+            padding: '10px 14px', borderRadius: 10, cursor: 'pointer', textAlign: 'left',
+            border: '1.5px solid #ddd', background: fIsPublic ? '#f0f6ff' : '#fff8f0',
+          }}
+        >
+          <span style={{ fontSize: 18 }}>{fIsPublic ? '🌐' : '🔒'}</span>
+          <div>
+            <div style={{ fontWeight: 800, fontSize: 13, color: '#333' }}>{fIsPublic ? 'Classeur public' : 'Classeur privé'}</div>
+            <div style={{ fontSize: 11, color: '#888', marginTop: 1 }}>
+              {fIsPublic ? 'Visible dans ta galerie publique' : 'Visible uniquement par toi'}
+            </div>
+          </div>
+          <div style={{ marginLeft: 'auto', width: 36, height: 20, borderRadius: 10, background: fIsPublic ? '#003DA6' : '#ccc', position: 'relative', transition: 'background 0.2s', flexShrink: 0 }}>
+            <div style={{ position: 'absolute', top: 2, left: fIsPublic ? 18 : 2, width: 16, height: 16, borderRadius: '50%', background: 'white', boxShadow: '0 1px 3px rgba(0,0,0,0.2)', transition: 'left 0.2s' }} />
+          </div>
+        </button>
 
         <button onClick={saveForm} disabled={!fName.trim()} className="btn-main btn-primary">
           {formOpen === 'create' ? 'Créer' : 'Enregistrer'}
@@ -773,11 +1187,72 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   // ── Vue étagère ──
   if (!selected) {
-    const items: (Binder | 'new')[] = [...binders]
-    if (isOwner) items.push('new')
-    const rows: (Binder | 'new')[][] = []
-    for (let i = 0; i < items.length; i += SHELF_ROW_SIZE) rows.push(items.slice(i, i + SHELF_ROW_SIZE))
-    if (rows.length === 0) rows.push([])
+    // Un groupe par dossier (dans l'ordre) + groupe racine en dernier
+    const sections = [
+      ...folders.map(f => ({
+        folder: f as Folder | null,
+        key: `f-${f.id}`,
+        binderItems: binders.filter(b => b.folder_id === f.id),
+      })),
+      {
+        folder: null as Folder | null,
+        key: 'root',
+        binderItems: binders.filter(b => b.folder_id === null),
+      },
+    ]
+
+    const renderAddBtn = (folderId: number | null) => isOwner ? (
+      <div key="add" onClick={() => openCreateForm(folderId)} title="Nouveau classeur" style={{
+        width: 40, height: 184, cursor: 'pointer', border: '2px dashed rgba(255,255,255,0.35)', borderRadius: '4px 4px 0 0',
+        background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        flexShrink: 0, color: 'rgba(255,255,255,0.6)', fontSize: 20,
+      }}>+</div>
+    ) : null
+
+    const renderSpine = (b: Binder) => (
+      <div key={b.id} data-binder-spine={b.id}
+        onClick={() => { if (clickSuppressed()) return; openBinder(b) }}
+        onPointerDown={shelfPointerDown(b)}
+        onPointerMove={shelfPointerMove}
+        onPointerUp={shelfPointerUp}
+        onPointerCancel={() => { const r = reorderRef.current; if (r) { clearTimeout(r.timer); reorderRef.current = null } setReorderDrag(null); setReorderingId(null) }}
+        title={isOwner ? `${b.name} — appui long pour réorganiser` : b.name}
+        style={{
+          width: 40, height: 184, cursor: isOwner ? 'grab' : 'pointer', flexShrink: 0,
+          background: b.color || accent, borderRadius: '4px 4px 0 0',
+          boxShadow: 'inset 4px 0 0 rgba(255,255,255,0.2), inset -4px 0 0 rgba(0,0,0,0.28), 2px 2px 5px rgba(0,0,0,0.4)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', touchAction: 'pan-x',
+          transition: 'transform 0.15s', position: 'relative', overflow: 'hidden',
+          opacity: reorderingId === b.id ? 0.4 : 1,
+        }}
+        onMouseEnter={e => { if (!reorderingId) e.currentTarget.style.transform = 'translateY(-12px)' }}
+        onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+      >
+        {b.cover_img && (
+          <div style={{ width: '100%', height: 46, flexShrink: 0, overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.2)' }}>
+            <img src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
+        )}
+        {/* Icône verrou pour classeur privé */}
+        {b.is_public === false && (
+          <div style={{ position: 'absolute', top: b.cover_img ? 50 : 6, right: 4, fontSize: 9, lineHeight: 1 }}>🔒</div>
+        )}
+        <div style={{ flex: 1 }} />
+        <div style={{ margin: '0 4px 10px', background: 'rgba(0,0,0,0.38)', borderRadius: 2, padding: '8px 2px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, maxHeight: 118 }}>
+          <span style={{
+            writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 9, fontWeight: 600,
+            color: 'rgba(255,255,255,0.92)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+            maxHeight: 90, letterSpacing: '0.06em',
+          }}>{b.name}</span>
+          {(cardCounts[b.id] ?? 0) > 0 && (
+            <span style={{ fontSize: 8, fontWeight: 800, color: 'rgba(255,255,255,0.6)', letterSpacing: 0, lineHeight: 1 }}>
+              {cardCounts[b.id]}
+            </span>
+          )}
+        </div>
+      </div>
+    )
+
     return (
       <div>
         {pendingCard && (
@@ -786,59 +1261,120 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <span style={{ fontSize: 13, fontWeight: 700, color: '#333' }}>Choisis un classeur pour ranger « {pendingCard.nom} »</span>
           </div>
         )}
-        <div style={{ background: 'linear-gradient(180deg, #6b4a32, #4e3623)', borderRadius: 16, boxShadow: '0 6px 24px rgba(0,0,0,0.18)', padding: '18px 14px 4px' }}>
-          {rows.map((row, ri) => (
-            <div key={ri} style={{ marginBottom: 16 }}>
-              <div style={{
-                display: 'flex', alignItems: 'flex-end', gap: 4, padding: '0 6px 10px',
-                overflowX: 'auto', WebkitOverflowScrolling: 'touch', minHeight: 190,
-              }}>
-                {row.map(b => b === 'new' ? (
-                  <div key="new" onClick={openCreateForm} title="Nouveau classeur" style={{
-                    width: 40, height: 184, cursor: 'pointer', border: '2px dashed rgba(255,255,255,0.35)', borderRadius: '4px 4px 0 0',
-                    background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0, color: 'rgba(255,255,255,0.6)', fontSize: 20,
-                  }}>+</div>
-                ) : (
-                  <div key={b.id} data-binder-spine={b.id}
-                    onClick={() => { if (clickSuppressed()) return; openBinder(b) }}
-                    onPointerDown={shelfPointerDown(b)}
-                    onPointerMove={shelfPointerMove}
-                    onPointerUp={shelfPointerUp}
-                    onPointerCancel={() => { const r = reorderRef.current; if (r) { clearTimeout(r.timer); reorderRef.current = null } setReorderDrag(null); setReorderingId(null) }}
-                    title={isOwner ? `${b.name} — appui long pour réorganiser` : b.name}
-                    style={{
-                      width: 40, height: 184, cursor: isOwner ? 'grab' : 'pointer', flexShrink: 0,
-                      background: b.color || accent, borderRadius: '4px 4px 0 0',
-                      boxShadow: 'inset 4px 0 0 rgba(255,255,255,0.2), inset -4px 0 0 rgba(0,0,0,0.28), 2px 2px 5px rgba(0,0,0,0.4)',
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', touchAction: 'pan-x',
-                      transition: 'transform 0.15s', position: 'relative', overflow: 'hidden',
-                      opacity: reorderingId === b.id ? 0.4 : 1,
-                    }}
-                    onMouseEnter={e => { if (!reorderingId) e.currentTarget.style.transform = 'translateY(-12px)' }}
-                    onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
-                  >
-                    {b.cover_img && (
-                      <div style={{ width: '100%', height: 46, flexShrink: 0, overflow: 'hidden', borderBottom: '1px solid rgba(0,0,0,0.2)' }}>
-                        <img src={b.cover_img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+
+        {isOwner && (
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, gap: 8 }}>
+            {!isMobile && (
+              <span style={{ fontSize: 11, color: '#aaa', fontStyle: 'italic' }}>
+                💡 Glisse un classeur sur une section pour l'y ranger
+              </span>
+            )}
+            <button onClick={createFolder}
+              style={{ background: 'none', border: '1.5px dashed #ccc', borderRadius: 10, padding: isMobile ? '10px 18px' : '6px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 12, color: '#888', marginLeft: 'auto' }}>
+              + Nouvelle section
+            </button>
+          </div>
+        )}
+
+        <div ref={shelfContainerRef} style={{ background: 'linear-gradient(180deg, #1a2638, #0d1824)', borderRadius: 16, boxShadow: '0 6px 28px rgba(0,0,0,0.28)', padding: '14px 14px 4px' }}>
+          {sections.map((section, si) => {
+            const rows: Binder[][] = []
+            for (let i = 0; i < section.binderItems.length; i += shelfRowSize) rows.push(section.binderItems.slice(i, i + shelfRowSize))
+            if (rows.length === 0) rows.push([])
+            const shelfColor = section.folder?.color || FOLDER_SHELF_COLORS[0]
+
+            return (
+              <div key={section.key}
+                data-folder-drop={section.folder ? section.folder.id : 'root'}
+                style={{ marginBottom: si < sections.length - 1 ? 20 : 0 }}>
+                {section.folder ? (
+                  /* En-tête dossier : bulle centrée sur une ligne horizontale */
+                  <div style={{ marginBottom: 2 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', padding: '6px 4px 4px' }}>
+                      <div style={{ flex: 1, height: 2, background: shelfColor, borderRadius: 1, opacity: 0.55 }} />
+                      <div style={{ background: shelfColor, borderRadius: 20, padding: '5px 14px', display: 'flex', alignItems: 'center', gap: 7, flexShrink: 0, margin: '0 10px', boxShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>
+                        <FolderIcon icon={section.folder.icon} size={13} />
+                        <span style={{ color: 'white', fontWeight: 700, fontSize: 12, letterSpacing: 0.2 }}>{section.folder.name}</span>
+                        <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 10 }}>· {section.binderItems.length}</span>
+                      </div>
+                      <div style={{ flex: 1, height: 2, background: shelfColor, borderRadius: 1, opacity: 0.55 }} />
+                      {isOwner && (
+                        <button
+                          onClick={() => setMenuFolder(menuFolder === section.folder!.id ? null : section.folder!.id)}
+                          style={{ marginLeft: 8, background: menuFolder === section.folder!.id ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.08)', border: 'none', borderRadius: 6, padding: '3px 10px', cursor: 'pointer', fontSize: 14, color: 'rgba(255,255,255,0.7)', fontWeight: 700, lineHeight: 1, flexShrink: 0 }}
+                        >···</button>
+                      )}
+                    </div>
+                    {isOwner && menuFolder === section.folder.id && (
+                      <div style={{ padding: '6px 12px 8px', display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap', background: 'rgba(255,255,255,0.05)', borderRadius: 8, margin: '0 4px 4px' }}>
+                        {FOLDER_SHELF_COLORS.map(c => (
+                          <div key={c} onClick={() => saveFolderColor(section.folder!, c)} title={c}
+                            style={{
+                              width: 14, height: 14, borderRadius: '50%', background: c, cursor: 'pointer', flexShrink: 0,
+                              border: c === (section.folder!.color || FOLDER_SHELF_COLORS[0]) ? '2.5px solid white' : '2.5px solid rgba(255,255,255,0.2)',
+                            }}
+                          />
+                        ))}
+                        {/* Couleur personnalisée pour le dossier */}
+                        <label title="Couleur personnalisée" style={{ position: 'relative', width: 14, height: 14, flexShrink: 0, cursor: 'pointer' }}>
+                          <div style={{
+                            width: 14, height: 14, borderRadius: '50%',
+                            background: 'conic-gradient(red 0%, yellow 17%, lime 33%, cyan 50%, blue 67%, magenta 83%, red 100%)',
+                            border: !FOLDER_SHELF_COLORS.includes(section.folder!.color || '') ? '2.5px solid white' : '2.5px solid rgba(255,255,255,0.2)',
+                          }} />
+                          <input
+                            type="color"
+                            value={section.folder!.color || FOLDER_SHELF_COLORS[0]}
+                            onChange={e => saveFolderColor(section.folder!, e.target.value)}
+                            style={{ position: 'absolute', inset: 0, opacity: 0, width: '100%', height: '100%', cursor: 'pointer', padding: 0, border: 'none' }}
+                          />
+                        </label>
+                        <div style={{ width: 1, height: 14, background: 'rgba(255,255,255,0.2)', margin: '0 3px' }} />
+                        <button onClick={() => setIconPickerFolder(section.folder!)}
+                          style={{ background: 'rgba(255,255,255,0.12)', border: 'none', borderRadius: 5, padding: '3px 8px', cursor: 'pointer', fontSize: 11, color: 'white', fontWeight: 700 }}>
+                          icône
+                        </button>
+                        <button onClick={() => renameFolder(section.folder!)}
+                          style={{ background: 'rgba(255,255,255,0.12)', border: 'none', borderRadius: 5, padding: '3px 8px', cursor: 'pointer', fontSize: 11, color: 'white', fontWeight: 700 }}>
+                          ✏️ Renommer
+                        </button>
+                        <button onClick={() => deleteFolder(section.folder!)}
+                          style={{ background: 'rgba(255,255,255,0.08)', border: 'none', borderRadius: 5, padding: '3px 8px', cursor: 'pointer', fontSize: 11, color: 'rgba(255,140,140,1)', fontWeight: 700 }}>
+                          🗑️
+                        </button>
                       </div>
                     )}
-                    <div style={{ flex: 1 }} />
-                    {/* étiquette blanche imprimée comme sur les vrais classeurs */}
-                    <div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 2, margin: '0 4px 14px', padding: '10px 2px', boxShadow: '0 1px 3px rgba(0,0,0,0.25)', display: 'flex', justifyContent: 'center', maxHeight: 120 }}>
-                      <span style={{
-                        writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 10, fontWeight: 800,
-                        color: '#333', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-                        maxHeight: 100, letterSpacing: '0.02em',
-                      }}>{b.name}</span>
-                    </div>
                   </div>
-                ))}
+                ) : (folders.length > 0 || binders.some(b => b.folder_id === null)) ? (
+                  /* Label de la bibliothèque racine */
+                  <div style={{
+                    borderRadius: '8px 8px 0 0', padding: '5px 10px',
+                    background: 'rgba(255,255,255,0.07)',
+                    display: 'flex', alignItems: 'center', gap: 6,
+                  }}>
+                    <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 11, fontWeight: 700 }}>📚 Bibliothèque principale</span>
+                  </div>
+                ) : null}
+
+                {rows.map((row, ri) => {
+                  const isLastRow = ri === rows.length - 1
+                  return (
+                    <div key={ri} style={{ marginBottom: 4 }}>
+                      <div style={{
+                        display: 'flex', alignItems: 'flex-end', gap: 4, padding: '0 6px 10px',
+                        overflowX: 'auto', WebkitOverflowScrolling: 'touch', minHeight: 190,
+                      }}>
+                        {row.map(renderSpine)}
+                        {/* Bouton + à la fin de chaque ligne (si la ligne n'est pas complète ou si c'est la dernière) */}
+                        {isOwner && (row.length < shelfRowSize || isLastRow) && renderAddBtn(section.folder?.id ?? null)}
+                      </div>
+                      <div style={{ height: 12, background: section.folder ? shelfColor : 'linear-gradient(180deg, #0d1824, #060f1a)', borderRadius: 2, boxShadow: '0 4px 10px rgba(0,0,0,0.5)' }} />
+                    </div>
+                  )
+                })}
               </div>
-              {/* planche en bois de l'étagère */}
-              <div style={{ height: 12, background: 'linear-gradient(180deg, #3a281a, #2a1d12)', borderRadius: 2, boxShadow: '0 4px 8px rgba(0,0,0,0.4)' }} />
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {binders.length === 0 && !isOwner && (
@@ -853,11 +1389,19 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             background: reorderDrag.binder.color || accent, borderRadius: '4px 4px 0 0',
             boxShadow: '0 12px 28px rgba(0,0,0,0.45)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 10,
           }}>
-            <div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 2, padding: '8px 2px', maxHeight: 100 }}>
-              <span style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 9, fontWeight: 800, color: '#333', whiteSpace: 'nowrap' }}>{reorderDrag.binder.name}</span>
+            <div style={{ flex: 1 }} />
+            <div style={{ margin: '0 4px 10px', background: 'rgba(0,0,0,0.38)', borderRadius: 2, padding: '8px 2px', display: 'flex', justifyContent: 'center' }}>
+              <span style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)', fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.92)', whiteSpace: 'nowrap', letterSpacing: '0.06em' }}>{reorderDrag.binder.name}</span>
             </div>
           </div>,
           document.body
+        )}
+
+        {iconPickerFolder && (
+          <FolderIconPicker
+            onPick={(icon) => saveFolderIcon(iconPickerFolder, icon)}
+            onClose={() => setIconPickerFolder(null)}
+          />
         )}
 
         {binderForm}
@@ -936,18 +1480,113 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
-        <button onClick={() => setSelected(null)} className="btn-main btn-secondary" style={{ padding: '8px 16px', fontSize: 13 }}>
-          ← Retour {pendingCard ? 'aux classeurs' : 'à la bibliothèque'}
-        </button>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ fontWeight: 900, fontSize: 15 }}>{selected.name}</span>
-          {isOwner && !pendingCard && (
-            <>
-              <button onClick={() => setMultiPicker(true)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>＋ Ajouter des cartes</button>
-              <button onClick={() => openEditForm(selected)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>✏️ Modifier</button>
-              <button onClick={() => deleteBinder(selected.id)} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12 }}>🗑️</button>
-            </>
+      <div style={{ marginBottom: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 6 : 10, flexWrap: isMobile ? 'nowrap' : 'wrap' }}>
+          <button onClick={() => setSelected(null)} className="btn-main btn-secondary" style={{ padding: isMobile ? '10px 14px' : '8px 16px', fontSize: 13, flexShrink: 0 }}>
+            ←{!isMobile && ` Retour ${pendingCard ? 'aux classeurs' : 'à la bibliothèque'}`}
+          </button>
+          <span style={{ fontWeight: 900, fontSize: isMobile ? 13 : 15, flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0, color: dark ? '#f0f0f0' : '#111' }}>{selected.name}</span>
+
+          {/* Desktop : toutes les actions en ligne */}
+          {!isMobile && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+              {!pendingCard && <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} />}
+              {!pendingCard && (
+                <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>
+                  ▦
+                </button>
+              )}
+              {!pendingCard && (
+                <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '6px 12px', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: '#666' }}>
+                  💬 Commentaires{commentCount > 0 ? ` (${commentCount})` : ''}
+                </button>
+              )}
+              {isOwner && !pendingCard && (
+                <>
+                  <div style={{ position: 'relative' }}>
+                    <button onClick={() => setShowSortMenu(v => !v)} disabled={sorting || slots.size === 0}
+                      style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700, opacity: sorting ? 0.5 : 1 }}>
+                      {sorting ? '⏳ Tri…' : '⇅ Trier'}
+                    </button>
+                    {showSortMenu && (
+                      <div onMouseLeave={() => setShowSortMenu(false)}
+                        style={{ position: 'absolute', top: '100%', right: 0, zIndex: 200, background: dark ? '#1e1e1e' : 'white', border: `1px solid ${dark ? '#333' : '#e0e0e0'}`, borderRadius: 10, boxShadow: '0 6px 24px rgba(0,0,0,0.15)', minWidth: 190, padding: 6 }}>
+                        {([
+                          ['nom_asc',   'Nom  A → Z'],
+                          ['nom_desc',  'Nom  Z → A'],
+                          ['annee_asc', 'Année  ↑ (ancienne en premier)'],
+                          ['annee_desc','Année  ↓ (récente en premier)'],
+                        ] as const).map(([key, label]) => (
+                          <button key={key} onClick={() => sortBinder(key)}
+                            style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '8px 12px', fontSize: 13, cursor: 'pointer', borderRadius: 6, color: dark ? '#e0e0e0' : '#222' }}
+                            onMouseEnter={e => (e.currentTarget.style.background = dark ? '#2a2a2a' : '#f0f4ff')}
+                            onMouseLeave={e => (e.currentTarget.style.background = 'none')}>{label}</button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <button onClick={() => setMultiPicker(true)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>＋ Ajouter des cartes</button>
+                  <button onClick={() => openEditForm(selected)} style={{ background: 'none', border: 'none', color: accent, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>✏️ Modifier</button>
+                  <button onClick={() => deleteBinder(selected.id)} style={{ background: 'none', border: 'none', color: '#e74c3c', cursor: 'pointer', fontSize: 12 }}>🗑️</button>
+                </>
+              )}
+            </div>
+          )}
+
+          {/* Mobile : icônes compactes + menu ··· pour les actions owner */}
+          {isMobile && !pendingCard && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+              <ShareButton url={`/galerie/${userId}?tab=library&binder=${selected.id}`} title={`Classeur « ${selected.name} » sur Memorabilius`} compact />
+              <button onClick={() => setShowQr(true)} title="QR Code" style={{ background: 'none', border: `1px solid ${dark ? '#444' : '#ddd'}`, borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, lineHeight: 1, color: dark ? '#ccc' : '#555' }}>▦</button>
+              <button onClick={() => setShowComments(true)} style={{ background: 'none', border: '1px solid #ddd', borderRadius: 8, padding: '10px 10px', cursor: 'pointer', fontSize: 16, color: '#666', lineHeight: 1 }}>
+                💬{commentCount > 0 && <span style={{ fontSize: 11, fontWeight: 800, verticalAlign: 'middle' }}> {commentCount}</span>}
+              </button>
+              {isOwner && (
+                <div style={{ position: 'relative' }}>
+                  <button onClick={() => setShowOwnerMenu(v => !v)}
+                    style={{ background: showOwnerMenu ? '#f0f0f0' : 'none', border: '1px solid #ddd', borderRadius: 8, padding: '10px 12px', cursor: 'pointer', fontSize: 16, color: '#555', lineHeight: 1, fontWeight: 900 }}>
+                    ···
+                  </button>
+                  {showOwnerMenu && (
+                    <>
+                      <div style={{ position: 'fixed', inset: 0, zIndex: 299 }} onClick={() => setShowOwnerMenu(false)} />
+                      <div style={{ position: 'absolute', top: 'calc(100% + 6px)', right: 0, zIndex: 300, background: 'white', border: '1px solid #e8e8e8', borderRadius: 14, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 220, padding: 6 }}>
+                        <div style={{ padding: '4px 14px 2px', fontSize: 10, fontWeight: 700, color: '#bbb', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Trier les cartes</div>
+                        {sorting ? (
+                          <div style={{ padding: '8px 14px', fontSize: 13, color: '#aaa' }}>⏳ Tri en cours…</div>
+                        ) : slots.size === 0 ? (
+                          <div style={{ padding: '8px 14px', fontSize: 12, color: '#ccc' }}>Classeur vide</div>
+                        ) : (
+                          ([
+                            ['nom_asc', 'Nom A → Z'], ['nom_desc', 'Nom Z → A'],
+                            ['annee_asc', 'Ancienne en premier'], ['annee_desc', 'Récente en premier'],
+                          ] as const).map(([key, label]) => (
+                            <button key={key} onClick={() => { sortBinder(key); setShowOwnerMenu(false) }}
+                              style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '10px 14px', fontSize: 14, cursor: 'pointer', color: '#333', borderRadius: 8 }}>
+                              ⇅ {label}
+                            </button>
+                          ))
+                        )}
+                        <div style={{ height: 1, background: '#f0f0f0', margin: '4px 6px' }} />
+                        <button onClick={() => { setMultiPicker(true); setShowOwnerMenu(false) }}
+                          style={{ display: 'flex', width: '100%', textAlign: 'left', alignItems: 'center', gap: 10, background: 'none', border: 'none', padding: '12px 14px', fontSize: 14, cursor: 'pointer', color: '#333', fontWeight: 600, borderRadius: 8 }}>
+                          ＋ Ajouter des cartes
+                        </button>
+                        <button onClick={() => { openEditForm(selected); setShowOwnerMenu(false) }}
+                          style={{ display: 'flex', width: '100%', textAlign: 'left', alignItems: 'center', gap: 10, background: 'none', border: 'none', padding: '12px 14px', fontSize: 14, cursor: 'pointer', color: '#333', fontWeight: 600, borderRadius: 8 }}>
+                          ✏️ Modifier le classeur
+                        </button>
+                        <div style={{ height: 1, background: '#f0f0f0', margin: '4px 6px' }} />
+                        <button onClick={() => { setShowOwnerMenu(false); deleteBinder(selected.id) }}
+                          style={{ display: 'flex', width: '100%', textAlign: 'left', alignItems: 'center', gap: 10, background: 'none', border: 'none', padding: '12px 14px', fontSize: 14, cursor: 'pointer', color: '#e74c3c', fontWeight: 600, borderRadius: 8 }}>
+                          🗑️ Supprimer
+                        </button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
           )}
         </div>
       </div>
@@ -1050,7 +1689,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             <button
               onClick={() => canPrev ? clickFlip('prev') : setIsOpen(false)}
               disabled={!!flip} className="btn-main btn-secondary"
-              style={{ padding: '8px 14px', fontSize: 13 }} aria-label={canPrev ? 'Page précédente' : 'Fermer'}>
+              style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13 }} aria-label={canPrev ? 'Page précédente' : 'Fermer'}>
               ←<span className="binder-nav-label"> {canPrev ? 'Page précédente' : 'Fermer'}</span>
             </button>
             <span style={{ fontSize: 12, color: '#999', whiteSpace: 'nowrap' }}>
@@ -1069,12 +1708,12 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
             </span>
             <div style={{ display: 'flex', gap: 8 }}>
               {isOwner && !canNext && (
-                <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: '8px 12px', fontSize: 12 }} aria-label="Ajouter une page">
+                <button onClick={addPage} className="btn-main btn-secondary" style={{ padding: isMobile ? '12px 16px' : '8px 12px', fontSize: 12 }} aria-label="Ajouter une page">
                   +<span className="binder-nav-label"> Ajouter une page</span>
                 </button>
               )}
               <button onClick={() => clickFlip('next')} disabled={!canNext || !!flip} className="btn-main btn-primary"
-                style={{ padding: '8px 14px', fontSize: 13, opacity: !canNext ? 0.4 : 1 }} aria-label="Page suivante">
+                style={{ padding: isMobile ? '12px 18px' : '8px 14px', fontSize: 13, opacity: !canNext ? 0.4 : 1 }} aria-label="Page suivante">
                 <span className="binder-nav-label">Page suivante </span>→
               </button>
             </div>
@@ -1085,9 +1724,10 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       {pickerTarget && (
         <CardPicker
           userId={userId}
+          multi
           excludeKeys={new Set([...slots.values()].map(s => s.card_key))}
           onClose={() => setPickerTarget(null)}
-          onSelect={card => placeCard(pickerTarget.page, pickerTarget.idx, card)}
+          onSelectMany={cards => placeManyFrom(pickerTarget.page, pickerTarget.idx, cards)}
         />
       )}
 
@@ -1106,10 +1746,31 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
           popup={{
             f: viewerSlot.img, b: viewerSlot.img, n: viewerSlot.nom || '', t: '', y: '',
             br: '', s: '', v: '', num: '', auto: false, rc: false, patch: false, g: 'Raw',
+            is_horizontal: viewerSlot.is_horizontal,
           }}
           accent={accent}
           onClose={() => setViewerSlot(null)}
           getTags={() => null}
+        />
+      )}
+
+      {showQr && selected && (
+        <QrModal
+          url={`/galerie/${userId}?tab=library&binder=${selected.id}`}
+          title={`Classeur « ${selected.name} »`}
+          onClose={() => setShowQr(false)}
+        />
+      )}
+
+      {showComments && selected && (
+        <CommentsModal
+          title={`Classeur « ${selected.name} »`}
+          onClose={() => { setShowComments(false); loadCommentCount(selected.id) }}
+          galerieUserId={userId}
+          binderId={selected.id}
+          accent={accent}
+          isOwner={isOwner}
+          emptyLabel="Soyez le premier à commenter ce classeur"
         />
       )}
 

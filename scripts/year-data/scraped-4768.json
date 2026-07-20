@@ -1,0 +1,3311 @@
+{
+  "year": 2006,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 4768,
+        "name": "2006 Topps Paradigm"
+      },
+      "unique": [
+        {
+          "card_number": "32",
+          "player_name": "Edgerrin James",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Leonard Pope",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "94",
+          "player_name": "Matt Leinart",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-ML",
+          "player_name": "Matt Leinart",
+          "team": "Arizona Cardinals",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-LB",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-LY",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-ML",
+          "player_name": "Matt Leinart",
+          "team": "Arizona Cardinals",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-ML",
+          "player_name": "Matt Leinart",
+          "team": "Arizona Cardinals",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "32",
+          "player_name": "Edgerrin James",
+          "team": "Arizona Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Leonard Pope",
+          "team": "Arizona Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-ML",
+          "player_name": "Matt Leinart",
+          "team": "Arizona Cardinals",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "D.J. Shockley",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Adam Jennings",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-JN",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-NC",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-VF",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-JN",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-JN",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "D.J. Shockley",
+          "team": "Atlanta Falcons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Adam Jennings",
+          "team": "Atlanta Falcons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "82",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-JN",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-JN",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Johnny Unitas",
+          "team": "Baltimore Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-JU",
+          "player_name": "Johnny Unitas",
+          "team": "Baltimore Colts",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-JU",
+          "player_name": "Johnny Unitas",
+          "team": "Baltimore Colts",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Johnny Unitas",
+          "team": "Baltimore Colts",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Steve McNair",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "P.J. Daniels",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Demetrius Williams",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-SM",
+          "player_name": "Steve McNair",
+          "team": "Baltimore Ravens",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-SM",
+          "player_name": "Steve McNair",
+          "team": "Baltimore Ravens",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Steve McNair",
+          "team": "Baltimore Ravens",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "P.J. Daniels",
+          "team": "Baltimore Ravens",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "75",
+          "player_name": "Demetrius Williams",
+          "team": "Baltimore Ravens",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-DW",
+          "player_name": "Demetrius Williams",
+          "team": "Baltimore Ravens",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-DW",
+          "player_name": "Demetrius Williams",
+          "team": "Baltimore Ravens",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Ashton Youboty",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-JK",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-JK",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "70",
+          "player_name": "Ashton Youboty",
+          "team": "Buffalo Bills",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Deangelo Williams",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-DW",
+          "player_name": "DeAngelo Williams",
+          "team": "Carolina Panthers",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-SS",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-WA",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-DW",
+          "player_name": "DeAngelo Williams",
+          "team": "Carolina Panthers",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-DW",
+          "player_name": "DeAngelo Williams",
+          "team": "Carolina Panthers",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-SS",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-SS",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPF-DW",
+          "player_name": "DeAngelo Williams",
+          "team": "Carolina Panthers",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Devin Hester",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Gale Sayers",
+          "team": "Chicago Bears",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Devin Hester",
+          "team": "Chicago Bears",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TPDR-DH",
+          "player_name": "Devin Hester",
+          "team": "Chicago Bears",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-DH",
+          "player_name": "Devin Hester",
+          "team": "Chicago Bears",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Reggie McNeal",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-CJ",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-CJ",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Reggie McNeal",
+          "team": "Cincinnati Bengals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jim Brown",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Kamerion Wimbley",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jerome Harrison",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Travis Wilson",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "TPA-JB",
+          "player_name": "Jim Brown",
+          "team": "Cleveland Browns",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPA-JB",
+          "player_name": "Jim Brown",
+          "team": "Cleveland Browns",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "Jim Brown",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Kamerion Wimbley",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Jerome Harrison",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Travis Wilson",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Tony Dorsett",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Terrell Owens",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Anthony Fasano",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Bobby Carpenter",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "76",
+          "player_name": "Skyler Green",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-TR",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-TA",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-TR",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Tony Dorsett",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Terrell Owens",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Anthony Fasano",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Bobby Carpenter",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "76",
+          "player_name": "Skyler Green",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-AF",
+          "player_name": "Anthony Fasano",
+          "team": "Dallas Cowboys",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-AF",
+          "player_name": "Anthony Fasano",
+          "team": "Dallas Cowboys",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Mike Bell",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-JC",
+          "player_name": "Jay Cutler",
+          "team": "Denver Broncos",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-MB",
+          "player_name": "Mike Bell",
+          "team": "Denver Broncos",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-JC",
+          "player_name": "Jay Cutler",
+          "team": "Denver Broncos",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-JC",
+          "player_name": "Jay Cutler",
+          "team": "Denver Broncos",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Mike Bell",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-MB",
+          "player_name": "Mike Bell",
+          "team": "Denver Broncos",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-MB",
+          "player_name": "Mike Bell",
+          "team": "Denver Broncos",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Brian Calhoun",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RDAL-NC",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPA-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPA-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-BSA",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-BSA",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Brian Calhoun",
+          "team": "Detroit Lions",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPF-BS",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-CA",
+          "player_name": "Brian Calhoun",
+          "team": "Detroit Lions",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-CA",
+          "player_name": "Brian Calhoun",
+          "team": "Detroit Lions",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Bart Starr",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Ingle Martin",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "103",
+          "player_name": "A.J. Hawk",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-VF",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-BG",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-BG",
+          "player_name": "Paul Hornung",
+          "team": "Green Bay Packers",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Bart Starr",
+          "team": "Green Bay Packers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Ingle Martin",
+          "team": "Green Bay Packers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TPCHR-EC",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-EC",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "DeMeco Ryans",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Wali Lundy",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-MW",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "42",
+          "player_name": "DeMeco Ryans",
+          "team": "Houston Texans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Wali Lundy",
+          "team": "Houston Texans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "89",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-MW",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-WL",
+          "player_name": "Wali Lundy",
+          "team": "Houston Texans",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-MW",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-WL",
+          "player_name": "Wali Lundy",
+          "team": "Houston Texans",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-JAD",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-MM",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-WA",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-MH",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-AD",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-AD",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Marcedes Lewis",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-MJD",
+          "player_name": "Maurice Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-JDL",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "84",
+          "player_name": "Marcedes Lewis",
+          "team": "Jacksonville Jaguars",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-ML",
+          "player_name": "Marcedes Lewis",
+          "team": "Jacksonville Jaguars",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-MJD",
+          "player_name": "Maurice Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-ML",
+          "player_name": "Marcedes Lewis",
+          "team": "Jacksonville Jaguars",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-MJD",
+          "player_name": "Maurice Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Brodie Croyle",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-LJ",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Brodie Croyle",
+          "team": "Kansas City Chiefs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Eric Dickerson",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TPCHR-ED",
+          "player_name": "Eric Dickerson",
+          "team": "Los Angeles Rams",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-ED",
+          "player_name": "Eric Dickerson",
+          "team": "Los Angeles Rams",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Eric Dickerson",
+          "team": "Los Angeles Rams",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Derek Hagan",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RAL-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-BM",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Derek Hagan",
+          "team": "Miami Dolphins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SPF-DM",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "50",
+          "player_name": "Tarvaris Jackson",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Tarvaris Jackson",
+          "team": "Minnesota Vikings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TPDR-TJ",
+          "player_name": "Tarvaris Jackson",
+          "team": "Minnesota Vikings",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-TJ",
+          "player_name": "Tarvaris Jackson",
+          "team": "Minnesota Vikings",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Corey Dillon",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "David Thomas",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Chad Jackson",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-CJ",
+          "player_name": "Chad Jackson",
+          "team": "New England Patriots",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-LM",
+          "player_name": "Laurence Maroney",
+          "team": "New England Patriots",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-TBR",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-BM",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-MJ",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-TBR",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-TBR",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-TBR",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-TBR",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Corey Dillon",
+          "team": "New England Patriots",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "David Thomas",
+          "team": "New England Patriots",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "86",
+          "player_name": "Chad Jackson",
+          "team": "New England Patriots",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-LM",
+          "player_name": "Laurence Maroney",
+          "team": "New England Patriots",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-CJ",
+          "player_name": "Chad Jackson",
+          "team": "New England Patriots",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-CJ",
+          "player_name": "Chad Jackson",
+          "team": "New England Patriots",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "97",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-MC",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-RB",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-LB",
+          "player_name": "New Orleans Saints",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-RB",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-RB",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "91",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-RB",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-MC",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-MC",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Mathias Kiwanuka",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Sinorice Moss",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "96",
+          "player_name": "Sinorice Moss",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-SM",
+          "player_name": "Sinorice Moss",
+          "team": "New York Giants",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-HM",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-MM",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-JS",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-JS",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Tiki Barber",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Mathias Kiwanuka",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Sinorice Moss",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-SM",
+          "player_name": "Sinorice Moss",
+          "team": "New York Giants",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-SM",
+          "player_name": "Sinorice Moss",
+          "team": "New York Giants",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-SM",
+          "player_name": "Sinorice Moss",
+          "team": "New York Giants",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Brad Smith",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Kellen Clemens",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Leon Washington",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-BS",
+          "player_name": "Brad Smith",
+          "team": "New York Jets",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-LWA",
+          "player_name": "Leon Washington",
+          "team": "New York Jets",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-RS",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPA-JN",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPA-JN",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-JN",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-JN",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-JN",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-JN",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Brad Smith",
+          "team": "New York Jets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Kellen Clemens",
+          "team": "New York Jets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "87",
+          "player_name": "Leon Washington",
+          "team": "New York Jets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-JN",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-BS",
+          "player_name": "Brad Smith",
+          "team": "New York Jets",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-BS",
+          "player_name": "Brad Smith",
+          "team": "New York Jets",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Randy Moss",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Michael Huff",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "38",
+          "player_name": "Randy Moss",
+          "team": "Oakland Raiders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Michael Huff",
+          "team": "Oakland Raiders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Hank Baskett",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jason Avant",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "RAL-JA",
+          "player_name": "Jason Avant",
+          "team": "Philadelphia Eagles",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Hank Baskett",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jason Avant",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TPDR-HB",
+          "player_name": "Hank Baskett",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-JA",
+          "player_name": "Jason Avant",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-HB",
+          "player_name": "Hank Baskett",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-JA",
+          "player_name": "Jason Avant",
+          "team": "Philadelphia Eagles",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Willie Reid",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Cedric Humes",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "101",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-SH",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-HM",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-TB",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-TB",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Terry Bradshaw",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Willie Reid",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Cedric Humes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-SH",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Charlie Whitehurst",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Charlie Whitehurst",
+          "team": "San Diego Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-CW",
+          "player_name": "Charlie Whitehurst",
+          "team": "San Diego Chargers",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-CW",
+          "player_name": "Charlie Whitehurst",
+          "team": "San Diego Chargers",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Brandon Williams",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Michael Robinson",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "102",
+          "player_name": "Vernon Davis",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-JR",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-MR",
+          "player_name": "Michael Robinson",
+          "team": "San Francisco 49ers",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-VD",
+          "player_name": "Vernon Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-KD",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-RS",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPA-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPA-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-FG",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-FG",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TP-FG",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-JR",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Dual Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-FG",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TP-JR",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Dual Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Brandon Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Michael Robinson",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-JM",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-JR",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-VD",
+          "player_name": "Vernon Davis",
+          "team": "San Francisco 49ers",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-BW",
+          "player_name": "Brandon Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-BW",
+          "player_name": "Brandon Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TPCHR-SA",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-SA",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Joe Klopfenstein",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Tye Hill",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dominique Byrd",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-KD",
+          "player_name": "St. Louis Rams",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHR-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "39",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Joe Klopfenstein",
+          "team": "St. Louis Rams",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Tye Hill",
+          "team": "St. Louis Rams",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "68",
+          "player_name": "Dominique Byrd",
+          "team": "St. Louis Rams",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Maurice Stovall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Bruce Gradkowski",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-BG",
+          "player_name": "Bruce Gradkowski",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-BG",
+          "player_name": "Bruce Gradkowski",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-BG",
+          "player_name": "Bruce Gradkowski",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "55",
+          "player_name": "Maurice Stovall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Bruce Gradkowski",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-BG",
+          "player_name": "Bruce Gradkowski",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-MS",
+          "player_name": "Maurice Stovall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Dual Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-BG",
+          "player_name": "Bruce Gradkowski",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPDR-MS",
+          "player_name": "Maurice Stovall",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Rookie Dual Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Quinton Ganther",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "95",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "100",
+          "player_name": "LenDale White",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-LW",
+          "player_name": "LenDale White",
+          "team": "Tennessee Titans",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RAL-VY",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "Autographed NFL Logos",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "RDAL-LY",
+          "player_name": "Tennessee Titans",
+          "team": null,
+          "variation": "Autographed NFL Logos Dual",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-VY",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "Career Highs Triple Jersey Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TPCHP-VY",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "Career Highs Triple Jersey Autographs Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "69",
+          "player_name": "Quinton Ganther",
+          "team": "Tennessee Titans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-LW",
+          "player_name": "LenDale White",
+          "team": "Tennessee Titans",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SPF-VY",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "Patch Frame Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "33",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom'
 
 interface Card {
   f: string; b?: string; n: string; v: string; y: string; br: string; s: string; t: string
-  rc: boolean; auto: boolean; patch: boolean; num: string; g: string
+  rc: boolean; auto: boolean; patch: boolean; num: string; g: string; card_number?: string; beckett_designation?: string
 }
 interface Props {
   cards: Card[]
@@ -32,6 +32,7 @@ interface Options {
   showInfo: boolean
   showVariation: boolean
   showBadges: boolean
+  beckett: boolean
 }
 
 const CARD_RATIO = 3.5 / 2.5
@@ -301,7 +302,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
   const [mounted, setMounted] = useState(false)
   const [tableWithPhotos, setTableWithPhotos] = useState(false)
 
-  const [opts, setOpts] = useState<Options>({ format: 'a4', bgType: 'white', bgColor: '#1a1a2e', showName: true, showInfo: true, showVariation: true, showBadges: true })
+  const [opts, setOpts] = useState<Options>({ format: 'a4', bgType: 'white', bgColor: '#1a1a2e', showName: true, showInfo: true, showVariation: true, showBadges: true, beckett: false })
 
   // Filtres internes au popup
   const [search, setSearch] = useState('')
@@ -313,32 +314,60 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
   const [fPatch, setFPatch] = useState(false)
   const [fNum, setFNum] = useState(false)
 
+  // Tri
+  const [sortField, setSortField] = useState<'n' | 'y' | 't' | 's' | 'g' | '_value'>('n')
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
+
   useEffect(() => { setMounted(true) }, [])
 
   const teams = useMemo(() => [...new Set(cards.map(c => c.t).filter(Boolean))].sort(), [cards])
   const brands = useMemo(() => [...new Set(cards.map(c => c.s).filter(Boolean))].sort(), [cards])
   const years = useMemo(() => [...new Set(cards.map(c => c.y).filter(Boolean))].sort(), [cards])
 
-  const filtered = useMemo(() => cards.filter(c =>
-    c.n.toLowerCase().includes(search.toLowerCase()) &&
-    (!fTeam || c.t === fTeam) &&
-    (!fBrand || c.s === fBrand) &&
-    (!fYear || c.y === fYear) &&
-    (!fRc || c.rc) && (!fAuto || c.auto) && (!fPatch || c.patch) && (!fNum || c.num !== '')
-  ), [cards, search, fTeam, fBrand, fYear, fRc, fAuto, fPatch, fNum])
+  const filtered = useMemo(() => {
+    const list = cards.filter(c =>
+      c.n.toLowerCase().includes(search.toLowerCase()) &&
+      (!fTeam || c.t === fTeam) &&
+      (!fBrand || c.s === fBrand) &&
+      (!fYear || c.y === fYear) &&
+      (!fRc || c.rc) && (!fAuto || c.auto) && (!fPatch || c.patch) && (!fNum || c.num !== '')
+    )
+    return [...list].sort((a, b) => {
+      let va: string | number = ''
+      let vb: string | number = ''
+      if (sortField === '_value') {
+        va = cardValues.get(a.f) ?? -1
+        vb = cardValues.get(b.f) ?? -1
+      } else {
+        va = (a[sortField] || '').toLowerCase()
+        vb = (b[sortField] || '').toLowerCase()
+      }
+      if (va < vb) return sortDir === 'asc' ? -1 : 1
+      if (va > vb) return sortDir === 'asc' ? 1 : -1
+      return 0
+    })
+  }, [cards, search, fTeam, fBrand, fYear, fRc, fAuto, fPatch, fNum, sortField, sortDir, cardValues])
 
   const set = <K extends keyof Options>(k: K, v: Options[K]) => setOpts(o => ({ ...o, [k]: v }))
 
   // ── Export CSV ─────────────────────────────────────────────────────────────
+  const beckettDesig = (c: Card) =>
+    c.beckett_designation ||
+    [c.y, c.br, c.s, c.v, c.card_number ? `#${c.card_number}` : '', c.n].filter(Boolean).join(' ')
+
   const exportCSV = () => {
     const hasValues = filtered.some(c => cardValues.has(c.f))
-    const headers = ['Joueur','Équipe','Année','Collection','Variation','Numérotation','Grade','RC','Auto','Patch', ...(hasValues ? ['Valeur (€)'] : [])]
+    const headers = ['Joueur','Équipe','Année','Collection','Variation','Numérotation','Grade','RC','Auto','Patch',
+      ...(hasValues ? ['Valeur (€)'] : []),
+      ...(opts.beckett ? ['Désignation Beckett'] : []),
+    ]
     const rows = filtered.map(c => [
       c.n, c.t, c.y, c.s, c.v, c.num, c.g,
       c.rc ? 'Oui' : 'Non',
       c.auto ? 'Oui' : 'Non',
       c.patch ? 'Oui' : 'Non',
       ...(hasValues ? [cardValues.has(c.f) ? String(cardValues.get(c.f)) : ''] : []),
+      ...(opts.beckett ? [beckettDesig(c)] : []),
     ])
     const csvStr = 'sep=,\r\n' + [headers, ...rows]
       .map(r => r.map(cell => `"${(cell || '').replace(/"/g, '""')}"`).join(','))
@@ -418,9 +447,9 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
         : 0
 
       // Colonnes (mm)
-      type Col = { header: string; key: keyof Card | '_photo' | '_valeur'; w: number; align?: 'center' | 'right' }
+      type Col = { header: string; key: keyof Card | '_photo' | '_valeur' | '_beckett'; w: number; align?: 'center' | 'right' }
       const cols: Col[] = [
-        ...(withPhotos ? [{ header: '', key: '_photo' as const, w: 22 }] : []),
+        ...(withPhotos ? [{ header: '', key: '_photo' as const, w: 27 }] : []),
         { header: 'Joueur',     key: 'n',     w: 42 },
         { header: 'Équipe',    key: 't',     w: 28 },
         { header: 'Année',     key: 'y',     w: 16 },
@@ -432,6 +461,7 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
         { header: 'Auto',       key: 'auto', w: 9,  align: 'center' },
         { header: 'Patch',      key: 'patch',w: 9,  align: 'center' },
         ...(hasPdfValues ? [{ header: 'Valeur €', key: '_valeur' as const, w: 20, align: 'right' as const }] : []),
+        ...(opts.beckett ? [{ header: 'Désignation Beckett', key: '_beckett' as const, w: 55 }] : []),
       ]
       const usableW = PW - ML - MR
       // Étirer la dernière colonne texte pour remplir (ou réduire si débordement)
@@ -473,6 +503,10 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
       const rowMeta: RowMeta[] = filtered.map(card => {
         const wrapped = cols.map(col => {
           if (SKIP.has(col.key)) return []
+          if (col.key === '_beckett') {
+            const txt = beckettDesig(card)
+            return txt ? doc.splitTextToSize(txt, col.w - 3) as string[] : []
+          }
           const raw = card[col.key as keyof Card]
           const txt = typeof raw === 'boolean' ? '' : (raw || '')
           return txt ? doc.splitTextToSize(txt, col.w - 3) as string[] : []
@@ -643,6 +677,22 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
                   </button>
                 ))}
               </div>
+              {/* Tri */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <select value={sortField} onChange={e => setSortField(e.target.value as any)}
+                  style={{ flex: 1, padding: '7px 8px', borderRadius: 8, border: '1px solid #e0e0e0', fontSize: 12, outline: 'none' }}>
+                  <option value="n">{lang === 'fr' ? 'Trier par : Joueur' : 'Sort by: Player'}</option>
+                  <option value="y">{lang === 'fr' ? 'Trier par : Année' : 'Sort by: Year'}</option>
+                  <option value="t">{lang === 'fr' ? 'Trier par : Équipe' : 'Sort by: Team'}</option>
+                  <option value="s">{lang === 'fr' ? 'Trier par : Collection' : 'Sort by: Set'}</option>
+                  <option value="g">{lang === 'fr' ? 'Trier par : Grade' : 'Sort by: Grade'}</option>
+                  {cardValues.size > 0 && <option value="_value">{lang === 'fr' ? 'Trier par : Valeur' : 'Sort by: Value'}</option>}
+                </select>
+                <button onClick={() => setSortDir(d => d === 'asc' ? 'desc' : 'asc')}
+                  style={{ padding: '7px 12px', borderRadius: 8, border: '1px solid #e0e0e0', background: '#fafafa', fontSize: 13, cursor: 'pointer', fontWeight: 700, color: '#555' }}>
+                  {sortDir === 'asc' ? '↑' : '↓'}
+                </button>
+              </div>
             </div>
             <p style={{ fontSize: 12, color: '#999', margin: '8px 0 0', textAlign: 'center' }}>
               {filtered.length} / {cards.length} carte{filtered.length > 1 ? 's' : ''} {lang === 'fr' ? 'sélectionnée' : 'selected'}{filtered.length > 1 ? 's' : ''}
@@ -710,6 +760,10 @@ export default function GalerieExport({ cards, profileName, avatarUrl, accent, l
             <span style={SL}>{lang === 'fr' ? 'Export tableur / liste' : 'Spreadsheet / list export'}</span>
             <Toggle on={tableWithPhotos} onChange={setTableWithPhotos}
               label={lang === 'fr' ? 'Inclure les photos (PDF uniquement)' : 'Include photos (PDF only)'} />
+            <div style={{ marginTop: 8 }}>
+              <Toggle on={opts.beckett} onChange={v => set('beckett', v)}
+                label={lang === 'fr' ? 'Désignation Beckett (CSV + PDF)' : 'Beckett designation (CSV + PDF)'} />
+            </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 12 }}>
               <button onClick={exportCSV} disabled={!filtered.length}
                 style={{ padding: '12px 8px', border: '2px solid #ddd', borderRadius: 10, background: '#fafafa', color: '#333', fontWeight: 700, fontSize: 13, cursor: filtered.length ? 'pointer' : 'not-allowed', transition: '0.15s', opacity: filtered.length ? 1 : 0.5 }}>

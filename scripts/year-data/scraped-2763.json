@@ -1,0 +1,6502 @@
+{
+  "year": 1998,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 2763,
+        "name": "1998-99 Flair Showcase"
+      },
+      "unique": [
+        {
+          "card_number": "70",
+          "player_name": "Mookie Blaylock",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Roshown McLeod",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Mookie Blaylock",
+          "team": "Atlanta Hawks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Roshown McLeod",
+          "team": "Atlanta Hawks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Mookie Blaylock",
+          "team": "Atlanta Hawks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Roshown McLeod",
+          "team": "Atlanta Hawks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70L",
+          "player_name": "Mookie Blaylock",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74L",
+          "player_name": "Roshown McLeod",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81L",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70L",
+          "player_name": "Mookie Blaylock",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74L",
+          "player_name": "Roshown McLeod",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81L",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70L",
+          "player_name": "Mookie Blaylock",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74L",
+          "player_name": "Roshown McLeod",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81L",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70M",
+          "player_name": "Mookie Blaylock",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74M",
+          "player_name": "Roshown McLeod",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81M",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70M",
+          "player_name": "Mookie Blaylock",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74M",
+          "player_name": "Roshown McLeod",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81M",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70M",
+          "player_name": "Mookie Blaylock",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74M",
+          "player_name": "Roshown McLeod",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81M",
+          "player_name": "Steve Smith",
+          "team": "Atlanta Hawks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8L",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22L",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29L",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8L",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22L",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29L",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8L",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22L",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29L",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8M",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22M",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29M",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8M",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22M",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29M",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8M",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22M",
+          "player_name": "Ron Mercer",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29M",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33L",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72L",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80L",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33L",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72L",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80L",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33L",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72L",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80L",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33M",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72M",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80M",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33M",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72M",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80M",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33M",
+          "player_name": "Eddie Jones",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72M",
+          "player_name": "Anthony Mason",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80M",
+          "player_name": "Ricky Davis",
+          "team": "Charlotte Hornets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Brent Barry",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Brent Barry",
+          "team": "Chicago Bulls",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Brent Barry",
+          "team": "Chicago Bulls",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69L",
+          "player_name": "Brent Barry",
+          "team": "Chicago Bulls",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83L",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69L",
+          "player_name": "Brent Barry",
+          "team": "Chicago Bulls",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83L",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69L",
+          "player_name": "Brent Barry",
+          "team": "Chicago Bulls",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83L",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69M",
+          "player_name": "Brent Barry",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83M",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69M",
+          "player_name": "Brent Barry",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83M",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69M",
+          "player_name": "Brent Barry",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83M",
+          "player_name": "Toni Kukoc",
+          "team": "Chicago Bulls",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12L",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36L",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40L",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12L",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36L",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40L",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12L",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36L",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40L",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12M",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36M",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40M",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12M",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36M",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40M",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12M",
+          "player_name": "Shawn Kemp",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36M",
+          "player_name": "Brevin Knight",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40M",
+          "player_name": "Derek Anderson",
+          "team": "Cleveland Cavaliers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16L",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32L",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84L",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16L",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32L",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84L",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16L",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32L",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84L",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16M",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32M",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84M",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16M",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32M",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84M",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16M",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32M",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84M",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Keon Clark",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Keon Clark",
+          "team": "Denver Nuggets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Keon Clark",
+          "team": "Denver Nuggets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27L",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30L",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57L",
+          "player_name": "Keon Clark",
+          "team": "Denver Nuggets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27L",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30L",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57L",
+          "player_name": "Keon Clark",
+          "team": "Denver Nuggets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27L",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30L",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57L",
+          "player_name": "Keon Clark",
+          "team": "Denver Nuggets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27M",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30M",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57M",
+          "player_name": "Keon Clark",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27M",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30M",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57M",
+          "player_name": "Keon Clark",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27M",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30M",
+          "player_name": "Raef LaFrentz",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57M",
+          "player_name": "Keon Clark",
+          "team": "Denver Nuggets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5L",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90L",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5L",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90L",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5L",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90L",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5M",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90M",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5M",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90M",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5M",
+          "player_name": "Grant Hill",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90M",
+          "player_name": "Joe Dumars",
+          "team": "Detroit Pistons",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17L",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71L",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79L",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17L",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71L",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79L",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17L",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71L",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79L",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17M",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71M",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79M",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17M",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71M",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79M",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17M",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71M",
+          "player_name": "Donyell Marshall",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79M",
+          "player_name": "John Starks",
+          "team": "Golden State Warriors",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Scottie Pippen",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Michael Dickerson",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Scottie Pippen",
+          "team": "Houston Rockets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Michael Dickerson",
+          "team": "Houston Rockets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Scottie Pippen",
+          "team": "Houston Rockets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Michael Dickerson",
+          "team": "Houston Rockets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14L",
+          "player_name": "Scottie Pippen",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26L",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45L",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77L",
+          "player_name": "Michael Dickerson",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14L",
+          "player_name": "Scottie Pippen",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26L",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45L",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77L",
+          "player_name": "Michael Dickerson",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14L",
+          "player_name": "Scottie Pippen",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26L",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45L",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77L",
+          "player_name": "Michael Dickerson",
+          "team": "Houston Rockets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14M",
+          "player_name": "Scottie Pippen",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26M",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45M",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77M",
+          "player_name": "Michael Dickerson",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14M",
+          "player_name": "Scottie Pippen",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26M",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45M",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77M",
+          "player_name": "Michael Dickerson",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14M",
+          "player_name": "Scottie Pippen",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26M",
+          "player_name": "Charles Barkley",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45M",
+          "player_name": "Hakeem Olajuwon",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77M",
+          "player_name": "Michael Dickerson",
+          "team": "Houston Rockets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31L",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53L",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89L",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31L",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53L",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89L",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31L",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53L",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89L",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31M",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53M",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89M",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31M",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53M",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89M",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31M",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53M",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89M",
+          "player_name": "Rik Smits",
+          "team": "Indiana Pacers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Brian Skinner",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Brian Skinner",
+          "team": "Los Angeles Clippers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Brian Skinner",
+          "team": "Los Angeles Clippers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23L",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48L",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50L",
+          "player_name": "Brian Skinner",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23L",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48L",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50L",
+          "player_name": "Brian Skinner",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23L",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48L",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50L",
+          "player_name": "Brian Skinner",
+          "team": "Los Angeles Clippers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23M",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48M",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50M",
+          "player_name": "Brian Skinner",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23M",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48M",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50M",
+          "player_name": "Brian Skinner",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23M",
+          "player_name": "Michael Olowokandi",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48M",
+          "player_name": "Maurice Taylor",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50M",
+          "player_name": "Brian Skinner",
+          "team": "Los Angeles Clippers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Dennis Rodman",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Dennis Rodman",
+          "team": "Los Angeles Lakers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Dennis Rodman",
+          "team": "Los Angeles Lakers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2L",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7L",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47L",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64L",
+          "player_name": "Dennis Rodman",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2L",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7L",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47L",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64L",
+          "player_name": "Dennis Rodman",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2L",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7L",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47L",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64L",
+          "player_name": "Dennis Rodman",
+          "team": "Los Angeles Lakers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2M",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7M",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47M",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64M",
+          "player_name": "Dennis Rodman",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2M",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7M",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47M",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64M",
+          "player_name": "Dennis Rodman",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2M",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7M",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47M",
+          "player_name": "Glen Rice",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64M",
+          "player_name": "Dennis Rodman",
+          "team": "Los Angeles Lakers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34L",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62L",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82L",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34L",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62L",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82L",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34L",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62L",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82L",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34M",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62M",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82M",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34M",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62M",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82M",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34M",
+          "player_name": "Tim Hardaway",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62M",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82M",
+          "player_name": "Voshon Lenard",
+          "team": "Miami Heat",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11L",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13L",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20L",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35L",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11L",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13L",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20L",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35L",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11L",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13L",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20L",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35L",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11M",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13M",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20M",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35M",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11M",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13M",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20M",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35M",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11M",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13M",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20M",
+          "player_name": "Robert Traylor",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35M",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4L",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44L",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66L",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4L",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44L",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66L",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4L",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44L",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66L",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4M",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44M",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66M",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4M",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44M",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66M",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4M",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44M",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66M",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1L",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10L",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21L",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43L",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1L",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10L",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21L",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43L",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1L",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10L",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21L",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43L",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1M",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10M",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21M",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43M",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1M",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10M",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21M",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43M",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1M",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10M",
+          "player_name": "Stephon Marbury",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21M",
+          "player_name": "Kerry Kittles",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43M",
+          "player_name": "Jayson Williams",
+          "team": "New Jersey Nets",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15L",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41L",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63L",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15L",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41L",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63L",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15L",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41L",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63L",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15M",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41M",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63M",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15M",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41M",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63M",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15M",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41M",
+          "player_name": "Patrick Ewing",
+          "team": "New York Knicks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63M",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Isaac Austin",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Isaac Austin",
+          "team": "Orlando Magic",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Isaac Austin",
+          "team": "Orlando Magic",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18L",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46L",
+          "player_name": "Isaac Austin",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75L",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78L",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18L",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46L",
+          "player_name": "Isaac Austin",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75L",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78L",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18L",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46L",
+          "player_name": "Isaac Austin",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75L",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78L",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18M",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46M",
+          "player_name": "Isaac Austin",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75M",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78M",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18M",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46M",
+          "player_name": "Isaac Austin",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75M",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78M",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18M",
+          "player_name": "Anfernee Hardaway",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46M",
+          "player_name": "Isaac Austin",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75M",
+          "player_name": "Matt Harpring",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78M",
+          "player_name": "Michael Doleac",
+          "team": "Orlando Magic",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Nazr Mohammed",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Nazr Mohammed",
+          "team": "Philadelphia 76ers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Nazr Mohammed",
+          "team": "Philadelphia 76ers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6L",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19L",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51L",
+          "player_name": "Nazr Mohammed",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6L",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19L",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51L",
+          "player_name": "Nazr Mohammed",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6L",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19L",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51L",
+          "player_name": "Nazr Mohammed",
+          "team": "Philadelphia 76ers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6M",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19M",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51M",
+          "player_name": "Nazr Mohammed",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6M",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19M",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51M",
+          "player_name": "Nazr Mohammed",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6M",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19M",
+          "player_name": "Larry Hughes",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51M",
+          "player_name": "Nazr Mohammed",
+          "team": "Philadelphia 76ers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Pat Garrity",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Pat Garrity",
+          "team": "Phoenix Suns",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Pat Garrity",
+          "team": "Phoenix Suns",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24L",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52L",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54L",
+          "player_name": "Pat Garrity",
+          "team": "Phoenix Suns",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24L",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52L",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54L",
+          "player_name": "Pat Garrity",
+          "team": "Phoenix Suns",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24L",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52L",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54L",
+          "player_name": "Pat Garrity",
+          "team": "Phoenix Suns",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24M",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52M",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54M",
+          "player_name": "Pat Garrity",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24M",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52M",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54M",
+          "player_name": "Pat Garrity",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24M",
+          "player_name": "Jason Kidd",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52M",
+          "player_name": "Tom Gugliotta",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54M",
+          "player_name": "Pat Garrity",
+          "team": "Phoenix Suns",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49L",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59L",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61L",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86L",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49L",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59L",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61L",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86L",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49L",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59L",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61L",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86L",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49M",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59M",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61M",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86M",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49M",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59M",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61M",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86M",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49M",
+          "player_name": "Damon Stoudamire",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59M",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61M",
+          "player_name": "Isaiah Rider",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86M",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55L",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67L",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85L",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55L",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67L",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85L",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55L",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67L",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85L",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55M",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67M",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85M",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55M",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67M",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85M",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55M",
+          "player_name": "Jason Williams",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67M",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85M",
+          "player_name": "Vlade Divac",
+          "team": "Sacramento Kings",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3L",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38L",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88L",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3L",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38L",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88L",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3L",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38L",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88L",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3M",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38M",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88M",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3M",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38M",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88M",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3M",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38M",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88M",
+          "player_name": "Antonio Daniels",
+          "team": "San Antonio Spurs",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Detlef Schrempf",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Detlef Schrempf",
+          "team": "Seattle SuperSonics",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Detlef Schrempf",
+          "team": "Seattle SuperSonics",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37L",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58L",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76L",
+          "player_name": "Detlef Schrempf",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37L",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58L",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76L",
+          "player_name": "Detlef Schrempf",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37L",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58L",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76L",
+          "player_name": "Detlef Schrempf",
+          "team": "Seattle SuperSonics",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37M",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58M",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76M",
+          "player_name": "Detlef Schrempf",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37M",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58M",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76M",
+          "player_name": "Detlef Schrempf",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37M",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58M",
+          "player_name": "Vin Baker",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76M",
+          "player_name": "Detlef Schrempf",
+          "team": "Seattle SuperSonics",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25L",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56L",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25L",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56L",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25L",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56L",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25M",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56M",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25M",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56M",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25M",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56M",
+          "player_name": "Tracy McGrady",
+          "team": "Toronto Raptors",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39L",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60L",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87L",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39L",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60L",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87L",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39L",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60L",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87L",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39M",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60M",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87M",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39M",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60M",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87M",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39M",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60M",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87M",
+          "player_name": "Bryon Russell",
+          "team": "Utah Jazz",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9L",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28L",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65L",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9L",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28L",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65L",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9L",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28L",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65L",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9M",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28M",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65M",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9M",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28M",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65M",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9M",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28M",
+          "player_name": "Mike Bibby",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65M",
+          "player_name": "Felipe Lopez",
+          "team": "Vancouver Grizzlies",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Flair Showcase Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Flair Showcase Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42L",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68L",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73L",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42L",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68L",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73L",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42L",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68L",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73L",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42M",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68M",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73M",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece Legacy Collection Row 1",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42M",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68M",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73M",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece Legacy Collection Row 2",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42M",
+          "player_name": "Juwan Howard",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68M",
+          "player_name": "Mitch Richmond",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73M",
+          "player_name": "Rod Strickland",
+          "team": "Washington Wizards",
+          "variation": "Masterpiece Legacy Collection Row 3",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

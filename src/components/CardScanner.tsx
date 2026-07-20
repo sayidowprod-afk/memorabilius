@@ -56,10 +56,26 @@ function cornersInsideImage(pts: Pt[], W: number, H: number): boolean {
   )
 }
 
+// Valide des coins détectés avant de les afficher : coordonnées finies, à peu près
+// dans l'image, et quadrilatère non dégénéré. Sans ce garde-fou, une détection qui
+// « réussit » mais renvoie des coordonnées aberrantes (Gemini qui hallucine, etc.)
+// affichait des poignées hors écran ou effondrées → l'utilisateur voyait la carte
+// « détectée » mais aucun point à déplacer.
+function cornersValid(pts: Pt[] | null, W: number, H: number): boolean {
+  if (!pts || pts.length !== 4) return false
+  for (const p of pts) {
+    if (!Number.isFinite(p.x) || !Number.isFinite(p.y)) return false
+    if (p.x < -W * 0.1 || p.x > W * 1.1 || p.y < -H * 0.1 || p.y > H * 1.1) return false
+  }
+  const [tl, tr, br, bl] = pts
+  const area = Math.abs((tr.x - tl.x) * (bl.y - tl.y) - (bl.x - tl.x) * (tr.y - tl.y))
+  return area > W * H * 0.04 // au moins 4% de la surface = quad exploitable
+}
+
 const yieldThread = () => new Promise<void>(r => setTimeout(r, 0))
 
 async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | null> {
-  const MAX = 800
+  const MAX = 600  // réduit de 800→600 : ~44% moins de pixels → findContours 2× plus rapide
   const scale = Math.min(MAX / img.naturalWidth, MAX / img.naturalHeight, 1)
   const W = Math.round(img.naturalWidth * scale)
   const H = Math.round(img.naturalHeight * scale)
@@ -120,15 +136,18 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
         const approx = new cv.Mat()
         try {
           cv.approxPolyDP(cnt, approx, 0.03 * peri, true)
+          let pts: Pt[] | null = null
           if (approx.rows === 4) {
-            const pts: Pt[] = []
+            const raw: Pt[] = []
             for (let j = 0; j < 4; j++)
-              pts.push({ x: approx.data32S[j * 2] / scale, y: approx.data32S[j * 2 + 1] / scale })
-            const ordered = orderCorners(pts)
-            const ratio   = quadRatio(ordered)
+              raw.push({ x: approx.data32S[j * 2] / scale, y: approx.data32S[j * 2 + 1] / scale })
+            pts = orderCorners(raw)
+          }
+          if (pts) {
+            const ratio = quadRatio(pts)
             if (isCardRatio(ratio)) {
               const score = ratioScore(ratio)
-              if (score < bestScore) { bestScore = score; best = ordered }
+              if (score < bestScore) { bestScore = score; best = pts }
             }
           }
         } finally { approx.delete(); cnt.delete() }
@@ -141,7 +160,8 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
 
   try {
     // ── Méthode A : seuillage par couleur de fond ─────────────────────────
-    for (const tol of [20, 35, 55]) {
+    for (const tol of [20, 55]) {  // 2 passes au lieu de 3 → moins de blocking
+      await yieldThread()  // yield avant chaque findContours pour rester réactif
       const diff   = new cv.Mat(), thresh = new cv.Mat(), closed = new cv.Mat()
       const bgMat  = new cv.Mat(H, W, cv.CV_8UC1, new cv.Scalar(bgVal))
       try {
@@ -157,8 +177,8 @@ async function detectCardOpenCV(img: HTMLImageElement, cv: any): Promise<Pt[] | 
 
     // ── Méthode B : Canny (fallback sur fond contrasté) ───────────────────
     if (!best) {
-      await yieldThread() // rend la main au navigateur entre les deux passes
-      for (const [lo, hi] of [[30, 90], [50, 150], [80, 200]]) {
+      for (const [lo, hi] of [[30, 90], [80, 200]]) {  // 2 passes au lieu de 3
+        await yieldThread()  // yield avant chaque Canny+findContours
         const edges = new cv.Mat(), dilated = new cv.Mat()
         const kernel = cv.Mat.ones(5, 5, cv.CV_8U)
         try {
@@ -472,7 +492,8 @@ async function detectCardInCrop(cropImg: HTMLImageElement, cv: any): Promise<Pt[
 
   let best: Pt[] | null = null
 
-  for (const tol of [25, 40, 60]) {
+  for (const tol of [25, 60]) {  // 2 passes → moins de blocking
+    await yieldThread()
     const diff   = new cv.Mat()
     const thresh = new cv.Mat()
     const closed = new cv.Mat()
@@ -520,15 +541,54 @@ async function detectCardInCrop(cropImg: HTMLImageElement, cv: any): Promise<Pt[
   return best
 }
 
+// ── Détection JS pure (threshold + Hough) — fallback gratuit sans OpenCV ─
+// Utilisé quand Gemini échoue sur un upload fichier, et comme dernier recours
+// après OpenCV sur les captures caméra.
+
+function detectCardPureJS(img: HTMLImageElement): Pt[] | null {
+  try {
+    const MAX = 600
+    const scale = Math.min(MAX / img.naturalWidth, MAX / img.naturalHeight, 1)
+    const W = Math.round(img.naturalWidth * scale)
+    const H = Math.round(img.naturalHeight * scale)
+    const c = document.createElement('canvas')
+    c.width = W; c.height = H
+    c.getContext('2d')!.drawImage(img, 0, 0, W, H)
+    const { data } = c.getContext('2d')!.getImageData(0, 0, W, H)
+    c.width = 0
+
+    // Méthode 1 : seuillage Otsu + plus grand blob
+    const t = detectByThreshold(data, W, H)
+    if (t) return t.map(p => ({ x: p.x / scale, y: p.y / scale }))
+
+    // Méthode 2 : Hough sur les bords périphériques uniquement
+    const gray    = normalize(toGray(data, W, H))
+    const blurred = gaussBlur(gray, W, H)
+    const edges   = sobel(blurred, W, H)
+    const masked  = peripheralMask(edges, W, H)
+    const h = detectCornersHough(masked, W, H)
+    if (h) return h.map(p => ({ x: p.x / scale, y: p.y / scale }))
+  } catch {}
+  return null
+}
+
 // ── Détection Roboflow → bbox → OpenCV corners ───────────────────────────
 
-async function imageToBase64(img: HTMLImageElement, maxSize = 800): Promise<{ b64: string; scale: number }> {
+async function imageToBase64(img: HTMLImageElement, maxSize = 800, enhance = false): Promise<{ b64: string; scale: number }> {
   const scale = Math.min(maxSize / img.naturalWidth, maxSize / img.naturalHeight, 1)
   const W = Math.round(img.naturalWidth * scale)
   const H = Math.round(img.naturalHeight * scale)
   const c = document.createElement('canvas')
   c.width = W; c.height = H
-  c.getContext('2d')!.drawImage(img, 0, 0, W, H)
+  const ctx = c.getContext('2d')!
+  // Pour la détection de coins : boost de contraste qui rend les bords d'une carte
+  // sombre sur fond sombre bien plus visibles pour le modèle vision.
+  if (enhance) {
+    ctx.filter = 'brightness(150%) contrast(180%)'
+    ctx.drawImage(img, 0, 0, W, H)
+  } else {
+    ctx.drawImage(img, 0, 0, W, H)
+  }
   const dataUrl = c.toDataURL('image/jpeg', 0.85)
   c.width = 0
   return { b64: dataUrl.split(',')[1], scale }
@@ -662,17 +722,24 @@ function detectCardFromFrame(img: HTMLImageElement, frame: FrameRect): Pt[] | nu
   }
 }
 
-async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
+async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): Promise<Pt[] | null> {
   const W = img.naturalWidth, H = img.naturalHeight
 
   // ── Étape 1 : Gemini Pro sur l'image entière (premier, le plus précis) ──
   try {
-    const { b64 } = await imageToBase64(img, 1024)
+    await yieldThread() // laisse le browser peindre avant le travail sync
+    const { b64 } = await imageToBase64(img, 800, true)
+    await yieldThread()
     const ctrl = new AbortController()
-    const t = setTimeout(() => ctrl.abort(), 5000)
+    const t = setTimeout(() => ctrl.abort(), 6000)
     let res: Response
     try {
-      const { data: { session } } = await supabase.auth.getSession()
+      const sessionResult = await Promise.race([
+        supabase.auth.getSession(),
+        new Promise<null>(r => setTimeout(() => r(null), 2000)),
+      ])
+      if (!sessionResult) throw new Error('session timeout')
+      const { data: { session } } = sessionResult
       res = await fetch('/api/detect-corners', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
@@ -683,40 +750,51 @@ async function detectCard(img: HTMLImageElement): Promise<Pt[] | null> {
 
     if (res!.ok) {
       const { topLeft: tl, topRight: tr, bottomRight: br, bottomLeft: bl, confidence } = await res!.json()
-      // Reject low-confidence Gemini results → let OpenCV try
-      if (confidence !== null && confidence !== undefined && confidence < 0.55) throw new Error('low confidence')
-      if (tl && tr && br && bl) {
+      // geminiOnly : seuil plus strict — mieux vaut defaultCorners ajustables que coins faux
+      const minConf = geminiOnly ? 0.40 : 0.55
+      if (confidence !== null && confidence !== undefined && confidence < minConf) {
+        if (!geminiOnly) throw new Error('low confidence')
+      } else if (tl && tr && br && bl) {
         const corners: Pt[] = [
           { x: tl.x * W, y: tl.y * H },
           { x: tr.x * W, y: tr.y * H },
           { x: br.x * W, y: br.y * H },
           { x: bl.x * W, y: bl.y * H },
         ]
-        // Sanity check : quadrilatère convexe et ratio raisonnable
         const w = (Math.hypot(corners[1].x-corners[0].x, corners[1].y-corners[0].y) + Math.hypot(corners[2].x-corners[3].x, corners[2].y-corners[3].y)) / 2
         const h = (Math.hypot(corners[3].x-corners[0].x, corners[3].y-corners[0].y) + Math.hypot(corners[2].x-corners[1].x, corners[2].y-corners[1].y)) / 2
         const ratio = w / (h || 1)
         const CARD_RATIO = 2.5 / 3.5
         const rScore = Math.min(Math.abs(ratio - CARD_RATIO), Math.abs(ratio - 1 / CARD_RATIO))
-        if (rScore < 0.45) return corners
+        if (rScore < 0.28) return corners
       }
     }
-  } catch { /* fallback OpenCV */ }
+  } catch { /* fallback OpenCV si pas geminiOnly */ }
 
-  // ── Étape 2 : OpenCV fallback ────────────────────────────────────────────
-  await yieldThread() // respire entre Gemini et OpenCV
+  // ── Étape 2 : fallback selon le mode ─────────────────────────────────────
+  if (geminiOnly) {
+    // Upload fichier : si Gemini échoue, rectangle par défaut (pas de JS pur
+    // qui donne de faux coins sur cartes sombres)
+    return null
+  }
+
+  // ── Étape 3 : OpenCV (caméra) ─────────────────────────────────────────
+  await yieldThread()
   try {
     const cv = await Promise.race([
       loadOpenCV(),
-      new Promise<null>(r => setTimeout(() => r(null), 4000)),
+      new Promise<null>(r => setTimeout(() => r(null), 2000)),
     ])
     if (cv) {
+      await yieldThread()
       const result = await detectCardOpenCV(img, cv)
+      await yieldThread()
       if (result) return result
     }
   } catch { /* rien */ }
 
-  return null
+  // ── Étape 4 : JS pur (dernier recours, caméra) ───────────────────────
+  return detectCardPureJS(img)
 }
 
 // ── Perspective warp pure JS (homographie) ────────────────────────────────
@@ -741,6 +819,7 @@ function gaussElim(A: number[][], b: number[]): number[] {
     let max = i
     for (let j = i + 1; j < n; j++) if (Math.abs(A[j][i]) > Math.abs(A[max][i])) max = j
     ;[A[i], A[max]] = [A[max], A[i]];[b[i], b[max]] = [b[max], b[i]]
+    if (Math.abs(A[i][i]) < 1e-10) return new Array(n).fill(NaN) // matrice singulière (coins colinéaires)
     for (let j = i + 1; j < n; j++) {
       const f = A[j][i] / A[i][i]
       for (let k = i; k < n; k++) A[j][k] -= f * A[i][k]
@@ -771,8 +850,8 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
 
   const dst: Pt[] = [{ x: 0, y: 0 }, { x: OUT_W, y: 0 }, { x: OUT_W, y: OUT_H }, { x: 0, y: OUT_H }]
 
-  // Limiter la source à 1500px max — évite OOM + freeze sur mobile
-  const MAX_SRC = 1500
+  // Limiter la source à 1000px max — évite OOM + freeze sur mobile
+  const MAX_SRC = 1000
   const srcScale = Math.min(1, MAX_SRC / Math.max(img.naturalWidth, img.naturalHeight))
   const IW = Math.round(img.naturalWidth * srcScale)
   const IH = Math.round(img.naturalHeight * srcScale)
@@ -784,6 +863,7 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
   // Homographie inverse sur les coins à l'échelle réduite
   const scaledCorners = corners.map(p => ({ x: p.x * srcScale, y: p.y * srcScale }))
   const [h0, h1, h2, h3, h4, h5, h6, h7] = computeHomography(dst, scaledCorners)
+  if ([h0, h1, h2, h3, h4, h5, h6, h7].some(v => !Number.isFinite(v))) throw new Error('degenerate homography — coins invalides')
 
   const outC = document.createElement('canvas')
   outC.width = OUT_W; outC.height = OUT_H
@@ -791,6 +871,8 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
   const out  = ctx.createImageData(OUT_W, OUT_H)
 
   for (let dy = 0; dy < OUT_H; dy++) {
+    // Yield tous les 80 lignes pour ne pas bloquer le main thread (UI devient non-réactive sinon)
+    if (dy % 80 === 0 && dy > 0) await yieldThread()
     for (let dx = 0; dx < OUT_W; dx++) {
       const denom = h6 * dx + h7 * dy + 1
       const sx    = (h0 * dx + h1 * dy + h2) / denom
@@ -823,7 +905,7 @@ async function warpCard(img: HTMLImageElement, corners: Pt[]): Promise<Blob> {
 // ── Composant ────────────────────────────────────────────────────────────
 
 const HANDLE_COLORS = ['#ff5252', '#ffeb3b', '#69f0ae', '#40c4ff']
-const HANDLE_R = 18
+const HANDLE_R = 10
 
 export default function CardScanner({ src, onResult, onFallback, onClose, frameRect }: Props) {
   const canvasRef     = useRef<HTMLCanvasElement>(null)
@@ -852,18 +934,32 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
 
   // ── Chargement & détection ─────────────────────────────────────────────
   useEffect(() => {
+    let cancelled = false
     const img = new Image()
     img.onload = async () => {
+      if (cancelled) return
       origImgRef.current = img
       imgRef.current = img
+      // Attendre que le <canvas> soit réellement monté avant d'initialiser. Sans ça,
+      // quand l'image (data URL en cache) se charge avant la peinture du canvas,
+      // initCanvas sortait en silence et rien ne s'affichait → il fallait recharger
+      // la photo une 2e fois. On réessaie sur quelques frames.
+      let tries = 0
+      while (!canvasRef.current && tries < 30 && !cancelled) {
+        await new Promise(r => requestAnimationFrame(r)); tries++
+      }
+      if (cancelled) return
       await initCanvas(img)
     }
+    img.onerror = () => { if (!cancelled) onFallback() }
     img.src = src
+    return () => { cancelled = true }
   }, [src])
 
   const initCanvas = async (img: HTMLImageElement) => {
+    try {
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas) { setStatus('notfound'); setCorners(defaultCorners({ width: 300, height: 420 } as HTMLCanvasElement)); return }
     const maxW = Math.min(window.innerWidth - 32, 500)
     const maxH = Math.round(window.innerHeight * 0.50)
     const scale = Math.min(maxW / img.naturalWidth, maxH / img.naturalHeight, 1)
@@ -885,51 +981,24 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       let result: Pt[] | null = null
 
       if (frameRect) {
-        // Essai 1 : JS pur depuis le cadre overlay (rapide, pas de serveur)
+        // Étape 1 : JS pur depuis le cadre overlay (gratuit, instantané)
         result = detectCardFromFrame(img, frameRect)
 
-        // Essai 2 : OpenCV sur le crop du cadre si JS échoue
-        if (!result) {
-          try {
-            const cv = await Promise.race([loadOpenCV(), new Promise<null>(r => setTimeout(() => r(null), 3500))])
-            if (cv) {
-              const PAD = 0.12
-              const cx2 = Math.max(0, frameRect.x - frameRect.w * PAD)
-              const cy2 = Math.max(0, frameRect.y - frameRect.h * PAD)
-              const cw2 = Math.min(img.naturalWidth  - cx2, frameRect.w * (1 + PAD * 2))
-              const ch2 = Math.min(img.naturalHeight - cy2, frameRect.h * (1 + PAD * 2))
-              // Plafonner à 800px pour éviter OOM sur mobile
-              const cropScale = Math.min(1, 800 / Math.max(cw2, ch2))
-              const ccW = Math.round(cw2 * cropScale), ccH = Math.round(ch2 * cropScale)
-              const cc  = document.createElement('canvas')
-              cc.width = ccW; cc.height = ccH
-              cc.getContext('2d')!.drawImage(img, cx2, cy2, cw2, ch2, 0, 0, ccW, ccH)
-              const ci  = new Image()
-              ci.src = cc.toDataURL('image/jpeg', 0.92)
-              await new Promise(r => { ci.onload = r })
-              const cropCorners = await detectCardInCrop(ci, cv)
-              if (cropCorners) result = cropCorners.map(p => ({
-                x: p.x / cropScale + cx2,
-                y: p.y / cropScale + cy2,
-              }))
-            }
-          } catch {}
-        }
-
-        // Essai 3 : Gemini sur l'image complète (JS + OpenCV ont tous les deux échoué)
+        // Étape 2 : Gemini si JS échoue
         if (!result) {
           try {
             result = await Promise.race([
-              detectCard(img),
-              new Promise<null>(r => setTimeout(() => r(null), 8000)),
+              detectCard(img, { geminiOnly: true }),
+              new Promise<null>(r => setTimeout(() => r(null), 5000)),
             ])
           } catch {}
         }
       } else {
+        // Upload fichier : Gemini direct, timeout 9s (session 2s + fetch 6s + marge)
         try {
           result = await Promise.race([
-            detectCard(img),
-            new Promise<null>(r => setTimeout(() => r(null), 7000)),
+            detectCard(img, { geminiOnly: true }),
+            new Promise<null>(r => setTimeout(() => r(null), 9000)),
           ])
         } catch {}
       }
@@ -941,23 +1010,34 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     try {
       detectedCorners = await Promise.race([
         detectPipeline(),
-        new Promise<null>(r => setTimeout(() => r(null), 16000)),
+        new Promise<null>(r => setTimeout(() => r(null), 7000)),
       ])
     } catch {
       detectedCorners = null
     }
 
+    // On ne fait confiance à une détection que si les coins sont réellement
+    // exploitables (finis, dans l'image, quad non dégénéré). Sinon on retombe sur
+    // un rectangle par défaut bien visible et déplaçable, plutôt que d'afficher des
+    // poignées invisibles ou hors écran.
+    const valid = cornersValid(detectedCorners, img.naturalWidth, img.naturalHeight)
     // Fallback corners : rectangle du cadre ou defaultCorners (status 'notfound')
     const fallbackNatural: Pt[] | null = frameRect
       ? [{ x: frameRect.x, y: frameRect.y }, { x: frameRect.x + frameRect.w, y: frameRect.y },
          { x: frameRect.x + frameRect.w, y: frameRect.y + frameRect.h }, { x: frameRect.x, y: frameRect.y + frameRect.h }]
       : null
-    const naturalCorners = detectedCorners ?? fallbackNatural
+    const naturalCorners = valid ? detectedCorners : fallbackNatural
     const display = naturalCorners
       ? naturalCorners.map(p => ({ x: p.x * scale, y: p.y * scale }))
       : defaultCorners(canvas)
     setCorners(display)
-    setStatus(detectedCorners ? 'found' : 'notfound')
+    setStatus(valid ? 'found' : 'notfound')
+    } catch {
+      // Erreur inattendue dans initCanvas → fallback visible plutôt que blocage infini
+      const canvas = canvasRef.current
+      setCorners(canvas ? defaultCorners(canvas) : [])
+      setStatus('notfound')
+    }
   }
 
   // Tourne l'image depuis l'original (évite la dégradation par compressions successives)
@@ -992,11 +1072,14 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     await initCanvas(newImg)
   }
 
+  // Rectangle par défaut centré sur l'image, avec une marge confortable pour que les
+  // 4 poignées soient bien visibles et attrapables (pas collées aux bords/arrondis).
   const defaultCorners = (canvas: HTMLCanvasElement): Pt[] => {
-    const p = Math.round(Math.min(canvas.width, canvas.height) * 0.07)
+    const mx = Math.round(canvas.width * 0.14)
+    const my = Math.round(canvas.height * 0.10)
     return [
-      { x: p, y: p }, { x: canvas.width - p, y: p },
-      { x: canvas.width - p, y: canvas.height - p }, { x: p, y: canvas.height - p },
+      { x: mx, y: my }, { x: canvas.width - mx, y: my },
+      { x: canvas.width - mx, y: canvas.height - my }, { x: mx, y: canvas.height - my },
     ]
   }
 
@@ -1063,14 +1146,24 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     return bd < HANDLE_R * 2.5 ? best : -1
   }
 
-  // ── Événements souris ──────────────────────────────────────────────────
-  const onMouseDown = (e: React.MouseEvent) => {
+  // ── Événements pointeur (souris + stylet) ─────────────────────────────
+  // setPointerCapture : les événements pointeur continuent à arriver sur ce canvas
+  // même si le curseur sort de ses limites — un coin reste "saisi" jusqu'au relâché.
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (e.pointerType === 'touch') return // géré par onTouchStart
     const pos = screenToCanvasCoord(e.clientX, e.clientY)
     const idx = nearestCorner(pos)
-    if (idx >= 0) { hasAdjusted.current = true; setDragging(idx) }
-    else { isPanning.current = true; lastPanPt.current = { x: e.clientX, y: e.clientY } }
+    if (idx >= 0) {
+      hasAdjusted.current = true
+      setDragging(idx)
+      e.currentTarget.setPointerCapture(e.pointerId)
+    } else {
+      isPanning.current = true
+      lastPanPt.current = { x: e.clientX, y: e.clientY }
+    }
   }
-  const onMouseMove = (e: React.MouseEvent) => {
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (e.pointerType === 'touch') return
     if (dragging !== null) {
       const pos = screenToCanvasCoord(e.clientX, e.clientY)
       const canvas = canvasRef.current!
@@ -1085,7 +1178,13 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       setPan(p => ({ x: p.x - dx, y: p.y - dy }))
     }
   }
-  const onMouseUp = () => { setDragging(null); isPanning.current = false; lastPanPt.current = null }
+  const onPointerUp = (e: React.PointerEvent) => {
+    if (e.pointerType === 'touch') return
+    setDragging(null)
+    isPanning.current = false
+    lastPanPt.current = null
+    try { e.currentTarget.releasePointerCapture(e.pointerId) } catch {}
+  }
 
   const onWheel = (e: React.WheelEvent) => {
     e.preventDefault()
@@ -1204,7 +1303,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
       <canvas
         ref={canvasRef}
         style={{ maxWidth: '100%', maxHeight: '50vh', borderRadius: 8, touchAction: 'none', display: 'block', cursor: dragging !== null ? 'grabbing' : isPanning.current ? 'grab' : 'crosshair' }}
-        onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp} onMouseLeave={onMouseUp}
+        onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp}
         onWheel={onWheel}
         onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
       />
@@ -1245,7 +1344,15 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           style={{ flex: 1, padding: '13px 0', background: 'rgba(255,255,255,0.08)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
           Annuler
         </button>
-        <button onClick={onFallback} disabled={applying}
+        <button onClick={() => {
+            // Manuel = replace les 4 coins au centre de l'image, bien visibles, dans
+            // cette même interface (glisser les coins) — plus fiable que l'ancien outil
+            // de recadrage pan/zoom où l'on n'arrivait pas à cadrer la carte.
+            const canvas = canvasRef.current
+            if (canvas) { setCorners(defaultCorners(canvas)); resetZoom() }
+            hasAdjusted.current = true
+            setStatus('notfound')
+          }} disabled={applying}
           style={{ flex: 1, padding: '13px 0', background: 'rgba(255,255,255,0.14)', border: 'none', borderRadius: 12, color: 'white', fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>
           Manuel
         </button>
@@ -1254,6 +1361,15 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
           {applying ? 'Traitement…' : 'Utiliser'}
         </button>
       </div>
+
+      {/* Accès au recadrage manuel (rogner à la main : glisser / zoomer un cadre fixe),
+          en plus de la détection auto + ajustement des coins ci-dessus. */}
+      {!applying && (
+        <button onClick={onFallback}
+          style={{ marginTop: 12, background: 'none', border: 'none', color: 'rgba(255,255,255,0.55)', fontSize: 13, fontWeight: 700, cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+          ✂️ Rogner à la main
+        </button>
+      )}
     </div>
   )
 }

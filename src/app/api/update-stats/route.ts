@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { fetchCsvCapped, parseCardStats } from '@/lib/csvParse'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -10,6 +11,12 @@ export async function POST(req: NextRequest) {
   try {
     const { userId, csvUrl } = await req.json()
     if (!userId) return NextResponse.json({ error: 'Missing params' }, { status: 400 })
+
+    const token = req.headers.get('authorization')?.replace('Bearer ', '')
+    if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const { data: { user } } = await supabase.auth.getUser(token)
+    if (!user || user.id !== userId) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+
     if (csvUrl && !csvUrl.startsWith('https://docs.google.com/spreadsheets/')) {
       return NextResponse.json({ error: 'Invalid CSV URL' }, { status: 400 })
     }
@@ -18,23 +25,17 @@ export async function POST(req: NextRequest) {
 
     // CSV et cartes manuelles sont indépendants → en parallèle
     const [csvText, manuellesRes] = await Promise.all([
-      csvUrl
-        ? fetch(csvUrl, { cache: 'no-store' }).then(r => r.ok ? r.text() : null).catch(() => null)
-        : Promise.resolve(null),
-      supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId),
+      csvUrl ? fetchCsvCapped(csvUrl) : Promise.resolve(null),
+      supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).limit(10000),
     ])
 
     if (csvText) {
-      const lines = csvText.split(/\r?\n/).slice(4)
-      lines.forEach(line => {
-        const c = line.split(',')
-        if (!c[0] || !c[0].includes('http')) return
-        stats.total++
-        if (c[10]?.toLowerCase().includes('oui')) stats.rc++
-        if (c[9]?.toLowerCase().includes('oui')) stats.auto++
-        if (c[11]?.toLowerCase().includes('oui')) stats.patch++
-        if (c[8]?.trim()) stats.num++
-      })
+      const csvStats = parseCardStats(csvText)
+      stats.total += csvStats.total
+      stats.rc += csvStats.rc
+      stats.auto += csvStats.auto
+      stats.num += csvStats.num
+      stats.patch += csvStats.patch
     }
 
     if (manuellesRes.data) {

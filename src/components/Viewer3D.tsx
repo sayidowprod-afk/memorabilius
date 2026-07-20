@@ -2,12 +2,13 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useLang } from '@/lib/LangContext'
-import { playerSlug } from '@/lib/playerSlug'
+import { playerSlug, cardSlug } from '@/lib/playerSlug'
 import { useTheme } from '@/lib/ThemeContext'
 import CardVideoExport from '@/components/CardVideoExport'
 import CardValueModule from '@/components/CardValueModule'
 import SameCardCollectors from '@/components/SameCardCollectors'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
+import CollectionMultiSelect from '@/components/CollectionMultiSelect'
 import BookletViewer from '@/components/BookletViewer'
 import { getFormat } from '@/lib/cardFormats'
 
@@ -15,11 +16,30 @@ interface Card {
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; g: string
-  isManuelle?: boolean; id_manuelle?: string; collection_tag?: string
-  booklet?: boolean; is_horizontal?: boolean; format?: string; il?: string; ir?: string
+  isManuelle?: boolean; id_manuelle?: string; collection_tag?: string; collections?: string[]; beckett_designation?: string
+  booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
+  storage_binder?: string; storage_page?: number | null; storage_slot?: string;
 }
 
-export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, onCollectionTagChange, onAddToMyGallery, initialAddState }: {
+// Le container .viewer-card a une forme fixe (déterminée par le recto, is_horizontal).
+// Si le verso a une orientation différente (ex: recto vertical, verso à l'horizontale),
+// on pré-pivote l'image du verso pour qu'elle remplisse quand même toute la boîte, comme
+// pour la rotation des cartes horizontales dans les classeurs.
+function backFaceImgStyle(boxIsHorizontal: boolean, backIsHorizontal: boolean): React.CSSProperties {
+  const base: React.CSSProperties = { objectFit: 'cover', display: 'block' }
+  if (boxIsHorizontal === backIsHorizontal) return { ...base, width: '100%', height: '100%' }
+  // La boîte a un ratio W:H ; l'image doit être pré-pivotée dans une boîte à ratio inversé
+  const swapped = boxIsHorizontal
+    ? { width: '71.4286%', height: '140%' }   // boîte paysage → image portrait pivotée
+    : { width: '140%', height: '71.4286%' }   // boîte portrait → image paysage pivotée
+  return {
+    ...base, ...swapped,
+    position: 'absolute', top: '50%', left: '50%',
+    transform: 'translate(-50%, -50%) rotate(90deg)',
+  }
+}
+
+export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTags, userId, userSlug, isOwner, onCollectionTagChange, onCollectionsChange, allCollectionTags, onAddToMyGallery, initialAddState, onProposeTrade }: {
   popup: Card
   accent: string
   onClose: () => void
@@ -31,8 +51,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   isOwner?: boolean
   currentUserId?: string
   onCollectionTagChange?: (card: Card, tag: string) => void
+  onCollectionsChange?: (card: Card, next: string[]) => void
+  allCollectionTags?: string[]
   onAddToMyGallery?: () => Promise<'added' | 'duplicate'>
   initialAddState?: 'idle' | 'added' | 'duplicate'
+  onProposeTrade?: () => void
 }) {
   const { dark } = useTheme()
   const bg = dark ? '#1a1a1a' : '#fff'
@@ -66,10 +89,13 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [showVideo, setShowVideo] = useState(false)
   const [copied, setCopied] = useState(false)
   const [slabMode, setSlabMode] = useState(false)
+  const [flip90, setFlip90] = useState(false)
+  const flip90Ref = useRef(false)
   // Format "slab" = photo réelle du slab entier (déjà recadrée aux proportions du boîtier)
   const cardFmt = getFormat(popup.format)
   const isSlabFmt = cardFmt.isSlab
   const [addState, setAddState] = useState<'idle' | 'loading' | 'added' | 'duplicate'>(initialAddState ?? 'idle')
+  const [closeHover, setCloseHover] = useState(false)
   const { lang } = useLang()
 
   // Parse grade: "PSA 9", "BGS 9.5", or just "9" / "10" → slab info
@@ -110,7 +136,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
   const handleShare = () => {
     if (!userId) return
-    const url = `${window.location.origin}/galerie/${userId}?card=${encodeURIComponent(popup.f)}`
+    // Vers la fiche publique indexable (SEO) plutôt que le lien profond ?card= interne à
+    // l'app : chaque partage (Discord, forums...) devient une porte d'entrée découvrable
+    // par les moteurs de recherche au lieu d'un lien qui ne veut rien dire hors contexte.
+    const slug = cardSlug(popup.n, popup.y, popup.br, popup.s)
+    const url = `${window.location.origin}/galerie/${userSlug || userId}/${slug}?src=${encodeURIComponent(popup.f)}`
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
@@ -119,12 +149,19 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
 
   const applyTransform = useCallback(() => {
     if (cardRef.current) {
-      cardRef.current.style.transform = `rotateX(${rotX.current}deg) rotateY(${rotY.current}deg)`
+      const flip = flip90Ref.current ? ' rotateZ(90deg)' : ''
+      cardRef.current.style.transform = `rotateX(${rotX.current}deg) rotateY(${rotY.current}deg)${flip}`
     }
     if (wrapRef.current) {
       wrapRef.current.style.transform = `scale(${scale.current})`
     }
   }, [])
+
+  const toggleFlip90 = useCallback(() => {
+    flip90Ref.current = !flip90Ref.current
+    setFlip90(flip90Ref.current)
+    applyTransform()
+  }, [applyTransform])
 
   const reset = useCallback(() => {
     rotX.current = 0
@@ -280,12 +317,24 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           .viewer-hint { display: none !important; }
         }
       `}</style>
-      <button onClick={onClose} style={{
-        position: 'absolute', top: 10, right: 10, fontSize: 18, cursor: 'pointer',
-        background: dark ? 'rgba(40,40,40,0.95)' : 'rgba(255,255,255,0.95)', width: 32, height: 32, borderRadius: '50%',
-        border: `1px solid ${borderColor}`, color: textColor, display: 'flex', alignItems: 'center',
-        justifyContent: 'center', zIndex: 10001,
-      }}>×</button>
+      <button
+        onClick={onClose}
+        onMouseEnter={() => setCloseHover(true)}
+        onMouseLeave={() => setCloseHover(false)}
+        style={{
+          position: 'absolute', top: 10, right: 10, cursor: 'pointer', zIndex: 10001,
+          background: closeHover ? '#003DA6' : (dark ? 'rgba(40,40,40,0.95)' : 'rgba(255,255,255,0.95)'),
+          color: closeHover ? 'white' : textColor,
+          border: closeHover ? '1px solid #003DA6' : `1px solid ${borderColor}`,
+          borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: closeHover ? '0 14px' : '0',
+          width: closeHover ? 'auto' : 32, height: 32,
+          fontSize: closeHover ? 12 : 18, fontWeight: 800,
+          whiteSpace: 'nowrap', transition: 'all 0.18s',
+        }}
+      >
+        {closeHover ? 'Fermer cette Carte' : '×'}
+      </button>
 
       <div className="viewer-layout">
         {popup.booklet ? (
@@ -732,7 +781,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
                   <img src={popup.f} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
                 </div>
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: `rotateY(180deg)${half ? ` translateZ(${half}px)` : ''}`, boxShadow: '0 20px 60px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
-                  <img src={popup.b} draggable={false} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} alt={popup.n} />
+                  <img src={popup.b} draggable={false} style={backFaceImgStyle(!!popup.is_horizontal, popup.verso_is_horizontal ?? !!popup.is_horizontal)} alt={popup.n} />
                 </div>
               </div>
                 )
@@ -754,7 +803,13 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           >
             <h2 style={{ fontSize: '1.4rem', fontWeight: 900, margin: '3px 0', cursor: 'pointer' }}>{popup.n}</h2>
           </Link>
-          <div style={{ fontSize: '0.9rem', color: accent, fontWeight: 700, marginBottom: 8, fontStyle: 'italic' }}>{popup.v}</div>
+          <div style={{ fontSize: '0.9rem', color: accent, fontWeight: 700, marginBottom: 4, fontStyle: 'italic' }}>{popup.v}</div>
+          {popup.isManuelle && (popup.beckett_designation || popup.y || popup.br || popup.s) && (
+            <div style={{ fontSize: 11, color: metaColor, marginBottom: 8, lineHeight: 1.4 }}>
+              {popup.beckett_designation ||
+                [popup.y, popup.br, popup.s, popup.v, popup.card_number ? `#${popup.card_number}` : '', popup.n].filter(Boolean).join(' ')}
+            </div>
+          )}
           {getTags(popup)}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, borderTop: `1px solid ${borderColor}`, marginTop: 10, paddingTop: 10 }}>
             {[['Année', popup.y], ['Numérotation', popup.num || 'N/A'], ['Grade', popup.g], ['Collection', `${popup.br} ${popup.s}`]].map(([l, v]) => (
@@ -765,27 +820,62 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             ))}
           </div>
 
-          {/* Ma collection (tag) — owner seulement */}
-          {isOwner && onCollectionTagChange && userId && (
+          {/* Localisation physique */}
+          {popup.isManuelle && popup.storage_binder && (
+            <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: metaColor }}>
+              <span>📍</span>
+              <span style={{ fontWeight: 700 }}>{popup.storage_binder}</span>
+              {popup.storage_page && <span>· p.{popup.storage_page}</span>}
+              {popup.storage_slot && <span>· {popup.storage_slot}</span>}
+            </div>
+          )}
+
+          {/* Ma collection — owner seulement. Une carte peut appartenir à plusieurs collections. */}
+          {isOwner && userId && (onCollectionsChange || onCollectionTagChange) && (
             <div style={{ marginTop: 10, borderTop: `1px solid ${borderColor}`, paddingTop: 10 }}>
-              <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase', marginBottom: 5 }}>
-                Ma collection
+              <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase', marginBottom: 6 }}>
+                Mes collections
               </label>
-              <CollectionTagSelect
-                userId={userId}
-                value={tagInput}
-                onChange={async (tag) => {
-                  setTagInput(tag)
-                  setTagSaving(true)
-                  await onCollectionTagChange(popup, tag)
-                  setTagSaving(false)
-                }}
-              />
+              {onCollectionsChange ? (
+                <CollectionMultiSelect
+                  userId={userId}
+                  cardKey={popup.f}
+                  value={popup.collections || []}
+                  allTags={allCollectionTags || []}
+                  onChange={(next) => onCollectionsChange(popup, next)}
+                />
+              ) : (
+                <CollectionTagSelect
+                  userId={userId}
+                  value={tagInput}
+                  onChange={async (tag) => { setTagInput(tag); setTagSaving(true); await onCollectionTagChange!(popup, tag); setTagSaving(false) }}
+                />
+              )}
             </div>
           )}
 
           {/* Boutons actions */}
           <div style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {isOwner && popup.id_manuelle && userId && (
+              <Link href={`/galerie/${userId}/editer/${popup.id_manuelle}`} onClick={onClose} style={{
+                background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#eee' : '#333',
+                border: 'none', borderRadius: 10, padding: '12px 14px',
+                fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', textDecoration: 'none',
+                display: 'flex', alignItems: 'center', gap: 6,
+              }}>
+                ✏️ {lang === 'fr' ? 'Modifier' : 'Edit'}
+              </Link>
+            )}
+            {!popup.booklet && (
+              <button onClick={toggleFlip90} title={lang === 'fr' ? 'Pivoter la carte à 90°' : 'Rotate card 90°'} style={{
+                background: flip90 ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: flip90 ? 'white' : (dark ? '#eee' : '#333'),
+                border: 'none', borderRadius: 10, padding: '12px 14px',
+                fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
+                transition: '0.2s',
+              }}>
+                🔄 {lang === 'fr' ? 'Rotation 90°' : 'Rotate 90°'}
+              </button>
+            )}
             <button onClick={() => setShowVideo(true)} style={{
               flex: 1, background: '#0d0d1f', color: 'white', border: 'none',
               borderRadius: 10, padding: '12px', fontWeight: 800, cursor: 'pointer', fontSize: 14,
@@ -803,6 +893,22 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               </button>
             )}
           </div>
+
+          {/* Proposer un échange — visiteur connecté seulement */}
+          {!isOwner && onProposeTrade && (
+            <div style={{ marginTop: 10 }}>
+              <button
+                onClick={onProposeTrade}
+                style={{
+                  width: '100%', border: '2px solid #003DA6', borderRadius: 10, padding: '11px',
+                  fontWeight: 800, cursor: 'pointer', fontSize: 14,
+                  background: 'transparent', color: '#003DA6', transition: '0.2s',
+                }}
+              >
+                🔄 Proposer un échange
+              </button>
+            </div>
+          )}
 
           {/* Ajouter à ma galerie — visiteur connecté seulement */}
           {!isOwner && onAddToMyGallery && (
@@ -852,24 +958,14 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             const psaCertUrl = realCert ? `https://www.psacard.com/cert/${encodeURIComponent(realCert)}` : `https://www.psacard.com/certlookup`
             return (
               <div style={{ borderTop: '1px solid #eee', paddingTop: 12, marginTop: 12, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                <span style={{ fontSize: 10, fontWeight: 800, color: '#bbb', textTransform: 'uppercase', letterSpacing: 1, marginRight: 4 }}>PSA</span>
-                <a href={psaPopUrl} target="_blank" rel="noopener noreferrer" style={{
+                <a href={psaCertUrl} target="_blank" rel="noopener noreferrer" style={{
                   fontSize: 11, fontWeight: 700, color: '#c0392b', textDecoration: 'none',
                   border: '1.5px solid #c0392b33', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4, transition: '0.15s',
                 }}
                   onMouseEnter={e => { e.currentTarget.style.background = '#c0392b'; e.currentTarget.style.color = 'white' }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#c0392b' }}
                 >
-                  Population Report ↗
-                </a>
-                <a href={psaCertUrl} target="_blank" rel="noopener noreferrer" style={{
-                  fontSize: 11, fontWeight: 700, color: '#888', textDecoration: 'none',
-                  border: '1.5px solid #e0e0e0', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4, transition: '0.15s',
-                }}
-                  onMouseEnter={e => (e.currentTarget.style.borderColor = '#bbb')}
-                  onMouseLeave={e => (e.currentTarget.style.borderColor = '#e0e0e0')}
-                >
-                  Cert Lookup ↗
+                  Infos de Gradation ↗
                 </a>
                 {psaGrade && (
                   <span style={{ marginLeft: 'auto', fontSize: 10, fontWeight: 700, color: '#aaa' }}>Note {psaGrade}</span>

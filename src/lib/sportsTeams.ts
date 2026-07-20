@@ -1,4 +1,4 @@
-export type Sport = 'nba' | 'nfl' | 'mlb' | 'nhl' | 'football'
+﻿export type Sport = 'nba' | 'nfl' | 'mlb' | 'nhl' | 'football'
 export type FootballLeague = 'premier-league' | 'bundesliga' | 'serie-a' | 'laliga' | 'ligue-1'
 
 export interface SportsTeam {
@@ -11,20 +11,34 @@ export interface SportsTeam {
   logoUrl?: string  // override ESPN CDN (used for football)
 }
 
-// ESPN CDN logo URL — accepts a team object or (sport, abbr)
-export function teamLogoUrl(teamOrSport: SportsTeam | Sport, abbr?: string): string {
-  if (typeof teamOrSport === 'object') {
-    return teamOrSport.logoUrl
-      || `https://a.espncdn.com/i/teamlogos/${teamOrSport.sport}/500/${teamOrSport.abbr.toLowerCase()}.png`
-  }
-  return `https://a.espncdn.com/i/teamlogos/${teamOrSport}/500/${abbr!.toLowerCase()}.png`
+// ESPN abbr overrides (quand notre abbr ≠ code ESPN)
+const ESPN_CODES: Record<string, string> = {
+  'nba:WAS': 'wsh',   // Washington Wizards
+  'nba:NOP': 'no',    // New Orleans Pelicans (ESPN: no)
+  'nba:UTA': 'utah',  // Utah Jazz (ESPN: utah)
+  'mlb:CWS': 'chw',   // Chicago White Sox
+  'nhl:SJS': 'sj',    // San Jose Sharks (ESPN: sj)
+  'nhl:UTA': 'utah',  // Utah Hockey Club (ESPN: utah)
+  'nhl:NJ':  'njd',   // New Jersey Devils (ESPN: njd)
+  'nfl:WSH': 'wsh',   // Washington Commanders
 }
 
-// football-data.org crests — free, reliable, SVG (works in all modern browsers)
-const fdo = (id: number) => `https://crests.football-data.org/${id}.svg`
+export function teamLogoUrl(teamOrSport: SportsTeam | Sport, abbr?: string): string {
+  if (typeof teamOrSport !== 'object') return ''
+  const team = teamOrSport
+  // Soccer/foot : logos SVG transparents via football-data.org (stockés en logoUrl)
+  if (team.logoUrl) return team.logoUrl
+  if (team.sport === 'football') return ''
+  // NBA / NFL / MLB / NHL : ESPN CDN — PNGs affichés dans un cercle blanc par TeamBadge
+  const code = ESPN_CODES[team.id] ?? team.abbr.toLowerCase()
+  return `https://a.espncdn.com/i/teamlogos/${team.sport}/500/${code}.png`
+}
+
+// CDN helper — logos PNG pour le foot (football-data.org)
+const fdo = (id: number) => `https://crests.football-data.org/${id}.png`
 
 export const SPORTS_TEAMS: SportsTeam[] = [
-  // NBA
+  // NBA — cdn.nba.com (transparent SVG)
   { id: 'nba:ATL', sport: 'nba', abbr: 'ATL', name: 'Atlanta Hawks',           color: '#E03A3E' },
   { id: 'nba:BOS', sport: 'nba', abbr: 'BOS', name: 'Boston Celtics',           color: '#007A33' },
   { id: 'nba:BKN', sport: 'nba', abbr: 'BKN', name: 'Brooklyn Nets',            color: '#000000' },
@@ -90,39 +104,39 @@ export const SPORTS_TEAMS: SportsTeam[] = [
   { id: 'nfl:TEN', sport: 'nfl', abbr: 'TEN', name: 'Tennessee Titans',         color: '#0C2340' },
   { id: 'nfl:WSH', sport: 'nfl', abbr: 'WSH', name: 'Washington Commanders',    color: '#5A1414' },
 
-  // MLB
-  { id: 'mlb:ARI', sport: 'mlb', abbr: 'ARI', name: 'Arizona Diamondbacks',     color: '#A71930' },
-  { id: 'mlb:ATL', sport: 'mlb', abbr: 'ATL', name: 'Atlanta Braves',           color: '#CE1141' },
-  { id: 'mlb:BAL', sport: 'mlb', abbr: 'BAL', name: 'Baltimore Orioles',        color: '#DF4601' },
-  { id: 'mlb:BOS', sport: 'mlb', abbr: 'BOS', name: 'Boston Red Sox',           color: '#BD3039' },
-  { id: 'mlb:CHC', sport: 'mlb', abbr: 'CHC', name: 'Chicago Cubs',             color: '#0E3386' },
-  { id: 'mlb:CWS', sport: 'mlb', abbr: 'CWS', name: 'Chicago White Sox',        color: '#27251F' },
-  { id: 'mlb:CIN', sport: 'mlb', abbr: 'CIN', name: 'Cincinnati Reds',          color: '#C6011F' },
-  { id: 'mlb:CLE', sport: 'mlb', abbr: 'CLE', name: 'Cleveland Guardians',      color: '#00385D' },
-  { id: 'mlb:COL', sport: 'mlb', abbr: 'COL', name: 'Colorado Rockies',         color: '#333366' },
-  { id: 'mlb:DET', sport: 'mlb', abbr: 'DET', name: 'Detroit Tigers',           color: '#0C2340' },
-  { id: 'mlb:HOU', sport: 'mlb', abbr: 'HOU', name: 'Houston Astros',           color: '#002D62' },
-  { id: 'mlb:KC',  sport: 'mlb', abbr: 'KC',  name: 'Kansas City Royals',       color: '#004687' },
-  { id: 'mlb:LAA', sport: 'mlb', abbr: 'LAA', name: 'Los Angeles Angels',       color: '#BA0021' },
-  { id: 'mlb:LAD', sport: 'mlb', abbr: 'LAD', name: 'Los Angeles Dodgers',      color: '#005A9C' },
-  { id: 'mlb:MIA', sport: 'mlb', abbr: 'MIA', name: 'Miami Marlins',            color: '#00A3E0' },
-  { id: 'mlb:MIL', sport: 'mlb', abbr: 'MIL', name: 'Milwaukee Brewers',        color: '#12284B' },
-  { id: 'mlb:MIN', sport: 'mlb', abbr: 'MIN', name: 'Minnesota Twins',          color: '#002B5C' },
-  { id: 'mlb:NYM', sport: 'mlb', abbr: 'NYM', name: 'New York Mets',            color: '#002D72' },
-  { id: 'mlb:NYY', sport: 'mlb', abbr: 'NYY', name: 'New York Yankees',         color: '#003087' },
-  { id: 'mlb:OAK', sport: 'mlb', abbr: 'OAK', name: 'Athletics',               color: '#003831' },
-  { id: 'mlb:PHI', sport: 'mlb', abbr: 'PHI', name: 'Philadelphia Phillies',    color: '#E81828' },
-  { id: 'mlb:PIT', sport: 'mlb', abbr: 'PIT', name: 'Pittsburgh Pirates',       color: '#27251F' },
-  { id: 'mlb:SD',  sport: 'mlb', abbr: 'SD',  name: 'San Diego Padres',         color: '#2F241D' },
-  { id: 'mlb:SEA', sport: 'mlb', abbr: 'SEA', name: 'Seattle Mariners',         color: '#0C2C56' },
-  { id: 'mlb:SF',  sport: 'mlb', abbr: 'SF',  name: 'San Francisco Giants',     color: '#FD5A1E' },
-  { id: 'mlb:STL', sport: 'mlb', abbr: 'STL', name: 'St. Louis Cardinals',      color: '#C41E3A' },
-  { id: 'mlb:TB',  sport: 'mlb', abbr: 'TB',  name: 'Tampa Bay Rays',           color: '#092C5C' },
-  { id: 'mlb:TEX', sport: 'mlb', abbr: 'TEX', name: 'Texas Rangers',            color: '#003278' },
-  { id: 'mlb:TOR', sport: 'mlb', abbr: 'TOR', name: 'Toronto Blue Jays',        color: '#134A8E' },
-  { id: 'mlb:WSH', sport: 'mlb', abbr: 'WSH', name: 'Washington Nationals',     color: '#AB0003' },
+  // MLB — mlbstatic.com (transparent SVG)
+  { id: 'mlb:ARI', sport: 'mlb', abbr: 'ARI', name: 'Arizona Diamondbacks',     color: '#A71930'  },
+  { id: 'mlb:ATL', sport: 'mlb', abbr: 'ATL', name: 'Atlanta Braves',           color: '#CE1141'  },
+  { id: 'mlb:BAL', sport: 'mlb', abbr: 'BAL', name: 'Baltimore Orioles',        color: '#DF4601'  },
+  { id: 'mlb:BOS', sport: 'mlb', abbr: 'BOS', name: 'Boston Red Sox',           color: '#BD3039'  },
+  { id: 'mlb:CHC', sport: 'mlb', abbr: 'CHC', name: 'Chicago Cubs',             color: '#0E3386'  },
+  { id: 'mlb:CWS', sport: 'mlb', abbr: 'CWS', name: 'Chicago White Sox',        color: '#27251F'  },
+  { id: 'mlb:CIN', sport: 'mlb', abbr: 'CIN', name: 'Cincinnati Reds',          color: '#C6011F'  },
+  { id: 'mlb:CLE', sport: 'mlb', abbr: 'CLE', name: 'Cleveland Guardians',      color: '#00385D'  },
+  { id: 'mlb:COL', sport: 'mlb', abbr: 'COL', name: 'Colorado Rockies',         color: '#333366'  },
+  { id: 'mlb:DET', sport: 'mlb', abbr: 'DET', name: 'Detroit Tigers',           color: '#0C2340'  },
+  { id: 'mlb:HOU', sport: 'mlb', abbr: 'HOU', name: 'Houston Astros',           color: '#002D62'  },
+  { id: 'mlb:KC',  sport: 'mlb', abbr: 'KC',  name: 'Kansas City Royals',       color: '#004687'  },
+  { id: 'mlb:LAA', sport: 'mlb', abbr: 'LAA', name: 'Los Angeles Angels',       color: '#BA0021'  },
+  { id: 'mlb:LAD', sport: 'mlb', abbr: 'LAD', name: 'Los Angeles Dodgers',      color: '#005A9C'  },
+  { id: 'mlb:MIA', sport: 'mlb', abbr: 'MIA', name: 'Miami Marlins',            color: '#00A3E0'  },
+  { id: 'mlb:MIL', sport: 'mlb', abbr: 'MIL', name: 'Milwaukee Brewers',        color: '#12284B'  },
+  { id: 'mlb:MIN', sport: 'mlb', abbr: 'MIN', name: 'Minnesota Twins',          color: '#002B5C'  },
+  { id: 'mlb:NYM', sport: 'mlb', abbr: 'NYM', name: 'New York Mets',            color: '#002D72'  },
+  { id: 'mlb:NYY', sport: 'mlb', abbr: 'NYY', name: 'New York Yankees',         color: '#003087'  },
+  { id: 'mlb:OAK', sport: 'mlb', abbr: 'OAK', name: 'Athletics',               color: '#003831'  },
+  { id: 'mlb:PHI', sport: 'mlb', abbr: 'PHI', name: 'Philadelphia Phillies',    color: '#E81828'  },
+  { id: 'mlb:PIT', sport: 'mlb', abbr: 'PIT', name: 'Pittsburgh Pirates',       color: '#27251F'  },
+  { id: 'mlb:SD',  sport: 'mlb', abbr: 'SD',  name: 'San Diego Padres',         color: '#2F241D'  },
+  { id: 'mlb:SEA', sport: 'mlb', abbr: 'SEA', name: 'Seattle Mariners',         color: '#0C2C56'  },
+  { id: 'mlb:SF',  sport: 'mlb', abbr: 'SF',  name: 'San Francisco Giants',     color: '#FD5A1E'  },
+  { id: 'mlb:STL', sport: 'mlb', abbr: 'STL', name: 'St. Louis Cardinals',      color: '#C41E3A'  },
+  { id: 'mlb:TB',  sport: 'mlb', abbr: 'TB',  name: 'Tampa Bay Rays',           color: '#092C5C'  },
+  { id: 'mlb:TEX', sport: 'mlb', abbr: 'TEX', name: 'Texas Rangers',            color: '#003278'  },
+  { id: 'mlb:TOR', sport: 'mlb', abbr: 'TOR', name: 'Toronto Blue Jays',        color: '#134A8E'  },
+  { id: 'mlb:WSH', sport: 'mlb', abbr: 'WSH', name: 'Washington Nationals',     color: '#AB0003'  },
 
-  // NHL
+  // NHL — assets.nhle.com (transparent dark SVG)
   { id: 'nhl:ANA', sport: 'nhl', abbr: 'ANA', name: 'Anaheim Ducks',            color: '#F47A38' },
   { id: 'nhl:BOS', sport: 'nhl', abbr: 'BOS', name: 'Boston Bruins',            color: '#FCB514' },
   { id: 'nhl:BUF', sport: 'nhl', abbr: 'BUF', name: 'Buffalo Sabres',           color: '#003087' },
@@ -193,10 +207,10 @@ export const SPORTS_TEAMS: SportsTeam[] = [
   { id: 'football:SCF', sport: 'football', abbr: 'SCF', name: 'SC Freiburg',          color: '#E31E24', league: 'bundesliga', logoUrl: fdo(17) },
   { id: 'football:FCU', sport: 'football', abbr: 'FCU', name: 'Union Berlin',         color: '#EB1923', league: 'bundesliga', logoUrl: fdo(28) },
   { id: 'football:M05', sport: 'football', abbr: 'M05', name: 'Mainz 05',             color: '#C3161C', league: 'bundesliga', logoUrl: fdo(15) },
-  { id: 'football:FCH', sport: 'football', abbr: 'FCH', name: 'Heidenheim',           color: '#E63A23', league: 'bundesliga', logoUrl: fdo(781) },
+  { id: 'football:FCH', sport: 'football', abbr: 'FCH', name: 'Heidenheim',           color: '#E63A23', league: 'bundesliga', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/6418.png' },
   { id: 'football:BOC', sport: 'football', abbr: 'BOC', name: 'VfL Bochum',           color: '#005CA9', league: 'bundesliga', logoUrl: fdo(36) },
-  { id: 'football:STP', sport: 'football', abbr: 'STP', name: 'St. Pauli',            color: '#4B3226', league: 'bundesliga', logoUrl: fdo(182) },
-  { id: 'football:KSV', sport: 'football', abbr: 'KSV', name: 'Holstein Kiel',        color: '#0057A8', league: 'bundesliga', logoUrl: fdo(733) },
+  { id: 'football:STP', sport: 'football', abbr: 'STP', name: 'St. Pauli',            color: '#4B3226', league: 'bundesliga', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/270.png' },
+  { id: 'football:KSV', sport: 'football', abbr: 'KSV', name: 'Holstein Kiel',        color: '#0057A8', league: 'bundesliga', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/7884.png' },
 
   // SERIE A
   { id: 'football:INT', sport: 'football', abbr: 'INT', name: 'Inter Milan',          color: '#010E80', league: 'serie-a', logoUrl: fdo(108) },
@@ -218,7 +232,7 @@ export const SPORTS_TEAMS: SportsTeam[] = [
   { id: 'football:VER', sport: 'football', abbr: 'VER', name: 'Hellas Verona',        color: '#003DA6', league: 'serie-a', logoUrl: fdo(450) },
   { id: 'football:COM', sport: 'football', abbr: 'COM', name: 'Como',                 color: '#004B9E', league: 'serie-a', logoUrl: fdo(5914) },
   { id: 'football:VEN', sport: 'football', abbr: 'VEN', name: 'Venezia',              color: '#000000', league: 'serie-a', logoUrl: fdo(454) },
-  { id: 'football:PAR', sport: 'football', abbr: 'PAR', name: 'Parma',                color: '#F5EB00', league: 'serie-a', logoUrl: fdo(117) },
+  { id: 'football:PAR', sport: 'football', abbr: 'PAR', name: 'Parma',                color: '#F5EB00', league: 'serie-a', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/115.png' },
 
   // LA LIGA
   { id: 'football:RMA', sport: 'football', abbr: 'RMA', name: 'Real Madrid',          color: '#FEBE10', league: 'laliga', logoUrl: fdo(86) },
@@ -233,7 +247,7 @@ export const SPORTS_TEAMS: SportsTeam[] = [
   { id: 'football:CEL', sport: 'football', abbr: 'CEL', name: 'Celta Vigo',           color: '#73C4E2', league: 'laliga', logoUrl: fdo(558) },
   { id: 'football:GET', sport: 'football', abbr: 'GET', name: 'Getafe',               color: '#005EA8', league: 'laliga', logoUrl: fdo(554) },
   { id: 'football:OSA', sport: 'football', abbr: 'OSA', name: 'Osasuna',              color: '#C41426', league: 'laliga', logoUrl: fdo(557) },
-  { id: 'football:RAY', sport: 'football', abbr: 'RAY', name: 'Rayo Vallecano',       color: '#CF0013', league: 'laliga', logoUrl: fdo(576) },
+  { id: 'football:RAY', sport: 'football', abbr: 'RAY', name: 'Rayo Vallecano',       color: '#CF0013', league: 'laliga', logoUrl: fdo(264) },
   { id: 'football:ESP', sport: 'football', abbr: 'ESP', name: 'Espanyol',             color: '#0055A0', league: 'laliga', logoUrl: fdo(80) },
   { id: 'football:MAL', sport: 'football', abbr: 'MAL', name: 'Mallorca',             color: '#CF0017', league: 'laliga', logoUrl: fdo(89) },
   { id: 'football:LPA', sport: 'football', abbr: 'LPA', name: 'Las Palmas',           color: '#F5C400', league: 'laliga', logoUrl: fdo(275) },
@@ -252,16 +266,16 @@ export const SPORTS_TEAMS: SportsTeam[] = [
   { id: 'football:OGC', sport: 'football', abbr: 'OGC', name: 'Nice',                color: '#000000', league: 'ligue-1', logoUrl: fdo(522) },
   { id: 'football:SRF', sport: 'football', abbr: 'SRF', name: 'Rennes',              color: '#000000', league: 'ligue-1', logoUrl: fdo(529) },
   { id: 'football:RCS', sport: 'football', abbr: 'RCS', name: 'Strasbourg',          color: '#0055A5', league: 'ligue-1', logoUrl: fdo(576) },
-  { id: 'football:MPH', sport: 'football', abbr: 'MPH', name: 'Montpellier',         color: '#003DA6', league: 'ligue-1', logoUrl: fdo(527) },
-  { id: 'football:SDR', sport: 'football', abbr: 'SDR', name: 'Reims',               color: '#E21E26', league: 'ligue-1', logoUrl: fdo(532) },
-  { id: 'football:TFC', sport: 'football', abbr: 'TFC', name: 'Toulouse',            color: '#6B2382', league: 'ligue-1', logoUrl: fdo(536) },
-  { id: 'football:SB29',sport: 'football', abbr: 'SB',  name: 'Stade Brest',         color: '#E4171C', league: 'ligue-1', logoUrl: fdo(543) },
-  { id: 'football:HAC', sport: 'football', abbr: 'HAC', name: 'Le Havre',            color: '#009FE3', league: 'ligue-1', logoUrl: fdo(547) },
-  { id: 'football:ASE', sport: 'football', abbr: 'ASE', name: 'Saint-Étienne',       color: '#007F3D', league: 'ligue-1', logoUrl: fdo(528) },
-  { id: 'football:FCN', sport: 'football', abbr: 'FCN', name: 'Nantes',              color: '#F5CE3E', league: 'ligue-1', logoUrl: fdo(525) },
-  { id: 'football:ANG', sport: 'football', abbr: 'ANG', name: 'Angers',              color: '#000000', league: 'ligue-1', logoUrl: fdo(544) },
-  { id: 'football:AJA', sport: 'football', abbr: 'AJA', name: 'Auxerre',             color: '#002F6C', league: 'ligue-1', logoUrl: fdo(541) },
-  { id: 'football:GDB', sport: 'football', abbr: 'GDB', name: 'Girondins de Bordeaux', color: '#003399', league: 'ligue-1', logoUrl: fdo(526) },
+  { id: 'football:MPH', sport: 'football', abbr: 'MPH', name: 'Montpellier',         color: '#003DA6', league: 'ligue-1', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/274.png' },
+  { id: 'football:SDR', sport: 'football', abbr: 'SDR', name: 'Reims',               color: '#E21E26', league: 'ligue-1', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/3243.png' },
+  { id: 'football:TFC', sport: 'football', abbr: 'TFC', name: 'Toulouse',            color: '#6B2382', league: 'ligue-1', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/179.png' },
+  { id: 'football:SB29',sport: 'football', abbr: 'SB',  name: 'Stade Brest',         color: '#E4171C', league: 'ligue-1', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/6997.png' },
+  { id: 'football:HAC', sport: 'football', abbr: 'HAC', name: 'Le Havre',            color: '#009FE3', league: 'ligue-1', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/3236.png' },
+  { id: 'football:ASE', sport: 'football', abbr: 'ASSE', name: 'Saint-Étienne',      color: '#007F3D', league: 'ligue-1', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/178.png' },
+  { id: 'football:FCN', sport: 'football', abbr: 'FCN', name: 'Nantes',              color: '#F5CE3E', league: 'ligue-1', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/165.png' },
+  { id: 'football:ANG', sport: 'football', abbr: 'ANG', name: 'Angers',              color: '#000000', league: 'ligue-1', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/7868.png' },
+  { id: 'football:AJA', sport: 'football', abbr: 'AJA', name: 'Auxerre',             color: '#002F6C', league: 'ligue-1', logoUrl: 'https://a.espncdn.com/i/teamlogos/soccer/500/172.png' },
+  { id: 'football:GDB', sport: 'football', abbr: 'GDB', name: 'Girondins de Bordeaux', color: '#003399', league: 'ligue-1', logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/1/11/FC_Girondins_de_Bordeaux_logo.svg/250px-FC_Girondins_de_Bordeaux_logo.svg.png' },
 ]
 
 export const SPORT_LABELS: Record<Sport, string> = { nba: '🏀 NBA', nfl: '🏈 NFL', mlb: '⚾ MLB', nhl: '🏒 NHL', football: '⚽ Foot' }

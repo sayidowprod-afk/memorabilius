@@ -1,0 +1,623 @@
+{
+  "year": 1990,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 82497,
+        "name": "1990-91 Pro Set Super Bowl XXV Binder"
+      },
+      "unique": [
+        {
+          "card_number": "22",
+          "player_name": "Ted Hendricks",
+          "team": "Baltimore Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Cornelius Bennett",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Darryl Talley",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Marv Levy",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "437",
+          "player_name": "Shane Conlan",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "438",
+          "player_name": "Kent Hull",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "440",
+          "player_name": "Andre Reed",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "443",
+          "player_name": "Bruce Smith",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "444",
+          "player_name": "Thurman Thomas",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "725",
+          "player_name": "Howard Ballard",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "753",
+          "player_name": "James Lofton",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "754",
+          "player_name": "Steve Tasker",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Mike Singletary",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Ed (Too Tall) Jones",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Randy White",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Vince Lombardi",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Forrest Gregg",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jerry Kramer",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Willie Wood",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jan Stenerud",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Mervyn Fernandez",
+          "team": "Los Angeles Raiders",
+          "variation": "Super Bowl XXV Raiders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Willie Gault",
+          "team": "Los Angeles Raiders",
+          "variation": "Super Bowl XXV Raiders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Bo Jackson",
+          "team": "Los Angeles Raiders",
+          "variation": "Super Bowl XXV Raiders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Don Mosebar",
+          "team": "Los Angeles Raiders",
+          "variation": "Super Bowl XXV Raiders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Greg Townsend",
+          "team": "Los Angeles Raiders",
+          "variation": "Super Bowl XXV Raiders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Steve Wisniewski",
+          "team": "Los Angeles Raiders",
+          "variation": "Super Bowl XXV Raiders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Art Shell",
+          "team": "Los Angeles Raiders",
+          "variation": "Super Bowl XXV Raiders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "538",
+          "player_name": "Marcus Allen",
+          "team": "Los Angeles Raiders",
+          "variation": "Super Bowl XXV Raiders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "545",
+          "player_name": "Howie Long",
+          "team": "Los Angeles Raiders",
+          "variation": "Super Bowl XXV Raiders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "546",
+          "player_name": "Terry McDaniel",
+          "team": "Los Angeles Raiders",
+          "variation": "Super Bowl XXV Raiders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "547",
+          "player_name": "Max Montoya",
+          "team": "Los Angeles Raiders",
+          "variation": "Super Bowl XXV Raiders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "548",
+          "player_name": "Jay Schroeder",
+          "team": "Los Angeles Raiders",
+          "variation": "Super Bowl XXV Raiders",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Larry Csonka",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "223",
+          "player_name": "Carl Banks",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "226",
+          "player_name": "Pepper Johnson",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "228",
+          "player_name": "David Meggett",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "230",
+          "player_name": "Phil Simms",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "231",
+          "player_name": "Lawrence Taylor",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "232",
+          "player_name": "Bill Parcells",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "591",
+          "player_name": "Ottis Anderson",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "592",
+          "player_name": "Mark Bavaro",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "596",
+          "player_name": "Jeff Hostetler",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "692",
+          "player_name": "Rodney Hampton",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "765",
+          "player_name": "Stephen Baker",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "766",
+          "player_name": "Reyna Thompson",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Art Shell",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Gene Upshaw",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Dave Casper",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Ray Guy",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Franco Harris",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Lynn Swann",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Mike Webster",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "L.C. Greenwood",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Joe Greene",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Jack Lambert",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Jack Ham",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mel Blount",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Donnie Shell",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "John Taylor",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Ronnie Lott",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "799",
+          "player_name": "Ronnie Lott Education",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "287",
+          "player_name": "Roger Craig",
+          "team": "San Francisco 49ers",
+          "variation": "Super Bowl XXV 49ers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "289",
+          "player_name": "Charles Haley",
+          "team": "San Francisco 49ers",
+          "variation": "Super Bowl XXV 49ers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "290",
+          "player_name": "Pierce Holt",
+          "team": "San Francisco 49ers",
+          "variation": "Super Bowl XXV 49ers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "291",
+          "player_name": "Ronnie Lott",
+          "team": "San Francisco 49ers",
+          "variation": "Super Bowl XXV 49ers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "292",
+          "player_name": "Guy Mcintyre",
+          "team": "San Francisco 49ers",
+          "variation": "Super Bowl XXV 49ers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "293",
+          "player_name": "Joe Montana",
+          "team": "San Francisco 49ers",
+          "variation": "Super Bowl XXV 49ers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "295",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Super Bowl XXV 49ers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "297",
+          "player_name": "John Taylor",
+          "team": "San Francisco 49ers",
+          "variation": "Super Bowl XXV 49ers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "299",
+          "player_name": "George Seifert",
+          "team": "San Francisco 49ers",
+          "variation": "Super Bowl XXV 49ers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "639",
+          "player_name": "Brent Jones",
+          "team": "San Francisco 49ers",
+          "variation": "Super Bowl XXV 49ers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "640",
+          "player_name": "Matt Millen",
+          "team": "San Francisco 49ers",
+          "variation": "Super Bowl XXV 49ers",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "644",
+          "player_name": "Dave Waymer",
+          "team": "San Francisco 49ers",
+          "variation": "Super Bowl XXV 49ers",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

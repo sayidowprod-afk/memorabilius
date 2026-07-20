@@ -10,23 +10,46 @@ function urlBase64ToUint8Array(base64: string): Uint8Array {
   return Uint8Array.from([...raw].map(c => c.charCodeAt(0)))
 }
 
-async function subscribePush() {
+// force=true : désabonne d'abord (garantit un endpoint frais, utile si les
+// clés VAPID ont changé ou si la souscription FCM est expirée côté serveur).
+async function subscribePush(force = false): Promise<boolean> {
   try {
+    if (!process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY) {
+      console.error('[push] NEXT_PUBLIC_VAPID_PUBLIC_KEY manquante')
+      return false
+    }
     const sw = await navigator.serviceWorker.ready
-    const existing = await sw.pushManager.getSubscription()
+    if (force) {
+      const old = await sw.pushManager.getSubscription()
+      if (old) await old.unsubscribe().catch(() => {})
+    }
+    const existing = force ? null : await sw.pushManager.getSubscription()
     const sub = existing || await sw.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!) as unknown as ArrayBuffer,
+      applicationServerKey: urlBase64ToUint8Array(process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY) as unknown as ArrayBuffer,
     })
     const json = sub.toJSON()
+    if (!json.endpoint || !json.keys?.p256dh || !json.keys?.auth) {
+      console.error('[push] Subscription incomplète', json)
+      return false
+    }
     const { data: { session } } = await supabase.auth.getSession()
-    if (!session?.access_token) return
-    await fetch('/api/push-subscribe', {
+    if (!session?.access_token) { console.error('[push] Pas de session'); return false }
+    const res = await fetch('/api/push-subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
-      body: JSON.stringify({ endpoint: json.endpoint, p256dh: json.keys?.p256dh, auth: json.keys?.auth }),
+      body: JSON.stringify({ endpoint: json.endpoint, p256dh: json.keys.p256dh, auth: json.keys.auth }),
     })
-  } catch {}
+    if (!res.ok) {
+      console.error('[push] push-subscribe a échoué', res.status, await res.text().catch(() => ''))
+      return false
+    }
+    console.info('[push] Abonnement enregistré', json.endpoint.slice(0, 60) + '…')
+    return true
+  } catch (err) {
+    console.error('[push] Erreur subscribePush', err)
+    return false
+  }
 }
 
 export default function PWAInstall() {
@@ -61,7 +84,7 @@ export default function PWAInstall() {
       // Proposer push après l'installation
       if ('Notification' in window && Notification.permission === 'default') {
         const perm = await Notification.requestPermission()
-        if (perm === 'granted') { await subscribePush(); setPushDone(true) }
+        if (perm === 'granted') { await subscribePush(true); setPushDone(true) }
       }
     }
   }

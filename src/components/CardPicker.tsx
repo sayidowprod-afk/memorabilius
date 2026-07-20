@@ -13,10 +13,12 @@ export interface PickableCard {
   year?: string
   brand?: string
   variant?: string
+  category?: string
   rc?: boolean
   auto?: boolean
   patch?: boolean
   num?: boolean
+  is_horizontal?: boolean
 }
 
 const ACCENT = '#003DA6'
@@ -44,13 +46,14 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
   const [fYear, setFYear] = useState('')
   const [fBrand, setFBrand] = useState('')
   const [fTags, setFTags] = useState({ rc: false, auto: false, patch: false, num: false })
+  const [fCategory, setFCategory] = useState('')
   const [picked, setPicked] = useState<PickableCard[]>([])
   const pickedKeys = new Set(picked.map(p => p.key))
 
   useEffect(() => {
     (async () => {
       const [{ data: manuelles }, { data: profile }] = await Promise.all([
-        supabase.from('cartes_manuelles').select('nom, image_recto, image_verso, equipe, annee, marque, variation, rc, auto, patch, num').eq('user_id', userId).not('image_recto', 'is', null),
+        supabase.from('cartes_manuelles').select('nom, image_recto, image_verso, equipe, annee, marque, variation, collection_tag, rc, auto, patch, num, format, is_horizontal').eq('user_id', userId).not('image_recto', 'is', null),
         supabase.from('profiles').select('id, display_name, avatar_url, lien_csv, couleur_bordure').eq('id', userId).single(),
       ])
       const seen = new Set<string>()
@@ -60,8 +63,9 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
         seen.add(m.image_recto)
         list.push({
           key: m.image_recto, img: m.image_recto, back: m.image_verso || undefined, nom: m.nom || '',
-          team: m.equipe || '', year: (m.annee || '').toString(), brand: m.marque || '', variant: m.variation || '',
+          team: m.equipe || '', year: (m.annee || '').toString(), brand: m.marque || '', variant: m.variation || '', category: m.collection_tag || '',
           rc: !!m.rc, auto: !!m.auto, patch: !!m.patch, num: !!(m.num && String(m.num).trim()),
+          is_horizontal: m.format === 'horizontal' || (!m.format && !!m.is_horizontal),
         })
       }
       if (profile?.lien_csv) {
@@ -84,6 +88,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
   const teams = useMemo(() => [...new Set(cards.map(c => c.team).filter(Boolean) as string[])].sort(), [cards])
   const years = useMemo(() => [...new Set(cards.map(c => c.year).filter(Boolean) as string[])].sort().reverse(), [cards])
   const brands = useMemo(() => [...new Set(cards.map(c => c.brand).filter(Boolean) as string[])].sort(), [cards])
+  const categories = useMemo(() => [...new Set(cards.map(c => c.category).filter(Boolean) as string[])].sort(), [cards])
 
   const filtered = cards
     .filter(c => !excludeKeys?.has(c.key))
@@ -91,6 +96,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
     .filter(c => !fTeam || c.team === fTeam)
     .filter(c => !fYear || c.year === fYear)
     .filter(c => !fBrand || c.brand === fBrand)
+    .filter(c => !fCategory || c.category === fCategory)
     .filter(c => !fTags.rc || c.rc)
     .filter(c => !fTags.auto || c.auto)
     .filter(c => !fTags.patch || c.patch)
@@ -121,6 +127,12 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
             <option value="">Marque</option>
             {brands.map(b => <option key={b} value={b}>{b}</option>)}
           </select>
+          {categories.length > 0 && (
+            <select value={fCategory} onChange={e => setFCategory(e.target.value)} style={{ ...selectStyle, borderColor: fCategory ? ACCENT : '#e0e0e0' }}>
+              <option value="">Catégorie</option>
+              {categories.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          )}
         </div>
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
           {TAGS.map(t => {
@@ -132,8 +144,8 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
               }}>{t.label}</button>
             )
           })}
-          {(fTeam || fYear || fBrand || search || fTags.rc || fTags.auto || fTags.patch || fTags.num) && (
-            <button onClick={() => { setSearch(''); setFTeam(''); setFYear(''); setFBrand(''); setFTags({ rc: false, auto: false, patch: false, num: false }) }}
+          {(fTeam || fYear || fBrand || fCategory || search || fTags.rc || fTags.auto || fTags.patch || fTags.num) && (
+            <button onClick={() => { setSearch(''); setFTeam(''); setFYear(''); setFBrand(''); setFCategory(''); setFTags({ rc: false, auto: false, patch: false, num: false }) }}
               style={{ padding: '6px 12px', borderRadius: 20, border: '1px solid #e0e0e0', cursor: 'pointer', fontWeight: 700, fontSize: 11, background: 'white', color: '#888' }}>
               ✕ Réinitialiser
             </button>
@@ -155,7 +167,7 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
           })()}
         </div>
 
-        <div style={{ overflowY: 'auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(105px, 1fr))', gap: 10 }}>
+        <div style={{ overflowY: 'auto', flex: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(105px, 1fr))', gap: 10, alignContent: 'start' }}>
           {loading ? (
             <p style={{ gridColumn: '1/-1', textAlign: 'center', color: '#999', padding: 20 }}>Chargement...</p>
           ) : filtered.length === 0 ? (
@@ -168,13 +180,12 @@ export default function CardPicker({ userId, onSelect, onSelectMany, onClose, ex
                   if (multi) setPicked(prev => sel ? prev.filter(p => p.key !== c.key) : [...prev, c])
                   else onSelect?.(c)
                 }}
-                style={{ cursor: 'pointer', borderRadius: 8, overflow: 'hidden', border: sel ? `2px solid ${ACCENT}` : '1px solid #eee', transition: '0.15s', position: 'relative' }}
+                style={{ cursor: 'pointer', borderRadius: 8, border: sel ? `2px solid ${ACCENT}` : '1px solid #eee', transition: '0.15s', position: 'relative', background: '#f4f4f4' }}
                 onMouseEnter={e => { if (!sel) e.currentTarget.style.borderColor = ACCENT }}
                 onMouseLeave={e => { if (!sel) e.currentTarget.style.borderColor = '#eee' }}
               >
-                <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', background: '#f2f2f2' }}>
-                  <img src={c.img} alt={c.nom} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
-                </div>
+                <img src={c.img} alt={c.nom} loading="lazy"
+                  style={{ width: '100%', height: 140, objectFit: 'contain', display: 'block', borderRadius: '6px 6px 0 0' }} />
                 {(c.rc || c.auto || c.patch) && (
                   <div style={{ position: 'absolute', top: 3, left: 3, display: 'flex', gap: 2 }}>
                     {c.rc && <span style={{ fontSize: 7, fontWeight: 900, color: 'white', background: '#e67e22', borderRadius: 2, padding: '1px 3px' }}>RC</span>}

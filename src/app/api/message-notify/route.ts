@@ -16,6 +16,14 @@ export async function POST(req: NextRequest) {
   const { toUserId, senderName } = await req.json()
   if (!toUserId) return NextResponse.json({ error: 'Missing toUserId' }, { status: 400 })
 
+  // Le toUserId n'est pas vérifié par une contrainte DB : sans ce contrôle, n'importe
+  // quel compte authentifié pourrait spammer des notifs push vers n'importe qui.
+  // On exige la preuve qu'un message a vraiment été envoyé à l'instant vers ce destinataire.
+  const since = new Date(Date.now() - 30_000).toISOString()
+  const { data: recentMsg } = await supabaseAdmin.from('messages')
+    .select('id').eq('from_user_id', user.id).eq('to_user_id', toUserId).gte('created_at', since).limit(1).maybeSingle()
+  if (!recentMsg) return NextResponse.json({ error: 'No recent message found' }, { status: 403 })
+
   await sendPushToUser(toUserId, {
     title: `💬 ${senderName || 'Nouveau message'}`,
     body: 'Vous avez reçu un message sur Memorabilius',

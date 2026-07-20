@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
+import { signWrapUrl } from '@/lib/wrapSign'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -12,6 +13,10 @@ function getResend() { return new Resend(process.env.RESEND_API_KEY!) }
 
 function monthName(date: Date) {
   return date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+}
+
+function escHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
 }
 
 function buildEmail(opts: {
@@ -27,9 +32,13 @@ function buildEmail(opts: {
   totalCards: number
   highlights: { player: string; year: string; brand: string; type: string }[]
   galerieUrl: string
+  cardImages: string[]
+  squareUrl: string
+  storyUrl: string
 }) {
-  const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl } = opts
+  const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl, cardImages, squareUrl, storyUrl } = opts
 
+  const safeName = escHtml(name)
   const medals = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`
   const typeLabel = (t: string) => t === 'RC' ? '🌟 Rookie' : t === 'Auto' ? '✍️ Auto' : t === 'Patch' ? '🧩 Patch' : t === 'Num' ? '🔢 Numérotée' : t
 
@@ -58,6 +67,15 @@ function buildEmail(opts: {
   .rank-medal { font-size: 42px; line-height: 1; }
   .rank-text { font-size: 15px; color: #555; }
   .rank-text strong { color: #121212; font-size: 18px; }
+  .cards-grid { margin-bottom: 28px; }
+  .cards-row { display: flex; gap: 6px; margin-bottom: 6px; }
+  .card-thumb { flex: 1; border-radius: 8px; overflow: hidden; background: #0d1a30; }
+  .card-thumb img { width: 100%; aspect-ratio: 2.5/3.5; object-fit: contain; display: block; }
+  .dl-section { background: #f0f4ff; border: 1.5px solid #c7d6f5; border-radius: 14px; padding: 20px 24px; margin-bottom: 28px; text-align: center; }
+  .dl-title { font-size: 13px; font-weight: 800; text-transform: uppercase; color: #003DA6; letter-spacing: 1px; margin-bottom: 14px; }
+  .dl-buttons { display: flex; gap: 10px; justify-content: center; }
+  .dl-btn { display: inline-block; background: #003DA6; color: white; font-size: 13px; font-weight: 800; padding: 11px 22px; border-radius: 50px; text-decoration: none; }
+  .dl-btn.secondary { background: white; color: #003DA6; border: 2px solid #003DA6; }
   .highlights { border-radius: 14px; overflow: hidden; border: 1.5px solid #eee; margin-bottom: 28px; }
   .highlight-row { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid #f5f5f5; }
   .highlight-row:last-child { border-bottom: none; }
@@ -88,7 +106,17 @@ function buildEmail(opts: {
     <div class="header-sub">Voilà ce qui s'est passé dans ta collection</div>
   </div>
   <div class="body">
-    <p class="greeting">Hey <strong>${name}</strong> 👋<br>
+    ${cardImages.length > 0 ? (() => {
+      const cols = cardImages.length <= 4 ? 2 : cardImages.length <= 9 ? 3 : 4
+      const rows: string[][] = []
+      for (let i = 0; i < cardImages.length; i += cols) rows.push(cardImages.slice(i, i + cols))
+      return `<div class="section-title">🃏 Tes cartes du mois (${cardImages.length})</div>
+    <div class="cards-grid">
+      ${rows.map(row => `<div class="cards-row">${row.map(src => `<div class="card-thumb"><img src="${src}" /></div>`).join('')}</div>`).join('')}
+    </div>`
+    })() : ''}
+
+    <p class="greeting">Hey <strong>${safeName}</strong> 👋<br>
     ${newCards > 0
       ? `En ${month}, tu as ajouté <strong>${newCards} carte${newCards > 1 ? 's' : ''}</strong> à ta collection. Voici ton bilan complet.`
       : `Pas de nouvelles cartes en ${month}, mais ta collection continue de valoir le détour !`
@@ -133,10 +161,17 @@ function buildEmail(opts: {
       ${highlights.map(h => `
       <div class="highlight-row">
         <div class="hi-type">${typeLabel(h.type)}</div>
-        <div class="hi-info"><strong>${h.player}</strong> · ${h.year} ${h.brand}</div>
+        <div class="hi-info"><strong>${escHtml(h.player)}</strong> · ${escHtml(h.year)} ${escHtml(h.brand)}</div>
       </div>`).join('')}
     </div>` : ''}
 
+    <div class="dl-section">
+      <div class="dl-title">📸 Télécharger ton Wrap</div>
+      <div class="dl-buttons">
+        <a href="${squareUrl}" class="dl-btn">⬜ Carré 1080×1080</a>
+        <a href="${storyUrl}" class="dl-btn secondary">📱 Story 1080×1920</a>
+      </div>
+    </div>
     <div class="cta">
       <a href="${galerieUrl}">Voir ma galerie →</a>
     </div>
@@ -200,23 +235,39 @@ export async function GET(req: NextRequest) {
     // Cards added this month
     const { data: newCardsData } = await supabase
       .from('cartes_manuelles')
-      .select('player_name, year, brand, is_rc, is_auto, is_patch, is_numbered')
+      .select('nom, annee, marque, rc, auto, patch, num, image_recto')
       .eq('user_id', authUser.id)
       .gte('created_at', monthStart.toISOString())
       .lt('created_at', monthEnd.toISOString())
 
     const newCards = newCardsData?.length || 0
-    const rcCount = newCardsData?.filter(c => c.is_rc).length || 0
-    const autoCount = newCardsData?.filter(c => c.is_auto).length || 0
-    const patchCount = newCardsData?.filter(c => c.is_patch).length || 0
-    const numCount = newCardsData?.filter(c => c.is_numbered).length || 0
+    const rcCount = newCardsData?.filter(c => c.rc).length || 0
+    const autoCount = newCardsData?.filter(c => c.auto).length || 0
+    const patchCount = newCardsData?.filter(c => c.patch).length || 0
+    const numCount = newCardsData?.filter(c => c.num).length || 0
 
-    // Highlights: RC first, then auto, then patch, then num (max 5)
+    // Highlights: RC first, then auto, then patch (max 5)
     const highlights = [
-      ...(newCardsData?.filter(c => c.is_rc).slice(0, 2).map(c => ({ player: c.player_name, year: c.year, brand: c.brand, type: 'RC' })) || []),
-      ...(newCardsData?.filter(c => c.is_auto && !c.is_rc).slice(0, 2).map(c => ({ player: c.player_name, year: c.year, brand: c.brand, type: 'Auto' })) || []),
-      ...(newCardsData?.filter(c => c.is_patch && !c.is_rc && !c.is_auto).slice(0, 1).map(c => ({ player: c.player_name, year: c.year, brand: c.brand, type: 'Patch' })) || []),
+      ...(newCardsData?.filter(c => c.rc).slice(0, 2).map(c => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'RC' })) || []),
+      ...(newCardsData?.filter(c => c.auto && !c.rc).slice(0, 2).map(c => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'Auto' })) || []),
+      ...(newCardsData?.filter(c => c.patch && !c.rc && !c.auto).slice(0, 1).map(c => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'Patch' })) || []),
     ].slice(0, 5)
+
+    // Images RC > Auto > Patch > autres
+    const withImg = (newCardsData || []).filter(c => c.image_recto)
+    const cardImages = [
+      ...withImg.filter(c => c.rc),
+      ...withImg.filter(c => c.auto && !c.rc),
+      ...withImg.filter(c => c.patch && !c.rc && !c.auto),
+      ...withImg.filter(c => !c.rc && !c.auto && !c.patch),
+    ].map(c => c.image_recto as string)
+
+    const wrapYear = monthStart.getFullYear()
+    const wrapMonth = monthStart.getMonth() + 1
+    const makeWrapUrl = (fmt: string) => {
+      const sig = signWrapUrl(authUser.id, wrapYear, wrapMonth, fmt)
+      return `${baseUrl}/api/wrap-image-public?uid=${authUser.id}&amp;y=${wrapYear}&amp;m=${wrapMonth}&amp;format=${fmt}&amp;sig=${sig}`
+    }
 
     const html = buildEmail({
       name,
@@ -231,6 +282,9 @@ export async function GET(req: NextRequest) {
       totalCards: profile.stats_total || 0,
       highlights,
       galerieUrl: `${baseUrl}/galerie/${authUser.id}`,
+      cardImages,
+      squareUrl: makeWrapUrl('square'),
+      storyUrl: makeWrapUrl('story'),
     })
 
     try {

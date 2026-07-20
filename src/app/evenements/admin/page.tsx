@@ -1,4 +1,5 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -96,7 +97,7 @@ export default function AdminEvenements() {
     const path = `evenements/${Date.now()}_${file.name.replace(/[^a-z0-9.]/gi, '_')}`
     const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
     setUploadingImg(false)
-    if (error) { alert('Erreur upload image : ' + error.message); return null }
+    if (error) { toast.error('Erreur upload image : ' + error.message); return null }
     return supabase.storage.from('avatars').getPublicUrl(path).data.publicUrl
   }
 

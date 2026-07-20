@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { cardSlug } from '@/lib/playerSlug'
 
 interface Collector {
   id: string; slug: string; display_name: string
@@ -49,8 +50,15 @@ export default function SameCardCollectors({ cardName, year, brand, set, variant
         {collectors.length} autre{collectors.length > 1 ? 's' : ''} collectionneur{collectors.length > 1 ? 's' : ''} avec cette carte
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-        {collectors.map(c => (
-          <Link key={c.id} href={`/galerie/${c.id}`} style={{ textDecoration: 'none' }}>
+        {collectors.map(c => {
+          // Vers la fiche publique précise de sa carte quand on connaît son image (maillage
+          // interne entre toutes les pages de cette même carte, utile pour le SEO), sinon
+          // simple lien vers sa galerie.
+          const href = c.cardImg
+            ? `/galerie/${c.slug || c.id}/${cardSlug(cardName, year, brand, set)}?src=${encodeURIComponent(c.cardImg)}`
+            : `/galerie/${c.slug || c.id}`
+          return (
+          <Link key={c.id} href={href} style={{ textDecoration: 'none' }}>
             <div style={{
               display: 'flex', alignItems: 'center', gap: 7,
               background: '#f8f8f8', border: `1.5px solid ${c.accent}20`,
@@ -68,7 +76,8 @@ export default function SameCardCollectors({ cardName, year, brand, set, variant
               <span style={{ fontSize: 12, fontWeight: 700, color: '#333' }}>{c.display_name}</span>
             </div>
           </Link>
-        ))}
+          )
+        })}
       </div>
     </div>
   )

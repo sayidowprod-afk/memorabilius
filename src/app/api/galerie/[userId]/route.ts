@@ -1,8 +1,24 @@
 import { NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@supabase/supabase-js'
+import { fetchCsvCapped } from '@/lib/csvParse'
 
-// Cette ligne indique à Vercel de NE PAS compiler cette route au build
 export const dynamic = 'force-dynamic'
+
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
+
+// Only allow Google Sheets CSV exports — blocks SSRF to internal metadata endpoints
+function isAllowedCsvUrl(url: string): boolean {
+  try {
+    const u = new URL(url)
+    return u.protocol === 'https:' && (
+      u.hostname === 'docs.google.com' ||
+      u.hostname === 'sheets.googleapis.com'
+    )
+  } catch { return false }
+}
 
 interface Card {
   f: string; b: string; n: string; t: string; y: string
@@ -21,13 +37,16 @@ export async function GET(
   }
 
   try {
-    // 1. Récupérer l'utilisateur connecté via le client Supabase standard
-    const { data: { user } } = await supabase.auth.getUser()
-    const currentUserId = user?.id || null
-    const isOwner = currentUserId === userId
+    // Identify current user via Bearer token — required to serve private cards to owner
+    let isOwner = false
+    const authHeader = request.headers.get('authorization')
+    if (authHeader?.startsWith('Bearer ')) {
+      const token = authHeader.slice(7)
+      const { data: { user } } = await supabaseAdmin.auth.getUser(token)
+      isOwner = user?.id === userId
+    }
 
-    // 2. Récupérer le profil pour avoir le lien CSV
-    const { data: profile } = await supabase
+    const { data: profile } = await supabaseAdmin
       .from('profiles')
       .select('lien_csv')
       .eq('id', userId)
@@ -37,17 +56,20 @@ export async function GET(
       return NextResponse.json({ cards: [] })
     }
 
-    // 3. Récupérer les clés des cartes privées
-    const { data: privateData } = await supabase
+    if (!isAllowedCsvUrl(profile.lien_csv)) {
+      return NextResponse.json({ error: 'URL CSV non autorisée' }, { status: 400 })
+    }
+
+    const { data: privateData } = await supabaseAdmin
       .from('cartes_privees')
       .select('card_key')
       .eq('user_id', userId)
 
     const privateKeys = new Set(privateData?.map((d) => d.card_key) || [])
 
-    // 4. Charger et parser le CSV
-    const r = await fetch(profile.lien_csv + '&t=' + Date.now())
-    const t = await r.text()
+    const t = await fetchCsvCapped(profile.lien_csv, { cache: 'no-store' })
+    if (!t) return NextResponse.json({ cards: [] })
+
     const rows = t.split(/\r?\n/).slice(4)
 
     const parsed: Card[] = rows
@@ -66,11 +88,8 @@ export async function GET(
       })
       .filter(Boolean) as Card[]
 
-    // 5. Filtrage de sécurité strict côté serveur
     const filteredCards = parsed.filter((card) => {
-      if (!isOwner && privateKeys.has(card.f)) {
-        return false 
-      }
+      if (!isOwner && privateKeys.has(card.f)) return false
       return true
     })
 

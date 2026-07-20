@@ -1,0 +1,2263 @@
+{
+  "year": 1995,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 3497,
+        "name": "1995 Collector's Choice Update"
+      },
+      "unique": [
+        {
+          "card_number": "14",
+          "player_name": "Garrison Hearst",
+          "team": "Arizona Cardinals",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Arizona Cardinals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Craig Heyward",
+          "team": "Atlanta Falcons",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Craig Heyward",
+          "team": "Atlanta Falcons",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jeff George",
+          "team": "Atlanta Falcons",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Darick Holmes",
+          "team": "Buffalo Bills",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Darick Holmes",
+          "team": "Buffalo Bills",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Jim Kelly",
+          "team": "Buffalo Bills",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Buffalo Bills",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Kerry Collins",
+          "team": "Carolina Panthers",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Carolina Panthers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Rashaan Salaam",
+          "team": "Chicago Bears",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Chicago Bears",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Ki-Jana Carter",
+          "team": "Cincinnati Bengals",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Cincinnati Bengals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Cincinnati Bengals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Cincinnati Bengals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Cincinnati Bengals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Cincinnati Bengals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Cincinnati Bengals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Cincinnati Bengals",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Andre Rison",
+          "team": "Cleveland Browns",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Cleveland Browns",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Larry Brown",
+          "team": "Dallas Cowboys",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Troy Aikman",
+          "team": "Dallas Cowboys",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Michael Irvin",
+          "team": "Dallas Cowboys",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Larry Brown",
+          "team": "Dallas Cowboys",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Denver Broncos",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Detroit Lions",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Edgar Bennett",
+          "team": "Green Bay Packers",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Robert Brooks",
+          "team": "Green Bay Packers",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Edgar Bennett",
+          "team": "Green Bay Packers",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Robert Brooks",
+          "team": "Green Bay Packers",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Steve McNair",
+          "team": "Houston Oilers",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Houston Oilers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Houston Oilers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Houston Oilers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Houston Oilers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Houston Oilers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Houston Oilers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Houston Oilers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jim Harbaugh",
+          "team": "Indianapolis Colts",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Sean Dawkins",
+          "team": "Indianapolis Colts",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jim Harbaugh",
+          "team": "Indianapolis Colts",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Sean Dawkins",
+          "team": "Indianapolis Colts",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Marshall Faulk",
+          "team": "Indianapolis Colts",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Indianapolis Colts",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "James O. Stewart",
+          "team": "Jacksonville Jaguars",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Jacksonville Jaguars",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Marcus Allen",
+          "team": "Kansas City Chiefs",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Kansas City Chiefs",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Warren Moon",
+          "team": "Minnesota Vikings",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Minnesota Vikings",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Drew Bledsoe",
+          "team": "New England Patriots",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "New England Patriots",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Mario Bates",
+          "team": "New Orleans Saints",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "New Orleans Saints",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "New Orleans Saints",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "New Orleans Saints",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "New Orleans Saints",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "New Orleans Saints",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "New Orleans Saints",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "New Orleans Saints",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Rodney Hampton",
+          "team": "New York Giants",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "New York Giants",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "242",
+          "player_name": "Charles Wilson",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Kyle Brady",
+          "team": "New York Jets",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "New York Jets",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Ricky Watters",
+          "team": "Philadelphia Eagles",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Neil O'Donnell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Bam Morris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Charles Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Bam Morris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Neil O'Donnell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Bam Morris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Charles Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Bam Morris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Bam Morris",
+          "team": "Pittsburgh Steelers",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Stan Humphries",
+          "team": "San Diego Chargers",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Natrone Means",
+          "team": "San Diego Chargers",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tony Martin",
+          "team": "San Diego Chargers",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Stan Humphries",
+          "team": "San Diego Chargers",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Natrone Means",
+          "team": "San Diego Chargers",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Tony Martin",
+          "team": "San Diego Chargers",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Natrone Means",
+          "team": "San Diego Chargers",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "San Diego Chargers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Post-Season Heroics Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Post-Season Heroics Silver",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "San Francisco 49ers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Chris Warren",
+          "team": "Seattle Seahawks",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Seattle Seahawks",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Seattle Seahawks",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Seattle Seahawks",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Seattle Seahawks",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Seattle Seahawks",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Seattle Seahawks",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Seattle Seahawks",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Jerome Bettis",
+          "team": "St. Louis Rams",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "St. Louis Rams",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "St. Louis Rams",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "St. Louis Rams",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "St. Louis Rams",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "St. Louis Rams",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "St. Louis Rams",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "St. Louis Rams",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Errict Rhett",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Tampa Bay Buccaneers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Tampa Bay Buccaneers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Tampa Bay Buccaneers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Tampa Bay Buccaneers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Tampa Bay Buccaneers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Tampa Bay Buccaneers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Tampa Bay Buccaneers",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Michael Westbrook",
+          "team": "Washington Redskins",
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Washington Redskins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Washington Redskins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Washington Redskins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Washington Redskins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Washington Redskins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Washington Redskins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Washington Redskins",
+          "team": null,
+          "variation": "Stick-Ums",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

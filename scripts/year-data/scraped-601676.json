@@ -1,0 +1,4391 @@
+{
+  "year": 2025,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 601676,
+        "name": "2025 Donruss Rookies & Highlights"
+      },
+      "unique": [
+        {
+          "card_number": "DRH-28",
+          "player_name": "Will Johnson",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-28",
+          "player_name": "Will Johnson",
+          "team": "Arizona Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-28",
+          "player_name": "Will Johnson",
+          "team": "Arizona Cardinals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-28",
+          "player_name": "Will Johnson",
+          "team": "Arizona Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-28",
+          "player_name": "Will Johnson",
+          "team": "Arizona Cardinals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-28",
+          "player_name": "Will Johnson",
+          "team": "Arizona Cardinals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-47",
+          "player_name": "Jalon Walker",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-48",
+          "player_name": "Xavier Watts",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-47",
+          "player_name": "Jalon Walker",
+          "team": "Atlanta Falcons",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-48",
+          "player_name": "Xavier Watts",
+          "team": "Atlanta Falcons",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-47",
+          "player_name": "Jalon Walker",
+          "team": "Atlanta Falcons",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-48",
+          "player_name": "Xavier Watts",
+          "team": "Atlanta Falcons",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-47",
+          "player_name": "Jalon Walker",
+          "team": "Atlanta Falcons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-48",
+          "player_name": "Xavier Watts",
+          "team": "Atlanta Falcons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-47",
+          "player_name": "Jalon Walker",
+          "team": "Atlanta Falcons",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-48",
+          "player_name": "Xavier Watts",
+          "team": "Atlanta Falcons",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-47",
+          "player_name": "Jalon Walker",
+          "team": "Atlanta Falcons",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-48",
+          "player_name": "Xavier Watts",
+          "team": "Atlanta Falcons",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-58",
+          "player_name": "Teddye Buchanan",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-59",
+          "player_name": "Tyler Loop",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-60",
+          "player_name": "Malaki Starks",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-58",
+          "player_name": "Teddye Buchanan",
+          "team": "Baltimore Ravens",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-59",
+          "player_name": "Tyler Loop",
+          "team": "Baltimore Ravens",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-60",
+          "player_name": "Malaki Starks",
+          "team": "Baltimore Ravens",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-58",
+          "player_name": "Teddye Buchanan",
+          "team": "Baltimore Ravens",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-59",
+          "player_name": "Tyler Loop",
+          "team": "Baltimore Ravens",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-60",
+          "player_name": "Malaki Starks",
+          "team": "Baltimore Ravens",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-58",
+          "player_name": "Teddye Buchanan",
+          "team": "Baltimore Ravens",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-59",
+          "player_name": "Tyler Loop",
+          "team": "Baltimore Ravens",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-60",
+          "player_name": "Malaki Starks",
+          "team": "Baltimore Ravens",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-58",
+          "player_name": "Teddye Buchanan",
+          "team": "Baltimore Ravens",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-59",
+          "player_name": "Tyler Loop",
+          "team": "Baltimore Ravens",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-60",
+          "player_name": "Malaki Starks",
+          "team": "Baltimore Ravens",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-58",
+          "player_name": "Teddye Buchanan",
+          "team": "Baltimore Ravens",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-59",
+          "player_name": "Tyler Loop",
+          "team": "Baltimore Ravens",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-60",
+          "player_name": "Malaki Starks",
+          "team": "Baltimore Ravens",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-100",
+          "player_name": "Josh Allen",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-100",
+          "player_name": "Josh Allen",
+          "team": "Buffalo Bills",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-100",
+          "player_name": "Josh Allen",
+          "team": "Buffalo Bills",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-100",
+          "player_name": "Josh Allen",
+          "team": "Buffalo Bills",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-100",
+          "player_name": "Josh Allen",
+          "team": "Buffalo Bills",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-100",
+          "player_name": "Josh Allen",
+          "team": "Buffalo Bills",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-49",
+          "player_name": "Mitchell Evans",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-50",
+          "player_name": "Ryan Fitzgerald",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-51",
+          "player_name": "Jimmy Horn Jr.",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-52",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-53",
+          "player_name": "Nic Scourton",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-88",
+          "player_name": "Rico Dowdle",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-92",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-49",
+          "player_name": "Mitchell Evans",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-50",
+          "player_name": "Ryan Fitzgerald",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-51",
+          "player_name": "Jimmy Horn Jr.",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-52",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-53",
+          "player_name": "Nic Scourton",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-88",
+          "player_name": "Rico Dowdle",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-92",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-49",
+          "player_name": "Mitchell Evans",
+          "team": "Carolina Panthers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-50",
+          "player_name": "Ryan Fitzgerald",
+          "team": "Carolina Panthers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-51",
+          "player_name": "Jimmy Horn Jr.",
+          "team": "Carolina Panthers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-52",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-53",
+          "player_name": "Nic Scourton",
+          "team": "Carolina Panthers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-88",
+          "player_name": "Rico Dowdle",
+          "team": "Carolina Panthers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-92",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-49",
+          "player_name": "Mitchell Evans",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-50",
+          "player_name": "Ryan Fitzgerald",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-51",
+          "player_name": "Jimmy Horn Jr.",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-52",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-53",
+          "player_name": "Nic Scourton",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-88",
+          "player_name": "Rico Dowdle",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-92",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-49",
+          "player_name": "Mitchell Evans",
+          "team": "Carolina Panthers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-50",
+          "player_name": "Ryan Fitzgerald",
+          "team": "Carolina Panthers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-51",
+          "player_name": "Jimmy Horn Jr.",
+          "team": "Carolina Panthers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-52",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-53",
+          "player_name": "Nic Scourton",
+          "team": "Carolina Panthers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-88",
+          "player_name": "Rico Dowdle",
+          "team": "Carolina Panthers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-92",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-49",
+          "player_name": "Mitchell Evans",
+          "team": "Carolina Panthers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-50",
+          "player_name": "Ryan Fitzgerald",
+          "team": "Carolina Panthers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-51",
+          "player_name": "Jimmy Horn Jr.",
+          "team": "Carolina Panthers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-52",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-53",
+          "player_name": "Nic Scourton",
+          "team": "Carolina Panthers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-88",
+          "player_name": "Rico Dowdle",
+          "team": "Carolina Panthers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-92",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-73",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-74",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-75",
+          "player_name": "Kyle Monangai",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-73",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-74",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-75",
+          "player_name": "Kyle Monangai",
+          "team": "Chicago Bears",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-73",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-74",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-75",
+          "player_name": "Kyle Monangai",
+          "team": "Chicago Bears",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-73",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-74",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-75",
+          "player_name": "Kyle Monangai",
+          "team": "Chicago Bears",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-73",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-74",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-75",
+          "player_name": "Kyle Monangai",
+          "team": "Chicago Bears",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-73",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-74",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-75",
+          "player_name": "Kyle Monangai",
+          "team": "Chicago Bears",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-61",
+          "player_name": "Barrett Carter",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-62",
+          "player_name": "Demetrius Knight Jr.",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-93",
+          "player_name": "Ja'Marr Chase",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-61",
+          "player_name": "Barrett Carter",
+          "team": "Cincinnati Bengals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-62",
+          "player_name": "Demetrius Knight Jr.",
+          "team": "Cincinnati Bengals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-93",
+          "player_name": "Ja'Marr Chase",
+          "team": "Cincinnati Bengals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-61",
+          "player_name": "Barrett Carter",
+          "team": "Cincinnati Bengals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-62",
+          "player_name": "Demetrius Knight Jr.",
+          "team": "Cincinnati Bengals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-93",
+          "player_name": "Ja'Marr Chase",
+          "team": "Cincinnati Bengals",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-61",
+          "player_name": "Barrett Carter",
+          "team": "Cincinnati Bengals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-62",
+          "player_name": "Demetrius Knight Jr.",
+          "team": "Cincinnati Bengals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-93",
+          "player_name": "Ja'Marr Chase",
+          "team": "Cincinnati Bengals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-61",
+          "player_name": "Barrett Carter",
+          "team": "Cincinnati Bengals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-62",
+          "player_name": "Demetrius Knight Jr.",
+          "team": "Cincinnati Bengals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-93",
+          "player_name": "Ja'Marr Chase",
+          "team": "Cincinnati Bengals",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-61",
+          "player_name": "Barrett Carter",
+          "team": "Cincinnati Bengals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-62",
+          "player_name": "Demetrius Knight Jr.",
+          "team": "Cincinnati Bengals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-93",
+          "player_name": "Ja'Marr Chase",
+          "team": "Cincinnati Bengals",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-63",
+          "player_name": "Isaiah Bond",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-64",
+          "player_name": "Harold Fannin Jr.",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-65",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-66",
+          "player_name": "Mason Graham",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-67",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-68",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-69",
+          "player_name": "Carson Schwesinger",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-70",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-85",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-99",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-63",
+          "player_name": "Isaiah Bond",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-64",
+          "player_name": "Harold Fannin Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-65",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-66",
+          "player_name": "Mason Graham",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-67",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-68",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-69",
+          "player_name": "Carson Schwesinger",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-70",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-85",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-99",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-63",
+          "player_name": "Isaiah Bond",
+          "team": "Cleveland Browns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-64",
+          "player_name": "Harold Fannin Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-65",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-66",
+          "player_name": "Mason Graham",
+          "team": "Cleveland Browns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-67",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-68",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-69",
+          "player_name": "Carson Schwesinger",
+          "team": "Cleveland Browns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-70",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-85",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-99",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-63",
+          "player_name": "Isaiah Bond",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-64",
+          "player_name": "Harold Fannin Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-65",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-66",
+          "player_name": "Mason Graham",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-67",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-68",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-69",
+          "player_name": "Carson Schwesinger",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-70",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-85",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-99",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-63",
+          "player_name": "Isaiah Bond",
+          "team": "Cleveland Browns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-64",
+          "player_name": "Harold Fannin Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-65",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-66",
+          "player_name": "Mason Graham",
+          "team": "Cleveland Browns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-67",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-68",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-69",
+          "player_name": "Carson Schwesinger",
+          "team": "Cleveland Browns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-70",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-85",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-99",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-63",
+          "player_name": "Isaiah Bond",
+          "team": "Cleveland Browns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-64",
+          "player_name": "Harold Fannin Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-65",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-66",
+          "player_name": "Mason Graham",
+          "team": "Cleveland Browns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-67",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-68",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-69",
+          "player_name": "Carson Schwesinger",
+          "team": "Cleveland Browns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-70",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-85",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-99",
+          "player_name": "Shedeur Sanders",
+          "team": "Cleveland Browns",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-16",
+          "player_name": "Jahdae Barron",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-17",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-18",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-19",
+          "player_name": "Jeremy Crawshaw",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-87",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-95",
+          "player_name": "Bo Nix",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-16",
+          "player_name": "Jahdae Barron",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-17",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-18",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-19",
+          "player_name": "Jeremy Crawshaw",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-87",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-95",
+          "player_name": "Bo Nix",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-16",
+          "player_name": "Jahdae Barron",
+          "team": "Denver Broncos",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-17",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-18",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-19",
+          "player_name": "Jeremy Crawshaw",
+          "team": "Denver Broncos",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-87",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-95",
+          "player_name": "Bo Nix",
+          "team": "Denver Broncos",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-16",
+          "player_name": "Jahdae Barron",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-17",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-18",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-19",
+          "player_name": "Jeremy Crawshaw",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-87",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-95",
+          "player_name": "Bo Nix",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-16",
+          "player_name": "Jahdae Barron",
+          "team": "Denver Broncos",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-17",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-18",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-19",
+          "player_name": "Jeremy Crawshaw",
+          "team": "Denver Broncos",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-87",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-95",
+          "player_name": "Bo Nix",
+          "team": "Denver Broncos",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-16",
+          "player_name": "Jahdae Barron",
+          "team": "Denver Broncos",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-17",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-18",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-19",
+          "player_name": "Jeremy Crawshaw",
+          "team": "Denver Broncos",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-87",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-95",
+          "player_name": "Bo Nix",
+          "team": "Denver Broncos",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-76",
+          "player_name": "Isaac TeSlaa",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-77",
+          "player_name": "Tyleik Williams",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-96",
+          "player_name": "Jahmyr Gibbs",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-76",
+          "player_name": "Isaac TeSlaa",
+          "team": "Detroit Lions",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-77",
+          "player_name": "Tyleik Williams",
+          "team": "Detroit Lions",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-96",
+          "player_name": "Jahmyr Gibbs",
+          "team": "Detroit Lions",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-76",
+          "player_name": "Isaac TeSlaa",
+          "team": "Detroit Lions",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-77",
+          "player_name": "Tyleik Williams",
+          "team": "Detroit Lions",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-96",
+          "player_name": "Jahmyr Gibbs",
+          "team": "Detroit Lions",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-76",
+          "player_name": "Isaac TeSlaa",
+          "team": "Detroit Lions",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-77",
+          "player_name": "Tyleik Williams",
+          "team": "Detroit Lions",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-96",
+          "player_name": "Jahmyr Gibbs",
+          "team": "Detroit Lions",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-76",
+          "player_name": "Isaac TeSlaa",
+          "team": "Detroit Lions",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-77",
+          "player_name": "Tyleik Williams",
+          "team": "Detroit Lions",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-96",
+          "player_name": "Jahmyr Gibbs",
+          "team": "Detroit Lions",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-76",
+          "player_name": "Isaac TeSlaa",
+          "team": "Detroit Lions",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-77",
+          "player_name": "Tyleik Williams",
+          "team": "Detroit Lions",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-96",
+          "player_name": "Jahmyr Gibbs",
+          "team": "Detroit Lions",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-78",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-79",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-78",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-79",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-78",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-79",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-78",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-79",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-78",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-79",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-78",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-79",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-35",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-36",
+          "player_name": "Woody Marks",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-37",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-35",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-36",
+          "player_name": "Woody Marks",
+          "team": "Houston Texans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-37",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-35",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-36",
+          "player_name": "Woody Marks",
+          "team": "Houston Texans",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-37",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-35",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-36",
+          "player_name": "Woody Marks",
+          "team": "Houston Texans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-37",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-35",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-36",
+          "player_name": "Woody Marks",
+          "team": "Houston Texans",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-37",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-35",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-36",
+          "player_name": "Woody Marks",
+          "team": "Houston Texans",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-37",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-38",
+          "player_name": "DJ Giddens",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-39",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-38",
+          "player_name": "DJ Giddens",
+          "team": "Indianapolis Colts",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-39",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-38",
+          "player_name": "DJ Giddens",
+          "team": "Indianapolis Colts",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-39",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-38",
+          "player_name": "DJ Giddens",
+          "team": "Indianapolis Colts",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-39",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-38",
+          "player_name": "DJ Giddens",
+          "team": "Indianapolis Colts",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-39",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-38",
+          "player_name": "DJ Giddens",
+          "team": "Indianapolis Colts",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-39",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-40",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-41",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-90",
+          "player_name": "Trevor Lawrence",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-94",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-97",
+          "player_name": "Cam Little",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-40",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-41",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-90",
+          "player_name": "Trevor Lawrence",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-94",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-97",
+          "player_name": "Cam Little",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-40",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-41",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-90",
+          "player_name": "Trevor Lawrence",
+          "team": "Jacksonville Jaguars",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-94",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-97",
+          "player_name": "Cam Little",
+          "team": "Jacksonville Jaguars",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-40",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-41",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-90",
+          "player_name": "Trevor Lawrence",
+          "team": "Jacksonville Jaguars",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-94",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-97",
+          "player_name": "Cam Little",
+          "team": "Jacksonville Jaguars",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-40",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-41",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-90",
+          "player_name": "Trevor Lawrence",
+          "team": "Jacksonville Jaguars",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-94",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-97",
+          "player_name": "Cam Little",
+          "team": "Jacksonville Jaguars",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-40",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-41",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-90",
+          "player_name": "Trevor Lawrence",
+          "team": "Jacksonville Jaguars",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-94",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-97",
+          "player_name": "Cam Little",
+          "team": "Jacksonville Jaguars",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-20",
+          "player_name": "Brashard Smith",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-86",
+          "player_name": "Patrick Mahomes II",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-98",
+          "player_name": "Travis Kelce",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-20",
+          "player_name": "Brashard Smith",
+          "team": "Kansas City Chiefs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-86",
+          "player_name": "Patrick Mahomes II",
+          "team": "Kansas City Chiefs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-98",
+          "player_name": "Travis Kelce",
+          "team": "Kansas City Chiefs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-20",
+          "player_name": "Brashard Smith",
+          "team": "Kansas City Chiefs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-86",
+          "player_name": "Patrick Mahomes II",
+          "team": "Kansas City Chiefs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-98",
+          "player_name": "Travis Kelce",
+          "team": "Kansas City Chiefs",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-20",
+          "player_name": "Brashard Smith",
+          "team": "Kansas City Chiefs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-86",
+          "player_name": "Patrick Mahomes II",
+          "team": "Kansas City Chiefs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-98",
+          "player_name": "Travis Kelce",
+          "team": "Kansas City Chiefs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-20",
+          "player_name": "Brashard Smith",
+          "team": "Kansas City Chiefs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-86",
+          "player_name": "Patrick Mahomes II",
+          "team": "Kansas City Chiefs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-98",
+          "player_name": "Travis Kelce",
+          "team": "Kansas City Chiefs",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-20",
+          "player_name": "Brashard Smith",
+          "team": "Kansas City Chiefs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-86",
+          "player_name": "Patrick Mahomes II",
+          "team": "Kansas City Chiefs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-98",
+          "player_name": "Travis Kelce",
+          "team": "Kansas City Chiefs",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-21",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-22",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-23",
+          "player_name": "Dont'e Thornton Jr.",
+          "team": "Las Vegas Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-82",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-21",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-22",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-23",
+          "player_name": "Dont'e Thornton Jr.",
+          "team": "Las Vegas Raiders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-82",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-21",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-22",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-23",
+          "player_name": "Dont'e Thornton Jr.",
+          "team": "Las Vegas Raiders",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-82",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-21",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-22",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-23",
+          "player_name": "Dont'e Thornton Jr.",
+          "team": "Las Vegas Raiders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-82",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-21",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-22",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-23",
+          "player_name": "Dont'e Thornton Jr.",
+          "team": "Las Vegas Raiders",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-82",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-21",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-22",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-23",
+          "player_name": "Dont'e Thornton Jr.",
+          "team": "Las Vegas Raiders",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-82",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TRU-10",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "The Rookies Uptowns Horizontal Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-24",
+          "player_name": "Oronde Gadsden II",
+          "team": "Los Angeles Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-25",
+          "player_name": "Tre Harris",
+          "team": "Los Angeles Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-26",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-27",
+          "player_name": "RJ Mickens",
+          "team": "Los Angeles Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-24",
+          "player_name": "Oronde Gadsden II",
+          "team": "Los Angeles Chargers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-25",
+          "player_name": "Tre Harris",
+          "team": "Los Angeles Chargers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-26",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-27",
+          "player_name": "RJ Mickens",
+          "team": "Los Angeles Chargers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-24",
+          "player_name": "Oronde Gadsden II",
+          "team": "Los Angeles Chargers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-25",
+          "player_name": "Tre Harris",
+          "team": "Los Angeles Chargers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-26",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-27",
+          "player_name": "RJ Mickens",
+          "team": "Los Angeles Chargers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-24",
+          "player_name": "Oronde Gadsden II",
+          "team": "Los Angeles Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-25",
+          "player_name": "Tre Harris",
+          "team": "Los Angeles Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-26",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-27",
+          "player_name": "RJ Mickens",
+          "team": "Los Angeles Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-24",
+          "player_name": "Oronde Gadsden II",
+          "team": "Los Angeles Chargers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-25",
+          "player_name": "Tre Harris",
+          "team": "Los Angeles Chargers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-26",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-27",
+          "player_name": "RJ Mickens",
+          "team": "Los Angeles Chargers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-24",
+          "player_name": "Oronde Gadsden II",
+          "team": "Los Angeles Chargers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-25",
+          "player_name": "Tre Harris",
+          "team": "Los Angeles Chargers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-26",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-27",
+          "player_name": "RJ Mickens",
+          "team": "Los Angeles Chargers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-80",
+          "player_name": "Max Brosmer",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-80",
+          "player_name": "Max Brosmer",
+          "team": "Minnesota Vikings",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-80",
+          "player_name": "Max Brosmer",
+          "team": "Minnesota Vikings",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-80",
+          "player_name": "Max Brosmer",
+          "team": "Minnesota Vikings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-80",
+          "player_name": "Max Brosmer",
+          "team": "Minnesota Vikings",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-80",
+          "player_name": "Max Brosmer",
+          "team": "Minnesota Vikings",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-54",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-55",
+          "player_name": "Devin Neal",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-54",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-55",
+          "player_name": "Devin Neal",
+          "team": "New Orleans Saints",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-54",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-55",
+          "player_name": "Devin Neal",
+          "team": "New Orleans Saints",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-54",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-55",
+          "player_name": "Devin Neal",
+          "team": "New Orleans Saints",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-54",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-55",
+          "player_name": "Devin Neal",
+          "team": "New Orleans Saints",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-54",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-55",
+          "player_name": "Devin Neal",
+          "team": "New Orleans Saints",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-10",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-11",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-84",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-91",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-10",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-11",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-84",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-91",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-10",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-11",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-84",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-91",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-10",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-11",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-84",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-91",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-10",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-11",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-84",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-91",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-10",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-11",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-84",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-91",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-12",
+          "player_name": "Jihaad Campbell",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-13",
+          "player_name": "Andrew Mukuba",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-81",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-12",
+          "player_name": "Jihaad Campbell",
+          "team": "Philadelphia Eagles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-13",
+          "player_name": "Andrew Mukuba",
+          "team": "Philadelphia Eagles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-81",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-12",
+          "player_name": "Jihaad Campbell",
+          "team": "Philadelphia Eagles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-13",
+          "player_name": "Andrew Mukuba",
+          "team": "Philadelphia Eagles",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-81",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-12",
+          "player_name": "Jihaad Campbell",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-13",
+          "player_name": "Andrew Mukuba",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-81",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-12",
+          "player_name": "Jihaad Campbell",
+          "team": "Philadelphia Eagles",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-13",
+          "player_name": "Andrew Mukuba",
+          "team": "Philadelphia Eagles",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-81",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-12",
+          "player_name": "Jihaad Campbell",
+          "team": "Philadelphia Eagles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-13",
+          "player_name": "Andrew Mukuba",
+          "team": "Philadelphia Eagles",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-81",
+          "player_name": "Philadelphia Eagles",
+          "team": null,
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-71",
+          "player_name": "Derrick Harmon",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-72",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-71",
+          "player_name": "Derrick Harmon",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-72",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-71",
+          "player_name": "Derrick Harmon",
+          "team": "Pittsburgh Steelers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-72",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-71",
+          "player_name": "Derrick Harmon",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-72",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-71",
+          "player_name": "Derrick Harmon",
+          "team": "Pittsburgh Steelers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-72",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-71",
+          "player_name": "Derrick Harmon",
+          "team": "Pittsburgh Steelers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-72",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-29",
+          "player_name": "Alfred Collins",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-30",
+          "player_name": "Upton Stout",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-31",
+          "player_name": "Mykel Williams",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-29",
+          "player_name": "Alfred Collins",
+          "team": "San Francisco 49ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-30",
+          "player_name": "Upton Stout",
+          "team": "San Francisco 49ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-31",
+          "player_name": "Mykel Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-29",
+          "player_name": "Alfred Collins",
+          "team": "San Francisco 49ers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-30",
+          "player_name": "Upton Stout",
+          "team": "San Francisco 49ers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-31",
+          "player_name": "Mykel Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-29",
+          "player_name": "Alfred Collins",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-30",
+          "player_name": "Upton Stout",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-31",
+          "player_name": "Mykel Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-29",
+          "player_name": "Alfred Collins",
+          "team": "San Francisco 49ers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-30",
+          "player_name": "Upton Stout",
+          "team": "San Francisco 49ers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-31",
+          "player_name": "Mykel Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-29",
+          "player_name": "Alfred Collins",
+          "team": "San Francisco 49ers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-30",
+          "player_name": "Upton Stout",
+          "team": "San Francisco 49ers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-31",
+          "player_name": "Mykel Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-32",
+          "player_name": "Elijah Arroyo",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-33",
+          "player_name": "Nick Emmanwori",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-34",
+          "player_name": "Tory Horton",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-32",
+          "player_name": "Elijah Arroyo",
+          "team": "Seattle Seahawks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-33",
+          "player_name": "Nick Emmanwori",
+          "team": "Seattle Seahawks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-34",
+          "player_name": "Tory Horton",
+          "team": "Seattle Seahawks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-32",
+          "player_name": "Elijah Arroyo",
+          "team": "Seattle Seahawks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-33",
+          "player_name": "Nick Emmanwori",
+          "team": "Seattle Seahawks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-34",
+          "player_name": "Tory Horton",
+          "team": "Seattle Seahawks",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-32",
+          "player_name": "Elijah Arroyo",
+          "team": "Seattle Seahawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-33",
+          "player_name": "Nick Emmanwori",
+          "team": "Seattle Seahawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-34",
+          "player_name": "Tory Horton",
+          "team": "Seattle Seahawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-32",
+          "player_name": "Elijah Arroyo",
+          "team": "Seattle Seahawks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-33",
+          "player_name": "Nick Emmanwori",
+          "team": "Seattle Seahawks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-34",
+          "player_name": "Tory Horton",
+          "team": "Seattle Seahawks",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-32",
+          "player_name": "Elijah Arroyo",
+          "team": "Seattle Seahawks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-33",
+          "player_name": "Nick Emmanwori",
+          "team": "Seattle Seahawks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-34",
+          "player_name": "Tory Horton",
+          "team": "Seattle Seahawks",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-56",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-57",
+          "player_name": "Tez Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-83",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-56",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-57",
+          "player_name": "Tez Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-83",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-56",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-57",
+          "player_name": "Tez Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-83",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-56",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-57",
+          "player_name": "Tez Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-83",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-56",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-57",
+          "player_name": "Tez Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-83",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-56",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-57",
+          "player_name": "Tez Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-83",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-42",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-43",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-44",
+          "player_name": "Chimere Dike",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-45",
+          "player_name": "Gunnar Helm",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-46",
+          "player_name": "Kevin Winston Jr.",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-89",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-42",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-43",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-44",
+          "player_name": "Chimere Dike",
+          "team": "Tennessee Titans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-45",
+          "player_name": "Gunnar Helm",
+          "team": "Tennessee Titans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-46",
+          "player_name": "Kevin Winston Jr.",
+          "team": "Tennessee Titans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-89",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-42",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-43",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-44",
+          "player_name": "Chimere Dike",
+          "team": "Tennessee Titans",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-45",
+          "player_name": "Gunnar Helm",
+          "team": "Tennessee Titans",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-46",
+          "player_name": "Kevin Winston Jr.",
+          "team": "Tennessee Titans",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-89",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-42",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-43",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-44",
+          "player_name": "Chimere Dike",
+          "team": "Tennessee Titans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-45",
+          "player_name": "Gunnar Helm",
+          "team": "Tennessee Titans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-46",
+          "player_name": "Kevin Winston Jr.",
+          "team": "Tennessee Titans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-89",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-42",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-43",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-44",
+          "player_name": "Chimere Dike",
+          "team": "Tennessee Titans",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-45",
+          "player_name": "Gunnar Helm",
+          "team": "Tennessee Titans",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-46",
+          "player_name": "Kevin Winston Jr.",
+          "team": "Tennessee Titans",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-89",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-42",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-43",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-44",
+          "player_name": "Chimere Dike",
+          "team": "Tennessee Titans",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-45",
+          "player_name": "Gunnar Helm",
+          "team": "Tennessee Titans",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-46",
+          "player_name": "Kevin Winston Jr.",
+          "team": "Tennessee Titans",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-89",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-14",
+          "player_name": "Jacory Croskey-Merritt",
+          "team": "Washington Commanders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-15",
+          "player_name": "Jaylin Lane",
+          "team": "Washington Commanders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-14",
+          "player_name": "Jacory Croskey-Merritt",
+          "team": "Washington Commanders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-15",
+          "player_name": "Jaylin Lane",
+          "team": "Washington Commanders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-14",
+          "player_name": "Jacory Croskey-Merritt",
+          "team": "Washington Commanders",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-15",
+          "player_name": "Jaylin Lane",
+          "team": "Washington Commanders",
+          "variation": "Blue",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-14",
+          "player_name": "Jacory Croskey-Merritt",
+          "team": "Washington Commanders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-15",
+          "player_name": "Jaylin Lane",
+          "team": "Washington Commanders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-14",
+          "player_name": "Jacory Croskey-Merritt",
+          "team": "Washington Commanders",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-15",
+          "player_name": "Jaylin Lane",
+          "team": "Washington Commanders",
+          "variation": "Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-14",
+          "player_name": "Jacory Croskey-Merritt",
+          "team": "Washington Commanders",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "DRH-15",
+          "player_name": "Jaylin Lane",
+          "team": "Washington Commanders",
+          "variation": "Red",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Donruss"
+    }
+  ]
+}

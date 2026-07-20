@@ -4,6 +4,7 @@ import LegalShell from '@/components/LegalShell'
 export const metadata: Metadata = {
   title: 'Mentions légales',
   description: 'Mentions légales du site Memorabilius.',
+  robots: { index: false, follow: false },
 }
 
 export default function MentionsLegalesPage() {

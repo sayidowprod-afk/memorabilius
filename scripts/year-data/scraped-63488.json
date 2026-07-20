@@ -1,0 +1,95 @@
+{
+  "year": 2010,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 63488,
+        "name": "2010 Topps Attax"
+      },
+      "unique": [
+        {
+          "card_number": "7",
+          "player_name": "C.J. Spiller",
+          "team": "Buffalo Bills",
+          "variation": "Signed Stars Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Jimmy Clausen",
+          "team": "Carolina Panthers",
+          "variation": "Signed Stars Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Colt McCoy",
+          "team": "Cleveland Browns",
+          "variation": "Signed Stars Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Dez Bryant",
+          "team": "Dallas Cowboys",
+          "variation": "Signed Stars Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Tim Tebow",
+          "team": "Denver Broncos",
+          "variation": "Signed Stars Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Demaryius Thomas",
+          "team": "Denver Broncos",
+          "variation": "Signed Stars Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Jahvid Best",
+          "team": "Detroit Lions",
+          "variation": "Signed Stars Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Ryan Mathews",
+          "team": "San Diego Chargers",
+          "variation": "Signed Stars Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Golden Tate",
+          "team": "Seattle Seahawks",
+          "variation": "Signed Stars Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Sam Bradford",
+          "team": "St. Louis Rams",
+          "variation": "Signed Stars Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

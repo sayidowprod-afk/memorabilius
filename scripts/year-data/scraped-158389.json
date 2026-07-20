@@ -1,0 +1,591 @@
+{
+  "year": 2017,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 158389,
+        "name": "2017 Panini Eternal"
+      },
+      "unique": [
+        {
+          "card_number": "PE-BS12",
+          "player_name": "Bruce Smith",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM3",
+          "player_name": "Tony Dorsett",
+          "team": "Dallas Cowboys",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM10",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM3",
+          "player_name": "Tony Dorsett",
+          "team": "Dallas Cowboys",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM10",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM3",
+          "player_name": "Tony Dorsett",
+          "team": "Dallas Cowboys",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM10",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-BA17",
+          "player_name": "Barry Sanders",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM13",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM13",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM13",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM2",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM2",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM2",
+          "player_name": "Earl Campbell",
+          "team": "Houston Oilers",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM6",
+          "player_name": "Eric Dickerson",
+          "team": "Indianapolis Colts",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM12",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM6",
+          "player_name": "Eric Dickerson",
+          "team": "Indianapolis Colts",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM12",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM6",
+          "player_name": "Eric Dickerson",
+          "team": "Indianapolis Colts",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM12",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM9",
+          "player_name": "Joe Montana",
+          "team": "Kansas City Chiefs",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM9",
+          "player_name": "Joe Montana",
+          "team": "Kansas City Chiefs",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM9",
+          "player_name": "Joe Montana",
+          "team": "Kansas City Chiefs",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM5",
+          "player_name": "Bo Jackson",
+          "team": "Los Angeles Raiders",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM5",
+          "player_name": "Bo Jackson",
+          "team": "Los Angeles Raiders",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM5",
+          "player_name": "Bo Jackson",
+          "team": "Los Angeles Raiders",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-DM15",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM4",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM4",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM4",
+          "player_name": "Dan Marino",
+          "team": "Miami Dolphins",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM11",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM11",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM11",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM16",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM16",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM16",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-SB1",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-SB2",
+          "player_name": "Stephen Gostkowski",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-SB3",
+          "player_name": "Malcolm Mitchell",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-SB4",
+          "player_name": "Chris Hogan",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-SB5",
+          "player_name": "Julian Edelman",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-SB6",
+          "player_name": "James White",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-SB7",
+          "player_name": "Dont'a Hightower",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-SB8",
+          "player_name": "Trey Flowers",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-SB9",
+          "player_name": "Danny Amendola",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-SB10",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-SB1",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-SB2",
+          "player_name": "Stephen Gostkowski",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-SB3",
+          "player_name": "Malcolm Mitchell",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-SB4",
+          "player_name": "Chris Hogan",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-SB5",
+          "player_name": "Julian Edelman",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-SB6",
+          "player_name": "James White",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-SB7",
+          "player_name": "Dont'a Hightower",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-SB8",
+          "player_name": "Trey Flowers",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-SB9",
+          "player_name": "Danny Amendola",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-SB10",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Super Bowl Stubs Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM14",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM14",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM14",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM1",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM1",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM1",
+          "player_name": "Joe Namath",
+          "team": "New York Jets",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM15",
+          "player_name": "Michael Vick",
+          "team": "Philadelphia Eagles",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM15",
+          "player_name": "Michael Vick",
+          "team": "Philadelphia Eagles",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM15",
+          "player_name": "Michael Vick",
+          "team": "Philadelphia Eagles",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-JR10",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM7",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM8",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Monday Night Memories",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "PE-MM7",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM8",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Monday Night Memories Black",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM7",
+          "player_name": "Steve Young",
+          "team": "San Francisco 49ers",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "PE-MM8",
+          "player_name": "Jerry Rice",
+          "team": "San Francisco 49ers",
+          "variation": "Monday Night Memories Green",
+          "is_rc": false,
+          "is_auto": true
+        }
+      ],
+      "brand": "Panini"
+    }
+  ]
+}

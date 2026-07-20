@@ -4,9 +4,10 @@ import { useState } from 'react'
 interface Props {
   url: string
   title: string
+  compact?: boolean
 }
 
-export default function ShareButton({ url, title }: Props) {
+export default function ShareButton({ url, title, compact }: Props) {
   const [showModal, setShowModal] = useState(false)
   const [copied, setCopied] = useState(false)
 
@@ -31,10 +32,10 @@ export default function ShareButton({ url, title }: Props) {
     <>
       <button onClick={share} style={{
         background: 'none', border: '1px solid #ddd', borderRadius: 8,
-        padding: '6px 12px', cursor: 'pointer', fontSize: 13, fontWeight: 700,
+        padding: compact ? '10px 10px' : '6px 12px', cursor: 'pointer', fontSize: compact ? 16 : 13, fontWeight: 700,
         color: '#666', display: 'flex', alignItems: 'center', gap: 6,
       }}>
-        🔗 Partager
+        🔗{!compact && ' Partager'}
       </button>
 
       {showModal && (

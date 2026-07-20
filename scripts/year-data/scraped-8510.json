@@ -1,0 +1,6063 @@
+{
+  "year": 2008,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 8510,
+        "name": "2008 Upper Deck"
+      },
+      "unique": [
+        {
+          "card_number": "1",
+          "player_name": "Edgerrin James",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Matt Leinart",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Larry Fitzgerald",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Anquan Boldin",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Antrel Rolle",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Kurt Warner",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "207",
+          "player_name": "Anthony Morelli",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "214",
+          "player_name": "Calais Campbell",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "228",
+          "player_name": "Dennis Keyes",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "310",
+          "player_name": "Early Doucet",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "319",
+          "player_name": "Ali Highsmith",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Calais Campbell",
+          "team": "Arizona Cardinals",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "5",
+          "player_name": "Calais Campbell",
+          "team": "Arizona Cardinals",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "207",
+          "player_name": "Anthony Morelli",
+          "team": "Arizona Cardinals",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "214",
+          "player_name": "Calais Campbell",
+          "team": "Arizona Cardinals",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "228",
+          "player_name": "Dennis Keyes",
+          "team": "Arizona Cardinals",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "310",
+          "player_name": "Early Doucet",
+          "team": "Arizona Cardinals",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "319",
+          "player_name": "Ali Highsmith",
+          "team": "Arizona Cardinals",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDRJ-ED",
+          "player_name": "Early Doucet",
+          "team": "Arizona Cardinals",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-ED",
+          "player_name": "Early Doucet",
+          "team": "Arizona Cardinals",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Joe Horn",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Jerious Norwood",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Michael Jenkins",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "217",
+          "player_name": "Chevis Jackson",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "237",
+          "player_name": "Curtis Lofton",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "241",
+          "player_name": "Harry Douglas",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "267",
+          "player_name": "Thomas DeCoud",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "293",
+          "player_name": "Thomas Brown",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "305",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "314",
+          "player_name": "Sam Baker",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-HD",
+          "player_name": "Harry Douglas",
+          "team": "Atlanta Falcons",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-MR",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "28",
+          "player_name": "Sam Baker",
+          "team": "Atlanta Falcons",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "26",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Sam Baker",
+          "team": "Atlanta Falcons",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-29",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-56",
+          "player_name": "Atlanta Falcons",
+          "team": null,
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "217",
+          "player_name": "Chevis Jackson",
+          "team": "Atlanta Falcons",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "237",
+          "player_name": "Curtis Lofton",
+          "team": "Atlanta Falcons",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "241",
+          "player_name": "Harry Douglas",
+          "team": "Atlanta Falcons",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "267",
+          "player_name": "Thomas DeCoud",
+          "team": "Atlanta Falcons",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "293",
+          "player_name": "Thomas Brown",
+          "team": "Atlanta Falcons",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "305",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "314",
+          "player_name": "Sam Baker",
+          "team": "Atlanta Falcons",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDRJ-MR",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-MR",
+          "player_name": "Matt Ryan",
+          "team": "Atlanta Falcons",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Derrick Mason",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Ed Reed",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Willis McGahee",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Steve McNair",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Todd Heap",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Terrell Suggs",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "205",
+          "player_name": "Allen Patrick",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "251",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "283",
+          "player_name": "Ray Rice",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "294",
+          "player_name": "Tom Zbikowski",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-JF",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-RR",
+          "player_name": "Ray Rice",
+          "team": "Baltimore Ravens",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "16",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-10",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-27",
+          "player_name": "Ray Rice",
+          "team": "Baltimore Ravens",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-56",
+          "player_name": "Baltimore Ravens",
+          "team": null,
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "205",
+          "player_name": "Allen Patrick",
+          "team": "Baltimore Ravens",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "251",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "283",
+          "player_name": "Ray Rice",
+          "team": "Baltimore Ravens",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "294",
+          "player_name": "Tom Zbikowski",
+          "team": "Baltimore Ravens",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-WM",
+          "player_name": "Willis McGahee",
+          "team": "Baltimore Ravens",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-WM",
+          "player_name": "Willis McGahee",
+          "team": "Baltimore Ravens",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-RL",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-RL",
+          "player_name": "Ray Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-JF",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-RR",
+          "player_name": "Ray Rice",
+          "team": "Baltimore Ravens",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-JF",
+          "player_name": "Joe Flacco",
+          "team": "Baltimore Ravens",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-RR",
+          "player_name": "Ray Rice",
+          "team": "Baltimore Ravens",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Trent Edwards",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Roscoe Parrish",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Marshawn Lynch",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "218",
+          "player_name": "Chris Ellis",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "231",
+          "player_name": "Xavier Omon",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "248",
+          "player_name": "James Hardy",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-JH",
+          "player_name": "James Hardy",
+          "team": "Buffalo Bills",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Chris Ellis",
+          "team": "Buffalo Bills",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "6",
+          "player_name": "Chris Ellis",
+          "team": "Buffalo Bills",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-12",
+          "player_name": "James Hardy",
+          "team": "Buffalo Bills",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-52",
+          "player_name": "Leodis McKelvin",
+          "team": "Buffalo Bills",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "218",
+          "player_name": "Chris Ellis",
+          "team": "Buffalo Bills",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "231",
+          "player_name": "Xavier Omon",
+          "team": "Buffalo Bills",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "248",
+          "player_name": "James Hardy",
+          "team": "Buffalo Bills",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDSS-ML",
+          "player_name": "Marshawn Lynch",
+          "team": "Buffalo Bills",
+          "variation": "Superstar",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDSS-ML",
+          "player_name": "Marshawn Lynch",
+          "team": "Buffalo Bills",
+          "variation": "Superstar Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-ML",
+          "player_name": "Marshawn Lynch",
+          "team": "Buffalo Bills",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-ML",
+          "player_name": "Marshawn Lynch",
+          "team": "Buffalo Bills",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-LE",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-TE",
+          "player_name": "Trent Edwards",
+          "team": "Buffalo Bills",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-LE",
+          "player_name": "Lee Evans",
+          "team": "Buffalo Bills",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-TE",
+          "player_name": "Trent Edwards",
+          "team": "Buffalo Bills",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "DeAngelo Williams",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Jake Delhomme",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "D.J. Hackett",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "307",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "320",
+          "player_name": "Dan Connor",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-ST",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Dan Connor",
+          "team": "Carolina Panthers",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "9",
+          "player_name": "Dan Connor",
+          "team": "Carolina Panthers",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-33",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "307",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "320",
+          "player_name": "Dan Connor",
+          "team": "Carolina Panthers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDGJ-SS",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-SS",
+          "player_name": "Steve Smith",
+          "team": "Carolina Panthers",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-JS",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-JS",
+          "player_name": "Jonathan Stewart",
+          "team": "Carolina Panthers",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Lance Briggs",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Rex Grossman",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Devin Hester",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Cedric Benson",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Greg Olsen",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "197",
+          "player_name": "Brandon Lloyd",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "215",
+          "player_name": "Chris Williams",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "221",
+          "player_name": "Craig Steltz",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "234",
+          "player_name": "Earl Bennett",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "262",
+          "player_name": "Kellen Davis",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "269",
+          "player_name": "Marcus Monk",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "275",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-MF",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-11",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "215",
+          "player_name": "Chris Williams",
+          "team": "Chicago Bears",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "221",
+          "player_name": "Craig Steltz",
+          "team": "Chicago Bears",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "262",
+          "player_name": "Kellen Davis",
+          "team": "Chicago Bears",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "269",
+          "player_name": "Marcus Monk",
+          "team": "Chicago Bears",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "275",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-CB",
+          "player_name": "Cedric Benson",
+          "team": "Chicago Bears",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-CB",
+          "player_name": "Cedric Benson",
+          "team": "Chicago Bears",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-BU",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-BU",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-EB",
+          "player_name": "Earl Bennett",
+          "team": "Chicago Bears",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-MF",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-EB",
+          "player_name": "Earl Bennett",
+          "team": "Chicago Bears",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-MF",
+          "player_name": "Matt Forte",
+          "team": "Chicago Bears",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Stacy Andrews",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "T.J. Houshmandzadeh",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Rudi Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "206",
+          "player_name": "Andre Caldwell",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "271",
+          "player_name": "Mario Urrutia",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "295",
+          "player_name": "Simeon Castille",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "322",
+          "player_name": "Keith Rivers",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-AC",
+          "player_name": "Andre Caldwell",
+          "team": "Cincinnati Bengals",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-JS",
+          "player_name": "Jerome Simpson",
+          "team": "Cincinnati Bengals",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Keith Rivers",
+          "team": "Cincinnati Bengals",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "24",
+          "player_name": "Mario Urrutia",
+          "team": "Cincinnati Bengals",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "19",
+          "player_name": "Keith Rivers",
+          "team": "Cincinnati Bengals",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Mario Urrutia",
+          "team": "Cincinnati Bengals",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-30",
+          "player_name": "Jerome Simpson",
+          "team": "Cincinnati Bengals",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-54",
+          "player_name": "Keith Rivers",
+          "team": "Cincinnati Bengals",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "206",
+          "player_name": "Andre Caldwell",
+          "team": "Cincinnati Bengals",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "271",
+          "player_name": "Mario Urrutia",
+          "team": "Cincinnati Bengals",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "322",
+          "player_name": "Keith Rivers",
+          "team": "Cincinnati Bengals",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-CJ",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-CJ",
+          "player_name": "Chad Johnson",
+          "team": "Cincinnati Bengals",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-CP",
+          "player_name": "Carson Palmer",
+          "team": "Cincinnati Bengals",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Kamerion Wimbley",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Joshua Cribbs",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Jamal Lewis",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Kellen Winslow Jr.",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Braylon Edwards",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Eric Wright",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Donte Stallworth",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "273",
+          "player_name": "Martin Rucker",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "277",
+          "player_name": "Paul Hubbard",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Martin Rucker",
+          "team": "Cleveland Browns",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "25",
+          "player_name": "Martin Rucker",
+          "team": "Cleveland Browns",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "273",
+          "player_name": "Martin Rucker",
+          "team": "Cleveland Browns",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "277",
+          "player_name": "Paul Hubbard",
+          "team": "Cleveland Browns",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-BE",
+          "player_name": "Braylon Edwards",
+          "team": "Cleveland Browns",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-BE",
+          "player_name": "Braylon Edwards",
+          "team": "Cleveland Browns",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-BE",
+          "player_name": "Braylon Edwards",
+          "team": "Cleveland Browns",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-BE",
+          "player_name": "Braylon Edwards",
+          "team": "Cleveland Browns",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Anthony Henry",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Roy Williams",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Jason Witten",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "DeMarcus Ware",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Terrell Owens",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Greg Ellis",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Patrick Crayton",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Zach Thomas",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "238",
+          "player_name": "Felix Jones",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "264",
+          "player_name": "Keon Lattimore",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "272",
+          "player_name": "Martellus Bennett",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "291",
+          "player_name": "Tashard Choice",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "324",
+          "player_name": "Mike Jenkins",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-FJ",
+          "player_name": "Felix Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-17",
+          "player_name": "Felix Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-37",
+          "player_name": "Martellus Bennett",
+          "team": "Dallas Cowboys",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-41",
+          "player_name": "Tashard Choice",
+          "team": "Dallas Cowboys",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-58",
+          "player_name": "Dallas Cowboys",
+          "team": null,
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "238",
+          "player_name": "Felix Jones",
+          "team": "Dallas Cowboys",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "264",
+          "player_name": "Keon Lattimore",
+          "team": "Dallas Cowboys",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "272",
+          "player_name": "Martellus Bennett",
+          "team": "Dallas Cowboys",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "291",
+          "player_name": "Tashard Choice",
+          "team": "Dallas Cowboys",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "324",
+          "player_name": "Mike Jenkins",
+          "team": "Dallas Cowboys",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDSS-TR",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "Superstar",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDSS-TR",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "Superstar Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-MB",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-TO",
+          "player_name": "Terrell Owens",
+          "team": "Dallas Cowboys",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-MB",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-TO",
+          "player_name": "Terrell Owens",
+          "team": "Dallas Cowboys",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-MB",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-TR",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-MB",
+          "player_name": "Marion Barber",
+          "team": "Dallas Cowboys",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-TR",
+          "player_name": "Tony Romo",
+          "team": "Dallas Cowboys",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-FJ",
+          "player_name": "Felix Jones",
+          "team": "Dallas Cowboys",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-FJ",
+          "player_name": "Felix Jones",
+          "team": "Dallas Cowboys",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "John Lynch",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Brandon Marshall",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Travis Henry",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Jay Cutler",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Dre' Bly",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Champ Bailey",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "239",
+          "player_name": "Josh Barrett",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "284",
+          "player_name": "Ryan Clady",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "286",
+          "player_name": "Ryan Torain",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "287",
+          "player_name": "Spencer Larsen",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-ER",
+          "player_name": "Eddie Royal",
+          "team": "Denver Broncos",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-28",
+          "player_name": "Eddie Royal",
+          "team": "Denver Broncos",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "239",
+          "player_name": "Josh Barrett",
+          "team": "Denver Broncos",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "284",
+          "player_name": "Ryan Clady",
+          "team": "Denver Broncos",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "286",
+          "player_name": "Ryan Torain",
+          "team": "Denver Broncos",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "287",
+          "player_name": "Spencer Larsen",
+          "team": "Denver Broncos",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-JC",
+          "player_name": "Jay Cutler",
+          "team": "Denver Broncos",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-JC",
+          "player_name": "Jay Cutler",
+          "team": "Denver Broncos",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Tatum Bell",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Calvin Johnson",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Jon Kitna",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Roy Williams",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Ernie Sims",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "202",
+          "player_name": "Jerome Felton",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "211",
+          "player_name": "Caleb Campbell",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "240",
+          "player_name": "Gosder Cherilus",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "256",
+          "player_name": "Jordon Dizon",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "266",
+          "player_name": "Kevin Smith",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-KS",
+          "player_name": "Kevin Smith",
+          "team": "Detroit Lions",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-32",
+          "player_name": "Kevin Smith",
+          "team": "Detroit Lions",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-44",
+          "player_name": "Jordon Dizon",
+          "team": "Detroit Lions",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "202",
+          "player_name": "Jerome Felton",
+          "team": "Detroit Lions",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "240",
+          "player_name": "Gosder Cherilus",
+          "team": "Detroit Lions",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "256",
+          "player_name": "Jordon Dizon",
+          "team": "Detroit Lions",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "266",
+          "player_name": "Kevin Smith",
+          "team": "Detroit Lions",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-CJ",
+          "player_name": "Calvin Johnson",
+          "team": "Detroit Lions",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-CJ",
+          "player_name": "Calvin Johnson",
+          "team": "Detroit Lions",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Aaron Kampman",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Charles Woodson",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Donald Driver",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "A.J. Hawk",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "249",
+          "player_name": "Jermichael Finley",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "257",
+          "player_name": "Jordy Nelson",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "274",
+          "player_name": "Matt Flynn",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "302",
+          "player_name": "Brian Brohm",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-BB",
+          "player_name": "Brian Brohm",
+          "team": "Green Bay Packers",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-JN",
+          "player_name": "Jordy Nelson",
+          "team": "Green Bay Packers",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Brian Brohm",
+          "team": "Green Bay Packers",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jordy Nelson",
+          "team": "Green Bay Packers",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Brian Brohm",
+          "team": "Green Bay Packers",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jordy Nelson",
+          "team": "Green Bay Packers",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-25",
+          "player_name": "Jordy Nelson",
+          "team": "Green Bay Packers",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-59",
+          "player_name": "Green Bay Packers",
+          "team": null,
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "249",
+          "player_name": "Jermichael Finley",
+          "team": "Green Bay Packers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "257",
+          "player_name": "Jordy Nelson",
+          "team": "Green Bay Packers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "274",
+          "player_name": "Matt Flynn",
+          "team": "Green Bay Packers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "302",
+          "player_name": "Brian Brohm",
+          "team": "Green Bay Packers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-AK",
+          "player_name": "Aaron Kampman",
+          "team": "Green Bay Packers",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-AK",
+          "player_name": "Aaron Kampman",
+          "team": "Green Bay Packers",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-GJ",
+          "player_name": "Greg Jennings",
+          "team": "Green Bay Packers",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-BB",
+          "player_name": "Brian Brohm",
+          "team": "Green Bay Packers",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-JN",
+          "player_name": "Jordy Nelson",
+          "team": "Green Bay Packers",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-BB",
+          "player_name": "Brian Brohm",
+          "team": "Green Bay Packers",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-JN",
+          "player_name": "Jordy Nelson",
+          "team": "Green Bay Packers",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Ahman Green",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "DeMeco Ryans",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Andre Johnson",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Mario Williams",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Ron Dayne",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "204",
+          "player_name": "Alex Brink",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "210",
+          "player_name": "Ben Moffitt",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "285",
+          "player_name": "Ryan Grice-Mullen",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "290",
+          "player_name": "Frank Okam",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "299",
+          "player_name": "Xavier Adibi",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-SS",
+          "player_name": "Steve Slaton",
+          "team": "Houston Texans",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Alex Brink",
+          "team": "Houston Texans",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Alex Brink",
+          "team": "Houston Texans",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-31",
+          "player_name": "Steve Slaton",
+          "team": "Houston Texans",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "204",
+          "player_name": "Alex Brink",
+          "team": "Houston Texans",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "210",
+          "player_name": "Ben Moffitt",
+          "team": "Houston Texans",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "290",
+          "player_name": "Frank Okam",
+          "team": "Houston Texans",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "299",
+          "player_name": "Xavier Adibi",
+          "team": "Houston Texans",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDRJ-SS",
+          "player_name": "Steve Slaton",
+          "team": "Houston Texans",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-SS",
+          "player_name": "Steve Slaton",
+          "team": "Houston Texans",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Dwight Freeney",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "Dallas Clark",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Reggie Wayne",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Bob Sanders",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "246",
+          "player_name": "Jacob Tamme",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "279",
+          "player_name": "Philip Wheeler",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "308",
+          "player_name": "Mike Hart",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Mike Hart",
+          "team": "Indianapolis Colts",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "27",
+          "player_name": "Mike Hart",
+          "team": "Indianapolis Colts",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-46",
+          "player_name": "Mike Hart",
+          "team": "Indianapolis Colts",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "246",
+          "player_name": "Jacob Tamme",
+          "team": "Indianapolis Colts",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "279",
+          "player_name": "Philip Wheeler",
+          "team": "Indianapolis Colts",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "308",
+          "player_name": "Mike Hart",
+          "team": "Indianapolis Colts",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDSS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Superstar",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDSS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Superstar Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-JA",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-JA",
+          "player_name": "Joseph Addai",
+          "team": "Indianapolis Colts",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Matt Jones",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "David Garrard",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Reggie Williams",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Maurice Jones-Drew",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Reggie Nelson",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "223",
+          "player_name": "Chauncey Washington",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "229",
+          "player_name": "Derrick Harvey",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "278",
+          "player_name": "Paul Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "280",
+          "player_name": "Quentin Groves",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-47",
+          "player_name": "Derrick Harvey",
+          "team": "Jacksonville Jaguars",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "229",
+          "player_name": "Derrick Harvey",
+          "team": "Jacksonville Jaguars",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "278",
+          "player_name": "Paul Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "280",
+          "player_name": "Quentin Groves",
+          "team": "Jacksonville Jaguars",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-DG",
+          "player_name": "David Garrard",
+          "team": "Jacksonville Jaguars",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-DG",
+          "player_name": "David Garrard",
+          "team": "Jacksonville Jaguars",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-DG",
+          "player_name": "David Garrard",
+          "team": "Jacksonville Jaguars",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-FT",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-DG",
+          "player_name": "David Garrard",
+          "team": "Jacksonville Jaguars",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-FT",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Dwayne Bowe",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Samie Parker",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Derrick Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Larry Johnson",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Brodie Croyle",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Tony Gonzalez",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "201",
+          "player_name": "Will Franklin",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "247",
+          "player_name": "Jamaal Charles",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "260",
+          "player_name": "Kalvin McRae",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "315",
+          "player_name": "Glenn Dorsey",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-JC",
+          "player_name": "Jamaal Charles",
+          "team": "Kansas City Chiefs",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Glenn Dorsey",
+          "team": "Kansas City Chiefs",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "12",
+          "player_name": "Glenn Dorsey",
+          "team": "Kansas City Chiefs",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "201",
+          "player_name": "Will Franklin",
+          "team": "Kansas City Chiefs",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "247",
+          "player_name": "Jamaal Charles",
+          "team": "Kansas City Chiefs",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "260",
+          "player_name": "Kalvin McRae",
+          "team": "Kansas City Chiefs",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "315",
+          "player_name": "Glenn Dorsey",
+          "team": "Kansas City Chiefs",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-DB",
+          "player_name": "Dwayne Bowe",
+          "team": "Kansas City Chiefs",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-DB",
+          "player_name": "Dwayne Bowe",
+          "team": "Kansas City Chiefs",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-GD",
+          "player_name": "Glenn Dorsey",
+          "team": "Kansas City Chiefs",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-GD",
+          "player_name": "Glenn Dorsey",
+          "team": "Kansas City Chiefs",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Ernest Wilford",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Ronnie Brown",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Jason Taylor",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Ted Ginn Jr.",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "John Beck",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "216",
+          "player_name": "Chad Henne",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "225",
+          "player_name": "Davone Bess",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "313",
+          "player_name": "Jake Long",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-CH",
+          "player_name": "Chad Henne",
+          "team": "Miami Dolphins",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-JL",
+          "player_name": "Jake Long",
+          "team": "Miami Dolphins",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jake Long",
+          "team": "Miami Dolphins",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "13",
+          "player_name": "Jake Long",
+          "team": "Miami Dolphins",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-13",
+          "player_name": "Chad Henne",
+          "team": "Miami Dolphins",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-21",
+          "player_name": "Jake Long",
+          "team": "Miami Dolphins",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-57",
+          "player_name": "Miami Dolphins",
+          "team": null,
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "216",
+          "player_name": "Chad Henne",
+          "team": "Miami Dolphins",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "225",
+          "player_name": "Davone Bess",
+          "team": "Miami Dolphins",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "313",
+          "player_name": "Jake Long",
+          "team": "Miami Dolphins",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDRJ-CH",
+          "player_name": "Chad Henne",
+          "team": "Miami Dolphins",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-JL",
+          "player_name": "Jake Long",
+          "team": "Miami Dolphins",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-CH",
+          "player_name": "Chad Henne",
+          "team": "Miami Dolphins",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-JL",
+          "player_name": "Jake Long",
+          "team": "Miami Dolphins",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Bernard Berrian",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Jared Allen",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Antoine Winfield",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Sidney Rice",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Chester Taylor",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "224",
+          "player_name": "Darius Reynaud",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "236",
+          "player_name": "Erin Henderson",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "243",
+          "player_name": "J Leman",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "253",
+          "player_name": "John David Booty",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-JB",
+          "player_name": "John David Booty",
+          "team": "Minnesota Vikings",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "J Leman",
+          "team": "Minnesota Vikings",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "15",
+          "player_name": "J Leman",
+          "team": "Minnesota Vikings",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "224",
+          "player_name": "Darius Reynaud",
+          "team": "Minnesota Vikings",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "236",
+          "player_name": "Erin Henderson",
+          "team": "Minnesota Vikings",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "243",
+          "player_name": "J Leman",
+          "team": "Minnesota Vikings",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "253",
+          "player_name": "John David Booty",
+          "team": "Minnesota Vikings",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDSS-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Superstar",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDSS-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Superstar Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-AP",
+          "player_name": "Adrian Peterson",
+          "team": "Minnesota Vikings",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-SR",
+          "player_name": "Sidney Rice",
+          "team": "Minnesota Vikings",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-SR",
+          "player_name": "Sidney Rice",
+          "team": "Minnesota Vikings",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Wes Welker",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Rodney Harrison",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Randy Moss",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Laurence Maroney",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Ben Watson",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Tedy Bruschi",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Mike Vrabel",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "250",
+          "player_name": "Jerod Mayo",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "265",
+          "player_name": "Kevin O'Connell",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "289",
+          "player_name": "Shawn Crable",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-KO",
+          "player_name": "Kevin O'Connell",
+          "team": "New England Patriots",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Shawn Crable",
+          "team": "New England Patriots",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "14",
+          "player_name": "Shawn Crable",
+          "team": "New England Patriots",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-26",
+          "player_name": "Kevin O'Connell",
+          "team": "New England Patriots",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-51",
+          "player_name": "Jerod Mayo",
+          "team": "New England Patriots",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "265",
+          "player_name": "Kevin O'Connell",
+          "team": "New England Patriots",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "289",
+          "player_name": "Shawn Crable",
+          "team": "New England Patriots",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDSS-RM",
+          "player_name": "Randy Moss",
+          "team": "New England Patriots",
+          "variation": "Superstar",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDSS-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Superstar",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDSS-RM",
+          "player_name": "Randy Moss",
+          "team": "New England Patriots",
+          "variation": "Superstar Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDSS-TB",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Superstar Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-TB",
+          "player_name": "Tedy Bruschi",
+          "team": "New England Patriots",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-TB",
+          "player_name": "Tedy Bruschi",
+          "team": "New England Patriots",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-KO",
+          "player_name": "Kevin O'Connell",
+          "team": "New England Patriots",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-KO",
+          "player_name": "Kevin O'Connell",
+          "team": "New England Patriots",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Charles Grant",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Marques Colston",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Mike McKenzie",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Jonathan Vilma",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "203",
+          "player_name": "Adrian Arrington",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "212",
+          "player_name": "T.C. Ostrander",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "227",
+          "player_name": "DeMario Pressley",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "316",
+          "player_name": "Sedrick Ellis",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Sedrick Ellis",
+          "team": "New Orleans Saints",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "29",
+          "player_name": "Sedrick Ellis",
+          "team": "New Orleans Saints",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "203",
+          "player_name": "Adrian Arrington",
+          "team": "New Orleans Saints",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "227",
+          "player_name": "DeMario Pressley",
+          "team": "New Orleans Saints",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "316",
+          "player_name": "Sedrick Ellis",
+          "team": "New Orleans Saints",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-RB",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-RB",
+          "player_name": "Reggie Bush",
+          "team": "New Orleans Saints",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-DB",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-DB",
+          "player_name": "Drew Brees",
+          "team": "New Orleans Saints",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Amani Toomer",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Michael Strahan",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Plaxico Burress",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Osi Umenyiora",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Brandon Jacobs",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Antonio Pierce",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "222",
+          "player_name": "DJ Hall",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "254",
+          "player_name": "Jonathan Goff",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "270",
+          "player_name": "Mario Manningham",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "292",
+          "player_name": "Terrell Thomas",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "301",
+          "player_name": "Andre Woodson",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "321",
+          "player_name": "Kenny Phillips",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-MM",
+          "player_name": "Mario Manningham",
+          "team": "New York Giants",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Andre Woodson",
+          "team": "New York Giants",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "20",
+          "player_name": "Kenny Phillips",
+          "team": "New York Giants",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mario Manningham",
+          "team": "New York Giants",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "2",
+          "player_name": "Andre Woodson",
+          "team": "New York Giants",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Kenny Phillips",
+          "team": "New York Giants",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Mario Manningham",
+          "team": "New York Giants",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-22",
+          "player_name": "Mario Manningham",
+          "team": "New York Giants",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-53",
+          "player_name": "Kenny Phillips",
+          "team": "New York Giants",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-55",
+          "player_name": "Andre Woodson",
+          "team": "New York Giants",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "222",
+          "player_name": "DJ Hall",
+          "team": "New York Giants",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "270",
+          "player_name": "Mario Manningham",
+          "team": "New York Giants",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "292",
+          "player_name": "Terrell Thomas",
+          "team": "New York Giants",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "301",
+          "player_name": "Andre Woodson",
+          "team": "New York Giants",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "321",
+          "player_name": "Kenny Phillips",
+          "team": "New York Giants",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDSS-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Superstar",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDSS-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Superstar Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-BJ",
+          "player_name": "Brandon Jacobs",
+          "team": "New York Giants",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-BJ",
+          "player_name": "Brandon Jacobs",
+          "team": "New York Giants",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-EM",
+          "player_name": "Eli Manning",
+          "team": "New York Giants",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-MM",
+          "player_name": "Mario Manningham",
+          "team": "New York Giants",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-MM",
+          "player_name": "Mario Manningham",
+          "team": "New York Giants",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Bubba Franks",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Jerricho Cotchery",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Kellen Clemens",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Leon Washington",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Thomas Jones",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "233",
+          "player_name": "Dustin Keller",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "235",
+          "player_name": "Erik Ainge",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "297",
+          "player_name": "Vernon Gholston",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-DK",
+          "player_name": "Dustin Keller",
+          "team": "New York Jets",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-18",
+          "player_name": "Dustin Keller",
+          "team": "New York Jets",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-36",
+          "player_name": "Erik Ainge",
+          "team": "New York Jets",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-45",
+          "player_name": "Vernon Gholston",
+          "team": "New York Jets",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "233",
+          "player_name": "Dustin Keller",
+          "team": "New York Jets",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "235",
+          "player_name": "Erik Ainge",
+          "team": "New York Jets",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "297",
+          "player_name": "Vernon Gholston",
+          "team": "New York Jets",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDGJ-JV",
+          "player_name": "Jonathan Vilma",
+          "team": "New York Jets",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-JV",
+          "player_name": "Jonathan Vilma",
+          "team": "New York Jets",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-DK",
+          "player_name": "Dustin Keller",
+          "team": "New York Jets",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-DK",
+          "player_name": "Dustin Keller",
+          "team": "New York Jets",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Javon Walker",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Kirk Morrison",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Nnamdi Asomugha",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Derrick Burgess",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Justin Fargas",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Ronald Curry",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "JaMarcus Russell",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "306",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-DM",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "10",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-23",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-58",
+          "player_name": "Oakland Raiders",
+          "team": null,
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "306",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDRJ-DM",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-DM",
+          "player_name": "Darren McFadden",
+          "team": "Oakland Raiders",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Brian Dawkins",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "Reggie Brown",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "Shawn Andrews",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "244",
+          "player_name": "Jack Ikegwuonu",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "281",
+          "player_name": "Quintin Demps",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "296",
+          "player_name": "Trevor Laws",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "309",
+          "player_name": "DeSean Jackson",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-DJ",
+          "player_name": "DeSean Jackson",
+          "team": "Philadelphia Eagles",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "DeSean Jackson",
+          "team": "Philadelphia Eagles",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "11",
+          "player_name": "DeSean Jackson",
+          "team": "Philadelphia Eagles",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-14",
+          "player_name": "DeSean Jackson",
+          "team": "Philadelphia Eagles",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "244",
+          "player_name": "Jack Ikegwuonu",
+          "team": "Philadelphia Eagles",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "281",
+          "player_name": "Quintin Demps",
+          "team": "Philadelphia Eagles",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "296",
+          "player_name": "Trevor Laws",
+          "team": "Philadelphia Eagles",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "309",
+          "player_name": "DeSean Jackson",
+          "team": "Philadelphia Eagles",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDGJ-BD",
+          "player_name": "Brian Dawkins",
+          "team": "Philadelphia Eagles",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-BD",
+          "player_name": "Brian Dawkins",
+          "team": "Philadelphia Eagles",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-JA",
+          "player_name": "DeSean Jackson",
+          "team": "Philadelphia Eagles",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-JA",
+          "player_name": "DeSean Jackson",
+          "team": "Philadelphia Eagles",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "Santonio Holmes",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Willie Parker",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "Troy Polamalu",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "James Farrior",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Heath Miller",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "213",
+          "player_name": "Bruce Davis",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "282",
+          "player_name": "Rashard Mendenhall",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "304",
+          "player_name": "Dennis Dixon",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "312",
+          "player_name": "Limas Sweed",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-LS",
+          "player_name": "Limas Sweed",
+          "team": "Pittsburgh Steelers",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-RM",
+          "player_name": "Rashard Mendenhall",
+          "team": "Pittsburgh Steelers",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Limas Sweed",
+          "team": "Pittsburgh Steelers",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "21",
+          "player_name": "Limas Sweed",
+          "team": "Pittsburgh Steelers",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-24",
+          "player_name": "Rashard Mendenhall",
+          "team": "Pittsburgh Steelers",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-34",
+          "player_name": "Limas Sweed",
+          "team": "Pittsburgh Steelers",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-43",
+          "player_name": "Dennis Dixon",
+          "team": "Pittsburgh Steelers",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-60",
+          "player_name": "Pittsburgh Steelers",
+          "team": null,
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "213",
+          "player_name": "Bruce Davis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "282",
+          "player_name": "Rashard Mendenhall",
+          "team": "Pittsburgh Steelers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "304",
+          "player_name": "Dennis Dixon",
+          "team": "Pittsburgh Steelers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "312",
+          "player_name": "Limas Sweed",
+          "team": "Pittsburgh Steelers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDSS-BR",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Superstar",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDSS-BR",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "Superstar Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-WP",
+          "player_name": "Willie Parker",
+          "team": "Pittsburgh Steelers",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-WP",
+          "player_name": "Willie Parker",
+          "team": "Pittsburgh Steelers",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-BR",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-BR",
+          "player_name": "Ben Roethlisberger",
+          "team": "Pittsburgh Steelers",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-LS",
+          "player_name": "Limas Sweed",
+          "team": "Pittsburgh Steelers",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-LS",
+          "player_name": "Limas Sweed",
+          "team": "Pittsburgh Steelers",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "153",
+          "player_name": "Chris Chambers",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Philip Rivers",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Antonio Gates",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Shawne Merriman",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Antonio Cromartie",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "159",
+          "player_name": "Shaun Phillips",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Jamal Williams",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "208",
+          "player_name": "Antoine Cason",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "226",
+          "player_name": "DeJuan Tribble",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "245",
+          "player_name": "Jacob Hester",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "288",
+          "player_name": "Marcus Thomas",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Antoine Cason",
+          "team": "San Diego Chargers",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "3",
+          "player_name": "Antoine Cason",
+          "team": "San Diego Chargers",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-49",
+          "player_name": "Jacob Hester",
+          "team": "San Diego Chargers",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "208",
+          "player_name": "Antoine Cason",
+          "team": "San Diego Chargers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "226",
+          "player_name": "DeJuan Tribble",
+          "team": "San Diego Chargers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "245",
+          "player_name": "Jacob Hester",
+          "team": "San Diego Chargers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "288",
+          "player_name": "Marcus Thomas",
+          "team": "San Diego Chargers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDSS-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Superstar",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDSS-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Superstar Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-PR",
+          "player_name": "Philip Rivers",
+          "team": "San Diego Chargers",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-PR",
+          "player_name": "Philip Rivers",
+          "team": "San Diego Chargers",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-AC",
+          "player_name": "Antonio Cromartie",
+          "team": "San Diego Chargers",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-SM",
+          "player_name": "Shawne Merriman",
+          "team": "San Diego Chargers",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-AC",
+          "player_name": "Antonio Cromartie",
+          "team": "San Diego Chargers",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-SM",
+          "player_name": "Shawne Merriman",
+          "team": "San Diego Chargers",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "161",
+          "player_name": "Arnaz Battle",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "162",
+          "player_name": "Nate Clements",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Alex Smith",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "Frank Gore",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Vernon Davis",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Patrick Willis",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "179",
+          "player_name": "Isaac Bruce",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "263",
+          "player_name": "Kentwan Balmer",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "263",
+          "player_name": "Kentwan Balmer",
+          "team": "San Francisco 49ers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDGJ-AS",
+          "player_name": "Alex Smith",
+          "team": "San Francisco 49ers",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-AS",
+          "player_name": "Alex Smith",
+          "team": "San Francisco 49ers",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Julius Jones",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Lofa Tatupu",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "168",
+          "player_name": "Patrick Kerney",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "169",
+          "player_name": "Bobby Engram",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Deion Branch",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "252",
+          "player_name": "John Carlson",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "259",
+          "player_name": "Justin Forsett",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "276",
+          "player_name": "Owen Schmitt",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "318",
+          "player_name": "Lawrence Jackson",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "John Carlson",
+          "team": "Seattle Seahawks",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "17",
+          "player_name": "John Carlson",
+          "team": "Seattle Seahawks",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-40",
+          "player_name": "John Carlson",
+          "team": "Seattle Seahawks",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "252",
+          "player_name": "John Carlson",
+          "team": "Seattle Seahawks",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "259",
+          "player_name": "Justin Forsett",
+          "team": "Seattle Seahawks",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "276",
+          "player_name": "Owen Schmitt",
+          "team": "Seattle Seahawks",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "318",
+          "player_name": "Lawrence Jackson",
+          "team": "Seattle Seahawks",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "TC-SA",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Team Colors",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "TC-SA",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": "Team Colors Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-MH",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-MH",
+          "player_name": "Matt Hasselbeck",
+          "team": "Seattle Seahawks",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "174",
+          "player_name": "Leonard Little",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "175",
+          "player_name": "Pisa Tinoisamoa",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Steven Jackson",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "Marc Bulger",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "178",
+          "player_name": "Torry Holt",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "180",
+          "player_name": "Randy McMichael",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "230",
+          "player_name": "Donnie Avery",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "261",
+          "player_name": "Keenan Burton",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "298",
+          "player_name": "Vince Hall",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "300",
+          "player_name": "Yvenson Bernard",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "317",
+          "player_name": "Chris Long",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "323",
+          "player_name": "Justin King",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-DA",
+          "player_name": "Donnie Avery",
+          "team": "St. Louis Rams",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Chris Long",
+          "team": "St. Louis Rams",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "22",
+          "player_name": "Justin King",
+          "team": "St. Louis Rams",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "7",
+          "player_name": "Chris Long",
+          "team": "St. Louis Rams",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Justin King",
+          "team": "St. Louis Rams",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-20",
+          "player_name": "Chris Long",
+          "team": "St. Louis Rams",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-39",
+          "player_name": "Keenan Burton",
+          "team": "St. Louis Rams",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "230",
+          "player_name": "Donnie Avery",
+          "team": "St. Louis Rams",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "261",
+          "player_name": "Keenan Burton",
+          "team": "St. Louis Rams",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "298",
+          "player_name": "Vince Hall",
+          "team": "St. Louis Rams",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "300",
+          "player_name": "Yvenson Bernard",
+          "team": "St. Louis Rams",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "317",
+          "player_name": "Chris Long",
+          "team": "St. Louis Rams",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "323",
+          "player_name": "Justin King",
+          "team": "St. Louis Rams",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDGJ-SJ",
+          "player_name": "Steven Jackson",
+          "team": "St. Louis Rams",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-SJ",
+          "player_name": "Steven Jackson",
+          "team": "St. Louis Rams",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-DA",
+          "player_name": "Donnie Avery",
+          "team": "St. Louis Rams",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-DA",
+          "player_name": "Donnie Avery",
+          "team": "St. Louis Rams",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Warrick Dunn",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "181",
+          "player_name": "Ronde Barber",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "182",
+          "player_name": "Carnell Williams",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "183",
+          "player_name": "Derrick Brooks",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "184",
+          "player_name": "Michael Clayton",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "185",
+          "player_name": "Jeff Garcia",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "186",
+          "player_name": "Joey Galloway",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "187",
+          "player_name": "Gaines Adams",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "209",
+          "player_name": "Aqib Talib",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "220",
+          "player_name": "Cory Boyd",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "232",
+          "player_name": "Dre Moore",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "255",
+          "player_name": "Jonathan Hefney",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "258",
+          "player_name": "Josh Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-JA",
+          "player_name": "Dexter Jackson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-15",
+          "player_name": "Dexter Jackson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-50",
+          "player_name": "Josh Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "209",
+          "player_name": "Aqib Talib",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "220",
+          "player_name": "Cory Boyd",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "232",
+          "player_name": "Dre Moore",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "255",
+          "player_name": "Jonathan Hefney",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "258",
+          "player_name": "Josh Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDGJ-JG",
+          "player_name": "Jeff Garcia",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-JG",
+          "player_name": "Jeff Garcia",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-DJ",
+          "player_name": "Dexter Jackson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-DJ",
+          "player_name": "Dexter Jackson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Alge Crumpler",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "188",
+          "player_name": "Keith Bulluck",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "189",
+          "player_name": "Nick Harper",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "190",
+          "player_name": "David Givens",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "191",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "192",
+          "player_name": "LenDale White",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "193",
+          "player_name": "Eric Moulds",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "219",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "311",
+          "player_name": "Lavelle Hawkins",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "30",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-16",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-48",
+          "player_name": "Lavelle Hawkins",
+          "team": "Tennessee Titans",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "219",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "311",
+          "player_name": "Lavelle Hawkins",
+          "team": "Tennessee Titans",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDGJ-VY",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-VY",
+          "player_name": "Vince Young",
+          "team": "Tennessee Titans",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-CJ",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-CJ",
+          "player_name": "Chris Johnson",
+          "team": "Tennessee Titans",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "194",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "195",
+          "player_name": "Randall Godfrey",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "196",
+          "player_name": "Chris Cooley",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "198",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "199",
+          "player_name": "Santana Moss",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "200",
+          "player_name": "London Fletcher",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "242",
+          "player_name": "Colt Brennan",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "268",
+          "player_name": "Malcolm Kelly",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "303",
+          "player_name": "Devin Thomas",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "325",
+          "player_name": "Fred Davis",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-DT",
+          "player_name": "Devin Thomas",
+          "team": "Washington Redskins",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "ERC-MK",
+          "player_name": "Malcolm Kelly",
+          "team": "Washington Redskins",
+          "variation": "Excell Star Rookies",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Colt Brennan",
+          "team": "Washington Redskins",
+          "variation": "Exclusive Rookie Autographs (Target)",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "8",
+          "player_name": "Colt Brennan",
+          "team": "Washington Redskins",
+          "variation": "Exclusive Rookies (Target)",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SDS-19",
+          "player_name": "Malcolm Kelly",
+          "team": "Washington Redskins",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-35",
+          "player_name": "Devin Thomas",
+          "team": "Washington Redskins",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-38",
+          "player_name": "Colt Brennan",
+          "team": "Washington Redskins",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-42",
+          "player_name": "Fred Davis",
+          "team": "Washington Redskins",
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SDS-59",
+          "player_name": "Washington Redskins",
+          "team": null,
+          "variation": "Same Day Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "242",
+          "player_name": "Colt Brennan",
+          "team": "Washington Redskins",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "268",
+          "player_name": "Malcolm Kelly",
+          "team": "Washington Redskins",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "303",
+          "player_name": "Devin Thomas",
+          "team": "Washington Redskins",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "325",
+          "player_name": "Fred Davis",
+          "team": "Washington Redskins",
+          "variation": "Star Rookie Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDSS-CP",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Superstar",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDSS-CP",
+          "player_name": "Clinton Portis",
+          "team": "Washington Redskins",
+          "variation": "Superstar Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "UDGJ-JC",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": "UD Game Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDGJ-JC",
+          "player_name": "Jason Campbell",
+          "team": "Washington Redskins",
+          "variation": "UD Game Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-DT",
+          "player_name": "Devin Thomas",
+          "team": "Washington Redskins",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-MK",
+          "player_name": "Malcolm Kelly",
+          "team": "Washington Redskins",
+          "variation": "UD Rookie Jerseys",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-DT",
+          "player_name": "Devin Thomas",
+          "team": "Washington Redskins",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "UDRJ-MK",
+          "player_name": "Malcolm Kelly",
+          "team": "Washington Redskins",
+          "variation": "UD Rookie Jerseys Gold",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

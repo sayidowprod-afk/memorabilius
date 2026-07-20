@@ -1,0 +1,854 @@
+{
+  "year": 1993,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 73934,
+        "name": "1993 Action Packed Hall of Fame"
+      },
+      "unique": [
+        {
+          "card_number": "61",
+          "player_name": "Walt Bellamy",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44G",
+          "player_name": "Walt Bellamy",
+          "team": "Atlanta Hawks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Wes Unseld",
+          "team": "Baltimore Bullets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Dave Cowens",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Red Auerbach",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "K.C. Jones",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Bill Sharman",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Tom Heinsohn",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Sam Jones",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Frank Ramsey",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Ed Macauley",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "John Havlicek",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "K.C. Jones",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Tom Heinsohn",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Bill Sharman",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6G",
+          "player_name": "Dave Cowens",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11G",
+          "player_name": "Red Auerbach",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17G",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19G",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20G",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21G",
+          "player_name": "Larry Bird",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22G",
+          "player_name": "K.C. Jones",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27G",
+          "player_name": "Bill Sharman",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29G",
+          "player_name": "Tom Heinsohn",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35G",
+          "player_name": "Sam Jones",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62G",
+          "player_name": "K.C. Jones",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63G",
+          "player_name": "Tom Heinsohn",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67G",
+          "player_name": "Bill Sharman",
+          "team": "Boston Celtics",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Jack Twyman",
+          "team": "Cincinnati Royals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33G",
+          "player_name": "Jack Twyman",
+          "team": "Cincinnati Royals",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40G",
+          "player_name": "Oscar Robertson",
+          "team": "Cincinnati Royals",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Dan Issel",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43G",
+          "player_name": "Dan Issel",
+          "team": "Denver Nuggets",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Dave Bing",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Bob Lanier",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3G",
+          "player_name": "Dave Bing",
+          "team": "Detroit Pistons",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42G",
+          "player_name": "Bob Lanier",
+          "team": "Detroit Pistons",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Rick Barry",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10G",
+          "player_name": "Nate Thurmond",
+          "team": "Golden State Warriors",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26G",
+          "player_name": "Nate Archibald",
+          "team": "Golden State Warriors",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Calvin Murphy",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46G",
+          "player_name": "Calvin Murphy",
+          "team": "Houston Rockets",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2G",
+          "player_name": "Jerry West",
+          "team": "Los Angeles Lakers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8G",
+          "player_name": "Elgin Baylor",
+          "team": "Los Angeles Lakers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Oscar Robertson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Oscar Robertson",
+          "team": "Milwaukee Bucks",
+          "variation": "Singles",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Pete Maravich",
+          "team": "New Orleans Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39G",
+          "player_name": "Pete Maravich",
+          "team": "New Orleans Jazz",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Earl Monroe",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Willis Reed",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Bill Bradley",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Red Holzman",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Dave DeBusschere",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Jerry Lucas",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Harry Gallatin",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Dick McGuire",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1G",
+          "player_name": "Walt Frazier",
+          "team": "New York Knicks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4G",
+          "player_name": "Earl Monroe",
+          "team": "New York Knicks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5G",
+          "player_name": "Willis Reed",
+          "team": "New York Knicks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7G",
+          "player_name": "Bill Bradley",
+          "team": "New York Knicks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13G",
+          "player_name": "Red Holzman",
+          "team": "New York Knicks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36G",
+          "player_name": "Dave DeBusschere",
+          "team": "New York Knicks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38G",
+          "player_name": "Jerry Lucas",
+          "team": "New York Knicks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45G",
+          "player_name": "Dick McGuire",
+          "team": "New York Knicks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Lou Carnesecca",
+          "team": "New York Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Julius Erving",
+          "team": "New York Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14G",
+          "player_name": "Lou Carnesecca",
+          "team": "New York Nets",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58G",
+          "player_name": "Julius Erving",
+          "team": "New York Nets",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Hal Greer",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Billy Cunningham",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34G",
+          "player_name": "Hal Greer",
+          "team": "Philadelphia 76ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50G",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56G",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60G",
+          "player_name": "Julius Erving",
+          "team": "Philadelphia 76ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64G",
+          "player_name": "Billy Cunningham",
+          "team": "Philadelphia 76ers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Tom Gola",
+          "team": "Philadelphia Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Paul Arizin",
+          "team": "Philadelphia Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28G",
+          "player_name": "Tom Gola",
+          "team": "Philadelphia Warriors",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Connie Hawkins",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37G",
+          "player_name": "Connie Hawkins",
+          "team": "Phoenix Suns",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Bill Walton",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Lenny Wilkens",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48G",
+          "player_name": "Bill Walton",
+          "team": "Portland Trail Blazers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66G",
+          "player_name": "Lenny Wilkens",
+          "team": "Portland Trail Blazers",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Nate Thurmond",
+          "team": "San Francisco Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Slater Martin",
+          "team": "St. Louis Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Clyde Lovellette",
+          "team": "St. Louis Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Bob Pettit",
+          "team": "St. Louis Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Lenny Wilkens",
+          "team": "St. Louis Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23G",
+          "player_name": "Slater Martin",
+          "team": "St. Louis Hawks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30G",
+          "player_name": "Clyde Lovellette",
+          "team": "St. Louis Hawks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31G",
+          "player_name": "Bob Pettit",
+          "team": "St. Louis Hawks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41G",
+          "player_name": "Lenny Wilkens",
+          "team": "St. Louis Hawks",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9G",
+          "player_name": "Elvin Hayes",
+          "team": "Washington Bullets",
+          "variation": "24K Gold",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": null
+    }
+  ]
+}

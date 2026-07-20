@@ -142,8 +142,21 @@ export default async function Home() {
   const total = count ?? 0
   const totalCartes = statsData?.reduce((acc, p) => acc + (p.stats_total || 0), 0) ?? 0
 
+  const navJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: [
+      { '@type': 'SiteNavigationElement', position: 1, name: 'Annuaire des collectionneurs', url: 'https://www.memorabilius.fr/annuaire' },
+      { '@type': 'SiteNavigationElement', position: 2, name: 'Recherche de cartes', url: 'https://www.memorabilius.fr/recherche' },
+      { '@type': 'SiteNavigationElement', position: 3, name: 'Scanner de prix', url: 'https://www.memorabilius.fr/scanner' },
+      { '@type': 'SiteNavigationElement', position: 4, name: 'Équipes de collectionneurs', url: 'https://www.memorabilius.fr/teams' },
+      { '@type': 'SiteNavigationElement', position: 5, name: 'Échanges', url: 'https://www.memorabilius.fr/echanges' },
+    ],
+  }
+
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(navJsonLd) }} />
       <HomeHero total={total} totalCartes={totalCartes} />
       <PepitesSection cards={cards} />
       <PodiumSection entries={podium} />

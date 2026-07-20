@@ -1,0 +1,2607 @@
+{
+  "year": 2002,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 4571,
+        "name": "2002 SPx"
+      },
+      "unique": [
+        {
+          "card_number": "79",
+          "player_name": "Thomas Jones",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "David Boston",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jason McAddley",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Wendell Bryant",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "151",
+          "player_name": "Josh McCown",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BO",
+          "player_name": "David Boston",
+          "team": "Arizona Cardinals",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-BO",
+          "player_name": "David Boston",
+          "team": "Arizona Cardinals",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMR-JM",
+          "player_name": "Josh McCown",
+          "team": "Arizona Cardinals",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-BO",
+          "player_name": "David Boston",
+          "team": "Arizona Cardinals",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RJM",
+          "player_name": "Josh McCown",
+          "team": "Arizona Cardinals",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-BO",
+          "player_name": "David Boston",
+          "team": "Arizona Cardinals",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-JP",
+          "player_name": "Jake Plummer",
+          "team": "Arizona Cardinals",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Warrick Dunn",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "T.J. Duckett",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "152",
+          "player_name": "Kurt Kittner",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "153",
+          "player_name": "Kahlil Hill",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-MV",
+          "player_name": "Michael Vick",
+          "team": "Atlanta Falcons",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Chris Redman",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Travis Taylor",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "Anthony Weaver",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Chester Taylor",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Ed Reed",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Tellis Redmon",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Javin Hunter",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "155",
+          "player_name": "Ron Johnson",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JL",
+          "player_name": "Jamal Lewis",
+          "team": "Baltimore Ravens",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "1",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Peerless Price",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Travis Henry",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Josh Reed",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "174",
+          "player_name": "Mike Williams",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-DB",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMR-JR",
+          "player_name": "Josh Reed",
+          "team": "Buffalo Bills",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-DB",
+          "player_name": "Drew Bledsoe",
+          "team": "Buffalo Bills",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RJR",
+          "player_name": "Josh Reed",
+          "team": "Buffalo Bills",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Rodney Peete",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Muhsin Muhammad",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "145",
+          "player_name": "DeShaun Foster",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "149",
+          "player_name": "Randy Fasani",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CW",
+          "player_name": "Chris Weinke",
+          "team": "Carolina Panthers",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-MO",
+          "player_name": "Dan Morgan",
+          "team": "Carolina Panthers",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-CW",
+          "player_name": "Chris Weinke",
+          "team": "Carolina Panthers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMR-DF",
+          "player_name": "DeShaun Foster",
+          "team": "Carolina Panthers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMR-JP",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-CW",
+          "player_name": "Chris Weinke",
+          "team": "Carolina Panthers",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RDF",
+          "player_name": "DeShaun Foster",
+          "team": "Carolina Panthers",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RJP",
+          "player_name": "Julius Peppers",
+          "team": "Carolina Panthers",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Brian Urlacher",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Jim Miller",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Marty Booker",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Jamin Elliott",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "165",
+          "player_name": "Eric McCoo",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "175",
+          "player_name": "Adrian Peterson",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AT",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-AT",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-DT",
+          "player_name": "David Terrell",
+          "team": "Chicago Bears",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-AT",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-DT",
+          "player_name": "David Terrell",
+          "team": "Chicago Bears",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-AT",
+          "player_name": "Anthony Thomas",
+          "team": "Chicago Bears",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "T.J. Houshmandzadeh",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Peter Warrick",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "160",
+          "player_name": "Lamont Thompson",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "WMN-CD",
+          "player_name": "Corey Dillon",
+          "team": "Cincinnati Bengals",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Courtney Brown",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Kevin Johnson",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "157",
+          "player_name": "Andre Davis",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JB",
+          "player_name": "Jim Brown",
+          "team": "Cleveland Browns",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-KJ",
+          "player_name": "Kevin Johnson",
+          "team": "Cleveland Browns",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-QM",
+          "player_name": "Quincy Morgan",
+          "team": "Cleveland Browns",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-TC",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WMR-WG",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RWG",
+          "player_name": "William Green",
+          "team": "Cleveland Browns",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-TC",
+          "player_name": "Tim Couch",
+          "team": "Cleveland Browns",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Quincy Carter",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Raghib Ismail",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Chad Hutchinson",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "158",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "159",
+          "player_name": "Roy Williams",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "162",
+          "player_name": "Woodrow Dantzler",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMR-AB",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RAB",
+          "player_name": "Antonio Bryant",
+          "team": "Dallas Cowboys",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-ES",
+          "player_name": "Emmitt Smith",
+          "team": "Dallas Cowboys",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Brian Griese",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Shannon Sharpe",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Rod Smith",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "177",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JE",
+          "player_name": "John Elway",
+          "team": "Denver Broncos",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-MA",
+          "player_name": "Mike Anderson",
+          "team": "Denver Broncos",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMR-AL",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMR-CP",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-MA",
+          "player_name": "Mike Anderson",
+          "team": "Denver Broncos",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RAL",
+          "player_name": "Ashley Lelie",
+          "team": "Denver Broncos",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RCP",
+          "player_name": "Clinton Portis",
+          "team": "Denver Broncos",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-TD",
+          "player_name": "Terrell Davis",
+          "team": "Denver Broncos",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Az-Zahir Hakim",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "James Stewart",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Kalimba Edwards",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MM",
+          "player_name": "Mike McMahon",
+          "team": "Detroit Lions",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WMR-JH",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RJH",
+          "player_name": "Joey Harrington",
+          "team": "Detroit Lions",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Robert Ferguson",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "Terry Glenn",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Javon Walker",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Craig Nall",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Marques Anderson",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Najeh Davenport",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "164",
+          "player_name": "Tony Fisher",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-AG",
+          "player_name": "Ahman Green",
+          "team": "Green Bay Packers",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-BF",
+          "player_name": "Brett Favre",
+          "team": "Green Bay Packers",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Corey Bradford",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Jermaine Lewis",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Jonathan Wells",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "176",
+          "player_name": "Jabar Gaffney",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "178",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "WMR-DC",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMR-JG",
+          "player_name": "Jabar Gaffney",
+          "team": "Houston Texans",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RDC",
+          "player_name": "David Carr",
+          "team": "Houston Texans",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RJG",
+          "player_name": "Jabar Gaffney",
+          "team": "Houston Texans",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Marvin Harrison",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Dwight Freeney",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Larry Tripplett",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "173",
+          "player_name": "Ricky Williams",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-EJ",
+          "player_name": "Edgerrin James",
+          "team": "Indianapolis Colts",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-PM",
+          "player_name": "Peyton Manning",
+          "team": "Indianapolis Colts",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Fred Taylor",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "John Henderson",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "147",
+          "player_name": "David Garrard",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-BL",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-BL",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-JS",
+          "player_name": "Jimmy Smith",
+          "team": "Jacksonville Jaguars",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-MB",
+          "player_name": "Mark Brunell",
+          "team": "Jacksonville Jaguars",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Trent Green",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Johnnie Morton",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Ryan Sims",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-PH",
+          "player_name": "Priest Holmes",
+          "team": "Kansas City Chiefs",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "4",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Jay Fiedler",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Leonard Henry",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-CC",
+          "player_name": "Chris Chambers",
+          "team": "Miami Dolphins",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-SR",
+          "player_name": "Sage Rosenfels",
+          "team": "Miami Dolphins",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-RW",
+          "player_name": "Ricky Williams",
+          "team": "Miami Dolphins",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Shaun Hill",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Raonall Smith",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "171",
+          "player_name": "Atrews Bell",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BE",
+          "player_name": "Michael Bennett",
+          "team": "Minnesota Vikings",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-DC",
+          "player_name": "Daunte Culpepper",
+          "team": "Minnesota Vikings",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-RM",
+          "player_name": "Randy Moss",
+          "team": "Minnesota Vikings",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Troy Brown",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Antowain Smith",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Deion Branch",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "146",
+          "player_name": "Daniel Graham",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "167",
+          "player_name": "Rohan Davey",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-BR",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-BR",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-BY",
+          "player_name": "Tom Brady",
+          "team": "New England Patriots",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Aaron Brooks",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Donte Stallworth",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "150",
+          "player_name": "J.T. O'Sullivan",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-AM",
+          "player_name": "Archie Manning",
+          "team": "New Orleans Saints",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WMR-DS",
+          "player_name": "Donte Stallworth",
+          "team": "New Orleans Saints",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RDS",
+          "player_name": "Donte Stallworth",
+          "team": "New Orleans Saints",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-MC",
+          "player_name": "Deuce McAllister",
+          "team": "New Orleans Saints",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Amani Toomer",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Ron Dayne",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Daryl Jones",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "169",
+          "player_name": "Jeremy Shockey",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "170",
+          "player_name": "Tim Carter",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-KC",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-KC",
+          "player_name": "Kerry Collins",
+          "team": "New York Giants",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-RD",
+          "player_name": "Ron Dayne",
+          "team": "New York Giants",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Santana Moss",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Vinny Testaverde",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Bryan Thomas",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-SM",
+          "player_name": "Santana Moss",
+          "team": "New York Jets",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-VT",
+          "player_name": "Vinny Testaverde",
+          "team": "New York Jets",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-VT",
+          "player_name": "Vinny Testaverde",
+          "team": "New York Jets",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-CM",
+          "player_name": "Curtis Martin",
+          "team": "New York Jets",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-VT",
+          "player_name": "Vinny Testaverde",
+          "team": "New York Jets",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Napoleon Harris",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Phillip Buchanon",
+          "team": "Oakland Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-MT",
+          "player_name": "Marques Tuiasosopo",
+          "team": "Oakland Raiders",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-JR",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-JR",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-JR",
+          "player_name": "Jerry Rice",
+          "team": "Oakland Raiders",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-RG",
+          "player_name": "Rich Gannon",
+          "team": "Oakland Raiders",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-TB",
+          "player_name": "Tim Brown",
+          "team": "Oakland Raiders",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Duce Staley",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Antonio Freeman",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Brian Westbrook",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Freddie Milons",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Lito Sheppard",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Michael Lewis",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-FM",
+          "player_name": "Freddie Mitchell",
+          "team": "Philadelphia Eagles",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-DM",
+          "player_name": "Donovan McNabb",
+          "team": "Philadelphia Eagles",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Hines Ward",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Lee Mays",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Verron Haynes",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "172",
+          "player_name": "Antwaan Randle El",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-KS",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-JB",
+          "player_name": "Jerome Bettis",
+          "team": "Pittsburgh Steelers",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-KS",
+          "player_name": "Kordell Stewart",
+          "team": "Pittsburgh Steelers",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Junior Seau",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Ben Leber",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Jesse Chatman",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "141",
+          "player_name": "Quentin Jammer",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "142",
+          "player_name": "Seth Burford",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "148",
+          "player_name": "Reche Caldwell",
+          "team": "San Diego Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-DB",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-DW",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-DW",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-BR",
+          "player_name": "Drew Brees",
+          "team": "San Diego Chargers",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-LT",
+          "player_name": "LaDainian Tomlinson",
+          "team": "San Diego Chargers",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Garrison Hearst",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Saleem Rasheed",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Brandon Doman",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Mike Rumph",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-JG",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-JG",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-TO",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-JG",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-TO",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-JG",
+          "player_name": "Jeff Garcia",
+          "team": "San Francisco 49ers",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-TO",
+          "player_name": "Terrell Owens",
+          "team": "San Francisco 49ers",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Darrell Jackson",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Shaun Alexander",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Trent Dilfer",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "156",
+          "player_name": "Maurice Morris",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "88",
+          "player_name": "Isaac Bruce",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Lamar Gordon",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Robert Thomas",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "166",
+          "player_name": "Eric Crouch",
+          "team": "St. Louis Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "WM-KW",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-KW",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-KW",
+          "player_name": "Kurt Warner",
+          "team": "St. Louis Rams",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-MF",
+          "player_name": "Marshall Faulk",
+          "team": "St. Louis Rams",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Michael Pittman",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Brad Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "163",
+          "player_name": "Travis Stephens",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "168",
+          "player_name": "Marquise Walker",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-BJ",
+          "player_name": "Brad Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WMR-MW",
+          "player_name": "Marquise Walker",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMR-MW",
+          "player_name": "Marquise Walker",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-KJ",
+          "player_name": "Keyshawn Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Darrell Hill",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Albert Haynesworth",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Tank Williams",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Rocky Calmus",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-SM",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-SM",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-EG",
+          "player_name": "Eddie George",
+          "team": "Tennessee Titans",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-SM",
+          "player_name": "Steve McNair",
+          "team": "Tennessee Titans",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rod Gardner",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Stephen Davis",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "154",
+          "player_name": "Ladell Betts",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "161",
+          "player_name": "Cliff Russell",
+          "team": "Washington Redskins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-JR",
+          "player_name": "John Riggins",
+          "team": "Washington Redskins",
+          "variation": "Supreme Signatures",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "WMR-PR",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": "Winning Materials",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WM-RPR",
+          "player_name": "Patrick Ramsey",
+          "team": "Washington Redskins",
+          "variation": "Winning Materials Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "WMN-SD",
+          "player_name": "Stephen Davis",
+          "team": "Washington Redskins",
+          "variation": "Winning Materials NFL Logos",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "SP"
+    }
+  ]
+}

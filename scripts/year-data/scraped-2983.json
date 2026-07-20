@@ -1,0 +1,3910 @@
+{
+  "year": 2001,
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 2983,
+        "name": "2001-02 Upper Deck Flight Team"
+      },
+      "unique": [
+        {
+          "card_number": "22",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "DerMarr Johnson",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Toni Kukoc",
+          "team": "Atlanta Hawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "DerMarr Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Toni Kukoc",
+          "team": "Atlanta Hawks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22",
+          "player_name": "Shareef Abdur-Rahim",
+          "team": "Atlanta Hawks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57",
+          "player_name": "Jason Terry",
+          "team": "Atlanta Hawks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79",
+          "player_name": "DerMarr Johnson",
+          "team": "Atlanta Hawks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89",
+          "player_name": "Toni Kukoc",
+          "team": "Atlanta Hawks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Kedrick Brown",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Joseph Forte",
+          "team": "Boston Celtics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120",
+          "player_name": "Kedrick Brown",
+          "team": "Boston Celtics",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Joseph Forte",
+          "team": "Boston Celtics",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24",
+          "player_name": "Paul Pierce",
+          "team": "Boston Celtics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44",
+          "player_name": "Kenny Anderson",
+          "team": "Boston Celtics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72",
+          "player_name": "Antoine Walker",
+          "team": "Boston Celtics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120a",
+          "player_name": "Kedrick Brown",
+          "team": "Boston Celtics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120b",
+          "player_name": "Kedrick Brown",
+          "team": "Boston Celtics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120c",
+          "player_name": "Kedrick Brown",
+          "team": "Boston Celtics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125",
+          "player_name": "Joseph Forte",
+          "team": "Boston Celtics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Baron Davis",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jamal Mashburn",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "David Wesley",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Kirk Haston",
+          "team": "Charlotte Hornets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Baron Davis",
+          "team": "Charlotte Hornets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jamal Mashburn",
+          "team": "Charlotte Hornets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "David Wesley",
+          "team": "Charlotte Hornets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110",
+          "player_name": "Kirk Haston",
+          "team": "Charlotte Hornets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9",
+          "player_name": "Baron Davis",
+          "team": "Charlotte Hornets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52",
+          "player_name": "Jamal Mashburn",
+          "team": "Charlotte Hornets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66",
+          "player_name": "David Wesley",
+          "team": "Charlotte Hornets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110a",
+          "player_name": "Kirk Haston",
+          "team": "Charlotte Hornets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110b",
+          "player_name": "Kirk Haston",
+          "team": "Charlotte Hornets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110c",
+          "player_name": "Kirk Haston",
+          "team": "Charlotte Hornets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Marcus Fizer",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Trenton Hassell",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Marcus Fizer",
+          "team": "Chicago Bulls",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121",
+          "player_name": "Trenton Hassell",
+          "team": "Chicago Bulls",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12",
+          "player_name": "Marcus Fizer",
+          "team": "Chicago Bulls",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121a",
+          "player_name": "Trenton Hassell",
+          "team": "Chicago Bulls",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121b",
+          "player_name": "Trenton Hassell",
+          "team": "Chicago Bulls",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121c",
+          "player_name": "Trenton Hassell",
+          "team": "Chicago Bulls",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127",
+          "player_name": "Eddy Curry",
+          "team": "Chicago Bulls",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130",
+          "player_name": "Tyson Chandler",
+          "team": "Chicago Bulls",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Chris Mihm",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Andre Miller",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Lamond Murray",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "DeSagana Diop",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Jeff Trepagnier",
+          "team": "Cleveland Cavaliers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Chris Mihm",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Andre Miller",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Lamond Murray",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97",
+          "player_name": "DeSagana Diop",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105",
+          "player_name": "Jeff Trepagnier",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30",
+          "player_name": "Chris Mihm",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48",
+          "player_name": "Andre Miller",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71",
+          "player_name": "Lamond Murray",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97a",
+          "player_name": "DeSagana Diop",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97b",
+          "player_name": "DeSagana Diop",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97c",
+          "player_name": "DeSagana Diop",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105a",
+          "player_name": "Jeff Trepagnier",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105b",
+          "player_name": "Jeff Trepagnier",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105c",
+          "player_name": "Jeff Trepagnier",
+          "team": "Cleveland Cavaliers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Raef LaFrentz",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Raef LaFrentz",
+          "team": "Dallas Mavericks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2",
+          "player_name": "Dirk Nowitzki",
+          "team": "Dallas Mavericks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36",
+          "player_name": "Raef LaFrentz",
+          "team": "Dallas Mavericks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61",
+          "player_name": "Michael Finley",
+          "team": "Dallas Mavericks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82",
+          "player_name": "Steve Nash",
+          "team": "Dallas Mavericks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "James Posey",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Juwan Howard",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Mengke Bateer",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Kenny Satterfield",
+          "team": "Denver Nuggets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "James Posey",
+          "team": "Denver Nuggets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Juwan Howard",
+          "team": "Denver Nuggets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98",
+          "player_name": "Mengke Bateer",
+          "team": "Denver Nuggets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100",
+          "player_name": "Kenny Satterfield",
+          "team": "Denver Nuggets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16",
+          "player_name": "James Posey",
+          "team": "Denver Nuggets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42",
+          "player_name": "Juwan Howard",
+          "team": "Denver Nuggets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65",
+          "player_name": "Antonio McDyess",
+          "team": "Denver Nuggets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98a",
+          "player_name": "Mengke Bateer",
+          "team": "Denver Nuggets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98b",
+          "player_name": "Mengke Bateer",
+          "team": "Denver Nuggets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98c",
+          "player_name": "Mengke Bateer",
+          "team": "Denver Nuggets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100a",
+          "player_name": "Kenny Satterfield",
+          "team": "Denver Nuggets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100b",
+          "player_name": "Kenny Satterfield",
+          "team": "Denver Nuggets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100c",
+          "player_name": "Kenny Satterfield",
+          "team": "Denver Nuggets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Clifford Robinson",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Zeljko Rebraca",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Rodney White",
+          "team": "Detroit Pistons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Clifford Robinson",
+          "team": "Detroit Pistons",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122",
+          "player_name": "Zeljko Rebraca",
+          "team": "Detroit Pistons",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Rodney White",
+          "team": "Detroit Pistons",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31",
+          "player_name": "Clifford Robinson",
+          "team": "Detroit Pistons",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67",
+          "player_name": "Ben Wallace",
+          "team": "Detroit Pistons",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90",
+          "player_name": "Jerry Stackhouse",
+          "team": "Detroit Pistons",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122a",
+          "player_name": "Zeljko Rebraca",
+          "team": "Detroit Pistons",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122b",
+          "player_name": "Zeljko Rebraca",
+          "team": "Detroit Pistons",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122c",
+          "player_name": "Zeljko Rebraca",
+          "team": "Detroit Pistons",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134",
+          "player_name": "Rodney White",
+          "team": "Detroit Pistons",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Larry Hughes",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Danny Fortson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Gilbert Arenas",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Troy Murphy",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Larry Hughes",
+          "team": "Golden State Warriors",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Danny Fortson",
+          "team": "Golden State Warriors",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119",
+          "player_name": "Gilbert Arenas",
+          "team": "Golden State Warriors",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Troy Murphy",
+          "team": "Golden State Warriors",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3",
+          "player_name": "Antawn Jamison",
+          "team": "Golden State Warriors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45",
+          "player_name": "Larry Hughes",
+          "team": "Golden State Warriors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62",
+          "player_name": "Danny Fortson",
+          "team": "Golden State Warriors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119a",
+          "player_name": "Gilbert Arenas",
+          "team": "Golden State Warriors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119b",
+          "player_name": "Gilbert Arenas",
+          "team": "Golden State Warriors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119c",
+          "player_name": "Gilbert Arenas",
+          "team": "Golden State Warriors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128",
+          "player_name": "Troy Murphy",
+          "team": "Golden State Warriors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139",
+          "player_name": "Jason Richardson",
+          "team": "Golden State Warriors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Kenny Thomas",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Tierre Brown",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Oscar Torres",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Terence Morris",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Kenny Thomas",
+          "team": "Houston Rockets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91",
+          "player_name": "Tierre Brown",
+          "team": "Houston Rockets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103",
+          "player_name": "Oscar Torres",
+          "team": "Houston Rockets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109",
+          "player_name": "Terence Morris",
+          "team": "Houston Rockets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23",
+          "player_name": "Steve Francis",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41",
+          "player_name": "Kenny Thomas",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70",
+          "player_name": "Cuttino Mobley",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91a",
+          "player_name": "Tierre Brown",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91b",
+          "player_name": "Tierre Brown",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91c",
+          "player_name": "Tierre Brown",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103a",
+          "player_name": "Oscar Torres",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103b",
+          "player_name": "Oscar Torres",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103c",
+          "player_name": "Oscar Torres",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109a",
+          "player_name": "Terence Morris",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109b",
+          "player_name": "Terence Morris",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109c",
+          "player_name": "Terence Morris",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133",
+          "player_name": "Eddie Griffin",
+          "team": "Houston Rockets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jamison Brewer",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Primoz Brezec",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jamison Brewer",
+          "team": "Indiana Pacers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95",
+          "player_name": "Primoz Brezec",
+          "team": "Indiana Pacers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11",
+          "player_name": "Reggie Miller",
+          "team": "Indiana Pacers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53",
+          "player_name": "Al Harrington",
+          "team": "Indiana Pacers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73",
+          "player_name": "Jermaine O'Neal",
+          "team": "Indiana Pacers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92",
+          "player_name": "Jamison Brewer",
+          "team": "Indiana Pacers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92c",
+          "player_name": "Jamison Brewer",
+          "team": "Indiana Pacers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95a",
+          "player_name": "Primoz Brezec",
+          "team": "Indiana Pacers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95b",
+          "player_name": "Primoz Brezec",
+          "team": "Indiana Pacers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95c",
+          "player_name": "Primoz Brezec",
+          "team": "Indiana Pacers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137",
+          "player_name": "Jamaal Tinsley",
+          "team": "Indiana Pacers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Darius Miles",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Darius Miles",
+          "team": "Los Angeles Clippers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17",
+          "player_name": "Darius Miles",
+          "team": "Los Angeles Clippers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49",
+          "player_name": "Corey Maggette",
+          "team": "Los Angeles Clippers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84",
+          "player_name": "Elton Brand",
+          "team": "Los Angeles Clippers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Rick Fox",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Derek Fisher",
+          "team": "Los Angeles Lakers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Rick Fox",
+          "team": "Los Angeles Lakers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Derek Fisher",
+          "team": "Los Angeles Lakers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8",
+          "player_name": "Kobe Bryant",
+          "team": "Los Angeles Lakers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "34",
+          "player_name": "Shaquille O'Neal",
+          "team": "Los Angeles Lakers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56",
+          "player_name": "Rick Fox",
+          "team": "Los Angeles Lakers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78",
+          "player_name": "Derek Fisher",
+          "team": "Los Angeles Lakers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Michael Dickerson",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Antonis Fotsis",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Will Solomon",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Michael Dickerson",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93",
+          "player_name": "Antonis Fotsis",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Will Solomon",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7",
+          "player_name": "Jason Williams",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37",
+          "player_name": "Stromile Swift",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60",
+          "player_name": "Michael Dickerson",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93a",
+          "player_name": "Antonis Fotsis",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93b",
+          "player_name": "Antonis Fotsis",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93c",
+          "player_name": "Antonis Fotsis",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124",
+          "player_name": "Will Solomon",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129",
+          "player_name": "Shane Battier",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138",
+          "player_name": "Pau Gasol",
+          "team": "Memphis Grizzlies",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Brian Grant",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Mike James",
+          "team": "Miami Heat",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Brian Grant",
+          "team": "Miami Heat",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94",
+          "player_name": "Mike James",
+          "team": "Miami Heat",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28",
+          "player_name": "Eddie Jones",
+          "team": "Miami Heat",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54",
+          "player_name": "Brian Grant",
+          "team": "Miami Heat",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74",
+          "player_name": "Alonzo Mourning",
+          "team": "Miami Heat",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94a",
+          "player_name": "Mike James",
+          "team": "Miami Heat",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94b",
+          "player_name": "Mike James",
+          "team": "Miami Heat",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94c",
+          "player_name": "Mike James",
+          "team": "Miami Heat",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Cassell",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Cassell",
+          "team": "Milwaukee Bucks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14",
+          "player_name": "Glenn Robinson",
+          "team": "Milwaukee Bucks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35",
+          "player_name": "Tim Thomas",
+          "team": "Milwaukee Bucks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50",
+          "player_name": "Sam Cassell",
+          "team": "Milwaukee Bucks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83",
+          "player_name": "Ray Allen",
+          "team": "Milwaukee Bucks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Loren Woods",
+          "team": "Minnesota Timberwolves",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108",
+          "player_name": "Loren Woods",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10",
+          "player_name": "Wally Szczerbiak",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21",
+          "player_name": "Kevin Garnett",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59",
+          "player_name": "Joe Smith",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88",
+          "player_name": "Terrell Brandon",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108a",
+          "player_name": "Loren Woods",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108b",
+          "player_name": "Loren Woods",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108c",
+          "player_name": "Loren Woods",
+          "team": "Minnesota Timberwolves",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Brian Scalabrine",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Brandon Armstrong",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Jason Collins",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102",
+          "player_name": "Brian Scalabrine",
+          "team": "New Jersey Nets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112",
+          "player_name": "Brandon Armstrong",
+          "team": "New Jersey Nets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123",
+          "player_name": "Jason Collins",
+          "team": "New Jersey Nets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18",
+          "player_name": "Jason Kidd",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29",
+          "player_name": "Keith Van Horn",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85",
+          "player_name": "Kenyon Martin",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102a",
+          "player_name": "Brian Scalabrine",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102b",
+          "player_name": "Brian Scalabrine",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102c",
+          "player_name": "Brian Scalabrine",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112a",
+          "player_name": "Brandon Armstrong",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112b",
+          "player_name": "Brandon Armstrong",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112c",
+          "player_name": "Brandon Armstrong",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123a",
+          "player_name": "Jason Collins",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123b",
+          "player_name": "Jason Collins",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123c",
+          "player_name": "Jason Collins",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "R-JJ",
+          "player_name": "Richard Jefferson",
+          "team": "New Jersey Nets",
+          "variation": "UD Jersey Jams Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Marcus Camby",
+          "team": "New York Knicks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Marcus Camby",
+          "team": "New York Knicks",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4",
+          "player_name": "Latrell Sprewell",
+          "team": "New York Knicks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46",
+          "player_name": "Allan Houston",
+          "team": "New York Knicks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77",
+          "player_name": "Marcus Camby",
+          "team": "New York Knicks",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Jeryl Sasser",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Steven Hunter",
+          "team": "Orlando Magic",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96",
+          "player_name": "Jeryl Sasser",
+          "team": "Orlando Magic",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Steven Hunter",
+          "team": "Orlando Magic",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25",
+          "player_name": "Mike Miller",
+          "team": "Orlando Magic",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43",
+          "player_name": "Tracy McGrady",
+          "team": "Orlando Magic",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87",
+          "player_name": "Grant Hill",
+          "team": "Orlando Magic",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96a",
+          "player_name": "Jeryl Sasser",
+          "team": "Orlando Magic",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96b",
+          "player_name": "Jeryl Sasser",
+          "team": "Orlando Magic",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96c",
+          "player_name": "Jeryl Sasser",
+          "team": "Orlando Magic",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126",
+          "player_name": "Steven Hunter",
+          "team": "Orlando Magic",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Dikembe Mutombo",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Aaron McKie",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Dikembe Mutombo",
+          "team": "Philadelphia 76ers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Aaron McKie",
+          "team": "Philadelphia 76ers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6",
+          "player_name": "Dikembe Mutombo",
+          "team": "Philadelphia 76ers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63",
+          "player_name": "Allen Iverson",
+          "team": "Philadelphia 76ers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80",
+          "player_name": "Aaron McKie",
+          "team": "Philadelphia 76ers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118a",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118b",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118c",
+          "player_name": "Samuel Dalembert",
+          "team": "Philadelphia 76ers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Anfernee Hardaway",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Alton Ford",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Anfernee Hardaway",
+          "team": "Phoenix Suns",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115",
+          "player_name": "Alton Ford",
+          "team": "Phoenix Suns",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19",
+          "player_name": "Anfernee Hardaway",
+          "team": "Phoenix Suns",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "38",
+          "player_name": "Stephon Marbury",
+          "team": "Phoenix Suns",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75",
+          "player_name": "Shawn Marion",
+          "team": "Phoenix Suns",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115a",
+          "player_name": "Alton Ford",
+          "team": "Phoenix Suns",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115b",
+          "player_name": "Alton Ford",
+          "team": "Phoenix Suns",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115c",
+          "player_name": "Alton Ford",
+          "team": "Phoenix Suns",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131",
+          "player_name": "Joe Johnson",
+          "team": "Phoenix Suns",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Derek Anderson",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Ruben Boumtje-Boumtje",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Derek Anderson",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101",
+          "player_name": "Ruben Boumtje-Boumtje",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27",
+          "player_name": "Derek Anderson",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55",
+          "player_name": "Rasheed Wallace",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86",
+          "player_name": "Bonzi Wells",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101a",
+          "player_name": "Ruben Boumtje-Boumtje",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101b",
+          "player_name": "Ruben Boumtje-Boumtje",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101c",
+          "player_name": "Ruben Boumtje-Boumtje",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113a",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113b",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113c",
+          "player_name": "Zach Randolph",
+          "team": "Portland Trail Blazers",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Gerald Wallace",
+          "team": "Sacramento Kings",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99",
+          "player_name": "Gerald Wallace",
+          "team": "Sacramento Kings",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5",
+          "player_name": "Peja Stojakovic",
+          "team": "Sacramento Kings",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47",
+          "player_name": "Chris Webber",
+          "team": "Sacramento Kings",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68",
+          "player_name": "Mike Bibby",
+          "team": "Sacramento Kings",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99a",
+          "player_name": "Gerald Wallace",
+          "team": "Sacramento Kings",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99b",
+          "player_name": "Gerald Wallace",
+          "team": "Sacramento Kings",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99c",
+          "player_name": "Gerald Wallace",
+          "team": "Sacramento Kings",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Steve Smith",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Steve Smith",
+          "team": "San Antonio Spurs",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26",
+          "player_name": "Tim Duncan",
+          "team": "San Antonio Spurs",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51",
+          "player_name": "Steve Smith",
+          "team": "San Antonio Spurs",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81",
+          "player_name": "David Robinson",
+          "team": "San Antonio Spurs",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136",
+          "player_name": "Tony Parker",
+          "team": "San Antonio Spurs",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Desmond Mason",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Earl Watson",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Predrag Drobnjak",
+          "team": "Seattle SuperSonics",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Desmond Mason",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111",
+          "player_name": "Earl Watson",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116",
+          "player_name": "Predrag Drobnjak",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13",
+          "player_name": "Desmond Mason",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32",
+          "player_name": "Gary Payton",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58",
+          "player_name": "Rashard Lewis",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107a",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107b",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107c",
+          "player_name": "Vladimir Radmanovic",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111a",
+          "player_name": "Earl Watson",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111b",
+          "player_name": "Earl Watson",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111c",
+          "player_name": "Earl Watson",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116a",
+          "player_name": "Predrag Drobnjak",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116b",
+          "player_name": "Predrag Drobnjak",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116c",
+          "player_name": "Predrag Drobnjak",
+          "team": "Seattle SuperSonics",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Michael Bradley",
+          "team": "Toronto Raptors",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117",
+          "player_name": "Michael Bradley",
+          "team": "Toronto Raptors",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15",
+          "player_name": "Vince Carter",
+          "team": "Toronto Raptors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39",
+          "player_name": "Morris Peterson",
+          "team": "Toronto Raptors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69",
+          "player_name": "Antonio Davis",
+          "team": "Toronto Raptors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117a",
+          "player_name": "Michael Bradley",
+          "team": "Toronto Raptors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117b",
+          "player_name": "Michael Bradley",
+          "team": "Toronto Raptors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117c",
+          "player_name": "Michael Bradley",
+          "team": "Toronto Raptors",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Donyell Marshall",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Jarron Collins",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Donyell Marshall",
+          "team": "Utah Jazz",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104",
+          "player_name": "Jarron Collins",
+          "team": "Utah Jazz",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20",
+          "player_name": "Karl Malone",
+          "team": "Utah Jazz",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40",
+          "player_name": "Donyell Marshall",
+          "team": "Utah Jazz",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76",
+          "player_name": "John Stockton",
+          "team": "Utah Jazz",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104a",
+          "player_name": "Jarron Collins",
+          "team": "Utah Jazz",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104b",
+          "player_name": "Jarron Collins",
+          "team": "Utah Jazz",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104c",
+          "player_name": "Jarron Collins",
+          "team": "Utah Jazz",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135",
+          "player_name": "Andrei Kirilenko",
+          "team": "Utah Jazz",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Courtney Alexander",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Richard Hamilton",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Brendan Haywood",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Bobby Simmons",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Courtney Alexander",
+          "team": "Washington Wizards",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Richard Hamilton",
+          "team": "Washington Wizards",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106",
+          "player_name": "Brendan Haywood",
+          "team": "Washington Wizards",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114",
+          "player_name": "Bobby Simmons",
+          "team": "Washington Wizards",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": "High Class Copper",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33",
+          "player_name": "Courtney Alexander",
+          "team": "Washington Wizards",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64",
+          "player_name": "Richard Hamilton",
+          "team": "Washington Wizards",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106a",
+          "player_name": "Brendan Haywood",
+          "team": "Washington Wizards",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106b",
+          "player_name": "Brendan Haywood",
+          "team": "Washington Wizards",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106c",
+          "player_name": "Brendan Haywood",
+          "team": "Washington Wizards",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114a",
+          "player_name": "Bobby Simmons",
+          "team": "Washington Wizards",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114b",
+          "player_name": "Bobby Simmons",
+          "team": "Washington Wizards",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114c",
+          "player_name": "Bobby Simmons",
+          "team": "Washington Wizards",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140",
+          "player_name": "Kwame Brown",
+          "team": "Washington Wizards",
+          "variation": "High Class Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "M-JJ",
+          "player_name": "Michael Jordan",
+          "team": "Washington Wizards",
+          "variation": "UD Jersey Jams Gold",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Upper Deck"
+    }
+  ]
+}

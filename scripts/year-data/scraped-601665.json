@@ -1,0 +1,4751 @@
+{
+  "year": 2025,
+  "sport": "nfl",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 601665,
+        "name": "2025 Score Supplemental"
+      },
+      "unique": [
+        {
+          "card_number": "1S",
+          "player_name": "Walter Nolen",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "2S",
+          "player_name": "Kedon Slovis",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "3S",
+          "player_name": "Calais Campbell",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4S",
+          "player_name": "Will Johnson",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "5S",
+          "player_name": "Zonovan Knight",
+          "team": "Arizona Cardinals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "1S",
+          "player_name": "Walter Nolen",
+          "team": "Arizona Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2S",
+          "player_name": "Kedon Slovis",
+          "team": "Arizona Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3S",
+          "player_name": "Calais Campbell",
+          "team": "Arizona Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4S",
+          "player_name": "Will Johnson",
+          "team": "Arizona Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5S",
+          "player_name": "Zonovan Knight",
+          "team": "Arizona Cardinals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1S",
+          "player_name": "Walter Nolen",
+          "team": "Arizona Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2S",
+          "player_name": "Kedon Slovis",
+          "team": "Arizona Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3S",
+          "player_name": "Calais Campbell",
+          "team": "Arizona Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4S",
+          "player_name": "Will Johnson",
+          "team": "Arizona Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5S",
+          "player_name": "Zonovan Knight",
+          "team": "Arizona Cardinals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "1S",
+          "player_name": "Walter Nolen",
+          "team": "Arizona Cardinals",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "2S",
+          "player_name": "Kedon Slovis",
+          "team": "Arizona Cardinals",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "3S",
+          "player_name": "Calais Campbell",
+          "team": "Arizona Cardinals",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "4S",
+          "player_name": "Will Johnson",
+          "team": "Arizona Cardinals",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "5S",
+          "player_name": "Zonovan Knight",
+          "team": "Arizona Cardinals",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6S",
+          "player_name": "Jalon Walker",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "7S",
+          "player_name": "Billy Bowman Jr.",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "8S",
+          "player_name": "Xavier Watts",
+          "team": "Atlanta Falcons",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "6S",
+          "player_name": "Jalon Walker",
+          "team": "Atlanta Falcons",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7S",
+          "player_name": "Billy Bowman Jr.",
+          "team": "Atlanta Falcons",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8S",
+          "player_name": "Xavier Watts",
+          "team": "Atlanta Falcons",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6S",
+          "player_name": "Jalon Walker",
+          "team": "Atlanta Falcons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7S",
+          "player_name": "Billy Bowman Jr.",
+          "team": "Atlanta Falcons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8S",
+          "player_name": "Xavier Watts",
+          "team": "Atlanta Falcons",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "6S",
+          "player_name": "Jalon Walker",
+          "team": "Atlanta Falcons",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "7S",
+          "player_name": "Billy Bowman Jr.",
+          "team": "Atlanta Falcons",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "8S",
+          "player_name": "Xavier Watts",
+          "team": "Atlanta Falcons",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9S",
+          "player_name": "Mike Green",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "10S",
+          "player_name": "Malaki Starks",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "11S",
+          "player_name": "Tyler Loop",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "12S",
+          "player_name": "DeAndre Hopkins",
+          "team": "Baltimore Ravens",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9S",
+          "player_name": "Mike Green",
+          "team": "Baltimore Ravens",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10S",
+          "player_name": "Malaki Starks",
+          "team": "Baltimore Ravens",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11S",
+          "player_name": "Tyler Loop",
+          "team": "Baltimore Ravens",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12S",
+          "player_name": "DeAndre Hopkins",
+          "team": "Baltimore Ravens",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9S",
+          "player_name": "Mike Green",
+          "team": "Baltimore Ravens",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10S",
+          "player_name": "Malaki Starks",
+          "team": "Baltimore Ravens",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11S",
+          "player_name": "Tyler Loop",
+          "team": "Baltimore Ravens",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12S",
+          "player_name": "DeAndre Hopkins",
+          "team": "Baltimore Ravens",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "9S",
+          "player_name": "Mike Green",
+          "team": "Baltimore Ravens",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "10S",
+          "player_name": "Malaki Starks",
+          "team": "Baltimore Ravens",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "11S",
+          "player_name": "Tyler Loop",
+          "team": "Baltimore Ravens",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "12S",
+          "player_name": "DeAndre Hopkins",
+          "team": "Baltimore Ravens",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13S",
+          "player_name": "Tyrell Shavers",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14S",
+          "player_name": "Deone Walker",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "15S",
+          "player_name": "Matt Prater",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16S",
+          "player_name": "Shaq Thompson",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106S",
+          "player_name": "Brandin Cooks",
+          "team": "Buffalo Bills",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13S",
+          "player_name": "Tyrell Shavers",
+          "team": "Buffalo Bills",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14S",
+          "player_name": "Deone Walker",
+          "team": "Buffalo Bills",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15S",
+          "player_name": "Matt Prater",
+          "team": "Buffalo Bills",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16S",
+          "player_name": "Shaq Thompson",
+          "team": "Buffalo Bills",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106S",
+          "player_name": "Brandin Cooks",
+          "team": "Buffalo Bills",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13S",
+          "player_name": "Tyrell Shavers",
+          "team": "Buffalo Bills",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14S",
+          "player_name": "Deone Walker",
+          "team": "Buffalo Bills",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15S",
+          "player_name": "Matt Prater",
+          "team": "Buffalo Bills",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16S",
+          "player_name": "Shaq Thompson",
+          "team": "Buffalo Bills",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106S",
+          "player_name": "Brandin Cooks",
+          "team": "Buffalo Bills",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "13S",
+          "player_name": "Tyrell Shavers",
+          "team": "Buffalo Bills",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "14S",
+          "player_name": "Deone Walker",
+          "team": "Buffalo Bills",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "15S",
+          "player_name": "Matt Prater",
+          "team": "Buffalo Bills",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "16S",
+          "player_name": "Shaq Thompson",
+          "team": "Buffalo Bills",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "106S",
+          "player_name": "Brandin Cooks",
+          "team": "Buffalo Bills",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17S",
+          "player_name": "Rico Dowdle",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18S",
+          "player_name": "Jimmy Horn Jr.",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "19S",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "20S",
+          "player_name": "Mitchell Evans",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "21S",
+          "player_name": "Trevor Etienne",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "22S",
+          "player_name": "Nic Scourton",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "23S",
+          "player_name": "Princely Umanmielen",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "24S",
+          "player_name": "Ryan Fitzgerald",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "25S",
+          "player_name": "Hunter Renfrow",
+          "team": "Carolina Panthers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17S",
+          "player_name": "Rico Dowdle",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18S",
+          "player_name": "Jimmy Horn Jr.",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19S",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20S",
+          "player_name": "Mitchell Evans",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21S",
+          "player_name": "Trevor Etienne",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22S",
+          "player_name": "Nic Scourton",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23S",
+          "player_name": "Princely Umanmielen",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24S",
+          "player_name": "Ryan Fitzgerald",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25S",
+          "player_name": "Hunter Renfrow",
+          "team": "Carolina Panthers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17S",
+          "player_name": "Rico Dowdle",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18S",
+          "player_name": "Jimmy Horn Jr.",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19S",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20S",
+          "player_name": "Mitchell Evans",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21S",
+          "player_name": "Trevor Etienne",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22S",
+          "player_name": "Nic Scourton",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23S",
+          "player_name": "Princely Umanmielen",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24S",
+          "player_name": "Ryan Fitzgerald",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25S",
+          "player_name": "Hunter Renfrow",
+          "team": "Carolina Panthers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "17S",
+          "player_name": "Rico Dowdle",
+          "team": "Carolina Panthers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "18S",
+          "player_name": "Jimmy Horn Jr.",
+          "team": "Carolina Panthers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "19S",
+          "player_name": "Tetairoa McMillan",
+          "team": "Carolina Panthers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "20S",
+          "player_name": "Mitchell Evans",
+          "team": "Carolina Panthers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "21S",
+          "player_name": "Trevor Etienne",
+          "team": "Carolina Panthers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "22S",
+          "player_name": "Nic Scourton",
+          "team": "Carolina Panthers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "23S",
+          "player_name": "Princely Umanmielen",
+          "team": "Carolina Panthers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "24S",
+          "player_name": "Ryan Fitzgerald",
+          "team": "Carolina Panthers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "25S",
+          "player_name": "Hunter Renfrow",
+          "team": "Carolina Panthers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26S",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "27S",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "28S",
+          "player_name": "Olamide Zaccheaus",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29S",
+          "player_name": "Kyle Monangai",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "30S",
+          "player_name": "Grady Jarrett",
+          "team": "Chicago Bears",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26S",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27S",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28S",
+          "player_name": "Olamide Zaccheaus",
+          "team": "Chicago Bears",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29S",
+          "player_name": "Kyle Monangai",
+          "team": "Chicago Bears",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30S",
+          "player_name": "Grady Jarrett",
+          "team": "Chicago Bears",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26S",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27S",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28S",
+          "player_name": "Olamide Zaccheaus",
+          "team": "Chicago Bears",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29S",
+          "player_name": "Kyle Monangai",
+          "team": "Chicago Bears",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30S",
+          "player_name": "Grady Jarrett",
+          "team": "Chicago Bears",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "26S",
+          "player_name": "Luther Burden III",
+          "team": "Chicago Bears",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "27S",
+          "player_name": "Colston Loveland",
+          "team": "Chicago Bears",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "28S",
+          "player_name": "Olamide Zaccheaus",
+          "team": "Chicago Bears",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "29S",
+          "player_name": "Kyle Monangai",
+          "team": "Chicago Bears",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "30S",
+          "player_name": "Grady Jarrett",
+          "team": "Chicago Bears",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31S",
+          "player_name": "Joe Flacco",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32S",
+          "player_name": "Noah Fant",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33S",
+          "player_name": "Barrett Carter",
+          "team": "Cincinnati Bengals",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "31S",
+          "player_name": "Joe Flacco",
+          "team": "Cincinnati Bengals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32S",
+          "player_name": "Noah Fant",
+          "team": "Cincinnati Bengals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33S",
+          "player_name": "Barrett Carter",
+          "team": "Cincinnati Bengals",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31S",
+          "player_name": "Joe Flacco",
+          "team": "Cincinnati Bengals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32S",
+          "player_name": "Noah Fant",
+          "team": "Cincinnati Bengals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33S",
+          "player_name": "Barrett Carter",
+          "team": "Cincinnati Bengals",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "31S",
+          "player_name": "Joe Flacco",
+          "team": "Cincinnati Bengals",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "32S",
+          "player_name": "Noah Fant",
+          "team": "Cincinnati Bengals",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "33S",
+          "player_name": "Barrett Carter",
+          "team": "Cincinnati Bengals",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35S",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "36S",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "37S",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "39S",
+          "player_name": "Harold Fannin Jr.",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "40S",
+          "player_name": "Mason Graham",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "41S",
+          "player_name": "Carson Schwesinger",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "42S",
+          "player_name": "Andre Szmyt",
+          "team": "Cleveland Browns",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "35S",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36S",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37S",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39S",
+          "player_name": "Harold Fannin Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40S",
+          "player_name": "Mason Graham",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41S",
+          "player_name": "Carson Schwesinger",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42S",
+          "player_name": "Andre Szmyt",
+          "team": "Cleveland Browns",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35S",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36S",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37S",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39S",
+          "player_name": "Harold Fannin Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40S",
+          "player_name": "Mason Graham",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41S",
+          "player_name": "Carson Schwesinger",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42S",
+          "player_name": "Andre Szmyt",
+          "team": "Cleveland Browns",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "35S",
+          "player_name": "Quinshon Judkins",
+          "team": "Cleveland Browns",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "36S",
+          "player_name": "Dillon Gabriel",
+          "team": "Cleveland Browns",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "37S",
+          "player_name": "Dylan Sampson",
+          "team": "Cleveland Browns",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "39S",
+          "player_name": "Harold Fannin Jr.",
+          "team": "Cleveland Browns",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "40S",
+          "player_name": "Mason Graham",
+          "team": "Cleveland Browns",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "41S",
+          "player_name": "Carson Schwesinger",
+          "team": "Cleveland Browns",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "42S",
+          "player_name": "Andre Szmyt",
+          "team": "Cleveland Browns",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43S",
+          "player_name": "Joe Milton III",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44S",
+          "player_name": "Javonte Williams",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45S",
+          "player_name": "Jaydon Blue",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "46S",
+          "player_name": "George Pickens",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47S",
+          "player_name": "Kenny Clark",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48S",
+          "player_name": "Quinnen Williams",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49S",
+          "player_name": "Logan Wilson",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50S",
+          "player_name": "Donovan Ezeiruaku",
+          "team": "Dallas Cowboys",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "43S",
+          "player_name": "Joe Milton III",
+          "team": "Dallas Cowboys",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44S",
+          "player_name": "Javonte Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45S",
+          "player_name": "Jaydon Blue",
+          "team": "Dallas Cowboys",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46S",
+          "player_name": "George Pickens",
+          "team": "Dallas Cowboys",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47S",
+          "player_name": "Kenny Clark",
+          "team": "Dallas Cowboys",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48S",
+          "player_name": "Quinnen Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49S",
+          "player_name": "Logan Wilson",
+          "team": "Dallas Cowboys",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50S",
+          "player_name": "Donovan Ezeiruaku",
+          "team": "Dallas Cowboys",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43S",
+          "player_name": "Joe Milton III",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44S",
+          "player_name": "Javonte Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45S",
+          "player_name": "Jaydon Blue",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46S",
+          "player_name": "George Pickens",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47S",
+          "player_name": "Kenny Clark",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48S",
+          "player_name": "Quinnen Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49S",
+          "player_name": "Logan Wilson",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50S",
+          "player_name": "Donovan Ezeiruaku",
+          "team": "Dallas Cowboys",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "43S",
+          "player_name": "Joe Milton III",
+          "team": "Dallas Cowboys",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "44S",
+          "player_name": "Javonte Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "45S",
+          "player_name": "Jaydon Blue",
+          "team": "Dallas Cowboys",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "46S",
+          "player_name": "George Pickens",
+          "team": "Dallas Cowboys",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "47S",
+          "player_name": "Kenny Clark",
+          "team": "Dallas Cowboys",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "48S",
+          "player_name": "Quinnen Williams",
+          "team": "Dallas Cowboys",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "49S",
+          "player_name": "Logan Wilson",
+          "team": "Dallas Cowboys",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "50S",
+          "player_name": "Donovan Ezeiruaku",
+          "team": "Dallas Cowboys",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51S",
+          "player_name": "J.K. Dobbins",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52S",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "53S",
+          "player_name": "Evan Engram",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54S",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "55S",
+          "player_name": "Talanoa Hufanga",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56S",
+          "player_name": "Dre Greenlaw",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57S",
+          "player_name": "Jahdae Barron",
+          "team": "Denver Broncos",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "51S",
+          "player_name": "J.K. Dobbins",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52S",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53S",
+          "player_name": "Evan Engram",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54S",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55S",
+          "player_name": "Talanoa Hufanga",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56S",
+          "player_name": "Dre Greenlaw",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57S",
+          "player_name": "Jahdae Barron",
+          "team": "Denver Broncos",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51S",
+          "player_name": "J.K. Dobbins",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52S",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53S",
+          "player_name": "Evan Engram",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54S",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55S",
+          "player_name": "Talanoa Hufanga",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56S",
+          "player_name": "Dre Greenlaw",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57S",
+          "player_name": "Jahdae Barron",
+          "team": "Denver Broncos",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "51S",
+          "player_name": "J.K. Dobbins",
+          "team": "Denver Broncos",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "52S",
+          "player_name": "RJ Harvey",
+          "team": "Denver Broncos",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "53S",
+          "player_name": "Evan Engram",
+          "team": "Denver Broncos",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "54S",
+          "player_name": "Pat Bryant",
+          "team": "Denver Broncos",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "55S",
+          "player_name": "Talanoa Hufanga",
+          "team": "Denver Broncos",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "56S",
+          "player_name": "Dre Greenlaw",
+          "team": "Denver Broncos",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "57S",
+          "player_name": "Jahdae Barron",
+          "team": "Denver Broncos",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58S",
+          "player_name": "Isaac TeSlaa",
+          "team": "Detroit Lions",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "58S",
+          "player_name": "Isaac TeSlaa",
+          "team": "Detroit Lions",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58S",
+          "player_name": "Isaac TeSlaa",
+          "team": "Detroit Lions",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "58S",
+          "player_name": "Isaac TeSlaa",
+          "team": "Detroit Lions",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59S",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "60S",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "61S",
+          "player_name": "Micah Parsons",
+          "team": "Green Bay Packers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59S",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60S",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61S",
+          "player_name": "Micah Parsons",
+          "team": "Green Bay Packers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59S",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60S",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61S",
+          "player_name": "Micah Parsons",
+          "team": "Green Bay Packers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "59S",
+          "player_name": "Matthew Golden",
+          "team": "Green Bay Packers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "60S",
+          "player_name": "Savion Williams",
+          "team": "Green Bay Packers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "61S",
+          "player_name": "Micah Parsons",
+          "team": "Green Bay Packers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62S",
+          "player_name": "Woody Marks",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "63S",
+          "player_name": "Nick Chubb",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64S",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "65S",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "62S",
+          "player_name": "Woody Marks",
+          "team": "Houston Texans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63S",
+          "player_name": "Nick Chubb",
+          "team": "Houston Texans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64S",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65S",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62S",
+          "player_name": "Woody Marks",
+          "team": "Houston Texans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63S",
+          "player_name": "Nick Chubb",
+          "team": "Houston Texans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64S",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65S",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "62S",
+          "player_name": "Woody Marks",
+          "team": "Houston Texans",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "63S",
+          "player_name": "Nick Chubb",
+          "team": "Houston Texans",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "64S",
+          "player_name": "Jayden Higgins",
+          "team": "Houston Texans",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "65S",
+          "player_name": "Jaylin Noel",
+          "team": "Houston Texans",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66S",
+          "player_name": "Daniel Jones",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67S",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "68S",
+          "player_name": "Ahmad \"Sauce\" Gardner",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69S",
+          "player_name": "Camryn Bynum",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70S",
+          "player_name": "Michael Badgley",
+          "team": "Indianapolis Colts",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66S",
+          "player_name": "Daniel Jones",
+          "team": "Indianapolis Colts",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67S",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68S",
+          "player_name": "Ahmad \"Sauce\" Gardner",
+          "team": "Indianapolis Colts",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69S",
+          "player_name": "Camryn Bynum",
+          "team": "Indianapolis Colts",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70S",
+          "player_name": "Michael Badgley",
+          "team": "Indianapolis Colts",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66S",
+          "player_name": "Daniel Jones",
+          "team": "Indianapolis Colts",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67S",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68S",
+          "player_name": "Ahmad \"Sauce\" Gardner",
+          "team": "Indianapolis Colts",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69S",
+          "player_name": "Camryn Bynum",
+          "team": "Indianapolis Colts",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70S",
+          "player_name": "Michael Badgley",
+          "team": "Indianapolis Colts",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "66S",
+          "player_name": "Daniel Jones",
+          "team": "Indianapolis Colts",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "67S",
+          "player_name": "Tyler Warren",
+          "team": "Indianapolis Colts",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "68S",
+          "player_name": "Ahmad \"Sauce\" Gardner",
+          "team": "Indianapolis Colts",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "69S",
+          "player_name": "Camryn Bynum",
+          "team": "Indianapolis Colts",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "70S",
+          "player_name": "Michael Badgley",
+          "team": "Indianapolis Colts",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71S",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "72S",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "73S",
+          "player_name": "Jakobi Meyers",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74S",
+          "player_name": "Dyami Brown",
+          "team": "Jacksonville Jaguars",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71S",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72S",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73S",
+          "player_name": "Jakobi Meyers",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74S",
+          "player_name": "Dyami Brown",
+          "team": "Jacksonville Jaguars",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71S",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72S",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73S",
+          "player_name": "Jakobi Meyers",
+          "team": "Jacksonville Jaguars",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74S",
+          "player_name": "Dyami Brown",
+          "team": "Jacksonville Jaguars",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "71S",
+          "player_name": "Travis Hunter",
+          "team": "Jacksonville Jaguars",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "72S",
+          "player_name": "Bhayshul Tuten",
+          "team": "Jacksonville Jaguars",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "73S",
+          "player_name": "Jakobi Meyers",
+          "team": "Jacksonville Jaguars",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "74S",
+          "player_name": "Dyami Brown",
+          "team": "Jacksonville Jaguars",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75S",
+          "player_name": "Gardner Minshew II",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76S",
+          "player_name": "Brashard Smith",
+          "team": "Kansas City Chiefs",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "75S",
+          "player_name": "Gardner Minshew II",
+          "team": "Kansas City Chiefs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76S",
+          "player_name": "Brashard Smith",
+          "team": "Kansas City Chiefs",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75S",
+          "player_name": "Gardner Minshew II",
+          "team": "Kansas City Chiefs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76S",
+          "player_name": "Brashard Smith",
+          "team": "Kansas City Chiefs",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "75S",
+          "player_name": "Gardner Minshew II",
+          "team": "Kansas City Chiefs",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "76S",
+          "player_name": "Brashard Smith",
+          "team": "Kansas City Chiefs",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77S",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "78S",
+          "player_name": "Dont'e Thornton Jr.",
+          "team": "Las Vegas Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "79S",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "80S",
+          "player_name": "Raheem Mostert",
+          "team": "Las Vegas Raiders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77S",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78S",
+          "player_name": "Dont'e Thornton Jr.",
+          "team": "Las Vegas Raiders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79S",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80S",
+          "player_name": "Raheem Mostert",
+          "team": "Las Vegas Raiders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77S",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78S",
+          "player_name": "Dont'e Thornton Jr.",
+          "team": "Las Vegas Raiders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79S",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80S",
+          "player_name": "Raheem Mostert",
+          "team": "Las Vegas Raiders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "77S",
+          "player_name": "Ashton Jeanty",
+          "team": "Las Vegas Raiders",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "78S",
+          "player_name": "Dont'e Thornton Jr.",
+          "team": "Las Vegas Raiders",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "79S",
+          "player_name": "Jack Bech",
+          "team": "Las Vegas Raiders",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "80S",
+          "player_name": "Raheem Mostert",
+          "team": "Las Vegas Raiders",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81S",
+          "player_name": "Trey Lance",
+          "team": "Los Angeles Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82S",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "83S",
+          "player_name": "Keenan Allen",
+          "team": "Los Angeles Chargers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84S",
+          "player_name": "Tre Harris",
+          "team": "Los Angeles Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "85S",
+          "player_name": "Oronde Gadsden II",
+          "team": "Los Angeles Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "86S",
+          "player_name": "R.J. Mickens",
+          "team": "Los Angeles Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "87S",
+          "player_name": "KeAndre Lambert-Smith",
+          "team": "Los Angeles Chargers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "81S",
+          "player_name": "Trey Lance",
+          "team": "Los Angeles Chargers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82S",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83S",
+          "player_name": "Keenan Allen",
+          "team": "Los Angeles Chargers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84S",
+          "player_name": "Tre Harris",
+          "team": "Los Angeles Chargers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85S",
+          "player_name": "Oronde Gadsden II",
+          "team": "Los Angeles Chargers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86S",
+          "player_name": "R.J. Mickens",
+          "team": "Los Angeles Chargers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87S",
+          "player_name": "KeAndre Lambert-Smith",
+          "team": "Los Angeles Chargers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81S",
+          "player_name": "Trey Lance",
+          "team": "Los Angeles Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82S",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83S",
+          "player_name": "Keenan Allen",
+          "team": "Los Angeles Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84S",
+          "player_name": "Tre Harris",
+          "team": "Los Angeles Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85S",
+          "player_name": "Oronde Gadsden II",
+          "team": "Los Angeles Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86S",
+          "player_name": "R.J. Mickens",
+          "team": "Los Angeles Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87S",
+          "player_name": "KeAndre Lambert-Smith",
+          "team": "Los Angeles Chargers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "81S",
+          "player_name": "Trey Lance",
+          "team": "Los Angeles Chargers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "82S",
+          "player_name": "Omarion Hampton",
+          "team": "Los Angeles Chargers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "83S",
+          "player_name": "Keenan Allen",
+          "team": "Los Angeles Chargers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "84S",
+          "player_name": "Tre Harris",
+          "team": "Los Angeles Chargers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "85S",
+          "player_name": "Oronde Gadsden II",
+          "team": "Los Angeles Chargers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "86S",
+          "player_name": "R.J. Mickens",
+          "team": "Los Angeles Chargers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "87S",
+          "player_name": "KeAndre Lambert-Smith",
+          "team": "Los Angeles Chargers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88S",
+          "player_name": "Konata Mumpfield",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "89S",
+          "player_name": "Terrance Ferguson",
+          "team": "Los Angeles Rams",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "88S",
+          "player_name": "Konata Mumpfield",
+          "team": "Los Angeles Rams",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89S",
+          "player_name": "Terrance Ferguson",
+          "team": "Los Angeles Rams",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88S",
+          "player_name": "Konata Mumpfield",
+          "team": "Los Angeles Rams",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89S",
+          "player_name": "Terrance Ferguson",
+          "team": "Los Angeles Rams",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "88S",
+          "player_name": "Konata Mumpfield",
+          "team": "Los Angeles Rams",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "89S",
+          "player_name": "Terrance Ferguson",
+          "team": "Los Angeles Rams",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90S",
+          "player_name": "Quinn Ewers",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "91S",
+          "player_name": "Ollie Gordon II",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "92S",
+          "player_name": "Minkah Fitzpatrick",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93S",
+          "player_name": "Rasul Douglas",
+          "team": "Miami Dolphins",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90S",
+          "player_name": "Quinn Ewers",
+          "team": "Miami Dolphins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91S",
+          "player_name": "Ollie Gordon II",
+          "team": "Miami Dolphins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92S",
+          "player_name": "Minkah Fitzpatrick",
+          "team": "Miami Dolphins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93S",
+          "player_name": "Rasul Douglas",
+          "team": "Miami Dolphins",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90S",
+          "player_name": "Quinn Ewers",
+          "team": "Miami Dolphins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91S",
+          "player_name": "Ollie Gordon II",
+          "team": "Miami Dolphins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92S",
+          "player_name": "Minkah Fitzpatrick",
+          "team": "Miami Dolphins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93S",
+          "player_name": "Rasul Douglas",
+          "team": "Miami Dolphins",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "90S",
+          "player_name": "Quinn Ewers",
+          "team": "Miami Dolphins",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "91S",
+          "player_name": "Ollie Gordon II",
+          "team": "Miami Dolphins",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "92S",
+          "player_name": "Minkah Fitzpatrick",
+          "team": "Miami Dolphins",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "93S",
+          "player_name": "Rasul Douglas",
+          "team": "Miami Dolphins",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94S",
+          "player_name": "Jordan Mason",
+          "team": "Minnesota Vikings",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94S",
+          "player_name": "Jordan Mason",
+          "team": "Minnesota Vikings",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94S",
+          "player_name": "Jordan Mason",
+          "team": "Minnesota Vikings",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "94S",
+          "player_name": "Jordan Mason",
+          "team": "Minnesota Vikings",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96S",
+          "player_name": "TreVeyon Henderson",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "97S",
+          "player_name": "Stefon Diggs",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98S",
+          "player_name": "Mack Hollins",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99S",
+          "player_name": "Kyle Williams",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "100S",
+          "player_name": "Harold Landry",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101S",
+          "player_name": "Robert Spillane",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102S",
+          "player_name": "Andres Borregales",
+          "team": "New England Patriots",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "96S",
+          "player_name": "TreVeyon Henderson",
+          "team": "New England Patriots",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97S",
+          "player_name": "Stefon Diggs",
+          "team": "New England Patriots",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98S",
+          "player_name": "Mack Hollins",
+          "team": "New England Patriots",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99S",
+          "player_name": "Kyle Williams",
+          "team": "New England Patriots",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100S",
+          "player_name": "Harold Landry",
+          "team": "New England Patriots",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101S",
+          "player_name": "Robert Spillane",
+          "team": "New England Patriots",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102S",
+          "player_name": "Andres Borregales",
+          "team": "New England Patriots",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96S",
+          "player_name": "TreVeyon Henderson",
+          "team": "New England Patriots",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97S",
+          "player_name": "Stefon Diggs",
+          "team": "New England Patriots",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98S",
+          "player_name": "Mack Hollins",
+          "team": "New England Patriots",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99S",
+          "player_name": "Kyle Williams",
+          "team": "New England Patriots",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100S",
+          "player_name": "Harold Landry",
+          "team": "New England Patriots",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101S",
+          "player_name": "Robert Spillane",
+          "team": "New England Patriots",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102S",
+          "player_name": "Andres Borregales",
+          "team": "New England Patriots",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "96S",
+          "player_name": "TreVeyon Henderson",
+          "team": "New England Patriots",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "97S",
+          "player_name": "Stefon Diggs",
+          "team": "New England Patriots",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "98S",
+          "player_name": "Mack Hollins",
+          "team": "New England Patriots",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "99S",
+          "player_name": "Kyle Williams",
+          "team": "New England Patriots",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "100S",
+          "player_name": "Harold Landry",
+          "team": "New England Patriots",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "101S",
+          "player_name": "Robert Spillane",
+          "team": "New England Patriots",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "102S",
+          "player_name": "Andres Borregales",
+          "team": "New England Patriots",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103S",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "104S",
+          "player_name": "Devin Neal",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "105S",
+          "player_name": "Devaughn Vele",
+          "team": "New Orleans Saints",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103S",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104S",
+          "player_name": "Devin Neal",
+          "team": "New Orleans Saints",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105S",
+          "player_name": "Devaughn Vele",
+          "team": "New Orleans Saints",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103S",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104S",
+          "player_name": "Devin Neal",
+          "team": "New Orleans Saints",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105S",
+          "player_name": "Devaughn Vele",
+          "team": "New Orleans Saints",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "103S",
+          "player_name": "Tyler Shough",
+          "team": "New Orleans Saints",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "104S",
+          "player_name": "Devin Neal",
+          "team": "New Orleans Saints",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "105S",
+          "player_name": "Devaughn Vele",
+          "team": "New Orleans Saints",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107S",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "108S",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "109S",
+          "player_name": "Russell Wilson",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110S",
+          "player_name": "Jameis Winston",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111S",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "112S",
+          "player_name": "Paulson Adebo",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113S",
+          "player_name": "Jevon Holland",
+          "team": "New York Giants",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107S",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108S",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109S",
+          "player_name": "Russell Wilson",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110S",
+          "player_name": "Jameis Winston",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111S",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112S",
+          "player_name": "Paulson Adebo",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113S",
+          "player_name": "Jevon Holland",
+          "team": "New York Giants",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107S",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108S",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109S",
+          "player_name": "Russell Wilson",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110S",
+          "player_name": "Jameis Winston",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111S",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112S",
+          "player_name": "Paulson Adebo",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113S",
+          "player_name": "Jevon Holland",
+          "team": "New York Giants",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "107S",
+          "player_name": "Jaxson Dart",
+          "team": "New York Giants",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "108S",
+          "player_name": "Cam Skattebo",
+          "team": "New York Giants",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "109S",
+          "player_name": "Russell Wilson",
+          "team": "New York Giants",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "110S",
+          "player_name": "Jameis Winston",
+          "team": "New York Giants",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "111S",
+          "player_name": "Abdul Carter",
+          "team": "New York Giants",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "112S",
+          "player_name": "Paulson Adebo",
+          "team": "New York Giants",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "113S",
+          "player_name": "Jevon Holland",
+          "team": "New York Giants",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114S",
+          "player_name": "Adonai Mitchell",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115S",
+          "player_name": "Arian Smith",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "116S",
+          "player_name": "Mason Taylor",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "117S",
+          "player_name": "Azareye'h Thomas",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "118S",
+          "player_name": "Malachi Moore",
+          "team": "New York Jets",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "114S",
+          "player_name": "Adonai Mitchell",
+          "team": "New York Jets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115S",
+          "player_name": "Arian Smith",
+          "team": "New York Jets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116S",
+          "player_name": "Mason Taylor",
+          "team": "New York Jets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117S",
+          "player_name": "Azareye'h Thomas",
+          "team": "New York Jets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118S",
+          "player_name": "Malachi Moore",
+          "team": "New York Jets",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114S",
+          "player_name": "Adonai Mitchell",
+          "team": "New York Jets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115S",
+          "player_name": "Arian Smith",
+          "team": "New York Jets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116S",
+          "player_name": "Mason Taylor",
+          "team": "New York Jets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117S",
+          "player_name": "Azareye'h Thomas",
+          "team": "New York Jets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118S",
+          "player_name": "Malachi Moore",
+          "team": "New York Jets",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "114S",
+          "player_name": "Adonai Mitchell",
+          "team": "New York Jets",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "115S",
+          "player_name": "Arian Smith",
+          "team": "New York Jets",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "116S",
+          "player_name": "Mason Taylor",
+          "team": "New York Jets",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "117S",
+          "player_name": "Azareye'h Thomas",
+          "team": "New York Jets",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "118S",
+          "player_name": "Malachi Moore",
+          "team": "New York Jets",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119S",
+          "player_name": "Tank Bigsby",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120S",
+          "player_name": "AJ Dillon",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121S",
+          "player_name": "Jaelan Phillips",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122S",
+          "player_name": "Andrew Mukuba",
+          "team": "Philadelphia Eagles",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "119S",
+          "player_name": "Tank Bigsby",
+          "team": "Philadelphia Eagles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120S",
+          "player_name": "AJ Dillon",
+          "team": "Philadelphia Eagles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121S",
+          "player_name": "Jaelan Phillips",
+          "team": "Philadelphia Eagles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122S",
+          "player_name": "Andrew Mukuba",
+          "team": "Philadelphia Eagles",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119S",
+          "player_name": "Tank Bigsby",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120S",
+          "player_name": "AJ Dillon",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121S",
+          "player_name": "Jaelan Phillips",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122S",
+          "player_name": "Andrew Mukuba",
+          "team": "Philadelphia Eagles",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "119S",
+          "player_name": "Tank Bigsby",
+          "team": "Philadelphia Eagles",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "120S",
+          "player_name": "AJ Dillon",
+          "team": "Philadelphia Eagles",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "121S",
+          "player_name": "Jaelan Phillips",
+          "team": "Philadelphia Eagles",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "122S",
+          "player_name": "Andrew Mukuba",
+          "team": "Philadelphia Eagles",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95S",
+          "player_name": "Adam Thielen",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123S",
+          "player_name": "Aaron Rodgers",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124S",
+          "player_name": "Kenneth Gainwell",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125S",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "126S",
+          "player_name": "Jonnu Smith",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127S",
+          "player_name": "Jalen Ramsey",
+          "team": "Pittsburgh Steelers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95S",
+          "player_name": "Adam Thielen",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123S",
+          "player_name": "Aaron Rodgers",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124S",
+          "player_name": "Kenneth Gainwell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125S",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126S",
+          "player_name": "Jonnu Smith",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127S",
+          "player_name": "Jalen Ramsey",
+          "team": "Pittsburgh Steelers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95S",
+          "player_name": "Adam Thielen",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123S",
+          "player_name": "Aaron Rodgers",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124S",
+          "player_name": "Kenneth Gainwell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125S",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126S",
+          "player_name": "Jonnu Smith",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127S",
+          "player_name": "Jalen Ramsey",
+          "team": "Pittsburgh Steelers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "95S",
+          "player_name": "Adam Thielen",
+          "team": "Pittsburgh Steelers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "123S",
+          "player_name": "Aaron Rodgers",
+          "team": "Pittsburgh Steelers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "124S",
+          "player_name": "Kenneth Gainwell",
+          "team": "Pittsburgh Steelers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "125S",
+          "player_name": "Kaleb Johnson",
+          "team": "Pittsburgh Steelers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "126S",
+          "player_name": "Jonnu Smith",
+          "team": "Pittsburgh Steelers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "127S",
+          "player_name": "Jalen Ramsey",
+          "team": "Pittsburgh Steelers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128S",
+          "player_name": "Mac Jones",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129S",
+          "player_name": "Brian Robinson Jr.",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130S",
+          "player_name": "Kendrick Bourne",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131S",
+          "player_name": "Jake Tonges",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "132S",
+          "player_name": "Alfred Collins",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "133S",
+          "player_name": "Mykel Williams",
+          "team": "San Francisco 49ers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "128S",
+          "player_name": "Mac Jones",
+          "team": "San Francisco 49ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129S",
+          "player_name": "Brian Robinson Jr.",
+          "team": "San Francisco 49ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130S",
+          "player_name": "Kendrick Bourne",
+          "team": "San Francisco 49ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131S",
+          "player_name": "Jake Tonges",
+          "team": "San Francisco 49ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132S",
+          "player_name": "Alfred Collins",
+          "team": "San Francisco 49ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133S",
+          "player_name": "Mykel Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128S",
+          "player_name": "Mac Jones",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129S",
+          "player_name": "Brian Robinson Jr.",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130S",
+          "player_name": "Kendrick Bourne",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131S",
+          "player_name": "Jake Tonges",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132S",
+          "player_name": "Alfred Collins",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133S",
+          "player_name": "Mykel Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "128S",
+          "player_name": "Mac Jones",
+          "team": "San Francisco 49ers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "129S",
+          "player_name": "Brian Robinson Jr.",
+          "team": "San Francisco 49ers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "130S",
+          "player_name": "Kendrick Bourne",
+          "team": "San Francisco 49ers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "131S",
+          "player_name": "Jake Tonges",
+          "team": "San Francisco 49ers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "132S",
+          "player_name": "Alfred Collins",
+          "team": "San Francisco 49ers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "133S",
+          "player_name": "Mykel Williams",
+          "team": "San Francisco 49ers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134S",
+          "player_name": "Tory Horton",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "135S",
+          "player_name": "Cooper Kupp",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136S",
+          "player_name": "Rashid Shaheed",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137S",
+          "player_name": "Elijah Arroyo",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "138S",
+          "player_name": "DeMarcus Lawrence",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139S",
+          "player_name": "Nick Emmanwori",
+          "team": "Seattle Seahawks",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "134S",
+          "player_name": "Tory Horton",
+          "team": "Seattle Seahawks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135S",
+          "player_name": "Cooper Kupp",
+          "team": "Seattle Seahawks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136S",
+          "player_name": "Rashid Shaheed",
+          "team": "Seattle Seahawks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137S",
+          "player_name": "Elijah Arroyo",
+          "team": "Seattle Seahawks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138S",
+          "player_name": "DeMarcus Lawrence",
+          "team": "Seattle Seahawks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139S",
+          "player_name": "Nick Emmanwori",
+          "team": "Seattle Seahawks",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134S",
+          "player_name": "Tory Horton",
+          "team": "Seattle Seahawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135S",
+          "player_name": "Cooper Kupp",
+          "team": "Seattle Seahawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136S",
+          "player_name": "Rashid Shaheed",
+          "team": "Seattle Seahawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137S",
+          "player_name": "Elijah Arroyo",
+          "team": "Seattle Seahawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138S",
+          "player_name": "DeMarcus Lawrence",
+          "team": "Seattle Seahawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139S",
+          "player_name": "Nick Emmanwori",
+          "team": "Seattle Seahawks",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "134S",
+          "player_name": "Tory Horton",
+          "team": "Seattle Seahawks",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "135S",
+          "player_name": "Cooper Kupp",
+          "team": "Seattle Seahawks",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "136S",
+          "player_name": "Rashid Shaheed",
+          "team": "Seattle Seahawks",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "137S",
+          "player_name": "Elijah Arroyo",
+          "team": "Seattle Seahawks",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "138S",
+          "player_name": "DeMarcus Lawrence",
+          "team": "Seattle Seahawks",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "139S",
+          "player_name": "Nick Emmanwori",
+          "team": "Seattle Seahawks",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140S",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "141S",
+          "player_name": "Tez Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "142S",
+          "player_name": "Haason Reddick",
+          "team": "Tampa Bay Buccaneers",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140S",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141S",
+          "player_name": "Tez Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142S",
+          "player_name": "Haason Reddick",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140S",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141S",
+          "player_name": "Tez Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142S",
+          "player_name": "Haason Reddick",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "140S",
+          "player_name": "Emeka Egbuka",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "141S",
+          "player_name": "Tez Johnson",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "142S",
+          "player_name": "Haason Reddick",
+          "team": "Tampa Bay Buccaneers",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143S",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "144S",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "145S",
+          "player_name": "Chimere Dike",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "146S",
+          "player_name": "Gunnar Helm",
+          "team": "Tennessee Titans",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "143S",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144S",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145S",
+          "player_name": "Chimere Dike",
+          "team": "Tennessee Titans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146S",
+          "player_name": "Gunnar Helm",
+          "team": "Tennessee Titans",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143S",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144S",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145S",
+          "player_name": "Chimere Dike",
+          "team": "Tennessee Titans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146S",
+          "player_name": "Gunnar Helm",
+          "team": "Tennessee Titans",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "143S",
+          "player_name": "Cam Ward",
+          "team": "Tennessee Titans",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "144S",
+          "player_name": "Elic Ayomanor",
+          "team": "Tennessee Titans",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "145S",
+          "player_name": "Chimere Dike",
+          "team": "Tennessee Titans",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "146S",
+          "player_name": "Gunnar Helm",
+          "team": "Tennessee Titans",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147S",
+          "player_name": "Jacory Croskey-Merritt",
+          "team": "Washington Commanders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "148S",
+          "player_name": "Jaylin Lane",
+          "team": "Washington Commanders",
+          "variation": null,
+          "is_rc": true,
+          "is_auto": false
+        },
+        {
+          "card_number": "149S",
+          "player_name": "Preston Smith",
+          "team": "Washington Commanders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150S",
+          "player_name": "Von Miller",
+          "team": "Washington Commanders",
+          "variation": null,
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147S",
+          "player_name": "Jacory Croskey-Merritt",
+          "team": "Washington Commanders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148S",
+          "player_name": "Jaylin Lane",
+          "team": "Washington Commanders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149S",
+          "player_name": "Preston Smith",
+          "team": "Washington Commanders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150S",
+          "player_name": "Von Miller",
+          "team": "Washington Commanders",
+          "variation": "Black",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147S",
+          "player_name": "Jacory Croskey-Merritt",
+          "team": "Washington Commanders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148S",
+          "player_name": "Jaylin Lane",
+          "team": "Washington Commanders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149S",
+          "player_name": "Preston Smith",
+          "team": "Washington Commanders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150S",
+          "player_name": "Von Miller",
+          "team": "Washington Commanders",
+          "variation": "Gold",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "147S",
+          "player_name": "Jacory Croskey-Merritt",
+          "team": "Washington Commanders",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "148S",
+          "player_name": "Jaylin Lane",
+          "team": "Washington Commanders",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "149S",
+          "player_name": "Preston Smith",
+          "team": "Washington Commanders",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "150S",
+          "player_name": "Von Miller",
+          "team": "Washington Commanders",
+          "variation": "Teal",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Score"
+    }
+  ]
+}

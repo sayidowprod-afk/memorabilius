@@ -1,4 +1,5 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -10,6 +11,11 @@ import LinkifiedText from '@/components/LinkifiedText'
 const IMG_PREFIX = '[[img]]'
 const isImageMsg = (c: string) => typeof c === 'string' && c.startsWith(IMG_PREFIX)
 const imgUrlOf = (c: string) => c.slice(IMG_PREFIX.length)
+
+// Préfixe marqueur pour les offres d'échange intégrées au chat
+const TRADE_OFFER_PREFIX = '[[trade_offer:'
+const isTradeOfferMsg = (c: string) => typeof c === 'string' && c.startsWith(TRADE_OFFER_PREFIX)
+const tradeOfferIdOf = (c: string) => c.slice(TRADE_OFFER_PREFIX.length, -2)
 
 // Réduit une image à 1200px max et l'encode en JPEG pour limiter le poids
 function compressImage(file: File): Promise<Blob> {
@@ -49,11 +55,17 @@ function MessagesContent() {
   const [newMsg, setNewMsg] = useState('')
   const [profiles, setProfiles] = useState<Record<string, any>>({})
   const [tradesMap, setTradesMap] = useState<Record<number, any>>({})
+  const [tradeOffersMap, setTradeOffersMap] = useState<Record<string, any>>({})
   const [loading, setLoading] = useState(true)
   const [contextTrade, setContextTrade] = useState<any>(null)
+  const [newConvOpen, setNewConvOpen] = useState(false)
+  const [newConvSearch, setNewConvSearch] = useState('')
+  const [newConvResults, setNewConvResults] = useState<any[]>([])
   const [uploading, setUploading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const activeConvRef = useRef<string | null>(null)
+  activeConvRef.current = activeConv
 
   const bg = dark ? '#1a1a1a' : 'white'
   const bgPanel = dark ? '#222' : 'white'
@@ -80,6 +92,22 @@ function MessagesContent() {
   }, [])
 
   useEffect(() => {
+    if (!userId) return
+    const channel = supabase
+      .channel(`messages-incoming:${userId}`)
+      .on('postgres_changes', {
+        event: 'INSERT', schema: 'public', table: 'messages',
+        filter: `to_user_id=eq.${userId}`,
+      }, () => {
+        loadConversations(userId)
+        const conv = activeConvRef.current
+        if (conv) loadMessages(userId, conv)
+      })
+      .subscribe()
+    return () => { supabase.removeChannel(channel) }
+  }, [userId])
+
+  useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
@@ -94,7 +122,8 @@ function MessagesContent() {
     const convMap: Record<string, any> = {}
     for (const msg of data) {
       const otherId = msg.from_user_id === uid ? msg.to_user_id : msg.from_user_id
-      if (!convMap[otherId]) convMap[otherId] = { lastMsg: msg.contenu, date: msg.created_at, unread: 0 }
+      const lastMsgDisplay = isTradeOfferMsg(msg.contenu) ? '🔄 Offre d\'échange' : isImageMsg(msg.contenu) ? '📷 Photo' : msg.contenu
+      if (!convMap[otherId]) convMap[otherId] = { lastMsg: lastMsgDisplay, date: msg.created_at, unread: 0 }
       if (!msg.lu && msg.to_user_id === uid) convMap[otherId].unread++
     }
     const ids = Object.keys(convMap)
@@ -115,13 +144,35 @@ function MessagesContent() {
       .order('created_at', { ascending: true })
     setMessages(data || [])
 
-    // Charger les trades référencés dans les messages
+    // Charger les trades (forum) référencés dans les messages
     const tradeIds = [...new Set((data || []).map((m: any) => m.trade_id).filter(Boolean))] as number[]
     if (tradeIds.length > 0) {
       const { data: trades } = await supabase.from('trades').select('id, titre, type, image_url, joueur').in('id', tradeIds)
       const map: Record<number, any> = {}
       trades?.forEach(tr => { map[tr.id] = tr })
       setTradesMap(map)
+    }
+
+    // Charger les trade_offers référencées dans les messages via l'API (enrichit les cartes manuelles)
+    const offerIds = [...new Set((data || [])
+      .filter((m: any) => isTradeOfferMsg(m.contenu))
+      .map((m: any) => tradeOfferIdOf(m.contenu))
+    )]
+    if (offerIds.length > 0) {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session?.access_token) {
+        const res = await fetch('/api/trades', {
+          headers: { Authorization: `Bearer ${session.access_token}` },
+        })
+        if (res.ok) {
+          const json = await res.json()
+          const oMap: Record<string, any> = {}
+          for (const t of (json.trades || [])) {
+            if (offerIds.includes(t.id)) oMap[t.id] = t
+          }
+          setTradeOffersMap(oMap)
+        }
+      }
     }
 
     await supabase.from('messages').update({ lu: true }).eq('to_user_id', uid).eq('from_user_id', otherId)
@@ -133,12 +184,14 @@ function MessagesContent() {
 
   const sendMessage = async () => {
     if (!newMsg.trim() || !userId || !activeConv) return
-    await supabase.from('messages').insert({
+    const content = newMsg.trim()
+    const { error } = await supabase.from('messages').insert({
       from_user_id: userId,
       to_user_id: activeConv,
-      contenu: newMsg.trim(),
+      contenu: content,
       trade_id: tradeParam ? parseInt(tradeParam) : null,
     })
+    if (error) { toast.error('Erreur envoi : ' + error.message); return }
     setNewMsg('')
     loadMessages(userId, activeConv)
     loadConversations(userId)
@@ -161,7 +214,7 @@ function MessagesContent() {
       const blob = await compressImage(file)
       const path = `messages/${userId}/${Date.now()}.jpg`
       const { error } = await supabase.storage.from('avatars').upload(path, blob, { upsert: true, contentType: 'image/jpeg' })
-      if (error) { alert('Erreur upload : ' + error.message); return }
+      if (error) { toast.error('Erreur upload : ' + error.message); return }
       const { data } = supabase.storage.from('avatars').getPublicUrl(path)
       await supabase.from('messages').insert({
         from_user_id: userId,
@@ -172,7 +225,7 @@ function MessagesContent() {
       loadMessages(userId, activeConv)
       loadConversations(userId)
     } catch (e: any) {
-      alert('Erreur : ' + (e?.message || 'envoi impossible'))
+      toast.error('Erreur : ' + (e?.message || 'envoi impossible'))
     } finally {
       setUploading(false)
     }
@@ -183,12 +236,57 @@ function MessagesContent() {
     if (userId) loadMessages(userId, id)
   }
 
-  if (loading) return <p style={{ textAlign: 'center', padding: 60, color: '#bbb' }}>Chargement...</p>
+  const searchNewConv = async (q: string) => {
+    setNewConvSearch(q)
+    if (q.trim().length < 2) { setNewConvResults([]); return }
+    const { data } = await supabase.from('profiles').select('id, display_name, avatar_url').ilike('display_name', `%${q}%`).neq('id', userId).limit(8)
+    setNewConvResults(data || [])
+  }
+
+  const startConv = (otherId: string, profile: any) => {
+    setProfiles(prev => ({ ...prev, [otherId]: profile }))
+    setActiveConv(otherId)
+    if (userId) loadMessages(userId, otherId)
+    setNewConvOpen(false)
+    setNewConvSearch('')
+    setNewConvResults([])
+  }
+
+  const fmtConvDate = (iso: string) => {
+    if (!iso) return ''
+    const d = new Date(iso)
+    const now = new Date()
+    const diffDays = Math.floor((now.getTime() - d.getTime()) / 86400000)
+    if (diffDays === 0) return d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+    if (diffDays === 1) return 'Hier'
+    if (diffDays < 7) return d.toLocaleDateString('fr-FR', { weekday: 'short' })
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })
+  }
+
+  if (loading) return (
+    <div style={{ maxWidth: 1000, margin: '20px auto', padding: '0 10px', display: 'flex', gap: 20, height: 'calc(100vh - 120px)' }}>
+      <div style={{ width: 280, background: dark ? '#222' : 'white', borderRadius: 16, overflow: 'hidden' }}>
+        {[1,2,3,4].map(i => (
+          <div key={i} style={{ padding: '14px 16px', display: 'flex', gap: 12, borderBottom: `1px solid ${dark ? '#333' : '#f0f0f0'}` }}>
+            <div style={{ width: 40, height: 40, borderRadius: '50%', background: dark ? '#333' : '#eee', flexShrink: 0 }} />
+            <div style={{ flex: 1 }}>
+              <div style={{ height: 13, background: dark ? '#333' : '#eee', borderRadius: 4, marginBottom: 6, width: '60%' }} />
+              <div style={{ height: 11, background: dark ? '#2a2a2a' : '#f5f5f5', borderRadius: 4, width: '85%' }} />
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ flex: 1, background: dark ? '#222' : 'white', borderRadius: 16 }} />
+      <style>{`@keyframes pulse { from{opacity:1} to{opacity:.5} } div[style*="background: #eee"],div[style*="background: #333"],div[style*="background: #2a2a2a"],div[style*="background: #f5f5f5"]{ animation: pulse 1.4s ease infinite alternate }`}</style>
+    </div>
+  )
 
   return (
     <div style={{ maxWidth: 1000, margin: '20px auto', fontFamily: 'Inter, sans-serif', height: 'calc(100vh - 120px)', display: 'flex', gap: 20, padding: '0 10px' }}>
       <style>{`
+        .msg-back { display: none; }
         @media (max-width: 768px) {
+          .msg-back { display: inline-block !important; }
           .msg-layout { flex-direction: column !important; height: calc(100vh - 80px) !important; gap: 0 !important; }
           .msg-list { width: 100% !important; display: ${activeConv ? 'none' : 'flex'} !important; border-radius: 12px 12px 0 0 !important; }
           .msg-chat { display: ${activeConv ? 'flex' : 'none'} !important; border-radius: 0 0 12px 12px !important; }
@@ -199,27 +297,53 @@ function MessagesContent() {
 
         {/* Liste conversations */}
         <div className="msg-list" style={{ width: 280, background: bgPanel, borderRadius: 16, boxShadow: '0 4px 20px rgba(0,0,0,0.12)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ padding: '20px 16px', borderBottom: `1px solid ${border}` }}>
+          <div style={{ padding: '16px', borderBottom: `1px solid ${border}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
             <h2 style={{ fontWeight: 900, fontSize: 18, margin: 0, color: textMain }}>{t('messages_title')}</h2>
+            <button onClick={() => setNewConvOpen(v => !v)} title="Nouvelle conversation" style={{ background: newConvOpen ? '#003DA6' : 'none', color: newConvOpen ? 'white' : '#003DA6', border: '1.5px solid #003DA6', borderRadius: 8, width: 30, height: 30, fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 900 }}>+</button>
           </div>
+          {newConvOpen && (
+            <div style={{ padding: '10px 12px', borderBottom: `1px solid ${border}` }}>
+              <input
+                autoFocus
+                value={newConvSearch}
+                onChange={e => searchNewConv(e.target.value)}
+                placeholder="Rechercher un utilisateur…"
+                style={{ width: '100%', fontSize: 13, background: dark ? '#2a2a2a' : undefined, color: dark ? '#fff' : undefined, borderColor: dark ? '#444' : undefined }}
+              />
+              {newConvResults.map(p => (
+                <div key={p.id} onClick={() => startConv(p.id, p)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 4px', cursor: 'pointer', borderRadius: 8 }}
+                  onMouseEnter={e => (e.currentTarget.style.background = bgHover)}
+                  onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
+                  <img src={p.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(p.display_name || 'U')}&background=003DA6&color=fff`} style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover' }} alt="" />
+                  <span style={{ fontSize: 13, fontWeight: 700, color: textMain }}>{p.display_name}</span>
+                </div>
+              ))}
+              {newConvSearch.length >= 2 && newConvResults.length === 0 && (
+                <p style={{ fontSize: 12, color: textMuted, padding: '6px 4px', margin: 0 }}>Aucun résultat</p>
+              )}
+            </div>
+          )}
           <div style={{ overflowY: 'auto', flex: 1 }}>
             {conversations.length === 0 && (
               <p style={{ padding: 20, color: textMuted, fontSize: 13, textAlign: 'center' }}>{t('messages_none')}</p>
             )}
             {conversations.map(conv => (
               <div key={conv.id} onClick={() => selectConv(conv.id)} style={{
-                padding: '14px 16px', cursor: 'pointer', borderBottom: `1px solid ${border}`,
+                padding: '12px 16px', cursor: 'pointer', borderBottom: `1px solid ${border}`,
                 background: activeConv === conv.id ? bgHover : 'transparent',
                 display: 'flex', alignItems: 'center', gap: 12,
               }}>
                 <img src={profiles[conv.id]?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(profiles[conv.id]?.display_name || 'U')}&background=003DA6&color=fff`}
                   style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ fontWeight: 800, fontSize: 13, margin: 0, color: textMain, display: 'flex', justifyContent: 'space-between' }}>
-                    <span>{profiles[conv.id]?.display_name || '...'}</span>
-                    {conv.unread > 0 && <span style={{ background: '#003DA6', color: 'white', borderRadius: '50%', width: 18, height: 18, fontSize: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>{conv.unread}</span>}
-                  </p>
-                  <p style={{ fontSize: 11, color: textMuted, margin: '2px 0 0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{isImageMsg(conv.lastMsg) ? '📷 Photo' : conv.lastMsg}</p>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 4 }}>
+                    <span style={{ fontWeight: 800, fontSize: 13, color: textMain, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{profiles[conv.id]?.display_name || '...'}</span>
+                    <span style={{ fontSize: 10, color: textMuted, flexShrink: 0 }}>{fmtConvDate(conv.date)}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 2 }}>
+                    <p style={{ fontSize: 11, color: textMuted, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1 }}>{isImageMsg(conv.lastMsg) ? '📷 Photo' : conv.lastMsg}</p>
+                    {conv.unread > 0 && <span style={{ background: '#003DA6', color: 'white', borderRadius: '50%', width: 18, height: 18, fontSize: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, flexShrink: 0, marginLeft: 4 }}>{conv.unread}</span>}
+                  </div>
                 </div>
               </div>
             ))}
@@ -259,11 +383,105 @@ function MessagesContent() {
                 {messages.map(msg => {
                   const isMe = msg.from_user_id === userId
                   const linkedTrade = msg.trade_id ? tradesMap[msg.trade_id] : null
+
+                  // ── Bulle offre d'échange ──
+                  if (isTradeOfferMsg(msg.contenu)) {
+                    const offer = tradeOffersMap[tradeOfferIdOf(msg.contenu)]
+                    const isSender = offer?.sender_id === userId
+                    const isPending = offer?.status === 'pending'
+                    const statusColors: Record<string, string> = { pending: '#7a5500', accepted: '#1b5e20', refused: '#7f0000', cancelled: '#555' }
+                    const statusLabels: Record<string, string> = { pending: 'En attente', accepted: 'Accepté ✓', refused: 'Refusé', cancelled: 'Annulé' }
+                    const actOnOffer = async (action: 'accept' | 'refuse' | 'cancel') => {
+                      const { data: { session } } = await supabase.auth.getSession()
+                      if (!session) return
+                      await fetch(`/api/trades/${offer.id}`, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+                        body: JSON.stringify({ action }),
+                      })
+                      if (userId) loadMessages(userId, activeConv!)
+                    }
+                    return (
+                      <div key={msg.id} style={{ display: 'flex', justifyContent: 'center', margin: '4px 0' }}>
+                        <div style={{ background: dark ? '#1e2a3a' : '#f0f4ff', border: `1.5px solid ${dark ? '#2a3a5a' : '#c5d5ff'}`, borderRadius: 14, padding: 14, width: '100%', maxWidth: 420 }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+                            <span style={{ fontSize: 12, fontWeight: 800, color: '#003DA6' }}>🔄 Offre d'échange</span>
+                            {offer && <span style={{ fontSize: 11, fontWeight: 700, color: statusColors[offer.status] || '#555' }}>{statusLabels[offer.status] || offer.status}</span>}
+                          </div>
+                          {offer ? (
+                            <>
+                              <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 10 }}>
+                                {/* Cartes offertes */}
+                                <div style={{ flex: 1 }}>
+                                  <div style={{ fontSize: 10, fontWeight: 700, color: textMuted, textTransform: 'uppercase', marginBottom: 4 }}>
+                                    {isSender ? 'Tu offres' : 'Il/elle offre'}
+                                  </div>
+                                  <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                                    {offer.offered_cards.slice(0, 4).map((c: any, i: number) => {
+                                      const img = c.image_recto || c.card_image
+                                      const href = img ? `/galerie/${offer.sender_id}?card=${encodeURIComponent(img)}` : null
+                                      return (
+                                        <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer"
+                                          style={{ width: 40, height: 56, background: '#0d1a30', borderRadius: 4, overflow: 'hidden', flexShrink: 0, display: 'block', cursor: href ? 'pointer' : 'default', textDecoration: 'none' }}>
+                                          {img && <img src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                        </a>
+                                      )
+                                    })}
+                                    {offer.offered_cards.length > 4 && <span style={{ fontSize: 11, color: textMuted, alignSelf: 'center' }}>+{offer.offered_cards.length - 4}</span>}
+                                  </div>
+                                </div>
+                                <span style={{ color: textMuted, fontSize: 18, flexShrink: 0 }}>⇄</span>
+                                {/* Cartes demandées */}
+                                <div style={{ flex: 1 }}>
+                                  <div style={{ fontSize: 10, fontWeight: 700, color: textMuted, textTransform: 'uppercase', marginBottom: 4 }}>
+                                    {isSender ? 'Tu demandes' : 'Il/elle demande'}
+                                  </div>
+                                  <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                                    {offer.requested_cards.slice(0, 4).map((c: any, i: number) => {
+                                      const img = c.image_recto || c.card_image
+                                      const href = img ? `/galerie/${offer.receiver_id}?card=${encodeURIComponent(img)}` : null
+                                      return (
+                                        <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer"
+                                          style={{ width: 40, height: 56, background: '#0d1a30', borderRadius: 4, overflow: 'hidden', flexShrink: 0, display: 'block', cursor: href ? 'pointer' : 'default', textDecoration: 'none' }}>
+                                          {img && <img src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                        </a>
+                                      )
+                                    })}
+                                    {offer.requested_cards.length > 4 && <span style={{ fontSize: 11, color: textMuted, alignSelf: 'center' }}>+{offer.requested_cards.length - 4}</span>}
+                                  </div>
+                                </div>
+                              </div>
+                              {offer.message && <div style={{ fontSize: 12, color: textMuted, marginBottom: 10, fontStyle: 'italic' }}>"{offer.message}"</div>}
+                              {isPending && (
+                                <div style={{ display: 'flex', gap: 6 }}>
+                                  {!isSender && (
+                                    <>
+                                      <button onClick={() => actOnOffer('accept')} style={{ flex: 1, background: '#003DA6', color: '#fff', border: 'none', borderRadius: 8, padding: '8px', fontWeight: 800, fontSize: 12, cursor: 'pointer' }}>✓ Accepter</button>
+                                      <button onClick={() => actOnOffer('refuse')} style={{ flex: 1, background: 'none', border: '1.5px solid #ccc', borderRadius: 8, padding: '8px', fontWeight: 700, fontSize: 12, cursor: 'pointer', color: textMain }}>✕ Refuser</button>
+                                    </>
+                                  )}
+                                  {isSender && (
+                                    <button onClick={() => actOnOffer('cancel')} style={{ background: 'none', border: '1.5px solid #ccc', borderRadius: 8, padding: '7px 16px', fontWeight: 700, fontSize: 12, cursor: 'pointer', color: '#888' }}>Annuler l'offre</button>
+                                  )}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <div style={{ color: textMuted, fontSize: 13 }}>Chargement de l'offre…</div>
+                          )}
+                          <div style={{ fontSize: 10, color: textMuted, marginTop: 8, textAlign: 'right' }}>
+                            {new Date(msg.created_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
+
                   return (
                     <div key={msg.id} style={{ display: 'flex', justifyContent: isMe ? 'flex-end' : 'flex-start' }}>
                       <div style={{ maxWidth: '75%', display: 'flex', flexDirection: 'column', gap: 4, alignItems: isMe ? 'flex-end' : 'flex-start' }}>
 
-                        {/* Carte trade attachée */}
+                        {/* Carte trade forum attachée */}
                         {linkedTrade && (
                           <a href={`/trades`} style={{ textDecoration: 'none', display: 'block', background: dark ? '#2a3a2a' : '#e8f5e9', border: `1px solid ${dark ? '#3a5a3a' : '#c8e6c9'}`, borderRadius: 10, overflow: 'hidden', width: 220 }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 10px' }}>

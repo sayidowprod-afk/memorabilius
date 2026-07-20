@@ -1,0 +1,2679 @@
+{
+  "year": 2025,
+  "sport": "baseball",
+  "sets": [
+    {
+      "set": {
+        "tcdb_id": 583032,
+        "name": "2025 Topps Chrome Update Sapphire Edition"
+      },
+      "unique": [
+        {
+          "card_number": "SS-29",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-CC",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sapphire Selections Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CC",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sapphire Selections Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CC",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sapphire Selections Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CC",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sapphire Selections Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CC",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sapphire Selections Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-29",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-29",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-29",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-29",
+          "player_name": "Corbin Carroll",
+          "team": "Arizona Diamondbacks",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-DB",
+          "player_name": "Drake Baldwin",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HW",
+          "player_name": "Hurston Waldrep",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-SS",
+          "player_name": "Spencer Schwellenbach",
+          "team": "Atlanta Braves",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DB",
+          "player_name": "Drake Baldwin",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HW",
+          "player_name": "Hurston Waldrep",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-SS",
+          "player_name": "Spencer Schwellenbach",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DB",
+          "player_name": "Drake Baldwin",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HW",
+          "player_name": "Hurston Waldrep",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-SS",
+          "player_name": "Spencer Schwellenbach",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DB",
+          "player_name": "Drake Baldwin",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HW",
+          "player_name": "Hurston Waldrep",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-SS",
+          "player_name": "Spencer Schwellenbach",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DB",
+          "player_name": "Drake Baldwin",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HW",
+          "player_name": "Hurston Waldrep",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-SS",
+          "player_name": "Spencer Schwellenbach",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DB",
+          "player_name": "Drake Baldwin",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HW",
+          "player_name": "Hurston Waldrep",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-SS",
+          "player_name": "Spencer Schwellenbach",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DB",
+          "player_name": "Drake Baldwin",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HW",
+          "player_name": "Hurston Waldrep",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-SS",
+          "player_name": "Spencer Schwellenbach",
+          "team": "Atlanta Braves",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-21",
+          "player_name": "Atlanta Braves",
+          "team": null,
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-31",
+          "player_name": "Chris Sale",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-37",
+          "player_name": "Drake Baldwin",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-CS",
+          "player_name": "Chris Sale",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CS",
+          "player_name": "Chris Sale",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CS",
+          "player_name": "Chris Sale",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CS",
+          "player_name": "Chris Sale",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CS",
+          "player_name": "Chris Sale",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-31",
+          "player_name": "Chris Sale",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-37",
+          "player_name": "Drake Baldwin",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-31",
+          "player_name": "Chris Sale",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-37",
+          "player_name": "Drake Baldwin",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-31",
+          "player_name": "Chris Sale",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-37",
+          "player_name": "Drake Baldwin",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-31",
+          "player_name": "Chris Sale",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-37",
+          "player_name": "Drake Baldwin",
+          "team": "Atlanta Braves",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-CM",
+          "player_name": "Coby Mayo",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CM",
+          "player_name": "Coby Mayo",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CM",
+          "player_name": "Coby Mayo",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CM",
+          "player_name": "Coby Mayo",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CM",
+          "player_name": "Coby Mayo",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CM",
+          "player_name": "Coby Mayo",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CM",
+          "player_name": "Coby Mayo",
+          "team": "Baltimore Orioles",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-29",
+          "player_name": "Baltimore Orioles",
+          "team": null,
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-KC",
+          "player_name": "Kristian Campbell",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-MM",
+          "player_name": "Marcelo Mayer",
+          "team": "Boston Red Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-KC",
+          "player_name": "Kristian Campbell",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-MM",
+          "player_name": "Marcelo Mayer",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-KC",
+          "player_name": "Kristian Campbell",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-MM",
+          "player_name": "Marcelo Mayer",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-KC",
+          "player_name": "Kristian Campbell",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-MM",
+          "player_name": "Marcelo Mayer",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-KC",
+          "player_name": "Kristian Campbell",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-MM",
+          "player_name": "Marcelo Mayer",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-KC",
+          "player_name": "Kristian Campbell",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-MM",
+          "player_name": "Marcelo Mayer",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-KC",
+          "player_name": "Kristian Campbell",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-MM",
+          "player_name": "Marcelo Mayer",
+          "team": "Boston Red Sox",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-28",
+          "player_name": "Boston Red Sox",
+          "team": null,
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-KA",
+          "player_name": "Kevin Alcántara",
+          "team": "Chicago Cubs",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-KA",
+          "player_name": "Kevin Alcántara",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-KA",
+          "player_name": "Kevin Alcántara",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-KA",
+          "player_name": "Kevin Alcántara",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-KA",
+          "player_name": "Kevin Alcántara",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-KA",
+          "player_name": "Kevin Alcántara",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-KA",
+          "player_name": "Kevin Alcántara",
+          "team": "Chicago Cubs",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-18",
+          "player_name": "Donald Duck",
+          "team": "Chicago Cubs",
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-27",
+          "player_name": "Kyle Tucker",
+          "team": "Chicago Cubs",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-27",
+          "player_name": "Kyle Tucker",
+          "team": "Chicago Cubs",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-27",
+          "player_name": "Kyle Tucker",
+          "team": "Chicago Cubs",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-27",
+          "player_name": "Kyle Tucker",
+          "team": "Chicago Cubs",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-27",
+          "player_name": "Kyle Tucker",
+          "team": "Chicago Cubs",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-BB",
+          "player_name": "Brooks Baldwin",
+          "team": "Chicago White Sox",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BB",
+          "player_name": "Brooks Baldwin",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BB",
+          "player_name": "Brooks Baldwin",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BB",
+          "player_name": "Brooks Baldwin",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BB",
+          "player_name": "Brooks Baldwin",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BB",
+          "player_name": "Brooks Baldwin",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BB",
+          "player_name": "Brooks Baldwin",
+          "team": "Chicago White Sox",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-12",
+          "player_name": "Donald Duck",
+          "team": "Chicago White Sox",
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-39",
+          "player_name": "Edgar Quero",
+          "team": "Chicago White Sox",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-EQ",
+          "player_name": "Edgar Quero",
+          "team": "Chicago White Sox",
+          "variation": "Sapphire Selections Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-EQ",
+          "player_name": "Edgar Quero",
+          "team": "Chicago White Sox",
+          "variation": "Sapphire Selections Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-EQ",
+          "player_name": "Edgar Quero",
+          "team": "Chicago White Sox",
+          "variation": "Sapphire Selections Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-EQ",
+          "player_name": "Edgar Quero",
+          "team": "Chicago White Sox",
+          "variation": "Sapphire Selections Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-EQ",
+          "player_name": "Edgar Quero",
+          "team": "Chicago White Sox",
+          "variation": "Sapphire Selections Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-39",
+          "player_name": "Edgar Quero",
+          "team": "Chicago White Sox",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-39",
+          "player_name": "Edgar Quero",
+          "team": "Chicago White Sox",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-39",
+          "player_name": "Edgar Quero",
+          "team": "Chicago White Sox",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-39",
+          "player_name": "Edgar Quero",
+          "team": "Chicago White Sox",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-RH",
+          "player_name": "Rece Hinds",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RL",
+          "player_name": "Rhett Lowder",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RH",
+          "player_name": "Rece Hinds",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RL",
+          "player_name": "Rhett Lowder",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RH",
+          "player_name": "Rece Hinds",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RL",
+          "player_name": "Rhett Lowder",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RH",
+          "player_name": "Rece Hinds",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RL",
+          "player_name": "Rhett Lowder",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RH",
+          "player_name": "Rece Hinds",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RL",
+          "player_name": "Rhett Lowder",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RH",
+          "player_name": "Rece Hinds",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RL",
+          "player_name": "Rhett Lowder",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RH",
+          "player_name": "Rece Hinds",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RL",
+          "player_name": "Rhett Lowder",
+          "team": "Cincinnati Reds",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-19",
+          "player_name": "Donald Duck",
+          "team": "Cincinnati Reds",
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-DS",
+          "player_name": "Daniel Schneemann",
+          "team": "Cleveland Guardians",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DS",
+          "player_name": "Daniel Schneemann",
+          "team": "Cleveland Guardians",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DS",
+          "player_name": "Daniel Schneemann",
+          "team": "Cleveland Guardians",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DS",
+          "player_name": "Daniel Schneemann",
+          "team": "Cleveland Guardians",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DS",
+          "player_name": "Daniel Schneemann",
+          "team": "Cleveland Guardians",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DS",
+          "player_name": "Daniel Schneemann",
+          "team": "Cleveland Guardians",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DS",
+          "player_name": "Daniel Schneemann",
+          "team": "Cleveland Guardians",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-11",
+          "player_name": "Donald Duck",
+          "team": "Cleveland Guardians",
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-26",
+          "player_name": "José Ramírez",
+          "team": "Cleveland Guardians",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-26",
+          "player_name": "José Ramírez",
+          "team": "Cleveland Guardians",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-26",
+          "player_name": "José Ramírez",
+          "team": "Cleveland Guardians",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-26",
+          "player_name": "José Ramírez",
+          "team": "Cleveland Guardians",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-26",
+          "player_name": "José Ramírez",
+          "team": "Cleveland Guardians",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-DO",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DO",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DO",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DO",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DO",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DO",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DO",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-35",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-CD",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Sapphire Selections Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CD",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Sapphire Selections Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CD",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Sapphire Selections Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CD",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Sapphire Selections Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CD",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Sapphire Selections Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-35",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-35",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-35",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-35",
+          "player_name": "Chase Dollander",
+          "team": "Colorado Rockies",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-JJ",
+          "player_name": "Jace Jung",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJO",
+          "player_name": "Jackson Jobe",
+          "team": "Detroit Tigers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJ",
+          "player_name": "Jace Jung",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJO",
+          "player_name": "Jackson Jobe",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJ",
+          "player_name": "Jace Jung",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJO",
+          "player_name": "Jackson Jobe",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJ",
+          "player_name": "Jace Jung",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJO",
+          "player_name": "Jackson Jobe",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJ",
+          "player_name": "Jace Jung",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJO",
+          "player_name": "Jackson Jobe",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJ",
+          "player_name": "Jace Jung",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJO",
+          "player_name": "Jackson Jobe",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJ",
+          "player_name": "Jace Jung",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JJO",
+          "player_name": "Jackson Jobe",
+          "team": "Detroit Tigers",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-13",
+          "player_name": "Donald Duck",
+          "team": "Detroit Tigers",
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-30",
+          "player_name": "Tarik Skubal",
+          "team": "Detroit Tigers",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-TS",
+          "player_name": "Tarik Skubal",
+          "team": "Detroit Tigers",
+          "variation": "Sapphire Selections Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-TS",
+          "player_name": "Tarik Skubal",
+          "team": "Detroit Tigers",
+          "variation": "Sapphire Selections Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-TS",
+          "player_name": "Tarik Skubal",
+          "team": "Detroit Tigers",
+          "variation": "Sapphire Selections Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-TS",
+          "player_name": "Tarik Skubal",
+          "team": "Detroit Tigers",
+          "variation": "Sapphire Selections Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-TS",
+          "player_name": "Tarik Skubal",
+          "team": "Detroit Tigers",
+          "variation": "Sapphire Selections Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-30",
+          "player_name": "Tarik Skubal",
+          "team": "Detroit Tigers",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-30",
+          "player_name": "Tarik Skubal",
+          "team": "Detroit Tigers",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-30",
+          "player_name": "Tarik Skubal",
+          "team": "Detroit Tigers",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-30",
+          "player_name": "Tarik Skubal",
+          "team": "Detroit Tigers",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-CS",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CS",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CS",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CS",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CS",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CS",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CS",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-28",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-36",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-CAM",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CAM",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CAM",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CAM",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-CAM",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-28",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-36",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-28",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-36",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-28",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-36",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-28",
+          "player_name": "Yordan Alvarez",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-36",
+          "player_name": "Cam Smith",
+          "team": "Houston Astros",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-14",
+          "player_name": "Donald Duck",
+          "team": "Kansas City Royals",
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-CDA",
+          "player_name": "Caden Dana",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CDA",
+          "player_name": "Caden Dana",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CDA",
+          "player_name": "Caden Dana",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CDA",
+          "player_name": "Caden Dana",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CDA",
+          "player_name": "Caden Dana",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CDA",
+          "player_name": "Caden Dana",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CDA",
+          "player_name": "Caden Dana",
+          "team": "Los Angeles Angels",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HK",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RS",
+          "player_name": "Roki Sasaki",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HK",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RS",
+          "player_name": "Roki Sasaki",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HK",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RS",
+          "player_name": "Roki Sasaki",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HK",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RS",
+          "player_name": "Roki Sasaki",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HK",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RS",
+          "player_name": "Roki Sasaki",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HK",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RS",
+          "player_name": "Roki Sasaki",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-HK",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-RS",
+          "player_name": "Roki Sasaki",
+          "team": "Los Angeles Dodgers",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-21",
+          "player_name": "Freddie Freeman",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-32",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SSA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-HK",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-HK",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-HK",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-HK",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-FF",
+          "player_name": "Freddie Freeman",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SSA-HK",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "SS-21",
+          "player_name": "Freddie Freeman",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-32",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-21",
+          "player_name": "Freddie Freeman",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-32",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-21",
+          "player_name": "Freddie Freeman",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-32",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-21",
+          "player_name": "Freddie Freeman",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-32",
+          "player_name": "Hyeseong Kim",
+          "team": "Los Angeles Dodgers",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-CN",
+          "player_name": "Connor Norby",
+          "team": "Miami Marlins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CN",
+          "player_name": "Connor Norby",
+          "team": "Miami Marlins",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CN",
+          "player_name": "Connor Norby",
+          "team": "Miami Marlins",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CN",
+          "player_name": "Connor Norby",
+          "team": "Miami Marlins",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CN",
+          "player_name": "Connor Norby",
+          "team": "Miami Marlins",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CN",
+          "player_name": "Connor Norby",
+          "team": "Miami Marlins",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-CN",
+          "player_name": "Connor Norby",
+          "team": "Miami Marlins",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-24",
+          "player_name": "Miami Marlins",
+          "team": null,
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-38",
+          "player_name": "Agustín Ramírez",
+          "team": "Miami Marlins",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-38",
+          "player_name": "Agustín Ramírez",
+          "team": "Miami Marlins",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-38",
+          "player_name": "Agustín Ramírez",
+          "team": "Miami Marlins",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-38",
+          "player_name": "Agustín Ramírez",
+          "team": "Miami Marlins",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-38",
+          "player_name": "Agustín Ramírez",
+          "team": "Miami Marlins",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-17",
+          "player_name": "Donald Duck",
+          "team": "Milwaukee Brewers",
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-BL",
+          "player_name": "Brooks Lee",
+          "team": "Minnesota Twins",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BL",
+          "player_name": "Brooks Lee",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BL",
+          "player_name": "Brooks Lee",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BL",
+          "player_name": "Brooks Lee",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BL",
+          "player_name": "Brooks Lee",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BL",
+          "player_name": "Brooks Lee",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BL",
+          "player_name": "Brooks Lee",
+          "team": "Minnesota Twins",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-15",
+          "player_name": "Donald Duck",
+          "team": "Minnesota Twins",
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "New York Mets",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "New York Mets",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "New York Mets",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "New York Mets",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "New York Mets",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "New York Mets",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-LA",
+          "player_name": "Luisangel Acuña",
+          "team": "New York Mets",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-22",
+          "player_name": "New York Mets",
+          "team": null,
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-25",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-25",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-25",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-25",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-25",
+          "player_name": "Pete Alonso",
+          "team": "New York Mets",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-BR",
+          "player_name": "Ben Rice",
+          "team": "New York Yankees",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BR",
+          "player_name": "Ben Rice",
+          "team": "New York Yankees",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BR",
+          "player_name": "Ben Rice",
+          "team": "New York Yankees",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BR",
+          "player_name": "Ben Rice",
+          "team": "New York Yankees",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BR",
+          "player_name": "Ben Rice",
+          "team": "New York Yankees",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BR",
+          "player_name": "Ben Rice",
+          "team": "New York Yankees",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-BR",
+          "player_name": "Ben Rice",
+          "team": "New York Yankees",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-30",
+          "player_name": "New York Yankees",
+          "team": null,
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-24",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-24",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-24",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-24",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-24",
+          "player_name": "Gerrit Cole",
+          "team": "New York Yankees",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-25",
+          "player_name": "Philadelphia Phillies",
+          "team": null,
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-TH",
+          "player_name": "Thomas Harrington",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-TH",
+          "player_name": "Thomas Harrington",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-TH",
+          "player_name": "Thomas Harrington",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-TH",
+          "player_name": "Thomas Harrington",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-TH",
+          "player_name": "Thomas Harrington",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-TH",
+          "player_name": "Thomas Harrington",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-TH",
+          "player_name": "Thomas Harrington",
+          "team": "Pittsburgh Pirates",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-20",
+          "player_name": "Donald Duck",
+          "team": "Pittsburgh Pirates",
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-TS",
+          "player_name": "Thomas Saggese",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-TS",
+          "player_name": "Thomas Saggese",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-TS",
+          "player_name": "Thomas Saggese",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-TS",
+          "player_name": "Thomas Saggese",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-TS",
+          "player_name": "Thomas Saggese",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-TS",
+          "player_name": "Thomas Saggese",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-TS",
+          "player_name": "Thomas Saggese",
+          "team": "St. Louis Cardinals",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-16",
+          "player_name": "Donald Duck",
+          "team": "St. Louis Cardinals",
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-27",
+          "player_name": "Tampa Bay Rays",
+          "team": null,
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-10",
+          "player_name": "Mickey Mouse",
+          "team": "Texas Rangers",
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-23",
+          "player_name": "Corey Seager",
+          "team": "Texas Rangers",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-34",
+          "player_name": "Kumar Rocker",
+          "team": "Texas Rangers",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-23",
+          "player_name": "Corey Seager",
+          "team": "Texas Rangers",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-34",
+          "player_name": "Kumar Rocker",
+          "team": "Texas Rangers",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-23",
+          "player_name": "Corey Seager",
+          "team": "Texas Rangers",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-34",
+          "player_name": "Kumar Rocker",
+          "team": "Texas Rangers",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-23",
+          "player_name": "Corey Seager",
+          "team": "Texas Rangers",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-34",
+          "player_name": "Kumar Rocker",
+          "team": "Texas Rangers",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-23",
+          "player_name": "Corey Seager",
+          "team": "Texas Rangers",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-34",
+          "player_name": "Kumar Rocker",
+          "team": "Texas Rangers",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "MLBA-26",
+          "player_name": "Toronto Blue Jays",
+          "team": null,
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-22",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Sapphire Selections",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-22",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Sapphire Selections Black Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-22",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Sapphire Selections Orange Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-22",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Sapphire Selections Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "SS-22",
+          "player_name": "Vladimir Guerrero Jr.",
+          "team": "Toronto Blue Jays",
+          "variation": "Sapphire Selections Red Sapphire",
+          "is_rc": false,
+          "is_auto": false
+        },
+        {
+          "card_number": "USA-DC",
+          "player_name": "Dylan Crews",
+          "team": "Washington Nationals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JWO",
+          "player_name": "James Wood",
+          "team": "Washington Nationals",
+          "variation": "Autographs",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DC",
+          "player_name": "Dylan Crews",
+          "team": "Washington Nationals",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JWO",
+          "player_name": "James Wood",
+          "team": "Washington Nationals",
+          "variation": "Autographs Black Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DC",
+          "player_name": "Dylan Crews",
+          "team": "Washington Nationals",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JWO",
+          "player_name": "James Wood",
+          "team": "Washington Nationals",
+          "variation": "Autographs Gold Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DC",
+          "player_name": "Dylan Crews",
+          "team": "Washington Nationals",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JWO",
+          "player_name": "James Wood",
+          "team": "Washington Nationals",
+          "variation": "Autographs Green Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DC",
+          "player_name": "Dylan Crews",
+          "team": "Washington Nationals",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JWO",
+          "player_name": "James Wood",
+          "team": "Washington Nationals",
+          "variation": "Autographs Orange Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DC",
+          "player_name": "Dylan Crews",
+          "team": "Washington Nationals",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JWO",
+          "player_name": "James Wood",
+          "team": "Washington Nationals",
+          "variation": "Autographs Padparadscha Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-DC",
+          "player_name": "Dylan Crews",
+          "team": "Washington Nationals",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "USA-JWO",
+          "player_name": "James Wood",
+          "team": "Washington Nationals",
+          "variation": "Autographs Red Sapphire",
+          "is_rc": false,
+          "is_auto": true
+        },
+        {
+          "card_number": "MLBA-23",
+          "player_name": "Washington Nationals",
+          "team": null,
+          "variation": "Mickey & Friends",
+          "is_rc": false,
+          "is_auto": false
+        }
+      ],
+      "brand": "Topps"
+    }
+  ]
+}

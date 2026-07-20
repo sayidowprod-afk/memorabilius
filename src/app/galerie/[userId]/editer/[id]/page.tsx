@@ -1,17 +1,61 @@
 'use client'
+import { toast } from '@/lib/toast'
 import { useState, use, useRef, useEffect, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import CardScanner from '@/components/CardScanner'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
-import { CARD_FORMATS, getFormat } from '@/lib/cardFormats'
+import { SELECTABLE_FORMATS, getFormat } from '@/lib/cardFormats'
+
+// Réduit une photo importée à ~1600px avant traitement (évite les crashs mémoire
+// mobile causés par les photos 12 Mpx décodées en plusieurs bitmaps pleine résolution).
+function downscaleToDataURL(file: File, maxDim = 1600): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file)
+    const img = new Image()
+    img.onload = () => {
+      URL.revokeObjectURL(url)
+      const scale = Math.min(1, maxDim / Math.max(img.naturalWidth, img.naturalHeight))
+      const w = Math.max(1, Math.round(img.naturalWidth * scale))
+      const h = Math.max(1, Math.round(img.naturalHeight * scale))
+      const c = document.createElement('canvas')
+      c.width = w; c.height = h
+      c.getContext('2d')!.drawImage(img, 0, 0, w, h)
+      const dataUrl = c.toDataURL('image/jpeg', 0.9)
+      c.width = 0; c.height = 0
+      resolve(dataUrl)
+    }
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('image illisible')) }
+    img.src = url
+  })
+}
 
 export default function EditerCarte({ params }: { params: Promise<{ userId: string; id: string }> }) {
   const { userId, id } = use(params)
   const router = useRouter()
+  const searchParams = useSearchParams()
   const { lang } = useLang()
+
+  // Mode modification groupée
+  const queueParam = searchParams.get('queue') || ''
+  const qidxParam = parseInt(searchParams.get('qidx') || '0', 10)
+  const queueIds = queueParam ? queueParam.split(',') : []
+  const isQueueMode = queueIds.length > 1
+  const queueTotal = queueIds.length
+  const queueCurrent = qidxParam + 1
+
+  const goNext = (skip = false) => {
+    const nextIdx = qidxParam + 1
+    if (nextIdx >= queueIds.length) {
+      toast.success(lang === 'fr' ? 'Modification groupée terminée !' : 'Bulk edit complete!')
+      router.push(`/galerie/${userId}`)
+      return
+    }
+    const nextId = queueIds[nextIdx]
+    router.push(`/galerie/${userId}/editer/${nextId}?queue=${queueParam}&qidx=${nextIdx}`)
+  }
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [uploadingRecto, setUploadingRecto] = useState(false)
@@ -24,10 +68,13 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const [previewIR, setPreviewIR] = useState<string | null>(null)
   const [form, setForm] = useState({
     nom: '', equipe: '', annee: '', marque: '', collection: '', variation: '',
-    grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false,
-    image_recto: '', image_verso: '', collection_tag: '',
+    grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false,
+    image_recto: '', image_verso: '', collection_tag: '', disponible_vente: false,
     booklet: false, is_horizontal: false, format: 'standard',
     image_interieur_gauche: '', image_interieur_droite: '',
+    verso_is_horizontal: null as boolean | null,
+    beckett_designation: '', // null = même orientation que le recto
+    storage_binder: '', storage_page: '', storage_slot: '',
   })
 
   const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
@@ -45,20 +92,28 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   useEffect(() => { isHorizontalRef.current = form.format === 'horizontal' || form.is_horizontal }, [form.format, form.is_horizontal])
 
   useEffect(() => {
-    supabase.from('cartes_manuelles').select('*').eq('id', id).single().then(({ data, error }) => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session?.user) { router.push(`/galerie/${userId}`); return }
+      supabase.from('cartes_manuelles').select('*').eq('id', id).eq('user_id', session.user.id).single().then(({ data, error }) => {
       if (error || !data) { router.push(`/galerie/${userId}`); return }
       setForm({
         nom: data.nom || '', equipe: data.equipe || '', annee: data.annee || '',
         marque: data.marque || '', collection: data.collection || '', variation: data.variation || '',
         grade: data.grade || 'Raw', cert_number: data.cert_number || '', num: data.num || '', card_number: data.card_number || '',
-        rc: data.rc || false, auto: data.auto || false, patch: data.patch || false,
+        rc: data.rc || false, auto: data.auto || false, patch: data.patch || false, printing_plate: data.printing_plate || false,
         image_recto: data.image_recto || '', image_verso: data.image_verso || '',
         collection_tag: data.collection_tag || '',
+        disponible_vente: data.disponible_vente || false,
         booklet: data.booklet || false,
         is_horizontal: data.is_horizontal || false,
         format: data.format || (data.is_horizontal ? 'horizontal' : 'standard'),
+        verso_is_horizontal: data.verso_is_horizontal ?? null,
         image_interieur_gauche: data.image_interieur_gauche || '',
         image_interieur_droite: data.image_interieur_droite || '',
+        beckett_designation: data.beckett_designation || '',
+        storage_binder: data.storage_binder || '',
+        storage_page: data.storage_page != null ? String(data.storage_page) : '',
+        storage_slot: data.storage_slot || '',
       })
       if (data.image_recto) setPreviewRecto(data.image_recto)
       if (data.image_verso) setPreviewVerso(data.image_verso)
@@ -66,6 +121,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       if (data.image_interieur_droite) setPreviewIR(data.image_interieur_droite)
       setLoading(false)
     })
+  })
   }, [id, userId, router])
 
   const resetTransform = useCallback(() => {
@@ -89,7 +145,13 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     setImgTransform({ x: 0, y: 0, scale: Math.min(scaleW, scaleH) })
   }, [])
 
-  useEffect(() => { if (cropModal) setImgTransform({ x: 0, y: 0, scale: 1 }) }, [cropModal])
+  useEffect(() => {
+    if (cropModal) {
+      const rectoHorizontal = form.format === 'horizontal' || form.is_horizontal
+      isHorizontalRef.current = cropModal.side === 'verso' ? (form.verso_is_horizontal ?? rectoHorizontal) : rectoHorizontal
+      setImgTransform({ x: 0, y: 0, scale: 1 })
+    }
+  }, [cropModal])
   useEffect(() => { if (cropModal && imgRef.current?.complete) resetTransform() }, [cropModal, resetTransform])
 
   useEffect(() => {
@@ -104,29 +166,39 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     return () => el.removeEventListener('wheel', onWheel)
   }, [cropModal])
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, side: 'recto' | 'verso' | 'il' | 'ir') => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>, side: 'recto' | 'verso' | 'il' | 'ir') => {
     const file = e.target.files?.[0]
+    e.target.value = ''
     if (!file) return
-    if (side === 'il' || side === 'ir') {
-      const reader = new FileReader()
-      reader.onload = async () => {
-        const dataUrl = reader.result as string
+    try {
+      const dataUrl = await downscaleToDataURL(file)
+      if (side === 'il' || side === 'ir') {
         const res = await fetch(dataUrl)
         const blob = await res.blob()
         await uploadBlob(blob, side)
+      } else {
+        setScannerModal({ side: side as 'recto' | 'verso', src: dataUrl })
       }
-      reader.readAsDataURL(file)
-      e.target.value = ''
-      return
+    } catch {
+      toast.error(lang === 'fr' ? 'Image illisible, réessayez.' : 'Unreadable image, please retry.')
     }
-    const reader = new FileReader()
-    reader.onload = () => { if (reader.result) setScannerModal({ side: side as 'recto' | 'verso', src: reader.result as string }) }
-    reader.readAsDataURL(file)
-    e.target.value = ''
   }
 
   const [scanning, setScanning] = useState(false)
   const [scanError, setScanError] = useState<string | null>(null)
+
+  // Détecte l'orientation réelle de l'image (fiable quelle que soit la source : recadrage
+  // manuel avec le toggle dédié, ou scan auto par CardScanner où les coins ajustés par
+  // l'utilisateur peuvent produire un rendu à l'horizontale sans passer par ce toggle).
+  const detectBlobOrientation = (blob: Blob): Promise<boolean> => {
+    return new Promise(resolve => {
+      const url = URL.createObjectURL(blob)
+      const img = new Image()
+      img.onload = () => { URL.revokeObjectURL(url); resolve(img.naturalWidth > img.naturalHeight) }
+      img.onerror = () => { URL.revokeObjectURL(url); resolve(false) }
+      img.src = url
+    })
+  }
 
   const uploadBlob = async (blob: Blob, side: 'recto' | 'verso' | 'il' | 'ir') => {
     if (side === 'recto') setUploadingRecto(true)
@@ -141,12 +213,16 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     const path = `cartes/${user.id}/${Date.now()}_${side}.jpg`
     const file = new File([blob], `${Date.now()}_${side}.jpg`, { type: 'image/jpeg' })
     const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
-    if (error) { alert('Erreur upload : ' + error.message); setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false); return }
+    if (error) { toast.error('Erreur upload : ' + error.message); setUploadingRecto(false); setUploadingVerso(false); setUploadingIL(false); setUploadingIR(false); return }
 
     const { data } = supabase.storage.from('avatars').getPublicUrl(path)
     const url = data.publicUrl
     if (side === 'recto') { setForm(f => ({ ...f, image_recto: url })); setPreviewRecto(url); setUploadingRecto(false) }
-    else if (side === 'verso') { setForm(f => ({ ...f, image_verso: url })); setPreviewVerso(url); setUploadingVerso(false) }
+    else if (side === 'verso') {
+      const versoHorizontal = await detectBlobOrientation(blob)
+      setForm(f => ({ ...f, image_verso: url, verso_is_horizontal: versoHorizontal }))
+      setPreviewVerso(url); setUploadingVerso(false)
+    }
     else if (side === 'il') { setForm(f => ({ ...f, image_interieur_gauche: url })); setPreviewIL(url); setUploadingIL(false) }
     else { setForm(f => ({ ...f, image_interieur_droite: url })); setPreviewIR(url); setUploadingIR(false) }
 
@@ -185,6 +261,64 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     } catch (e: any) { setScanError(e.message) } finally { setScanning(false) }
   }
 
+  const reAnalyzeCard = async () => {
+    if (!form.image_recto) return
+    setScanning(true); setScanError(null)
+    try {
+      const { data: { session: scanSession } } = await supabase.auth.getSession()
+      if (!scanSession) { setScanError('Non connecté'); return }
+
+      const toBase64 = (url: string): Promise<string> =>
+        fetch(url).then(r => r.blob()).then(blob => new Promise<string>(res => {
+          const reader = new FileReader()
+          reader.onload = () => res((reader.result as string).split(',')[1])
+          reader.readAsDataURL(blob)
+        }))
+
+      const rectoBase64 = await toBase64(form.image_recto)
+      const versoBase64 = form.image_verso ? await toBase64(form.image_verso) : undefined
+
+      let ebayHints: string[] = []
+      try {
+        const ebayRes = await Promise.race([
+          fetch('/api/ebay-image-search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${scanSession.access_token}` },
+            body: JSON.stringify({ imageBase64: rectoBase64 }),
+          }).then(r => r.json()),
+          new Promise<null>(r => setTimeout(() => r(null), 3000)),
+        ])
+        if (ebayRes?.items?.length) {
+          ebayHints = (ebayRes.items as { title: string }[]).slice(0, 5).map(i => i.title).filter(Boolean)
+        }
+      } catch { /* non-fatal */ }
+
+      const resp = await fetch('/api/scan-card', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${scanSession.access_token}` },
+        body: JSON.stringify({ imageBase64: rectoBase64, imageBase64Verso: versoBase64, mimeType: 'image/jpeg', ebayHints }),
+      })
+      const card = await resp.json()
+      if (!resp.ok || card.error) { setScanError(card.error || `Erreur ${resp.status}`); return }
+
+      setForm(f => ({
+        ...f,
+        nom:        card.nom        || f.nom,
+        equipe:     card.equipe     || f.equipe,
+        annee:      card.annee      || f.annee,
+        marque:     card.marque     || f.marque,
+        collection: card.collection || f.collection,
+        variation:  card.variation  !== undefined ? card.variation : f.variation,
+        num:        card.num        || f.num,
+        grade:      card.grade      || f.grade,
+        rc:   card.rc   ?? f.rc,
+        auto: card.auto ?? f.auto,
+        patch: card.patch ?? f.patch,
+      }))
+      toast.success(lang === 'fr' ? 'Analyse terminée !' : 'Analysis complete!')
+    } catch (e: any) { setScanError(e.message) } finally { setScanning(false) }
+  }
+
   const getDist = (touches: React.TouchList) =>
     Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY)
 
@@ -216,7 +350,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   const applyCropAndUpload = async () => {
     if (!cropModal || !containerRef.current || !imgRef.current) return
     const side = cropModal.side
-    const cropRatio = getFormat(form.format).cropRatio
+    const cropRatio = isHorizontalRef.current ? 3.5 / 2.5 : getFormat(form.format).cropRatio
     const container = containerRef.current
     const cw = container.clientWidth; const ch = container.clientHeight
     const frameW = isHorizontalRef.current
@@ -254,7 +388,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!form.nom) { alert(lang === 'fr' ? 'Le nom est obligatoire' : 'Name is required'); return }
+    if (!form.nom) { toast.error(lang === 'fr' ? 'Le nom est obligatoire' : 'Name is required'); return }
     setSaving(true)
 
     const { data: { user } } = await supabase.auth.getUser()
@@ -263,16 +397,23 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     const { error } = await supabase.from('cartes_manuelles').update({
       nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
       marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, grade: form.grade,
-      num: form.num || null, card_number: form.card_number || null, cert_number: form.cert_number || null, rc: form.rc, auto: form.auto, patch: form.patch,
+      num: form.num || null, card_number: form.card_number || null, cert_number: form.cert_number || null, rc: form.rc, auto: form.auto, patch: form.patch, printing_plate: form.printing_plate,
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
       collection_tag: form.collection_tag || null,
+      disponible_vente: form.disponible_vente,
       format: form.format || 'standard',
       booklet: form.booklet, is_horizontal: form.format === 'horizontal',
+      verso_is_horizontal: form.verso_is_horizontal,
       image_interieur_gauche: form.image_interieur_gauche || null,
       image_interieur_droite: form.image_interieur_droite || null,
+      beckett_designation: form.beckett_designation || null,
+      storage_binder: form.storage_binder || null,
+      storage_page: form.storage_page ? parseInt(form.storage_page) : null,
+      storage_slot: form.storage_slot || null,
     }).eq('id', id).eq('user_id', user.id)
 
-    if (error) { alert('Erreur : ' + error.message); setSaving(false); return }
+    if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
+    if (isQueueMode) { goNext(); return }
     router.push(`/galerie/${userId}`)
   }
 
@@ -329,6 +470,41 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
   return (
     <div style={{ maxWidth: 700, margin: '40px auto', fontFamily: 'Inter, sans-serif', padding: '0 10px' }}>
+
+      {/* Bandeau modification groupée */}
+      {isQueueMode && (
+        <div style={{ background: '#003DA6', color: 'white', borderRadius: 12, padding: '12px 18px', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+          <div style={{ flex: 1, minWidth: 160 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, opacity: 0.75, marginBottom: 2 }}>
+              Modification groupée
+            </div>
+            <div style={{ fontWeight: 900, fontSize: 16 }}>
+              Carte {queueCurrent} / {queueTotal}
+              {form.nom && <span style={{ fontWeight: 400, opacity: 0.85, marginLeft: 8 }}>— {form.nom}</span>}
+            </div>
+            <div style={{ marginTop: 6, height: 3, borderRadius: 2, background: 'rgba(255,255,255,0.25)' }}>
+              <div style={{ height: '100%', width: `${(queueCurrent / queueTotal) * 100}%`, background: 'white', borderRadius: 2, transition: 'width 0.3s' }} />
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button
+              type="button"
+              onClick={() => goNext(true)}
+              style={{ padding: '8px 16px', borderRadius: 8, border: '1.5px solid rgba(255,255,255,0.5)', background: 'transparent', color: 'white', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+            >
+              Passer →
+            </button>
+            <button
+              type="button"
+              onClick={() => router.push(`/galerie/${userId}`)}
+              style={{ padding: '8px 14px', borderRadius: 8, border: 'none', background: 'rgba(255,255,255,0.15)', color: 'white', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}
+            >
+              ✕ Arrêter
+            </button>
+          </div>
+        </div>
+      )}
+
       <Link href={`/galerie/${userId}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 14, display: 'inline-block', marginBottom: 20 }}>
         ← {lang === 'fr' ? 'Retour à la galerie' : 'Back to gallery'}
       </Link>
@@ -354,7 +530,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 }}>
           <ImageUploader side="recto" label={lang === 'fr' ? 'Couverture Avant' : 'Front Cover'} preview={previewRecto} uploading={uploadingRecto} aspect={form.is_horizontal ? '3.5/2.5' : undefined} />
-          <ImageUploader side="verso" label={lang === 'fr' ? 'Couverture Arrière' : 'Back Cover'} preview={previewVerso} uploading={uploadingVerso} aspect={form.is_horizontal ? '3.5/2.5' : undefined} />
+          <ImageUploader side="verso" label={lang === 'fr' ? 'Couverture Arrière' : 'Back Cover'} preview={previewVerso} uploading={uploadingVerso} aspect={(form.verso_is_horizontal ?? form.is_horizontal) ? '3.5/2.5' : undefined} />
         </div>
 
         {form.booklet && (
@@ -362,6 +538,13 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             <ImageUploader side="il" label="Intérieur Gauche" preview={previewIL} uploading={uploadingIL} aspect="3.5/2.5" />
             <ImageUploader side="ir" label="Intérieur Droit" preview={previewIR} uploading={uploadingIR} aspect="3.5/2.5" />
           </div>
+        )}
+
+        {(form.image_recto || form.image_verso) && !scanning && (
+          <button type="button" onClick={reAnalyzeCard}
+            style={{ width: '100%', background: '#003DA6', color: 'white', border: 'none', borderRadius: 10, padding: '12px', fontSize: 14, fontWeight: 700, cursor: 'pointer', marginBottom: 8 }}>
+            🤖 {lang === 'fr' ? "Ré-analyser avec l'IA" : 'Re-analyze with AI'}
+          </button>
         )}
 
         {scanning && (
@@ -373,8 +556,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           </div>
         )}
         {scanError && (
-          <div style={{ background: '#fff5f5', border: '1.5px solid #ffc0c0', borderRadius: 10, padding: '10px 16px', marginBottom: 4, fontSize: 12, color: '#c0392b' }}>
-            Analyse IA : {scanError}
+          <div style={{ background: '#fff5f5', border: '1.5px solid #ffc0c0', borderRadius: 10, padding: '10px 16px', marginBottom: 4, fontSize: 12, color: '#c0392b', display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+            <span style={{ flexShrink: 0 }}>{scanError.startsWith('Trop de requêtes') ? '⏳' : '⚠️'}</span>
+            <span>{scanError}</span>
           </div>
         )}
 
@@ -412,6 +596,23 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             </div>
           </div>
 
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
+              {lang === 'fr' ? 'Désignation Beckett (optionnel)' : 'Beckett designation (optional)'}
+            </label>
+            <input
+              value={form.beckett_designation}
+              onChange={e => setForm({ ...form, beckett_designation: e.target.value })}
+              placeholder={lang === 'fr' ? 'Ex : 2023-24 Panini Prizm Silver #48 LeBron James — laissez vide pour génération automatique' : 'Ex: 2023-24 Panini Prizm Silver #48 LeBron James — leave empty for auto-generation'}
+            />
+            {!form.beckett_designation && (form.annee || form.marque || form.collection) && (
+              <p style={{ fontSize: 11, color: '#aaa', marginTop: 4, marginBottom: 0 }}>
+                {lang === 'fr' ? 'Générée automatiquement : ' : 'Auto-generated: '}
+                <em>{[form.annee, form.marque, form.collection, form.variation, form.card_number ? `#${form.card_number}` : '', form.nom].filter(Boolean).join(' ')}</em>
+              </p>
+            )}
+          </div>
+
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Grade</label>
@@ -436,15 +637,26 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
-              {lang === 'fr' ? 'Ma collection (tag perso)' : 'My collection (personal tag)'}
+              {lang === 'fr' ? 'Ajouter à la collection...' : 'Add to collection...'}
             </label>
             <CollectionTagSelect userId={userId} value={form.collection_tag} onChange={tag => setForm({ ...form, collection_tag: tag })} />
           </div>
 
+          {/* Disponibilité vente / trade */}
+          <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '10px 14px', borderRadius: 10, border: `2px solid ${form.disponible_vente ? '#003DA6' : '#e0e0e0'}`, background: form.disponible_vente ? '#f0f4ff' : 'white', transition: '0.15s' }}>
+            <div onClick={() => setForm(f => ({ ...f, disponible_vente: !f.disponible_vente }))}
+              style={{ width: 36, height: 20, borderRadius: 10, background: form.disponible_vente ? '#003DA6' : '#ddd', position: 'relative', flexShrink: 0, transition: '0.2s' }}>
+              <div style={{ position: 'absolute', top: 2, left: form.disponible_vente ? 18 : 2, width: 16, height: 16, borderRadius: '50%', background: '#fff', transition: '0.2s', boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }} />
+            </div>
+            <span style={{ fontWeight: 700, fontSize: 13, color: form.disponible_vente ? '#003DA6' : '#666' }}>
+              {lang === 'fr' ? '🏷️ Disponible à la vente / trade' : '🏷️ Available for sale / trade'}
+            </span>
+          </label>
+
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {CARD_FORMATS.map(fmt => (
+              {SELECTABLE_FORMATS.map(fmt => (
                 <button key={fmt.id} type="button" onClick={() => setForm({ ...form, format: fmt.id })}
                   style={{
                     padding: '8px 14px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 12, transition: '0.15s',
@@ -467,6 +679,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
                 { key: 'rc', label: 'RC', activeBg: '#e67e22' },
                 { key: 'auto', label: 'AUTO', activeBg: '#2e7d32' },
                 { key: 'patch', label: 'PATCH', activeBg: '#1976d2' },
+                { key: 'printing_plate', label: 'PRINTING PLATE', activeBg: '#111827' },
                 { key: 'booklet', label: '📖 BOOKLET', activeBg: '#7b1fa2' },
               ].map(tag => (
                 <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })}
@@ -478,8 +691,33 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             </div>
           </div>
 
+          {/* Localisation physique */}
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>
+              📍 {lang === 'fr' ? 'Localisation physique' : 'Physical location'}
+            </label>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px 80px', gap: 12 }}>
+              <div>
+                <label style={{ fontSize: 11, color: '#aaa', display: 'block', marginBottom: 4 }}>{lang === 'fr' ? 'Classeur' : 'Binder'}</label>
+                <input value={form.storage_binder} onChange={e => setForm({ ...form, storage_binder: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Binder NBA 2023' : 'Ex: Binder NBA 2023'} />
+              </div>
+              <div>
+                <label style={{ fontSize: 11, color: '#aaa', display: 'block', marginBottom: 4 }}>{lang === 'fr' ? 'Page' : 'Page'}</label>
+                <input type="number" min="1" value={form.storage_page} onChange={e => setForm({ ...form, storage_page: e.target.value })} placeholder="1" />
+              </div>
+              <div>
+                <label style={{ fontSize: 11, color: '#aaa', display: 'block', marginBottom: 4 }}>Slot</label>
+                <input value={form.storage_slot} onChange={e => setForm({ ...form, storage_slot: e.target.value })} placeholder="A3" />
+              </div>
+            </div>
+          </div>
+
           <button type="submit" disabled={saving} className="btn-main btn-primary" style={{ marginTop: 8 }}>
-            {saving ? '...' : (lang === 'fr' ? '✅ Enregistrer les modifications' : '✅ Save changes')}
+            {saving ? '...' : isQueueMode
+              ? (queueCurrent < queueTotal
+                ? `✅ ${lang === 'fr' ? 'Enregistrer et passer →' : 'Save and next →'}`
+                : `✅ ${lang === 'fr' ? 'Terminer' : 'Finish'}`)
+              : (lang === 'fr' ? '✅ Enregistrer les modifications' : '✅ Save changes')}
           </button>
         </div>
       </form>
@@ -495,23 +733,45 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
       {cropModal && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.92)', zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-          {/* Sélecteur de format — ajuste la forme du cadre en direct */}
-          <div style={{ width: '100%', background: '#1a1a1a', padding: '10px 12px', boxSizing: 'border-box', display: 'flex', gap: 6, overflowX: 'auto', justifyContent: 'flex-start', WebkitOverflowScrolling: 'touch' }}>
-            {CARD_FORMATS.map(f => {
-              const active = (form.format || 'standard') === f.id
-              return (
-                <button key={f.id} type="button"
+          {/* Sélecteur de format — ajuste la forme du cadre en direct (recto uniquement : le
+              format détermine la forme physique de la carte, la même pour les deux faces) */}
+          {cropModal.side === 'recto' && (
+            <div style={{ width: '100%', background: '#1a1a1a', padding: '10px 12px', boxSizing: 'border-box', display: 'flex', gap: 6, overflowX: 'auto', justifyContent: 'flex-start', WebkitOverflowScrolling: 'touch' }}>
+              {SELECTABLE_FORMATS.map(f => {
+                const active = (form.format || 'standard') === f.id
+                return (
+                  <button key={f.id} type="button"
+                    onClick={() => {
+                      setForm(prev => ({ ...prev, format: f.id, is_horizontal: f.id === 'horizontal' }))
+                      isHorizontalRef.current = f.id === 'horizontal'
+                      requestAnimationFrame(resetTransform)
+                    }}
+                    style={{ flexShrink: 0, padding: '7px 11px', borderRadius: 8, border: active ? '2px solid #fff' : '2px solid rgba(255,255,255,0.15)', background: active ? 'rgba(255,255,255,0.18)' : 'transparent', color: 'white', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                    {f.icon} {f.label}
+                  </button>
+                )
+              })}
+            </div>
+          )}
+          {/* Orientation du verso, indépendante du recto */}
+          {cropModal.side === 'verso' && (() => {
+            const rectoHorizontal = form.format === 'horizontal' || form.is_horizontal
+            const versoHorizontal = form.verso_is_horizontal ?? rectoHorizontal
+            return (
+              <div style={{ width: '100%', background: '#1a1a1a', padding: '10px 12px', boxSizing: 'border-box', display: 'flex', justifyContent: 'center' }}>
+                <button type="button"
                   onClick={() => {
-                    setForm(prev => ({ ...prev, format: f.id, is_horizontal: f.id === 'horizontal' }))
-                    isHorizontalRef.current = f.id === 'horizontal'
+                    const next = !versoHorizontal
+                    setForm(prev => ({ ...prev, verso_is_horizontal: next }))
+                    isHorizontalRef.current = next
                     requestAnimationFrame(resetTransform)
                   }}
-                  style={{ flexShrink: 0, padding: '7px 11px', borderRadius: 8, border: active ? '2px solid #fff' : '2px solid rgba(255,255,255,0.15)', background: active ? 'rgba(255,255,255,0.18)' : 'transparent', color: 'white', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                  {f.icon} {f.label}
+                  style={{ padding: '7px 14px', borderRadius: 8, border: versoHorizontal ? '2px solid #fff' : '2px solid rgba(255,255,255,0.15)', background: versoHorizontal ? 'rgba(255,255,255,0.18)' : 'transparent', color: 'white', fontSize: 12, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                  🔄 {lang === 'fr' ? 'Verso à l\'horizontale' : 'Horizontal back'} {versoHorizontal ? '✓' : ''}
                 </button>
-              )
-            })}
-          </div>
+              </div>
+            )
+          })()}
           <div ref={containerRef} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp}
             onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}
             style={{ position: 'relative', width: '100%', flex: 1, overflow: 'hidden', cursor: isDragging.current ? 'grabbing' : 'grab', touchAction: 'none', userSelect: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
