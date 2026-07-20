@@ -14,6 +14,12 @@ export async function POST(req: NextRequest) {
     const { userId } = await req.json()
     if (!userId) return NextResponse.json({ error: 'Missing userId' }, { status: 400 })
 
+    // Caller must be authenticated as the user being recalculated
+    const token = req.headers.get('authorization')?.replace('Bearer ', '')
+    if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const { data: { user: caller } } = await supabase.auth.getUser(token)
+    if (!caller || caller.id !== userId) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+
     const { data: profile } = await supabase
       .from('profiles')
       .select('id, lien_csv')

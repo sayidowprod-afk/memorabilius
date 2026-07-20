@@ -49,6 +49,17 @@ Wrong + high confidence is worse than honest low confidence.
 One sentence, then JSON (no markdown):
 {"topLeft":{"x":0.120,"y":0.080},"topRight":{"x":0.882,"y":0.063},"bottomRight":{"x":0.901,"y":0.941},"bottomLeft":{"x":0.098,"y":0.957},"confidence":0.95}`
 
+function extractFirstJson(text: string): string | null {
+  const start = text.indexOf('{')
+  if (start === -1) return null
+  let depth = 0
+  for (let i = start; i < text.length; i++) {
+    if (text[i] === '{') depth++
+    else if (text[i] === '}') { depth--; if (depth === 0) return text.slice(start, i + 1) }
+  }
+  return null
+}
+
 export async function POST(req: NextRequest) {
   const token = req.headers.get('authorization')?.replace('Bearer ', '')
   if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -86,10 +97,10 @@ export async function POST(req: NextRequest) {
     const data = JSON.parse(text)
     const raw = data.candidates?.[0]?.content?.parts?.map((p: any) => p.text || '').join('') ?? ''
 
-    const match = raw.match(/\{[\s\S]*\}/)
-    if (!match) return NextResponse.json({ error: 'pas de JSON' }, { status: 500 })
+    const jsonStr = extractFirstJson(raw)
+    if (!jsonStr) return NextResponse.json({ error: 'pas de JSON' }, { status: 500 })
 
-    const corners = JSON.parse(match[0])
+    const corners = JSON.parse(jsonStr)
     const { topLeft, topRight, bottomRight, bottomLeft, confidence } = corners
     if (!topLeft || !topRight || !bottomRight || !bottomLeft) {
       return NextResponse.json({ error: 'coins manquants' }, { status: 500 })

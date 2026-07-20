@@ -34,8 +34,7 @@ export async function POST(req: NextRequest) {
       { onConflict: 'user_id,month' }
     )
 
-    const { data: prof } = await supabase.from('profiles').select('stats_total').eq('id', userId).single()
-    await supabase.from('profiles').update({ stats_total: (prof?.stats_total || 0) + 1 }).eq('id', userId)
+    await supabase.rpc('increment_stats', { p_user_id: userId, p_delta: 1 })
 
     return NextResponse.json({ ok: true })
   } catch (err) {
@@ -72,8 +71,7 @@ export async function DELETE(req: NextRequest) {
     }
 
     // Toujours décrémenter stats_total (la carte existe, elle sera supprimée)
-    const { data: prof } = await supabase.from('profiles').select('stats_total').eq('id', userId).single()
-    await supabase.from('profiles').update({ stats_total: Math.max(0, (prof?.stats_total || 0) - 1) }).eq('id', userId)
+    await supabase.rpc('increment_stats', { p_user_id: userId, p_delta: -1 })
 
     return NextResponse.json({ ok: true })
   } catch (err) {

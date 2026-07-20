@@ -8,6 +8,9 @@ const supabase = createClient(
 
 export async function GET(req: NextRequest) {
   // Vercel cron security: only allow internal calls
+  if (!process.env.CRON_SECRET) {
+    return NextResponse.json({ error: 'CRON_SECRET not configured' }, { status: 500 })
+  }
   const authHeader = req.headers.get('authorization')
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -16,10 +19,11 @@ export async function GET(req: NextRequest) {
   // Find the month that just ended
   const now = new Date()
   const year = now.getFullYear()
-  const month = now.getMonth() // 0-indexed: current month = last month we're computing for
-  const monthStart = new Date(year, month - 1, 1).toISOString()
+  const month = now.getMonth() // 0-indexed: 0=Jan, so month-1 = last month
+  const lastMonthDate = new Date(year, month - 1, 1) // handles month=0 → Dec of prev year
+  const monthStart = lastMonthDate.toISOString()
   const monthEnd = new Date(year, month, 1).toISOString()
-  const monthLabel = `${year}-${String(month).padStart(2, '0')}` // e.g. "2026-05"
+  const monthLabel = lastMonthDate.toISOString().slice(0, 7) // "2025-12" or "2026-05"
 
   // Check if badge already awarded this month
   const { data: existing } = await supabase

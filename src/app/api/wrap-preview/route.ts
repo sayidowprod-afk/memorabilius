@@ -15,6 +15,10 @@ function monthName(date: Date) {
 }
 
 // Même template que le cron — importé inline pour éviter une dépendance circulaire
+function escHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
+}
+
 function buildEmail(opts: {
   name: string; month: string; newCards: number; rcCount: number; autoCount: number
   patchCount: number; numCount: number; rank: number; totalCollectors: number
@@ -22,6 +26,7 @@ function buildEmail(opts: {
   galerieUrl: string; cardImages: string[]; squareUrl: string; storyUrl: string
 }) {
   const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl, cardImages, squareUrl, storyUrl } = opts
+  const safeName = escHtml(name)
   const medals = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`
   const typeLabel = (t: string) => t === 'RC' ? '🌟 Rookie' : t === 'Auto' ? '✍️ Auto' : t === 'Patch' ? '🧩 Patch' : t
 
@@ -85,7 +90,7 @@ function buildEmail(opts: {
     <div class="header-sub">Voilà ce qui s'est passé dans ta collection</div>
   </div>
   <div class="body">
-    <p class="greeting">Hey <strong>${name}</strong> 👋<br>
+    <p class="greeting">Hey <strong>${safeName}</strong> 👋<br>
     ${newCards > 0
       ? `En ${month}, tu as ajouté <strong>${newCards} carte${newCards > 1 ? 's' : ''}</strong> à ta collection. Voici ton bilan complet.`
       : `Pas de nouvelles cartes en ${month}, mais ta collection continue de valoir le détour !`
@@ -127,7 +132,7 @@ function buildEmail(opts: {
       ${highlights.map(h => `
       <div class="highlight-row">
         <div class="hi-type">${typeLabel(h.type)}</div>
-        <div class="hi-info"><strong>${h.player}</strong> · ${h.year} ${h.brand}</div>
+        <div class="hi-info"><strong>${escHtml(h.player)}</strong> · ${escHtml(h.year)} ${escHtml(h.brand)}</div>
       </div>`).join('')}
     </div>` : ''}
     <div class="dl-section">

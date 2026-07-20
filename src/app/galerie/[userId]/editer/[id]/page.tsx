@@ -91,7 +91,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
   useEffect(() => { isHorizontalRef.current = form.format === 'horizontal' || form.is_horizontal }, [form.format, form.is_horizontal])
 
   useEffect(() => {
-    supabase.from('cartes_manuelles').select('*').eq('id', id).single().then(({ data, error }) => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session?.user) { router.push(`/galerie/${userId}`); return }
+      supabase.from('cartes_manuelles').select('*').eq('id', id).eq('user_id', session.user.id).single().then(({ data, error }) => {
       if (error || !data) { router.push(`/galerie/${userId}`); return }
       setForm({
         nom: data.nom || '', equipe: data.equipe || '', annee: data.annee || '',
@@ -115,6 +117,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       if (data.image_interieur_droite) setPreviewIR(data.image_interieur_droite)
       setLoading(false)
     })
+  })
   }, [id, userId, router])
 
   const resetTransform = useCallback(() => {

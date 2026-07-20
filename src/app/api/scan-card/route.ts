@@ -86,6 +86,17 @@ QUALITÉ D'IMAGE: à l'envers→lire normalement | sombre→infos visibles + con
 
 SI VERSO: image 1=recto, image 2=verso. Verso fait AUTORITÉ: collection, variation, num, rc, auto, patch, copyright année.`
 
+function extractFirstJson(text: string): string | null {
+  const start = text.indexOf('{')
+  if (start === -1) return null
+  let depth = 0
+  for (let i = start; i < text.length; i++) {
+    if (text[i] === '{') depth++
+    else if (text[i] === '}') { depth--; if (depth === 0) return text.slice(start, i + 1) }
+  }
+  return null
+}
+
 export async function POST(req: NextRequest) {
   const token = req.headers.get('authorization')?.replace('Bearer ', '')
   if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -144,10 +155,10 @@ export async function POST(req: NextRequest) {
     const answerParts = parts.filter((p: any) => !p.thought)
     const text = answerParts.map((p: any) => p.text ?? '').join('')
 
-    const match = text.match(/\{[\s\S]*\}/)
-    if (!match) return NextResponse.json({ error: 'Réponse invalide' }, { status: 500 })
+    const jsonStr = extractFirstJson(text)
+    if (!jsonStr) return NextResponse.json({ error: 'Réponse invalide' }, { status: 500 })
 
-    const card = JSON.parse(match[0])
+    const card = JSON.parse(jsonStr)
     return NextResponse.json(card)
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 })

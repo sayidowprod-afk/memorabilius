@@ -74,9 +74,8 @@ export async function POST(req: NextRequest) {
     : new Date(now.getFullYear(), now.getMonth(), 1)
   const monthLabel = monthName(monthStart)
 
-  const [{ data: profile }, { data: profiles }, { data: cardsData }] = await Promise.all([
+  const [{ data: profile }, { data: cardsData }] = await Promise.all([
     supabase.from('profiles').select('display_name, stats_total').eq('id', user.id).single(),
-    supabase.from('profiles').select('id, stats_total'),
     supabase.from('cartes_manuelles')
       .select('nom, annee, marque, rc, auto, patch, num, image_recto')
       .eq('user_id', user.id)
@@ -84,9 +83,13 @@ export async function POST(req: NextRequest) {
       .lt('created_at', monthEnd.toISOString()),
   ])
 
-  const ranked = [...(profiles || [])].sort((a, b) => (b.stats_total || 0) - (a.stats_total || 0))
-  const rank = ranked.findIndex(p => p.id === user.id) + 1
-  const totalCollectors = ranked.length
+  // Count users with more cards (avoids loading entire profiles table)
+  const userTotal = profile?.stats_total || 0
+  const [{ count: higherCount }, { count: totalCollectors }] = await Promise.all([
+    supabase.from('profiles').select('*', { count: 'exact', head: true }).gt('stats_total', userTotal),
+    supabase.from('profiles').select('*', { count: 'exact', head: true }),
+  ])
+  const rank = (higherCount || 0) + 1
   const name = profile?.display_name || user.email?.split('@')[0] || 'Collector'
   const newCards = cardsData?.length || 0
   const rcCount = cardsData?.filter((c: any) => c.rc).length || 0

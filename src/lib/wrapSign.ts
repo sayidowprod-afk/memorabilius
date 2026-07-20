@@ -1,7 +1,9 @@
 import { createHmac, timingSafeEqual } from 'crypto'
 
-function secret() {
-  return process.env.WRAP_SIGN_SECRET || process.env.CRON_SECRET || 'wrap-default-secret'
+function secret(): string {
+  const s = process.env.WRAP_SIGN_SECRET || process.env.CRON_SECRET
+  if (!s) throw new Error('WRAP_SIGN_SECRET or CRON_SECRET must be set')
+  return s
 }
 
 export function signWrapUrl(uid: string, year: number, month: number, format: string): string {

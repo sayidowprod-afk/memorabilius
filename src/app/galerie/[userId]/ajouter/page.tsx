@@ -575,7 +575,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           card: { nom: form.nom, annee: form.annee, marque: form.marque, collection: form.collection, variation: form.variation, num: form.num, rc: form.rc, auto: form.auto, patch: form.patch },
           cardUserId: uid,
         }),
-      })
+      }).catch(() => {})
     })
     setSaving(false)
     if (form.image_recto) {

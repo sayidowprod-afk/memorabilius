@@ -15,6 +15,10 @@ function monthName(date: Date) {
   return date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
 }
 
+function escHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
+}
+
 function buildEmail(opts: {
   name: string
   month: string
@@ -34,6 +38,7 @@ function buildEmail(opts: {
 }) {
   const { name, month, newCards, rcCount, autoCount, patchCount, numCount, rank, totalCollectors, totalCards, highlights, galerieUrl, cardImages, squareUrl, storyUrl } = opts
 
+  const safeName = escHtml(name)
   const medals = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`
   const typeLabel = (t: string) => t === 'RC' ? '🌟 Rookie' : t === 'Auto' ? '✍️ Auto' : t === 'Patch' ? '🧩 Patch' : t === 'Num' ? '🔢 Numérotée' : t
 
@@ -111,7 +116,7 @@ function buildEmail(opts: {
     </div>`
     })() : ''}
 
-    <p class="greeting">Hey <strong>${name}</strong> 👋<br>
+    <p class="greeting">Hey <strong>${safeName}</strong> 👋<br>
     ${newCards > 0
       ? `En ${month}, tu as ajouté <strong>${newCards} carte${newCards > 1 ? 's' : ''}</strong> à ta collection. Voici ton bilan complet.`
       : `Pas de nouvelles cartes en ${month}, mais ta collection continue de valoir le détour !`
@@ -156,7 +161,7 @@ function buildEmail(opts: {
       ${highlights.map(h => `
       <div class="highlight-row">
         <div class="hi-type">${typeLabel(h.type)}</div>
-        <div class="hi-info"><strong>${h.player}</strong> · ${h.year} ${h.brand}</div>
+        <div class="hi-info"><strong>${escHtml(h.player)}</strong> · ${escHtml(h.year)} ${escHtml(h.brand)}</div>
       </div>`).join('')}
     </div>` : ''}
 

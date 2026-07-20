@@ -364,8 +364,6 @@ export async function GET(req: NextRequest) {
       // compat ancien code
       items: active,
       count: active.length,
-      // debug temporaire — à retirer une fois le problème identifié
-      _soldDebug: soldResult.debug,
     })
   } catch (err) {
     console.error('[ebay-sold]', err)
