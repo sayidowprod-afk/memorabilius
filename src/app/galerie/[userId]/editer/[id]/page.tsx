@@ -74,6 +74,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     image_interieur_gauche: '', image_interieur_droite: '',
     verso_is_horizontal: null as boolean | null,
     beckett_designation: '', // null = même orientation que le recto
+    storage_binder: '', storage_page: '', storage_slot: '',
   })
 
   const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
@@ -110,6 +111,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         image_interieur_gauche: data.image_interieur_gauche || '',
         image_interieur_droite: data.image_interieur_droite || '',
         beckett_designation: data.beckett_designation || '',
+        storage_binder: data.storage_binder || '',
+        storage_page: data.storage_page != null ? String(data.storage_page) : '',
+        storage_slot: data.storage_slot || '',
       })
       if (data.image_recto) setPreviewRecto(data.image_recto)
       if (data.image_verso) setPreviewVerso(data.image_verso)
@@ -403,6 +407,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       image_interieur_gauche: form.image_interieur_gauche || null,
       image_interieur_droite: form.image_interieur_droite || null,
       beckett_designation: form.beckett_designation || null,
+      storage_binder: form.storage_binder || null,
+      storage_page: form.storage_page ? parseInt(form.storage_page) : null,
+      storage_slot: form.storage_slot || null,
     }).eq('id', id).eq('user_id', user.id)
 
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
@@ -681,6 +688,27 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
                   {tag.label}
                 </button>
               ))}
+            </div>
+          </div>
+
+          {/* Localisation physique */}
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>
+              📍 {lang === 'fr' ? 'Localisation physique' : 'Physical location'}
+            </label>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px 80px', gap: 12 }}>
+              <div>
+                <label style={{ fontSize: 11, color: '#aaa', display: 'block', marginBottom: 4 }}>{lang === 'fr' ? 'Classeur' : 'Binder'}</label>
+                <input value={form.storage_binder} onChange={e => setForm({ ...form, storage_binder: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Binder NBA 2023' : 'Ex: Binder NBA 2023'} />
+              </div>
+              <div>
+                <label style={{ fontSize: 11, color: '#aaa', display: 'block', marginBottom: 4 }}>{lang === 'fr' ? 'Page' : 'Page'}</label>
+                <input type="number" min="1" value={form.storage_page} onChange={e => setForm({ ...form, storage_page: e.target.value })} placeholder="1" />
+              </div>
+              <div>
+                <label style={{ fontSize: 11, color: '#aaa', display: 'block', marginBottom: 4 }}>Slot</label>
+                <input value={form.storage_slot} onChange={e => setForm({ ...form, storage_slot: e.target.value })} placeholder="A3" />
+              </div>
             </div>
           </div>
 

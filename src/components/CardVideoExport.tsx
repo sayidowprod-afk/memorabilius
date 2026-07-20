@@ -108,9 +108,9 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
     const ag = parseInt(accent.slice(3, 5), 16)
     const ab = parseInt(accent.slice(5, 7), 16)
 
-    const bgBase   = isDark ? '#06060f' : '#f0f4ff'
-    const bgBot    = isDark ? '#0d0d22' : '#dde4ff'
-    const infoBg   = isDark ? '#08081a' : '#ffffff'
+    const bgBase   = isDark ? '#06060f' : '#f5f0e8'
+    const bgBot    = isDark ? '#0d0d22' : '#e8dfd0'
+    const infoBg   = isDark ? '#08081a' : '#fdfaf6'
     const textMain = isDark ? '#ffffff' : '#111111'
     const textSub  = isDark ? 'rgba(255,255,255,0.52)' : 'rgba(0,0,0,0.48)'
 
@@ -147,7 +147,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
       // Vignette — assombrit les coins pour la profondeur premium
       const vig = octx.createRadialGradient(W / 2, H * 0.44, H * 0.30, W / 2, H * 0.44, H * 0.82)
       vig.addColorStop(0, 'rgba(0,0,0,0)')
-      vig.addColorStop(1, `rgba(0,0,0,${isDark ? 0.52 : 0.20})`)
+      vig.addColorStop(1, isDark ? 'rgba(0,0,0,0.52)' : 'rgba(80,60,30,0.16)')
       octx.fillStyle = vig; octx.fillRect(0, 0, W, H)
 
       bgCache.current = { key: bgKey, canvas: oc }

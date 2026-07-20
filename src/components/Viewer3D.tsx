@@ -18,6 +18,7 @@ interface Card {
   auto: boolean; rc: boolean; patch: boolean; g: string
   isManuelle?: boolean; id_manuelle?: string; collection_tag?: string; collections?: string[]; beckett_designation?: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
+  storage_binder?: string; storage_page?: number | null; storage_slot?: string;
 }
 
 // Le container .viewer-card a une forme fixe (déterminée par le recto, is_horizontal).
@@ -818,6 +819,16 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               </div>
             ))}
           </div>
+
+          {/* Localisation physique */}
+          {popup.isManuelle && popup.storage_binder && (
+            <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: metaColor }}>
+              <span>📍</span>
+              <span style={{ fontWeight: 700 }}>{popup.storage_binder}</span>
+              {popup.storage_page && <span>· p.{popup.storage_page}</span>}
+              {popup.storage_slot && <span>· {popup.storage_slot}</span>}
+            </div>
+          )}
 
           {/* Ma collection — owner seulement. Une carte peut appartenir à plusieurs collections. */}
           {isOwner && userId && (onCollectionsChange || onCollectionTagChange) && (
