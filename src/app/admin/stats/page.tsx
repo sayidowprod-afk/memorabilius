@@ -5,6 +5,14 @@ import { supabase } from '@/lib/supabase'
 const ACCENT = '#003DA6'
 
 type DailyPoint = { day: string; count: number }
+type Zoom = '3m' | '6m' | '1y' | 'max'
+
+const ZOOM_CFG: Record<Zoom, { histDays: number; projDays: number; label: string }> = {
+  '3m':  { histDays: 30,       projDays: 60,  label: '3 mois' },
+  '6m':  { histDays: 90,       projDays: 90,  label: '6 mois' },
+  '1y':  { histDays: Infinity, projDays: 275, label: '1 an'   },
+  'max': { histDays: Infinity, projDays: 365, label: 'Max'    },
+}
 
 type Stats = {
   total_users: number
@@ -12,8 +20,8 @@ type Stats = {
   week_users: number
   month_users: number
   oldest_user: string
-  total_cards: number        // SUM(stats_total) — toutes sources y compris CSV
-  total_cards_manual: number // COUNT cartes_manuelles — scanner seulement
+  total_cards: number
+  total_cards_manual: number
   today_cards: number
   week_cards: number
   month_cards: number
@@ -37,64 +45,76 @@ function avg(total: number, oldest: string) {
   }
 }
 
-// ── Graphique interactif avec projection ──────────────────────────────────
+// ── Graphique interactif — historique complet + projection 1 an ───────────
 
-function InteractiveChart({ data, color, projDays = 60 }: {
-  data: DailyPoint[]
-  color: string
-  projDays?: number
-}) {
+function InteractiveChart({ data, color }: { data: DailyPoint[]; color: string }) {
+  const [zoom, setZoom]       = useState<Zoom>('3m')
   const [hovered, setHovered] = useState<number | null>(null)
 
-  // Remplir les 30 derniers jours (jours manquants → 0)
-  const filled: DailyPoint[] = []
-  for (let i = 29; i >= 0; i--) {
-    const d = new Date()
-    d.setUTCDate(d.getUTCDate() - i)
-    const day = d.toISOString().slice(0, 10)
-    const found = data.find(p => p.day?.slice(0, 10) === day)
-    filled.push({ day, count: found?.count ?? 0 })
+  // Toutes les données depuis le premier jour
+  const dataMap = new Map(data.map(p => [p.day.slice(0, 10), p.count]))
+  const today   = new Date()
+  const earliest = data.length > 0
+    ? data.reduce((min, p) => p.day.slice(0, 10) < min ? p.day.slice(0, 10) : min, data[0].day.slice(0, 10))
+    : new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 10)
+
+  const filledAll: DailyPoint[] = []
+  const cur = new Date(earliest + 'T12:00:00Z')
+  while (cur <= today) {
+    const day = cur.toISOString().slice(0, 10)
+    filledAll.push({ day, count: dataMap.get(day) ?? 0 })
+    cur.setUTCDate(cur.getUTCDate() + 1)
   }
+  const nAll = filledAll.length
 
-  // Régression linéaire
-  const n = filled.length
-  const ys = filled.map(p => p.count)
-  const sumX = (n * (n - 1)) / 2
-  const sumY = ys.reduce((a, b) => a + b, 0)
+  // Régression linéaire sur tout l'historique
+  const ys    = filledAll.map(p => p.count)
+  const sumX  = (nAll * (nAll - 1)) / 2
+  const sumY  = ys.reduce((a, b) => a + b, 0)
   const sumXY = ys.reduce((s, y, i) => s + i * y, 0)
-  const sumX2 = ((n - 1) * n * (2 * n - 1)) / 6
-  const denom = n * sumX2 - sumX * sumX
-  const slope = denom === 0 ? 0 : (n * sumXY - sumX * sumY) / denom
-  const intercept = (sumY - slope * sumX) / n
+  const sumX2 = ((nAll - 1) * nAll * (2 * nAll - 1)) / 6
+  const denom = nAll * sumX2 - sumX * sumX
+  const slope     = denom === 0 ? 0 : (nAll * sumXY - sumX * sumY) / denom
+  const intercept = (sumY - slope * sumX) / nAll
 
-  // Projection
-  const proj: DailyPoint[] = Array.from({ length: projDays }, (_, i) => {
+  // Projection 365 jours
+  const projAll: DailyPoint[] = Array.from({ length: 365 }, (_, i) => {
     const d = new Date()
     d.setUTCDate(d.getUTCDate() + i + 1)
-    return {
-      day: d.toISOString().slice(0, 10),
-      count: Math.max(0, Math.round(intercept + slope * (n + i))),
-    }
+    return { day: d.toISOString().slice(0, 10), count: Math.max(0, Math.round(intercept + slope * (nAll + i))) }
   })
 
-  const all = [...filled, ...proj]
-  const T = all.length
-  const maxVal = Math.max(1, ...all.map(p => p.count))
+  // Fenêtre zoom
+  const { histDays, projDays } = ZOOM_CFG[zoom]
+  const visHist  = histDays === Infinity ? filledAll : filledAll.slice(-histDays)
+  const visProj  = projAll.slice(0, projDays)
+  const nVis     = visHist.length
+  const allVis   = [...visHist, ...visProj]
+  const T        = allVis.length
+  const maxVal   = Math.max(1, ...allVis.map(p => p.count))
 
-  // Layout SVG
+  // SVG
   const W = 680, H = 160
-  const PL = 46, PR = 12, PT = 20, PB = 28
-  const cW = W - PL - PR
-  const cH = H - PT - PB
+  const PL = 50, PR = 12, PT = 20, PB = 28
+  const cW = W - PL - PR, cH = H - PT - PB
 
-  const sx = (i: number) => PL + (i / (T - 1)) * cW
+  const sx = (i: number) => PL + (i / Math.max(1, T - 1)) * cW
   const sy = (v: number) => PT + cH - Math.max(0, (v / maxVal) * cH)
 
-  const hPath = filled.map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(i).toFixed(1)},${sy(p.count).toFixed(1)}`).join('')
-  const hArea = `${hPath}L${sx(n - 1).toFixed(1)},${(PT + cH).toFixed(1)}L${sx(0).toFixed(1)},${(PT + cH).toFixed(1)}Z`
-  const pPath = [filled[n - 1], ...proj].map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(n - 1 + i).toFixed(1)},${sy(p.count).toFixed(1)}`).join('')
+  const hPath = visHist.map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(i).toFixed(1)},${sy(p.count).toFixed(1)}`).join('')
+  const hArea = nVis > 1
+    ? `${hPath}L${sx(nVis - 1).toFixed(1)},${(PT + cH).toFixed(1)}L${sx(0).toFixed(1)},${(PT + cH).toFixed(1)}Z`
+    : ''
+  const pPath = [visHist[nVis - 1], ...visProj]
+    .map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(nVis - 1 + i).toFixed(1)},${sy(p.count).toFixed(1)}`).join('')
 
   const yTicks = [0, Math.round(maxVal * 0.5), maxVal]
+
+  // Labels X : 5 positions régulières
+  const nLabels = Math.min(5, T)
+  const labelIdx = Array.from({ length: nLabels }, (_, i) =>
+    Math.round(i * (T - 1) / Math.max(1, nLabels - 1))
+  ).filter((v, i, arr) => arr.indexOf(v) === i)
 
   function onMove(e: React.MouseEvent<SVGSVGElement>) {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -103,108 +123,132 @@ function InteractiveChart({ data, color, projDays = 60 }: {
     setHovered(Math.max(0, Math.min(T - 1, idx)))
   }
 
-  const hp = hovered !== null ? all[hovered] : null
-  const hx = hovered !== null ? sx(hovered) : null
-  const hy = hp ? sy(hp.count) : null
-  const isProj = hovered !== null && hovered >= n
+  const hp     = hovered !== null ? allVis[hovered] : null
+  const hx     = hovered !== null ? sx(hovered) : null
+  const hy     = hp ? sy(hp.count) : null
+  const isProj = hovered !== null && hovered >= nVis
 
-  const trendLabel = Math.abs(slope) < 0.5 ? '→ stable' : slope > 0 ? `↑ +${slope.toFixed(1)}/j` : `↓ ${slope.toFixed(1)}/j`
-  const proj30 = proj[proj.length - 1]?.count ?? 0
+  const trendLabel = Math.abs(slope) < 0.5 ? '→ stable'
+    : slope > 0 ? `↑ +${slope.toFixed(1)}/j` : `↓ ${slope.toFixed(1)}/j`
+  const projEnd = projAll[projAll.length - 1]?.count ?? 0
 
-  const tooltipPct = hx !== null ? (hx / W) * 100 : 50
+  const tooltipPct   = hx !== null ? (hx / W) * 100 : 50
   const tooltipXform = tooltipPct < 12 ? 'translateX(0)' : tooltipPct > 88 ? 'translateX(-100%)' : 'translateX(-50%)'
 
-  const xLabels = [0, 14, n - 1, n + 14, T - 1].filter((i, idx, arr) => {
-    if (i < 0 || i >= T) return false
-    // Éviter les labels trop proches
-    return arr.findIndex(j => j >= 0 && j < T && Math.abs(j - i) < 5 && j !== i) === -1 ||
-      arr.indexOf(i) === arr.findIndex(j => j === i)
-  })
-
   return (
-    <div style={{ position: 'relative', userSelect: 'none' }} onMouseLeave={() => setHovered(null)}>
-      <svg
-        viewBox={`0 0 ${W} ${H}`}
-        style={{ width: '100%', height: 'auto', display: 'block', cursor: 'crosshair' }}
-        onMouseMove={onMove}
-      >
-        {/* Y grid */}
-        {yTicks.map(t => (
-          <g key={t}>
-            <line x1={PL} x2={W - PR} y1={sy(t)} y2={sy(t)} stroke="#e2e8f0" strokeWidth={1} />
-            <text x={PL - 5} y={sy(t) + 4} textAnchor="end" fontSize={9} fill="#94a3b8">
-              {t >= 1000 ? `${(t / 1000).toFixed(t % 1000 === 0 ? 0 : 1)}k` : t}
+    <div style={{ userSelect: 'none' }}>
+      {/* Boutons zoom */}
+      <div style={{ display: 'flex', gap: 4, justifyContent: 'flex-end', marginBottom: 8 }}>
+        {(Object.keys(ZOOM_CFG) as Zoom[]).map(z => (
+          <button
+            key={z}
+            onClick={() => { setZoom(z); setHovered(null) }}
+            style={{
+              padding: '3px 9px', fontSize: 11, borderRadius: 6,
+              border: `1px solid ${zoom === z ? color : '#e2e8f0'}`,
+              background: zoom === z ? color : '#fff',
+              color: zoom === z ? '#fff' : '#64748b',
+              cursor: 'pointer', fontWeight: zoom === z ? 600 : 400,
+              transition: 'all .15s',
+            }}
+          >
+            {ZOOM_CFG[z].label}
+          </button>
+        ))}
+      </div>
+
+      {/* Zone graphique */}
+      <div style={{ position: 'relative' }} onMouseLeave={() => setHovered(null)}>
+        <svg
+          viewBox={`0 0 ${W} ${H}`}
+          style={{ width: '100%', height: 'auto', display: 'block', cursor: 'crosshair' }}
+          onMouseMove={onMove}
+        >
+          {/* Grille Y */}
+          {yTicks.map(t => (
+            <g key={t}>
+              <line x1={PL} x2={W - PR} y1={sy(t)} y2={sy(t)} stroke="#e2e8f0" strokeWidth={1} />
+              <text x={PL - 5} y={sy(t) + 4} textAnchor="end" fontSize={9} fill="#94a3b8">
+                {t >= 10000 ? `${(t / 1000).toFixed(0)}k` : t >= 1000 ? `${(t / 1000).toFixed(1)}k` : t}
+              </text>
+            </g>
+          ))}
+
+          {/* Fond zone projection */}
+          <rect
+            x={sx(nVis - 1)} y={PT}
+            width={Math.max(0, sx(T - 1) - sx(nVis - 1))}
+            height={cH}
+            fill="#f1f5f9" opacity={0.6}
+          />
+
+          {/* Area historique */}
+          {hArea && <path d={hArea} fill={color} opacity={0.09} />}
+
+          {/* Ligne historique */}
+          {nVis > 1 && (
+            <path d={hPath} fill="none" stroke={color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+          )}
+
+          {/* Ligne projection */}
+          <path d={pPath} fill="none" stroke={color} strokeWidth={1.5} strokeDasharray="5 4" opacity={0.4} strokeLinejoin="round" />
+
+          {/* Séparateur aujourd'hui */}
+          <line x1={sx(nVis - 1)} x2={sx(nVis - 1)} y1={PT} y2={PT + cH} stroke="#94a3b8" strokeWidth={1} strokeDasharray="3 3" />
+          <text x={sx(nVis - 1)} y={PT - 4} textAnchor="middle" fontSize={8} fill="#94a3b8">auj.</text>
+
+          {/* Labels X */}
+          {labelIdx.map(i => (
+            <text key={i} x={sx(i)} y={H - 6} textAnchor="middle" fontSize={8} fill={i >= nVis ? '#b0bec5' : '#64748b'}>
+              {allVis[i]?.day.slice(5)}
             </text>
-          </g>
-        ))}
+          ))}
 
-        {/* Zone fond projection */}
-        <rect x={sx(n - 1)} y={PT} width={sx(T - 1) - sx(n - 1)} height={cH} fill="#f8fafc" opacity={0.7} />
+          {/* Crosshair */}
+          {hovered !== null && hx !== null && hy !== null && (
+            <>
+              <line x1={hx} x2={hx} y1={PT} y2={PT + cH} stroke="#475569" strokeWidth={1} strokeDasharray="2 2" />
+              <circle cx={hx} cy={hy} r={4.5} fill={isProj ? '#fff' : color} stroke={color} strokeWidth={2} />
+            </>
+          )}
 
-        {/* Area historique */}
-        <path d={hArea} fill={color} opacity={0.09} />
+          {/* Zone hover */}
+          <rect x={PL} y={PT} width={cW} height={cH} fill="transparent" />
+        </svg>
 
-        {/* Ligne historique */}
-        <path d={hPath} fill="none" stroke={color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
-
-        {/* Ligne projection */}
-        <path d={pPath} fill="none" stroke={color} strokeWidth={1.5} strokeDasharray="5 4" opacity={0.45} strokeLinejoin="round" />
-
-        {/* Séparateur aujourd'hui */}
-        <line x1={sx(n - 1)} x2={sx(n - 1)} y1={PT} y2={PT + cH} stroke="#94a3b8" strokeWidth={1} strokeDasharray="3 3" />
-        <text x={sx(n - 1)} y={PT - 4} textAnchor="middle" fontSize={8} fill="#94a3b8">auj.</text>
-
-        {/* Labels X */}
-        {xLabels.map(i => (
-          <text key={i} x={sx(i)} y={H - 6} textAnchor="middle" fontSize={8} fill={i >= n ? '#b0bec5' : '#64748b'}>
-            {all[i]?.day.slice(5)}
-          </text>
-        ))}
-
-        {/* Crosshair */}
-        {hovered !== null && hx !== null && hy !== null && (
-          <>
-            <line x1={hx} x2={hx} y1={PT} y2={PT + cH} stroke="#475569" strokeWidth={1} strokeDasharray="2 2" />
-            <circle cx={hx} cy={hy} r={4.5} fill={isProj ? '#fff' : color} stroke={color} strokeWidth={2} />
-          </>
+        {/* Tooltip */}
+        {hp && hx !== null && (
+          <div style={{
+            position: 'absolute',
+            top: 8,
+            left: `${tooltipPct}%`,
+            transform: tooltipXform,
+            background: '#0f172a',
+            color: '#fff',
+            padding: '6px 12px',
+            borderRadius: 8,
+            fontSize: 12,
+            pointerEvents: 'none',
+            whiteSpace: 'nowrap',
+            zIndex: 20,
+            boxShadow: '0 4px 16px rgba(0,0,0,0.28)',
+          }}>
+            <div style={{ color: '#64748b', fontSize: 10, marginBottom: 2 }}>
+              {hp.day}{isProj ? ' · projection' : ''}
+            </div>
+            <div style={{ fontWeight: 700, fontSize: 15, color: isProj ? color + '88' : color }}>
+              {fmt(hp.count)}
+            </div>
+          </div>
         )}
+      </div>
 
-        {/* Zone hover transparente */}
-        <rect x={PL} y={PT} width={cW} height={cH} fill="transparent" />
-      </svg>
-
-      {/* Tooltip */}
-      {hp && hx !== null && (
-        <div style={{
-          position: 'absolute',
-          top: 8,
-          left: `${(hx / W) * 100}%`,
-          transform: tooltipXform,
-          background: '#0f172a',
-          color: '#fff',
-          padding: '6px 12px',
-          borderRadius: 8,
-          fontSize: 12,
-          pointerEvents: 'none',
-          whiteSpace: 'nowrap',
-          zIndex: 20,
-          boxShadow: '0 4px 16px rgba(0,0,0,0.28)',
-        }}>
-          <div style={{ color: '#64748b', fontSize: 10, marginBottom: 2 }}>
-            {hp.day}{isProj ? ' · projection' : ''}
-          </div>
-          <div style={{ fontWeight: 700, fontSize: 15, color: isProj ? color + '88' : color }}>
-            {fmt(hp.count)}
-          </div>
-        </div>
-      )}
-
-      {/* Résumé tendance / projection */}
+      {/* Résumé */}
       <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#94a3b8', marginTop: 8 }}>
         <span style={{ color: slope > 0.5 ? '#059669' : slope < -0.5 ? '#ef4444' : '#94a3b8' }}>
           {trendLabel}
         </span>
-        <span>dans 30j : ~{fmt(proj30)}</span>
+        <span>dans 1 an : ~{fmt(projEnd)}/jour</span>
       </div>
     </div>
   )
@@ -231,16 +275,19 @@ function StatsTable({ label, today, week, month, avgDay, avgWeek, avgMonth, note
   avgDay: string; avgWeek: string; avgMonth: string; note?: string
 }) {
   const rows = [
-    { period: "Aujourd'hui", value: today },
-    { period: '7 derniers jours', value: week },
+    { period: "Aujourd'hui",       value: today },
+    { period: '7 derniers jours',  value: week  },
     { period: '30 derniers jours', value: month },
-    { period: 'Moyenne / jour', value: avgDay, isAvg: true },
-    { period: 'Moyenne / semaine', value: avgWeek, isAvg: true },
-    { period: 'Moyenne / mois', value: avgMonth, isAvg: true },
+    { period: 'Moyenne / jour',    value: avgDay,   isAvg: true },
+    { period: 'Moyenne / semaine', value: avgWeek,  isAvg: true },
+    { period: 'Moyenne / mois',    value: avgMonth, isAvg: true },
   ]
   return (
     <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflow: 'hidden' }}>
-      <div style={{ padding: '14px 20px', background: ACCENT, color: '#fff', fontWeight: 600, fontSize: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{
+        padding: '14px 20px', background: ACCENT, color: '#fff', fontWeight: 600, fontSize: 14,
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+      }}>
         <span>{label}</span>
         {note && <span style={{ fontSize: 10, fontWeight: 400, opacity: 0.75 }}>{note}</span>}
       </div>
@@ -303,8 +350,8 @@ export default function AdminStats() {
 
   if (!stats) return null
 
-  const userAvg  = avg(stats.total_users, stats.oldest_user)
-  const cardAvg  = avg(stats.total_cards_manual, stats.oldest_card || stats.oldest_user)
+  const userAvg = avg(stats.total_users, stats.oldest_user)
+  const cardAvg = avg(stats.total_cards_manual, stats.oldest_card || stats.oldest_user)
 
   return (
     <div style={{ minHeight: '100vh', background: '#f8fafc', padding: '32px 24px', fontFamily: 'system-ui, sans-serif' }}>
@@ -329,11 +376,7 @@ export default function AdminStats() {
         {/* KPIs */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 28 }}>
           <KpiCard label="Inscrits total" value={stats.total_users} />
-          <KpiCard
-            label="Cartes total"
-            value={stats.total_cards}
-            sub={`dont ${fmt(stats.total_cards_manual)} manuelles`}
-          />
+          <KpiCard label="Cartes total" value={stats.total_cards} sub={`dont ${fmt(stats.total_cards_manual)} manuelles`} />
           <KpiCard label="Nouveaux inscrits aujourd'hui" value={stats.today_users} />
           <KpiCard label="Cartes ajoutées aujourd'hui" value={stats.today_cards} />
         </div>
@@ -353,16 +396,16 @@ export default function AdminStats() {
           />
         </div>
 
-        {/* Graphiques interactifs */}
+        {/* Graphiques */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
           {[
-            { label: 'Inscriptions — 30j + projection 30j', data: stats.user_daily, color: ACCENT },
-            { label: 'Cartes ajoutées — 30j + projection 30j', data: stats.card_daily, color: '#059669', note: 'scanner uniquement' },
-          ].map(({ label, data, color, note }) => (
+            { label: 'Inscriptions', note: 'depuis le début · projection 1 an', data: stats.user_daily, color: ACCENT },
+            { label: 'Cartes ajoutées', note: 'scanner · projection 1 an', data: stats.card_daily, color: '#059669' },
+          ].map(({ label, note, data, color }) => (
             <div key={label} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '20px 24px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 14 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
                 <div style={{ fontSize: 13, fontWeight: 600, color: '#334155' }}>{label}</div>
-                {note && <div style={{ fontSize: 10, color: '#94a3b8' }}>{note}</div>}
+                <div style={{ fontSize: 10, color: '#94a3b8' }}>{note}</div>
               </div>
               <InteractiveChart data={data} color={color} />
             </div>
@@ -376,8 +419,8 @@ export default function AdminStats() {
           </div>
           <div style={{ display: 'flex', gap: 48 }}>
             {[
-              { label: 'Cette semaine', value: stats.active_users_week },
-              { label: 'Ce mois', value: stats.active_users_month },
+              { label: 'Cette semaine',  value: stats.active_users_week  },
+              { label: 'Ce mois',        value: stats.active_users_month },
               {
                 label: 'Taux actifs / inscrits (mois)',
                 value: stats.total_users

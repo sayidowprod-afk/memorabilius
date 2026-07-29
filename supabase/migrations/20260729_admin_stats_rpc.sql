@@ -10,13 +10,11 @@ WITH
   user_daily AS (
     SELECT date_trunc('day', created_at AT TIME ZONE 'UTC')::date AS day, count(*)::int AS cnt
     FROM profiles
-    WHERE created_at >= now() - interval '30 days'
     GROUP BY day
   ),
   card_daily AS (
     SELECT date_trunc('day', created_at AT TIME ZONE 'UTC')::date AS day, count(*)::int AS cnt
     FROM cartes_manuelles
-    WHERE created_at >= now() - interval '30 days'
     GROUP BY day
   )
 SELECT jsonb_build_object(
