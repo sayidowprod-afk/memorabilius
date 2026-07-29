@@ -2,8 +2,8 @@
 import { useEffect, useState, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 
-const ACCENT  = '#003DA6'
-const W_SVG   = 680
+const ACCENT = '#003DA6'
+const W_SVG  = 800
 
 type DailyPoint = { day: string; count: number }
 type Zoom = '3m' | '6m' | '1y' | 'max'
@@ -69,27 +69,29 @@ function buildHistory(data: DailyPoint[]): DailyPoint[] {
   return result
 }
 
-// Régression linéaire sur les ajouts journaliers
-function linReg(pts: DailyPoint[]) {
-  const n = pts.length
-  if (n < 2) return { slope: 0, intercept: pts[0]?.count ?? 0 }
-  const ys    = pts.map(p => p.count)
-  const sumX  = (n * (n - 1)) / 2
-  const sumY  = ys.reduce((a, b) => a + b, 0)
-  const sumXY = ys.reduce((s, y, i) => s + i * y, 0)
-  const sumX2 = ((n - 1) * n * (2 * n - 1)) / 6
-  const denom = n * sumX2 - sumX * sumX
-  const slope = denom === 0 ? 0 : (n * sumXY - sumX * sumY) / denom
-  return { slope, intercept: (sumY - slope * sumX) / n }
+// Moyenne des N derniers jours
+function rollingAvg(pts: DailyPoint[], n = 7): number {
+  const slice = pts.slice(-n)
+  if (!slice.length) return 0
+  return slice.reduce((s, p) => s + p.count, 0) / slice.length
 }
 
-// Boutons zoom partagés
+// Tendance : compare moy. 7j vs 7j précédents
+function trendVsPrev(pts: DailyPoint[]): '↑' | '↓' | '→' {
+  const cur  = rollingAvg(pts, 7)
+  const prev = rollingAvg(pts.slice(0, -7), 7)
+  if (prev === 0) return '→'
+  const delta = (cur - prev) / prev
+  return delta > 0.05 ? '↑' : delta < -0.05 ? '↓' : '→'
+}
+
+// Boutons zoom
 function ZoomBtns({ zoom, setZoom, color }: { zoom: Zoom; setZoom: (z: Zoom) => void; color: string }) {
   return (
-    <div style={{ display: 'flex', gap: 4, justifyContent: 'flex-end', marginBottom: 8 }}>
+    <div style={{ display: 'flex', gap: 4 }}>
       {(Object.keys(ZOOM_CFG) as Zoom[]).map(z => (
         <button key={z} onClick={() => setZoom(z)} style={{
-          padding: '3px 9px', fontSize: 11, borderRadius: 6,
+          padding: '3px 10px', fontSize: 11, borderRadius: 6,
           border: `1px solid ${zoom === z ? color : '#e2e8f0'}`,
           background: zoom === z ? color : '#fff',
           color: zoom === z ? '#fff' : '#64748b',
@@ -102,37 +104,7 @@ function ZoomBtns({ zoom, setZoom, color }: { zoom: Zoom; setZoom: (z: Zoom) => 
   )
 }
 
-// Rendu SVG partagé
-function ChartBody({ allVis, nVis, color, H, PL }: {
-  allVis: DailyPoint[]; nVis: number; color: string; H: number; PL: number
-  // les handlers sont appliqués par le parent sur la div wrapper
-}) {
-  const T  = allVis.length
-  const PR = 12, PT = 20, PB = 28
-  const cW = W_SVG - PL - PR, cH = H - PT - PB
-  const maxVal = Math.max(1, ...allVis.map(p => p.count))
-
-  const sx = (i: number) => PL + (i / Math.max(1, T - 1)) * cW
-  const sy = (v: number) => PT + cH - Math.max(0, (v / maxVal) * cH)
-
-  const visHist = allVis.slice(0, nVis)
-  const hPath = visHist.map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(i).toFixed(1)},${sy(p.count).toFixed(1)}`).join('')
-  const hArea = visHist.length > 1
-    ? `${hPath}L${sx(nVis-1).toFixed(1)},${(PT+cH).toFixed(1)}L${sx(0).toFixed(1)},${(PT+cH).toFixed(1)}Z`
-    : ''
-  const pPath = allVis.slice(nVis - 1)
-    .map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(nVis - 1 + i).toFixed(1)},${sy(p.count).toFixed(1)}`).join('')
-
-  const yTicks = [0, Math.round(maxVal * 0.5), maxVal]
-  const nLabels = Math.min(6, T)
-  const labelIdx = Array.from({ length: nLabels }, (_, i) =>
-    Math.round(i * (T - 1) / Math.max(1, nLabels - 1))
-  ).filter((v, i, arr) => arr.indexOf(v) === i)
-
-  return { sx, sy, hPath, hArea, pPath, yTicks, labelIdx, maxVal, cW, cH, PT, PB, PR }
-}
-
-// ── Graphique cumulatif (total absolu au fil du temps) ───────────────────
+// ── Graphique cumulatif ───────────────────────────────────────────────────
 
 function CumulativeChart({ data, totalToday, color }: {
   data: DailyPoint[]
@@ -142,11 +114,11 @@ function CumulativeChart({ data, totalToday, color }: {
   const [zoom, setZoom]       = useState<Zoom>('3m')
   const [hovered, setHovered] = useState<number | null>(null)
 
-  const dailyAll  = buildHistory(data)
-  const nAll      = dailyAll.length
-  const { slope, intercept } = linReg(dailyAll)
+  const dailyAll = buildHistory(data)
+  const rate7    = rollingAvg(dailyAll, 7)   // moy. 7 derniers jours
+  const trend    = trendVsPrev(dailyAll)
 
-  // Série cumulée historique, ancrée au vrai total
+  // Série cumulée historique, ancrée au vrai total aujourd'hui
   const rawSum = dailyAll.reduce((s, p) => s + p.count, 0)
   const scale  = rawSum > 0 ? totalToday / rawSum : 1
   let cumSoFar = 0
@@ -155,11 +127,11 @@ function CumulativeChart({ data, totalToday, color }: {
     return { day: p.day, count: Math.round(cumSoFar * scale) }
   })
 
-  // Projection cumulée 365j
+  // Projection cumulée 365j à taux fixe = moy. 7j
   let projCum = totalToday
   const projAll: DailyPoint[] = Array.from({ length: 365 }, (_, i) => {
     const d = new Date(); d.setUTCDate(d.getUTCDate() + i + 1)
-    projCum += Math.max(0, Math.round(intercept + slope * (nAll + i)))
+    projCum += Math.round(rate7)
     return { day: d.toISOString().slice(0, 10), count: projCum }
   })
 
@@ -171,7 +143,7 @@ function CumulativeChart({ data, totalToday, color }: {
   const T       = allVis.length
   const maxVal  = Math.max(1, ...allVis.map(p => p.count))
 
-  const H = 240, PL = 62, PR = 12, PT = 20, PB = 28
+  const H = 280, PL = 66, PR = 16, PT = 22, PB = 30
   const cW = W_SVG - PL - PR, cH = H - PT - PB
   const sx = (i: number) => PL + (i / Math.max(1, T - 1)) * cW
   const sy = (v: number) => PT + cH - Math.max(0, (v / maxVal) * cH)
@@ -183,8 +155,8 @@ function CumulativeChart({ data, totalToday, color }: {
   const pPath = [visHist[nVis-1], ...visProj]
     .map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(nVis-1+i).toFixed(1)},${sy(p.count).toFixed(1)}`).join('')
 
-  const yTicks = [0, Math.round(maxVal * 0.33), Math.round(maxVal * 0.67), maxVal]
-  const nLabels = Math.min(6, T)
+  const yTicks  = [0, Math.round(maxVal * 0.33), Math.round(maxVal * 0.67), maxVal]
+  const nLabels = Math.min(7, T)
   const labelIdx = Array.from({ length: nLabels }, (_, i) =>
     Math.round(i * (T - 1) / Math.max(1, nLabels - 1))
   ).filter((v, i, arr) => arr.indexOf(v) === i)
@@ -202,11 +174,19 @@ function CumulativeChart({ data, totalToday, color }: {
   const proj1y = projAll[projAll.length - 1]?.count ?? 0
   const gain1y = proj1y - totalToday
   const tooltipPct  = hx !== null ? (hx / W_SVG) * 100 : 50
-  const tooltipXfrm = tooltipPct < 12 ? 'translateX(0)' : tooltipPct > 88 ? 'translateX(-100%)' : 'translateX(-50%)'
+  const tooltipXfrm = tooltipPct < 10 ? 'translateX(0)' : tooltipPct > 90 ? 'translateX(-100%)' : 'translateX(-50%)'
+  const trendColor  = trend === '↑' ? '#059669' : trend === '↓' ? '#ef4444' : '#94a3b8'
 
   return (
     <div style={{ userSelect: 'none' }}>
-      <ZoomBtns zoom={zoom} setZoom={z => { setZoom(z); setHovered(null) }} color={color} />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+        <ZoomBtns zoom={zoom} setZoom={z => { setZoom(z); setHovered(null) }} color={color} />
+        <div style={{ fontSize: 12, color: '#64748b' }}>
+          <span style={{ fontWeight: 600, color: trendColor }}>{trend} </span>
+          moy. 7j : <span style={{ fontWeight: 600 }}>{fmt(Math.round(rate7))}/j</span>
+        </div>
+      </div>
+
       <div style={{ position: 'relative' }} onMouseLeave={() => setHovered(null)}>
         <svg viewBox={`0 0 ${W_SVG} ${H}`}
           style={{ width: '100%', height: 'auto', display: 'block', cursor: 'crosshair' }}
@@ -214,21 +194,40 @@ function CumulativeChart({ data, totalToday, color }: {
         >
           {yTicks.map(t => (
             <g key={t}>
-              <line x1={PL} x2={W_SVG - PR} y1={sy(t)} y2={sy(t)} stroke="#e2e8f0" strokeWidth={1} />
-              <text x={PL - 5} y={sy(t) + 4} textAnchor="end" fontSize={9} fill="#94a3b8">{fmtY(t)}</text>
+              <line x1={PL} x2={W_SVG-PR} y1={sy(t)} y2={sy(t)} stroke="#e2e8f0" strokeWidth={1} />
+              <text x={PL-6} y={sy(t)+4} textAnchor="end" fontSize={10} fill="#94a3b8">{fmtY(t)}</text>
             </g>
           ))}
-          <rect x={sx(nVis-1)} y={PT} width={Math.max(0, sx(T-1) - sx(nVis-1))} height={cH} fill="#f1f5f9" opacity={0.6} />
+
+          {/* Fond zone projection */}
+          <rect x={sx(nVis-1)} y={PT} width={Math.max(0, sx(T-1)-sx(nVis-1))} height={cH} fill="#f8fafc" />
+
+          {/* Légende projection */}
+          <text x={sx(nVis-1) + 6} y={PT+12} fontSize={8} fill="#94a3b8" fontStyle="italic">
+            projection ({fmt(Math.round(rate7))}/j)
+          </text>
+
+          {/* Area + ligne historique */}
           {hArea && <path d={hArea} fill={color} opacity={0.08} />}
-          {visHist.length > 1 && <path d={hPath} fill="none" stroke={color} strokeWidth={2.5} strokeLinejoin="round" strokeLinecap="round" />}
-          <path d={pPath} fill="none" stroke={color} strokeWidth={1.5} strokeDasharray="5 4" opacity={0.4} strokeLinejoin="round" />
+          {visHist.length > 1 && (
+            <path d={hPath} fill="none" stroke={color} strokeWidth={2.5} strokeLinejoin="round" strokeLinecap="round" />
+          )}
+
+          {/* Ligne projection pointillée */}
+          <path d={pPath} fill="none" stroke={color} strokeWidth={1.5} strokeDasharray="6 4" opacity={0.45} strokeLinejoin="round" />
+
+          {/* Aujourd'hui */}
           <line x1={sx(nVis-1)} x2={sx(nVis-1)} y1={PT} y2={PT+cH} stroke="#94a3b8" strokeWidth={1} strokeDasharray="3 3" />
-          <text x={sx(nVis-1)} y={PT-4} textAnchor="middle" fontSize={8} fill="#94a3b8">auj.</text>
+          <text x={sx(nVis-1)} y={PT-5} textAnchor="middle" fontSize={8} fill="#94a3b8">auj.</text>
+
+          {/* Labels X */}
           {labelIdx.map(i => (
-            <text key={i} x={sx(i)} y={H-6} textAnchor="middle" fontSize={8} fill={i >= nVis ? '#b0bec5' : '#64748b'}>
+            <text key={i} x={sx(i)} y={H-8} textAnchor="middle" fontSize={9} fill={i >= nVis ? '#b0bec5' : '#64748b'}>
               {allVis[i]?.day.slice(5)}
             </text>
           ))}
+
+          {/* Crosshair */}
           {hovered !== null && hx !== null && hy !== null && (
             <>
               <line x1={hx} x2={hx} y1={PT} y2={PT+cH} stroke="#475569" strokeWidth={1} strokeDasharray="2 2" />
@@ -237,39 +236,47 @@ function CumulativeChart({ data, totalToday, color }: {
           )}
           <rect x={PL} y={PT} width={cW} height={cH} fill="transparent" />
         </svg>
+
+        {/* Tooltip */}
         {hp && hx !== null && (
           <div style={{
-            position: 'absolute', top: 8, left: `${tooltipPct}%`, transform: tooltipXfrm,
-            background: '#0f172a', color: '#fff', padding: '6px 12px', borderRadius: 8,
+            position: 'absolute', top: 10, left: `${tooltipPct}%`, transform: tooltipXfrm,
+            background: '#0f172a', color: '#fff', padding: '7px 13px', borderRadius: 8,
             fontSize: 12, pointerEvents: 'none', whiteSpace: 'nowrap', zIndex: 20,
-            boxShadow: '0 4px 16px rgba(0,0,0,.28)',
+            boxShadow: '0 4px 16px rgba(0,0,0,.3)',
           }}>
-            <div style={{ color: '#64748b', fontSize: 10, marginBottom: 2 }}>{hp.day}{isProj ? ' · projection' : ''}</div>
-            <div style={{ fontWeight: 700, fontSize: 15, color: isProj ? color + '88' : color }}>{fmt(hp.count)}</div>
+            <div style={{ color: '#64748b', fontSize: 10, marginBottom: 3 }}>
+              {hp.day}{isProj ? ' · projection' : ''}
+            </div>
+            <div style={{ fontWeight: 700, fontSize: 16, color: isProj ? color + '99' : color }}>
+              {fmt(hp.count)}
+            </div>
           </div>
         )}
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#94a3b8', marginTop: 8 }}>
-        <span style={{ fontSize: 10, fontStyle: 'italic' }}>régression linéaire sur ajouts journaliers</span>
-        <span>dans 1 an : ~{fmt(proj1y)} <span style={{ color: '#059669' }}>(+{fmt(gain1y)})</span></span>
+
+      <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: 11, color: '#94a3b8', marginTop: 8 }}>
+        dans 1 an : <span style={{ fontWeight: 600, color: '#334155', marginLeft: 4 }}>~{fmt(proj1y)}</span>
+        <span style={{ color: '#059669', marginLeft: 6 }}>(+{fmt(gain1y)})</span>
       </div>
     </div>
   )
 }
 
-// ── Graphique journalier (ajouts par jour) ────────────────────────────────
+// ── Graphique journalier ──────────────────────────────────────────────────
 
 function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
   const [zoom, setZoom]       = useState<Zoom>('3m')
   const [hovered, setHovered] = useState<number | null>(null)
 
   const dailyAll = buildHistory(data)
-  const nAll     = dailyAll.length
-  const { slope, intercept } = linReg(dailyAll)
+  const rate7    = rollingAvg(dailyAll, 7)
+  const trend    = trendVsPrev(dailyAll)
 
+  // Projection = taux fixe (moy. 7j)
   const projAll: DailyPoint[] = Array.from({ length: 365 }, (_, i) => {
     const d = new Date(); d.setUTCDate(d.getUTCDate() + i + 1)
-    return { day: d.toISOString().slice(0, 10), count: Math.max(0, Math.round(intercept + slope * (nAll + i))) }
+    return { day: d.toISOString().slice(0, 10), count: Math.round(rate7) }
   })
 
   const { histDays, projDays } = ZOOM_CFG[zoom]
@@ -280,7 +287,7 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
   const T       = allVis.length
   const maxVal  = Math.max(1, ...allVis.map(p => p.count))
 
-  const H = 180, PL = 52, PR = 12, PT = 20, PB = 28
+  const H = 200, PL = 58, PR = 16, PT = 22, PB = 30
   const cW = W_SVG - PL - PR, cH = H - PT - PB
   const sx = (i: number) => PL + (i / Math.max(1, T - 1)) * cW
   const sy = (v: number) => PT + cH - Math.max(0, (v / maxVal) * cH)
@@ -289,11 +296,12 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
   const hArea = visHist.length > 1
     ? `${hPath}L${sx(nVis-1).toFixed(1)},${(PT+cH).toFixed(1)}L${sx(0).toFixed(1)},${(PT+cH).toFixed(1)}Z`
     : ''
-  const pPath = [visHist[nVis-1], ...visProj]
-    .map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(nVis-1+i).toFixed(1)},${sy(p.count).toFixed(1)}`).join('')
+  // Projection = ligne horizontale au niveau rate7
+  const pY = sy(Math.round(rate7))
+  const pPath = `M${sx(nVis-1).toFixed(1)},${pY.toFixed(1)}L${sx(T-1).toFixed(1)},${pY.toFixed(1)}`
 
   const yTicks  = [0, Math.round(maxVal * 0.5), maxVal]
-  const nLabels = Math.min(5, T)
+  const nLabels = Math.min(6, T)
   const labelIdx = Array.from({ length: nLabels }, (_, i) =>
     Math.round(i * (T - 1) / Math.max(1, nLabels - 1))
   ).filter((v, i, arr) => arr.indexOf(v) === i)
@@ -308,14 +316,20 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
   const hx     = hovered !== null ? sx(hovered) : null
   const hy     = hp ? sy(hp.count) : null
   const isProj = hovered !== null && hovered >= nVis
-  const proj1y = projAll[projAll.length - 1]?.count ?? 0
-  const trendLabel = Math.abs(slope) < 0.5 ? '→ stable' : slope > 0 ? `↑ +${slope.toFixed(1)}/j` : `↓ ${slope.toFixed(1)}/j`
   const tooltipPct  = hx !== null ? (hx / W_SVG) * 100 : 50
-  const tooltipXfrm = tooltipPct < 12 ? 'translateX(0)' : tooltipPct > 88 ? 'translateX(-100%)' : 'translateX(-50%)'
+  const tooltipXfrm = tooltipPct < 10 ? 'translateX(0)' : tooltipPct > 90 ? 'translateX(-100%)' : 'translateX(-50%)'
+  const trendColor  = trend === '↑' ? '#059669' : trend === '↓' ? '#ef4444' : '#94a3b8'
 
   return (
     <div style={{ userSelect: 'none' }}>
-      <ZoomBtns zoom={zoom} setZoom={z => { setZoom(z); setHovered(null) }} color={color} />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+        <ZoomBtns zoom={zoom} setZoom={z => { setZoom(z); setHovered(null) }} color={color} />
+        <div style={{ fontSize: 12, color: '#64748b' }}>
+          <span style={{ fontWeight: 600, color: trendColor }}>{trend} </span>
+          moy. 7j : <span style={{ fontWeight: 600 }}>{fmt(Math.round(rate7))}/j</span>
+        </div>
+      </div>
+
       <div style={{ position: 'relative' }} onMouseLeave={() => setHovered(null)}>
         <svg viewBox={`0 0 ${W_SVG} ${H}`}
           style={{ width: '100%', height: 'auto', display: 'block', cursor: 'crosshair' }}
@@ -323,21 +337,35 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
         >
           {yTicks.map(t => (
             <g key={t}>
-              <line x1={PL} x2={W_SVG - PR} y1={sy(t)} y2={sy(t)} stroke="#e2e8f0" strokeWidth={1} />
-              <text x={PL - 5} y={sy(t) + 4} textAnchor="end" fontSize={9} fill="#94a3b8">{fmtY(t)}</text>
+              <line x1={PL} x2={W_SVG-PR} y1={sy(t)} y2={sy(t)} stroke="#e2e8f0" strokeWidth={1} />
+              <text x={PL-6} y={sy(t)+4} textAnchor="end" fontSize={10} fill="#94a3b8">{fmtY(t)}</text>
             </g>
           ))}
-          <rect x={sx(nVis-1)} y={PT} width={Math.max(0, sx(T-1) - sx(nVis-1))} height={cH} fill="#f1f5f9" opacity={0.6} />
+
+          {/* Fond projection */}
+          <rect x={sx(nVis-1)} y={PT} width={Math.max(0, sx(T-1)-sx(nVis-1))} height={cH} fill="#f8fafc" />
+
+          {/* Area + ligne historique */}
           {hArea && <path d={hArea} fill={color} opacity={0.08} />}
-          {visHist.length > 1 && <path d={hPath} fill="none" stroke={color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />}
-          <path d={pPath} fill="none" stroke={color} strokeWidth={1.5} strokeDasharray="5 4" opacity={0.4} strokeLinejoin="round" />
+          {visHist.length > 1 && (
+            <path d={hPath} fill="none" stroke={color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+          )}
+
+          {/* Ligne projection horizontale */}
+          <path d={pPath} fill="none" stroke={color} strokeWidth={1.5} strokeDasharray="6 4" opacity={0.45} />
+
+          {/* Aujourd'hui */}
           <line x1={sx(nVis-1)} x2={sx(nVis-1)} y1={PT} y2={PT+cH} stroke="#94a3b8" strokeWidth={1} strokeDasharray="3 3" />
-          <text x={sx(nVis-1)} y={PT-4} textAnchor="middle" fontSize={8} fill="#94a3b8">auj.</text>
+          <text x={sx(nVis-1)} y={PT-5} textAnchor="middle" fontSize={8} fill="#94a3b8">auj.</text>
+
+          {/* Labels X */}
           {labelIdx.map(i => (
-            <text key={i} x={sx(i)} y={H-6} textAnchor="middle" fontSize={8} fill={i >= nVis ? '#b0bec5' : '#64748b'}>
+            <text key={i} x={sx(i)} y={H-8} textAnchor="middle" fontSize={9} fill={i >= nVis ? '#b0bec5' : '#64748b'}>
               {allVis[i]?.day.slice(5)}
             </text>
           ))}
+
+          {/* Crosshair */}
           {hovered !== null && hx !== null && hy !== null && (
             <>
               <line x1={hx} x2={hx} y1={PT} y2={PT+cH} stroke="#475569" strokeWidth={1} strokeDasharray="2 2" />
@@ -346,27 +374,28 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
           )}
           <rect x={PL} y={PT} width={cW} height={cH} fill="transparent" />
         </svg>
+
         {hp && hx !== null && (
           <div style={{
-            position: 'absolute', top: 8, left: `${tooltipPct}%`, transform: tooltipXfrm,
-            background: '#0f172a', color: '#fff', padding: '6px 12px', borderRadius: 8,
+            position: 'absolute', top: 10, left: `${tooltipPct}%`, transform: tooltipXfrm,
+            background: '#0f172a', color: '#fff', padding: '7px 13px', borderRadius: 8,
             fontSize: 12, pointerEvents: 'none', whiteSpace: 'nowrap', zIndex: 20,
-            boxShadow: '0 4px 16px rgba(0,0,0,.28)',
+            boxShadow: '0 4px 16px rgba(0,0,0,.3)',
           }}>
-            <div style={{ color: '#64748b', fontSize: 10, marginBottom: 2 }}>{hp.day}{isProj ? ' · projection' : ''}</div>
-            <div style={{ fontWeight: 700, fontSize: 15, color: isProj ? color + '88' : color }}>{fmt(hp.count)}/jour</div>
+            <div style={{ color: '#64748b', fontSize: 10, marginBottom: 3 }}>
+              {hp.day}{isProj ? ' · projection (moy. 7j)' : ''}
+            </div>
+            <div style={{ fontWeight: 700, fontSize: 16, color: isProj ? color + '99' : color }}>
+              {fmt(hp.count)}/jour
+            </div>
           </div>
         )}
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#94a3b8', marginTop: 8 }}>
-        <span style={{ color: slope > 0.5 ? '#059669' : slope < -0.5 ? '#ef4444' : '#94a3b8' }}>{trendLabel}</span>
-        <span>dans 1 an : ~{fmt(proj1y)}/jour</span>
       </div>
     </div>
   )
 }
 
-// ── Carte KPI ──────────────────────────────────────────────────────────────
+// ── Carte KPI ─────────────────────────────────────────────────────────────
 
 function KpiCard({ label, value, sub }: { label: string; value: string | number; sub?: string }) {
   return (
@@ -380,19 +409,19 @@ function KpiCard({ label, value, sub }: { label: string; value: string | number;
   )
 }
 
-// ── Tableau stats ──────────────────────────────────────────────────────────
+// ── Tableau stats ─────────────────────────────────────────────────────────
 
 function StatsTable({ label, today, week, month, avgDay, avgWeek, avgMonth, note }: {
   label: string; today: number; week: number; month: number
   avgDay: string; avgWeek: string; avgMonth: string; note?: string
 }) {
   const rows = [
-    { period: "Aujourd'hui",        value: today  },
-    { period: '7 derniers jours',   value: week   },
-    { period: '30 derniers jours',  value: month  },
-    { period: 'Moyenne / jour',     value: avgDay,   isAvg: true },
-    { period: 'Moyenne / semaine',  value: avgWeek,  isAvg: true },
-    { period: 'Moyenne / mois',     value: avgMonth, isAvg: true },
+    { period: "Aujourd'hui",       value: today  },
+    { period: '7 derniers jours',  value: week   },
+    { period: '30 derniers jours', value: month  },
+    { period: 'Moyenne / jour',    value: avgDay,   isAvg: true },
+    { period: 'Moyenne / semaine', value: avgWeek,  isAvg: true },
+    { period: 'Moyenne / mois',    value: avgMonth, isAvg: true },
   ]
   return (
     <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflow: 'hidden' }}>
@@ -419,7 +448,21 @@ function StatsTable({ label, today, week, month, avgDay, avgWeek, avgMonth, note
   )
 }
 
-// ── Page principale ────────────────────────────────────────────────────────
+// ── Section header ────────────────────────────────────────────────────────
+
+function SectionTitle({ children }: { children: string }) {
+  return (
+    <div style={{
+      fontSize: 11, fontWeight: 700, color: '#94a3b8',
+      textTransform: 'uppercase', letterSpacing: '0.08em',
+      marginBottom: 12,
+    }}>
+      {children}
+    </div>
+  )
+}
+
+// ── Page principale ───────────────────────────────────────────────────────
 
 export default function AdminStats() {
   const [stats, setStats]         = useState<Stats | null>(null)
@@ -461,16 +504,15 @@ export default function AdminStats() {
   if (!stats) return null
 
   const manualCards = stats.total_cards_manual ?? stats.total_cards
-  const userAvg = safeAvg(stats.total_users,  stats.oldest_user)
-  const cardAvg = safeAvg(manualCards,         stats.oldest_card || stats.oldest_user)
-
-  const cardSub = stats.total_cards_manual != null
+  const cardSub     = stats.total_cards_manual != null
     ? `dont ${fmt(stats.total_cards_manual)} manuelles`
     : undefined
+  const userAvg = safeAvg(stats.total_users, stats.oldest_user)
+  const cardAvg = safeAvg(manualCards, stats.oldest_card || stats.oldest_user)
 
   return (
     <div style={{ minHeight: '100vh', background: '#f8fafc', padding: '32px 24px', fontFamily: 'system-ui, sans-serif' }}>
-      <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+      <div style={{ maxWidth: 1040, margin: '0 auto' }}>
 
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32 }}>
@@ -489,50 +531,42 @@ export default function AdminStats() {
         </div>
 
         {/* KPIs */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 28 }}>
-          <KpiCard label="Inscrits total"              value={stats.total_users} />
-          <KpiCard label="Cartes total"                value={stats.total_cards} sub={cardSub} />
-          <KpiCard label="Nouveaux inscrits auj."      value={stats.today_users} />
-          <KpiCard label="Cartes ajoutées auj."        value={stats.today_cards} />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 32 }}>
+          <KpiCard label="Inscrits total"         value={stats.total_users} />
+          <KpiCard label="Cartes total"            value={stats.total_cards} sub={cardSub} />
+          <KpiCard label="Nouveaux inscrits auj."  value={stats.today_users} />
+          <KpiCard label="Cartes ajoutées auj."    value={stats.today_cards} />
         </div>
 
-        {/* Graphiques cumulatifs */}
-        <div style={{ marginBottom: 8 }}>
-          <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>
-            Croissance cumulée
-          </div>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
-          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '20px 24px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: '#334155' }}>Utilisateurs totaux</div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: ACCENT }}>{fmt(stats.total_users)}</div>
+        {/* Croissance cumulée */}
+        <SectionTitle>Croissance cumulée</SectionTitle>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 32 }}>
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '24px 28px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16 }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: '#334155' }}>Utilisateurs totaux</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: ACCENT }}>{fmt(stats.total_users)}</div>
             </div>
             <CumulativeChart data={stats.user_daily} totalToday={stats.total_users} color={ACCENT} />
           </div>
-          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '20px 24px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: '#334155' }}>Cartes totales</div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#059669' }}>{fmt(stats.total_cards)}</div>
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '24px 28px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16 }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: '#334155' }}>Cartes totales</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#059669' }}>{fmt(stats.total_cards)}</div>
             </div>
             <CumulativeChart data={stats.card_daily} totalToday={stats.total_cards} color="#059669" />
           </div>
         </div>
 
-        {/* Graphiques journaliers */}
-        <div style={{ marginBottom: 8 }}>
-          <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>
-            Activité journalière
-          </div>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
-          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '20px 24px' }}>
-            <div style={{ fontSize: 13, fontWeight: 600, color: '#334155', marginBottom: 4 }}>Inscriptions / jour</div>
+        {/* Activité journalière */}
+        <SectionTitle>Activité journalière</SectionTitle>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '24px 28px' }}>
+            <div style={{ fontSize: 14, fontWeight: 600, color: '#334155', marginBottom: 16 }}>Inscriptions / jour</div>
             <DailyChart data={stats.user_daily} color={ACCENT} />
           </div>
-          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '20px 24px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: '#334155' }}>Cartes ajoutées / jour</div>
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '24px 28px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16 }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: '#334155' }}>Cartes ajoutées / jour</div>
               <div style={{ fontSize: 10, color: '#94a3b8' }}>scanner seulement</div>
             </div>
             <DailyChart data={stats.card_daily} color="#059669" />
@@ -540,7 +574,8 @@ export default function AdminStats() {
         </div>
 
         {/* Tableaux stats */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
+        <SectionTitle>Statistiques détaillées</SectionTitle>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
           <StatsTable
             label="👤 Inscriptions"
             today={stats.today_users} week={stats.week_users} month={stats.month_users}
@@ -556,7 +591,7 @@ export default function AdminStats() {
         {/* Utilisateurs actifs */}
         <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '20px 24px' }}>
           <div style={{ fontSize: 13, fontWeight: 600, color: '#334155', marginBottom: 14 }}>
-            Utilisateurs actifs (ayant ajouté au moins 1 carte)
+            Utilisateurs actifs (au moins 1 carte ajoutée)
           </div>
           <div style={{ display: 'flex', gap: 48 }}>
             {[
