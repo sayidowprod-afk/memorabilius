@@ -300,6 +300,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [dupWarning, setDupWarning] = useState<{ cards: DupCard[]; userId: string } | null>(null)
   const rectoBase64Ref    = useRef<string | null>(null)
   const geminiPrediction  = useRef<Record<string, any> | null>(null)
+  const scannerCornersRef = useRef<{ gemini: any; final: any; adjusted: boolean } | null>(null)
   // Après l'insertion : propose de ranger la carte dans un classeur de la bibliothèque
   const [binderPrompt, setBinderPrompt] = useState<{ userId: string; img: string; nom: string } | null>(null)
   const [showBinderPicker, setShowBinderPicker] = useState(false)
@@ -533,11 +534,11 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     setPreviewRecto(null); setPreviewVerso(null); setPreviewIL(null); setPreviewIR(null)
     setBinderPrompt(null); setShowBinderPicker(false)
     setDesignation(''); setDesignationDone(false); setShowDesignation(false)
-    setScanError(null); rectoBase64Ref.current = null; geminiPrediction.current = null
+    setScanError(null); rectoBase64Ref.current = null; geminiPrediction.current = null; scannerCornersRef.current = null
   }
 
   const doInsert = async (uid: string) => {
-    const { error } = await supabase.from('cartes_manuelles').insert({
+    const { data: newCard, error } = await supabase.from('cartes_manuelles').insert({
       user_id: uid, nom: form.nom, equipe: form.equipe || null, annee: form.annee || null,
       marque: form.marque || null, collection: form.collection || null, variation: form.variation || null, grade: form.grade,
       num: form.num || null, card_number: form.card_number || null, cert_number: form.cert_number || null,
@@ -550,12 +551,23 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       image_interieur_droite: form.image_interieur_droite || null,
       collection_tag: form.collection_tag || null,
       disponible_vente: form.disponible_vente,
-    })
+    }).select('id').single()
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
-    if (geminiPrediction.current) {
+    if (geminiPrediction.current && newCard) {
       const pred = geminiPrediction.current
       const final = { nom: form.nom, equipe: form.equipe, annee: form.annee, marque: form.marque, collection: form.collection, variation: form.variation, num: form.num, rc: form.rc, auto: form.auto, patch: form.patch }
       const changed = (Object.keys(final) as (keyof typeof final)[]).filter(k => String(pred[k] ?? '') !== String(final[k] ?? ''))
+      // Capture tous les scans — confirmés ET corrigés — pour le dataset ML
+      supabase.from('training_data').insert({
+        user_id: uid, carte_id: newCard.id,
+        image_recto: form.image_recto || null, image_verso: form.image_verso || null,
+        gemini_output: pred, final_output: final,
+        corrected: changed.length > 0, corrected_fields: changed,
+        gemini_corners: scannerCornersRef.current?.gemini ?? null,
+        final_corners: scannerCornersRef.current?.final ?? null,
+        corners_adjusted: scannerCornersRef.current?.adjusted ?? false,
+        source: 'galerie',
+      }).then(({ error }) => { if (error) console.error('[training_data]', error) })
       if (changed.length > 0) {
         supabase.from('scan_corrections').insert({
           user_id: uid, gemini_output: pred, final_output: final, corrected_fields: changed, source: 'galerie',
@@ -980,7 +992,10 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         <CardScanner
           src={scannerModal.src}
           frameRect={scannerModal.frameRect}
-          onResult={blob => uploadBlob(blob, scannerModal.side)}
+          onResult={(blob, cornerData) => {
+            if (cornerData) scannerCornersRef.current = cornerData
+            uploadBlob(blob, scannerModal.side)
+          }}
           onFallback={() => {
             setCropModal({ side: scannerModal.side, src: scannerModal.src })
             setRotation(0)

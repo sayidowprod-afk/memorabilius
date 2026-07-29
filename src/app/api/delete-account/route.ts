@@ -17,6 +17,7 @@ export async function DELETE(req: NextRequest) {
     if (!user || user.id !== userId) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
     // Delete in dependency order (child tables before parent tables)
+    await supabaseAdmin.from('training_data').delete().eq('user_id', userId)
     await supabaseAdmin.from('scan_corrections').delete().eq('user_id', userId)
     await supabaseAdmin.from('ai_scan_events').delete().eq('user_id', userId)
     await supabaseAdmin.from('card_likes').delete().eq('user_id', userId)

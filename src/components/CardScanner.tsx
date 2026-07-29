@@ -5,11 +5,17 @@ import { supabase } from '@/lib/supabase'
 type Pt = { x: number; y: number }
 type Status = 'detecting' | 'found' | 'notfound'
 
+type CornerData = {
+  gemini: { x: number; y: number }[] | null  // fractions 0-1 prédites par Gemini, null si échec
+  final: { x: number; y: number }[]          // fractions 0-1 après ajustement utilisateur
+  adjusted: boolean
+}
+
 interface FrameRect { x: number; y: number; w: number; h: number }
 
 interface Props {
   src: string
-  onResult: (blob: Blob) => void
+  onResult: (blob: Blob, cornerData?: CornerData) => void
   onFallback: () => void
   onClose: () => void
   frameRect?: FrameRect // zone cadre caméra → détection IA ciblée
@@ -722,7 +728,9 @@ function detectCardFromFrame(img: HTMLImageElement, frame: FrameRect): Pt[] | nu
   }
 }
 
-async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): Promise<Pt[] | null> {
+type DetectResult = { corners: Pt[] | null; geminiRaw: { x: number; y: number }[] | null }
+
+async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): Promise<DetectResult> {
   const W = img.naturalWidth, H = img.naturalHeight
 
   // ── Étape 1 : Gemini Pro sur l'image entière (premier, le plus précis) ──
@@ -750,6 +758,10 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
 
     if (res!.ok) {
       const { topLeft: tl, topRight: tr, bottomRight: br, bottomLeft: bl, confidence } = await res!.json()
+      // fractions brutes retournées par Gemini (avant toute validation)
+      const geminiRaw: { x: number; y: number }[] | null = (tl && tr && br && bl)
+        ? [{ x: tl.x, y: tl.y }, { x: tr.x, y: tr.y }, { x: br.x, y: br.y }, { x: bl.x, y: bl.y }]
+        : null
       // geminiOnly : seuil plus strict — mieux vaut defaultCorners ajustables que coins faux
       const minConf = geminiOnly ? 0.40 : 0.55
       if (confidence !== null && confidence !== undefined && confidence < minConf) {
@@ -766,7 +778,7 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
         const ratio = w / (h || 1)
         const CARD_RATIO = 2.5 / 3.5
         const rScore = Math.min(Math.abs(ratio - CARD_RATIO), Math.abs(ratio - 1 / CARD_RATIO))
-        if (rScore < 0.28) return corners
+        if (rScore < 0.28) return { corners, geminiRaw }
       }
     }
   } catch { /* fallback OpenCV si pas geminiOnly */ }
@@ -775,7 +787,7 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
   if (geminiOnly) {
     // Upload fichier : si Gemini échoue, rectangle par défaut (pas de JS pur
     // qui donne de faux coins sur cartes sombres)
-    return null
+    return { corners: null, geminiRaw: null }
   }
 
   // ── Étape 3 : OpenCV (caméra) ─────────────────────────────────────────
@@ -789,12 +801,12 @@ async function detectCard(img: HTMLImageElement, { geminiOnly = false } = {}): P
       await yieldThread()
       const result = await detectCardOpenCV(img, cv)
       await yieldThread()
-      if (result) return result
+      if (result) return { corners: result, geminiRaw: null }
     }
   } catch { /* rien */ }
 
   // ── Étape 4 : JS pur (dernier recours, caméra) ───────────────────────
-  return detectCardPureJS(img)
+  return { corners: detectCardPureJS(img), geminiRaw: null }
 }
 
 // ── Perspective warp pure JS (homographie) ────────────────────────────────
@@ -908,11 +920,12 @@ const HANDLE_COLORS = ['#ff5252', '#ffeb3b', '#69f0ae', '#40c4ff']
 const HANDLE_R = 10
 
 export default function CardScanner({ src, onResult, onFallback, onClose, frameRect }: Props) {
-  const canvasRef     = useRef<HTMLCanvasElement>(null)
-  const imgRef        = useRef<HTMLImageElement | null>(null)
-  const origImgRef    = useRef<HTMLImageElement | null>(null)  // toujours l'original non-tourné
-  const scaleRef      = useRef(1)
-  const hasAdjusted   = useRef(false) // true dès que l'utilisateur bouge un coin
+  const canvasRef         = useRef<HTMLCanvasElement>(null)
+  const imgRef            = useRef<HTMLImageElement | null>(null)
+  const origImgRef        = useRef<HTMLImageElement | null>(null)  // toujours l'original non-tourné
+  const scaleRef          = useRef(1)
+  const hasAdjusted       = useRef(false) // true dès que l'utilisateur bouge un coin
+  const geminiCornersRef  = useRef<{ x: number; y: number }[] | null>(null) // fractions 0-1 retournées par Gemini
 
   const [status, setStatus]     = useState<Status>('detecting')
   const [corners, setCorners]   = useState<Pt[]>([])
@@ -971,50 +984,50 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height)
 
     hasAdjusted.current = false
+    geminiCornersRef.current = null
     setStatus('detecting')
 
     // ── Détection de coins ───────────────────────────────────────────────────
     // Filet de sécurité global : quoi qu'il arrive dans le pipeline ci-dessous
     // (JS / OpenCV / Gemini), l'UI ne doit jamais rester bloquée indéfiniment
     // sur "Analyse en cours" — on force une résolution après 16s max.
-    const detectPipeline = async (): Promise<Pt[] | null> => {
-      let result: Pt[] | null = null
-
+    const EMPTY: DetectResult = { corners: null, geminiRaw: null }
+    const detectPipeline = async (): Promise<DetectResult> => {
       if (frameRect) {
         // Étape 1 : JS pur depuis le cadre overlay (gratuit, instantané)
-        result = detectCardFromFrame(img, frameRect)
+        const jsCorners = detectCardFromFrame(img, frameRect)
+        if (jsCorners) return { corners: jsCorners, geminiRaw: null }
 
         // Étape 2 : Gemini si JS échoue
-        if (!result) {
-          try {
-            result = await Promise.race([
-              detectCard(img, { geminiOnly: true }),
-              new Promise<null>(r => setTimeout(() => r(null), 5000)),
-            ])
-          } catch {}
-        }
+        try {
+          return await Promise.race([
+            detectCard(img, { geminiOnly: true }),
+            new Promise<DetectResult>(r => setTimeout(() => r(EMPTY), 5000)),
+          ])
+        } catch {}
       } else {
         // Upload fichier : Gemini direct, timeout 9s (session 2s + fetch 6s + marge)
         try {
-          result = await Promise.race([
+          return await Promise.race([
             detectCard(img, { geminiOnly: true }),
-            new Promise<null>(r => setTimeout(() => r(null), 9000)),
+            new Promise<DetectResult>(r => setTimeout(() => r(EMPTY), 9000)),
           ])
         } catch {}
       }
 
-      return result
+      return EMPTY
     }
 
-    let detectedCorners: Pt[] | null = null
+    let detected: DetectResult = EMPTY
     try {
-      detectedCorners = await Promise.race([
+      detected = await Promise.race([
         detectPipeline(),
-        new Promise<null>(r => setTimeout(() => r(null), 7000)),
+        new Promise<DetectResult>(r => setTimeout(() => r(EMPTY), 7000)),
       ])
-    } catch {
-      detectedCorners = null
-    }
+    } catch { /* déjà EMPTY */ }
+
+    geminiCornersRef.current = detected.geminiRaw
+    const detectedCorners = detected.corners
 
     // On ne fait confiance à une détection que si les coins sont réellement
     // exploitables (finis, dans l'image, quad non dégénéré). Sinon on retombe sur
@@ -1266,10 +1279,15 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     if (!img || corners.length < 4 || applying) return
     setApplying(true)
     const s = scaleRef.current
+    const W = img.naturalWidth, H = img.naturalHeight
     const naturalCorners = corners.map(c => ({ x: c.x / s, y: c.y / s }))
     try {
       const blob = await warpCard(img, naturalCorners)
-      onResult(blob)
+      onResult(blob, {
+        gemini: geminiCornersRef.current,
+        final: naturalCorners.map(p => ({ x: p.x / W, y: p.y / H })),
+        adjusted: hasAdjusted.current,
+      })
     } catch {
       setApplying(false)
       onFallback()
