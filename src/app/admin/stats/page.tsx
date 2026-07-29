@@ -39,7 +39,7 @@ function avg(total: number, oldest: string) {
 
 // ── Graphique interactif avec projection ──────────────────────────────────
 
-function InteractiveChart({ data, color, projDays = 30 }: {
+function InteractiveChart({ data, color, projDays = 60 }: {
   data: DailyPoint[]
   color: string
   projDays?: number
