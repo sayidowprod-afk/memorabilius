@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
 Export du dataset ML depuis Supabase → deux datasets :
   • corners/        : YOLO-pose (détection des 4 coins de la carte)
