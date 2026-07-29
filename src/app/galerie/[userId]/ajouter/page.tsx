@@ -300,7 +300,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
   const [dupWarning, setDupWarning] = useState<{ cards: DupCard[]; userId: string } | null>(null)
   const rectoBase64Ref    = useRef<string | null>(null)
   const geminiPrediction  = useRef<Record<string, any> | null>(null)
-  const scannerCornersRef = useRef<{ gemini: any; final: any; adjusted: boolean } | null>(null)
+  const scannerCornersRef = useRef<{ gemini: any; final: any; adjusted: boolean; originalBlob: Blob | null } | null>(null)
   // Après l'insertion : propose de ranger la carte dans un classeur de la bibliothèque
   const [binderPrompt, setBinderPrompt] = useState<{ userId: string; img: string; nom: string } | null>(null)
   const [showBinderPicker, setShowBinderPicker] = useState(false)
@@ -557,10 +557,19 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       const pred = geminiPrediction.current
       const final = { nom: form.nom, equipe: form.equipe, annee: form.annee, marque: form.marque, collection: form.collection, variation: form.variation, num: form.num, rc: form.rc, auto: form.auto, patch: form.patch }
       const changed = (Object.keys(final) as (keyof typeof final)[]).filter(k => String(pred[k] ?? '') !== String(final[k] ?? ''))
+      // Upload photo originale (avant recadrage) pour dataset coins ML
+      let imageOriginal: string | null = null
+      if (scannerCornersRef.current?.originalBlob) {
+        const { data } = await supabase.storage
+          .from('training-originals')
+          .upload(`${uid}/${newCard.id}.jpg`, scannerCornersRef.current.originalBlob, { contentType: 'image/jpeg' })
+        if (data) imageOriginal = data.path
+      }
       // Capture tous les scans — confirmés ET corrigés — pour le dataset ML
       supabase.from('training_data').insert({
         user_id: uid, carte_id: newCard.id,
         image_recto: form.image_recto || null, image_verso: form.image_verso || null,
+        image_original: imageOriginal,
         gemini_output: pred, final_output: final,
         corrected: changed.length > 0, corrected_fields: changed,
         gemini_corners: scannerCornersRef.current?.gemini ?? null,
@@ -993,7 +1002,12 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
           src={scannerModal.src}
           frameRect={scannerModal.frameRect}
           onResult={(blob, cornerData) => {
-            if (cornerData) scannerCornersRef.current = cornerData
+            if (cornerData) scannerCornersRef.current = {
+              gemini: cornerData.gemini,
+              final: cornerData.final,
+              adjusted: cornerData.adjusted,
+              originalBlob: cornerData.originalBlob,
+            }
             uploadBlob(blob, scannerModal.side)
           }}
           onFallback={() => {

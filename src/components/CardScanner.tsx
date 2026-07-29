@@ -9,6 +9,16 @@ type CornerData = {
   gemini: { x: number; y: number }[] | null  // fractions 0-1 prédites par Gemini, null si échec
   final: { x: number; y: number }[]          // fractions 0-1 après ajustement utilisateur
   adjusted: boolean
+  originalBlob: Blob  // photo avant recadrage — nécessaire pour entraîner un modèle de détection de coins
+}
+
+function imgToBlob(img: HTMLImageElement, quality = 0.88): Promise<Blob> {
+  return new Promise((resolve, reject) => {
+    const c = document.createElement('canvas')
+    c.width = img.naturalWidth; c.height = img.naturalHeight
+    c.getContext('2d')!.drawImage(img, 0, 0)
+    c.toBlob(b => { c.width = 0; b ? resolve(b) : reject(new Error('toBlob')) }, 'image/jpeg', quality)
+  })
 }
 
 interface FrameRect { x: number; y: number; w: number; h: number }
@@ -1282,11 +1292,15 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     const W = img.naturalWidth, H = img.naturalHeight
     const naturalCorners = corners.map(c => ({ x: c.x / s, y: c.y / s }))
     try {
-      const blob = await warpCard(img, naturalCorners)
+      const [blob, originalBlob] = await Promise.all([
+        warpCard(img, naturalCorners),
+        imgToBlob(img),
+      ])
       onResult(blob, {
         gemini: geminiCornersRef.current,
         final: naturalCorners.map(p => ({ x: p.x / W, y: p.y / H })),
         adjusted: hasAdjusted.current,
+        originalBlob,
       })
     } catch {
       setApplying(false)
