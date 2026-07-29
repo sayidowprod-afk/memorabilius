@@ -12,7 +12,8 @@ type Stats = {
   week_users: number
   month_users: number
   oldest_user: string
-  total_cards: number
+  total_cards: number        // SUM(stats_total) — toutes sources y compris CSV
+  total_cards_manual: number // COUNT cartes_manuelles — scanner seulement
   today_cards: number
   week_cards: number
   month_cards: number
@@ -36,46 +37,176 @@ function avg(total: number, oldest: string) {
   }
 }
 
-// ── Graphique barres SVG ───────────────────────────────────────────────────
+// ── Graphique interactif avec projection ──────────────────────────────────
 
-function BarChart({ data, color = ACCENT }: { data: DailyPoint[]; color?: string }) {
-  if (!data?.length) return null
-  // Remplir les 30 derniers jours (jours manquants = 0)
+function InteractiveChart({ data, color, projDays = 30 }: {
+  data: DailyPoint[]
+  color: string
+  projDays?: number
+}) {
+  const [hovered, setHovered] = useState<number | null>(null)
+
+  // Remplir les 30 derniers jours (jours manquants → 0)
   const filled: DailyPoint[] = []
   for (let i = 29; i >= 0; i--) {
-    const d = new Date(); d.setUTCDate(d.getUTCDate() - i)
+    const d = new Date()
+    d.setUTCDate(d.getUTCDate() - i)
     const day = d.toISOString().slice(0, 10)
     const found = data.find(p => p.day?.slice(0, 10) === day)
     filled.push({ day, count: found?.count ?? 0 })
   }
-  const max = Math.max(1, ...filled.map(p => p.count))
-  const W = 600; const H = 80; const BAR_W = W / 30 - 2
+
+  // Régression linéaire
+  const n = filled.length
+  const ys = filled.map(p => p.count)
+  const sumX = (n * (n - 1)) / 2
+  const sumY = ys.reduce((a, b) => a + b, 0)
+  const sumXY = ys.reduce((s, y, i) => s + i * y, 0)
+  const sumX2 = ((n - 1) * n * (2 * n - 1)) / 6
+  const denom = n * sumX2 - sumX * sumX
+  const slope = denom === 0 ? 0 : (n * sumXY - sumX * sumY) / denom
+  const intercept = (sumY - slope * sumX) / n
+
+  // Projection
+  const proj: DailyPoint[] = Array.from({ length: projDays }, (_, i) => {
+    const d = new Date()
+    d.setUTCDate(d.getUTCDate() + i + 1)
+    return {
+      day: d.toISOString().slice(0, 10),
+      count: Math.max(0, Math.round(intercept + slope * (n + i))),
+    }
+  })
+
+  const all = [...filled, ...proj]
+  const T = all.length
+  const maxVal = Math.max(1, ...all.map(p => p.count))
+
+  // Layout SVG
+  const W = 680, H = 160
+  const PL = 46, PR = 12, PT = 20, PB = 28
+  const cW = W - PL - PR
+  const cH = H - PT - PB
+
+  const sx = (i: number) => PL + (i / (T - 1)) * cW
+  const sy = (v: number) => PT + cH - Math.max(0, (v / maxVal) * cH)
+
+  const hPath = filled.map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(i).toFixed(1)},${sy(p.count).toFixed(1)}`).join('')
+  const hArea = `${hPath}L${sx(n - 1).toFixed(1)},${(PT + cH).toFixed(1)}L${sx(0).toFixed(1)},${(PT + cH).toFixed(1)}Z`
+  const pPath = [filled[n - 1], ...proj].map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(n - 1 + i).toFixed(1)},${sy(p.count).toFixed(1)}`).join('')
+
+  const yTicks = [0, Math.round(maxVal * 0.5), maxVal]
+
+  function onMove(e: React.MouseEvent<SVGSVGElement>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const mouseX = (e.clientX - rect.left) * (W / rect.width)
+    const idx = Math.round(((mouseX - PL) / cW) * (T - 1))
+    setHovered(Math.max(0, Math.min(T - 1, idx)))
+  }
+
+  const hp = hovered !== null ? all[hovered] : null
+  const hx = hovered !== null ? sx(hovered) : null
+  const hy = hp ? sy(hp.count) : null
+  const isProj = hovered !== null && hovered >= n
+
+  const trendLabel = Math.abs(slope) < 0.5 ? '→ stable' : slope > 0 ? `↑ +${slope.toFixed(1)}/j` : `↓ ${slope.toFixed(1)}/j`
+  const proj30 = proj[proj.length - 1]?.count ?? 0
+
+  const tooltipPct = hx !== null ? (hx / W) * 100 : 50
+  const tooltipXform = tooltipPct < 12 ? 'translateX(0)' : tooltipPct > 88 ? 'translateX(-100%)' : 'translateX(-50%)'
+
+  const xLabels = [0, 14, n - 1, n + 14, T - 1].filter((i, idx, arr) => {
+    if (i < 0 || i >= T) return false
+    // Éviter les labels trop proches
+    return arr.findIndex(j => j >= 0 && j < T && Math.abs(j - i) < 5 && j !== i) === -1 ||
+      arr.indexOf(i) === arr.findIndex(j => j === i)
+  })
 
   return (
-    <svg viewBox={`0 0 ${W} ${H + 20}`} style={{ width: '100%', height: 'auto', display: 'block' }}>
-      {filled.map((p, i) => {
-        const bh = Math.max(2, (p.count / max) * H)
-        const x = i * (W / 30) + 1
-        const y = H - bh
-        const isWeekend = [0, 6].includes(new Date(p.day + 'T12:00:00Z').getUTCDay())
-        return (
-          <g key={p.day}>
-            <rect
-              x={x} y={y} width={BAR_W} height={bh}
-              fill={isWeekend ? color + 'aa' : color}
-              rx={2}
-            >
-              <title>{p.day} : {p.count}</title>
-            </rect>
-            {(i === 0 || i === 14 || i === 29) && (
-              <text x={x + BAR_W / 2} y={H + 14} textAnchor="middle" fontSize={9} fill="#64748b">
-                {p.day.slice(5)}
-              </text>
-            )}
+    <div style={{ position: 'relative', userSelect: 'none' }} onMouseLeave={() => setHovered(null)}>
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        style={{ width: '100%', height: 'auto', display: 'block', cursor: 'crosshair' }}
+        onMouseMove={onMove}
+      >
+        {/* Y grid */}
+        {yTicks.map(t => (
+          <g key={t}>
+            <line x1={PL} x2={W - PR} y1={sy(t)} y2={sy(t)} stroke="#e2e8f0" strokeWidth={1} />
+            <text x={PL - 5} y={sy(t) + 4} textAnchor="end" fontSize={9} fill="#94a3b8">
+              {t >= 1000 ? `${(t / 1000).toFixed(t % 1000 === 0 ? 0 : 1)}k` : t}
+            </text>
           </g>
-        )
-      })}
-    </svg>
+        ))}
+
+        {/* Zone fond projection */}
+        <rect x={sx(n - 1)} y={PT} width={sx(T - 1) - sx(n - 1)} height={cH} fill="#f8fafc" opacity={0.7} />
+
+        {/* Area historique */}
+        <path d={hArea} fill={color} opacity={0.09} />
+
+        {/* Ligne historique */}
+        <path d={hPath} fill="none" stroke={color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+
+        {/* Ligne projection */}
+        <path d={pPath} fill="none" stroke={color} strokeWidth={1.5} strokeDasharray="5 4" opacity={0.45} strokeLinejoin="round" />
+
+        {/* Séparateur aujourd'hui */}
+        <line x1={sx(n - 1)} x2={sx(n - 1)} y1={PT} y2={PT + cH} stroke="#94a3b8" strokeWidth={1} strokeDasharray="3 3" />
+        <text x={sx(n - 1)} y={PT - 4} textAnchor="middle" fontSize={8} fill="#94a3b8">auj.</text>
+
+        {/* Labels X */}
+        {xLabels.map(i => (
+          <text key={i} x={sx(i)} y={H - 6} textAnchor="middle" fontSize={8} fill={i >= n ? '#b0bec5' : '#64748b'}>
+            {all[i]?.day.slice(5)}
+          </text>
+        ))}
+
+        {/* Crosshair */}
+        {hovered !== null && hx !== null && hy !== null && (
+          <>
+            <line x1={hx} x2={hx} y1={PT} y2={PT + cH} stroke="#475569" strokeWidth={1} strokeDasharray="2 2" />
+            <circle cx={hx} cy={hy} r={4.5} fill={isProj ? '#fff' : color} stroke={color} strokeWidth={2} />
+          </>
+        )}
+
+        {/* Zone hover transparente */}
+        <rect x={PL} y={PT} width={cW} height={cH} fill="transparent" />
+      </svg>
+
+      {/* Tooltip */}
+      {hp && hx !== null && (
+        <div style={{
+          position: 'absolute',
+          top: 8,
+          left: `${(hx / W) * 100}%`,
+          transform: tooltipXform,
+          background: '#0f172a',
+          color: '#fff',
+          padding: '6px 12px',
+          borderRadius: 8,
+          fontSize: 12,
+          pointerEvents: 'none',
+          whiteSpace: 'nowrap',
+          zIndex: 20,
+          boxShadow: '0 4px 16px rgba(0,0,0,0.28)',
+        }}>
+          <div style={{ color: '#64748b', fontSize: 10, marginBottom: 2 }}>
+            {hp.day}{isProj ? ' · projection' : ''}
+          </div>
+          <div style={{ fontWeight: 700, fontSize: 15, color: isProj ? color + '88' : color }}>
+            {fmt(hp.count)}
+          </div>
+        </div>
+      )}
+
+      {/* Résumé tendance / projection */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#94a3b8', marginTop: 8 }}>
+        <span style={{ color: slope > 0.5 ? '#059669' : slope < -0.5 ? '#ef4444' : '#94a3b8' }}>
+          {trendLabel}
+        </span>
+        <span>dans 30j : ~{fmt(proj30)}</span>
+      </div>
+    </div>
   )
 }
 
@@ -85,17 +216,19 @@ function KpiCard({ label, value, sub }: { label: string; value: string | number;
   return (
     <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '20px 24px' }}>
       <div style={{ fontSize: 13, color: '#64748b', marginBottom: 6, fontWeight: 500 }}>{label}</div>
-      <div style={{ fontSize: 32, fontWeight: 700, color: '#0f172a', lineHeight: 1 }}>{typeof value === 'number' ? fmt(value) : value}</div>
-      {sub && <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 6 }}>{sub}</div>}
+      <div style={{ fontSize: 32, fontWeight: 700, color: '#0f172a', lineHeight: 1 }}>
+        {typeof value === 'number' ? fmt(value) : value}
+      </div>
+      {sub && <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 6 }}>{sub}</div>}
     </div>
   )
 }
 
 // ── Tableau stats ──────────────────────────────────────────────────────────
 
-function StatsTable({ label, today, week, month, avgDay, avgWeek, avgMonth }: {
+function StatsTable({ label, today, week, month, avgDay, avgWeek, avgMonth, note }: {
   label: string; today: number; week: number; month: number
-  avgDay: string; avgWeek: string; avgMonth: string
+  avgDay: string; avgWeek: string; avgMonth: string; note?: string
 }) {
   const rows = [
     { period: "Aujourd'hui", value: today },
@@ -107,8 +240,9 @@ function StatsTable({ label, today, week, month, avgDay, avgWeek, avgMonth }: {
   ]
   return (
     <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflow: 'hidden' }}>
-      <div style={{ padding: '14px 20px', background: ACCENT, color: '#fff', fontWeight: 600, fontSize: 14 }}>
-        {label}
+      <div style={{ padding: '14px 20px', background: ACCENT, color: '#fff', fontWeight: 600, fontSize: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span>{label}</span>
+        {note && <span style={{ fontSize: 10, fontWeight: 400, opacity: 0.75 }}>{note}</span>}
       </div>
       {rows.map(r => (
         <div key={r.period} style={{
@@ -129,9 +263,9 @@ function StatsTable({ label, today, week, month, avgDay, avgWeek, avgMonth }: {
 // ── Page principale ────────────────────────────────────────────────────────
 
 export default function AdminStats() {
-  const [stats, setStats]       = useState<Stats | null>(null)
-  const [loading, setLoading]   = useState(true)
-  const [error, setError]       = useState<string | null>(null)
+  const [stats, setStats]         = useState<Stats | null>(null)
+  const [loading, setLoading]     = useState(true)
+  const [error, setError]         = useState<string | null>(null)
   const [updatedAt, setUpdatedAt] = useState<Date | null>(null)
 
   const load = useCallback(async () => {
@@ -169,12 +303,12 @@ export default function AdminStats() {
 
   if (!stats) return null
 
-  const userAvg = avg(stats.total_users, stats.oldest_user)
-  const cardAvg = avg(stats.total_cards, stats.oldest_card || stats.oldest_user)
+  const userAvg  = avg(stats.total_users, stats.oldest_user)
+  const cardAvg  = avg(stats.total_cards_manual, stats.oldest_card || stats.oldest_user)
 
   return (
     <div style={{ minHeight: '100vh', background: '#f8fafc', padding: '32px 24px', fontFamily: 'system-ui, sans-serif' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto' }}>
+      <div style={{ maxWidth: 980, margin: '0 auto' }}>
 
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32 }}>
@@ -195,7 +329,11 @@ export default function AdminStats() {
         {/* KPIs */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 28 }}>
           <KpiCard label="Inscrits total" value={stats.total_users} />
-          <KpiCard label="Cartes total" value={stats.total_cards} />
+          <KpiCard
+            label="Cartes total"
+            value={stats.total_cards}
+            sub={`dont ${fmt(stats.total_cards_manual)} manuelles`}
+          />
           <KpiCard label="Nouveaux inscrits aujourd'hui" value={stats.today_users} />
           <KpiCard label="Cartes ajoutées aujourd'hui" value={stats.today_cards} />
         </div>
@@ -209,23 +347,24 @@ export default function AdminStats() {
           />
           <StatsTable
             label="🃏 Cartes ajoutées"
+            note="scanner seulement"
             today={stats.today_cards} week={stats.week_cards} month={stats.month_cards}
             avgDay={cardAvg.day} avgWeek={cardAvg.week} avgMonth={cardAvg.month}
           />
         </div>
 
-        {/* Graphiques */}
+        {/* Graphiques interactifs */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
           {[
-            { label: 'Inscriptions — 30 derniers jours', data: stats.user_daily, color: ACCENT },
-            { label: 'Cartes ajoutées — 30 derniers jours', data: stats.card_daily, color: '#059669' },
-          ].map(({ label, data, color }) => (
+            { label: 'Inscriptions — 30j + projection 30j', data: stats.user_daily, color: ACCENT },
+            { label: 'Cartes ajoutées — 30j + projection 30j', data: stats.card_daily, color: '#059669', note: 'scanner uniquement' },
+          ].map(({ label, data, color, note }) => (
             <div key={label} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '20px 24px' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: '#334155', marginBottom: 16 }}>{label}</div>
-              <BarChart data={data} color={color} />
-              <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 8, textAlign: 'right' }}>
-                max : {Math.max(0, ...data.map(p => p.count))} · total : {data.reduce((s, p) => s + p.count, 0)}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 14 }}>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#334155' }}>{label}</div>
+                {note && <div style={{ fontSize: 10, color: '#94a3b8' }}>{note}</div>}
               </div>
+              <InteractiveChart data={data} color={color} />
             </div>
           ))}
         </div>
@@ -233,7 +372,7 @@ export default function AdminStats() {
         {/* Utilisateurs actifs */}
         <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '20px 24px' }}>
           <div style={{ fontSize: 13, fontWeight: 600, color: '#334155', marginBottom: 14 }}>
-            Utilisateurs actifs (ayant ajouté au moins 1 carte)
+            Utilisateurs actifs (ayant ajouté au moins 1 carte via scanner)
           </div>
           <div style={{ display: 'flex', gap: 48 }}>
             {[
