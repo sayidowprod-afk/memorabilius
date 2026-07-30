@@ -848,7 +848,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                        c.s.toLowerCase().includes(q) ||
                        (c.t || '').toLowerCase().includes(q) ||
                        (c.br || '').toLowerCase().includes(q)
-              }).slice(0, 20)
+              })
             : []
 
           return (

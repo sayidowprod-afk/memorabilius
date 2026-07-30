@@ -9,6 +9,7 @@ import type { User } from '@supabase/supabase-js'
 
 export default function Navbar() {
   const [user, setUser] = useState<User | null | undefined>(undefined)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [notifs, setNotifs] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropCommunaute, setDropCommunaute] = useState(false)
@@ -47,9 +48,14 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
+    supabase.auth.getUser().then(async ({ data }) => {
       setUser(data.user ?? null)
-      if (data.user) { loadNotifs(data.user.id); updateLastSeen(data.user.id) }
+      if (data.user) {
+        loadNotifs(data.user.id)
+        updateLastSeen(data.user.id)
+        const { data: p } = await supabase.from('profiles').select('is_admin').eq('id', data.user.id).single()
+        setIsAdmin(p?.is_admin ?? false)
+      }
     })
     const { data: listener } = supabase.auth.onAuthStateChange((e, session) => {
       // Filet de sécurité : un lien de réinitialisation de mot de passe établit une
@@ -152,6 +158,12 @@ export default function Navbar() {
                 <Link href="/scanner" style={dropItemStyle} onClick={() => setDropOutils(false)}>📷 Scanner de prix</Link>
                 <Link href="/setlist" style={dropItemStyle} onClick={() => setDropOutils(false)}>📋 Setlist</Link>
                 <Link href="/recherche" style={dropItemStyle} onClick={() => setDropOutils(false)}>{t('nav_recherche')}</Link>
+                {isAdmin && (
+                  <>
+                    <div style={{ margin: '4px 8px', borderTop: `1px solid ${dropBorder}` }} />
+                    <Link href="/admin/stats" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={() => setDropOutils(false)}>📊 Stats admin</Link>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -232,6 +244,9 @@ export default function Navbar() {
           <Link href="/setlist" style={ls} onClick={() => setMenuOpen(false)}>📋 Setlist</Link>
           <Link href="/recherche" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_recherche')}</Link>
           <Link href="/tuto" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_tuto')}</Link>
+          {isAdmin && (
+            <Link href="/admin/stats" style={{ ...ls, color: '#003DA6', fontWeight: 700 }} onClick={() => setMenuOpen(false)}>📊 Stats admin</Link>
+          )}
           {user ? (
             <>
               <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>Mon compte</div>
