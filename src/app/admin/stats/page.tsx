@@ -179,7 +179,7 @@ function CumulativeChart({ data, totalToday, color }: {
 
   return (
     <div style={{ userSelect: 'none' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
         <ZoomBtns zoom={zoom} setZoom={z => { setZoom(z); setHovered(null) }} color={color} />
         <div style={{ fontSize: 12, color: '#64748b' }}>
           <span style={{ fontWeight: 600, color: trendColor }}>{trend} </span>
@@ -322,7 +322,7 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
 
   return (
     <div style={{ userSelect: 'none' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
         <ZoomBtns zoom={zoom} setZoom={z => { setZoom(z); setHovered(null) }} color={color} />
         <div style={{ fontSize: 12, color: '#64748b' }}>
           <span style={{ fontWeight: 600, color: trendColor }}>{trend} </span>
@@ -399,9 +399,9 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
 
 function KpiCard({ label, value, sub }: { label: string; value: string | number; sub?: string }) {
   return (
-    <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '20px 24px' }}>
-      <div style={{ fontSize: 13, color: '#64748b', marginBottom: 6, fontWeight: 500 }}>{label}</div>
-      <div style={{ fontSize: 32, fontWeight: 700, color: '#0f172a', lineHeight: 1 }}>
+    <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '14px 16px' }}>
+      <div style={{ fontSize: 12, color: '#64748b', marginBottom: 6, fontWeight: 500 }}>{label}</div>
+      <div style={{ fontSize: 26, fontWeight: 700, color: '#0f172a', lineHeight: 1 }}>
         {typeof value === 'number' ? fmt(value) : value}
       </div>
       {sub && <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 6 }}>{sub}</div>}
@@ -469,6 +469,14 @@ export default function AdminStats() {
   const [loading, setLoading]     = useState(true)
   const [error, setError]         = useState<string | null>(null)
   const [updatedAt, setUpdatedAt] = useState<Date | null>(null)
+  const [isMobile, setIsMobile]   = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   const load = useCallback(async () => {
     setLoading(true); setError(null)
@@ -510,14 +518,16 @@ export default function AdminStats() {
   const userAvg = safeAvg(stats.total_users, stats.oldest_user)
   const cardAvg = safeAvg(manualCards, stats.oldest_card || stats.oldest_user)
 
+  const cp = isMobile ? '16px' : '24px 28px'
+
   return (
-    <div style={{ minHeight: '100vh', background: '#f8fafc', padding: '32px 24px', fontFamily: 'system-ui, sans-serif' }}>
+    <div style={{ minHeight: '100vh', background: '#f8fafc', padding: isMobile ? '20px 12px' : '32px 24px', fontFamily: 'system-ui, sans-serif' }}>
       <div style={{ maxWidth: 1040, margin: '0 auto' }}>
 
         {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: isMobile ? 20 : 32 }}>
           <div>
-            <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, color: '#0f172a' }}>Panel Admin</h1>
+            <h1 style={{ margin: 0, fontSize: isMobile ? 20 : 24, fontWeight: 700, color: '#0f172a' }}>Panel Admin</h1>
             <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 4 }}>
               {updatedAt ? `Mis à jour ${updatedAt.toLocaleTimeString('fr-FR')}` : ''}
             </div>
@@ -531,7 +541,7 @@ export default function AdminStats() {
         </div>
 
         {/* KPIs */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 32 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
           <KpiCard label="Inscrits total"         value={stats.total_users} />
           <KpiCard label="Cartes total"            value={stats.total_cards} sub={cardSub} />
           <KpiCard label="Nouveaux inscrits auj."  value={stats.today_users} />
@@ -540,15 +550,15 @@ export default function AdminStats() {
 
         {/* Croissance cumulée */}
         <SectionTitle>Croissance cumulée</SectionTitle>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 32 }}>
-          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '24px 28px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: cp }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16 }}>
               <div style={{ fontSize: 14, fontWeight: 600, color: '#334155' }}>Utilisateurs totaux</div>
               <div style={{ fontSize: 13, fontWeight: 700, color: ACCENT }}>{fmt(stats.total_users)}</div>
             </div>
             <CumulativeChart data={stats.user_daily} totalToday={stats.total_users} color={ACCENT} />
           </div>
-          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '24px 28px' }}>
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: cp }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16 }}>
               <div style={{ fontSize: 14, fontWeight: 600, color: '#334155' }}>Cartes totales</div>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#059669' }}>{fmt(stats.total_cards)}</div>
@@ -559,12 +569,12 @@ export default function AdminStats() {
 
         {/* Activité journalière */}
         <SectionTitle>Activité journalière</SectionTitle>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
-          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '24px 28px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: cp }}>
             <div style={{ fontSize: 14, fontWeight: 600, color: '#334155', marginBottom: 16 }}>Inscriptions / jour</div>
             <DailyChart data={stats.user_daily} color={ACCENT} />
           </div>
-          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '24px 28px' }}>
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: cp }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16 }}>
               <div style={{ fontSize: 14, fontWeight: 600, color: '#334155' }}>Cartes ajoutées / jour</div>
               <div style={{ fontSize: 10, color: '#94a3b8' }}>scanner seulement</div>
@@ -575,7 +585,7 @@ export default function AdminStats() {
 
         {/* Tableaux stats */}
         <SectionTitle>Statistiques détaillées</SectionTitle>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
           <StatsTable
             label="👤 Inscriptions"
             today={stats.today_users} week={stats.week_users} month={stats.month_users}
@@ -589,11 +599,11 @@ export default function AdminStats() {
         </div>
 
         {/* Utilisateurs actifs */}
-        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '20px 24px' }}>
+        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px' }}>
           <div style={{ fontSize: 13, fontWeight: 600, color: '#334155', marginBottom: 14 }}>
             Utilisateurs actifs (au moins 1 carte ajoutée)
           </div>
-          <div style={{ display: 'flex', gap: 48 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? 20 : 48 }}>
             {[
               { label: 'Cette semaine',  value: stats.active_users_week  },
               { label: 'Ce mois',        value: stats.active_users_month },
