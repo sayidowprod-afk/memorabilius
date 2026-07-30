@@ -840,10 +840,15 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           const grailItems = grailCards.map(g => grailMap.get(g.card_key)).filter(Boolean) as Card[]
           const emptySlots = 5 - grailItems.length
           const grailSearchResults = grailSearch.trim().length > 0
-            ? cards.filter(c =>
-                !grailCards.some(g => g.card_key === c.f) &&
-                (c.n.toLowerCase().includes(grailSearch.toLowerCase()) || c.v.toLowerCase().includes(grailSearch.toLowerCase()) || c.s.toLowerCase().includes(grailSearch.toLowerCase()))
-              ).slice(0, 20)
+            ? cards.filter(c => {
+                if (grailCards.some(g => g.card_key === c.f)) return false
+                const q = grailSearch.toLowerCase()
+                return c.n.toLowerCase().includes(q) ||
+                       c.v.toLowerCase().includes(q) ||
+                       c.s.toLowerCase().includes(q) ||
+                       (c.t || '').toLowerCase().includes(q) ||
+                       (c.br || '').toLowerCase().includes(q)
+              }).slice(0, 20)
             : []
 
           return (
