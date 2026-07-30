@@ -84,7 +84,7 @@ function MessagesContent() {
       await loadConversations(data.user.id)
       if (toParam) loadMessages(data.user.id, toParam)
       if (tradeParam) {
-        const { data: tr } = await supabase.from('trades').select('*').eq('id', parseInt(tradeParam)).single()
+        const { data: tr } = await supabase.from('trade_offers').select('*').eq('id', tradeParam).single()
         if (tr) setContextTrade(tr)
       }
       setLoading(false)
@@ -189,7 +189,7 @@ function MessagesContent() {
       from_user_id: userId,
       to_user_id: activeConv,
       contenu: content,
-      trade_id: tradeParam ? parseInt(tradeParam) : null,
+      trade_id: tradeParam || null,
     })
     if (error) { toast.error('Erreur envoi : ' + error.message); return }
     setNewMsg('')
@@ -220,7 +220,7 @@ function MessagesContent() {
         from_user_id: userId,
         to_user_id: activeConv,
         contenu: IMG_PREFIX + data.publicUrl,
-        trade_id: tradeParam ? parseInt(tradeParam) : null,
+        trade_id: tradeParam || null,
       })
       loadMessages(userId, activeConv)
       loadConversations(userId)

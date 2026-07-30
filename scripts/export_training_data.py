@@ -169,8 +169,9 @@ def export_corners(rows: list[dict], client: SupabaseClient, out: Path):
         '\n'
         '# 4 keypoints : tl, tr, br, bl\n'
         'kpt_shape: [4, 3]\n'
-        '# flip horizontal : tl↔tr (0↔1), bl↔br (3↔2)\n'
-        'flip_idx: [1, 0, 3, 2]\n'
+        '# flip horizontal : tl<->tr (0<->1), bl<->br (3<->2)\n'
+        'flip_idx: [1, 0, 3, 2]\n',
+        encoding='utf-8',
     )
     print(f'  ✓ {out}/data.yaml')
     print()
