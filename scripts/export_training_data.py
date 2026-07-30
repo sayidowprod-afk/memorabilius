@@ -145,18 +145,23 @@ def export_corners(rows: list[dict], client: SupabaseClient, out: Path):
         img_dir.mkdir(parents=True, exist_ok=True)
         lbl_dir.mkdir(parents=True, exist_ok=True)
 
-        ok = skipped = 0
+        ok = cached = skipped = 0
         for row in tqdm(split_rows_, desc=f'  coins/{split}', unit='img'):
+            row_id = row['id']
+            img_path = img_dir / f'{row_id}.jpg'
+            lbl_path = lbl_dir / f'{row_id}.txt'
+            if img_path.exists() and lbl_path.exists():
+                cached += 1
+                continue
             img_bytes = client.download_storage('training-originals', row['image_original'])
             if not img_bytes:
                 skipped += 1
                 continue
-            row_id = row['id']
-            (img_dir / f'{row_id}.jpg').write_bytes(img_bytes)
-            (lbl_dir / f'{row_id}.txt').write_text(corners_to_yolo(row['final_corners']))
+            img_path.write_bytes(img_bytes)
+            lbl_path.write_text(corners_to_yolo(row['final_corners']))
             ok += 1
 
-        print(f'    {split}: {ok} images, {skipped} ignorées')
+        print(f'    {split}: {ok} nouvelles, {cached} déjà présentes, {skipped} ignorées')
 
     # data.yaml pour YOLOv8
     (out / 'data.yaml').write_text(
