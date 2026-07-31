@@ -14,15 +14,19 @@ async function getSession(): Promise<OrtSession> {
   if (_session) return _session
   if (_sessionPromise) return _sessionPromise
   _sessionPromise = (async () => {
+    console.log('[YOLO] chargement ORT...')
     const ort = await import('onnxruntime-web')
+    console.log('[YOLO] ORT importé, init WASM...')
     ort.env.wasm.wasmPaths = ORT_CDN
     ort.env.wasm.numThreads = 1
+    console.log('[YOLO] chargement corners.onnx...')
     const s = await ort.InferenceSession.create('/models/corners.onnx', {
       executionProviders: ['wasm'],
     })
+    console.log('[YOLO] modèle chargé ✓', s.inputNames, s.outputNames)
     _session = s
     return s
-  })().catch(e => { _sessionPromise = null; throw e })
+  })().catch(e => { console.error('[YOLO] ERREUR chargement:', e); _sessionPromise = null; throw e })
   return _sessionPromise
 }
 
