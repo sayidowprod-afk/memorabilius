@@ -100,6 +100,11 @@ export async function detectCornersYOLO(
   }
 }
 
+// Retourne true si le modèle est chargé et prêt (warmup terminé).
+export function isYOLOReady(): boolean {
+  return _session !== null
+}
+
 // À appeler au montage du CardScanner pour précharger le modèle en arrière-plan.
 export function warmupYOLO(): void {
   if (typeof window === 'undefined') return

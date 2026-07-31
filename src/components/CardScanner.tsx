@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '@/lib/supabase'
-import { detectCornersYOLO, warmupYOLO } from '@/lib/cornerDetectorYolo'
+import { detectCornersYOLO, warmupYOLO, isYOLOReady } from '@/lib/cornerDetectorYolo'
 
 type Pt = { x: number; y: number }
 type Status = 'detecting' | 'found' | 'notfound'
@@ -1007,15 +1007,19 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     // sur "Analyse en cours" — on force une résolution après 16s max.
     const EMPTY: DetectResult = { corners: null, geminiRaw: null }
     const detectPipeline = async (): Promise<DetectResult> => {
-      // Étape 0 : YOLO (modèle maison, le plus rapide une fois chargé)
-      try {
-        const yolo = await Promise.race([
-          detectCornersYOLO(img),
-          new Promise<null>(r => setTimeout(() => r(null), 5000)),
-        ])
-        if (yolo && cornersValid(yolo, img.naturalWidth, img.naturalHeight))
-          return { corners: yolo, geminiRaw: null }
-      } catch { /* fallback */ }
+      // Étape 0 : YOLO — uniquement si le modèle est déjà en mémoire (warmup terminé).
+      // Si le modèle n'est pas encore chargé on passe directement à Gemini/JS pour
+      // ne pas bloquer l'utilisateur pendant le chargement initial de 12MB.
+      if (isYOLOReady()) {
+        try {
+          const yolo = await Promise.race([
+            detectCornersYOLO(img),
+            new Promise<null>(r => setTimeout(() => r(null), 3000)),
+          ])
+          if (yolo && cornersValid(yolo, img.naturalWidth, img.naturalHeight))
+            return { corners: yolo, geminiRaw: null }
+        } catch { /* fallback */ }
+      }
 
       if (frameRect) {
         // Étape 1 : JS pur depuis le cadre overlay (gratuit, instantané)
