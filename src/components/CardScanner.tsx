@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '@/lib/supabase'
-import { detectCornersYOLO, warmupYOLO, isYOLOReady } from '@/lib/cornerDetectorYolo'
+import { detectCornersYOLO, warmupYOLO, isYOLOReady, waitForYOLO } from '@/lib/cornerDetectorYolo'
 
 type Pt = { x: number; y: number }
 type Status = 'detecting' | 'found' | 'notfound'
@@ -1007,18 +1007,20 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     // sur "Analyse en cours" — on force une résolution après 16s max.
     const EMPTY: DetectResult = { corners: null, geminiRaw: null }
     const detectPipeline = async (): Promise<DetectResult> => {
-      // Étape 0 : YOLO — uniquement si le modèle est déjà en mémoire (warmup terminé).
-      // Si le modèle n'est pas encore chargé on passe directement à Gemini/JS pour
-      // ne pas bloquer l'utilisateur pendant le chargement initial de 12MB.
-      if (isYOLOReady()) {
+      // Étape 0 : YOLO — attend que le modèle soit chargé si nécessaire (max 25s).
+      // Le premier chargement (12MB ONNX + WASM) peut prendre ~10-15s ; les suivants
+      // sont instantanés car tout est en cache navigateur.
+      console.log('[scanner] YOLO ready:', isYOLOReady())
+      const yoloReady = isYOLOReady() || await waitForYOLO(25000)
+      console.log('[scanner] YOLO ready after wait:', yoloReady)
+      if (yoloReady) {
         try {
-          const yolo = await Promise.race([
-            detectCornersYOLO(img),
-            new Promise<null>(r => setTimeout(() => r(null), 3000)),
-          ])
+          const yolo = await detectCornersYOLO(img)
+          console.log('[scanner] YOLO result:', yolo)
           if (yolo && cornersValid(yolo, img.naturalWidth, img.naturalHeight))
             return { corners: yolo, geminiRaw: null }
-        } catch { /* fallback */ }
+          console.log('[scanner] YOLO corners invalid, fallback')
+        } catch (e) { console.warn('[scanner] YOLO error:', e) }
       }
 
       if (frameRect) {
@@ -1050,7 +1052,7 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     try {
       detected = await Promise.race([
         detectPipeline(),
-        new Promise<DetectResult>(r => setTimeout(() => r(EMPTY), 7000)),
+        new Promise<DetectResult>(r => setTimeout(() => r(EMPTY), 15000)),
       ])
     } catch { /* déjà EMPTY */ }
 

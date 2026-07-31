@@ -80,10 +80,13 @@ export async function detectCornersYOLO(
     const N = 8400
     let bestConf = confThresh
     let bestIdx  = -1
+    let maxConfAny = 0
     for (let i = 0; i < N; i++) {
       const conf = raw[4 * N + i]
+      if (conf > maxConfAny) maxConfAny = conf
       if (conf > bestConf) { bestConf = conf; bestIdx = i }
     }
+    console.log(`[YOLO] maxConf=${maxConfAny.toFixed(3)} bestConf=${bestConf.toFixed(3)} threshold=${confThresh} outputShape=[1,${raw.length / N},${N}]`)
     if (bestIdx < 0) return null
 
     // Extrait les 4 keypoints et convertit vers l'espace image originale
@@ -103,6 +106,20 @@ export async function detectCornersYOLO(
 // Retourne true si le modèle est chargé et prêt (warmup terminé).
 export function isYOLOReady(): boolean {
   return _session !== null
+}
+
+// Attend que le modèle soit chargé (max timeoutMs). Retourne true si prêt.
+export async function waitForYOLO(timeoutMs = 25000): Promise<boolean> {
+  if (_session) return true
+  try {
+    await Promise.race([
+      getSession(),
+      new Promise<never>((_, r) => setTimeout(() => r(new Error('timeout')), timeoutMs)),
+    ])
+    return _session !== null
+  } catch {
+    return false
+  }
 }
 
 // À appeler au montage du CardScanner pour précharger le modèle en arrière-plan.
