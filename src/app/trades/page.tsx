@@ -386,7 +386,15 @@ export default function Trades() {
                       <div>
                         <div style={{ fontSize: 11, color: '#888', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>Tu offres</div>
                         <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-                          {myCards.map((c: any, i: number) => <CardThumb key={i} card={c} />)}
+                          {myCards.map((c: any, i: number) => {
+                            const q = [c.nom || c.card_nom, c.annee, c.marque, c.rc ? 'RC' : '', c.auto ? 'auto' : '', c.patch ? 'patch' : ''].filter(Boolean).join(' ')
+                            return (
+                              <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+                                <CardThumb card={c} />
+                                {q && <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(q)}&LH_Sold=1&LH_Complete=1`} target="_blank" rel="noopener noreferrer" style={{ fontSize: 9, color: '#0064d2', fontWeight: 700, textDecoration: 'none' }}>eBay →</a>}
+                              </div>
+                            )
+                          })}
                           {myCards.length === 0 && <span style={{ color: '#bbb', fontSize: 13 }}>Aucune</span>}
                         </div>
                         {myCards.length > 0 && <div style={{ fontSize: 11, color: '#888', marginTop: 4 }}>{myCards.map((c: any) => c.nom || c.card_nom || '').filter(Boolean).join(', ')}</div>}
@@ -395,7 +403,15 @@ export default function Trades() {
                       <div>
                         <div style={{ fontSize: 11, color: '#888', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>Tu demandes</div>
                         <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-                          {theirCards.map((c: any, i: number) => <CardThumb key={i} card={c} />)}
+                          {theirCards.map((c: any, i: number) => {
+                            const q = [c.nom || c.card_nom, c.annee, c.marque, c.rc ? 'RC' : '', c.auto ? 'auto' : '', c.patch ? 'patch' : ''].filter(Boolean).join(' ')
+                            return (
+                              <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+                                <CardThumb card={c} />
+                                {q && <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(q)}&LH_Sold=1&LH_Complete=1`} target="_blank" rel="noopener noreferrer" style={{ fontSize: 9, color: '#0064d2', fontWeight: 700, textDecoration: 'none' }}>eBay →</a>}
+                              </div>
+                            )
+                          })}
                           {theirCards.length === 0 && <span style={{ color: '#bbb', fontSize: 13 }}>Aucune</span>}
                         </div>
                         {theirCards.length > 0 && <div style={{ fontSize: 11, color: '#888', marginTop: 4 }}>{theirCards.map((c: any) => c.nom || c.card_nom || '').filter(Boolean).join(', ')}</div>}
@@ -499,6 +515,15 @@ export default function Trades() {
                   </div>
                 )}
                 {popup.description && <p style={{ fontSize: 14, color: '#555', lineHeight: 1.6, margin: 0 }}>{popup.description}</p>}
+                {(() => {
+                  const q = [popup.joueur || popup.titre, popup.annee, popup.marque, popup.rc ? 'RC' : '', popup.auto ? 'auto' : '', popup.patch ? 'patch' : '', popup.num ? 'numbered' : ''].filter(Boolean).join(' ')
+                  return q ? (
+                    <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(q)}&LH_Sold=1&LH_Complete=1`} target="_blank" rel="noopener noreferrer"
+                      style={{ display: 'block', background: '#f0f5ff', borderRadius: 10, padding: '10px 14px', fontSize: 13, fontWeight: 700, color: '#0064d2', textDecoration: 'none' }}>
+                      🔍 Voir les ventes eBay →
+                    </a>
+                  ) : null
+                })()}
                 <div style={{ borderTop: '1px solid #eee', paddingTop: 16 }}>
                   <p style={{ fontSize: 11, fontWeight: 700, color: '#999', textTransform: 'uppercase', margin: '0 0 10px' }}>Proposé par</p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
