@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '@/lib/supabase'
+import { detectCornersYOLO, warmupYOLO } from '@/lib/cornerDetectorYolo'
 
 type Pt = { x: number; y: number }
 type Status = 'detecting' | 'found' | 'notfound'
@@ -955,6 +956,9 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
   const lastPanPt     = useRef<Pt | null>(null)
   const isPanning     = useRef(false)
 
+  // Précharge le modèle YOLO dès le montage pour réduire la latence au premier scan
+  useEffect(() => { warmupYOLO() }, [])
+
   // ── Chargement & détection ─────────────────────────────────────────────
   useEffect(() => {
     let cancelled = false
@@ -1003,6 +1007,16 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
     // sur "Analyse en cours" — on force une résolution après 16s max.
     const EMPTY: DetectResult = { corners: null, geminiRaw: null }
     const detectPipeline = async (): Promise<DetectResult> => {
+      // Étape 0 : YOLO (modèle maison, le plus rapide une fois chargé)
+      try {
+        const yolo = await Promise.race([
+          detectCornersYOLO(img),
+          new Promise<null>(r => setTimeout(() => r(null), 5000)),
+        ])
+        if (yolo && cornersValid(yolo, img.naturalWidth, img.naturalHeight))
+          return { corners: yolo, geminiRaw: null }
+      } catch { /* fallback */ }
+
       if (frameRect) {
         // Étape 1 : JS pur depuis le cadre overlay (gratuit, instantané)
         const jsCorners = detectCardFromFrame(img, frameRect)
