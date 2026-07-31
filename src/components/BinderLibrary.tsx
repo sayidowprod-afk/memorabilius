@@ -1428,7 +1428,7 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
       <div style={{ position: 'absolute', top: 12, left: 0, right: 0, textAlign: 'center', color: 'rgba(255,255,255,0.8)', fontSize: 10, letterSpacing: '0.2em', fontWeight: 700 }}>MEMORABILIUS</div>
       <div style={{ position: 'absolute', left: 14, right: 14, bottom: '14%', textAlign: 'center' }}>
         <div style={{ display: 'inline-block', maxWidth: '90%', background: 'rgba(255,255,255,0.96)', color: '#111', borderRadius: 8, padding: pageW < 200 ? '8px 12px' : '12px 16px', boxShadow: '0 3px 12px rgba(0,0,0,0.35)' }}>
-          <div style={{ fontWeight: 900, fontSize: pageW < 200 ? 15 : 19, lineHeight: 1.15, wordBreak: 'break-word' }}>{selected.name}</div>
+          <div style={{ fontWeight: 900, fontSize: pageW < 200 ? 15 : 19, lineHeight: 1.15, wordBreak: 'break-word', color: '#111' }}>{selected.name}</div>
           {selected.subtitle && <div style={{ fontSize: pageW < 200 ? 11 : 13, color: '#666', marginTop: 3 }}>{selected.subtitle}</div>}
         </div>
       </div>
@@ -1550,33 +1550,33 @@ export default function BinderLibrary({ userId, isOwner, accent, pendingCard, on
                   {showOwnerMenu && (
                     <>
                       <div style={{ position: 'fixed', inset: 0, zIndex: 299 }} onClick={() => setShowOwnerMenu(false)} />
-                      <div style={{ position: 'absolute', top: 'calc(100% + 6px)', right: 0, zIndex: 300, background: 'white', border: '1px solid #e8e8e8', borderRadius: 14, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 220, padding: 6 }}>
-                        <div style={{ padding: '4px 14px 2px', fontSize: 10, fontWeight: 700, color: '#bbb', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Trier les cartes</div>
+                      <div style={{ position: 'absolute', top: 'calc(100% + 6px)', right: 0, zIndex: 300, background: dark ? '#1e1e1e' : 'white', border: `1px solid ${dark ? '#333' : '#e8e8e8'}`, borderRadius: 14, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 220, padding: 6 }}>
+                        <div style={{ padding: '4px 14px 2px', fontSize: 10, fontWeight: 700, color: dark ? '#666' : '#bbb', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Trier les cartes</div>
                         {sorting ? (
                           <div style={{ padding: '8px 14px', fontSize: 13, color: '#aaa' }}>⏳ Tri en cours…</div>
                         ) : slots.size === 0 ? (
-                          <div style={{ padding: '8px 14px', fontSize: 12, color: '#ccc' }}>Classeur vide</div>
+                          <div style={{ padding: '8px 14px', fontSize: 12, color: '#aaa' }}>Classeur vide</div>
                         ) : (
                           ([
                             ['nom_asc', 'Nom A → Z'], ['nom_desc', 'Nom Z → A'],
                             ['annee_asc', 'Ancienne en premier'], ['annee_desc', 'Récente en premier'],
                           ] as const).map(([key, label]) => (
                             <button key={key} onClick={() => { sortBinder(key); setShowOwnerMenu(false) }}
-                              style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '10px 14px', fontSize: 14, cursor: 'pointer', color: '#333', borderRadius: 8 }}>
+                              style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '10px 14px', fontSize: 14, cursor: 'pointer', color: dark ? '#e0e0e0' : '#333', borderRadius: 8 }}>
                               ⇅ {label}
                             </button>
                           ))
                         )}
-                        <div style={{ height: 1, background: '#f0f0f0', margin: '4px 6px' }} />
+                        <div style={{ height: 1, background: dark ? '#333' : '#f0f0f0', margin: '4px 6px' }} />
                         <button onClick={() => { setMultiPicker(true); setShowOwnerMenu(false) }}
-                          style={{ display: 'flex', width: '100%', textAlign: 'left', alignItems: 'center', gap: 10, background: 'none', border: 'none', padding: '12px 14px', fontSize: 14, cursor: 'pointer', color: '#333', fontWeight: 600, borderRadius: 8 }}>
+                          style={{ display: 'flex', width: '100%', textAlign: 'left', alignItems: 'center', gap: 10, background: 'none', border: 'none', padding: '12px 14px', fontSize: 14, cursor: 'pointer', color: dark ? '#e0e0e0' : '#333', fontWeight: 600, borderRadius: 8 }}>
                           ＋ Ajouter des cartes
                         </button>
                         <button onClick={() => { openEditForm(selected); setShowOwnerMenu(false) }}
-                          style={{ display: 'flex', width: '100%', textAlign: 'left', alignItems: 'center', gap: 10, background: 'none', border: 'none', padding: '12px 14px', fontSize: 14, cursor: 'pointer', color: '#333', fontWeight: 600, borderRadius: 8 }}>
+                          style={{ display: 'flex', width: '100%', textAlign: 'left', alignItems: 'center', gap: 10, background: 'none', border: 'none', padding: '12px 14px', fontSize: 14, cursor: 'pointer', color: dark ? '#e0e0e0' : '#333', fontWeight: 600, borderRadius: 8 }}>
                           ✏️ Modifier le classeur
                         </button>
-                        <div style={{ height: 1, background: '#f0f0f0', margin: '4px 6px' }} />
+                        <div style={{ height: 1, background: dark ? '#333' : '#f0f0f0', margin: '4px 6px' }} />
                         <button onClick={() => { setShowOwnerMenu(false); deleteBinder(selected.id) }}
                           style={{ display: 'flex', width: '100%', textAlign: 'left', alignItems: 'center', gap: 10, background: 'none', border: 'none', padding: '12px 14px', fontSize: 14, cursor: 'pointer', color: '#e74c3c', fontWeight: 600, borderRadius: 8 }}>
                           🗑️ Supprimer

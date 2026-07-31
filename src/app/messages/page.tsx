@@ -207,21 +207,23 @@ function MessagesContent() {
     }
   }
 
-  const sendPhoto = async (file: File) => {
-    if (!userId || !activeConv) return
+  const sendPhotos = async (files: File[]) => {
+    if (!userId || !activeConv || !files.length) return
     setUploading(true)
     try {
-      const blob = await compressImage(file)
-      const path = `messages/${userId}/${Date.now()}.jpg`
-      const { error } = await supabase.storage.from('avatars').upload(path, blob, { upsert: true, contentType: 'image/jpeg' })
-      if (error) { toast.error('Erreur upload : ' + error.message); return }
-      const { data } = supabase.storage.from('avatars').getPublicUrl(path)
-      await supabase.from('messages').insert({
-        from_user_id: userId,
-        to_user_id: activeConv,
-        contenu: IMG_PREFIX + data.publicUrl,
-        trade_id: tradeParam || null,
-      })
+      for (const file of files) {
+        const blob = await compressImage(file)
+        const path = `messages/${userId}/${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`
+        const { error } = await supabase.storage.from('avatars').upload(path, blob, { upsert: true, contentType: 'image/jpeg' })
+        if (error) { toast.error('Erreur upload : ' + error.message); continue }
+        const { data } = supabase.storage.from('avatars').getPublicUrl(path)
+        await supabase.from('messages').insert({
+          from_user_id: userId,
+          to_user_id: activeConv,
+          contenu: IMG_PREFIX + data.publicUrl,
+          trade_id: tradeParam || null,
+        })
+      }
       loadMessages(userId, activeConv)
       loadConversations(userId)
     } catch (e: any) {
@@ -420,11 +422,15 @@ function MessagesContent() {
                                     {offer.offered_cards.slice(0, 4).map((c: any, i: number) => {
                                       const img = c.image_recto || c.card_image
                                       const href = img ? `/galerie/${offer.sender_id}?card=${encodeURIComponent(img)}` : null
+                                      const ebayQ = [c.nom, c.annee, c.marque, c.rc ? 'RC' : '', c.auto ? 'AUTO' : '', c.patch ? 'PATCH' : ''].filter(Boolean).join(' ')
                                       return (
-                                        <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer"
-                                          style={{ width: 40, height: 56, background: '#0d1a30', borderRadius: 4, overflow: 'hidden', flexShrink: 0, display: 'block', cursor: href ? 'pointer' : 'default', textDecoration: 'none' }}>
-                                          {img && <img src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
-                                        </a>
+                                        <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+                                          <a href={href || undefined} target="_blank" rel="noopener noreferrer"
+                                            style={{ width: 40, height: 56, background: '#0d1a30', borderRadius: 4, overflow: 'hidden', flexShrink: 0, display: 'block', cursor: href ? 'pointer' : 'default', textDecoration: 'none' }}>
+                                            {img && <img src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                          </a>
+                                          {c.nom && <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(ebayQ)}&LH_Sold=1&LH_Complete=1`} target="_blank" rel="noopener noreferrer" style={{ fontSize: 9, color: '#0064d2', fontWeight: 700, textDecoration: 'none' }}>eBay</a>}
+                                        </div>
                                       )
                                     })}
                                     {offer.offered_cards.length > 4 && <span style={{ fontSize: 11, color: textMuted, alignSelf: 'center' }}>+{offer.offered_cards.length - 4}</span>}
@@ -440,11 +446,15 @@ function MessagesContent() {
                                     {offer.requested_cards.slice(0, 4).map((c: any, i: number) => {
                                       const img = c.image_recto || c.card_image
                                       const href = img ? `/galerie/${offer.receiver_id}?card=${encodeURIComponent(img)}` : null
+                                      const ebayQ = [c.nom, c.annee, c.marque, c.rc ? 'RC' : '', c.auto ? 'AUTO' : '', c.patch ? 'PATCH' : ''].filter(Boolean).join(' ')
                                       return (
-                                        <a key={i} href={href || undefined} target="_blank" rel="noopener noreferrer"
-                                          style={{ width: 40, height: 56, background: '#0d1a30', borderRadius: 4, overflow: 'hidden', flexShrink: 0, display: 'block', cursor: href ? 'pointer' : 'default', textDecoration: 'none' }}>
-                                          {img && <img src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
-                                        </a>
+                                        <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+                                          <a href={href || undefined} target="_blank" rel="noopener noreferrer"
+                                            style={{ width: 40, height: 56, background: '#0d1a30', borderRadius: 4, overflow: 'hidden', flexShrink: 0, display: 'block', cursor: href ? 'pointer' : 'default', textDecoration: 'none' }}>
+                                            {img && <img src={img} alt={c.nom || ''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />}
+                                          </a>
+                                          {c.nom && <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(ebayQ)}&LH_Sold=1&LH_Complete=1`} target="_blank" rel="noopener noreferrer" style={{ fontSize: 9, color: '#0064d2', fontWeight: 700, textDecoration: 'none' }}>eBay</a>}
+                                        </div>
                                       )
                                     })}
                                     {offer.requested_cards.length > 4 && <span style={{ fontSize: 11, color: textMuted, alignSelf: 'center' }}>+{offer.requested_cards.length - 4}</span>}
@@ -537,7 +547,8 @@ function MessagesContent() {
                   type="file"
                   accept="image/*"
                   style={{ display: 'none' }}
-                  onChange={e => { const f = e.target.files?.[0]; if (f) sendPhoto(f); e.target.value = '' }}
+                  multiple
+                  onChange={e => { const files = Array.from(e.target.files || []); if (files.length) sendPhotos(files); e.target.value = '' }}
                 />
                 <button
                   onClick={() => fileInputRef.current?.click()}

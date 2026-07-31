@@ -30,6 +30,8 @@ export default function ChatBubble() {
   const [uploadingImg, setUploadingImg] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const fileRef = useRef<HTMLInputElement>(null)
+  const openRef = useRef(false)
+  const activeConvRef = useRef<string | null>(null)
 
   const bg = dark ? '#222' : 'white'
   const border = dark ? '#333' : '#f0f0f0'
@@ -40,16 +42,34 @@ export default function ChatBubble() {
     supabase.auth.getUser().then(({ data }) => {
       if (data.user) { setUserId(data.user.id); loadUnread(data.user.id) }
     })
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      const uid = session?.user?.id ?? null
+      setUserId(prev => {
+        if (uid && uid !== prev) loadUnread(uid)
+        return uid
+      })
+    })
+    return () => subscription.unsubscribe()
   }, [])
+
+  useEffect(() => { openRef.current = open }, [open])
+  useEffect(() => { activeConvRef.current = activeConv }, [activeConv])
 
   useEffect(() => {
     if (!userId) return
     const channel = supabase.channel(`chat-bubble-${userId}`)
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `to_user_id=eq.${userId}` },
-        () => { loadUnread(userId); if (open) loadConversations(userId) })
+        () => {
+          loadUnread(userId)
+          if (openRef.current && activeConvRef.current) {
+            loadMessages(activeConvRef.current)
+          } else if (openRef.current) {
+            loadConversations(userId)
+          }
+        })
       .subscribe()
     return () => { supabase.removeChannel(channel) }
-  }, [userId, open])
+  }, [userId])
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [messages])
 
@@ -167,19 +187,21 @@ export default function ChatBubble() {
     img.src = url
   })
 
-  const sendImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+  const sendImages = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || [])
     e.target.value = ''
-    if (!file || !userId || !activeConv) return
+    if (!files.length || !userId || !activeConv) return
     setUploadingImg(true)
     try {
-      const blob = await downscaleImage(file)
-      const path = `chat/${userId}/${Date.now()}.jpg`
-      const up = new File([blob], 'chat.jpg', { type: 'image/jpeg' })
-      const { error } = await supabase.storage.from('avatars').upload(path, up, { upsert: true })
-      if (error) { toast.error('Erreur envoi image : ' + error.message); return }
-      const { data } = supabase.storage.from('avatars').getPublicUrl(path)
-      await supabase.from('messages').insert({ from_user_id: userId, to_user_id: activeConv, contenu: IMG_PREFIX + data.publicUrl })
+      for (const file of files) {
+        const blob = await downscaleImage(file)
+        const path = `chat/${userId}/${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`
+        const up = new File([blob], 'chat.jpg', { type: 'image/jpeg' })
+        const { error } = await supabase.storage.from('avatars').upload(path, up, { upsert: true })
+        if (error) { toast.error('Erreur envoi image : ' + error.message); continue }
+        const { data } = supabase.storage.from('avatars').getPublicUrl(path)
+        await supabase.from('messages').insert({ from_user_id: userId, to_user_id: activeConv, contenu: IMG_PREFIX + data.publicUrl })
+      }
       loadMessages(activeConv)
       loadConversations(userId)
       notifyRecipient()
@@ -316,6 +338,11 @@ export default function ChatBubble() {
                                     })}
                                     {offer.offered_cards.length > 3 && <span style={{ fontSize: 9, color: textMuted, alignSelf: 'center' }}>+{offer.offered_cards.length - 3}</span>}
                                   </div>
+                                  {offer.offered_cards[0]?.nom && (
+                                    <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([offer.offered_cards[0].nom, offer.offered_cards[0].annee, offer.offered_cards[0].marque, offer.offered_cards[0].rc ? 'RC' : '', offer.offered_cards[0].auto ? 'AUTO' : '', offer.offered_cards[0].patch ? 'PATCH' : ''].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`}
+                                      target="_blank" rel="noopener noreferrer"
+                                      style={{ fontSize: 8, color: '#0064d2', marginTop: 3, display: 'block', fontWeight: 700 }}>eBay →</a>
+                                  )}
                                 </div>
                                 <span style={{ color: textMuted, fontSize: 14, flexShrink: 0 }}>⇄</span>
                                 <div style={{ flex: 1 }}>
@@ -333,6 +360,11 @@ export default function ChatBubble() {
                                     })}
                                     {offer.requested_cards.length > 3 && <span style={{ fontSize: 9, color: textMuted, alignSelf: 'center' }}>+{offer.requested_cards.length - 3}</span>}
                                   </div>
+                                  {offer.requested_cards[0]?.nom && (
+                                    <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([offer.requested_cards[0].nom, offer.requested_cards[0].annee, offer.requested_cards[0].marque, offer.requested_cards[0].rc ? 'RC' : '', offer.requested_cards[0].auto ? 'AUTO' : '', offer.requested_cards[0].patch ? 'PATCH' : ''].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`}
+                                      target="_blank" rel="noopener noreferrer"
+                                      style={{ fontSize: 8, color: '#0064d2', marginTop: 3, display: 'block', fontWeight: 700 }}>eBay →</a>
+                                  )}
                                 </div>
                               </div>
                               {isPending && (
@@ -378,7 +410,7 @@ export default function ChatBubble() {
                 <div ref={bottomRef} />
               </div>
               <div style={{ padding: 10, borderTop: `1px solid ${border}`, display: 'flex', gap: 8, alignItems: 'center' }}>
-                <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={sendImage} />
+                <input ref={fileRef} type="file" accept="image/*" multiple style={{ display: 'none' }} onChange={sendImages} />
                 <button onClick={() => fileRef.current?.click()} disabled={uploadingImg}
                   title="Envoyer une image"
                   style={{ background: dark ? '#333' : '#f0f0f0', color: dark ? '#ddd' : '#555', border: 'none', borderRadius: 8, padding: '0 10px', height: 32, fontSize: 15, cursor: uploadingImg ? 'wait' : 'pointer', flexShrink: 0 }}>

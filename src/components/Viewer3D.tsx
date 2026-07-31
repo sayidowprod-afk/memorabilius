@@ -270,7 +270,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     const netDx = Math.abs(dx)
     const accumX = swipeAccumX.current
     const isStraight = accumX > 0 && netDx / accumX > 0.55
-    if (netDx > 70 && netDx > Math.abs(dy) * 2 && dt < 300 && isStraight) {
+    if (netDx > 100 && netDx > Math.abs(dy) * 2 && dt < 220 && isStraight) {
       if (dx < 0) onNext?.()
       else onPrev?.()
     }
