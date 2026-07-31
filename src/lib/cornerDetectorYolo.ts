@@ -2,7 +2,7 @@
 // Le modèle est chargé une fois depuis /models/corners.onnx et mis en cache.
 
 const IMGSZ = 640
-const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.21.0/dist/'
+const ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/'
 
 type Pt = { x: number; y: number }
 type OrtSession = import('onnxruntime-web').InferenceSession
