@@ -36,6 +36,8 @@ export default function Profil() {
   const [pushSubscribed, setPushSubscribed] = useState(false)
   const [pushLoading, setPushLoading] = useState(false)
   const [pushError, setPushError] = useState('')
+  const [linkedProviders, setLinkedProviders] = useState<string[]>([])
+  const [linkingProvider, setLinkingProvider] = useState<string | null>(null)
   const [wrapSending, setWrapSending] = useState(false)
   const [wrapResult, setWrapResult] = useState<{ ok?: boolean; error?: string; month?: string; newCards?: number } | null>(null)
   const [wrapImgLoading, setWrapImgLoading] = useState<string | null>(null)
@@ -55,6 +57,8 @@ export default function Profil() {
         setCsvLinked(!!p.lien_csv)
         setAvatarUrl(p.avatar_url || null)
       }
+      const { data: identData } = await supabase.auth.getUserIdentities()
+      setLinkedProviders((identData?.identities ?? []).map(i => i.provider))
       setLoading(false)
     })
     if (typeof window !== 'undefined' && 'Notification' in window && 'serviceWorker' in navigator) {
@@ -177,6 +181,15 @@ export default function Profil() {
     setPasswordMsg({ ok: true, text: t('profile_password_success') })
     setNewPassword(''); setConfirmPassword('')
     setTimeout(() => { setShowPasswordForm(false); setPasswordMsg(null) }, 2500)
+  }
+
+  const handleLinkProvider = async (provider: 'google' | 'twitter' | 'discord') => {
+    setLinkingProvider(provider)
+    await supabase.auth.linkIdentity({
+      provider,
+      options: { redirectTo: `${window.location.origin}/profil` },
+    })
+    setLinkingProvider(null)
   }
 
   const handleDownloadWrapImage = async (format: 'square' | 'story', period: 'current' | 'last') => {
@@ -401,6 +414,38 @@ export default function Profil() {
               })
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Comptes liés */}
+      <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', marginBottom: 20 }}>
+        <h3 style={{ fontWeight: 800, marginBottom: 4 }}>🔗 Comptes liés</h3>
+        <p style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>Liez un compte social pour pouvoir vous connecter avec celui-ci.</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {([
+            { provider: 'google'  as const, label: 'Google',     bg: '#fff',     color: '#3c3c3c', border: '#dadce0' },
+            { provider: 'twitter' as const, label: 'X / Twitter', bg: '#000',     color: '#fff',    border: '#000'    },
+            { provider: 'discord' as const, label: 'Discord',     bg: '#5865F2',  color: '#fff',    border: '#5865F2' },
+          ]).map(({ provider, label, bg, color, border }) => {
+            const linked = linkedProviders.includes(provider)
+            const loading = linkingProvider === provider
+            return (
+              <div key={provider} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: dark ? '#2a2a2a' : '#f8f9fa', borderRadius: 12, padding: '12px 16px' }}>
+                <span style={{ fontWeight: 600, fontSize: 14, color: dark ? '#eee' : '#333' }}>{label}</span>
+                {linked ? (
+                  <span style={{ fontSize: 13, fontWeight: 700, color: '#2ecc71' }}>✓ Lié</span>
+                ) : (
+                  <button
+                    onClick={() => handleLinkProvider(provider)}
+                    disabled={!!linkingProvider}
+                    style={{ background: bg, color, border: `1.5px solid ${border}`, borderRadius: 8, padding: '7px 16px', fontSize: 13, fontWeight: 700, cursor: linkingProvider ? 'wait' : 'pointer', opacity: linkingProvider && !loading ? 0.5 : 1 }}
+                  >
+                    {loading ? 'Redirection…' : 'Lier'}
+                  </button>
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
 
