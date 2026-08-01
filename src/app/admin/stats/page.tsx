@@ -633,6 +633,7 @@ export default function AdminStats() {
   const hs = healthScore(stats)
 
   function exportCsv() {
+    if (!stats) return
     const rows: [string, string][] = [
       ['Métrique', 'Valeur'],
       ['Inscrits total', String(stats.total_users)],
