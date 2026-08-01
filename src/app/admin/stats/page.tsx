@@ -15,6 +15,8 @@ const ZOOM_CFG: Record<Zoom, { histDays: number; projDays: number; label: string
   'max': { histDays: Infinity, projDays: 365, label: 'Max'    },
 }
 
+type TopUser = { name: string; cards: number }
+
 type Stats = {
   total_users: number
   today_users: number
@@ -31,6 +33,28 @@ type Stats = {
   active_users_month: number
   user_daily: DailyPoint[]
   card_daily: DailyPoint[]
+  // IA / coûts
+  total_scans: number
+  scans_today: number
+  scans_week: number
+  scans_month: number
+  estimated_cost_eur: number
+  // Collection quality
+  cards_with_rc: number
+  cards_with_auto: number
+  cards_with_patch: number
+  cards_with_num: number
+  cards_with_photo: number
+  // Engagement
+  total_binders: number
+  total_trade_offers: number
+  trade_offers_accepted: number
+  trade_offers_pending: number
+  // Rétention
+  retention_d7_count: number
+  retention_d7_base: number
+  // Top users
+  top_users: TopUser[]
 }
 
 // ── Utilitaires ───────────────────────────────────────────────────────────
@@ -599,7 +623,7 @@ export default function AdminStats() {
         </div>
 
         {/* Utilisateurs actifs */}
-        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px' }}>
+        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px', marginBottom: isMobile ? 20 : 32 }}>
           <div style={{ fontSize: 13, fontWeight: 600, color: '#334155', marginBottom: 14 }}>
             Utilisateurs actifs (au moins 1 carte ajoutée)
           </div>
@@ -613,6 +637,12 @@ export default function AdminStats() {
                   ? `${((stats.active_users_month / stats.total_users) * 100).toFixed(1)} %`
                   : '—',
               },
+              {
+                label: 'Rétention D7',
+                value: stats.retention_d7_base
+                  ? `${((stats.retention_d7_count / stats.retention_d7_base) * 100).toFixed(1)} %`
+                  : '—',
+              },
             ].map(({ label, value }) => (
               <div key={label}>
                 <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4 }}>{label}</div>
@@ -622,6 +652,73 @@ export default function AdminStats() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* IA / Coûts Gemini */}
+        <SectionTitle>IA & Coûts Gemini</SectionTitle>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
+          <KpiCard label="Scans total"       value={stats.total_scans ?? 0} />
+          <KpiCard label="Scans aujourd'hui" value={stats.scans_today ?? 0} />
+          <KpiCard label="Scans ce mois"     value={stats.scans_month ?? 0} />
+          <KpiCard label="Coût estimé total" value={`€ ${(stats.estimated_cost_eur ?? 0).toFixed(2)}`} sub={`≈ €${((stats.estimated_cost_eur ?? 0) / Math.max(1, new Date().getMonth() + 1)).toFixed(2)}/mois`} />
+        </div>
+
+        {/* Qualité collection */}
+        <SectionTitle>Qualité des cartes</SectionTitle>
+        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px', marginBottom: isMobile ? 20 : 32 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(5, 1fr)', gap: 16 }}>
+            {[
+              { label: 'Avec photo',  value: stats.cards_with_photo ?? 0,  color: '#0ea5e9' },
+              { label: 'RC',          value: stats.cards_with_rc    ?? 0,  color: '#f59e0b' },
+              { label: 'Auto',        value: stats.cards_with_auto  ?? 0,  color: '#8b5cf6' },
+              { label: 'Patch',       value: stats.cards_with_patch ?? 0,  color: '#ec4899' },
+              { label: 'Numérotées',  value: stats.cards_with_num   ?? 0,  color: '#059669' },
+            ].map(({ label, value, color }) => {
+              const total = stats.total_cards_manual ?? 1
+              const pct   = total > 0 ? ((value / total) * 100).toFixed(1) : '0'
+              return (
+                <div key={label} style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: 12, color: '#64748b', marginBottom: 6 }}>{label}</div>
+                  <div style={{ fontSize: 22, fontWeight: 700, color }}>{fmt(value)}</div>
+                  <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 2 }}>{pct} %</div>
+                  <div style={{ marginTop: 6, height: 4, borderRadius: 4, background: '#f1f5f9' }}>
+                    <div style={{ height: '100%', borderRadius: 4, background: color, width: `${Math.min(100, Number(pct))}%`, transition: 'width .5s' }} />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Engagement */}
+        <SectionTitle>Engagement</SectionTitle>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
+          <KpiCard label="Classeurs créés"    value={stats.total_binders ?? 0} />
+          <KpiCard label="Trades proposés"    value={stats.total_trade_offers ?? 0} />
+          <KpiCard label="Trades acceptés"    value={stats.trade_offers_accepted ?? 0} />
+          <KpiCard label="Trades en attente"  value={stats.trade_offers_pending ?? 0}
+            sub={stats.total_trade_offers ? `${((( stats.trade_offers_accepted ?? 0) / stats.total_trade_offers) * 100).toFixed(0)}% d'acceptation` : undefined}
+          />
+        </div>
+
+        {/* Top utilisateurs */}
+        <SectionTitle>Top utilisateurs</SectionTitle>
+        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflow: 'hidden', marginBottom: isMobile ? 20 : 32 }}>
+          <div style={{ padding: '14px 20px', background: ACCENT, color: '#fff', fontWeight: 600, fontSize: 14 }}>
+            Top 10 — nombre de cartes
+          </div>
+          {(stats.top_users ?? []).map((u, i) => (
+            <div key={i} style={{
+              display: 'flex', alignItems: 'center', padding: '11px 20px',
+              borderBottom: '1px solid #f1f5f9', gap: 12,
+            }}>
+              <div style={{ width: 24, textAlign: 'center', fontWeight: 700, color: i < 3 ? ['#f59e0b','#94a3b8','#b45309'][i] : '#cbd5e1', fontSize: 13 }}>
+                {i + 1}
+              </div>
+              <div style={{ flex: 1, fontSize: 13, color: '#334155', fontWeight: 500 }}>{u.name}</div>
+              <div style={{ fontWeight: 700, fontSize: 15, color: ACCENT }}>{fmt(u.cards)}</div>
+            </div>
+          ))}
         </div>
 
       </div>
