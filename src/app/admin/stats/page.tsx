@@ -65,12 +65,18 @@ type Stats = {
   // Rétention & churn
   retention_d7_count: number
   retention_d7_base: number
+  prev_retention_d7_count: number
+  prev_retention_d7_base: number
   retention_d30_count: number
   retention_d30_base: number
   dau: number
+  prev_mau: number
   churn_count: number
   churn_base: number
-  // Autres
+  prev_churn_count: number
+  prev_churn_base: number
+  // Nouveaux
+  activation_delay_median: number | null
   donor_count: number
   top_users: TopUser[]
 }
@@ -78,6 +84,69 @@ type Stats = {
 // ── Utilitaires ───────────────────────────────────────────────────────────
 
 function fmt(n: number)  { return n?.toLocaleString('fr-FR') ?? '—' }
+
+// Calcule le score de santé global (0-100)
+function healthScore(s: Stats): { score: number; grade: string; color: string; components: { label: string; score: number; value: string }[] } {
+  const mau          = s.active_users_month || 1
+  const dauMauRate   = (s.dau ?? 0) / mau
+  const d7Rate       = s.retention_d7_base  ? s.retention_d7_count  / s.retention_d7_base  : 0
+  const churnRate    = s.churn_base          ? s.churn_count         / s.churn_base          : 0
+  const funnelRate   = (s.funnel_registered || 1) ? (s.retention_d7_count ?? 0) / (s.funnel_registered || 1) : 0
+
+  const s1 = Math.min(100, (dauMauRate  / 0.20) * 100)
+  const s2 = Math.min(100, (d7Rate      / 0.40) * 100)
+  const s3 = Math.max(0,   100 - (churnRate / 0.40) * 100)
+  const s4 = Math.min(100, (funnelRate  / 0.30) * 100)
+
+  const score = Math.round(s1 * 0.25 + s2 * 0.30 + s3 * 0.25 + s4 * 0.20)
+  const grade = score >= 80 ? 'Excellent' : score >= 60 ? 'Bon' : score >= 40 ? 'Moyen' : 'À améliorer'
+  const color = score >= 80 ? '#059669'   : score >= 60 ? '#0ea5e9' : score >= 40 ? '#f59e0b' : '#ef4444'
+  return {
+    score, grade, color,
+    components: [
+      { label: 'DAU/MAU',    score: Math.round(s1), value: `${(dauMauRate * 100).toFixed(1)} %` },
+      { label: 'Rétention D7', score: Math.round(s2), value: `${(d7Rate * 100).toFixed(1)} %` },
+      { label: 'Churn',      score: Math.round(s3), value: `${(churnRate * 100).toFixed(1)} %` },
+      { label: 'Funnel D7',  score: Math.round(s4), value: `${(funnelRate * 100).toFixed(1)} %` },
+    ],
+  }
+}
+
+// Delta vs période précédente
+function Delta({ cur, prev, invert = false }: { cur: number; prev: number; invert?: boolean }) {
+  if (!prev) return null
+  const delta = ((cur - prev) / prev) * 100
+  const positive = invert ? delta < 0 : delta > 0
+  const abs = Math.abs(delta)
+  if (abs < 0.5) return <span style={{ fontSize: 11, color: '#94a3b8', marginLeft: 6 }}>→</span>
+  return (
+    <span style={{
+      fontSize: 11, marginLeft: 6,
+      color: positive ? '#059669' : '#ef4444',
+      background: positive ? '#f0fdf4' : '#fef2f2',
+      borderRadius: 4, padding: '1px 6px',
+    }}>
+      {positive ? '↑' : '↓'} {abs.toFixed(1)} %
+    </span>
+  )
+}
+
+// Benchmark : indique si une métrique est bonne/moyenne/mauvaise
+function Bench({ value, good, ok, label, invert = false }: {
+  value: number; good: number; ok: number; label: string; invert?: boolean
+}) {
+  const isGood = invert ? value <= good : value >= good
+  const isOk   = invert ? value <= ok   : value >= ok
+  const color   = isGood ? '#059669' : isOk ? '#f59e0b' : '#ef4444'
+  const text    = isGood ? 'Excellent' : isOk ? 'Correct' : 'À améliorer'
+  const ref     = invert ? `Ref: <${(good * 100).toFixed(0)} %` : `Ref: >${(good * 100).toFixed(0)} %`
+  return (
+    <div style={{ fontSize: 10, color, marginTop: 4, display: 'flex', gap: 6, alignItems: 'center' }}>
+      <span style={{ fontWeight: 700 }}>{text}</span>
+      <span style={{ color: '#94a3b8' }}>{ref}</span>
+    </div>
+  )
+}
 function fmtY(v: number) {
   if (v >= 10000) return `${(v / 1000).toFixed(0)}k`
   if (v >= 1000)  return `${(v / 1000).toFixed(1)}k`
@@ -561,6 +630,38 @@ export default function AdminStats() {
   const cardAvg = safeAvg(manualCards, stats.oldest_card || stats.oldest_user)
 
   const cp = isMobile ? '16px' : '24px 28px'
+  const hs = healthScore(stats)
+
+  function exportCsv() {
+    const rows: [string, string][] = [
+      ['Métrique', 'Valeur'],
+      ['Inscrits total', String(stats.total_users)],
+      ['Cartes manuelles', String(stats.total_cards_manual ?? 0)],
+      ['DAU', String(stats.dau ?? 0)],
+      ['MAU', String(stats.active_users_month)],
+      ['DAU/MAU', `${((( stats.dau ?? 0) / Math.max(1, stats.active_users_month)) * 100).toFixed(1)} %`],
+      ['Actifs semaine', String(stats.active_users_week)],
+      ['Rétention D7', stats.retention_d7_base ? `${((stats.retention_d7_count / stats.retention_d7_base) * 100).toFixed(1)} %` : '—'],
+      ['Rétention D30', stats.retention_d30_base ? `${((stats.retention_d30_count / stats.retention_d30_base) * 100).toFixed(1)} %` : '—'],
+      ['Churn M-1→M', stats.churn_base ? `${((stats.churn_count / stats.churn_base) * 100).toFixed(1)} %` : '—'],
+      ['Délai activation médian (j)', stats.activation_delay_median != null ? String(stats.activation_delay_median) : '—'],
+      ['Cartes/utilisateur actif', ((stats.total_cards_manual ?? 0) / Math.max(1, stats.active_users_month)).toFixed(1)],
+      ['Scans total', String(stats.total_scans ?? 0)],
+      ['Coût Gemini estimé (€)', String(stats.estimated_cost_eur ?? 0)],
+      ['Taux correction Gemini', stats.scan_total_training ? `${((stats.scan_corrected_count / stats.scan_total_training) * 100).toFixed(1)} %` : '—'],
+      ['Complétude fiches', stats.avg_card_completeness != null ? `${stats.avg_card_completeness} %` : '—'],
+      ['Donateurs', String(stats.donor_count ?? 0)],
+      ['Classeurs', String(stats.total_binders ?? 0)],
+      ['Trades proposés', String(stats.total_trade_offers ?? 0)],
+      ['Health score', String(hs.score)],
+    ]
+    const csv = rows.map(r => r.map(c => `"${c}"`).join(',')).join('\n')
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url; a.download = `memorabilius_stats_${new Date().toISOString().slice(0,10)}.csv`; a.click()
+    URL.revokeObjectURL(url)
+  }
 
   return (
     <div style={{ minHeight: '100vh', background: '#f8fafc', padding: isMobile ? '20px 12px' : '32px 24px', fontFamily: 'system-ui, sans-serif' }}>
@@ -574,12 +675,51 @@ export default function AdminStats() {
               {updatedAt ? `Mis à jour ${updatedAt.toLocaleTimeString('fr-FR')}` : ''}
             </div>
           </div>
-          <button onClick={load} style={{
-            background: ACCENT, color: '#fff', border: 'none', borderRadius: 8,
-            padding: '9px 18px', fontSize: 13, fontWeight: 600, cursor: 'pointer',
-          }}>
-            Actualiser
-          </button>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button onClick={exportCsv} style={{
+              background: '#fff', color: '#334155', border: '1px solid #e2e8f0', borderRadius: 8,
+              padding: '9px 16px', fontSize: 13, fontWeight: 600, cursor: 'pointer',
+            }}>
+              Export CSV
+            </button>
+            <button onClick={load} style={{
+              background: ACCENT, color: '#fff', border: 'none', borderRadius: 8,
+              padding: '9px 18px', fontSize: 13, fontWeight: 600, cursor: 'pointer',
+            }}>
+              Actualiser
+            </button>
+          </div>
+        </div>
+
+        {/* Health Score */}
+        <div style={{
+          background: '#fff', border: `2px solid ${hs.color}22`, borderRadius: 14,
+          padding: isMobile ? 16 : '20px 28px', marginBottom: isMobile ? 20 : 32,
+          display: 'flex', flexWrap: 'wrap', gap: isMobile ? 16 : 32, alignItems: 'center',
+        }}>
+          <div style={{ textAlign: 'center', minWidth: 80 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>Health Score</div>
+            <div style={{ fontSize: 52, fontWeight: 900, color: hs.color, lineHeight: 1 }}>{hs.score}</div>
+            <div style={{ fontSize: 13, fontWeight: 600, color: hs.color, marginTop: 4 }}>{hs.grade}</div>
+          </div>
+          <div style={{ flex: 1, minWidth: 240 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {hs.components.map(c => (
+                <div key={c.label} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <div style={{ fontSize: 11, color: '#64748b', width: 90, flexShrink: 0 }}>{c.label}</div>
+                  <div style={{ flex: 1, height: 5, borderRadius: 5, background: '#f1f5f9' }}>
+                    <div style={{
+                      height: '100%', borderRadius: 5,
+                      background: c.score >= 80 ? '#059669' : c.score >= 60 ? '#0ea5e9' : c.score >= 40 ? '#f59e0b' : '#ef4444',
+                      width: `${c.score}%`, transition: 'width .6s',
+                    }} />
+                  </div>
+                  <div style={{ fontSize: 11, fontWeight: 600, color: '#334155', width: 44, textAlign: 'right' }}>{c.value}</div>
+                  <div style={{ fontSize: 11, color: '#94a3b8', width: 28, textAlign: 'right' }}>{c.score}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* KPIs */}
@@ -646,58 +786,91 @@ export default function AdminStats() {
             Utilisateurs actifs (au moins 1 carte ajoutée)
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? 20 : 48 }}>
-            {[
-              { label: 'DAU (auj.)',      value: stats.dau ?? 0 },
-              { label: 'Cette semaine',   value: stats.active_users_week },
-              { label: 'Ce mois (MAU)',   value: stats.active_users_month },
-              {
-                label: 'DAU / MAU',
-                value: stats.active_users_month
-                  ? `${(((stats.dau ?? 0) / stats.active_users_month) * 100).toFixed(1)} %`
-                  : '—',
-              },
-              {
-                label: 'Actifs / inscrits',
-                value: stats.total_users
-                  ? `${((stats.active_users_month / stats.total_users) * 100).toFixed(1)} %`
-                  : '—',
-              },
-            ].map(({ label, value }) => (
-              <div key={label}>
-                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4 }}>{label}</div>
-                <div style={{ fontSize: 22, fontWeight: 700, color: ACCENT }}>
-                  {typeof value === 'number' ? fmt(value) : value}
-                </div>
+            <div>
+              <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4 }}>DAU (auj.)</div>
+              <div style={{ fontSize: 22, fontWeight: 700, color: ACCENT }}>{fmt(stats.dau ?? 0)}</div>
+            </div>
+            <div>
+              <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4 }}>Cette semaine</div>
+              <div style={{ fontSize: 22, fontWeight: 700, color: ACCENT }}>{fmt(stats.active_users_week)}</div>
+            </div>
+            <div>
+              <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4 }}>Ce mois (MAU)</div>
+              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                <div style={{ fontSize: 22, fontWeight: 700, color: ACCENT }}>{fmt(stats.active_users_month)}</div>
+                {stats.prev_mau ? <Delta cur={stats.active_users_month} prev={stats.prev_mau} /> : null}
               </div>
-            ))}
+            </div>
+            <div>
+              <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4 }}>DAU / MAU</div>
+              <div style={{ fontSize: 22, fontWeight: 700, color: ACCENT }}>
+                {stats.active_users_month ? `${(((stats.dau ?? 0) / stats.active_users_month) * 100).toFixed(1)} %` : '—'}
+              </div>
+              <Bench value={stats.active_users_month ? (stats.dau ?? 0) / stats.active_users_month : 0} good={0.20} ok={0.10} label="DAU/MAU" />
+            </div>
+            <div>
+              <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4 }}>Actifs / inscrits</div>
+              <div style={{ fontSize: 22, fontWeight: 700, color: ACCENT }}>
+                {stats.total_users ? `${((stats.active_users_month / stats.total_users) * 100).toFixed(1)} %` : '—'}
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4 }}>Cartes / actif</div>
+              <div style={{ fontSize: 22, fontWeight: 700, color: ACCENT }}>
+                {((stats.total_cards_manual ?? 0) / Math.max(1, stats.active_users_month)).toFixed(1)}
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Délai d'activation */}
+        {stats.activation_delay_median != null && (
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '16px 24px', marginBottom: isMobile ? 20 : 32, display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
+            <div>
+              <div style={{ fontSize: 12, color: '#64748b', fontWeight: 500 }}>Délai médian d'activation</div>
+              <div style={{ fontSize: 28, fontWeight: 700, color: Number(stats.activation_delay_median) <= 1 ? '#059669' : Number(stats.activation_delay_median) <= 3 ? '#f59e0b' : '#ef4444', marginTop: 2 }}>
+                {stats.activation_delay_median} jour{Number(stats.activation_delay_median) > 1 ? 's' : ''}
+              </div>
+            </div>
+            <div style={{ fontSize: 12, color: '#64748b', maxWidth: 360 }}>
+              Temps médian entre inscription et ajout de la 1ère carte.
+              <span style={{ color: Number(stats.activation_delay_median) <= 1 ? '#059669' : Number(stats.activation_delay_median) <= 3 ? '#f59e0b' : '#ef4444', fontWeight: 600, marginLeft: 4 }}>
+                {Number(stats.activation_delay_median) <= 1 ? 'Excellent — les utilisateurs comprennent la valeur immédiatement.' : Number(stats.activation_delay_median) <= 3 ? 'Correct — quelques jours de réflexion.' : 'Élevé — risque de perte d\'intérêt avant activation.'}
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* Funnel d'activation */}
         <SectionTitle>Funnel d'activation</SectionTitle>
         <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '24px 28px', marginBottom: isMobile ? 20 : 32 }}>
           {(() => {
+            // Ordre logique : inscrits → 1ère carte (toute source) → scanneurs → actifs D7
             const steps = [
-              { label: 'Inscrits',          value: stats.funnel_registered ?? stats.total_users, color: ACCENT },
-              { label: 'Ont scanné',        value: stats.funnel_scanned ?? 0,                   color: '#0ea5e9' },
-              { label: '1ère carte ajoutée', value: stats.funnel_first_card ?? 0,               color: '#8b5cf6' },
-              { label: 'Actifs D7',         value: stats.retention_d7_count ?? 0,               color: '#059669' },
+              { label: 'Inscrits',           value: stats.funnel_registered ?? stats.total_users, color: ACCENT,    note: '' },
+              { label: '1ère carte ajoutée', value: stats.funnel_first_card ?? 0,                color: '#8b5cf6', note: 'scanner + manuel' },
+              { label: 'Ont scanné',         value: stats.funnel_scanned ?? 0,                   color: '#0ea5e9', note: 'via scanner IA' },
+              { label: 'Actifs D7',          value: stats.retention_d7_count ?? 0,               color: '#059669', note: 'carte dans les 7j' },
             ]
             const max = steps[0].value || 1
             return (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 {steps.map((s, i) => {
-                  const pct = ((s.value / max) * 100).toFixed(1)
-                  const dropPct = i > 0 ? (((steps[i-1].value - s.value) / Math.max(1, steps[i-1].value)) * 100).toFixed(0) : null
+                  const pct     = ((s.value / max) * 100).toFixed(1)
+                  const prev    = steps[i - 1]
+                  const diff    = prev ? s.value - prev.value : null
+                  const dropPct = prev ? ((prev.value - s.value) / Math.max(1, prev.value) * 100) : null
+                  const isGain  = diff !== null && diff > 0
                   return (
                     <div key={s.label}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 5 }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <div style={{ width: 8, height: 8, borderRadius: '50%', background: s.color }} />
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 5 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                          <div style={{ width: 8, height: 8, borderRadius: '50%', background: s.color, flexShrink: 0 }} />
                           <span style={{ fontSize: 13, color: '#334155', fontWeight: 500 }}>{s.label}</span>
-                          {dropPct && Number(dropPct) > 0 && (
+                          {s.note && <span style={{ fontSize: 10, color: '#94a3b8' }}>({s.note})</span>}
+                          {dropPct !== null && !isGain && Number(dropPct) > 0.5 && (
                             <span style={{ fontSize: 11, color: '#ef4444', background: '#fef2f2', borderRadius: 4, padding: '1px 6px' }}>
-                              −{dropPct} %
+                              −{dropPct.toFixed(0)} %
                             </span>
                           )}
                         </div>
@@ -720,26 +893,54 @@ export default function AdminStats() {
         {/* Rétention & churn */}
         <SectionTitle>Rétention & Churn</SectionTitle>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
-          <KpiCard
-            label="Rétention D7"
-            value={stats.retention_d7_base ? `${((stats.retention_d7_count / stats.retention_d7_base) * 100).toFixed(1)} %` : '—'}
-            sub={`${fmt(stats.retention_d7_count ?? 0)} / ${fmt(stats.retention_d7_base ?? 0)} inscrits`}
-          />
-          <KpiCard
-            label="Rétention D30"
-            value={stats.retention_d30_base ? `${((stats.retention_d30_count / stats.retention_d30_base) * 100).toFixed(1)} %` : '—'}
-            sub={`${fmt(stats.retention_d30_count ?? 0)} / ${fmt(stats.retention_d30_base ?? 0)} inscrits`}
-          />
-          <KpiCard
-            label="Churn M-1 → M"
-            value={stats.churn_base ? `${((stats.churn_count / stats.churn_base) * 100).toFixed(1)} %` : '—'}
-            sub={`${fmt(stats.churn_count ?? 0)} partis sur ${fmt(stats.churn_base ?? 0)}`}
-          />
-          <KpiCard
-            label="Donateurs"
-            value={stats.donor_count ?? 0}
-            sub={stats.total_users ? `${(((stats.donor_count ?? 0) / stats.total_users) * 100).toFixed(1)} % des inscrits` : undefined}
-          />
+          {/* D7 */}
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '14px 16px' }}>
+            <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4, fontWeight: 500 }}>Rétention D7</div>
+            <div style={{ fontSize: 26, fontWeight: 700, color: '#0f172a', lineHeight: 1, display: 'flex', alignItems: 'baseline', flexWrap: 'wrap' }}>
+              {stats.retention_d7_base ? `${((stats.retention_d7_count / stats.retention_d7_base) * 100).toFixed(1)} %` : '—'}
+              {stats.prev_retention_d7_base ? (
+                <Delta
+                  cur={stats.retention_d7_count / Math.max(1, stats.retention_d7_base)}
+                  prev={stats.prev_retention_d7_count / Math.max(1, stats.prev_retention_d7_base)}
+                />
+              ) : null}
+            </div>
+            <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 6 }}>{fmt(stats.retention_d7_count ?? 0)} / {fmt(stats.retention_d7_base ?? 0)} inscrits</div>
+            <Bench value={stats.retention_d7_base ? stats.retention_d7_count / stats.retention_d7_base : 0} good={0.40} ok={0.25} label="D7" />
+          </div>
+          {/* D30 */}
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '14px 16px' }}>
+            <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4, fontWeight: 500 }}>Rétention D30</div>
+            <div style={{ fontSize: 26, fontWeight: 700, color: '#0f172a', lineHeight: 1 }}>
+              {stats.retention_d30_base ? `${((stats.retention_d30_count / stats.retention_d30_base) * 100).toFixed(1)} %` : '—'}
+            </div>
+            <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 6 }}>{fmt(stats.retention_d30_count ?? 0)} / {fmt(stats.retention_d30_base ?? 0)} inscrits</div>
+            <Bench value={stats.retention_d30_base ? stats.retention_d30_count / stats.retention_d30_base : 0} good={0.20} ok={0.10} label="D30" />
+          </div>
+          {/* Churn */}
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '14px 16px' }}>
+            <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4, fontWeight: 500 }}>Churn M-1 → M</div>
+            <div style={{ fontSize: 26, fontWeight: 700, color: '#0f172a', lineHeight: 1, display: 'flex', alignItems: 'baseline', flexWrap: 'wrap' }}>
+              {stats.churn_base ? `${((stats.churn_count / stats.churn_base) * 100).toFixed(1)} %` : '—'}
+              {stats.prev_churn_base ? (
+                <Delta
+                  cur={stats.churn_count / Math.max(1, stats.churn_base)}
+                  prev={stats.prev_churn_count / Math.max(1, stats.prev_churn_base)}
+                  invert
+                />
+              ) : null}
+            </div>
+            <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 6 }}>{fmt(stats.churn_count ?? 0)} partis sur {fmt(stats.churn_base ?? 0)}</div>
+            <Bench value={stats.churn_base ? stats.churn_count / stats.churn_base : 0} good={0.15} ok={0.25} label="Churn" invert />
+          </div>
+          {/* Donateurs */}
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '14px 16px' }}>
+            <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4, fontWeight: 500 }}>Donateurs</div>
+            <div style={{ fontSize: 26, fontWeight: 700, color: '#0f172a', lineHeight: 1 }}>{fmt(stats.donor_count ?? 0)}</div>
+            <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 6 }}>
+              {stats.total_users ? `${(((stats.donor_count ?? 0) / stats.total_users) * 100).toFixed(1)} % des inscrits` : ''}
+            </div>
+          </div>
         </div>
 
         {/* IA / Coûts Gemini */}
