@@ -15,7 +15,9 @@ const ZOOM_CFG: Record<Zoom, { histDays: number; projDays: number; label: string
   'max': { histDays: Infinity, projDays: 365, label: 'Max'    },
 }
 
-type TopUser = { name: string; cards: number }
+type TopUser    = { name: string; cards: number }
+type FieldCount = { field: string; count: number }
+type MarqueCount = { marque: string; count: number }
 
 type Stats = {
   total_users: number
@@ -39,21 +41,37 @@ type Stats = {
   scans_week: number
   scans_month: number
   estimated_cost_eur: number
-  // Collection quality
+  // Qualité IA
+  scan_total_training: number
+  scan_corrected_count: number
+  top_corrected_fields: FieldCount[]
+  // Collection
   cards_with_rc: number
   cards_with_auto: number
   cards_with_patch: number
   cards_with_num: number
   cards_with_photo: number
+  avg_card_completeness: number
+  top_marques: MarqueCount[]
   // Engagement
   total_binders: number
   total_trade_offers: number
   trade_offers_accepted: number
   trade_offers_pending: number
-  // Rétention
+  // Funnel
+  funnel_registered: number
+  funnel_scanned: number
+  funnel_first_card: number
+  // Rétention & churn
   retention_d7_count: number
   retention_d7_base: number
-  // Top users
+  retention_d30_count: number
+  retention_d30_base: number
+  dau: number
+  churn_count: number
+  churn_base: number
+  // Autres
+  donor_count: number
   top_users: TopUser[]
 }
 
@@ -622,25 +640,26 @@ export default function AdminStats() {
           />
         </div>
 
-        {/* Utilisateurs actifs */}
+        {/* Utilisateurs actifs + DAU */}
         <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px', marginBottom: isMobile ? 20 : 32 }}>
           <div style={{ fontSize: 13, fontWeight: 600, color: '#334155', marginBottom: 14 }}>
             Utilisateurs actifs (au moins 1 carte ajoutée)
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: isMobile ? 20 : 48 }}>
             {[
-              { label: 'Cette semaine',  value: stats.active_users_week  },
-              { label: 'Ce mois',        value: stats.active_users_month },
+              { label: 'DAU (auj.)',      value: stats.dau ?? 0 },
+              { label: 'Cette semaine',   value: stats.active_users_week },
+              { label: 'Ce mois (MAU)',   value: stats.active_users_month },
               {
-                label: 'Taux actifs / inscrits (mois)',
-                value: stats.total_users
-                  ? `${((stats.active_users_month / stats.total_users) * 100).toFixed(1)} %`
+                label: 'DAU / MAU',
+                value: stats.active_users_month
+                  ? `${(((stats.dau ?? 0) / stats.active_users_month) * 100).toFixed(1)} %`
                   : '—',
               },
               {
-                label: 'Rétention D7',
-                value: stats.retention_d7_base
-                  ? `${((stats.retention_d7_count / stats.retention_d7_base) * 100).toFixed(1)} %`
+                label: 'Actifs / inscrits',
+                value: stats.total_users
+                  ? `${((stats.active_users_month / stats.total_users) * 100).toFixed(1)} %`
                   : '—',
               },
             ].map(({ label, value }) => (
@@ -654,6 +673,75 @@ export default function AdminStats() {
           </div>
         </div>
 
+        {/* Funnel d'activation */}
+        <SectionTitle>Funnel d'activation</SectionTitle>
+        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '24px 28px', marginBottom: isMobile ? 20 : 32 }}>
+          {(() => {
+            const steps = [
+              { label: 'Inscrits',          value: stats.funnel_registered ?? stats.total_users, color: ACCENT },
+              { label: 'Ont scanné',        value: stats.funnel_scanned ?? 0,                   color: '#0ea5e9' },
+              { label: '1ère carte ajoutée', value: stats.funnel_first_card ?? 0,               color: '#8b5cf6' },
+              { label: 'Actifs D7',         value: stats.retention_d7_count ?? 0,               color: '#059669' },
+            ]
+            const max = steps[0].value || 1
+            return (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                {steps.map((s, i) => {
+                  const pct = ((s.value / max) * 100).toFixed(1)
+                  const dropPct = i > 0 ? (((steps[i-1].value - s.value) / Math.max(1, steps[i-1].value)) * 100).toFixed(0) : null
+                  return (
+                    <div key={s.label}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 5 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                          <div style={{ width: 8, height: 8, borderRadius: '50%', background: s.color }} />
+                          <span style={{ fontSize: 13, color: '#334155', fontWeight: 500 }}>{s.label}</span>
+                          {dropPct && Number(dropPct) > 0 && (
+                            <span style={{ fontSize: 11, color: '#ef4444', background: '#fef2f2', borderRadius: 4, padding: '1px 6px' }}>
+                              −{dropPct} %
+                            </span>
+                          )}
+                        </div>
+                        <div style={{ display: 'flex', gap: 12, alignItems: 'baseline' }}>
+                          <span style={{ fontWeight: 700, fontSize: 16, color: s.color }}>{fmt(s.value)}</span>
+                          <span style={{ fontSize: 11, color: '#94a3b8' }}>{pct} %</span>
+                        </div>
+                      </div>
+                      <div style={{ height: 6, borderRadius: 6, background: '#f1f5f9' }}>
+                        <div style={{ height: '100%', borderRadius: 6, background: s.color, width: `${pct}%`, transition: 'width .6s' }} />
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          })()}
+        </div>
+
+        {/* Rétention & churn */}
+        <SectionTitle>Rétention & Churn</SectionTitle>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
+          <KpiCard
+            label="Rétention D7"
+            value={stats.retention_d7_base ? `${((stats.retention_d7_count / stats.retention_d7_base) * 100).toFixed(1)} %` : '—'}
+            sub={`${fmt(stats.retention_d7_count ?? 0)} / ${fmt(stats.retention_d7_base ?? 0)} inscrits`}
+          />
+          <KpiCard
+            label="Rétention D30"
+            value={stats.retention_d30_base ? `${((stats.retention_d30_count / stats.retention_d30_base) * 100).toFixed(1)} %` : '—'}
+            sub={`${fmt(stats.retention_d30_count ?? 0)} / ${fmt(stats.retention_d30_base ?? 0)} inscrits`}
+          />
+          <KpiCard
+            label="Churn M-1 → M"
+            value={stats.churn_base ? `${((stats.churn_count / stats.churn_base) * 100).toFixed(1)} %` : '—'}
+            sub={`${fmt(stats.churn_count ?? 0)} partis sur ${fmt(stats.churn_base ?? 0)}`}
+          />
+          <KpiCard
+            label="Donateurs"
+            value={stats.donor_count ?? 0}
+            sub={stats.total_users ? `${(((stats.donor_count ?? 0) / stats.total_users) * 100).toFixed(1)} % des inscrits` : undefined}
+          />
+        </div>
+
         {/* IA / Coûts Gemini */}
         <SectionTitle>IA & Coûts Gemini</SectionTitle>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
@@ -663,9 +751,45 @@ export default function AdminStats() {
           <KpiCard label="Coût estimé total" value={`€ ${(stats.estimated_cost_eur ?? 0).toFixed(2)}`} sub={`≈ €${((stats.estimated_cost_eur ?? 0) / Math.max(1, new Date().getMonth() + 1)).toFixed(2)}/mois`} />
         </div>
 
+        {/* Qualité IA — taux de correction */}
+        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px', marginBottom: isMobile ? 20 : 32 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 32, alignItems: 'flex-start' }}>
+            <div style={{ minWidth: 160 }}>
+              <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4, fontWeight: 500 }}>Taux de correction Gemini</div>
+              <div style={{ fontSize: 28, fontWeight: 700, color: stats.scan_total_training && (stats.scan_corrected_count / stats.scan_total_training) > 0.2 ? '#ef4444' : '#059669' }}>
+                {stats.scan_total_training
+                  ? `${((stats.scan_corrected_count / stats.scan_total_training) * 100).toFixed(1)} %`
+                  : '—'}
+              </div>
+              <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 4 }}>
+                {fmt(stats.scan_corrected_count ?? 0)} corrigés / {fmt(stats.scan_total_training ?? 0)} scans entraînement
+              </div>
+            </div>
+            {(stats.top_corrected_fields ?? []).length > 0 && (
+              <div style={{ flex: 1, minWidth: 200 }}>
+                <div style={{ fontSize: 12, color: '#64748b', marginBottom: 10, fontWeight: 500 }}>Champs les plus corrigés</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+                  {stats.top_corrected_fields.map((f, i) => {
+                    const maxCount = stats.top_corrected_fields[0]?.count || 1
+                    return (
+                      <div key={f.field} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <div style={{ fontSize: 12, color: '#334155', width: 90, flexShrink: 0 }}>{f.field}</div>
+                        <div style={{ flex: 1, height: 6, borderRadius: 6, background: '#f1f5f9' }}>
+                          <div style={{ height: '100%', borderRadius: 6, background: '#f59e0b', width: `${(f.count / maxCount) * 100}%`, transition: 'width .5s' }} />
+                        </div>
+                        <div style={{ fontSize: 12, fontWeight: 600, color: '#64748b', width: 30, textAlign: 'right' }}>{f.count}</div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
         {/* Qualité collection */}
         <SectionTitle>Qualité des cartes</SectionTitle>
-        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px', marginBottom: isMobile ? 20 : 32 }}>
+        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px', marginBottom: isMobile ? 10 : 16 }}>
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(5, 1fr)', gap: 16 }}>
             {[
               { label: 'Avec photo',  value: stats.cards_with_photo ?? 0,  color: '#0ea5e9' },
@@ -690,6 +814,37 @@ export default function AdminStats() {
           </div>
         </div>
 
+        {/* Complétude + Top marques */}
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px' }}>
+            <div style={{ fontSize: 12, color: '#64748b', marginBottom: 6, fontWeight: 500 }}>Complétude moyenne des fiches</div>
+            <div style={{ fontSize: 36, fontWeight: 700, color: ACCENT, lineHeight: 1 }}>
+              {stats.avg_card_completeness != null ? `${stats.avg_card_completeness} %` : '—'}
+            </div>
+            <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 6 }}>sur 6 champs clés : nom, année, marque, collection, équipe, photo</div>
+            {stats.avg_card_completeness != null && (
+              <div style={{ marginTop: 12, height: 8, borderRadius: 8, background: '#f1f5f9' }}>
+                <div style={{ height: '100%', borderRadius: 8, background: ACCENT, width: `${stats.avg_card_completeness}%`, transition: 'width .6s' }} />
+              </div>
+            )}
+          </div>
+          <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflow: 'hidden' }}>
+            <div style={{ padding: '14px 20px', borderBottom: '1px solid #f1f5f9', fontWeight: 600, fontSize: 13, color: '#334155' }}>Top 5 marques</div>
+            {(stats.top_marques ?? []).map((m, i) => {
+              const maxC = stats.top_marques?.[0]?.count || 1
+              return (
+                <div key={m.marque} style={{ padding: '9px 20px', borderBottom: '1px solid #f8fafc', display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <div style={{ fontSize: 12, color: '#334155', width: 90, flexShrink: 0, fontWeight: 500 }}>{m.marque}</div>
+                  <div style={{ flex: 1, height: 5, borderRadius: 5, background: '#f1f5f9' }}>
+                    <div style={{ height: '100%', borderRadius: 5, background: ACCENT, opacity: 0.7 - i * 0.1, width: `${(m.count / maxC) * 100}%`, transition: 'width .5s' }} />
+                  </div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: ACCENT, width: 40, textAlign: 'right' }}>{fmt(m.count)}</div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
         {/* Engagement */}
         <SectionTitle>Engagement</SectionTitle>
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
@@ -697,7 +852,7 @@ export default function AdminStats() {
           <KpiCard label="Trades proposés"    value={stats.total_trade_offers ?? 0} />
           <KpiCard label="Trades acceptés"    value={stats.trade_offers_accepted ?? 0} />
           <KpiCard label="Trades en attente"  value={stats.trade_offers_pending ?? 0}
-            sub={stats.total_trade_offers ? `${((( stats.trade_offers_accepted ?? 0) / stats.total_trade_offers) * 100).toFixed(0)}% d'acceptation` : undefined}
+            sub={stats.total_trade_offers ? `${(((stats.trade_offers_accepted ?? 0) / stats.total_trade_offers) * 100).toFixed(0)}% d'acceptation` : undefined}
           />
         </div>
 
