@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import { useTheme } from '@/lib/ThemeContext'
+import OAuthButtons from '@/components/OAuthButtons'
 
 export default function Connexion() {
   const router = useRouter()
@@ -42,6 +43,7 @@ export default function Connexion() {
             {loading ? (lang === 'fr' ? 'Connexion…' : 'Signing in…') : t('login_btn')}
           </button>
         </form>
+        <OAuthButtons mode="connexion" />
         <p style={{ textAlign: 'center', marginTop: 20, fontSize: 14, color: '#666' }}>
           {t('login_no_account')} <Link href="/sinscrire" style={{ color: '#003DA6', fontWeight: 700 }}>{t('nav_inscription')}</Link>
         </p>

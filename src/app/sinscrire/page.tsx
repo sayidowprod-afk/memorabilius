@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
+import OAuthButtons from '@/components/OAuthButtons'
 
 export default function Inscription() {
   const { t, lang } = useLang()
@@ -46,6 +47,7 @@ export default function Inscription() {
             {loading ? '...' : t('register_btn')}
           </button>
         </form>
+        <OAuthButtons mode="inscription" />
         <p style={{ textAlign: 'center', marginTop: 20, fontSize: 14, color: '#666' }}>
           {t('register_have_account')} <Link href="/connexion" style={{ color: '#003DA6', fontWeight: 700 }}>{t('register_connect')}</Link>
         </p>
