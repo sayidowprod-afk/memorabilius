@@ -127,7 +127,7 @@ SELECT jsonb_build_object(
        CASE WHEN equipe    IS NOT NULL AND equipe    <> '' THEN 1 ELSE 0 END +
        CASE WHEN image_recto IS NOT NULL THEN 1 ELSE 0 END
       )::float / 6 * 100
-    ), 1) FROM cartes_manuelles
+    )::numeric, 1) FROM cartes_manuelles
   ),
   'top_marques',           (SELECT coalesce(arr, '[]') FROM top_marques),
 
