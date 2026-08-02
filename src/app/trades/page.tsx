@@ -83,9 +83,9 @@ export default function Trades() {
   const [acting, setActing] = useState<string | null>(null)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      if (!data.user) { router.push('/connexion'); return }
-      setUserId(data.user.id)
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) { router.replace('/connexion'); return }
+      setUserId(session.user.id)
       loadForum()
     })
   }, [])

@@ -23,8 +23,9 @@ export default function Teams() {
 
   useEffect(() => {
     loadTeams()
-    supabase.auth.getUser().then(async ({ data }) => {
-      if (!data.user) return
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (!session) return
+      const data = { user: session.user }
       setUserId(data.user.id)
       const { data: memberships } = await supabase.from('team_members').select('team_id').eq('user_id', data.user.id)
       if (memberships?.length) setUserTeamIds(new Set(memberships.map((m: any) => m.team_id)))

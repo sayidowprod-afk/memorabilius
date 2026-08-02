@@ -95,8 +95,9 @@ export default function ScannerPage() {
   const blue   = '#0046D1'
 
   useEffect(() => {
-    supabase.auth.getUser().then(async ({ data }) => {
-      if (!data.user) { router.push('/connexion?next=/scanner'); return }
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (!session) { router.replace('/connexion?next=/scanner'); return }
+      const data = { user: session.user }
 
       const [cartesRes, profileRes] = await Promise.all([
         supabase.from('cartes_manuelles').select('nom, annee, collection, variation').eq('user_id', data.user.id),

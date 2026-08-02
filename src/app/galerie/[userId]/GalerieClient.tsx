@@ -184,7 +184,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   useEffect(() => {
     const init = async () => {
       try {
-        supabase.auth.getUser().then(({ data }) => setCurrentUser(data.user?.id || null))
+        supabase.auth.getSession().then(({ data: { session } }) => setCurrentUser(session?.user?.id || null))
 
         let resolvedId = userId
         const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
@@ -215,8 +215,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           if (data) setGrailCards(data)
         })
         // Charger les likes de la galerie + ceux de l'utilisateur connecté
-        supabase.auth.getUser().then(async ({ data: authData }) => {
-          const uid = authData.user?.id || null
+        supabase.auth.getSession().then(async ({ data: { session } }) => {
+          const uid = session?.user?.id || null
           const { data: likesData } = await supabase.from('card_likes').select('card_key, liker_user_id').eq('gallery_user_id', resolvedId)
           if (likesData) {
             const map = new Map<string, { count: number; liked: boolean }>()

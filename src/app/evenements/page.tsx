@@ -38,10 +38,10 @@ export default function Evenements() {
 
   useEffect(() => {
     loadEvents()
-    supabase.auth.getUser().then(async ({ data }) => {
-      if (!data.user) return
-      setUserId(data.user.id)
-      const { data: p } = await supabase.from('profiles').select('is_admin').eq('id', data.user.id).single()
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (!session) return
+      setUserId(session.user.id)
+      const { data: p } = await supabase.from('profiles').select('is_admin').eq('id', session.user.id).single()
       if (p?.is_admin) setIsAdmin(true)
     })
   }, [])

@@ -55,7 +55,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
   const [copied, setCopied] = useState(false)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUserId(data.user?.id || null))
+    supabase.auth.getSession().then(({ data: { session } }) => setUserId(session?.user?.id || null))
   }, [])
 
   useEffect(() => { loadSet() }, [setId, userId])

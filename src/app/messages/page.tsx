@@ -78,8 +78,9 @@ function MessagesContent() {
   const bubbleThemText = dark ? '#fff' : '#121212'
 
   useEffect(() => {
-    supabase.auth.getUser().then(async ({ data }) => {
-      if (!data.user) { router.push('/connexion'); return }
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (!session) { router.replace('/connexion'); return }
+      const data = { user: session.user }
       setUserId(data.user.id)
       await loadConversations(data.user.id)
       if (toParam) loadMessages(data.user.id, toParam)

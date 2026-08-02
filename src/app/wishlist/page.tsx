@@ -26,8 +26,9 @@ export default function WishlistPage() {
   const { dark } = useTheme()
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      if (!data.user) { router.push('/connexion'); return }
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) { router.replace('/connexion'); return }
+      const data = { user: session.user }
       setUserId(data.user.id)
       supabase.from('wishlist').select('*').eq('user_id', data.user.id).order('created_at', { ascending: false })
         .then(({ data: d }) => { setItems(d || []); setLoading(false) })

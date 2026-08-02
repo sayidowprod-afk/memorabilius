@@ -59,8 +59,9 @@ export default function Notifications() {
   }
 
   useEffect(() => {
-    supabase.auth.getUser().then(async ({ data }) => {
-      if (!data.user) { router.push('/connexion'); return }
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (!session) { router.replace('/connexion'); return }
+      const data = { user: session.user }
       const { data: n } = await supabase
         .from('notifications')
         .select('*')

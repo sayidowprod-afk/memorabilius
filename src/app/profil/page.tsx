@@ -44,12 +44,13 @@ export default function Profil() {
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    supabase.auth.getUser().then(async ({ data }) => {
-      if (!data.user) { router.push('/connexion'); return }
-      setUserId(data.user.id)
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (!session) { router.replace('/connexion'); return }
+      const uid = session.user.id
+      setUserId(uid)
       // Mettre à jour last_seen
-      await supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', data.user.id)
-      const { data: p } = await supabase.from('profiles').select('id,display_name,bio,lien_csv,couleur_bordure,instagram,twitter,discord,favorite_teams,wrap_opt_out,avatar_url').eq('id', data.user.id).single()
+      await supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', uid)
+      const { data: p } = await supabase.from('profiles').select('id,display_name,bio,lien_csv,couleur_bordure,instagram,twitter,discord,favorite_teams,wrap_opt_out,avatar_url').eq('id', uid).single()
       if (p) {
         setForm({ display_name: p.display_name || '', bio: p.bio || '', lien_csv: p.lien_csv || '', couleur_bordure: p.couleur_bordure || '#003DA6', instagram: p.instagram || '', twitter: p.twitter || '', discord: p.discord || '' })
         setFavoriteTeams(Array.isArray(p.favorite_teams) ? p.favorite_teams : [])

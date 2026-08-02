@@ -72,8 +72,8 @@ export default function SetlistPage() {
   const [gotoAllSets, setGotoAllSets] = useState(false)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      setUserId(data.user?.id || null)
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUserId(session?.user?.id || null)
       setAuthReady(true)
     })
   }, [])
