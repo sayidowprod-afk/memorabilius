@@ -7,10 +7,29 @@ export default function AuthCallback() {
   const router = useRouter()
 
   useEffect(() => {
-    // Supabase v2 extrait automatiquement la session depuis le hash ou le code PKCE.
-    supabase.auth.getSession().then(({ data }) => {
-      router.replace(data.session ? '/profil' : '/connexion')
+    // onAuthStateChange se déclenche après l'échange PKCE complet
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) {
+        subscription.unsubscribe()
+        router.replace('/profil')
+      }
     })
+
+    // Vérification immédiate si la session est déjà disponible
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) {
+        subscription.unsubscribe()
+        router.replace('/profil')
+      }
+    })
+
+    // Fallback : si toujours rien après 8s, renvoie vers connexion
+    const timeout = setTimeout(async () => {
+      const { data } = await supabase.auth.getSession()
+      router.replace(data.session ? '/profil' : '/connexion')
+    }, 8000)
+
+    return () => { subscription.unsubscribe(); clearTimeout(timeout) }
   }, [router])
 
   return (
