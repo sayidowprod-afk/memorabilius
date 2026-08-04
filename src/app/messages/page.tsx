@@ -47,6 +47,9 @@ function MessagesContent() {
   const searchParams = useSearchParams()
   const toParam = searchParams.get('to')
   const tradeParam = searchParams.get('trade')
+  // trade_id en DB est integer (table trades) — les cartes galerie ont un UUID : ignorer
+  const tradeIdInt = tradeParam ? parseInt(tradeParam, 10) : null
+  const tradeIdForMsg = (tradeIdInt !== null && !isNaN(tradeIdInt)) ? tradeIdInt : null
 
   const [userId, setUserId] = useState<string | null>(null)
   const [conversations, setConversations] = useState<any[]>([])
@@ -190,7 +193,7 @@ function MessagesContent() {
       from_user_id: userId,
       to_user_id: activeConv,
       contenu: content,
-      trade_id: tradeParam || null,
+      trade_id: tradeIdForMsg,
     })
     if (error) { toast.error('Erreur envoi : ' + error.message); return }
     setNewMsg('')
@@ -222,7 +225,7 @@ function MessagesContent() {
           from_user_id: userId,
           to_user_id: activeConv,
           contenu: IMG_PREFIX + data.publicUrl,
-          trade_id: tradeParam || null,
+          trade_id: tradeIdForMsg,
         })
       }
       loadMessages(userId, activeConv)
