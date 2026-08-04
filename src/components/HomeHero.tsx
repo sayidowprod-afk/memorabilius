@@ -70,6 +70,17 @@ const heroCSS = `
   .mb-card, .mb-card-shine { animation: none; }
   .mb-card { transition: none; }
 }
+.mb-features-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+@media (max-width: 900px) {
+  .mb-features-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 540px) {
+  .mb-features-grid { grid-template-columns: repeat(2, 1fr); }
+}
 `
 
 // Rotation de base par carte (doit matcher le CSS) — réutilisée par le parallax
@@ -201,7 +212,7 @@ export default function HomeHero({ total, totalCartes, featuredGalleries = [] }:
       {/* Grille des 6 fonctionnalités — 1 ligne forcée */}
       <section style={{ marginBottom: 56 }}>
         <div className="section-title">{lang === 'fr' ? 'Tout ce dont vous avez besoin' : 'Everything you need'}</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 12 }}>
+        <div className="mb-features-grid">
           {featureList.map(f => (
             <div key={f.title}
               style={{
