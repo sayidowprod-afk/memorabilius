@@ -648,7 +648,7 @@ export default function AdminStats() {
       ['Délai activation médian (j)', stats.activation_delay_median != null ? String(stats.activation_delay_median) : '—'],
       ['Cartes/utilisateur actif', ((stats.total_cards_manual ?? 0) / Math.max(1, stats.active_users_month)).toFixed(1)],
       ['Scans total', String(stats.total_scans ?? 0)],
-      ['Coût Gemini estimé (€)', String(stats.estimated_cost_eur ?? 0)],
+      ['Coût Gemini 2.5 Flash (€)', (stats.estimated_cost_eur ?? 0).toFixed(4)],
       ['Taux correction Gemini', stats.scan_total_training ? `${((stats.scan_corrected_count / stats.scan_total_training) * 100).toFixed(1)} %` : '—'],
       ['Complétude fiches', stats.avg_card_completeness != null ? `${stats.avg_card_completeness} %` : '—'],
       ['Donateurs', String(stats.donor_count ?? 0)],
@@ -950,7 +950,7 @@ export default function AdminStats() {
           <KpiCard label="Scans total"       value={stats.total_scans ?? 0} />
           <KpiCard label="Scans aujourd'hui" value={stats.scans_today ?? 0} />
           <KpiCard label="Scans ce mois"     value={stats.scans_month ?? 0} />
-          <KpiCard label="Coût estimé total" value={`€ ${(stats.estimated_cost_eur ?? 0).toFixed(2)}`} sub={`≈ €${((stats.estimated_cost_eur ?? 0) / Math.max(1, new Date().getMonth() + 1)).toFixed(2)}/mois`} />
+          <KpiCard label="Coût total (Gemini 2.5 Flash)" value={`€ ${(stats.estimated_cost_eur ?? 0).toFixed(4)}`} sub={`≈ €0,00020/scan · sans thinking`} />
         </div>
 
         {/* Qualité IA — taux de correction */}

@@ -21,7 +21,7 @@ function ImageZoom({ src, alt }: { src: string; alt: string }) {
       title={zoomed ? 'Cliquer pour dézoomer' : 'Cliquer pour zoomer'}
     >
       <img src={src} alt={alt} draggable={false} style={{
-        width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+        width: '100%', height: '100%', objectFit: 'contain', display: 'block',
         transition: zoomed ? 'none' : 'transform 0.3s ease',
         transform: zoomed ? 'scale(2.5)' : 'scale(1)',
         transformOrigin: zoomed ? `${pos.x}% ${pos.y}%` : 'center center',

@@ -13,6 +13,11 @@ interface Card {
   num: string; collector: string; userId: string; isHorizontal: boolean
 }
 
+interface FeaturedGallery {
+  id: string; display_name: string; avatar_url: string | null
+  stats_total: number; topCard: string | null
+}
+
 async function fetchPepites(): Promise<Card[]> {
   const [{ data: manuelles }, { data: profiles }] = await Promise.all([
     supabase
@@ -69,6 +74,33 @@ async function fetchPepites(): Promise<Card[]> {
   }
 
   return result
+}
+
+async function fetchFeaturedGalleries(): Promise<FeaturedGallery[]> {
+  const { data: profiles } = await supabase
+    .from('profiles')
+    .select('id, display_name, avatar_url, stats_total')
+    .not('display_name', 'is', null)
+    .neq('display_name', '')
+    .gt('stats_total', 0)
+    .order('stats_total', { ascending: false })
+    .limit(3)
+
+  if (!profiles || profiles.length === 0) return []
+
+  const withCards = await Promise.all(profiles.map(async p => {
+    const { data } = await supabase
+      .from('cartes_manuelles')
+      .select('image_recto')
+      .eq('user_id', p.id)
+      .not('image_recto', 'is', null)
+      .eq('is_horizontal', false)
+      .limit(1)
+      .single()
+    return { ...p, topCard: (data as any)?.image_recto || null }
+  }))
+
+  return withCards
 }
 
 async function fetchPodium() {
@@ -132,11 +164,13 @@ export default async function Home() {
     { data: statsData },
     cards,
     podium,
+    featuredGalleries,
   ] = await Promise.all([
     supabase.from('profiles').select('*', { count: 'exact', head: true }),
     supabase.from('profiles').select('stats_total').gt('stats_total', 0),
     fetchPepites(),
     fetchPodium(),
+    fetchFeaturedGalleries(),
   ])
 
   const total = count ?? 0
@@ -157,7 +191,7 @@ export default async function Home() {
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(navJsonLd) }} />
-      <HomeHero total={total} totalCartes={totalCartes} />
+      <HomeHero total={total} totalCartes={totalCartes} featuredGalleries={featuredGalleries} />
       <PepitesSection cards={cards} />
       <PodiumSection entries={podium} />
       <PWAInstall />

@@ -77,7 +77,12 @@ const heroCSS = `
 const CARD_BASE_ROT = [-15, 9, 14, -8]
 const CARD_DEPTH = [26, 16, 24, 16]
 
-export default function HomeHero({ total, totalCartes }: { total: number; totalCartes: number }) {
+interface FeaturedGallery {
+  id: string; display_name: string; avatar_url: string | null
+  stats_total: number; topCard: string | null
+}
+
+export default function HomeHero({ total, totalCartes, featuredGalleries = [] }: { total: number; totalCartes: number; featuredGalleries?: FeaturedGallery[] }) {
   const { t, lang } = useLang()
   const { dark } = useTheme()
   const [cardImgs, setCardImgs] = useState<string[]>([])
@@ -196,7 +201,7 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
       {/* Grille des 6 fonctionnalités */}
       <section style={{ marginBottom: 52 }}>
         <div className="section-title">{lang === 'fr' ? 'Tout ce dont vous avez besoin' : 'Everything you need'}</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(268px, 1fr))', gap: 18 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(155px, 1fr))', gap: 14 }}>
           {featureList.map(f => (
             <div key={f.title} style={{
               background: dark ? 'rgba(13,18,48,0.95)' : 'white',
@@ -213,6 +218,49 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
           ))}
         </div>
       </section>
+
+      {/* Galeries vedettes */}
+      {featuredGalleries.length > 0 && (
+        <section style={{ marginBottom: 52 }}>
+          <div className="section-title">{lang === 'fr' ? 'Ils l\'utilisent déjà ✦' : 'They\'re already using it ✦'}</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
+            {featuredGalleries.map(g => (
+              <Link key={g.id} href={`/galerie/${g.id}`} style={{ textDecoration: 'none' }}>
+                <div style={{
+                  background: dark ? 'rgba(13,18,48,0.95)' : 'white',
+                  border: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e8eeff',
+                  borderRadius: 14, overflow: 'hidden',
+                  boxShadow: dark ? '0 4px 20px rgba(0,0,0,0.3)' : '0 2px 16px rgba(0,61,166,0.06)',
+                  transition: 'transform 0.18s',
+                }} onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px)')}
+                  onMouseLeave={e => (e.currentTarget.style.transform = '')}>
+                  {g.topCard ? (
+                    <div style={{ height: 190, overflow: 'hidden', background: dark ? '#0a1230' : '#f4f7ff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <img src={g.topCard} alt="" style={{ height: '100%', maxWidth: '100%', objectFit: 'contain' }} />
+                    </div>
+                  ) : (
+                    <div style={{ height: 190, background: dark ? '#0a1230' : '#f4f7ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 48 }}>🃏</div>
+                  )}
+                  <div style={{ padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <img src={g.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(g.display_name || 'U')}&background=003DA6&color=fff`}
+                      style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontWeight: 800, fontSize: 14, color: dark ? '#e8eeff' : '#0a2a6b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{g.display_name}</div>
+                      <div style={{ fontSize: 12, color: dark ? 'rgba(255,255,255,0.5)' : '#5a6e90' }}>{g.stats_total} cartes</div>
+                    </div>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: '#003DA6', flexShrink: 0 }}>Voir →</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <p style={{ textAlign: 'center', marginTop: 14 }}>
+            <Link href="/annuaire" style={{ fontSize: 13, fontWeight: 700, color: dark ? '#4da3ff' : '#003DA6', textDecoration: 'none' }}>
+              {lang === 'fr' ? 'Explorer toutes les galeries →' : 'Explore all galleries →'}
+            </Link>
+          </p>
+        </section>
+      )}
 
       <div className="section-title">{lang === 'fr' ? 'En chiffres' : 'By the numbers'}</div>
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 20, marginBottom: 50 }}>
