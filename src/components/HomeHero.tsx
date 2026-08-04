@@ -137,14 +137,14 @@ export default function HomeHero({ total, totalCartes, featuredGalleries = [] }:
     { icon: '🃏', title: 'Galerie 3D interactive', desc: "Tes cartes visualisées en holographique interactif. Partage ton profil de collectionneur en 1 lien.", color: '#7c3aed' },
     { icon: '💰', title: 'Prix eBay en direct', desc: "Connais la valeur de chaque carte grâce aux ventes récentes eBay, en temps réel.", color: '#059669' },
     { icon: '🔄', title: "Système d'échanges", desc: "Propose des trades directement depuis les galeries. Échange tes doubles avec la communauté.", color: '#d97706' },
-    { icon: '📋', title: 'Setlist NBA & Pokémon', desc: "Compare ta collection aux sets officiels. Vois exactement quelles cartes il te manque.", color: '#0284c7' },
+    { icon: '📋', title: 'Sets & complétion', desc: "Compare ta collection aux sets officiels. Vois exactement quelles cartes il te manque.", color: '#0284c7' },
     { icon: '📔', title: 'Classeurs thématiques', desc: "Organise ta collection dans des classeurs partageables par équipe, saison ou thème.", color: '#0d9488' },
   ] : [
     { icon: '🤖', title: 'Instant AI Scan', desc: "1 photo is enough: our AI recognizes player, year, brand and variation automatically.", color: '#003DA6' },
     { icon: '🃏', title: 'Interactive 3D Gallery', desc: "Your cards visualized in holographic interactive view. Share your collector profile in 1 link.", color: '#7c3aed' },
     { icon: '💰', title: 'Live eBay Prices', desc: "Know the value of each card from recent eBay sales, in real time.", color: '#059669' },
     { icon: '🔄', title: 'Trading System', desc: "Propose trades directly from galleries. Exchange doubles with the community.", color: '#d97706' },
-    { icon: '📋', title: 'NBA & Pokémon Setlist', desc: "Compare your collection to official sets. See exactly which cards you're missing.", color: '#0284c7' },
+    { icon: '📋', title: 'Sets & completion', desc: "Compare your collection to official sets. See exactly which cards you're missing.", color: '#0284c7' },
     { icon: '📔', title: 'Thematic Binders', desc: "Organize your collection in shareable binders by team, season or theme.", color: '#0d9488' },
   ]
 
@@ -198,28 +198,27 @@ export default function HomeHero({ total, totalCartes, featuredGalleries = [] }:
         </div>
       </section>
 
-      {/* Grille des 6 fonctionnalités */}
+      {/* Grille des 6 fonctionnalités — 1 ligne forcée */}
       <section style={{ marginBottom: 56 }}>
         <div className="section-title">{lang === 'fr' ? 'Tout ce dont vous avez besoin' : 'Everything you need'}</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 12 }}>
           {featureList.map(f => (
             <div key={f.title}
               style={{
                 background: dark ? 'rgba(13,18,48,0.95)' : 'white',
-                border: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e8eeff',
-                borderRadius: 16, padding: '24px 22px',
-                display: 'flex', flexDirection: 'column', gap: 12,
-                boxShadow: dark ? '0 4px 24px rgba(0,0,0,0.35)' : '0 2px 20px rgba(0,61,166,0.07)',
+                border: dark ? `1px solid rgba(255,255,255,0.08)` : `1px solid #e8eeff`,
+                borderTop: `3px solid ${f.color}`,
+                borderRadius: 14, padding: '18px 14px',
+                display: 'flex', flexDirection: 'column', gap: 8,
+                boxShadow: dark ? '0 4px 20px rgba(0,0,0,0.3)' : '0 2px 16px rgba(0,61,166,0.06)',
                 transition: 'transform 0.18s, box-shadow 0.18s',
                 cursor: 'default',
               }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = dark ? '0 8px 32px rgba(0,0,0,0.5)' : '0 8px 32px rgba(0,61,166,0.14)' }}
-              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = dark ? '0 4px 24px rgba(0,0,0,0.35)' : '0 2px 20px rgba(0,61,166,0.07)' }}>
-              <div style={{ width: 48, height: 48, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, background: `${f.color}18`, flexShrink: 0 }}>
-                <span role="img">{f.icon}</span>
-              </div>
-              <h3 style={{ fontSize: 16, fontWeight: 800, margin: 0, color: dark ? '#e8eeff' : '#0a2a6b' }}>{f.title}</h3>
-              <p style={{ fontSize: 13.5, color: dark ? 'rgba(255,255,255,0.6)' : '#5a6e90', margin: 0, lineHeight: 1.6 }}>{f.desc}</p>
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = dark ? '0 8px 28px rgba(0,0,0,0.5)' : '0 8px 28px rgba(0,61,166,0.13)' }}
+              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = dark ? '0 4px 20px rgba(0,0,0,0.3)' : '0 2px 16px rgba(0,61,166,0.06)' }}>
+              <span style={{ fontSize: 26 }}>{f.icon}</span>
+              <h3 style={{ fontSize: 13, fontWeight: 800, margin: 0, color: dark ? '#e8eeff' : '#0a2a6b', lineHeight: 1.3 }}>{f.title}</h3>
+              <p style={{ fontSize: 11.5, color: dark ? 'rgba(255,255,255,0.5)' : '#5a6e90', margin: 0, lineHeight: 1.5 }}>{f.desc}</p>
             </div>
           ))}
         </div>
