@@ -11,7 +11,7 @@ Usage :
 """
 
 from __future__ import annotations
-import os, json, argparse, random, re, time
+import os, json, argparse, random, re
 from pathlib import Path
 from difflib import SequenceMatcher
 import requests
@@ -76,109 +76,106 @@ def fetch_rows(limit: int) -> list[dict]:
     return rows[:limit]
 
 
-# ── TCDB enrichment ───────────────────────────────────────────────────────────
+# ── TCDB local enrichment (uses scripts/year-data/ scraped files) ─────────────
 
-_TCDB_HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-_tcdb_set_cache: dict[str, dict] = {}  # cache par (marque, collection, annee)
+_LOCAL_YEAR_DATA = Path(__file__).parent / 'year-data'
+_NAME_INDEX_PATH = Path(__file__).parent / 'tcdb_name_index.json'
+_tcdb_name_index: dict | None = None   # tcdb_id (str) → set_name (str)
+_tcdb_set_cache:  dict        = {}     # cache par "annee|marque|collection"
 
 
 def _sim(a: str, b: str) -> float:
     return SequenceMatcher(None, a.lower().strip(), b.lower().strip()).ratio()
 
 
-def tcdb_lookup_set(marque: str, collection: str, annee: str) -> dict:
+def _load_name_index() -> dict:
     """
-    Cherche le set sur TCDB, retourne {'sid': str, 'variations': [str]}.
-    Résultat mis en cache pour éviter les doublons.
+    Index : tcdb_id (str) → {'name': str, 'file': str}
+    Construit une seule fois depuis scripts/year-data/, puis mis en cache sur disque.
     """
-    year = (annee or '').split('-')[0].strip()
-    cache_key = f"{year}|{marque}|{collection}".lower()
-    if cache_key in _tcdb_set_cache:
-        return _tcdb_set_cache[cache_key]
+    global _tcdb_name_index
+    if _tcdb_name_index is not None:
+        return _tcdb_name_index
 
-    result: dict = {}
+    if _NAME_INDEX_PATH.exists():
+        with open(_NAME_INDEX_PATH, 'r', encoding='utf-8') as f:
+            _tcdb_name_index = json.load(f)
+        # Rétrocompatibilité : ancien format {sid: name_str}
+        first_val = next(iter(_tcdb_name_index.values()), None)
+        if isinstance(first_val, str):
+            _tcdb_name_index = None  # force rebuild
+        else:
+            print(f'  TCDB index chargé : {len(_tcdb_name_index)} sets')
+            return _tcdb_name_index
+
+    print('  Construction de l\'index TCDB local (une seule fois)...')
+    index: dict = {}
+    files = list(_LOCAL_YEAR_DATA.glob('scraped-*.json'))
+    for fpath in tqdm(files, desc='Index TCDB'):
+        try:
+            with open(fpath, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            for s in data.get('sets', []):
+                sid  = str(s['set']['tcdb_id'])
+                index[sid] = {'name': s['set']['name'], 'file': fpath.name}
+        except Exception:
+            pass
+
+    with open(_NAME_INDEX_PATH, 'w', encoding='utf-8') as f:
+        json.dump(index, f, ensure_ascii=False)
+    print(f'  Index TCDB construit : {len(index)} sets → {_NAME_INDEX_PATH}')
+    _tcdb_name_index = index
+    return index
+
+
+def _find_set_id(marque: str, collection: str, annee: str) -> str | None:
+    """Retourne le tcdb_id local dont le nom ressemble le mieux à marque+collection+annee."""
+    index = _load_name_index()
+    if not index:
+        return None
+
+    year  = (annee or '').split('-')[0].strip()
+    query = ' '.join(filter(None, [year, marque, collection])).lower()
+
+    best_score, best_sid = 0.0, None
+    for sid, entry in index.items():
+        name  = entry['name'] if isinstance(entry, dict) else entry
+        score = _sim(query, name)
+        if year and year in name:
+            score = min(1.0, score + 0.1)
+        if score > best_score:
+            best_score = score
+            best_sid   = sid
+
+    return best_sid if best_score > 0.35 else None
+
+
+def _load_set_cards(tcdb_id: str) -> list[dict]:
+    """Charge les cartes du set tcdb_id depuis le fichier scraped approprié."""
+    index = _load_name_index()
+    entry = index.get(tcdb_id)
+    if not entry:
+        return []
+
+    fname = entry['file'] if isinstance(entry, dict) else f'scraped-{tcdb_id}.json'
+    fpath = _LOCAL_YEAR_DATA / fname
+    if not fpath.exists():
+        return []
+
     try:
-        from bs4 import BeautifulSoup
-        query = ' '.join(filter(None, [year, marque, collection]))
-        r = requests.get('https://www.tcdb.com/Search.cfm',
-                         params={'s': query, 'T': 'S'},  # T=S = sets only
-                         headers=_TCDB_HEADERS, timeout=15)
-        soup = BeautifulSoup(r.text, 'html.parser')
-
-        # Cherche le premier set dont le nom ressemble à marque+collection
-        best_score, best_sid = 0.0, None
-        for a in soup.select('a[href*="ViewSet.cfm"]'):
-            href = a.get('href', '')
-            text = a.get_text(strip=True)
-            sid_match = re.search(r'sid[=/](\d+)', href, re.I)
-            if not sid_match:
-                continue
-            score = max(_sim(collection, text), _sim(f"{marque} {collection}", text))
-            if score > best_score:
-                best_score = score
-                best_sid = sid_match.group(1)
-
-        if best_sid and best_score > 0.4:
-            result['sid'] = best_sid
-            # Récupère les variantes/parallèles du set
-            time.sleep(0.4)
-            rs = requests.get(f'https://www.tcdb.com/Checklist.cfm/sid/{best_sid}',
-                              headers=_TCDB_HEADERS, timeout=15)
-            ss = BeautifulSoup(rs.text, 'html.parser')
-            # Les parallèles sont souvent listés dans un select ou une table de sous-sets
-            variations = set()
-            for opt in ss.select('select option, .parallel-name, td.var'):
-                v = opt.get_text(strip=True)
-                if v and len(v) > 2 and v.lower() not in ('base', 'regular', 'standard'):
-                    variations.add(v)
-            result['variations'] = sorted(variations)
-
-        time.sleep(0.4)
-    except Exception as e:
-        pass
-
-    _tcdb_set_cache[cache_key] = result
-    return result
-
-
-def tcdb_lookup_card(nom: str, marque: str, collection: str, annee: str) -> dict:
-    """
-    Cherche une carte spécifique sur TCDB, retourne {'card_number': str, 'variation': str}.
-    """
-    year = (annee or '').split('-')[0].strip()
-    try:
-        from bs4 import BeautifulSoup
-        query = ' '.join(filter(None, [year, marque, collection, nom]))
-        r = requests.get('https://www.tcdb.com/Search.cfm',
-                         params={'s': query},
-                         headers=_TCDB_HEADERS, timeout=15)
-        soup = BeautifulSoup(r.text, 'html.parser')
-
-        best_score, best_num = 0.0, ''
-        for row in soup.select('tr, .search-result-item'):
-            text = row.get_text(' ', strip=True)
-            if not text:
-                continue
-            score = _sim(nom, text)
-            # Cherche un numéro de carte dans le texte (#48, 48, HTR-IFS...)
-            num_match = re.search(r'#([A-Za-z0-9\-]+)', text) or re.search(r'\b(\d+[A-Za-z\-]*)\b', text)
-            if score > best_score and num_match:
-                best_score = score
-                best_num = num_match.group(1)
-
-        if best_num and best_score > 0.4:
-            return {'card_number': best_num}
-        time.sleep(0.4)
+        with open(fpath, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        tid = int(tcdb_id)
+        for s in data.get('sets', []):
+            if s['set']['tcdb_id'] == tid:
+                return s.get('unique', [])
+        return []
     except Exception:
-        pass
-    return {}
+        return []
 
 
 def enrich_label_tcdb(label: dict) -> dict:
-    """
-    Enrichit un label avec card_number et liste des variations via TCDB.
-    Ne modifie que les champs absents/vides.
-    """
+    """Enrichit card_number et variations via les fichiers TCDB locaux (pas de réseau)."""
     nom        = label.get('nom', '')
     marque     = label.get('marque', '')
     collection = label.get('collection', '')
@@ -187,19 +184,38 @@ def enrich_label_tcdb(label: dict) -> dict:
     if not (marque and collection and annee):
         return label
 
+    cache_key = f"{annee}|{marque}|{collection}".lower()
+    if cache_key not in _tcdb_set_cache:
+        sid = _find_set_id(marque, collection, annee)
+        if sid:
+            cards      = _load_set_cards(sid)
+            variations = sorted({c['variation'] for c in cards if c.get('variation')})
+            _tcdb_set_cache[cache_key] = {'sid': sid, 'cards': cards, 'variations': variations}
+        else:
+            _tcdb_set_cache[cache_key] = {}
+
+    set_info = _tcdb_set_cache.get(cache_key, {})
+    if not set_info:
+        return label
+
     enriched = dict(label)
 
-    # card_number manquant → cherche sur TCDB
-    if not enriched.get('card_number'):
-        info = tcdb_lookup_card(nom, marque, collection, annee)
-        if info.get('card_number'):
-            enriched['card_number'] = info['card_number']
-            print(f"    TCDB card_number: {info['card_number']} ({nom})")
-
-    # Récupère les variations du set pour méta-données futures
-    set_info = tcdb_lookup_set(marque, collection, annee)
     if set_info.get('variations'):
         enriched['_tcdb_variations'] = set_info['variations']
+
+    if not enriched.get('card_number') and nom and set_info.get('cards'):
+        best_score, best_card = 0.0, None
+        for card in set_info['cards']:
+            score = _sim(nom, card.get('player_name', ''))
+            if score > best_score:
+                best_score = score
+                best_card  = card
+
+        if best_score > 0.6 and best_card:
+            enriched['card_number'] = best_card['card_number']
+            if best_card.get('variation') and not enriched.get('variation'):
+                enriched['variation'] = best_card['variation']
+            print(f'    TCDB local : #{best_card["card_number"]} {nom} (score={best_score:.2f})')
 
     return enriched
 
