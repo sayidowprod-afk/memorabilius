@@ -1,6 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { checkAiRateLimit } from '@/lib/rateLimit'
+import sharp from 'sharp'
+
+async function compressImage(base64: string): Promise<string> {
+  const buf = Buffer.from(base64, 'base64')
+  const out = await sharp(buf)
+    .resize(700, 700, { fit: 'inside', withoutEnlargement: true })
+    .jpeg({ quality: 85 })
+    .toBuffer()
+  return out.toString('base64')
+}
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -105,42 +115,55 @@ export async function POST(req: NextRequest) {
   const rateLimitErr = await checkAiRateLimit(user.id)
   if (rateLimitErr) return NextResponse.json({ error: rateLimitErr }, { status: 429 })
 
-  const apiKey = process.env.GEMINI_API_KEY
-  if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY non configurée' }, { status: 500 })
-
   try {
-    const { imageBase64, imageBase64Verso, mimeType = 'image/jpeg', ebayHints } = await req.json()
-    if (!imageBase64) return NextResponse.json({ error: 'Image manquante' }, { status: 400 })
+    const { imageBase64: rawRecto, imageBase64Verso: rawVerso, ebayHints } = await req.json()
+    if (!rawRecto) return NextResponse.json({ error: 'Image manquante' }, { status: 400 })
 
-    // Injecter les titres eBay comme contexte fort quand disponibles
+    const imageBase64 = await compressImage(rawRecto)
+    const imageBase64Verso = rawVerso ? await compressImage(rawVerso) : undefined
+
+    const modalUrl = process.env.MODAL_SCAN_URL
+
+    if (modalUrl) {
+      // ── Modèle maison via Modal ──────────────────────────────
+      const body: Record<string, string> = { recto: imageBase64 }
+      if (imageBase64Verso) body.verso = imageBase64Verso
+
+      const res = await fetch(modalUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+
+      if (!res.ok) {
+        const err = await res.text()
+        return NextResponse.json({ error: 'Modal error: ' + err }, { status: 500 })
+      }
+
+      const card = await res.json()
+      if (card.error) return NextResponse.json({ error: card.error }, { status: 500 })
+      return NextResponse.json(card)
+    }
+
+    // ── Fallback Gemini ──────────────────────────────────────
+    const apiKey = process.env.GEMINI_API_KEY
+    if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY non configurée' }, { status: 500 })
+
     let fullPrompt = PROMPT
     if (Array.isArray(ebayHints) && ebayHints.length > 0) {
       fullPrompt += `\n\n═══ TITRES EBAY — INDICES PRIORITAIRES ═══\nCes listings correspondent visuellement à cette carte exacte. RÈGLES OBLIGATOIRES :\n• Copie la variation VERBATIM depuis le titre (ex: titre contient "Silver Prizm" → variation="Silver Prizm", titre contient "Blue Hyper Prizm" → variation="Blue Hyper Prizm")\n• Copie l'année VERBATIM (ex: "2023-24 Panini" → annee="2023-24")\n• Si le titre mentionne "RC" ou "Rookie" → rc=true\n• Si le titre mentionne "Auto" ou "Autograph" → auto=true\n• Si le titre contient "/XX" ou "XX/XX" → num="/XX" ou "XX/XX"\n• Ces indices font AUTORITÉ sur tes déductions visuelles — utilise-les sauf contradiction flagrante avec l'image\n` +
         ebayHints.slice(0, 5).map((t: string, i: number) => `${i + 1}. "${t}"`).join('\n')
     }
 
-    const imageParts: object[] = [
-      { inline_data: { mime_type: mimeType, data: imageBase64 } },
-    ]
-    if (imageBase64Verso) {
-      imageParts.push({ inline_data: { mime_type: mimeType, data: imageBase64Verso } })
-    }
+    const imageParts: object[] = [{ inline_data: { mime_type: 'image/jpeg', data: imageBase64 } }]
+    if (imageBase64Verso) imageParts.push({ inline_data: { mime_type: 'image/jpeg', data: imageBase64Verso } })
 
     const res = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{
-          parts: [
-            { text: fullPrompt },
-            ...imageParts,
-          ],
-        }],
-        generationConfig: {
-          temperature: 0,
-          maxOutputTokens: 2048,
-          thinkingConfig: { thinkingBudget: 0 },
-        },
+        contents: [{ parts: [{ text: fullPrompt }, ...imageParts] }],
+        generationConfig: { temperature: 0, maxOutputTokens: 2048, thinkingConfig: { thinkingBudget: 0 } },
       }),
     })
 
@@ -151,15 +174,13 @@ export async function POST(req: NextRequest) {
 
     const data = await res.json()
     const parts = data.candidates?.[0]?.content?.parts ?? []
-    // Exclure les parties "thought" (raisonnement interne de Gemini 2.5)
     const answerParts = parts.filter((p: any) => !p.thought)
     const text = answerParts.map((p: any) => p.text ?? '').join('')
 
     const jsonStr = extractFirstJson(text)
     if (!jsonStr) return NextResponse.json({ error: 'Réponse invalide' }, { status: 500 })
 
-    const card = JSON.parse(jsonStr)
-    return NextResponse.json(card)
+    return NextResponse.json(JSON.parse(jsonStr))
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 })
   }
