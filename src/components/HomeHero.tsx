@@ -80,15 +80,8 @@ const CARD_DEPTH = [26, 16, 24, 16]
 export default function HomeHero({ total, totalCartes }: { total: number; totalCartes: number }) {
   const { t, lang } = useLang()
   const { dark } = useTheme()
-  const [galerieHref, setGalerieHref] = useState('/sinscrire')
   const [cardImgs, setCardImgs] = useState<string[]>([])
   const cardsRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      if (data.user) setGalerieHref(`/galerie/${data.user.id}/ajouter`)
-    })
-  }, [])
 
   // Récupère quelques vraies cartes récentes (recto) pour décorer le hero
   useEffect(() => {
@@ -133,16 +126,6 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
       card.style.transform = `rotate(${CARD_BASE_ROT[i] ?? 0}deg)`
     })
   }
-
-  const steps = lang === 'fr' ? [
-    { n: 1, title: 'Crée ton compte', desc: "Inscris-toi gratuitement en quelques secondes. Ton profil devient ta vitrine de collectionneur.", link: '/sinscrire', linkText: "Créer mon compte →" },
-    { n: 2, title: 'Scanne tes cartes', desc: "Recto + verso en 1 clic : l'IA identifie joueur, année, marque et variation en quelques secondes. Tu n'as plus qu'à confirmer.", link: galerieHref, linkText: "Ajouter une carte →" },
-    { n: 3, title: 'Suis ta collection', desc: "Compare ta galerie à la Setlist NBA, vois ce qu'il te manque, partage ton profil et échange avec d'autres collectionneurs.", link: '/setlist', linkText: "Explorer la Setlist →" },
-  ] : [
-    { n: 1, title: 'Create your account', desc: "Sign up for free in seconds. Your profile becomes your collector showcase.", link: '/sinscrire', linkText: "Create my account →" },
-    { n: 2, title: 'Scan your cards', desc: "Front + back in 1 tap: AI identifies player, year, brand and variation in seconds. Just confirm and you're done.", link: galerieHref, linkText: "Add a card →" },
-    { n: 3, title: 'Track your collection', desc: "Compare your gallery to the NBA Setlist, see what you are missing, share your profile and trade with other collectors.", link: '/setlist', linkText: "Explore the Setlist →" },
-  ]
 
   const featureList = lang === 'fr' ? [
     { icon: '🤖', title: 'Scan IA instantané', desc: "1 photo suffit : notre IA reconnaît joueur, année, marque et variation automatiquement.", color: '#003DA6' },
@@ -229,18 +212,6 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
             </div>
           ))}
         </div>
-      </section>
-
-      <div className="section-title">{lang === 'fr' ? 'Comment ça marche ?' : 'How it works?'}</div>
-      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 25, marginBottom: 60 }}>
-        {steps.map(s => (
-          <div key={s.n} style={{ background: dark ? '#0d1230' : 'white', padding: 30, borderRadius: 15, border: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #eee', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: -15, left: 20, background: '#003DA6', color: 'white', width: 35, height: 35, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 18 }}>{s.n}</div>
-            <h4 style={{ margin: '15px 0 10px', fontWeight: 800, fontSize: 18, color: dark ? '#e8eeff' : '#0a2a6b' }}>{s.title}</h4>
-            <p style={{ fontSize: 14, color: dark ? 'rgba(255,255,255,0.55)' : '#777', lineHeight: 1.5 }}>{s.desc}</p>
-            {s.link && <Link href={s.link} style={{ color: dark ? '#4da3ff' : '#003DA6', fontWeight: 700, fontSize: 13, display: 'inline-block', marginTop: 10 }}>{s.linkText}</Link>}
-          </div>
-        ))}
       </section>
 
       <div className="section-title">{lang === 'fr' ? 'En chiffres' : 'By the numbers'}</div>
