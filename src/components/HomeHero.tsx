@@ -136,11 +136,11 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
 
   const steps = lang === 'fr' ? [
     { n: 1, title: 'Crée ton compte', desc: "Inscris-toi gratuitement en quelques secondes. Ton profil devient ta vitrine de collectionneur.", link: '/sinscrire', linkText: "Créer mon compte →" },
-    { n: 2, title: 'Ajoute tes cartes', desc: "Prends en photo ta carte, l'IA reconnaît le joueur, l'année et la variation automatiquement. Tu n'as plus qu'à valider.", link: galerieHref, linkText: "Ajouter une carte →" },
+    { n: 2, title: 'Scanne tes cartes', desc: "Recto + verso en 1 clic : l'IA identifie joueur, année, marque et variation en quelques secondes. Tu n'as plus qu'à confirmer.", link: galerieHref, linkText: "Ajouter une carte →" },
     { n: 3, title: 'Suis ta collection', desc: "Compare ta galerie à la Setlist NBA, vois ce qu'il te manque, partage ton profil et échange avec d'autres collectionneurs.", link: '/setlist', linkText: "Explorer la Setlist →" },
   ] : [
     { n: 1, title: 'Create your account', desc: "Sign up for free in seconds. Your profile becomes your collector showcase.", link: '/sinscrire', linkText: "Create my account →" },
-    { n: 2, title: 'Add your cards', desc: "Take a photo of your card, AI automatically recognizes the player, year and variation. Just confirm and save.", link: galerieHref, linkText: "Add a card →" },
+    { n: 2, title: 'Scan your cards', desc: "Front + back in 1 tap: AI identifies player, year, brand and variation in seconds. Just confirm and you're done.", link: galerieHref, linkText: "Add a card →" },
     { n: 3, title: 'Track your collection', desc: "Compare your gallery to the NBA Setlist, see what you are missing, share your profile and trade with other collectors.", link: '/setlist', linkText: "Explore the Setlist →" },
   ]
 
@@ -167,7 +167,7 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
         </div>
 
         <div className="mb-hero-inner">
-          <span className="mb-hero-badge">✦ {lang === 'fr' ? 'Collection de cartes nouvelle génération' : 'Next-gen card collecting'}</span>
+          <span className="mb-hero-badge">✦ {lang === 'fr' ? 'Scan IA · Galerie collectionneurs' : 'AI Scan · Collector Gallery'}</span>
           <h1 className="mb-hero-title" style={{ color: dark ? '#fff' : '#0a2a6b' }}>
             {t('home_hero')}
           </h1>
@@ -177,6 +177,90 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
           <div style={{ display: 'flex', gap: 15, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/sinscrire" className="btn-main btn-primary">{t('home_cta1')}</Link>
             <Link href="/annuaire" className="btn-main btn-secondary">{t('home_cta2')}</Link>
+          </div>
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', marginTop: 22 }}>
+            {(lang === 'fr'
+              ? ['⚡ 1 photo suffit', '💰 Prix eBay en direct', '🔗 Galerie partageable', '🆓 100% gratuit']
+              : ['⚡ 1 photo is enough', '💰 Live eBay prices', '🔗 Shareable gallery', '🆓 100% free']
+            ).map(f => (
+              <span key={f} style={{
+                fontSize: 11, padding: '5px 13px', borderRadius: 999, fontWeight: 700,
+                background: dark ? 'rgba(255,255,255,0.09)' : 'rgba(0,61,166,0.07)',
+                color: dark ? 'rgba(255,255,255,0.72)' : '#2a4a8f',
+                border: `1px solid ${dark ? 'rgba(255,255,255,0.13)' : 'rgba(0,61,166,0.14)'}`,
+              }}>{f}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section vitrine scan IA */}
+      <section style={{ marginBottom: 48 }}>
+        <div style={{ textAlign: 'center', marginBottom: 28 }}>
+          <span style={{
+            display: 'inline-block', marginBottom: 14,
+            background: 'rgba(0,61,166,0.08)', color: '#003DA6',
+            border: '1px solid rgba(0,61,166,0.18)', borderRadius: 999,
+            padding: '5px 16px', fontSize: 11, fontWeight: 800, letterSpacing: 0.6,
+          }}>
+            {lang === 'fr' ? '✦ INTELLIGENCE ARTIFICIELLE' : '✦ ARTIFICIAL INTELLIGENCE'}
+          </span>
+          <h2 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: 900, margin: '0 0 12px', lineHeight: 1.1, color: dark ? '#fff' : '#0a2a6b' }}>
+            {lang === 'fr' ? "Identifiez n'importe quelle carte en 1 photo" : 'Identify any card in 1 photo'}
+          </h2>
+          <p style={{ maxWidth: 500, margin: '0 auto', fontSize: 15, lineHeight: 1.6, color: dark ? 'rgba(255,255,255,0.62)' : '#4a6080' }}>
+            {lang === 'fr'
+              ? "Notre IA reconnaît joueur, année, marque, collection et variation automatiquement. Plus besoin de chercher manuellement."
+              : "Our AI automatically recognizes player, year, brand, set and variation. No more manual searching."}
+          </p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, flexWrap: 'wrap' }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              width: 120, height: 168, borderRadius: 14, margin: '0 auto 10px',
+              background: dark ? 'rgba(255,255,255,0.05)' : '#f0f4ff',
+              border: `2px dashed ${dark ? 'rgba(255,255,255,0.18)' : '#c0d0ef'}`,
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4,
+            }}>
+              <span style={{ fontSize: 34 }}>📷</span>
+              <span style={{ fontSize: 11, fontWeight: 700, color: dark ? 'rgba(255,255,255,0.45)' : '#8090b0' }}>
+                {lang === 'fr' ? 'Ta photo' : 'Your photo'}
+              </span>
+            </div>
+            <span style={{ fontSize: 12, color: dark ? 'rgba(255,255,255,0.45)' : '#8090b0', fontWeight: 600 }}>
+              {lang === 'fr' ? 'Recto + verso' : 'Front + back'}
+            </span>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+            <span style={{
+              background: '#003DA6', color: 'white', borderRadius: 999,
+              padding: '5px 13px', fontSize: 11, fontWeight: 800, letterSpacing: 0.4,
+              boxShadow: '0 4px 16px rgba(0,61,166,0.4)',
+            }}>IA</span>
+            <span style={{ fontSize: 22, color: dark ? 'rgba(255,255,255,0.35)' : '#003DA6', fontWeight: 300 }}>→</span>
+          </div>
+
+          <div style={{
+            background: dark ? '#0d1432' : 'white',
+            border: dark ? '1px solid rgba(0,120,255,0.28)' : '1px solid #dce8ff',
+            borderRadius: 16, padding: '18px 24px',
+            boxShadow: dark ? '0 8px 32px rgba(0,0,0,0.45)' : '0 8px 32px rgba(0,61,166,0.09)',
+            minWidth: 210,
+          }}>
+            <div style={{ fontSize: 11, fontWeight: 800, color: '#2a8a4a', letterSpacing: 0.5, marginBottom: 14, display: 'flex', alignItems: 'center', gap: 5 }}>
+              <span style={{ width: 16, height: 16, borderRadius: '50%', background: '#2a8a4a', color: 'white', fontSize: 9, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>
+              {lang === 'fr' ? 'CARTE IDENTIFIÉE' : 'CARD IDENTIFIED'}
+            </div>
+            {(lang === 'fr'
+              ? [['Joueur', 'LeBron James'], ['Année', '2022-23'], ['Marque', 'Panini Prizm'], ['Collection', 'Silver Prizm'], ['Variation', 'Holo']]
+              : [['Player', 'LeBron James'], ['Year', '2022-23'], ['Brand', 'Panini Prizm'], ['Set', 'Silver Prizm'], ['Variation', 'Holo']]
+            ).map(([label, val]) => (
+              <div key={label} style={{ marginBottom: 7 }}>
+                <span style={{ fontSize: 10, fontWeight: 700, color: dark ? 'rgba(255,255,255,0.4)' : '#8090b0', letterSpacing: 0.3, display: 'block', textTransform: 'uppercase' as const }}>{label}</span>
+                <span style={{ fontSize: 13, fontWeight: 700, color: dark ? '#fff' : '#0a2a6b' }}>{val}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

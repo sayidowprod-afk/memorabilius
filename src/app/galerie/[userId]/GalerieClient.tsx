@@ -150,6 +150,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [popup, setPopup] = useState<Card | null>(null)
   const [tradeCard, setTradeCard] = useState<Card | null>(null)
   const [tradeSent, setTradeSent] = useState(false)
+  const [showConversionBanner, setShowConversionBanner] = useState(true)
   const [loaded, setLoaded] = useState(false)
   const [currentUser, setCurrentUser] = useState<string | null>(null)
   const [privateCards, setPrivateCards] = useState<Set<string>>(new Set())
@@ -1927,6 +1928,42 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#003DA6', color: '#fff', borderRadius: 50, padding: '12px 24px', fontWeight: 700, fontSize: 14, zIndex: 9999, cursor: 'pointer', boxShadow: '0 4px 20px rgba(0,0,61,0.3)' }}
         >
           🔄 Offre d&apos;échange envoyée !
+        </div>
+      )}
+
+      {showConversionBanner && loaded && !currentUser && (
+        <div style={{
+          position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 8500,
+          background: dark ? '#0d1432' : 'white',
+          borderTop: dark ? '1px solid rgba(0,120,255,0.2)' : '1px solid rgba(0,61,166,0.12)',
+          padding: '14px 20px',
+          display: 'flex', alignItems: 'center', gap: 14,
+          boxShadow: '0 -4px 24px rgba(0,0,0,0.12)',
+        }}>
+          <span style={{ flex: 1, fontSize: 14, fontWeight: 600, color: dark ? '#e8eeff' : '#0a2a6b', lineHeight: 1.4 }}>
+            {lang === 'fr'
+              ? "✦ Crée ta galerie gratuitement — l'IA identifie tes cartes en 1 photo."
+              : "✦ Create your free gallery — AI identifies your cards in 1 photo."}
+          </span>
+          <Link
+            href="/sinscrire"
+            style={{
+              background: '#003DA6', color: 'white', borderRadius: 10,
+              padding: '10px 18px', fontWeight: 700, fontSize: 13,
+              textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0,
+            }}
+          >
+            {lang === 'fr' ? 'Commencer →' : 'Get started →'}
+          </Link>
+          <button
+            onClick={() => setShowConversionBanner(false)}
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              color: dark ? 'rgba(255,255,255,0.4)' : '#aab0c0',
+              fontSize: 22, padding: '0 4px', flexShrink: 0, lineHeight: 1,
+            }}
+            aria-label={lang === 'fr' ? 'Fermer' : 'Close'}
+          >×</button>
         </div>
       )}
     </>

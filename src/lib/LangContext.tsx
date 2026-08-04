@@ -21,8 +21,8 @@ const translations = {
     nav_mode_sombre: '🌙 Mode sombre',
 
     // Accueil
-    home_hero: 'Exposez votre passion en 3D.',
-    home_sub: 'La plateforme ultime pour les collectionneurs de cartes de Sports.',
+    home_hero: 'Votre collection, identifiée en 1 photo.',
+    home_sub: "Photographiez votre carte — l'IA reconnaît joueur, année et variation en quelques secondes. Galerie gratuite et partageable.",
     home_cta1: 'Créer ma galerie',
     home_cta2: "Voir l'annuaire",
     home_collectors: 'Collectionneurs',
@@ -274,8 +274,8 @@ const translations = {
     nav_mode_sombre: '🌙 Dark mode',
 
     // Home
-    home_hero: 'Showcase your passion in 3D.',
-    home_sub: 'The ultimate platform for sports card collectors.',
+    home_hero: 'Your collection, identified in 1 photo.',
+    home_sub: 'Photograph your card — AI identifies player, year and variation in seconds. Free, shareable gallery.',
     home_cta1: 'Create my gallery',
     home_cta2: 'View directory',
     home_collectors: 'Collectors',
