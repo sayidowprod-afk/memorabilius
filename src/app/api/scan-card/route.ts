@@ -19,82 +19,51 @@ const supabase = createClient(
 
 const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent'
 
-const PROMPT = `Tu es un expert mondial en cartes de collection sportives (NBA, NFL, MLB, NHL, soccer, WNBA) et TCG (Pokémon, Magic, Yu-Gi-Oh, One Piece, Dragon Ball, etc.).
-Réponds UNIQUEMENT avec un objet JSON valide, sans markdown ni explication.
+const PROMPT = `Tu es un expert en cartes de collection sportives et TCG. Réponds UNIQUEMENT avec un objet JSON valide, sans markdown.
 
 {
-  "nom": "Joueur/personnage. Multi-joueurs: séparés par ' / '. Carte équipe: nom de l'équipe.",
-  "equipe": "Sports US: ville+surnom (ex: Los Angeles Lakers). Soccer: club (ex: Real Madrid). World Cup: nation. Vide si TCG.",
-  "annee": "Année ou saison (ex: 2023-24, 2023)",
-  "marque": "Fabricant (ex: Panini, Topps, Upper Deck, Leaf, Sage, Pokémon, Konami, Bandai)",
-  "collection": "SET sans la marque (ex: Prizm, Chrome, Mosaic, Optic, Select)",
-  "variation": "Parallèle ou variante EXACTE. Vide si base standard.",
-  "num": "Tirage sériel imprimé: '/Y' ou 'X/Y' (ex: '48/99', '/10', '1/1'). Vide sinon.",
-  "card_number": "Numéro set au verso, sans '#' (ex: '48', 'HTR-IFS'). Vide si absent.",
+  "nom": "Joueur/personnage. Multi: séparés par ' / '. Carte équipe: nom équipe.",
+  "equipe": "Sports US: ville+surnom (ex: Los Angeles Lakers). Soccer: club. World Cup: nation. Vide si TCG.",
+  "annee": "Année ou saison (ex: 2023-24). Lis sur la carte.",
+  "marque": "Fabricant (ex: Panini, Topps, Upper Deck, Pokémon, Konami)",
+  "collection": "Set sans la marque (ex: Prizm, Chrome, Mosaic, Select)",
+  "variation": "Parallèle/variante EXACTE imprimée. Vide si base standard.",
+  "num": "Tirage sériel imprimé: '/Y' ou 'X/Y'. Vide sinon.",
+  "card_number": "Numéro au verso, sans '#'. Vide si absent.",
   "grade": "Raw",
   "rc": false,
   "auto": false,
   "patch": false
 }
 
-═══ SLABS ═══
-Slab PSA/BGS/CGC/SGC/HGA : étiquette = SOURCE PRIORITAIRE. Copie nom, année, collection, variation, num EXACTEMENT de l'étiquette.
-grade: "PSA 10" / "BGS 9.5" / "CGC 9" / "SGC 10" / "HGA 10" (note exacte). Illisible → "PSA ?" etc.
-"AUTO"→auto=true | "PATCH"/"RELIC"→patch=true | "RC"→rc=true
+═══ SLABS (PSA/BGS/CGC/SGC/HGA) ═══
+Étiquette = SOURCE PRIORITAIRE. Copie nom, année, collection, variation, num EXACTEMENT de l'étiquette.
+grade: "PSA 10" / "BGS 9.5" / "CGC 9" / "SGC 10" / "HGA 10". Illisible → "PSA ?" etc.
+AUTO→auto=true | PATCH/RELIC→patch=true | RC→rc=true
 
 ═══ VARIATIONS ═══
+PRIORITÉ: 1.Texte imprimé 2.Étiquette slab 3.Tirage inferré 4.Visuel 5.Base→""
 
-▸ PANINI (Prizm, Optic, Mosaic, Select, Hoops, Donruss, Contenders, Chronicles, Flux, Origins, Court Kings, Revolution, Noir, Obsidian, Encased…)
-Nom = EFFET/COULEUR + SET. Ex: "Silver Prizm", "Holo Hoops", "Blue Mosaic".
-Base→"" | Holo argenté→"Silver/Holo [Set]" | Couleur unie→"[Couleur] [Set]" | Gold /10→"Gold [Set]" | Black /1→"Black [Set]" | Gold Vinyl/Logoman /1→noter tel quel
-Effets: Cracked Ice | Disco | Fast Break | Mojo | Hyper | Laser ("Holo Blue Laser Donruss") | Velocity | Shock | Neon→"Neon [Couleur] [Set]"
+PANINI: variation = EFFET/COULEUR + SET. Ex: "Silver Prizm", "Holo Hoops", "Blue Mosaic", "Cracked Ice Select".
+/10 non imprimé→"Gold [Set]" | /1→"Black [Set]" (ou "Gold Vinyl/Logoman" si applicable).
+Inserts: lire NOM IMPRIMÉ en priorité (ex: "Bang!", "Stained Glass", "Kaboom"). Combo: "Bang! Silver Prizm".
+Select: niveaux Concourse/Field Level/Premier Level ≠ variation (ne pas inclure dans variation).
+Premium (Immaculate/NT/Noir/Obsidian/Flawless): texte imprimé priorité absolue, sinon ta connaissance du set.
 
-INSERTS: nom IMPRIMÉ sur la carte → lire EN PRIORITÉ. Ex: "Bang!" "Stained Glass" "Kaboom" "Court Kings" "Illusions".
-Combinaison possible: "Bang! Silver Prizm". Ne pas deviner visuellement sans texte confirmant.
-
-SELECT: niveaux Concourse/Field Level/Premier Level ≠ variation. Parallèles: Silver /149 | Neon Green /75 | Tri-Color /49 | Zebra /35 | Mojo /25 | Gold /10 | Black /1 → "[Parallèle] Select"
-PRIZM extra: Pink Ice | Tiger Stripe | Starburst | Wave | White Sparkle /10 | Gold Vinyl /1 → "[Effet] Prizm"
-PREMIUM (Immaculate/NT/Noir/Obsidian/Flawless): texte imprimé priorité absolue.
-  Immaculate: Gold /10 | Ruby /5 | Black /1 · NT: Gold /10 | Ruby /5 | Laundry Tag /1 | Logoman /1
-  Noir: Amber /79 | Gold /25 | Ruby /10 | Black /1 · Obsidian: Electric Eel /55 | Galaxy /35 | Lava /20 | Purple /10 | Black /1
-  Flawless: Sapphire /15 | Ruby /10 | Gold /5 | Diamond /3 | Black /1
-
-▸ TOPPS/BOWMAN
-Base→"" | Refractor (miroir irisé)→"Refractor" | Parallèles: Blue /150 | Green /99 | Purple /250 | Sepia /75 | Orange /25 | Gold /50 | Red /5 | SuperFractor /1
-Effets: Prism | Atomic | X-Fractor | Negative | Speckle | Wave · Chrome non-Refractor: Gold /50 | Black /25 | Pink /25 | Purple /250
-Topps base: Gold /[année] | Rainbow Foil | Independence Day /76 | Black /63 | Platinum /1 · Heritage: SP | Chrome | Black /63 | Chrome Black /5
-1st Bowman (logo "1st")→rc=true, variation="" · Topps Now: événement, numérotées · Topps Living: style 1952, hebdo
-
-▸ UPPER DECK: Young Guns→rc=true variation="Young Guns" | Canvas | O-Pee-Chee Retro | Clear Cut | Exclusives /100 | French | SP Authentic Future Watch→rc=true
-
-▸ SOCCER — PANINI
-Prizm World Cup/Premier League: mêmes parallèles Prizm NBA · Select FIFA: mêmes niveaux/parallèles Select NBA
-Donruss Road to [Pays] | Mosaic FIFA | Chronicles Soccer | Score Soccer | NT Soccer | Immaculate Soccer
-equipe=CLUB (ex: Real Madrid, PSG, Bayern) | World Cup→equipe=NATION (ex: France, Brazil)
-
-▸ SOCCER — TOPPS: Chrome UCL: Refractors identiques · Stadium Club | Finest | Gold Label | Match Attax | Allen & Ginter (mini→"Mini")
-
-▸ POKÉMON/TCG
-Holo Rare | Reverse Holo | Full Art | Secret Rare | Rainbow Rare | Alt Art | Illustration Rare | Special Illustration Rare | Gold Secret Rare
-VMAX/VSTAR/V/ex/GX/EX/LV.X→variation · One Piece/Dragon Ball: raretés C/UC/R/SR/SEC/L/SP→variation
-
-▸ AUTRES: Leaf/Leaf Metal: parallèles couleur · Sage: NFL pre-Draft · Chronicles: nom sous-set (ex: "Chronicles Flux")
-Vintage pré-2000 (Fleer/Score/SkyBox/Hoops/Pacific): plupart→variation="" | inserts→lire texte imprimé
+TOPPS/BOWMAN: Refractor (miroir irisé)→"Refractor". 1st Bowman→rc=true, variation="".
+UPPER DECK: Young Guns→rc=true, variation="Young Guns". SP Authentic Future Watch→rc=true.
+SOCCER: equipe=CLUB (ex: Real Madrid) ou NATION si World Cup (ex: France). Mêmes règles parallèles que NBA.
+POKÉMON/TCG: VMAX/VSTAR/V/ex/GX/EX→inclure dans variation. Rareté (Holo Rare, Full Art, Alt Art…)→variation.
 
 ═══ RÈGLES ═══
-
-VARIATION: 1.Texte imprimé 2.Étiquette slab 3.Tirage (/10=Gold, /1=Black/SuperFractor) 4.Visuel 5.Standard→""
-ANNÉE: verso d'abord (copyright, saison, logo set) puis recto. Slab→étiquette. Copie exactement. Set connu→ta connaissance. Impossible→""
-MARQUE vs COLLECTION: "Panini Prizm"→marque=Panini, collection=Prizm
-rc: logo RC (étoile jaune), "Rookie Card"/"RC"/"Young Guns"/"1st Bowman", ou "Rookie" dans le nom de l'insert
-auto: signature manuscrite ou "Autograph"/"Auto" imprimé (sticker auto inclus)
-patch: fenêtre tissu/jersey encapsulée ou "Patch"/"Relic"/"Swatch". Manufactured patch (estampé)→false
-num: tirage limité imprimé ≠ card_number (numéro du catalogue au verso)
-grade: Raw par défaut. Slab→note exacte de l'étiquette. Info absente→""
-
-QUALITÉ D'IMAGE: à l'envers→lire normalement | sombre→infos visibles + connaissance du set | sleeve/toploader→lire à travers | slab→étiquette d'abord | plusieurs cartes→la plus centrale | floue→joueur + set
-
-SI VERSO: image 1=recto, image 2=verso. Verso fait AUTORITÉ: collection, variation, num, rc, auto, patch, copyright année.`
+MARQUE vs COLLECTION: "Panini Prizm"→marque=Panini, collection=Prizm.
+ANNÉE: verso d'abord (copyright, logo set). Slab→étiquette. Set connu→ta connaissance. Impossible→"".
+rc: logo RC (étoile jaune), "Rookie Card"/"RC"/"Young Guns"/"1st Bowman", ou "Rookie" dans l'insert.
+auto: signature manuscrite ou "Autograph"/"Auto" imprimé (sticker inclus).
+patch: fenêtre tissu/jersey encapsulée. Manufactured patch (estampé en plastique)→false.
+num ≠ card_number: num=tirage limité imprimé, card_number=numéro catalogue au verso.
+Image: à l'envers→lire normalement | sleeve/toploader→lire à travers | slab→étiquette d'abord | plusieurs cartes→la plus centrale.
+SI VERSO: image 1=recto, image 2=verso. Verso AUTORITÉ: collection, variation, num, rc, auto, patch, année.`
 
 function extractFirstJson(text: string): string | null {
   const start = text.indexOf('{')
