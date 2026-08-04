@@ -21,8 +21,8 @@ const translations = {
     nav_mode_sombre: '🌙 Mode sombre',
 
     // Accueil
-    home_hero: 'Votre collection, identifiée en 1 photo.',
-    home_sub: "Photographiez votre carte — l'IA reconnaît joueur, année et variation en quelques secondes. Galerie gratuite et partageable.",
+    home_hero: 'Collectionnez. Identifiez. Échangez.',
+    home_sub: "Galerie 3D interactive, scan IA, prix eBay en direct et système d'échanges — la plateforme complète pour les passionnés de cartes.",
     home_cta1: 'Créer ma galerie',
     home_cta2: "Voir l'annuaire",
     home_collectors: 'Collectionneurs',
@@ -274,8 +274,8 @@ const translations = {
     nav_mode_sombre: '🌙 Dark mode',
 
     // Home
-    home_hero: 'Your collection, identified in 1 photo.',
-    home_sub: 'Photograph your card — AI identifies player, year and variation in seconds. Free, shareable gallery.',
+    home_hero: 'Collect. Identify. Trade.',
+    home_sub: 'Interactive 3D gallery, AI scan, live eBay prices and trading system — the complete platform for card enthusiasts.',
     home_cta1: 'Create my gallery',
     home_cta2: 'View directory',
     home_collectors: 'Collectors',

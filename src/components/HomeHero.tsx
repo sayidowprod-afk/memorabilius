@@ -144,6 +144,22 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
     { n: 3, title: 'Track your collection', desc: "Compare your gallery to the NBA Setlist, see what you are missing, share your profile and trade with other collectors.", link: '/setlist', linkText: "Explore the Setlist →" },
   ]
 
+  const featureList = lang === 'fr' ? [
+    { icon: '🤖', title: 'Scan IA instantané', desc: "1 photo suffit : notre IA reconnaît joueur, année, marque et variation automatiquement.", color: '#003DA6' },
+    { icon: '🃏', title: 'Galerie 3D interactive', desc: "Tes cartes visualisées en holographique interactif. Partage ton profil de collectionneur en 1 lien.", color: '#7c3aed' },
+    { icon: '💰', title: 'Prix eBay en direct', desc: "Connais la valeur de chaque carte grâce aux ventes récentes eBay, en temps réel.", color: '#059669' },
+    { icon: '🔄', title: "Système d'échanges", desc: "Propose des trades directement depuis les galeries. Échange tes doubles avec la communauté.", color: '#d97706' },
+    { icon: '📋', title: 'Setlist NBA & Pokémon', desc: "Compare ta collection aux sets officiels. Vois exactement quelles cartes il te manque.", color: '#0284c7' },
+    { icon: '📔', title: 'Classeurs thématiques', desc: "Organise ta collection dans des classeurs partageables par équipe, saison ou thème.", color: '#0d9488' },
+  ] : [
+    { icon: '🤖', title: 'Instant AI Scan', desc: "1 photo is enough: our AI recognizes player, year, brand and variation automatically.", color: '#003DA6' },
+    { icon: '🃏', title: 'Interactive 3D Gallery', desc: "Your cards visualized in holographic interactive view. Share your collector profile in 1 link.", color: '#7c3aed' },
+    { icon: '💰', title: 'Live eBay Prices', desc: "Know the value of each card from recent eBay sales, in real time.", color: '#059669' },
+    { icon: '🔄', title: 'Trading System', desc: "Propose trades directly from galleries. Exchange doubles with the community.", color: '#d97706' },
+    { icon: '📋', title: 'NBA & Pokémon Setlist', desc: "Compare your collection to official sets. See exactly which cards you're missing.", color: '#0284c7' },
+    { icon: '📔', title: 'Thematic Binders', desc: "Organize your collection in shareable binders by team, season or theme.", color: '#0d9488' },
+  ]
+
   return (
     <>
       <style>{heroCSS}</style>
@@ -167,7 +183,7 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
         </div>
 
         <div className="mb-hero-inner">
-          <span className="mb-hero-badge">✦ {lang === 'fr' ? 'Scan IA · Galerie collectionneurs' : 'AI Scan · Collector Gallery'}</span>
+          <span className="mb-hero-badge">✦ {lang === 'fr' ? 'La plateforme des collectionneurs de cartes' : 'The platform for card collectors'}</span>
           <h1 className="mb-hero-title" style={{ color: dark ? '#fff' : '#0a2a6b' }}>
             {t('home_hero')}
           </h1>
@@ -180,8 +196,8 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
           </div>
           <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', marginTop: 22 }}>
             {(lang === 'fr'
-              ? ['⚡ 1 photo suffit', '💰 Prix eBay en direct', '🔗 Galerie partageable', '🆓 100% gratuit']
-              : ['⚡ 1 photo is enough', '💰 Live eBay prices', '🔗 Shareable gallery', '🆓 100% free']
+              ? ['🤖 Scan IA', '🃏 Galerie 3D', '💰 Prix eBay live', '🔄 Échanges', '🆓 Gratuit']
+              : ['🤖 AI Scan', '🃏 3D Gallery', '💰 Live eBay prices', '🔄 Trading', '🆓 Free']
             ).map(f => (
               <span key={f} style={{
                 fontSize: 11, padding: '5px 13px', borderRadius: 999, fontWeight: 700,
@@ -194,85 +210,35 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
         </div>
       </section>
 
-      {/* Section vitrine scan IA */}
-      <section style={{ marginBottom: 48 }}>
-        <div style={{ textAlign: 'center', marginBottom: 28 }}>
-          <span style={{
-            display: 'inline-block', marginBottom: 14,
-            background: 'rgba(0,61,166,0.08)', color: '#003DA6',
-            border: '1px solid rgba(0,61,166,0.18)', borderRadius: 999,
-            padding: '5px 16px', fontSize: 11, fontWeight: 800, letterSpacing: 0.6,
-          }}>
-            {lang === 'fr' ? '✦ INTELLIGENCE ARTIFICIELLE' : '✦ ARTIFICIAL INTELLIGENCE'}
-          </span>
-          <h2 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: 900, margin: '0 0 12px', lineHeight: 1.1, color: dark ? '#fff' : '#0a2a6b' }}>
-            {lang === 'fr' ? "Identifiez n'importe quelle carte en 1 photo" : 'Identify any card in 1 photo'}
-          </h2>
-          <p style={{ maxWidth: 500, margin: '0 auto', fontSize: 15, lineHeight: 1.6, color: dark ? 'rgba(255,255,255,0.62)' : '#4a6080' }}>
-            {lang === 'fr'
-              ? "Notre IA reconnaît joueur, année, marque, collection et variation automatiquement. Plus besoin de chercher manuellement."
-              : "Our AI automatically recognizes player, year, brand, set and variation. No more manual searching."}
-          </p>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24, flexWrap: 'wrap' }}>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{
-              width: 120, height: 168, borderRadius: 14, margin: '0 auto 10px',
-              background: dark ? 'rgba(255,255,255,0.05)' : '#f0f4ff',
-              border: `2px dashed ${dark ? 'rgba(255,255,255,0.18)' : '#c0d0ef'}`,
-              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4,
+      {/* Grille des 6 fonctionnalités */}
+      <section style={{ marginBottom: 52 }}>
+        <div className="section-title">{lang === 'fr' ? 'Tout ce dont vous avez besoin' : 'Everything you need'}</div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(268px, 1fr))', gap: 18 }}>
+          {featureList.map(f => (
+            <div key={f.title} style={{
+              background: dark ? 'rgba(13,18,48,0.95)' : 'white',
+              border: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e8eeff',
+              borderTop: `3px solid ${f.color}`,
+              borderRadius: 14, padding: '22px 20px',
+              display: 'flex', flexDirection: 'column', gap: 10,
+              boxShadow: dark ? '0 4px 20px rgba(0,0,0,0.3)' : '0 2px 16px rgba(0,61,166,0.06)',
             }}>
-              <span style={{ fontSize: 34 }}>📷</span>
-              <span style={{ fontSize: 11, fontWeight: 700, color: dark ? 'rgba(255,255,255,0.45)' : '#8090b0' }}>
-                {lang === 'fr' ? 'Ta photo' : 'Your photo'}
-              </span>
+              <span style={{ fontSize: 28 }}>{f.icon}</span>
+              <h3 style={{ fontSize: 15, fontWeight: 800, margin: 0, color: dark ? '#e8eeff' : '#0a2a6b' }}>{f.title}</h3>
+              <p style={{ fontSize: 13, color: dark ? 'rgba(255,255,255,0.55)' : '#5a6e90', margin: 0, lineHeight: 1.55 }}>{f.desc}</p>
             </div>
-            <span style={{ fontSize: 12, color: dark ? 'rgba(255,255,255,0.45)' : '#8090b0', fontWeight: 600 }}>
-              {lang === 'fr' ? 'Recto + verso' : 'Front + back'}
-            </span>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-            <span style={{
-              background: '#003DA6', color: 'white', borderRadius: 999,
-              padding: '5px 13px', fontSize: 11, fontWeight: 800, letterSpacing: 0.4,
-              boxShadow: '0 4px 16px rgba(0,61,166,0.4)',
-            }}>IA</span>
-            <span style={{ fontSize: 22, color: dark ? 'rgba(255,255,255,0.35)' : '#003DA6', fontWeight: 300 }}>→</span>
-          </div>
-
-          <div style={{
-            background: dark ? '#0d1432' : 'white',
-            border: dark ? '1px solid rgba(0,120,255,0.28)' : '1px solid #dce8ff',
-            borderRadius: 16, padding: '18px 24px',
-            boxShadow: dark ? '0 8px 32px rgba(0,0,0,0.45)' : '0 8px 32px rgba(0,61,166,0.09)',
-            minWidth: 210,
-          }}>
-            <div style={{ fontSize: 11, fontWeight: 800, color: '#2a8a4a', letterSpacing: 0.5, marginBottom: 14, display: 'flex', alignItems: 'center', gap: 5 }}>
-              <span style={{ width: 16, height: 16, borderRadius: '50%', background: '#2a8a4a', color: 'white', fontSize: 9, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>
-              {lang === 'fr' ? 'CARTE IDENTIFIÉE' : 'CARD IDENTIFIED'}
-            </div>
-            {(lang === 'fr'
-              ? [['Joueur', 'LeBron James'], ['Année', '2022-23'], ['Marque', 'Panini Prizm'], ['Collection', 'Silver Prizm'], ['Variation', 'Holo']]
-              : [['Player', 'LeBron James'], ['Year', '2022-23'], ['Brand', 'Panini Prizm'], ['Set', 'Silver Prizm'], ['Variation', 'Holo']]
-            ).map(([label, val]) => (
-              <div key={label} style={{ marginBottom: 7 }}>
-                <span style={{ fontSize: 10, fontWeight: 700, color: dark ? 'rgba(255,255,255,0.4)' : '#8090b0', letterSpacing: 0.3, display: 'block', textTransform: 'uppercase' as const }}>{label}</span>
-                <span style={{ fontSize: 13, fontWeight: 700, color: dark ? '#fff' : '#0a2a6b' }}>{val}</span>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
       </section>
 
       <div className="section-title">{lang === 'fr' ? 'Comment ça marche ?' : 'How it works?'}</div>
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 25, marginBottom: 60 }}>
         {steps.map(s => (
-          <div key={s.n} style={{ background: 'white', padding: 30, borderRadius: 15, border: '1px solid #eee', position: 'relative' }}>
+          <div key={s.n} style={{ background: dark ? '#0d1230' : 'white', padding: 30, borderRadius: 15, border: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #eee', position: 'relative' }}>
             <div style={{ position: 'absolute', top: -15, left: 20, background: '#003DA6', color: 'white', width: 35, height: 35, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: 18 }}>{s.n}</div>
-            <h4 style={{ margin: '15px 0 10px', fontWeight: 800, fontSize: 18 }}>{s.title}</h4>
-            <p style={{ fontSize: 14, color: '#777', lineHeight: 1.5 }}>{s.desc}</p>
-            {s.link && <Link href={s.link} style={{ color: '#003DA6', fontWeight: 700, fontSize: 13, display: 'inline-block', marginTop: 10 }}>{s.linkText}</Link>}
+            <h4 style={{ margin: '15px 0 10px', fontWeight: 800, fontSize: 18, color: dark ? '#e8eeff' : '#0a2a6b' }}>{s.title}</h4>
+            <p style={{ fontSize: 14, color: dark ? 'rgba(255,255,255,0.55)' : '#777', lineHeight: 1.5 }}>{s.desc}</p>
+            {s.link && <Link href={s.link} style={{ color: dark ? '#4da3ff' : '#003DA6', fontWeight: 700, fontSize: 13, display: 'inline-block', marginTop: 10 }}>{s.linkText}</Link>}
           </div>
         ))}
       </section>
@@ -284,9 +250,9 @@ export default function HomeHero({ total, totalCartes }: { total: number; totalC
           { val: totalCartes.toLocaleString('fr-FR'), label: t('home_cards') },
           { val: '100%', label: t('home_3d') },
         ].map(s => (
-          <div key={s.label} style={{ background: 'white', padding: 30, borderRadius: 15, textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
-            <h3 style={{ fontSize: '2.5rem', fontWeight: 900, color: '#003DA6' }}>{s.val}</h3>
-            <p style={{ color: '#999', textTransform: 'uppercase', fontSize: 12, fontWeight: 700, marginTop: 5 }}>{s.label}</p>
+          <div key={s.label} style={{ background: dark ? '#0d1230' : 'white', padding: 30, borderRadius: 15, textAlign: 'center', boxShadow: dark ? '0 4px 24px rgba(0,0,0,0.3)' : '0 10px 30px rgba(0,0,0,0.05)', border: dark ? '1px solid rgba(255,255,255,0.07)' : 'none' }}>
+            <h3 style={{ fontSize: '2.5rem', fontWeight: 900, color: dark ? '#4da3ff' : '#003DA6' }}>{s.val}</h3>
+            <p style={{ color: dark ? 'rgba(255,255,255,0.5)' : '#999', textTransform: 'uppercase', fontSize: 12, fontWeight: 700, marginTop: 5 }}>{s.label}</p>
           </div>
         ))}
       </section>
