@@ -126,8 +126,9 @@ SELECT
     'total_scans',            (SELECT count(*)::int FROM ai_scan_events),
     'scans_today',            (SELECT count(*)::int FROM ai_scan_events WHERE created_at >= date_trunc('day', now() AT TIME ZONE 'UTC')),
     'scans_week',             (SELECT count(*)::int FROM ai_scan_events WHERE created_at >= now() - interval '7 days'),
-    'scans_month',            (SELECT count(*)::int FROM ai_scan_events WHERE created_at >= now() - interval '30 days'),
+    'scans_month',            (SELECT count(*)::int FROM ai_scan_events WHERE created_at >= date_trunc('month', now() AT TIME ZONE 'UTC')),
     'estimated_cost_eur',     (SELECT round((count(*) * 0.00013)::numeric, 4) FROM ai_scan_events),
+    'cost_month_eur',         (SELECT round((count(*) * 0.00013)::numeric, 4) FROM ai_scan_events WHERE created_at >= date_trunc('month', now() AT TIME ZONE 'UTC')),
 
     'scan_total_training',    (SELECT count(*)::int FROM training_data WHERE gemini_output IS NOT NULL),
     'scan_corrected_count',   (SELECT count(*)::int FROM training_data WHERE corrected = true),

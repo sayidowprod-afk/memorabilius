@@ -41,6 +41,7 @@ type Stats = {
   scans_week: number
   scans_month: number
   estimated_cost_eur: number
+  cost_month_eur: number
   // Qualité IA
   scan_total_training: number
   scan_corrected_count: number
@@ -946,11 +947,12 @@ export default function AdminStats() {
 
         {/* IA / Coûts Gemini */}
         <SectionTitle>IA & Coûts Gemini</SectionTitle>
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
-          <KpiCard label="Scans total"       value={stats.total_scans ?? 0} />
-          <KpiCard label="Scans aujourd'hui" value={stats.scans_today ?? 0} />
-          <KpiCard label="Scans ce mois"     value={stats.scans_month ?? 0} />
-          <KpiCard label="Coût total (Gemini 2.5 Flash)" value={`€ ${(stats.estimated_cost_eur ?? 0).toFixed(4)}`} sub={`≈ €0,00013/scan · sans thinking`} />
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(5, 1fr)', gap: isMobile ? 10 : 16, marginBottom: isMobile ? 20 : 32 }}>
+          <KpiCard label="Scans total"        value={stats.total_scans ?? 0} />
+          <KpiCard label="Scans aujourd'hui"  value={stats.scans_today ?? 0} />
+          <KpiCard label="Scans ce mois"      value={stats.scans_month ?? 0} />
+          <KpiCard label="Coût total"         value={`€ ${(stats.estimated_cost_eur ?? 0).toFixed(4)}`} sub="Gemini 2.5 Flash · €0,00013/scan" />
+          <KpiCard label="Coût ce mois"       value={`€ ${(stats.cost_month_eur ?? 0).toFixed(4)}`} sub="mois calendaire en cours" />
         </div>
 
         {/* Qualité IA — taux de correction */}
