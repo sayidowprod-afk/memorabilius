@@ -224,70 +224,70 @@ export default function HomeHero({ total, totalCartes, featuredGalleries = [] }:
         </div>
       </section>
 
-      {/* Galeries vedettes */}
+      {/* Galeries vedettes — plein format avec overlay */}
       {featuredGalleries.length > 0 && (
         <section style={{ marginBottom: 56 }}>
-          <div className="section-title">{lang === 'fr' ? 'Leurs collections ✦' : 'Their collections ✦'}</div>
+          <div className="section-title">{lang === 'fr' ? 'Ils collectionnent avec nous' : 'They collect with us'}</div>
           <p style={{ textAlign: 'center', color: dark ? 'rgba(255,255,255,0.5)' : '#7a8fb0', fontSize: 14, marginTop: -12, marginBottom: 24 }}>
-            {lang === 'fr' ? 'Rejoins des centaines de collectionneurs déjà sur Memorabilius' : 'Join hundreds of collectors already on Memorabilius'}
+            {lang === 'fr'
+              ? `${total}+ collectionneurs ont déjà créé leur galerie — rejoins-les gratuitement`
+              : `${total}+ collectors already created their gallery — join them for free`}
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 18 }}>
             {featuredGalleries.map(g => (
               <Link key={g.id} href={`/galerie/${g.id}`} style={{ textDecoration: 'none' }}>
                 <div style={{
-                  background: dark ? 'rgba(13,18,48,0.95)' : 'white',
-                  border: dark ? '1px solid rgba(255,255,255,0.10)' : '1px solid #e0e8ff',
-                  borderRadius: 18, overflow: 'hidden',
-                  boxShadow: dark ? '0 8px 32px rgba(0,0,0,0.4)' : '0 4px 24px rgba(0,61,166,0.10)',
-                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  position: 'relative', borderRadius: 20, overflow: 'hidden', height: 310,
+                  boxShadow: '0 8px 36px rgba(0,0,0,0.28)',
+                  transition: 'transform 0.22s, box-shadow 0.22s',
+                  cursor: 'pointer',
                 }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = dark ? '0 16px 48px rgba(0,0,0,0.55)' : '0 12px 40px rgba(0,61,166,0.18)' }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = dark ? '0 8px 32px rgba(0,0,0,0.4)' : '0 4px 24px rgba(0,61,166,0.10)' }}>
-                  {/* Aperçu multi-cartes */}
-                  <div style={{ height: 200, background: dark ? '#070c24' : '#f0f4ff', display: 'flex', gap: 3, padding: 12, alignItems: 'center', justifyContent: 'center' }}>
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.025)'; e.currentTarget.style.boxShadow = '0 16px 52px rgba(0,0,0,0.42)' }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 8px 36px rgba(0,0,0,0.28)' }}>
+                  {/* Cartes en plein format */}
+                  <div style={{ position: 'absolute', inset: 0, display: 'flex', background: '#06091a' }}>
                     {g.topCards.slice(0, 3).map((src, i) => (
-                      <div key={i} style={{
-                        flex: 1, height: '100%', borderRadius: 8, overflow: 'hidden',
-                        boxShadow: '0 4px 14px rgba(0,0,0,0.3)',
-                        transform: i === 1 && g.topCards.length === 3 ? 'scaleY(1.06)' : 'none',
-                        transition: 'transform 0.2s',
-                        background: dark ? '#0a1230' : '#dce6ff',
-                      }}>
-                        <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
+                      <div key={i} style={{ flex: 1, overflow: 'hidden' }}>
+                        <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                       </div>
                     ))}
                   </div>
-                  {/* Infos collecteur */}
-                  <div style={{ padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 12, borderTop: dark ? '1px solid rgba(255,255,255,0.06)' : '1px solid #eef2ff' }}>
-                    <img
-                      src={g.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(g.display_name || 'U')}&background=003DA6&color=fff`}
-                      style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: '2px solid #003DA6' }} alt="" />
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontWeight: 800, fontSize: 15, color: dark ? '#e8eeff' : '#0a2a6b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{g.display_name}</div>
-                      <div style={{ fontSize: 12, color: dark ? 'rgba(255,255,255,0.45)' : '#7a8fb0', marginTop: 1 }}>
-                        {g.stats_total.toLocaleString('fr-FR')} {lang === 'fr' ? 'cartes dans sa collection' : 'cards in their collection'}
+                  {/* Gradient sombre en bas */}
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,3,18,0.92) 0%, rgba(0,3,18,0.3) 45%, transparent 100%)' }} />
+                  {/* Infos collecteur en overlay */}
+                  <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0 20px 18px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                      <img
+                        src={g.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(g.display_name || 'U')}&background=003DA6&color=fff`}
+                        style={{ width: 38, height: 38, borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(255,255,255,0.85)', flexShrink: 0 }} alt="" />
+                      <div>
+                        <div style={{ color: 'white', fontWeight: 800, fontSize: 16, lineHeight: 1.2 }}>{g.display_name}</div>
+                        <div style={{ color: 'rgba(255,255,255,0.65)', fontSize: 12, marginTop: 2 }}>
+                          {g.stats_total.toLocaleString('fr-FR')} {lang === 'fr' ? 'cartes' : 'cards'}
+                        </div>
                       </div>
                     </div>
-                    <span style={{ fontSize: 12, fontWeight: 700, color: 'white', background: '#003DA6', padding: '5px 11px', borderRadius: 999, flexShrink: 0 }}>
-                      {lang === 'fr' ? 'Voir →' : 'View →'}
+                    <span style={{
+                      display: 'inline-block', fontSize: 12, fontWeight: 700, color: 'white',
+                      background: 'rgba(255,255,255,0.14)', backdropFilter: 'blur(6px)',
+                      border: '1px solid rgba(255,255,255,0.22)',
+                      padding: '6px 14px', borderRadius: 999,
+                    }}>
+                      {lang === 'fr' ? 'Voir la galerie →' : 'View gallery →'}
                     </span>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
-          <div style={{ textAlign: 'center', marginTop: 20 }}>
+          <div style={{ textAlign: 'center', marginTop: 24 }}>
             <Link href="/sinscrire" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              fontSize: 14, fontWeight: 800,
-              color: 'white', background: '#003DA6',
-              padding: '11px 24px', borderRadius: 999,
-              textDecoration: 'none', boxShadow: '0 4px 16px rgba(0,61,166,0.4)',
+              fontSize: 15, fontWeight: 800, color: 'white', background: '#003DA6',
+              padding: '13px 28px', borderRadius: 999, textDecoration: 'none',
+              boxShadow: '0 4px 20px rgba(0,61,166,0.45)',
             }}>
-              {lang === 'fr' ? '🚀 Créer ma galerie gratuitement' : '🚀 Create my gallery for free'}
-            </Link>
-            <Link href="/annuaire" style={{ display: 'block', marginTop: 10, fontSize: 13, fontWeight: 600, color: dark ? '#4da3ff' : '#003DA6', textDecoration: 'none' }}>
-              {lang === 'fr' ? 'Explorer toutes les galeries →' : 'Explore all galleries →'}
+              {lang === 'fr' ? '🚀 Créer ma galerie — c\'est gratuit' : '🚀 Create my gallery — it\'s free'}
             </Link>
           </div>
         </section>
