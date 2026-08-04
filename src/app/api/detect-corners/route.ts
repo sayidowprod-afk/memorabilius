@@ -1,6 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { checkAiRateLimit } from '@/lib/rateLimit'
+import sharp from 'sharp'
+
+async function compressImage(base64: string): Promise<string> {
+  const buf = Buffer.from(base64, 'base64')
+  const out = await sharp(buf)
+    .resize(700, 700, { fit: 'inside', withoutEnlargement: true })
+    .jpeg({ quality: 85 })
+    .toBuffer()
+  return out.toString('base64')
+}
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -72,8 +82,10 @@ export async function POST(req: NextRequest) {
   if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY manquante' }, { status: 500 })
 
   try {
-    const { imageBase64, mimeType = 'image/jpeg' } = await req.json()
-    if (!imageBase64) return NextResponse.json({ error: 'image manquante' }, { status: 400 })
+    const { imageBase64: rawImage } = await req.json()
+    if (!rawImage) return NextResponse.json({ error: 'image manquante' }, { status: 400 })
+
+    const imageBase64 = await compressImage(rawImage)
 
     const res = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
       method: 'POST',
@@ -81,7 +93,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         contents: [{ parts: [
           { text: PROMPT },
-          { inline_data: { mime_type: mimeType, data: imageBase64 } }
+          { inline_data: { mime_type: 'image/jpeg', data: imageBase64 } }
         ]}],
         generationConfig: {
           temperature: 0,
