@@ -1,6 +1,6 @@
 -- admin_stats v5 : correction coût Gemini (gemini-2.5-flash, thinkingBudget:0)
--- Réel : ~1 200 tokens input + 300 output ≈ €0,00020/scan
--- Remplace le forfait 0,002/scan (10× trop élevé)
+-- Réel mesuré : €0,00013/scan
+-- Remplace le forfait 0,002/scan (15× trop élevé)
 CREATE OR REPLACE FUNCTION admin_stats()
 RETURNS jsonb
 LANGUAGE sql
@@ -122,12 +122,12 @@ SELECT
     'user_daily',             (SELECT coalesce(jsonb_agg(jsonb_build_object('day', day, 'count', cnt) ORDER BY day), '[]') FROM user_daily),
     'card_daily',             (SELECT coalesce(jsonb_agg(jsonb_build_object('day', day, 'count', cnt) ORDER BY day), '[]') FROM card_daily),
 
-    -- gemini-2.5-flash, thinkingBudget:0 → ~€0,00020/scan
+    -- gemini-2.5-flash, thinkingBudget:0 → €0,00013/scan mesuré
     'total_scans',            (SELECT count(*)::int FROM ai_scan_events),
     'scans_today',            (SELECT count(*)::int FROM ai_scan_events WHERE created_at >= date_trunc('day', now() AT TIME ZONE 'UTC')),
     'scans_week',             (SELECT count(*)::int FROM ai_scan_events WHERE created_at >= now() - interval '7 days'),
     'scans_month',            (SELECT count(*)::int FROM ai_scan_events WHERE created_at >= now() - interval '30 days'),
-    'estimated_cost_eur',     (SELECT round((count(*) * 0.00020)::numeric, 4) FROM ai_scan_events),
+    'estimated_cost_eur',     (SELECT round((count(*) * 0.00013)::numeric, 4) FROM ai_scan_events),
 
     'scan_total_training',    (SELECT count(*)::int FROM training_data WHERE gemini_output IS NOT NULL),
     'scan_corrected_count',   (SELECT count(*)::int FROM training_data WHERE corrected = true),

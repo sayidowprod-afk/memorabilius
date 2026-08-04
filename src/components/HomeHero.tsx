@@ -79,7 +79,7 @@ const CARD_DEPTH = [26, 16, 24, 16]
 
 interface FeaturedGallery {
   id: string; display_name: string; avatar_url: string | null
-  stats_total: number; topCard: string | null
+  stats_total: number; topCards: string[]
 }
 
 export default function HomeHero({ total, totalCartes, featuredGalleries = [] }: { total: number; totalCartes: number; featuredGalleries?: FeaturedGallery[] }) {
@@ -199,21 +199,27 @@ export default function HomeHero({ total, totalCartes, featuredGalleries = [] }:
       </section>
 
       {/* Grille des 6 fonctionnalités */}
-      <section style={{ marginBottom: 52 }}>
+      <section style={{ marginBottom: 56 }}>
         <div className="section-title">{lang === 'fr' ? 'Tout ce dont vous avez besoin' : 'Everything you need'}</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(155px, 1fr))', gap: 14 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
           {featureList.map(f => (
-            <div key={f.title} style={{
-              background: dark ? 'rgba(13,18,48,0.95)' : 'white',
-              border: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e8eeff',
-              borderTop: `3px solid ${f.color}`,
-              borderRadius: 14, padding: '22px 20px',
-              display: 'flex', flexDirection: 'column', gap: 10,
-              boxShadow: dark ? '0 4px 20px rgba(0,0,0,0.3)' : '0 2px 16px rgba(0,61,166,0.06)',
-            }}>
-              <span style={{ fontSize: 28 }}>{f.icon}</span>
-              <h3 style={{ fontSize: 15, fontWeight: 800, margin: 0, color: dark ? '#e8eeff' : '#0a2a6b' }}>{f.title}</h3>
-              <p style={{ fontSize: 13, color: dark ? 'rgba(255,255,255,0.55)' : '#5a6e90', margin: 0, lineHeight: 1.55 }}>{f.desc}</p>
+            <div key={f.title}
+              style={{
+                background: dark ? 'rgba(13,18,48,0.95)' : 'white',
+                border: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e8eeff',
+                borderRadius: 16, padding: '24px 22px',
+                display: 'flex', flexDirection: 'column', gap: 12,
+                boxShadow: dark ? '0 4px 24px rgba(0,0,0,0.35)' : '0 2px 20px rgba(0,61,166,0.07)',
+                transition: 'transform 0.18s, box-shadow 0.18s',
+                cursor: 'default',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = dark ? '0 8px 32px rgba(0,0,0,0.5)' : '0 8px 32px rgba(0,61,166,0.14)' }}
+              onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = dark ? '0 4px 24px rgba(0,0,0,0.35)' : '0 2px 20px rgba(0,61,166,0.07)' }}>
+              <div style={{ width: 48, height: 48, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, background: `${f.color}18`, flexShrink: 0 }}>
+                <span role="img">{f.icon}</span>
+              </div>
+              <h3 style={{ fontSize: 16, fontWeight: 800, margin: 0, color: dark ? '#e8eeff' : '#0a2a6b' }}>{f.title}</h3>
+              <p style={{ fontSize: 13.5, color: dark ? 'rgba(255,255,255,0.6)' : '#5a6e90', margin: 0, lineHeight: 1.6 }}>{f.desc}</p>
             </div>
           ))}
         </div>
@@ -221,44 +227,70 @@ export default function HomeHero({ total, totalCartes, featuredGalleries = [] }:
 
       {/* Galeries vedettes */}
       {featuredGalleries.length > 0 && (
-        <section style={{ marginBottom: 52 }}>
-          <div className="section-title">{lang === 'fr' ? 'Ils l\'utilisent déjà ✦' : 'They\'re already using it ✦'}</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
+        <section style={{ marginBottom: 56 }}>
+          <div className="section-title">{lang === 'fr' ? 'Leurs collections ✦' : 'Their collections ✦'}</div>
+          <p style={{ textAlign: 'center', color: dark ? 'rgba(255,255,255,0.5)' : '#7a8fb0', fontSize: 14, marginTop: -12, marginBottom: 24 }}>
+            {lang === 'fr' ? 'Rejoins des centaines de collectionneurs déjà sur Memorabilius' : 'Join hundreds of collectors already on Memorabilius'}
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20 }}>
             {featuredGalleries.map(g => (
               <Link key={g.id} href={`/galerie/${g.id}`} style={{ textDecoration: 'none' }}>
                 <div style={{
                   background: dark ? 'rgba(13,18,48,0.95)' : 'white',
-                  border: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e8eeff',
-                  borderRadius: 14, overflow: 'hidden',
-                  boxShadow: dark ? '0 4px 20px rgba(0,0,0,0.3)' : '0 2px 16px rgba(0,61,166,0.06)',
-                  transition: 'transform 0.18s',
-                }} onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px)')}
-                  onMouseLeave={e => (e.currentTarget.style.transform = '')}>
-                  {g.topCard ? (
-                    <div style={{ height: 190, overflow: 'hidden', background: dark ? '#0a1230' : '#f4f7ff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <img src={g.topCard} alt="" style={{ height: '100%', maxWidth: '100%', objectFit: 'contain' }} />
-                    </div>
-                  ) : (
-                    <div style={{ height: 190, background: dark ? '#0a1230' : '#f4f7ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 48 }}>🃏</div>
-                  )}
-                  <div style={{ padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <img src={g.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(g.display_name || 'U')}&background=003DA6&color=fff`}
-                      style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} alt="" />
+                  border: dark ? '1px solid rgba(255,255,255,0.10)' : '1px solid #e0e8ff',
+                  borderRadius: 18, overflow: 'hidden',
+                  boxShadow: dark ? '0 8px 32px rgba(0,0,0,0.4)' : '0 4px 24px rgba(0,61,166,0.10)',
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = dark ? '0 16px 48px rgba(0,0,0,0.55)' : '0 12px 40px rgba(0,61,166,0.18)' }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = dark ? '0 8px 32px rgba(0,0,0,0.4)' : '0 4px 24px rgba(0,61,166,0.10)' }}>
+                  {/* Aperçu multi-cartes */}
+                  <div style={{ height: 200, background: dark ? '#070c24' : '#f0f4ff', display: 'flex', gap: 3, padding: 12, alignItems: 'center', justifyContent: 'center' }}>
+                    {g.topCards.slice(0, 3).map((src, i) => (
+                      <div key={i} style={{
+                        flex: 1, height: '100%', borderRadius: 8, overflow: 'hidden',
+                        boxShadow: '0 4px 14px rgba(0,0,0,0.3)',
+                        transform: i === 1 && g.topCards.length === 3 ? 'scaleY(1.06)' : 'none',
+                        transition: 'transform 0.2s',
+                        background: dark ? '#0a1230' : '#dce6ff',
+                      }}>
+                        <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
+                      </div>
+                    ))}
+                  </div>
+                  {/* Infos collecteur */}
+                  <div style={{ padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 12, borderTop: dark ? '1px solid rgba(255,255,255,0.06)' : '1px solid #eef2ff' }}>
+                    <img
+                      src={g.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(g.display_name || 'U')}&background=003DA6&color=fff`}
+                      style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: '2px solid #003DA6' }} alt="" />
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontWeight: 800, fontSize: 14, color: dark ? '#e8eeff' : '#0a2a6b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{g.display_name}</div>
-                      <div style={{ fontSize: 12, color: dark ? 'rgba(255,255,255,0.5)' : '#5a6e90' }}>{g.stats_total} cartes</div>
+                      <div style={{ fontWeight: 800, fontSize: 15, color: dark ? '#e8eeff' : '#0a2a6b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{g.display_name}</div>
+                      <div style={{ fontSize: 12, color: dark ? 'rgba(255,255,255,0.45)' : '#7a8fb0', marginTop: 1 }}>
+                        {g.stats_total.toLocaleString('fr-FR')} {lang === 'fr' ? 'cartes dans sa collection' : 'cards in their collection'}
+                      </div>
                     </div>
-                    <span style={{ fontSize: 12, fontWeight: 700, color: '#003DA6', flexShrink: 0 }}>Voir →</span>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: 'white', background: '#003DA6', padding: '5px 11px', borderRadius: 999, flexShrink: 0 }}>
+                      {lang === 'fr' ? 'Voir →' : 'View →'}
+                    </span>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
-          <p style={{ textAlign: 'center', marginTop: 14 }}>
-            <Link href="/annuaire" style={{ fontSize: 13, fontWeight: 700, color: dark ? '#4da3ff' : '#003DA6', textDecoration: 'none' }}>
+          <div style={{ textAlign: 'center', marginTop: 20 }}>
+            <Link href="/sinscrire" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              fontSize: 14, fontWeight: 800,
+              color: 'white', background: '#003DA6',
+              padding: '11px 24px', borderRadius: 999,
+              textDecoration: 'none', boxShadow: '0 4px 16px rgba(0,61,166,0.4)',
+            }}>
+              {lang === 'fr' ? '🚀 Créer ma galerie gratuitement' : '🚀 Create my gallery for free'}
+            </Link>
+            <Link href="/annuaire" style={{ display: 'block', marginTop: 10, fontSize: 13, fontWeight: 600, color: dark ? '#4da3ff' : '#003DA6', textDecoration: 'none' }}>
               {lang === 'fr' ? 'Explorer toutes les galeries →' : 'Explore all galleries →'}
             </Link>
-          </p>
+          </div>
         </section>
       )}
 

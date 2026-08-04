@@ -950,7 +950,7 @@ export default function AdminStats() {
           <KpiCard label="Scans total"       value={stats.total_scans ?? 0} />
           <KpiCard label="Scans aujourd'hui" value={stats.scans_today ?? 0} />
           <KpiCard label="Scans ce mois"     value={stats.scans_month ?? 0} />
-          <KpiCard label="Coût total (Gemini 2.5 Flash)" value={`€ ${(stats.estimated_cost_eur ?? 0).toFixed(4)}`} sub={`≈ €0,00020/scan · sans thinking`} />
+          <KpiCard label="Coût total (Gemini 2.5 Flash)" value={`€ ${(stats.estimated_cost_eur ?? 0).toFixed(4)}`} sub={`≈ €0,00013/scan · sans thinking`} />
         </div>
 
         {/* Qualité IA — taux de correction */}

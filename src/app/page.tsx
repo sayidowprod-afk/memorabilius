@@ -15,7 +15,7 @@ interface Card {
 
 interface FeaturedGallery {
   id: string; display_name: string; avatar_url: string | null
-  stats_total: number; topCard: string | null
+  stats_total: number; topCards: string[]
 }
 
 async function fetchPepites(): Promise<Card[]> {
@@ -95,12 +95,12 @@ async function fetchFeaturedGalleries(): Promise<FeaturedGallery[]> {
       .eq('user_id', p.id)
       .not('image_recto', 'is', null)
       .eq('is_horizontal', false)
-      .limit(1)
-      .single()
-    return { ...p, topCard: (data as any)?.image_recto || null }
+      .limit(3)
+    const topCards = (data || []).map((r: any) => r.image_recto).filter(Boolean)
+    return { ...p, topCards }
   }))
 
-  return withCards
+  return withCards.filter(g => g.topCards.length > 0)
 }
 
 async function fetchPodium() {
