@@ -585,11 +585,8 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       disponible_vente: form.disponible_vente,
     }).select('id').single()
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
-    if (geminiPrediction.current && newCard) {
-      const pred = geminiPrediction.current
-      const final = { nom: form.nom, equipe: form.equipe, annee: form.annee, marque: form.marque, collection: form.collection, variation: form.variation, num: form.num, rc: form.rc, auto: form.auto, patch: form.patch }
-      const changed = (Object.keys(final) as (keyof typeof final)[]).filter(k => String(pred[k] ?? '') !== String(final[k] ?? ''))
-      // Upload photos originales (avant recadrage) pour dataset coins ML — une par face scannée
+    // Upload photos originales pour dataset coins YOLO — une par face scannée
+    if (newCard) {
       for (const [side, scan] of Object.entries(scannerCornersRef.current)) {
         if (!scan?.originalBlob) continue
         let imageOriginal: string | null = null
@@ -599,20 +596,12 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
         if (data) imageOriginal = data.path
         supabase.from('training_data').insert({
           user_id: uid, carte_id: newCard.id,
-          image_recto: form.image_recto || null, image_verso: form.image_verso || null,
           image_original: imageOriginal,
-          gemini_output: pred, final_output: final,
-          corrected: changed.length > 0, corrected_fields: changed,
           gemini_corners: scan.gemini ?? null,
           final_corners: scan.final ?? null,
           corners_adjusted: scan.adjusted ?? false,
           source: 'galerie',
         }).then(({ error }) => { if (error) console.error('[training_data]', error) })
-      }
-      if (changed.length > 0) {
-        supabase.from('scan_corrections').insert({
-          user_id: uid, gemini_output: pred, final_output: final, corrected_fields: changed, source: 'galerie',
-        }).then(() => {})
       }
     }
     supabase.auth.getSession().then(({ data: { session } }) => {
