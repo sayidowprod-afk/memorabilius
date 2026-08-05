@@ -2,6 +2,7 @@
 import { useEffect, useId } from 'react'
 import { createPortal } from 'react-dom'
 import GalerieComments from './GalerieComments'
+import { useLang } from '@/lib/LangContext'
 
 export default function CommentsModal({ title, onClose, ...commentsProps }: {
   title: string
@@ -10,6 +11,7 @@ export default function CommentsModal({ title, onClose, ...commentsProps }: {
   cardKey?: string; binderId?: number; notifyUserId?: string; emptyLabel?: string
 }) {
   const titleId = useId()
+  const { t } = useLang()
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
@@ -28,7 +30,7 @@ export default function CommentsModal({ title, onClose, ...commentsProps }: {
       <div onClick={e => e.stopPropagation()} style={{ background: 'white', borderRadius: 16, padding: 20, width: '100%', maxWidth: 560, maxHeight: '86vh', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 12 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <h3 id={titleId} style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>💬 {title}</h3>
-          <button onClick={onClose} aria-label="Fermer" style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>✕</button>
+          <button onClick={onClose} aria-label={t('comments_close')} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>✕</button>
         </div>
         <GalerieComments {...commentsProps} />
       </div>

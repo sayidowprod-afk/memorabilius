@@ -23,14 +23,6 @@ function verifyDiscord(req: NextRequest, body: string): boolean {
   } catch { return false }
 }
 
-export async function GET() {
-  return NextResponse.json({
-    ok: true,
-    hasKey: !!process.env.DISCORD_PUBLIC_KEY,
-    keyLength: process.env.DISCORD_PUBLIC_KEY?.length ?? 0,
-  })
-}
-
 function reply(data: object) {
   return { type: 4, data }
 }

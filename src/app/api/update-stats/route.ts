@@ -23,10 +23,10 @@ export async function POST(req: NextRequest) {
 
     const stats = { total: 0, rc: 0, auto: 0, num: 0, patch: 0 }
 
-    // CSV et cartes manuelles sont indépendants → en parallèle
-    const [csvText, manuellesRes] = await Promise.all([
+    // CSV en parallèle avec la première page de cartes manuelles
+    const [csvText, firstPage] = await Promise.all([
       csvUrl ? fetchCsvCapped(csvUrl) : Promise.resolve(null),
-      supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).limit(10000),
+      supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).range(0, 999),
     ])
 
     if (csvText) {
@@ -38,15 +38,20 @@ export async function POST(req: NextRequest) {
       stats.patch += csvStats.patch
     }
 
-    if (manuellesRes.data) {
-      manuellesRes.data.forEach((m: any) => {
-        stats.total++
-        if (m.rc) stats.rc++
-        if (m.auto) stats.auto++
-        if (m.patch) stats.patch++
-        if (m.num) stats.num++
-      })
+    const manuelles: any[] = [...(firstPage.data || [])]
+    for (let page = 1; manuelles.length === page * 1000; page++) {
+      const { data } = await supabase.from('cartes_manuelles').select('rc, auto, patch, num').eq('user_id', userId).range(page * 1000, page * 1000 + 999)
+      if (!data || data.length === 0) break
+      manuelles.push(...data)
     }
+
+    manuelles.forEach((m: any) => {
+      stats.total++
+      if (m.rc) stats.rc++
+      if (m.auto) stats.auto++
+      if (m.patch) stats.patch++
+      if (m.num) stats.num++
+    })
 
     // Le compteur mensuel (monthly_additions) n'est PAS mis à jour ici.
     // Un CSV n'a pas de date d'ajout par ligne : comparer le total actuel à

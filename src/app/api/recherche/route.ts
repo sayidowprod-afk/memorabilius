@@ -13,6 +13,7 @@ interface CsvEntry { cards: any[]; expiry: number; url: string }
 const csvCache = new Map<string, CsvEntry>()
 
 async function getProfileCsvCards(profileId: string, csvUrl: string): Promise<any[]> {
+  if (!csvUrl.startsWith('https://docs.google.com/spreadsheets/')) return []
   const cached = csvCache.get(profileId)
   // Retourne le cache si valide ET si l'URL n'a pas changé
   if (cached && cached.expiry > Date.now() && cached.url === csvUrl) return cached.cards

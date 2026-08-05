@@ -256,6 +256,42 @@ const translations = {
     events_going_q: "📌 J'y vais ?",
     events_attendee_one: 'participant',
     events_attendee_other: 'participants',
+
+    // Comments
+    comments_placeholder: 'Laisser un commentaire...',
+    comments_reply_placeholder: 'Votre réponse...',
+    comments_send: 'Commenter',
+    comments_reply: 'Répondre',
+    comments_sending: 'Envoi...',
+    comments_empty: 'Aucun commentaire',
+    comments_empty_gallery: 'Soyez le premier à commenter cette galerie',
+    comments_login_text: 'pour commenter ou liker',
+    comments_close: 'Fermer',
+    comments_instant: 'À l\'instant',
+    comments_ago: 'Il y a',
+    comments_min: 'min',
+    comments_day: 'j',
+
+    // Wishlist
+    wishlist_title: 'Ma Wishlist',
+    wishlist_sub: 'Cartes que vous recherchez',
+    wishlist_add: '+ Ajouter une carte',
+    wishlist_cancel_add: '✕ Annuler',
+    wishlist_new_wanted: 'Nouvelle carte recherchée',
+    wishlist_saving: 'Enregistrement...',
+    wishlist_submit: 'Ajouter à ma wishlist',
+    wishlist_empty_title: 'Aucune carte dans votre wishlist',
+    wishlist_empty_sub: 'Ajoutez les cartes que vous recherchez',
+    wishlist_owned_by: 'Possédée par :',
+    wishlist_none: 'Aucune carte recherchée',
+    wishlist_num_label: 'Numérotation',
+    wishlist_variation_label: 'Variation',
+    wishlist_notes_label: 'Notes',
+
+    // Misc
+    collector_label: 'Collectionneur',
+    video_format_default: 'Défaut',
+    video_format_square: 'Carré',
   },
   en: {
     // Navbar
@@ -509,6 +545,42 @@ const translations = {
     events_going_q: '📌 Going?',
     events_attendee_one: 'attendee',
     events_attendee_other: 'attendees',
+
+    // Comments
+    comments_placeholder: 'Leave a comment...',
+    comments_reply_placeholder: 'Your reply...',
+    comments_send: 'Comment',
+    comments_reply: 'Reply',
+    comments_sending: 'Sending...',
+    comments_empty: 'No comments',
+    comments_empty_gallery: 'Be the first to comment on this gallery',
+    comments_login_text: 'to comment or like',
+    comments_close: 'Close',
+    comments_instant: 'Just now',
+    comments_ago: '',
+    comments_min: 'min ago',
+    comments_day: 'd ago',
+
+    // Wishlist
+    wishlist_title: 'My Wishlist',
+    wishlist_sub: 'Cards you are looking for',
+    wishlist_add: '+ Add a card',
+    wishlist_cancel_add: '✕ Cancel',
+    wishlist_new_wanted: 'New wanted card',
+    wishlist_saving: 'Saving...',
+    wishlist_submit: 'Add to my wishlist',
+    wishlist_empty_title: 'No cards in your wishlist',
+    wishlist_empty_sub: 'Add the cards you are looking for',
+    wishlist_owned_by: 'Owned by:',
+    wishlist_none: 'No wanted cards',
+    wishlist_num_label: 'Print run',
+    wishlist_variation_label: 'Variation',
+    wishlist_notes_label: 'Notes',
+
+    // Misc
+    collector_label: 'Collector',
+    video_format_default: 'Default',
+    video_format_square: 'Square',
   }
 }
 

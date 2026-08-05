@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { useLang } from '@/lib/LangContext'
 
 interface ActiveListing { price: number; title: string; url: string; img: string }
 interface SoldListing   { price: number; title: string; url: string; img: string; soldDate: string }
@@ -25,15 +26,16 @@ function medianOf(prices: number[]) {
   return s.length % 2 === 0 ? (s[m - 1] + s[m]) / 2 : s[m]
 }
 
-function fmtDate(iso: string) {
+function fmtDate(iso: string, lang: string) {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })
+  return new Date(iso).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'short' })
 }
 
 export default function CardValueModule({ cardName, set, year, num, variant, rc, auto, patch, grade, accent, img }: Props) {
   const [active, setActive]   = useState<ActiveListing[]>([])
   const [sold, setSold]       = useState<SoldListing[]>([])
   const [loading, setLoading] = useState(true)
+  const { lang } = useLang()
 
   const printRun = num?.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num
   const ebaySearchUrl = `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`
@@ -149,7 +151,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
                   }
                   <div style={{ padding: '4px 5px 5px' }}>
                     <div style={{ fontWeight: 900, fontSize: 12, color: '#2e7d32', lineHeight: 1.1 }}>{item.price}€</div>
-                    <div style={{ fontSize: 9, color: '#aaa', marginTop: 1 }}>{fmtDate(item.soldDate)}</div>
+                    <div style={{ fontSize: 9, color: '#aaa', marginTop: 1 }}>{fmtDate(item.soldDate, lang)}</div>
                   </div>
                 </div>
               </a>

@@ -43,7 +43,9 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [codec, setCodec] = useState<'webm' | 'mp4'>('webm')
   const [vfmt, setVfmt] = useState<VideoFormat>('default')
-  const { lang } = useLang()
+  const { t, lang } = useLang()
+  const fmtLabel = (key: VideoFormat) =>
+    key === 'default' ? t('video_format_default') : key === 'square' ? t('video_format_square') : VIDEO_FORMATS[key].label
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
   const DURATION = 6000
@@ -518,7 +520,7 @@ export default function CardVideoExport({ card, accent, onClose }: Props) {
               <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', justifyContent: 'center' }}>
                 {(Object.entries(VIDEO_FORMATS) as [VideoFormat, typeof VIDEO_FORMATS[VideoFormat]][]).map(([key, f]) => (
                   <button key={key} style={chip(vfmt === key)} onClick={() => setVfmt(key)}>
-                    {f.label} <span style={{ opacity: 0.6, fontSize: 11 }}>{f.ratio}</span>
+                    {fmtLabel(key)} <span style={{ opacity: 0.6, fontSize: 11 }}>{f.ratio}</span>
                   </button>
                 ))}
               </div>

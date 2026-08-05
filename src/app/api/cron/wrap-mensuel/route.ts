@@ -197,9 +197,16 @@ export async function GET(req: NextRequest) {
   const monthEnd = new Date(now.getFullYear(), now.getMonth(), 1)
   const monthLabel = monthName(monthStart)
 
-  // Get all active users (with email via auth.users)
-  const { data: authUsers } = await supabase.auth.admin.listUsers({ perPage: 1000 })
-  if (!authUsers) return NextResponse.json({ error: 'No users' }, { status: 500 })
+  // Get all active users with pagination (auth.admin.listUsers returns max 1000/page)
+  const allUsers: any[] = []
+  for (let page = 1; ; page++) {
+    const { data } = await supabase.auth.admin.listUsers({ perPage: 1000, page })
+    if (!data || data.users.length === 0) break
+    allUsers.push(...data.users)
+    if (data.users.length < 1000) break
+  }
+  const authUsers = { users: allUsers }
+  if (allUsers.length === 0) return NextResponse.json({ error: 'No users' }, { status: 500 })
 
   // Get all profiles
   const { data: profiles } = await supabase

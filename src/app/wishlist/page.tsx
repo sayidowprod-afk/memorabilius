@@ -22,7 +22,7 @@ export default function WishlistPage() {
   const [loading, setLoading] = useState(true)
   const [removingId, setRemovingId] = useState<string | null>(null)
   const router = useRouter()
-  const { lang } = useLang()
+  const { t, lang } = useLang()
   const { dark } = useTheme()
 
   useEffect(() => {
@@ -62,49 +62,49 @@ export default function WishlistPage() {
     <div style={{ maxWidth: 800, margin: '0 auto', padding: '30px 16px', fontFamily: 'Inter, sans-serif' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
         <div>
-          <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>Ma Wishlist</h1>
-          <p style={{ color: '#999', fontSize: 13, margin: '4px 0 0' }}>Cartes que vous recherchez</p>
+          <h1 style={{ fontWeight: 900, fontSize: 28, margin: 0 }}>{t('wishlist_title')}</h1>
+          <p style={{ color: '#999', fontSize: 13, margin: '4px 0 0' }}>{t('wishlist_sub')}</p>
         </div>
         <button onClick={() => setShowForm(!showForm)} style={{
           background: '#003DA6', color: 'white', border: 'none', borderRadius: 10,
           padding: '10px 20px', fontWeight: 800, fontSize: 14, cursor: 'pointer',
         }}>
-          {showForm ? '✕ Annuler' : '+ Ajouter une carte'}
+          {showForm ? t('wishlist_cancel_add') : t('wishlist_add')}
         </button>
       </div>
 
       {/* Formulaire */}
       {showForm && (
         <form onSubmit={e => { e.preventDefault(); save() }} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 14, padding: 20, marginBottom: 24, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: `1px solid ${dark ? '#2a2a2a' : '#eee'}` }}>
-          <h3 style={{ fontWeight: 800, margin: '0 0 16px', fontSize: 15 }}>Nouvelle carte recherchée</h3>
+          <h3 style={{ fontWeight: 800, margin: '0 0 16px', fontSize: 15 }}>{t('wishlist_new_wanted')}</h3>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             <div style={{ gridColumn: '1/-1' }}>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Joueur *</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_player')}</label>
               <input value={form.nom} onChange={e => setForm(p => ({ ...p, nom: e.target.value }))} placeholder="Ex: Shai Gilgeous-Alexander" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Année</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_year_label')}</label>
               <input value={form.annee} onChange={e => setForm(p => ({ ...p, annee: e.target.value }))} placeholder="2024-25" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Marque</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('setlist_brand')}</label>
               <input value={form.marque} onChange={e => setForm(p => ({ ...p, marque: e.target.value }))} placeholder="Panini" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Collection</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('gallery_collection_label')}</label>
               <input value={form.collection} onChange={e => setForm(p => ({ ...p, collection: e.target.value }))} placeholder="National Treasures" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Variation</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_variation_label')}</label>
               <input value={form.variation} onChange={e => setForm(p => ({ ...p, variation: e.target.value }))} placeholder="Holo" />
             </div>
             <div>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Numérotation</label>
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_num_label')}</label>
               <input value={form.num} onChange={e => setForm(p => ({ ...p, num: e.target.value }))} placeholder="/99" />
             </div>
             <div style={{ gridColumn: '1/-1' }}>
-              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>Notes</label>
-              <input value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} placeholder="Budget max, état souhaité..." />
+              <label style={{ fontSize: 10, fontWeight: 800, color: '#888', textTransform: 'uppercase', display: 'block', marginBottom: 4 }}>{t('wishlist_notes_label')}</label>
+              <input value={form.notes} onChange={e => setForm(p => ({ ...p, notes: e.target.value }))} placeholder={lang === 'fr' ? 'Budget max, état souhaité...' : 'Max budget, desired condition...'} />
             </div>
             <div style={{ gridColumn: '1/-1', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {(['rc', 'auto', 'patch'] as const).map(k => (
@@ -122,7 +122,7 @@ export default function WishlistPage() {
             color: 'white', border: 'none', borderRadius: 10, padding: '12px',
             fontWeight: 800, fontSize: 14, cursor: form.nom.trim() ? 'pointer' : 'default',
           }}>
-            {saving ? 'Enregistrement...' : 'Ajouter à ma wishlist'}
+            {saving ? t('wishlist_saving') : t('wishlist_submit')}
           </button>
         </form>
       )}
@@ -139,8 +139,8 @@ export default function WishlistPage() {
       {!loading && items.length === 0 && !showForm && (
         <div style={{ textAlign: 'center', padding: '60px 20px', color: '#bbb' }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>🎯</div>
-          <p style={{ fontWeight: 700, fontSize: 16 }}>Aucune carte dans votre wishlist</p>
-          <p style={{ fontSize: 13, marginTop: 4 }}>Ajoutez les cartes que vous recherchez</p>
+          <p style={{ fontWeight: 700, fontSize: 16 }}>{t('wishlist_empty_title')}</p>
+          <p style={{ fontSize: 13, marginTop: 4 }}>{t('wishlist_empty_sub')}</p>
         </div>
       )}
 

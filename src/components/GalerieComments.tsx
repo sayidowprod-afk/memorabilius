@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useTheme } from '@/lib/ThemeContext'
+import { useLang } from '@/lib/LangContext'
 
 const EMOJIS = [
   '😀','😂','🥰','😍','🤩','😎','🥳','🤯','😮','🔥',
@@ -65,14 +66,14 @@ interface Comment extends CommentRow {
   likes: number; liked: boolean; replies: Comment[]
 }
 
-const timeAgo = (date: string) => {
+const timeAgo = (date: string, t: (k: any) => string, lang: string) => {
   const diff = Date.now() - new Date(date).getTime()
   const mins = Math.floor(diff / 60000)
-  if (mins < 1) return 'À l\'instant'
-  if (mins < 60) return `Il y a ${mins}min`
+  if (mins < 1) return t('comments_instant')
+  if (mins < 60) return lang === 'fr' ? `${t('comments_ago')} ${mins}${t('comments_min')}` : `${mins} ${t('comments_min')}`
   const hours = Math.floor(mins / 60)
-  if (hours < 24) return `Il y a ${hours}h`
-  return `Il y a ${Math.floor(hours / 24)}j`
+  if (hours < 24) return lang === 'fr' ? `${t('comments_ago')} ${hours}h` : `${hours}h ago`
+  return lang === 'fr' ? `${t('comments_ago')} ${Math.floor(hours / 24)}${t('comments_day')}` : `${Math.floor(hours / 24)}${t('comments_day')}`
 }
 
 const Avatar = ({ profile, accent, size = 36 }: { profile: Profile | null; accent: string; size?: number }) => (
@@ -82,13 +83,13 @@ const Avatar = ({ profile, accent, size = 36 }: { profile: Profile | null; accen
 )
 
 function CommentItem({
-  comment, accent, currentUserId, isOwner, onDelete, onLike, onReply, depth = 0, dark
+  comment, accent, currentUserId, isOwner, onDelete, onLike, onReply, depth = 0, dark, t, lang
 }: {
   comment: Comment; accent: string; currentUserId: string | null
   isOwner: boolean; onDelete: (id: string) => void
   onLike: (id: string, liked: boolean) => void
   onReply: (parentId: string, message: string) => void
-  depth?: number; dark: boolean
+  depth?: number; dark: boolean; t: (k: any) => string; lang: string
 }) {
   const [replyOpen, setReplyOpen] = useState(false)
   const [replyMsg, setReplyMsg] = useState('')
@@ -124,7 +125,7 @@ function CommentItem({
               <Link href={`/galerie/${comment.profiles?.slug || comment.author_id}`} style={{ fontWeight: 800, fontSize: 13, color: textMain, textDecoration: 'none' }}>
                 {comment.profiles?.display_name || 'Collectionneur'}
               </Link>
-              <span style={{ fontSize: 11, color: textMuted }}>{timeAgo(comment.created_at)}</span>
+              <span style={{ fontSize: 11, color: textMuted }}>{timeAgo(comment.created_at, t, lang)}</span>
             </div>
             {(isOwner || currentUserId === comment.author_id) && (
               <button onClick={() => onDelete(comment.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: textMuted, fontSize: 14, padding: '0 2px', lineHeight: 1 }}>✕</button>
@@ -149,7 +150,7 @@ function CommentItem({
               background: 'none', border: 'none', cursor: 'pointer',
               fontSize: 12, fontWeight: 700, color: replyOpen ? accent : textMuted, padding: 0,
             }}>
-              Répondre
+              {t('comments_reply')}
             </button>
           )}
         </div>
@@ -162,7 +163,7 @@ function CommentItem({
               value={replyMsg}
               onChange={e => setReplyMsg(e.target.value)}
               onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); send() } if (e.key === 'Escape') setReplyOpen(false) }}
-              placeholder="Votre réponse..."
+              placeholder={t('comments_reply_placeholder')}
               maxLength={500}
               style={{
                 flex: 1, border: `1px solid ${border}`, borderRadius: 8, padding: '8px 12px',
@@ -182,7 +183,7 @@ function CommentItem({
           <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 8 }}>
             {comment.replies.map(reply => (
               <CommentItem key={reply.id} comment={reply} accent={accent} currentUserId={currentUserId}
-                isOwner={isOwner} onDelete={onDelete} onLike={onLike} onReply={onReply} depth={1} dark={dark} />
+                isOwner={isOwner} onDelete={onDelete} onLike={onLike} onReply={onReply} depth={1} dark={dark} t={t} lang={lang} />
             ))}
           </div>
         )}
@@ -201,6 +202,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
   const [sending, setSending] = useState(false)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const { dark } = useTheme()
+  const { t, lang } = useLang()
 
   const bg = dark ? '#333333' : 'white'
   const border = dark ? '#444' : '#f0f0f0'
@@ -355,7 +357,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
             value={message}
             onChange={e => setMessage(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() } }}
-            placeholder="Laisser un commentaire..."
+            placeholder={t('comments_placeholder')}
             maxLength={500}
             rows={3}
             style={{
@@ -374,7 +376,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
               background: message.trim() ? accent : (dark ? '#444' : '#ddd'), color: 'white', border: 'none',
               borderRadius: 8, padding: '8px 20px', fontWeight: 800, fontSize: 13, cursor: message.trim() ? 'pointer' : 'default',
             }}>
-              {sending ? 'Envoi...' : 'Commenter'}
+              {sending ? t('comments_sending') : t('comments_send')}
             </button>
           </div>
         </div>
@@ -383,7 +385,7 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
       {!currentUserId && (
         <div style={{ textAlign: 'center', padding: '20px', marginBottom: 20, background: dark ? '#2a2a2a' : '#f8f8f8', borderRadius: 12 }}>
           <span style={{ fontSize: 13, color: textMuted }}>
-            <Link href="/connexion" style={{ color: accent, fontWeight: 700 }}>Connectez-vous</Link> pour commenter ou liker
+            <Link href="/connexion" style={{ color: accent, fontWeight: 700 }}>{t('login_btn')}</Link> {t('comments_login_text')}
           </span>
         </div>
       )}
@@ -391,14 +393,14 @@ export default function GalerieComments({ galerieUserId, accent, isOwner, cardKe
       {comments.length === 0 ? (
         <div style={{ textAlign: 'center', padding: '60px 20px', color: textMuted }}>
           <div style={{ fontSize: 40, marginBottom: 8 }}>💬</div>
-          <p style={{ fontWeight: 700 }}>Aucun commentaire</p>
-          <p style={{ fontSize: 13, marginTop: 4 }}>{emptyLabel || 'Soyez le premier à commenter cette galerie'}</p>
+          <p style={{ fontWeight: 700 }}>{t('comments_empty')}</p>
+          <p style={{ fontSize: 13, marginTop: 4 }}>{emptyLabel || t('comments_empty_gallery')}</p>
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {comments.map(c => (
             <CommentItem key={c.id} comment={c} accent={accent} currentUserId={currentUserId}
-              isOwner={isOwner} onDelete={handleDelete} onLike={handleLike} onReply={handleReply} dark={dark} />
+              isOwner={isOwner} onDelete={handleDelete} onLike={handleLike} onReply={handleReply} dark={dark} t={t} lang={lang} />
           ))}
         </div>
       )}
