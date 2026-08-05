@@ -874,7 +874,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
             </button>
             {userId && (
               <ShareButton
-                url={`/galerie/${userSlug || userId}/${cardSlug(popup.n, popup.y, popup.br, popup.s)}?src=${encodeURIComponent(popup.f)}`}
+                url={popup.id_manuelle ? `/s/${popup.id_manuelle}` : `/galerie/${userSlug || userId}/${cardSlug(popup.n, popup.y, popup.br, popup.s)}?src=${encodeURIComponent(popup.f)}`}
                 title={popup.n}
                 buttonStyle={{
                   background: dark ? '#2a2a2a' : '#f0f0f0',
