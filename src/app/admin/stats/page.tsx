@@ -385,19 +385,10 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
   const rate7    = rollingAvg(dailyAll, 7)
   const trend    = trendVsPrev(dailyAll)
 
-  // Projection = taux fixe (moy. 7j)
-  const projAll: DailyPoint[] = Array.from({ length: 365 }, (_, i) => {
-    const d = new Date(); d.setUTCDate(d.getUTCDate() + i + 1)
-    return { day: d.toISOString().slice(0, 10), count: Math.round(rate7) }
-  })
-
-  const { histDays, projDays } = ZOOM_CFG[zoom]
+  const { histDays } = ZOOM_CFG[zoom]
   const visHist = histDays === Infinity ? dailyAll : dailyAll.slice(-histDays)
-  const visProj = projAll.slice(0, projDays)
-  const nVis    = visHist.length
-  const allVis  = [...visHist, ...visProj]
-  const T       = allVis.length
-  const maxVal  = Math.max(1, ...allVis.map(p => p.count))
+  const T       = visHist.length
+  const maxVal  = Math.max(1, ...visHist.map(p => p.count))
 
   const H = 200, PL = 58, PR = 16, PT = 22, PB = 30
   const cW = W_SVG - PL - PR, cH = H - PT - PB
@@ -406,11 +397,8 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
 
   const hPath = visHist.map((p, i) => `${i === 0 ? 'M' : 'L'}${sx(i).toFixed(1)},${sy(p.count).toFixed(1)}`).join('')
   const hArea = visHist.length > 1
-    ? `${hPath}L${sx(nVis-1).toFixed(1)},${(PT+cH).toFixed(1)}L${sx(0).toFixed(1)},${(PT+cH).toFixed(1)}Z`
+    ? `${hPath}L${sx(T-1).toFixed(1)},${(PT+cH).toFixed(1)}L${sx(0).toFixed(1)},${(PT+cH).toFixed(1)}Z`
     : ''
-  // Projection = ligne horizontale au niveau rate7
-  const pY = sy(Math.round(rate7))
-  const pPath = `M${sx(nVis-1).toFixed(1)},${pY.toFixed(1)}L${sx(T-1).toFixed(1)},${pY.toFixed(1)}`
 
   const yTicks  = [0, Math.round(maxVal * 0.5), maxVal]
   const nLabels = Math.min(6, T)
@@ -424,10 +412,9 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
     setHovered(Math.max(0, Math.min(T - 1, Math.round(((mx - PL) / cW) * (T - 1)))))
   }
 
-  const hp     = hovered !== null ? allVis[hovered] : null
-  const hx     = hovered !== null ? sx(hovered) : null
-  const hy     = hp ? sy(hp.count) : null
-  const isProj = hovered !== null && hovered >= nVis
+  const hp    = hovered !== null ? visHist[hovered] : null
+  const hx    = hovered !== null ? sx(hovered) : null
+  const hy    = hp ? sy(hp.count) : null
   const tooltipPct  = hx !== null ? (hx / W_SVG) * 100 : 50
   const tooltipXfrm = tooltipPct < 10 ? 'translateX(0)' : tooltipPct > 90 ? 'translateX(-100%)' : 'translateX(-50%)'
   const trendColor  = trend === '↑' ? '#059669' : trend === '↓' ? '#ef4444' : '#94a3b8'
@@ -454,34 +441,21 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
             </g>
           ))}
 
-          {/* Fond projection */}
-          <rect x={sx(nVis-1)} y={PT} width={Math.max(0, sx(T-1)-sx(nVis-1))} height={cH} fill="#f8fafc" />
-
-          {/* Area + ligne historique */}
           {hArea && <path d={hArea} fill={color} opacity={0.08} />}
           {visHist.length > 1 && (
             <path d={hPath} fill="none" stroke={color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
           )}
 
-          {/* Ligne projection horizontale */}
-          <path d={pPath} fill="none" stroke={color} strokeWidth={1.5} strokeDasharray="6 4" opacity={0.45} />
-
-          {/* Aujourd'hui */}
-          <line x1={sx(nVis-1)} x2={sx(nVis-1)} y1={PT} y2={PT+cH} stroke="#94a3b8" strokeWidth={1} strokeDasharray="3 3" />
-          <text x={sx(nVis-1)} y={PT-5} textAnchor="middle" fontSize={8} fill="#94a3b8">auj.</text>
-
-          {/* Labels X */}
           {labelIdx.map(i => (
-            <text key={i} x={sx(i)} y={H-8} textAnchor="middle" fontSize={9} fill={i >= nVis ? '#b0bec5' : '#64748b'}>
-              {allVis[i]?.day.slice(5)}
+            <text key={i} x={sx(i)} y={H-8} textAnchor="middle" fontSize={9} fill="#64748b">
+              {visHist[i]?.day.slice(5)}
             </text>
           ))}
 
-          {/* Crosshair */}
           {hovered !== null && hx !== null && hy !== null && (
             <>
               <line x1={hx} x2={hx} y1={PT} y2={PT+cH} stroke="#475569" strokeWidth={1} strokeDasharray="2 2" />
-              <circle cx={hx} cy={hy} r={4.5} fill={isProj ? '#fff' : color} stroke={color} strokeWidth={2} />
+              <circle cx={hx} cy={hy} r={4.5} fill={color} stroke={color} strokeWidth={2} />
             </>
           )}
           <rect x={PL} y={PT} width={cW} height={cH} fill="transparent" />
@@ -494,12 +468,8 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
             fontSize: 12, pointerEvents: 'none', whiteSpace: 'nowrap', zIndex: 20,
             boxShadow: '0 4px 16px rgba(0,0,0,.3)',
           }}>
-            <div style={{ color: '#64748b', fontSize: 10, marginBottom: 3 }}>
-              {hp.day}{isProj ? ' · projection (moy. 7j)' : ''}
-            </div>
-            <div style={{ fontWeight: 700, fontSize: 16, color: isProj ? color + '99' : color }}>
-              {fmt(hp.count)}/jour
-            </div>
+            <div style={{ color: '#64748b', fontSize: 10, marginBottom: 3 }}>{hp.day}</div>
+            <div style={{ fontWeight: 700, fontSize: 16, color }}>{fmt(hp.count)}/jour</div>
           </div>
         )}
       </div>
