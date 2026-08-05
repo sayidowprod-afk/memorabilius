@@ -114,11 +114,11 @@ function matchesCsvCard(card: any, tk: ReturnType<typeof parseTokens>): boolean 
 }
 
 async function searchCsv(profiles: any[], tk: ReturnType<typeof parseTokens>) {
-  for (const p of profiles) {
-    if (!p.lien_csv) continue
+  const searchOne = async (p: any): Promise<{ card: any; profile: any } | null> => {
+    if (!p.lien_csv) return null
     try {
       const res = await fetch(p.lien_csv, { signal: AbortSignal.timeout(2000), next: { revalidate: 3600 } } as any)
-      if (!res.ok) continue
+      if (!res.ok) return null
       const text = await res.text()
       const rows = text.split(/\r?\n/).slice(4)
       for (const row of rows) {
@@ -135,9 +135,16 @@ async function searchCsv(profiles: any[], tk: ReturnType<typeof parseTokens>) {
         }
         if (matchesCsvCard(card, tk)) return { card, profile: p }
       }
-    } catch { continue }
+    } catch { /* CSV inaccessible */ }
+    return null
   }
-  return null
+
+  // Recherche en parallèle — Promise.any s'arrête dès le premier match
+  try {
+    return await Promise.any(profiles.map(searchOne))
+  } catch {
+    return null
+  }
 }
 
 async function cmdCarte(options: any[]) {

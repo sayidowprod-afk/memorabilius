@@ -277,7 +277,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session?.access_token}` },
         body: JSON.stringify({ userId, cardId: idManuelle }),
-      }).catch(() => {})
+      }).catch(e => console.error('[card-added DELETE] stats divergence:', e))
 
       // 2. Suppression de la table des cartes manuelles
       const { error } = await supabase.from('cartes_manuelles').delete().eq('id', idManuelle).eq('user_id', userId)

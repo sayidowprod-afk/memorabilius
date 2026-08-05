@@ -117,7 +117,14 @@ async function postHandler(req: NextRequest) {
   if (receiverId === user.id)
     return NextResponse.json({ error: 'Impossible de s\'échanger avec soi-même' }, { status: 400 })
 
-  // Vérifier ownership des cartes manuelles offertes (cartes CSV : on fait confiance au client)
+  // Validation basique des cartes CSV : l'id doit être une URL publique externe
+  const csvOffered = offeredCards.filter(c => !c.isManuelle)
+  const csvRequested = requestedCards.filter(c => !c.isManuelle)
+  const isValidCsvId = (id: string) => { try { const u = new URL(id); return u.protocol === 'https:' } catch { return false } }
+  if (csvOffered.some(c => !isValidCsvId(c.id)) || csvRequested.some(c => !isValidCsvId(c.id)))
+    return NextResponse.json({ error: 'Identifiant de carte invalide' }, { status: 400 })
+
+  // Vérifier ownership des cartes manuelles offertes
   const manualOfferedIds = offeredCards.filter(c => c.isManuelle).map(c => c.id)
   if (manualOfferedIds.length) {
     const { data: senderCards } = await supabaseAdmin

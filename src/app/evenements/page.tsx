@@ -161,7 +161,7 @@ export default function Evenements() {
           <>
             <h2 style={{ color: sub, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>{t('events_past')}</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16, opacity: 0.6 }}>
-              {past.map(ev => <EventCard key={ev.id} ev={ev} dark={dark} text={text} sub={sub} card={card} border={border} onToggle={() => {}} userId={null} formatDate={formatDate} />)}
+              {past.map(ev => <EventCard key={ev.id} ev={ev} dark={dark} text={text} sub={sub} card={card} border={border} onToggle={null} userId={null} formatDate={formatDate} />)}
             </div>
           </>
         )}

@@ -203,7 +203,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
       try {
         const res = await fetch(profile.lien_csv + '&t=' + Date.now())
         if (res.ok) csvCards = parseCSVCards(await res.text()).filter(c => !privateKeys.has(c.image_recto))
-      } catch { }
+      } catch { setError('Impossible de charger les cartes CSV du destinataire') }
     }
     setTargetCards([...manuelCards, ...csvCards])
     setTargetLoading(false)
@@ -225,7 +225,7 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
       try {
         const res = await fetch(profile.lien_csv + '&t=' + Date.now())
         if (res.ok) csvCards = parseCSVCards(await res.text())
-      } catch { }
+      } catch { setError('Impossible de charger tes cartes CSV') }
     }
     setMyCards([...manuelCards, ...csvCards])
     setMyLoading(false)

@@ -16,7 +16,10 @@ export async function GET(req: NextRequest) {
   const rc = req.nextUrl.searchParams.get('rc') || ''
   const auto = req.nextUrl.searchParams.get('auto') || ''
   const patch = req.nextUrl.searchParams.get('patch') || ''
-  const excludeUserId = req.nextUrl.searchParams.get('exclude') || ''
+  const excludeRaw = req.nextUrl.searchParams.get('exclude') || ''
+  // Valide que excludeUserId est un UUID avant de l'utiliser en filtre DB
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+  const excludeUserId = UUID_RE.test(excludeRaw) ? excludeRaw : ''
   if (!name || name.length < 2) return NextResponse.json([])
 
   const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
@@ -27,8 +30,9 @@ export async function GET(req: NextRequest) {
   const [{ data: manuelles }, { data: privees }] = await Promise.all([
     supabase.from('cartes_manuelles')
       .select('user_id, nom, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
-      .neq('user_id', excludeUserId),
-    supabase.from('cartes_privees').select('user_id, card_key'),
+      .neq('user_id', excludeUserId || '00000000-0000-0000-0000-000000000000')
+      .limit(1000),
+    supabase.from('cartes_privees').select('user_id, card_key').limit(2000),
   ])
   const privateSet = new Set((privees || []).map((p: any) => `${p.user_id}::${p.card_key}`))
 

@@ -50,9 +50,25 @@ async function getProfileCsvCards(profileId: string, csvUrl: string): Promise<an
   }
 }
 
+// Rate limiter : 20 req/min par IP
+const RATE_MAP = new Map<string, { count: number; reset: number }>()
+function checkRate(ip: string): boolean {
+  const now = Date.now()
+  const e = RATE_MAP.get(ip)
+  if (!e || now > e.reset) { RATE_MAP.set(ip, { count: 1, reset: now + 60_000 }); return true }
+  if (e.count >= 20) return false
+  e.count++; return true
+}
+
 export async function GET(req: NextRequest) {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+  if (!checkRate(ip)) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+
   const query = req.nextUrl.searchParams.get('q')?.toLowerCase().trim()
   if (!query || query.length < 2) return NextResponse.json([])
+
+  // Échappe les wildcards SQL pour éviter un match total (% → \%, _ → \_)
+  const safeQ = query.replace(/%/g, '\\%').replace(/_/g, '\\_')
 
   const { data: profiles } = await supabase
     .from('profiles')
@@ -64,15 +80,15 @@ export async function GET(req: NextRequest) {
   const { data: privees } = await supabase
     .from('cartes_privees')
     .select('user_id, card_key')
-    .limit(50000)
+    .limit(5000)
   const privateSet = new Set((privees || []).map(p => `${p.user_id}::${p.card_key}`))
   const isPrivate = (userId: string, cardKey: string) => privateSet.has(`${userId}::${cardKey}`)
 
-  // Cartes manuelles — filtre SQL
+  // Cartes manuelles — filtre SQL avec wildcards échappés
   const { data: manuelles } = await supabase
     .from('cartes_manuelles')
     .select('*')
-    .or(`nom.ilike.%${query}%,equipe.ilike.%${query}%,variation.ilike.%${query}%,marque.ilike.%${query}%`)
+    .or(`nom.ilike.%${safeQ}%,equipe.ilike.%${safeQ}%,variation.ilike.%${safeQ}%,marque.ilike.%${safeQ}%`)
     .limit(500)
 
   const profileMap = new Map(profiles.map(p => [p.id, p]))
@@ -126,7 +142,7 @@ export async function GET(req: NextRequest) {
     supabase
       .from('card_set_entries')
       .select('player_name, is_rc, card_sets(sport)')
-      .ilike('player_name', `%${query}%`)
+      .ilike('player_name', `%${safeQ}%`)
       .limit(200),
     ...ESPN_SPORTS.map(sport =>
       fetch(
