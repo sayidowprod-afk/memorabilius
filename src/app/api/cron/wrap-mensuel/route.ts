@@ -225,21 +225,20 @@ export async function GET(req: NextRequest) {
   const testEmail = req.nextUrl.searchParams.get('email')
   const testMode = req.nextUrl.searchParams.get('test') === 'true'
 
-  let sent = 0
+  const sent = { count: 0 }
   const errors: string[] = []
 
-  for (const authUser of authUsers.users) {
-    if (!authUser.email) continue
-    if (testMode && authUser.email !== testEmail) continue
+  const wrapYear = monthStart.getFullYear()
+  const wrapMonth = monthStart.getMonth() + 1
 
-    const profile = profiles.find(p => p.id === authUser.id)
-    if (!profile) continue
-    if (profile.wrap_opt_out) continue
+  const processUser = async (authUser: any) => {
+    if (!authUser.email) return
+    const profile = profiles.find((p: any) => p.id === authUser.id)
+    if (!profile || profile.wrap_opt_out) return
 
     const name = profile.display_name || authUser.email.split('@')[0]
-    const rank = ranked.findIndex(p => p.id === authUser.id) + 1
+    const rank = ranked.findIndex((p: any) => p.id === authUser.id) + 1
 
-    // Cards added this month
     const { data: newCardsData } = await supabase
       .from('cartes_manuelles')
       .select('nom, annee, marque, rc, auto, patch, num, image_recto')
@@ -248,50 +247,35 @@ export async function GET(req: NextRequest) {
       .lt('created_at', monthEnd.toISOString())
 
     const newCards = newCardsData?.length || 0
-    const rcCount = newCardsData?.filter(c => c.rc).length || 0
-    const autoCount = newCardsData?.filter(c => c.auto).length || 0
-    const patchCount = newCardsData?.filter(c => c.patch).length || 0
-    const numCount = newCardsData?.filter(c => c.num).length || 0
+    const rcCount = newCardsData?.filter((c: any) => c.rc).length || 0
+    const autoCount = newCardsData?.filter((c: any) => c.auto).length || 0
+    const patchCount = newCardsData?.filter((c: any) => c.patch).length || 0
+    const numCount = newCardsData?.filter((c: any) => c.num).length || 0
 
-    // Highlights: RC first, then auto, then patch (max 5)
     const highlights = [
-      ...(newCardsData?.filter(c => c.rc).slice(0, 2).map(c => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'RC' })) || []),
-      ...(newCardsData?.filter(c => c.auto && !c.rc).slice(0, 2).map(c => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'Auto' })) || []),
-      ...(newCardsData?.filter(c => c.patch && !c.rc && !c.auto).slice(0, 1).map(c => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'Patch' })) || []),
+      ...(newCardsData?.filter((c: any) => c.rc).slice(0, 2).map((c: any) => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'RC' })) || []),
+      ...(newCardsData?.filter((c: any) => c.auto && !c.rc).slice(0, 2).map((c: any) => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'Auto' })) || []),
+      ...(newCardsData?.filter((c: any) => c.patch && !c.rc && !c.auto).slice(0, 1).map((c: any) => ({ player: c.nom, year: c.annee, brand: c.marque, type: 'Patch' })) || []),
     ].slice(0, 5)
 
-    // Images RC > Auto > Patch > autres
-    const withImg = (newCardsData || []).filter(c => c.image_recto)
+    const withImg = (newCardsData || []).filter((c: any) => c.image_recto)
     const cardImages = [
-      ...withImg.filter(c => c.rc),
-      ...withImg.filter(c => c.auto && !c.rc),
-      ...withImg.filter(c => c.patch && !c.rc && !c.auto),
-      ...withImg.filter(c => !c.rc && !c.auto && !c.patch),
-    ].map(c => c.image_recto as string)
+      ...withImg.filter((c: any) => c.rc),
+      ...withImg.filter((c: any) => c.auto && !c.rc),
+      ...withImg.filter((c: any) => c.patch && !c.rc && !c.auto),
+      ...withImg.filter((c: any) => !c.rc && !c.auto && !c.patch),
+    ].map((c: any) => c.image_recto as string)
 
-    const wrapYear = monthStart.getFullYear()
-    const wrapMonth = monthStart.getMonth() + 1
     const makeWrapUrl = (fmt: string) => {
       const sig = signWrapUrl(authUser.id, wrapYear, wrapMonth, fmt)
       return `${baseUrl}/api/wrap-image-public?uid=${authUser.id}&amp;y=${wrapYear}&amp;m=${wrapMonth}&amp;format=${fmt}&amp;sig=${sig}`
     }
 
     const html = buildEmail({
-      name,
-      month: monthLabel,
-      newCards,
-      rcCount,
-      autoCount,
-      patchCount,
-      numCount,
-      rank,
-      totalCollectors,
-      totalCards: profile.stats_total || 0,
-      highlights,
+      name, month: monthLabel, newCards, rcCount, autoCount, patchCount, numCount,
+      rank, totalCollectors, totalCards: profile.stats_total || 0, highlights,
       galerieUrl: `${baseUrl}/galerie/${authUser.id}`,
-      cardImages,
-      squareUrl: makeWrapUrl('square'),
-      storyUrl: makeWrapUrl('story'),
+      cardImages, squareUrl: makeWrapUrl('square'), storyUrl: makeWrapUrl('story'),
     })
 
     try {
@@ -301,14 +285,22 @@ export async function GET(req: NextRequest) {
         subject: `Ton Wrap ${monthLabel} 🏀 — Memorabilius`,
         html,
       })
-      sent++
+      sent.count++
     } catch (e: any) {
       errors.push(`${authUser.email}: ${e.message}`)
     }
-
-    // Avoid rate limiting
-    await new Promise(r => setTimeout(r, 100))
   }
 
-  return NextResponse.json({ sent, errors, month: monthLabel })
+  // Filtrer les users éligibles, puis traiter par batches de 10
+  const eligible = testMode
+    ? authUsers.users.filter((u: any) => u.email === testEmail)
+    : authUsers.users.filter((u: any) => u.email)
+
+  const BATCH = 10
+  for (let i = 0; i < eligible.length; i += BATCH) {
+    await Promise.all(eligible.slice(i, i + BATCH).map(processUser))
+    if (i + BATCH < eligible.length) await new Promise(r => setTimeout(r, 1000))
+  }
+
+  return NextResponse.json({ sent: sent.count, errors, month: monthLabel })
 }
