@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
@@ -7,30 +7,30 @@ import { useTheme } from '@/lib/ThemeContext'
 import { useLang } from '@/lib/LangContext'
 import type { User } from '@supabase/supabase-js'
 
+const LANGS = [
+  { code: 'fr' as const, flag: '🇫🇷', label: 'Français' },
+  { code: 'en' as const, flag: '🇬🇧', label: 'English' },
+  { code: 'de' as const, flag: '🇩🇪', label: 'Deutsch' },
+]
+
 export default function Navbar() {
   const [user, setUser] = useState<User | null | undefined>(undefined)
   const [isAdmin, setIsAdmin] = useState(false)
   const [notifs, setNotifs] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [dropCommunaute, setDropCommunaute] = useState(false)
-  const [dropOutils, setDropOutils] = useState(false)
+  const [openDrop, setOpenDrop] = useState<'communaute' | 'outils' | 'lang' | null>(null)
   const communauteRef = useRef<HTMLDivElement>(null)
   const outilsRef = useRef<HTMLDivElement>(null)
+  const langRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
   const pathname = usePathname()
   const { dark, toggle } = useTheme()
   const { lang, setLang, t } = useLang()
 
-  const LangToggle = () => (
-    <button onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')} style={{
-      background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`,
-      borderRadius: 20, padding: '4px 10px', cursor: 'pointer',
-      fontSize: 12, fontWeight: 700, color: dark ? '#ddd' : '#666',
-      display: 'flex', alignItems: 'center', gap: 4,
-    }}>
-      {lang === 'fr' ? '🇬🇧 EN' : '🇫🇷 FR'}
-    </button>
-  )
+  const toggleDrop = (name: 'communaute' | 'outils' | 'lang') =>
+    setOpenDrop(cur => cur === name ? null : name)
+
+  const closeDrop = () => setOpenDrop(null)
 
   useEffect(() => {
     const close = (e: MouseEvent | KeyboardEvent) => {
@@ -38,9 +38,9 @@ export default function Navbar() {
       if (e instanceof MouseEvent) {
         if (communauteRef.current?.contains(e.target as Node)) return
         if (outilsRef.current?.contains(e.target as Node)) return
+        if (langRef.current?.contains(e.target as Node)) return
       }
-      setDropCommunaute(false)
-      setDropOutils(false)
+      closeDrop()
     }
     document.addEventListener('mousedown', close)
     document.addEventListener('keydown', close)
@@ -58,10 +58,6 @@ export default function Navbar() {
       }
     })
     const { data: listener } = supabase.auth.onAuthStateChange((e, session) => {
-      // Filet de sécurité : un lien de réinitialisation de mot de passe établit une
-      // session (comportement normal Supabase), mais si l'email atterrit sur une page
-      // autre que /reset-password (redirect URL mal configurée côté dashboard, etc.),
-      // l'utilisateur se retrouverait connecté sans jamais changer son mot de passe.
       if (e === 'PASSWORD_RECOVERY' && pathname !== '/reset-password') {
         router.replace('/reset-password')
         return
@@ -110,16 +106,21 @@ export default function Navbar() {
     </span>
   ) : null
 
-  const DropTrigger = ({ label, open, onToggle }: { label: string; open: boolean; onToggle: () => void }) => (
-    <button onClick={onToggle} onKeyDown={e => e.key === 'Enter' || e.key === ' ' ? onToggle() : undefined}
-      aria-expanded={open} aria-haspopup="true"
-      style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: 4, cursor: 'pointer', userSelect: 'none', background: 'none', border: 'none', padding: 0, font: 'inherit' }}>
-      {label}
-      <svg width="10" height="6" viewBox="0 0 10 6" style={{ transition: '0.2s', transform: open ? 'rotate(180deg)' : 'none', opacity: 0.5 }}>
-        <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-      </svg>
-    </button>
-  )
+  const DropTrigger = ({ label, name }: { label: string; name: 'communaute' | 'outils' | 'lang' }) => {
+    const open = openDrop === name
+    return (
+      <button onClick={() => toggleDrop(name)} onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && toggleDrop(name)}
+        aria-expanded={open} aria-haspopup="true"
+        style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: 4, cursor: 'pointer', userSelect: 'none', background: 'none', border: 'none', padding: 0, font: 'inherit' }}>
+        {label}
+        <svg width="10" height="6" viewBox="0 0 10 6" style={{ transition: '0.2s', transform: open ? 'rotate(180deg)' : 'none', opacity: 0.5 }}>
+          <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+        </svg>
+      </button>
+    )
+  }
+
+  const currentLang = LANGS.find(l => l.code === lang) ?? LANGS[0]
 
   return (
     <>
@@ -136,14 +137,14 @@ export default function Navbar() {
           {/* Dropdown Communauté */}
           <div ref={communauteRef} style={{ position: 'relative' }}>
             <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center' }}>
-              <DropTrigger label="Communauté" open={dropCommunaute} onToggle={() => setDropCommunaute(v => !v)} />
+              <DropTrigger label={t('nav_communaute')} name="communaute" />
             </div>
-            {dropCommunaute && (
+            {openDrop === 'communaute' && (
               <div style={{ position: 'absolute', top: 56, left: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 160, zIndex: 300 }}>
-                <Link href="/annuaire" style={dropItemStyle} onClick={() => setDropCommunaute(false)}>👥 {t('nav_annuaire')}</Link>
-                <Link href="/teams" style={dropItemStyle} onClick={() => setDropCommunaute(false)}>🏆 {t('nav_teams')}</Link>
-                <Link href="/trades" style={dropItemStyle} onClick={() => setDropCommunaute(false)}>🔄 {t('nav_trades')}</Link>
-                <Link href="/evenements" style={dropItemStyle} onClick={() => setDropCommunaute(false)}>📅 {lang === 'fr' ? 'Événements' : 'Events'}</Link>
+                <Link href="/annuaire" style={dropItemStyle} onClick={closeDrop}>👥 {t('nav_annuaire')}</Link>
+                <Link href="/teams" style={dropItemStyle} onClick={closeDrop}>🏆 {t('nav_teams')}</Link>
+                <Link href="/trades" style={dropItemStyle} onClick={closeDrop}>🔄 {t('nav_trades')}</Link>
+                <Link href="/evenements" style={dropItemStyle} onClick={closeDrop}>📅 {t('nav_evenements')}</Link>
               </div>
             )}
           </div>
@@ -151,17 +152,17 @@ export default function Navbar() {
           {/* Dropdown Outils */}
           <div ref={outilsRef} style={{ position: 'relative' }}>
             <div style={{ padding: '0 12px', height: 60, display: 'flex', alignItems: 'center' }}>
-              <DropTrigger label="Outils" open={dropOutils} onToggle={() => setDropOutils(v => !v)} />
+              <DropTrigger label={t('nav_outils')} name="outils" />
             </div>
-            {dropOutils && (
+            {openDrop === 'outils' && (
               <div style={{ position: 'absolute', top: 56, left: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 160, zIndex: 300 }}>
-                <Link href="/scanner" style={dropItemStyle} onClick={() => setDropOutils(false)}>📷 Scanner de prix</Link>
-                <Link href="/setlist" style={dropItemStyle} onClick={() => setDropOutils(false)}>📋 Setlist</Link>
-                <Link href="/recherche" style={dropItemStyle} onClick={() => setDropOutils(false)}>{t('nav_recherche')}</Link>
+                <Link href="/scanner" style={dropItemStyle} onClick={closeDrop}>📷 {t('nav_scanner')}</Link>
+                <Link href="/setlist" style={dropItemStyle} onClick={closeDrop}>📋 {t('nav_setlist')}</Link>
+                <Link href="/recherche" style={dropItemStyle} onClick={closeDrop}>{t('nav_recherche')}</Link>
                 {isAdmin && (
                   <>
                     <div style={{ margin: '4px 8px', borderTop: `1px solid ${dropBorder}` }} />
-                    <Link href="/admin/stats" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={() => setDropOutils(false)}>📊 Stats admin</Link>
+                    <Link href="/admin/stats" style={{ ...dropItemStyle, color: '#003DA6' }} onClick={closeDrop}>📊 {t('nav_admin_stats')}</Link>
                   </>
                 )}
               </div>
@@ -172,7 +173,6 @@ export default function Navbar() {
             <Link href="/tuto" style={linkStyle}>{t('nav_tuto')}</Link>
           </div>
 
-          {/* Ma Galerie — dans les liens principaux */}
           {user && (
             <Link href={`/galerie/${user.id}`}
               style={{ background: '#003DA6', color: 'white', borderRadius: 20, padding: '8px 18px', fontWeight: 700, fontSize: 14, textDecoration: 'none', marginLeft: 8, whiteSpace: 'nowrap' }}>
@@ -180,7 +180,6 @@ export default function Navbar() {
             </Link>
           )}
 
-          {/* Séparateur */}
           <div style={{ width: 1, height: 24, background: dark ? '#333' : '#e0e0e0', margin: '0 8px' }} />
 
           {user === undefined ? (
@@ -201,14 +200,64 @@ export default function Navbar() {
               <div style={{ padding: '0 8px', height: 60, display: 'flex', alignItems: 'center' }}>
                 <Link href="/profil" style={linkStyle}>{t('nav_profil')}</Link>
               </div>
-              <LangToggle />
+
+              {/* Dropdown langue */}
+              <div ref={langRef} style={{ position: 'relative' }}>
+                <button onClick={() => toggleDrop('lang')} style={{
+                  background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`,
+                  borderRadius: 20, padding: '4px 10px', cursor: 'pointer',
+                  fontSize: 13, fontWeight: 700, color: dark ? '#ddd' : '#555',
+                  display: 'flex', alignItems: 'center', gap: 5,
+                }}>
+                  {currentLang.flag}
+                  <svg width="8" height="5" viewBox="0 0 10 6" style={{ transition: '0.2s', transform: openDrop === 'lang' ? 'rotate(180deg)' : 'none', opacity: 0.5 }}>
+                    <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  </svg>
+                </button>
+                {openDrop === 'lang' && (
+                  <div style={{ position: 'absolute', top: '110%', right: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 130, zIndex: 300 }}>
+                    {LANGS.map(l => (
+                      <button key={l.code} onClick={() => { setLang(l.code); closeDrop() }}
+                        style={{ ...dropItemStyle, width: '100%', textAlign: 'left', cursor: 'pointer', border: 'none', display: 'flex', alignItems: 'center', gap: 8, background: lang === l.code ? (dark ? '#2a2a2a' : '#f5f5f5') : 'none', fontWeight: lang === l.code ? 800 : 600 }}>
+                        {l.flag} {l.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <button onClick={toggle} style={{ background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`, borderRadius: 20, padding: '4px 12px', cursor: 'pointer', fontSize: 14 }}>{dark ? '☀️' : '🌙'}</button>
               <button onClick={handleLogout} style={{ background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`, borderRadius: 20, padding: '6px 14px', cursor: 'pointer', fontSize: 13, fontWeight: 600, color: dark ? '#ddd' : '#555' }}>{t('nav_deconnexion')}</button>
             </div>
           ) : (
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
               <Link href="/connexion" style={linkStyle}>{t('nav_connexion')}</Link>
-              <LangToggle />
+
+              {/* Dropdown langue (non connecté) */}
+              <div ref={langRef} style={{ position: 'relative' }}>
+                <button onClick={() => toggleDrop('lang')} style={{
+                  background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`,
+                  borderRadius: 20, padding: '4px 10px', cursor: 'pointer',
+                  fontSize: 13, fontWeight: 700, color: dark ? '#ddd' : '#555',
+                  display: 'flex', alignItems: 'center', gap: 5,
+                }}>
+                  {currentLang.flag}
+                  <svg width="8" height="5" viewBox="0 0 10 6" style={{ transition: '0.2s', transform: openDrop === 'lang' ? 'rotate(180deg)' : 'none', opacity: 0.5 }}>
+                    <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  </svg>
+                </button>
+                {openDrop === 'lang' && (
+                  <div style={{ position: 'absolute', top: '110%', right: 0, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 12, padding: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', minWidth: 130, zIndex: 300 }}>
+                    {LANGS.map(l => (
+                      <button key={l.code} onClick={() => { setLang(l.code); closeDrop() }}
+                        style={{ ...dropItemStyle, width: '100%', textAlign: 'left', cursor: 'pointer', border: 'none', display: 'flex', alignItems: 'center', gap: 8, background: lang === l.code ? (dark ? '#2a2a2a' : '#f5f5f5') : 'none', fontWeight: lang === l.code ? 800 : 600 }}>
+                        {l.flag} {l.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <button onClick={toggle} style={{ background: 'none', border: `1px solid ${dark ? '#555' : '#ddd'}`, borderRadius: 20, padding: '4px 12px', cursor: 'pointer', fontSize: 14 }}>{dark ? '☀️' : '🌙'}</button>
               <Link href="/sinscrire" className="btn-main btn-primary" style={{ padding: '8px 18px', fontSize: 14 }}>{t('nav_inscription')}</Link>
             </div>
@@ -234,27 +283,29 @@ export default function Navbar() {
       {/* Menu mobile */}
       {menuOpen && (
         <div style={{ position: 'fixed', top: 60, left: 0, right: 0, bottom: 0, background: dark ? '#1a1a1a' : 'white', zIndex: 199, padding: '16px 24px', display: 'flex', flexDirection: 'column', overflowY: 'auto' }} className="nav-mobile-menu">
-          <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '4px 0 4px' }}>Communauté</div>
+          <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '4px 0 4px' }}>{t('nav_communaute')}</div>
           <Link href="/annuaire" style={ls} onClick={() => setMenuOpen(false)}>👥 {t('nav_annuaire')}</Link>
           <Link href="/teams" style={ls} onClick={() => setMenuOpen(false)}>🏆 {t('nav_teams')}</Link>
           <Link href="/trades" style={ls} onClick={() => setMenuOpen(false)}>🔄 {t('nav_trades')}</Link>
-          <Link href="/evenements" style={ls} onClick={() => setMenuOpen(false)}>📅 {lang === 'fr' ? 'Événements' : 'Events'}</Link>
-          <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>Outils</div>
-          <Link href="/scanner" style={ls} onClick={() => setMenuOpen(false)}>📷 Scanner de prix</Link>
-          <Link href="/setlist" style={ls} onClick={() => setMenuOpen(false)}>📋 Setlist</Link>
+          <Link href="/evenements" style={ls} onClick={() => setMenuOpen(false)}>📅 {t('nav_evenements')}</Link>
+          <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>{t('nav_outils')}</div>
+          <Link href="/scanner" style={ls} onClick={() => setMenuOpen(false)}>📷 {t('nav_scanner')}</Link>
+          <Link href="/setlist" style={ls} onClick={() => setMenuOpen(false)}>📋 {t('nav_setlist')}</Link>
           <Link href="/recherche" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_recherche')}</Link>
           <Link href="/tuto" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_tuto')}</Link>
           {isAdmin && (
-            <Link href="/admin/stats" style={{ ...ls, color: '#003DA6', fontWeight: 700 }} onClick={() => setMenuOpen(false)}>📊 Stats admin</Link>
+            <Link href="/admin/stats" style={{ ...ls, color: '#003DA6', fontWeight: 700 }} onClick={() => setMenuOpen(false)}>📊 {t('nav_admin_stats')}</Link>
           )}
           {user ? (
             <>
-              <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>Mon compte</div>
+              <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', color: '#999', letterSpacing: 1, padding: '16px 0 4px' }}>{t('nav_my_account')}</div>
               <Link href="/notifications" style={ls} onClick={() => setMenuOpen(false)}>🔔 Notifications <Badge count={notifs} /></Link>
               <Link href="/profil" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_profil')}</Link>
-              <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 8 }}>
+              <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 6 }}>
                 <button onClick={toggle} style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 14, color: dark ? '#ddd' : '#333', fontWeight: 600 }}>{dark ? '☀️' : '🌙'}</button>
-                <button onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')} style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 14, color: dark ? '#ddd' : '#333', fontWeight: 700 }}>{lang === 'fr' ? '🇬🇧 EN' : '🇫🇷 FR'}</button>
+                {LANGS.map(l => (
+                  <button key={l.code} onClick={() => setLang(l.code)} style={{ flex: 1, background: lang === l.code ? '#003DA6' : (dark ? '#2a2a2a' : '#f5f5f5'), color: lang === l.code ? 'white' : (dark ? '#ddd' : '#333'), border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 15, fontWeight: 700 }}>{l.flag}</button>
+                ))}
               </div>
               <div style={{ padding: '16px 0' }}>
                 <button onClick={handleLogout} style={{ width: '100%', background: '#003DA6', color: 'white', border: 'none', borderRadius: 8, padding: '12px', fontWeight: 700, cursor: 'pointer', fontSize: 15 }}>{t('nav_deconnexion')}</button>
@@ -263,9 +314,11 @@ export default function Navbar() {
           ) : (
             <>
               <Link href="/connexion" style={ls} onClick={() => setMenuOpen(false)}>{t('nav_connexion')}</Link>
-              <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 8 }}>
+              <div style={{ padding: '12px 0', borderBottom: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, display: 'flex', gap: 6 }}>
                 <button onClick={toggle} style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 14, color: dark ? '#ddd' : '#333', fontWeight: 600 }}>{dark ? '☀️' : '🌙'}</button>
-                <button onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')} style={{ flex: 1, background: dark ? '#2a2a2a' : '#f5f5f5', border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 14, color: dark ? '#ddd' : '#333', fontWeight: 700 }}>{lang === 'fr' ? '🇬🇧 EN' : '🇫🇷 FR'}</button>
+                {LANGS.map(l => (
+                  <button key={l.code} onClick={() => setLang(l.code)} style={{ flex: 1, background: lang === l.code ? '#003DA6' : (dark ? '#2a2a2a' : '#f5f5f5'), color: lang === l.code ? 'white' : (dark ? '#ddd' : '#333'), border: 'none', borderRadius: 8, padding: '10px', cursor: 'pointer', fontSize: 15, fontWeight: 700 }}>{l.flag}</button>
+                ))}
               </div>
               <div style={{ padding: '16px 0' }}>
                 <Link href="/sinscrire" style={{ display: 'block', background: '#003DA6', color: 'white', borderRadius: 8, padding: '12px', fontWeight: 700, fontSize: 15, textAlign: 'center', textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>{t('nav_inscription')}</Link>

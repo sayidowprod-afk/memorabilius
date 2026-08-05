@@ -70,10 +70,10 @@ const timeAgo = (date: string, t: (k: any) => string, lang: string) => {
   const diff = Date.now() - new Date(date).getTime()
   const mins = Math.floor(diff / 60000)
   if (mins < 1) return t('comments_instant')
-  if (mins < 60) return lang === 'fr' ? `${t('comments_ago')} ${mins}${t('comments_min')}` : `${mins} ${t('comments_min')}`
+  if (mins < 60) return lang !== 'en' ? `${t('comments_ago')} ${mins}${t('comments_min')}` : `${mins} ${t('comments_min')}`
   const hours = Math.floor(mins / 60)
-  if (hours < 24) return lang === 'fr' ? `${t('comments_ago')} ${hours}h` : `${hours}h ago`
-  return lang === 'fr' ? `${t('comments_ago')} ${Math.floor(hours / 24)}${t('comments_day')}` : `${Math.floor(hours / 24)}${t('comments_day')}`
+  if (hours < 24) return lang !== 'en' ? `${t('comments_ago')} ${hours}h` : `${hours}h ago`
+  return lang !== 'en' ? `${t('comments_ago')} ${Math.floor(hours / 24)}${t('comments_day')}` : `${Math.floor(hours / 24)}${t('comments_day')}`
 }
 
 const Avatar = ({ profile, accent, size = 36 }: { profile: Profile | null; accent: string; size?: number }) => (
