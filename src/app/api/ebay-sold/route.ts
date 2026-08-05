@@ -46,7 +46,7 @@ async function sbSet(k: string, data: object) {
       key: k,
       data,
       expires_at: new Date(Date.now() + SB_TTL_H * 3600_000).toISOString(),
-    }, { onConflict: 'key' })
+    } as any, { onConflict: 'key' })
   } catch { /* non-fatal */ }
 }
 
