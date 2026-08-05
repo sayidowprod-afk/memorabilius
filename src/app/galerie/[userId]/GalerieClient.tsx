@@ -534,9 +534,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     if (sortBy !== 'default') sp.set('sort', sortBy)
     if (sortBy2 !== 'none') sp.set('sort2', sortBy2)
     if (pinTeam) sp.set('pin', pinTeam)
+    if (popup?.f) sp.set('card', encodeURIComponent(popup.f))
     const str = sp.toString()
     router.replace(str ? `?${str}` : window.location.pathname, { scroll: false })
-  }, [loaded, search, fTeam, fBrand, fYear, fCollectionTag, sortBy, sortBy2, pinTeam])
+  }, [loaded, search, fTeam, fBrand, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, popup])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {

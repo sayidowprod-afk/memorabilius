@@ -13,6 +13,8 @@ interface Props {
 const BRAND = '#003DA6'
 const QR_SIZE = 220
 const LOGO_SIZE = 46
+// Icône app embarquée (android-chrome 192x192 → 96x96) — pas de requête réseau dans le canvas
+const ICON_B64 = 'iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAGFklEQVR42u2d34tVVRTHP+fcg80oikVqBf2EoKIQJSylwsosjVCIkiB6s4egp+ixp976F3qIfsCk/SBxsIymGMyKXiQSKUiSFJF+WOZoOt57Tw97L86ew/w4P/aZOfvOWnC4d+6cs1l7f9f+7rXW/nFAZUEl8ljWELAMSBdBm10ALvkoLPFQRgz0gVeB54B/PZWbttDYusAKYAR43an7ggIgFbsFeBN4D+jZq65usafG79vGqyMdez0P3O0L1MSjhXWB34E/gLdq0lFkLexHT7rdA7xWUZ/UGsI5YLetX9dXoyWeu3jHfr7gwXqPAUdtmb0aVtsDdgHP1NTnIvCiU0cvEuNfUuBvW/GuQ0dFr0n7udVWtGfLLHtJr4yB7bmyy1xSh3+acDASmhHhy7SCtcT2mQ2WOn6o2Ati+8y9wFqnh1YxqKrPLkgP8EFlPVvhJz2U95QPb6UpaSMArjxUsfEExAR4pIGYZ+ABEL02ANdVoDK593ZgnQJQnYauBrY440rZej1hI/SeAlDdo3raCabKgBc7z7ZW4pbrFgGbgBssAHFBAFLgLmB92+sZQg+4FthYgscjez0ADFvgIgWg+jgAsNkBpAhoKbCtxDMKwBz6bQeuKmDN4rLe6AzesQJQT78UuA14tIDOkRN8LW07/YQAgHg/KSY3VORenOCr9ZNDIQAgg+pGYAkz54TE+1ltB2Dabv2hACA6rrWu5Ux6S5p4M7CmhNuqABSQnh2EH59Fb6GqnfazT0DWFYrswCTYejN4P2vsYN1Y+nixAiB6rgfuJJsmnC74Wk21eQgFYI6BuG9p6D6nwfPB18M5b0gB8JyWwI4DLscLOMPW/ycU6w8NANF1K9kcQez8vgW4KRTvJ0QAxNJX5Lwh6RnbmDohrwA0REMp8JjD9UI/D04zNigADUXF9wPLnXFgnQ3SUgWgeX1T4FbMchORnWTLUBSAeYiKY+BZ+/dSTLo6yPqECIDrDSWYxVt3hOZ+DgIAN9uoeBPZyrngAEgIU2Tl3A6y1HOQEioA0gteAq6x3zsKwPy6owDXE7jEgeufKgDt6AkKgIoCoACoDAYAqQIwmANrqgAUk/OY3YyLwmNqEwCS2/8F+Dr3mw/L/wv4TwGYWyaBPR6tVgDYa0FoFR21EYBlwBhwkmy9Z53GjzGbrPdh5g60B8whS4BTlobqLjGUZw8DP2E27CkABXS6DHyKv0n2g5jDNhIFoJjVDgOjwJ9MXXpSln46mIOVPrLW31cAijXcEObAj1H7W68ikAD7gdNkG/YUgBJ++wH7vVOjbvto8XqhtgIgC7AOYQ6Biklar+wNOwuM0+IVc20FQBrwDPBZhaCs7wy+pzwGdYuKgkT2VKAhufdtdJdk7Qj2MHC8BA1J7zkOfItu1K4lHeu/HyrB43LPGP6O0Fy0AAh9jNrvcYk6fZwrQwGo4csfBH4rQENCP8dsD6gaQygADp3EwATwSY5iZqOfvZjTDlu/WCuknfJfFNC5A1xxXFcUAD80lALf2JTCTDQkvx0FjjD1uBsFoCYNdTCTKQdmCapc+pkMpG7BLUsZcQCZDqTzwAcFxgoFoKI39B1mYiVPQ+7/f6V87kgBKOgNXcQk1/IWLr7+5+g+4caDsv073QWcC2R5o1QBaI6GxoCfHZrpO9HySVp8TnToAMhAexn4MBf5Ss/QjdrzJF+S7ROLMXPHXxHQQU2hAiCN+73j7WAj39NUn8BXAErS0ATZhH0feD9E+gmZgiIblIFZSzoeIv2ECoDkho4AJzCzXhMh0g+EuU1V/P4rmNVz47k4QQGYJxAA3sAsW4EAMp+DCMAJApdB2Ccc9F7hJHAAdKe8igKgAKgoAAqAigKgAKgoAAqASjsiYXkdeJmznCXN3GRSrYpecm8vFAAizGtoy/YuWe22kuxFnpEnfeSdMstrlLOSBvJOPgFIHet6B3PmQ1ry+RizqW4CfzsbxXLPAu9i9iBX0etcro6tAyDBvEBnFfBKjS4rPci3pMDLNZ7v2Lqt8tluiaeKgcnN7wZ2eSi3qSxnXQrpYt7gMeJLT5+cNlSBdkKUCLMM8pL6cAMg/wNc3oq37f4HkgAAAABJRU5ErkJggg=='
 
 export default function ShareButton({ url, title, compact, buttonStyle }: Props) {
   const [showModal, setShowModal] = useState(false)
@@ -38,7 +40,7 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
       if (cancelled) return
       const ctx = canvas.getContext('2d')
       if (!ctx) return
-      // Dessin canvas direct — pas de chargement d'image (fiable partout)
+      // Logo Memorabilius centré — icône en base64 rendue blanche sur cercle bleu
       const cx = QR_SIZE / 2
       const cy = QR_SIZE / 2
       const r = LOGO_SIZE / 2
@@ -46,17 +48,28 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
       // Fond blanc carré
       ctx.fillStyle = 'white'
       ctx.fillRect(cx - r - pad, cy - r - pad, (r + pad) * 2, (r + pad) * 2)
-      // Cercle bleu Memorabilius
+      // Cercle bleu
       ctx.fillStyle = BRAND
       ctx.beginPath()
       ctx.arc(cx, cy, r, 0, Math.PI * 2)
       ctx.fill()
-      // Lettre "M"
-      ctx.fillStyle = 'white'
-      ctx.font = `900 ${Math.round(r * 1.4)}px Arial, sans-serif`
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
-      ctx.fillText('M', cx, cy + 1)
+      // Icône : rendue blanche via offscreen canvas (destination-in)
+      await new Promise<void>(resolve => {
+        const logo = new Image()
+        logo.onload = () => {
+          const tmp = document.createElement('canvas')
+          tmp.width = tmp.height = LOGO_SIZE * 2
+          const tc = tmp.getContext('2d')!
+          tc.fillStyle = 'white'
+          tc.fillRect(0, 0, tmp.width, tmp.height)
+          tc.globalCompositeOperation = 'destination-in'
+          tc.drawImage(logo, 0, 0, tmp.width, tmp.height)
+          ctx.drawImage(tmp, cx - r, cy - r, LOGO_SIZE, LOGO_SIZE)
+          resolve()
+        }
+        logo.onerror = () => resolve()
+        logo.src = `data:image/png;base64,${ICON_B64}`
+      })
     }, 50)
     return () => { cancelled = true; clearTimeout(timer) }
   }, [showModal, fullUrl])
