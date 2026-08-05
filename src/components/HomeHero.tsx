@@ -239,11 +239,6 @@ export default function HomeHero({ total, totalCartes, featuredGalleries = [] }:
       {featuredGalleries.length > 0 && (
         <section style={{ marginBottom: 56 }}>
           <div className="section-title">{lang === 'fr' ? 'Ils collectionnent avec nous' : 'They collect with us'}</div>
-          <p style={{ textAlign: 'center', color: dark ? 'rgba(255,255,255,0.5)' : '#7a8fb0', fontSize: 14, marginTop: -12, marginBottom: 24 }}>
-            {lang === 'fr'
-              ? `${total}+ collectionneurs ont déjà créé leur galerie — rejoins-les gratuitement`
-              : `${total}+ collectors already created their gallery — join them for free`}
-          </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 18 }}>
             {featuredGalleries.map(g => (
               <Link key={g.id} href={`/galerie/${g.id}`} style={{ textDecoration: 'none' }}>

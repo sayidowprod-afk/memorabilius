@@ -102,21 +102,38 @@ export default function Trades() {
   }, [])
 
   const loadForum = async () => {
-    const [{ data: tradeData }, { data: carteData }] = await Promise.all([
-      supabase
-        .from('trades')
-        .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
-        .eq('statut', 'actif')
-        .order('created_at', { ascending: false }),
-      supabase
-        .from('cartes_manuelles')
-        .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
-        .eq('disponible_vente', true)
-        .order('created_at', { ascending: false }),
+    const fetchAll = async (queryFn: (from: number, to: number) => any): Promise<any[]> => {
+      const result: any[] = []
+      for (let page = 0; ; page++) {
+        const { data } = await queryFn(page * 1000, page * 1000 + 999)
+        if (!data || data.length === 0) break
+        result.push(...data)
+        if (data.length < 1000) break
+      }
+      return result
+    }
+
+    const [tradeData, carteData] = await Promise.all([
+      fetchAll((from, to) =>
+        supabase
+          .from('trades')
+          .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
+          .eq('statut', 'actif')
+          .order('created_at', { ascending: false })
+          .range(from, to)
+      ),
+      fetchAll((from, to) =>
+        supabase
+          .from('cartes_manuelles')
+          .select('*, profiles(id, display_name, avatar_url, instagram, twitter, discord)')
+          .eq('disponible_vente', true)
+          .order('created_at', { ascending: false })
+          .range(from, to)
+      ),
     ])
 
     // Mapper les cartes galerie en objets trade-compatibles
-    const cartesAsOffers = (carteData || []).map(c => ({
+    const cartesAsOffers = carteData.map(c => ({
       ...c,
       _source: 'galerie' as const,
       type: 'offre',
@@ -128,7 +145,7 @@ export default function Trades() {
       sport: null,
     }))
 
-    const merged = [...(tradeData || []), ...cartesAsOffers]
+    const merged = [...tradeData, ...cartesAsOffers]
       .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
     setTrades(merged)
