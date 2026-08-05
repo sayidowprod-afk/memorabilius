@@ -11,9 +11,10 @@ interface Props {
 }
 
 const BRAND = '#003DA6'
-const QR_SIZE = 220
-const LOGO_W = 100
-const LOGO_H = 22
+const QR_SIZE = 220   // taille CSS affichée
+const SCALE = 4       // canvas physique 4× → print-ready 880 px, crisp écran
+const LOGO_W = 130    // badge logo (px CSS)
+const LOGO_H = 28
 
 function rrect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
   ctx.beginPath()
@@ -52,98 +53,79 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
       const canvas = canvasRef.current
       if (!canvas || cancelled) return
 
-      const dpr = window.devicePixelRatio || 1
-      const physSize = QR_SIZE * dpr
-
-      canvas.width = physSize
-      canvas.height = physSize
+      // Canvas 4× → crisp écran toute DPR + print-ready à 300 dpi (~7 cm)
+      canvas.width = QR_SIZE * SCALE
+      canvas.height = QR_SIZE * SCALE
       canvas.style.width = `${QR_SIZE}px`
       canvas.style.height = `${QR_SIZE}px`
 
       const ctx = canvas.getContext('2d')
       if (!ctx) return
+      ctx.scale(SCALE, SCALE)  // tout le dessin en coordonnées CSS (px)
 
-      // Compute module grid
-      const qr = QRCode.create(fullUrl, { errorCorrectionLevel: 'H' })
+      // 'M' = 15 % de correction → modules plus grands pour même URL vs 'H' (30 %)
+      const qr = QRCode.create(fullUrl, { errorCorrectionLevel: 'M' })
       const N = qr.modules.size
-      const cell = physSize / (N + 4) // margin=2 → 4 extra modules
-      const q = 2 * cell              // quiet zone offset in px
+      const cell = QR_SIZE / (N + 4)  // marge 2 modules × 2 côtés = 4
+      const q = 2 * cell
 
-      // White background
       ctx.fillStyle = 'white'
-      ctx.fillRect(0, 0, physSize, physSize)
+      ctx.fillRect(0, 0, QR_SIZE, QR_SIZE)
 
-      // Finder zone exclusion (finder 7×7 + 1-module separator = 8 wide)
       const inFinder = (r: number, c: number) =>
-        (r < 8 && c < 8) ||
-        (r < 8 && c >= N - 8) ||
-        (r >= N - 8 && c < 8)
+        (r < 8 && c < 8) || (r < 8 && c >= N - 8) || (r >= N - 8 && c < 8)
 
-      // Logo zone exclusion — keeps module area clear behind the logo
-      const lgW = (LOGO_W + 18) * dpr
-      const lgH = (LOGO_H + 18) * dpr
-      const lgX0 = physSize / 2 - lgW / 2
-      const lgY0 = physSize / 2 - lgH / 2
+      const lgPad = 9
+      const lgX0 = QR_SIZE / 2 - (LOGO_W + lgPad * 2) / 2
+      const lgY0 = QR_SIZE / 2 - (LOGO_H + lgPad * 2) / 2
       const inLogo = (r: number, c: number) => {
         const px = q + (c + 0.5) * cell
         const py = q + (r + 0.5) * cell
-        return px > lgX0 && px < lgX0 + lgW && py > lgY0 && py < lgY0 + lgH
+        return px > lgX0 && px < lgX0 + LOGO_W + lgPad * 2
+            && py > lgY0 && py < lgY0 + LOGO_H + lgPad * 2
       }
 
-      // Draw data modules as circles
-      const dotR = cell * 0.43
+      const dotR = cell * 0.46
       ctx.fillStyle = BRAND
       for (let r = 0; r < N; r++) {
         for (let c = 0; c < N; c++) {
           if (inFinder(r, c) || inLogo(r, c)) continue
           if (!qr.modules.get(r, c)) continue
-          const x = q + (c + 0.5) * cell
-          const y = q + (r + 0.5) * cell
           ctx.beginPath()
-          ctx.arc(x, y, dotR, 0, Math.PI * 2)
+          ctx.arc(q + (c + 0.5) * cell, q + (r + 0.5) * cell, dotR, 0, Math.PI * 2)
           ctx.fill()
         }
       }
 
       if (cancelled) return
 
-      // Draw 3 styled finder patterns (rounded squares, proper structure)
       drawFinder(ctx, q, q, cell)
       drawFinder(ctx, q + (N - 7) * cell, q, cell)
       drawFinder(ctx, q, q + (N - 7) * cell, cell)
 
-      // Logo — white halo → blue badge → PNG
-      const cx = physSize / 2, cy = physSize / 2
-      const bW = LOGO_W * dpr, bH = LOGO_H * dpr
-      const pad = 8 * dpr, bR = 7 * dpr
+      // Logo : halo blanc → badge bleu → PNG
+      const cx = QR_SIZE / 2, cy = QR_SIZE / 2
+      const bR = 7
 
-      // White halo (blends into QR white background, hides any dots beneath)
       ctx.fillStyle = 'white'
-      rrect(ctx, cx - bW / 2 - pad, cy - bH / 2 - pad, bW + pad * 2, bH + pad * 2, bR + pad)
+      rrect(ctx, cx - LOGO_W / 2 - lgPad, cy - LOGO_H / 2 - lgPad,
+            LOGO_W + lgPad * 2, LOGO_H + lgPad * 2, bR + lgPad)
       ctx.fill()
 
-      // Blue badge
       ctx.fillStyle = BRAND
-      rrect(ctx, cx - bW / 2, cy - bH / 2, bW, bH, bR)
+      rrect(ctx, cx - LOGO_W / 2, cy - LOGO_H / 2, LOGO_W, LOGO_H, bR)
       ctx.fill()
 
-      // Thin white ring around badge for visual separation
-      ctx.strokeStyle = 'white'
-      ctx.lineWidth = dpr * 1.5
-      rrect(ctx, cx - bW / 2 + dpr, cy - bH / 2 + dpr, bW - dpr * 2, bH - dpr * 2, bR - dpr)
-      ctx.stroke()
-
-      // Logo image
       try {
         const img = new Image()
         img.src = '/memorabilius-logo-qr.png'
         await img.decode()
         ctx.imageSmoothingEnabled = true
         ctx.imageSmoothingQuality = 'high'
-        ctx.drawImage(img, cx - bW / 2, cy - bH / 2, bW, bH)
+        ctx.drawImage(img, cx - LOGO_W / 2, cy - LOGO_H / 2, LOGO_W, LOGO_H)
       } catch {
         ctx.fillStyle = 'white'
-        ctx.font = `bold ${9 * dpr}px Arial, sans-serif`
+        ctx.font = 'bold 10px Arial, sans-serif'
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
         ctx.fillText('MEMORABILIUS', cx, cy)
