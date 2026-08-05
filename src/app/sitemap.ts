@@ -22,7 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     const [{ data: profiles }, { data: sets }, { data: cards }] = await Promise.all([
-      supabase.from('profiles').select('id, updated_at').not('lien_csv', 'is', null).neq('lien_csv', ''),
+      supabase.from('profiles').select('id, slug, updated_at'),
       supabase.from('card_sets').select('id, updated_at').order('id'),
       // Fiches carte individuelles : le vrai aimant à trafic SEO (recherches type
       // "Michael Jordan 1993-94 Upper Deck"). Plafonné pour rester dans une taille de
@@ -35,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ])
 
     const galeries: MetadataRoute.Sitemap = (profiles || []).map(p => ({
-      url: `${base}/galerie/${p.id}`,
+      url: `${base}/galerie/${(p as any).slug || p.id}`,
       lastModified: new Date((p as any).updated_at || new Date()),
       changeFrequency: 'weekly' as const,
       priority: 0.7,
