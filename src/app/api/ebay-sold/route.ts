@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
 
 export const maxDuration = 30
 
 const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
 const GRADE_KEYWORDS = ['psa', 'bgs', 'sgc', 'cgc', 'beckett', 'graded', 'grade', 'gem', 'mint']
 
-// ── Cache module-level (survit aux invocations chaudes Vercel) ──────────────
+// ── Cache module-level (invocations chaudes Vercel) ──────────────────────────
 const RESP_CACHE = new Map<string, { data: object; exp: number }>()
-const RESP_TTL   = 4 * 60 * 60 * 1000  // 4 heures
+const RESP_TTL   = 4 * 60 * 60 * 1000  // 4 h — warm-up entre instances
 function respCacheGet(k: string) {
   const e = RESP_CACHE.get(k)
   if (!e || Date.now() > e.exp) { RESP_CACHE.delete(k); return null }
@@ -15,6 +16,38 @@ function respCacheGet(k: string) {
 }
 function respCacheSet(k: string, data: object) {
   RESP_CACHE.set(k, { data, exp: Date.now() + RESP_TTL })
+}
+
+// ── Cache Supabase (persistant — partagé entre toutes les instances Lambda) ──
+const SB_TTL_H = 24  // heures
+let _sb: ReturnType<typeof createClient> | null = null
+function getSb() {
+  if (_sb) return _sb
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!url || !key) return null
+  _sb = createClient(url, key, { auth: { persistSession: false } })
+  return _sb
+}
+async function sbGet(k: string): Promise<object | null> {
+  try {
+    const { data } = await getSb()!
+      .from('ebay_cache')
+      .select('data')
+      .eq('key', k)
+      .gt('expires_at', new Date().toISOString())
+      .maybeSingle()
+    return data?.data ?? null
+  } catch { return null }
+}
+async function sbSet(k: string, data: object) {
+  try {
+    await getSb()!.from('ebay_cache').upsert({
+      key: k,
+      data,
+      expires_at: new Date(Date.now() + SB_TTL_H * 3600_000).toISOString(),
+    }, { onConflict: 'key' })
+  } catch { /* non-fatal */ }
 }
 
 // Token OAuth mis en cache (valide 2 h côté eBay, on le renouvelle à 55 min)
@@ -282,8 +315,17 @@ export async function GET(req: NextRequest) {
 
   // Clé de cache : paramètres de recherche uniquement (sans credentials ni img)
   const ck = [name || directQ, set, year, num, variant, rc, auto, patch, grade].join('|')
+
+  // 1. Cache mémoire Lambda (warm)
   const hit = respCacheGet(ck)
   if (hit) return NextResponse.json(hit)
+
+  // 2. Cache Supabase (persistant — partagé entre instances, survit aux cold starts)
+  const sbHit = getSb() ? await sbGet(ck) : null
+  if (sbHit) {
+    respCacheSet(ck, sbHit)  // réchauffe le cache mémoire local
+    return NextResponse.json(sbHit)
+  }
 
   const token = await getOAuthToken(appId, certId)
   if (!token) return NextResponse.json({ items: [] })
@@ -352,8 +394,11 @@ export async function GET(req: NextRequest) {
       items: active,
       count: active.length,
     }
-    // Ne met en cache que si on a des résultats, pour pouvoir réessayer en cas de 429
-    if (active.length > 0 || sold.length > 0) respCacheSet(ck, payload)
+    // Ne met en cache que si on a des résultats (permet retry en cas de 429)
+    if (active.length > 0 || sold.length > 0) {
+      respCacheSet(ck, payload)
+      if (getSb()) sbSet(ck, payload)  // fire-and-forget, non-bloquant
+    }
     return NextResponse.json(payload)
   } catch (err) {
     console.error('[ebay-sold]', err)
