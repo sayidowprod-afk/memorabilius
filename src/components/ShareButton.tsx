@@ -13,8 +13,8 @@ interface Props {
 const BRAND = '#003DA6'
 const QR_SIZE = 220   // taille CSS affichée
 const SCALE = 4       // canvas physique 4× → print-ready 880 px, crisp écran
-const LOGO_W = 130    // badge logo (px CSS)
-const LOGO_H = 28
+const LOGO_W = 160    // badge logo (px CSS) — 640 px physiques = taille exacte du PNG HD
+const LOGO_H = 36     // 144 px physiques = taille exacte du PNG HD
 
 function rrect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
   ctx.beginPath()
@@ -58,35 +58,32 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
       const ctx = canvas.getContext('2d')
       if (!ctx) return
 
-      // ② Badge logo centré — halo blanc → rect bleu → texte crisp
+      // ② Badge logo centré — halo blanc → rect bleu → logo PNG
       const cx = phys / 2, cy = phys / 2
-      const lgW = LOGO_W * SCALE   // 520 px physiques
-      const lgH = LOGO_H * SCALE   // 112 px physiques
-      const pad = 9 * SCALE, bR = 8 * SCALE
+      const lgW = LOGO_W * SCALE   // 640 px physiques = taille PNG HD
+      const lgH = LOGO_H * SCALE   // 144 px physiques = taille PNG HD
+      const pad = 3 * SCALE, bR = 8 * SCALE
 
+      // Halo blanc fin
       ctx.fillStyle = 'white'
       rrect(ctx, cx - lgW / 2 - pad, cy - lgH / 2 - pad,
             lgW + pad * 2, lgH + pad * 2, bR + pad)
       ctx.fill()
 
+      // Rectangle bleu
       ctx.fillStyle = BRAND
       rrect(ctx, cx - lgW / 2, cy - lgH / 2, lgW, lgH, bR)
       ctx.fill()
 
-      // Texte logo — taille auto ajustée à la largeur du badge, crisp à toute échelle
+      // Logo officiel PNG HD — 640×144 px physiques, rendu 1:1 → pixel-perfect
+      const logo = new Image()
+      logo.src = '/memorabilius-logo-qr-hd.png'
+      await logo.decode()
+      if (cancelled) return
       ctx.save()
       rrect(ctx, cx - lgW / 2, cy - lgH / 2, lgW, lgH, bR)
       ctx.clip()
-      ctx.fillStyle = 'white'
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
-      let fs = Math.round(lgH * 0.58)
-      ctx.font = `900 ${fs}px "Arial Black", "Arial Bold", Arial, sans-serif`
-      while (ctx.measureText('MEMORABILIUS').width > lgW * 0.88 && fs > 6) {
-        fs -= 1
-        ctx.font = `900 ${fs}px "Arial Black", "Arial Bold", Arial, sans-serif`
-      }
-      ctx.fillText('MEMORABILIUS', cx, cy)
+      ctx.drawImage(logo, cx - lgW / 2, cy - lgH / 2, lgW, lgH)
       ctx.restore()
     }, 50)
     return () => { cancelled = true; clearTimeout(timer) }
