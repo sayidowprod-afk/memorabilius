@@ -175,13 +175,13 @@ export async function POST(req: NextRequest) {
     .eq('id', user.id)
     .single()
 
-  const { data: profiles } = await supabase
-    .from('profiles')
-    .select('id, stats_total')
-
-  const ranked = [...(profiles || [])].sort((a, b) => (b.stats_total || 0) - (a.stats_total || 0))
-  const rank = ranked.findIndex(p => p.id === user.id) + 1
-  const totalCollectors = ranked.length
+  const myTotal = profile?.stats_total || 0
+  const [{ count: aboveCount }, { count: totalCount }] = await Promise.all([
+    supabase.from('profiles').select('*', { count: 'exact', head: true }).gt('stats_total', myTotal),
+    supabase.from('profiles').select('*', { count: 'exact', head: true }).not('display_name', 'is', null).neq('display_name', ''),
+  ])
+  const rank = (aboveCount || 0) + 1
+  const totalCollectors = totalCount || 0
 
   const { data: newCardsData } = await supabase
     .from('cartes_manuelles')

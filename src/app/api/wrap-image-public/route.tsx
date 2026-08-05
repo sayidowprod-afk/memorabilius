@@ -75,9 +75,8 @@ export async function GET(req: NextRequest) {
   const monthEnd = new Date(y, m, 1)
   const monthLabel = monthName(monthStart)
 
-  const [{ data: profile }, { data: profiles }, { data: cardsData }] = await Promise.all([
+  const [{ data: profile }, { data: cardsData }] = await Promise.all([
     supabase.from('profiles').select('display_name, stats_total').eq('id', uid).single(),
-    supabase.from('profiles').select('id, stats_total'),
     supabase.from('cartes_manuelles')
       .select('nom, annee, marque, rc, auto, patch, num, image_recto')
       .eq('user_id', uid)
@@ -85,9 +84,13 @@ export async function GET(req: NextRequest) {
       .lt('created_at', monthEnd.toISOString()),
   ])
 
-  const ranked = [...(profiles || [])].sort((a, b) => (b.stats_total || 0) - (a.stats_total || 0))
-  const rank = ranked.findIndex(p => p.id === uid) + 1
-  const totalCollectors = ranked.length
+  const myTotal = profile?.stats_total || 0
+  const [{ count: aboveCount }, { count: totalCount }] = await Promise.all([
+    supabase.from('profiles').select('*', { count: 'exact', head: true }).gt('stats_total', myTotal),
+    supabase.from('profiles').select('*', { count: 'exact', head: true }).not('display_name', 'is', null).neq('display_name', ''),
+  ])
+  const rank = (aboveCount || 0) + 1
+  const totalCollectors = totalCount || 0
   const name = profile?.display_name || 'Collector'
   const newCards = cardsData?.length || 0
   const rcCount = cardsData?.filter((c: any) => c.rc).length || 0

@@ -76,6 +76,15 @@ function extractFirstJson(text: string): string | null {
   return null
 }
 
+async function callGeminiWithRetry(url: string, body: object): Promise<Response> {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+    if (res.status !== 503 || attempt === 2) return res
+    await new Promise(r => setTimeout(r, 1000 * (attempt + 1)))
+  }
+  throw new Error('unreachable')
+}
+
 export async function POST(req: NextRequest) {
   const token = req.headers.get('authorization')?.replace('Bearer ', '')
   if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -127,13 +136,9 @@ export async function POST(req: NextRequest) {
     const imageParts: object[] = [{ inline_data: { mime_type: 'image/jpeg', data: imageBase64 } }]
     if (imageBase64Verso) imageParts.push({ inline_data: { mime_type: 'image/jpeg', data: imageBase64Verso } })
 
-    const res = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: fullPrompt }, ...imageParts] }],
-        generationConfig: { temperature: 0, maxOutputTokens: 2048, thinkingConfig: { thinkingBudget: 0 } },
-      }),
+    const res = await callGeminiWithRetry(`${GEMINI_URL}?key=${apiKey}`, {
+      contents: [{ parts: [{ text: fullPrompt }, ...imageParts] }],
+      generationConfig: { temperature: 0, maxOutputTokens: 2048, thinkingConfig: { thinkingBudget: 0 } },
     })
 
     if (!res.ok) {

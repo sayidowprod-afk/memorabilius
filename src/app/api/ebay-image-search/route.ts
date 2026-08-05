@@ -8,7 +8,10 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+let tokenCache: { token: string; expires: number } | null = null
+
 async function getOAuthToken(appId: string, certId: string): Promise<string | null> {
+  if (tokenCache && Date.now() < tokenCache.expires) return tokenCache.token
   try {
     const creds = Buffer.from(`${appId}:${certId}`).toString('base64')
     const res = await fetch('https://api.ebay.com/identity/v1/oauth2/token', {
@@ -21,6 +24,9 @@ async function getOAuthToken(appId: string, certId: string): Promise<string | nu
       cache: 'no-store',
     })
     const data = await res.json()
+    if (data.access_token) {
+      tokenCache = { token: data.access_token, expires: Date.now() + ((data.expires_in || 7200) - 120) * 1000 }
+    }
     return data.access_token || null
   } catch {
     return null

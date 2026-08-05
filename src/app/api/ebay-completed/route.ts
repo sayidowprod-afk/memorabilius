@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
 
 export const maxDuration = 30
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
 
 const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
 const GRADE_KEYWORDS = ['psa', 'bgs', 'sgc', 'cgc', 'beckett', 'graded', 'grade', 'gem', 'mint']
@@ -19,6 +25,11 @@ function medianOf(prices: number[]) {
 }
 
 export async function GET(req: NextRequest) {
+  const token = req.headers.get('authorization')?.replace('Bearer ', '')
+  if (!token) return NextResponse.json({ sold: [] }, { status: 401 })
+  const { data: { user } } = await supabase.auth.getUser(token)
+  if (!user) return NextResponse.json({ sold: [] }, { status: 401 })
+
   const { searchParams } = req.nextUrl
   const name    = searchParams.get('name') || ''
   const set     = searchParams.get('set') || ''
