@@ -37,7 +37,7 @@ async function sbGet(k: string): Promise<object | null> {
       .eq('key', k)
       .gt('expires_at', new Date().toISOString())
       .maybeSingle()
-    return data?.data ?? null
+    return (data as any)?.data ?? null
   } catch { return null }
 }
 async function sbSet(k: string, data: object) {
