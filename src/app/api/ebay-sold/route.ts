@@ -59,7 +59,7 @@ function isSafeExternalUrl(raw: string): boolean {
 async function fetchImageBase64(url: string): Promise<string | null> {
   if (!isSafeExternalUrl(url)) return null
   try {
-    const r = await fetch(url, { cache: 'no-store' })
+    const r = await fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(5000) })
     if (!r.ok) return null
     const buf = await r.arrayBuffer()
     return Buffer.from(buf).toString('base64')

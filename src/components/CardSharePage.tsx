@@ -106,14 +106,13 @@ export default function CardSharePage({ cardId }: { cardId: string }) {
               transformStyle: 'preserve-3d',
               transition: 'transform 0.6s cubic-bezier(0.4,0,0.2,1)',
               transform: flipped ? 'rotateY(180deg)' : 'none',
-              borderRadius: 14,
               boxShadow: `0 20px 56px ${accent}55, 0 4px 16px rgba(0,0,0,0.2)`,
             }}>
-              <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', borderRadius: 14, overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}>
                 <img src={card.image_recto} alt={card.nom} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
               {hasVerso && (
-                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)', borderRadius: 14, overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
                   <img src={card.image_verso} alt={`${card.nom} verso`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </div>
               )}

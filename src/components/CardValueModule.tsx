@@ -57,26 +57,16 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
     let cancelled = false
     const controller = new AbortController()
 
-    // Annonces actives — chemin critique, même logique qu'avant
     fetch(`/api/ebay-sold?${params.toString()}`, { signal: controller.signal })
       .then(r => r.json())
       .then(json => {
         if (cancelled) return
-        setActive((json.items || []).map((i: any) => ({
+        setActive((json.active || json.items || []).map((i: any) => ({
           price: Math.round(i.price * 100) / 100,
           title: i.title || '',
           url: i.url || '',
           img: i.img || '',
         })))
-        setLoading(false)
-      })
-      .catch(() => { if (!cancelled) setLoading(false) })
-
-    // Ventes conclues — endpoint séparé, ne bloque pas l'affichage actif
-    fetch(`/api/ebay-completed?${params.toString()}`)
-      .then(r => r.json())
-      .then(json => {
-        if (cancelled) return
         setSold((json.sold || []).map((i: any) => ({
           price: Math.round(i.price * 100) / 100,
           title: i.title || '',
@@ -84,8 +74,9 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
           img: i.img || '',
           soldDate: i.soldDate || '',
         })))
+        setLoading(false)
       })
-      .catch(() => {})
+      .catch(() => { if (!cancelled) setLoading(false) })
 
     return () => { cancelled = true; controller.abort() }
   }, [cardName, set, year, num, variant, rc, auto, patch, grade, img])
