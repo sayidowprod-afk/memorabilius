@@ -38,7 +38,7 @@ export default function CardValueModule({ cardName, set, year, num, variant, rc,
   const { lang } = useLang()
 
   const printRun = num?.match(/\/\d+/) ? num.match(/\/\d+/)![0] : num
-  const ebaySearchUrl = `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`
+  const ebaySearchUrl = `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([cardName, variant, set, year, printRun, rc && 'RC', auto && 'AUTO', patch && 'PATCH', grade].filter(Boolean).join(' '))}`
 
   useEffect(() => {
     if (!cardName) { setLoading(false); return }

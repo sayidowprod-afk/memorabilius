@@ -339,7 +339,7 @@ export default function ChatBubble() {
                                     {offer.offered_cards.length > 3 && <span style={{ fontSize: 9, color: textMuted, alignSelf: 'center' }}>+{offer.offered_cards.length - 3}</span>}
                                   </div>
                                   {offer.offered_cards[0]?.nom && (
-                                    <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([offer.offered_cards[0].nom, offer.offered_cards[0].annee, offer.offered_cards[0].marque, offer.offered_cards[0].rc ? 'RC' : '', offer.offered_cards[0].auto ? 'AUTO' : '', offer.offered_cards[0].patch ? 'PATCH' : ''].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`}
+                                    <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([offer.offered_cards[0].nom, offer.offered_cards[0].annee, offer.offered_cards[0].marque, offer.offered_cards[0].rc ? 'RC' : '', offer.offered_cards[0].auto ? 'AUTO' : '', offer.offered_cards[0].patch ? 'PATCH' : ''].filter(Boolean).join(' '))}`}
                                       target="_blank" rel="noopener noreferrer"
                                       style={{ fontSize: 8, color: '#0064d2', marginTop: 3, display: 'block', fontWeight: 700 }}>eBay →</a>
                                   )}
@@ -361,7 +361,7 @@ export default function ChatBubble() {
                                     {offer.requested_cards.length > 3 && <span style={{ fontSize: 9, color: textMuted, alignSelf: 'center' }}>+{offer.requested_cards.length - 3}</span>}
                                   </div>
                                   {offer.requested_cards[0]?.nom && (
-                                    <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([offer.requested_cards[0].nom, offer.requested_cards[0].annee, offer.requested_cards[0].marque, offer.requested_cards[0].rc ? 'RC' : '', offer.requested_cards[0].auto ? 'AUTO' : '', offer.requested_cards[0].patch ? 'PATCH' : ''].filter(Boolean).join(' '))}&LH_Sold=1&LH_Complete=1`}
+                                    <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent([offer.requested_cards[0].nom, offer.requested_cards[0].annee, offer.requested_cards[0].marque, offer.requested_cards[0].rc ? 'RC' : '', offer.requested_cards[0].auto ? 'AUTO' : '', offer.requested_cards[0].patch ? 'PATCH' : ''].filter(Boolean).join(' '))}`}
                                       target="_blank" rel="noopener noreferrer"
                                       style={{ fontSize: 8, color: '#0064d2', marginTop: 3, display: 'block', fontWeight: 700 }}>eBay →</a>
                                   )}

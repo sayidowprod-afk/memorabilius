@@ -535,9 +535,9 @@ export default function Trades() {
                 {(() => {
                   const q = [popup.joueur || popup.titre, popup.annee, popup.marque, popup.rc ? 'RC' : '', popup.auto ? 'auto' : '', popup.patch ? 'patch' : '', popup.num ? 'numbered' : ''].filter(Boolean).join(' ')
                   return q ? (
-                    <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(q)}&LH_Sold=1&LH_Complete=1`} target="_blank" rel="noopener noreferrer"
+                    <a href={`https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(q)}`} target="_blank" rel="noopener noreferrer"
                       style={{ display: 'block', background: '#f0f5ff', borderRadius: 10, padding: '10px 14px', fontSize: 13, fontWeight: 700, color: '#0064d2', textDecoration: 'none' }}>
-                      🔍 Voir les ventes eBay →
+                      🔍 Rechercher sur eBay →
                     </a>
                   ) : null
                 })()}
