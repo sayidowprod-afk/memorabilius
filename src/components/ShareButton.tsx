@@ -11,11 +11,65 @@ interface Props {
 }
 
 const BRAND = '#003DA6'
+const BASKET = '#E8621A'
 const QR_SIZE = 220
-// Logo Memorabilius blanc (110x24) — wordmark officiel, fond transparent
-const LOGO_W = 110
-const LOGO_H = 24
-const LOGO_B64 = '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'
+
+function drawBasketball(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number) {
+  // Fond orange
+  ctx.fillStyle = BASKET
+  ctx.beginPath()
+  ctx.arc(cx, cy, r, 0, Math.PI * 2)
+  ctx.fill()
+
+  // Lignes de couture — clippées dans le cercle
+  ctx.save()
+  ctx.beginPath()
+  ctx.arc(cx, cy, r, 0, Math.PI * 2)
+  ctx.clip()
+  ctx.strokeStyle = 'rgba(0,0,0,0.55)'
+  ctx.lineWidth = Math.max(1, r * 0.08)
+  ctx.lineCap = 'round'
+
+  // Ligne horizontale
+  ctx.beginPath()
+  ctx.moveTo(cx - r, cy)
+  ctx.lineTo(cx + r, cy)
+  ctx.stroke()
+
+  // Ligne verticale
+  ctx.beginPath()
+  ctx.moveTo(cx, cy - r)
+  ctx.lineTo(cx, cy + r)
+  ctx.stroke()
+
+  // Courbe gauche
+  ctx.beginPath()
+  ctx.moveTo(cx - r * 0.28, cy - r)
+  ctx.bezierCurveTo(cx - r * 0.85, cy - r * 0.45, cx - r * 0.85, cy + r * 0.45, cx - r * 0.28, cy + r)
+  ctx.stroke()
+
+  // Courbe droite
+  ctx.beginPath()
+  ctx.moveTo(cx + r * 0.28, cy - r)
+  ctx.bezierCurveTo(cx + r * 0.85, cy - r * 0.45, cx + r * 0.85, cy + r * 0.45, cx + r * 0.28, cy + r)
+  ctx.stroke()
+
+  ctx.restore()
+}
+
+function rrect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
+  ctx.beginPath()
+  ctx.moveTo(x + r, y)
+  ctx.lineTo(x + w - r, y)
+  ctx.arcTo(x + w, y, x + w, y + r, r)
+  ctx.lineTo(x + w, y + h - r)
+  ctx.arcTo(x + w, y + h, x + w - r, y + h, r)
+  ctx.lineTo(x + r, y + h)
+  ctx.arcTo(x, y + h, x, y + h - r, r)
+  ctx.lineTo(x, y + r)
+  ctx.arcTo(x, y, x + r, y, r)
+  ctx.closePath()
+}
 
 export default function ShareButton({ url, title, compact, buttonStyle }: Props) {
   const [showModal, setShowModal] = useState(false)
@@ -28,62 +82,71 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
   useEffect(() => {
     if (!showModal) return
     let cancelled = false
-    const timer = setTimeout(async () => {
+    const timer = setTimeout(() => {
       const canvas = canvasRef.current
       if (!canvas || cancelled) return
-      canvas.width = QR_SIZE
-      canvas.height = QR_SIZE
-      await QRCode.toCanvas(canvas, fullUrl, {
-        width: QR_SIZE,
-        margin: 2,
-        color: { dark: BRAND, light: '#FFFFFF' },
-        errorCorrectionLevel: 'H',
-      })
-      if (cancelled) return
+
+      // Canvas DPR-aware pour netteté retina
+      const dpr = window.devicePixelRatio || 1
+      canvas.width = QR_SIZE * dpr
+      canvas.height = QR_SIZE * dpr
+      canvas.style.width = `${QR_SIZE}px`
+      canvas.style.height = `${QR_SIZE}px`
+
       const ctx = canvas.getContext('2d')
       if (!ctx) return
-      // Logo Memorabilius centré — wordmark blanc sur rectangle bleu
-      const cx = QR_SIZE / 2
-      const cy = QR_SIZE / 2
-      const iPad = 6   // intérieur: espace entre logo et bord bleu
-      const oPad = 5   // extérieur: bordure blanche autour du rect bleu
-      const rr = (ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) => {
-        ctx.beginPath()
-        ctx.moveTo(x + r, y)
-        ctx.lineTo(x + w - r, y)
-        ctx.arcTo(x + w, y, x + w, y + r, r)
-        ctx.lineTo(x + w, y + h - r)
-        ctx.arcTo(x + w, y + h, x + w - r, y + h, r)
-        ctx.lineTo(x + r, y + h)
-        ctx.arcTo(x, y + h, x, y + h - r, r)
-        ctx.lineTo(x, y + r)
-        ctx.arcTo(x, y, x + r, y, r)
-        ctx.closePath()
-      }
-      // Fond blanc (bordure externe)
+      ctx.scale(dpr, dpr)
+
+      // Matrice QR brute (modules)
+      const qr = QRCode.create(fullUrl, { errorCorrectionLevel: 'H' })
+      const N = qr.modules.size
+      const quiet = 2   // modules de marge
+      const cell = QR_SIZE / (N + quiet * 2)
+
+      // Fond blanc
       ctx.fillStyle = 'white'
-      rr(ctx, cx - LOGO_W/2 - iPad - oPad, cy - LOGO_H/2 - iPad - oPad,
-         LOGO_W + (iPad + oPad)*2, LOGO_H + (iPad + oPad)*2, 10)
-      ctx.fill()
-      // Rectangle bleu
+      ctx.fillRect(0, 0, QR_SIZE, QR_SIZE)
+
+      // Modules ronds (cercles)
       ctx.fillStyle = BRAND
-      rr(ctx, cx - LOGO_W/2 - iPad, cy - LOGO_H/2 - iPad,
-         LOGO_W + iPad*2, LOGO_H + iPad*2, 7)
-      ctx.fill()
-      // Logo blanc dessus — URL same-origin évite les problèmes de base64
-      try {
-        const img = new Image()
-        img.src = '/memorabilius-logo-white.png'
-        await img.decode()
-        ctx.drawImage(img, cx - LOGO_W/2, cy - LOGO_H/2, LOGO_W, LOGO_H)
-      } catch {
-        // Fallback texte
-        ctx.fillStyle = 'white'
-        ctx.font = 'bold 10px Arial'
-        ctx.textAlign = 'center'
-        ctx.textBaseline = 'middle'
-        ctx.fillText('memorabilius', cx, cy)
+      for (let row = 0; row < N; row++) {
+        for (let col = 0; col < N; col++) {
+          if (!qr.modules.get(row, col)) continue
+          const x = (quiet + col + 0.5) * cell
+          const y = (quiet + row + 0.5) * cell
+          ctx.beginPath()
+          ctx.arc(x, y, cell * 0.43, 0, Math.PI * 2)
+          ctx.fill()
+        }
       }
+
+      if (cancelled) return
+
+      // Décoration centrale : ballon de basket + texte
+      const cx = QR_SIZE / 2
+      const ballR = 21
+      const cy = QR_SIZE / 2 - 8       // légèrement vers le haut
+      const textY = cy + ballR + 13     // texte sous le ballon
+
+      // Fond blanc (efface les modules derrière)
+      ctx.fillStyle = 'white'
+      rrect(ctx, cx - 58, cy - ballR - 7, 116, ballR * 2 + 34, 14)
+      ctx.fill()
+
+      // Ballon de basket
+      drawBasketball(ctx, cx, cy, ballR)
+
+      // Pilule bleue
+      ctx.fillStyle = BRAND
+      rrect(ctx, cx - 50, textY - 9, 100, 18, 9)
+      ctx.fill()
+
+      // Texte MEMORABILIUS
+      ctx.fillStyle = 'white'
+      ctx.font = `bold ${Math.round(9 * dpr) / dpr}px Arial, sans-serif`
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillText('MEMORABILIUS', cx, textY)
     }, 50)
     return () => { cancelled = true; clearTimeout(timer) }
   }, [showModal, fullUrl])
@@ -103,11 +166,9 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
     link.click()
   }
 
-  const share = () => setShowModal(true)
-
   return (
     <>
-      <button onClick={share} style={buttonStyle ?? {
+      <button onClick={() => setShowModal(true)} style={buttonStyle ?? {
         background: 'none', border: '1px solid #ddd', borderRadius: 8,
         padding: compact ? '10px 10px' : '6px 12px', cursor: 'pointer',
         fontSize: compact ? 16 : 13, fontWeight: 700,
@@ -134,12 +195,10 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
             <h3 style={{ fontWeight: 900, fontSize: 20, marginBottom: 8 }}>{t('gallery_share')}</h3>
             <p style={{ color: '#666', fontSize: 13, marginBottom: 20 }}>{title}</p>
 
-            {/* QR Code branded */}
             <div style={{ background: '#f4f6fb', borderRadius: 16, padding: 20, marginBottom: 14, display: 'inline-block' }}>
               <canvas ref={canvasRef} style={{ display: 'block', borderRadius: 6 }} />
             </div>
 
-            {/* Download */}
             <div style={{ marginBottom: 16 }}>
               <button onClick={downloadQR} style={{
                 background: BRAND, color: 'white', border: 'none', borderRadius: 8,
@@ -149,7 +208,6 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
               </button>
             </div>
 
-            {/* Lien */}
             <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
               <input value={fullUrl} readOnly style={{
                 flex: 1, fontSize: 12, padding: '8px 12px',
@@ -164,7 +222,6 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
               </button>
             </div>
 
-            {/* Réseaux sociaux */}
             <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
               <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(fullUrl)}`}
                 target="_blank" rel="noopener noreferrer"
