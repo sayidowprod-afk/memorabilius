@@ -122,31 +122,48 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
 
       if (cancelled) return
 
-      // Décoration centrale : ballon de basket + texte
       const cx = QR_SIZE / 2
-      const ballR = 21
-      const cy = QR_SIZE / 2 - 8       // légèrement vers le haut
-      const textY = cy + ballR + 13     // texte sous le ballon
+      const cy = QR_SIZE / 2
 
-      // Fond blanc (efface les modules derrière)
+      // Mini ballons de basket dans la zone de données (pas dans les coins)
+      // Positions choisies loin des finder patterns (coins) et du logo central
+      const miniR = 6
+      const miniPositions = [
+        { x: 50,  y: 65  },  // entre TL finder et le centre
+        { x: 170, y: 65  },  // entre TR finder et le centre
+        { x: 50,  y: 155 },  // entre BL finder et le centre
+        { x: 170, y: 155 },  // coin bas-droit de la zone de données
+      ]
+      for (const p of miniPositions) {
+        // Effacer les modules derrière
+        ctx.fillStyle = 'white'
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, miniR + 3, 0, Math.PI * 2)
+        ctx.fill()
+        drawBasketball(ctx, p.x, p.y, miniR)
+      }
+
+      // Logo central MEMORABILIUS
+      const logoW = 114, logoH = 24, logoR = 8
+      const lgPad = 6
+
+      // Bordure blanche
       ctx.fillStyle = 'white'
-      rrect(ctx, cx - 58, cy - ballR - 7, 116, ballR * 2 + 34, 14)
+      rrect(ctx, cx - logoW/2 - lgPad, cy - logoH/2 - lgPad,
+            logoW + lgPad*2, logoH + lgPad*2, logoR + lgPad)
       ctx.fill()
 
-      // Ballon de basket
-      drawBasketball(ctx, cx, cy, ballR)
-
-      // Pilule bleue
+      // Rectangle bleu
       ctx.fillStyle = BRAND
-      rrect(ctx, cx - 50, textY - 9, 100, 18, 9)
+      rrect(ctx, cx - logoW/2, cy - logoH/2, logoW, logoH, logoR)
       ctx.fill()
 
-      // Texte MEMORABILIUS
+      // Texte
       ctx.fillStyle = 'white'
-      ctx.font = `bold ${Math.round(9 * dpr) / dpr}px Arial, sans-serif`
+      ctx.font = 'bold 10px Arial, sans-serif'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.fillText('MEMORABILIUS', cx, textY)
+      ctx.fillText('MEMORABILIUS', cx, cy)
     }, 50)
     return () => { cancelled = true; clearTimeout(timer) }
   }, [showModal, fullUrl])
