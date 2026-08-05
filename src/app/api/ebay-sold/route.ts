@@ -5,6 +5,21 @@ export const maxDuration = 30
 const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
 const GRADE_KEYWORDS = ['psa', 'bgs', 'sgc', 'cgc', 'beckett', 'graded', 'grade', 'gem', 'mint']
 
+// ── Cache module-level (survit aux invocations chaudes Vercel) ──────────────
+const RESP_CACHE = new Map<string, { data: object; exp: number }>()
+const RESP_TTL   = 4 * 60 * 60 * 1000  // 4 heures
+function respCacheGet(k: string) {
+  const e = RESP_CACHE.get(k)
+  if (!e || Date.now() > e.exp) { RESP_CACHE.delete(k); return null }
+  return e.data
+}
+function respCacheSet(k: string, data: object) {
+  RESP_CACHE.set(k, { data, exp: Date.now() + RESP_TTL })
+}
+
+// Token OAuth mis en cache (valide 2 h côté eBay, on le renouvelle à 55 min)
+let tokenCache: { value: string; exp: number } | null = null
+
 function titleMatchesCard(title: string, mustTerms: string[], isGraded: boolean): boolean {
   const t = normalize(title)
   if (!isGraded && GRADE_KEYWORDS.some(k => t.includes(k))) return false
@@ -12,6 +27,7 @@ function titleMatchesCard(title: string, mustTerms: string[], isGraded: boolean)
 }
 
 async function getOAuthToken(appId: string, certId: string, scope?: string): Promise<string | null> {
+  if (tokenCache && Date.now() < tokenCache.exp) return tokenCache.value
   try {
     const creds = Buffer.from(`${appId}:${certId}`).toString('base64')
     const encodedScope = encodeURIComponent(scope || 'https://api.ebay.com/oauth/api_scope')
@@ -25,7 +41,9 @@ async function getOAuthToken(appId: string, certId: string, scope?: string): Pro
       cache: 'no-store',
     })
     const data = await res.json()
-    return data.access_token || null
+    const token = data.access_token || null
+    if (token) tokenCache = { value: token, exp: Date.now() + 55 * 60 * 1000 }
+    return token
   } catch {
     return null
   }
@@ -290,6 +308,11 @@ export async function GET(req: NextRequest) {
   const mustSetWord = directQ ? '' : (setWords[0] || '')
   const isGraded = Boolean(grade && grade !== 'Raw' && grade !== 'Non gradée' && grade !== '')
 
+  // Clé de cache : paramètres de recherche uniquement (sans credentials ni img)
+  const ck = [name || directQ, set, year, num, variant, rc, auto, patch, grade].join('|')
+  const hit = respCacheGet(ck)
+  if (hit) return NextResponse.json(hit)
+
   const token = await getOAuthToken(appId, certId)
   if (!token) return NextResponse.json({ items: [] })
 
@@ -324,20 +347,17 @@ export async function GET(req: NextRequest) {
     }
 
     const imgFiltered = processItems(rawItems, mustTerms, mustSetWord, isGraded)
-    let browseStatus = 0, browseRaw = 0, browseFiltered = 0, browseBody = ''
     if (imgFiltered.length < 3) {
       const textRes = await fetch(
         `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(keywords)}&filter=buyingOptions:{FIXED_PRICE|BEST_OFFER}&limit=30&sort=price`,
         { headers, signal: controller.signal, cache: 'no-store' }
       )
-      browseStatus = textRes.status
-      const textBody = await textRes.text()
-      browseBody = textBody.slice(0, 300)
-      const textData = textBody.startsWith('{') ? JSON.parse(textBody) : {}
-      const textItems: any[] = textData?.itemSummaries || []
-      browseRaw = textItems.length
-      const seen = new Set(rawItems.map((i: any) => i.itemId))
-      rawItems = [...rawItems, ...textItems.filter((i: any) => !seen.has(i.itemId))]
+      if (textRes.ok) {
+        const textBody = await textRes.text()
+        const textItems: any[] = (textBody.startsWith('{') ? JSON.parse(textBody) : {})?.itemSummaries || []
+        const seen = new Set(rawItems.map((i: any) => i.itemId))
+        rawItems = [...rawItems, ...textItems.filter((i: any) => !seen.has(i.itemId))]
+      }
     }
 
     clearTimeout(timeout)
@@ -346,12 +366,11 @@ export async function GET(req: NextRequest) {
       Promise.resolve(processItems(rawItems, mustTerms, mustSetWord, isGraded)),
       soldPromise,
     ])
-    browseFiltered = active.length
 
     const sold = soldResult.items
     const soldPrices = sold.map(i => i.price)
 
-    return NextResponse.json({
+    const payload = {
       active,
       sold,
       soldCount: sold.length,
@@ -360,8 +379,10 @@ export async function GET(req: NextRequest) {
       max: soldPrices.length ? Math.max(...soldPrices) : 0,
       items: active,
       count: active.length,
-      _d: { keywords, mustTerms, mustSetWord, browseStatus, browseRaw, browseFiltered, browseBody, soldDebug: soldResult.debug },
-    })
+    }
+    // Ne met en cache que si on a des résultats, pour pouvoir réessayer en cas de 429
+    if (active.length > 0 || sold.length > 0) respCacheSet(ck, payload)
+    return NextResponse.json(payload)
   } catch (err) {
     console.error('[ebay-sold]', err)
     return NextResponse.json({ items: [], active: [], sold: [] })
