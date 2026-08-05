@@ -324,20 +324,18 @@ export async function GET(req: NextRequest) {
     }
 
     const imgFiltered = processItems(rawItems, mustTerms, mustSetWord, isGraded)
+    let browseStatus = 0, browseRaw = 0, browseFiltered = 0, browseBody = ''
     if (imgFiltered.length < 3) {
-      const browseParams = new URLSearchParams({
-        q: keywords,
-        filter: 'buyingOptions:{FIXED_PRICE|BEST_OFFER}',
-        limit: '30',
-        sort: 'price',
-      })
-      const textRes = await fetch(`https://api.ebay.com/buy/browse/v1/item_summary/search?${browseParams}`, {
-        headers,
-        signal: controller.signal,
-        cache: 'no-store',
-      })
-      const textData = await textRes.json()
-      const textItems = textData?.itemSummaries || []
+      const textRes = await fetch(
+        `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(keywords)}&filter=buyingOptions:{FIXED_PRICE|BEST_OFFER}&limit=30&sort=price`,
+        { headers, signal: controller.signal, cache: 'no-store' }
+      )
+      browseStatus = textRes.status
+      const textBody = await textRes.text()
+      browseBody = textBody.slice(0, 300)
+      const textData = textBody.startsWith('{') ? JSON.parse(textBody) : {}
+      const textItems: any[] = textData?.itemSummaries || []
+      browseRaw = textItems.length
       const seen = new Set(rawItems.map((i: any) => i.itemId))
       rawItems = [...rawItems, ...textItems.filter((i: any) => !seen.has(i.itemId))]
     }
@@ -348,22 +346,21 @@ export async function GET(req: NextRequest) {
       Promise.resolve(processItems(rawItems, mustTerms, mustSetWord, isGraded)),
       soldPromise,
     ])
+    browseFiltered = active.length
 
     const sold = soldResult.items
     const soldPrices = sold.map(i => i.price)
 
     return NextResponse.json({
-      // ventes en cours
       active,
-      // ventes réalisées (pour la valeur marché)
       sold,
       soldCount: sold.length,
       median: median(soldPrices),
       min: soldPrices.length ? Math.min(...soldPrices) : 0,
       max: soldPrices.length ? Math.max(...soldPrices) : 0,
-      // compat ancien code
       items: active,
       count: active.length,
+      _d: { keywords, mustTerms, mustSetWord, browseStatus, browseRaw, browseFiltered, browseBody, soldDebug: soldResult.debug },
     })
   } catch (err) {
     console.error('[ebay-sold]', err)
