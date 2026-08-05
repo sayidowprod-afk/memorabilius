@@ -208,37 +208,9 @@ async function fetchSoldItems(
     debug.miError = String(e)
   }
 
-  // 3. Fallback Browse API — annonces actives comme proxy prix du marché.
-  //    Finding API (svcs.ebay.com) est injoignable depuis Vercel, Marketplace Insights nécessite
-  //    une approbation eBay. Les prix des annonces actives reflètent le marché réel.
-  try {
-    const res = await fetch(
-      `https://api.ebay.com/buy/browse/v1/item_summary/search?q=${encodeURIComponent(keywords)}&filter=buyingOptions:{FIXED_PRICE|BEST_OFFER}&sort=price&limit=40`,
-      {
-        headers: { 'Authorization': `Bearer ${token}`, 'X-EBAY-C-MARKETPLACE-ID': 'EBAY_US' },
-        cache: 'no-store',
-        signal: AbortSignal.timeout(8000),
-      }
-    )
-    const body = await res.text()
-    debug.browseStatus = res.status
-    if (res.ok && body.startsWith('{')) {
-      const rawItems: any[] = JSON.parse(body)?.itemSummaries || []
-      debug.browseRaw = rawItems.length
-      const mapped = mapAndFilter(rawItems, (item: any) => ({
-        title: item.title || '',
-        price: parseFloat(item.price?.value || '0'),
-        url: item.itemWebUrl || '',
-        img: item.thumbnailImages?.[0]?.imageUrl || item.image?.imageUrl || '',
-        soldDate: '',
-      }))
-      debug.browseMapped = mapped.length
-      if (mapped.length > 0) return { items: applyOutlierFilter(mapped), debug }
-    }
-  } catch (e) {
-    debug.browseError = String(e)
-  }
-
+  // Finding API et Marketplace Insights ont échoué (418/403 depuis Vercel).
+  // Pas de fallback Browse API ici — le handler principal fait déjà un text search Browse
+  // pour les annonces actives ; doubler la requête triplerait le quota quotidien inutilement.
   return { items: [], debug }
 }
 
