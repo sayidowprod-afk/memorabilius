@@ -12,9 +12,10 @@ interface Props {
 
 const BRAND = '#003DA6'
 const QR_SIZE = 220
-const LOGO_SIZE = 46
-// Icône app embarquée (android-chrome 192x192 → 96x96) — pas de requête réseau dans le canvas
-const ICON_B64 = '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'
+// Logo Memorabilius blanc (110x24) — wordmark officiel, fond transparent
+const LOGO_W = 110
+const LOGO_H = 24
+const LOGO_B64 = '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'
 
 export default function ShareButton({ url, title, compact, buttonStyle }: Props) {
   const [showModal, setShowModal] = useState(false)
@@ -36,40 +37,44 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
         width: QR_SIZE,
         margin: 2,
         color: { dark: BRAND, light: '#FFFFFF' },
+        errorCorrectionLevel: 'H',
       })
       if (cancelled) return
       const ctx = canvas.getContext('2d')
       if (!ctx) return
-      // Logo Memorabilius centré — icône en base64 rendue blanche sur cercle bleu
+      // Logo Memorabilius centré — wordmark blanc sur rectangle bleu
       const cx = QR_SIZE / 2
       const cy = QR_SIZE / 2
-      const r = LOGO_SIZE / 2
-      const pad = 6
-      // Fond blanc carré
+      const iPad = 6   // intérieur: espace entre logo et bord bleu
+      const oPad = 5   // extérieur: bordure blanche autour du rect bleu
+      const rr = (ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) => {
+        ctx.beginPath()
+        ctx.moveTo(x + r, y)
+        ctx.lineTo(x + w - r, y)
+        ctx.arcTo(x + w, y, x + w, y + r, r)
+        ctx.lineTo(x + w, y + h - r)
+        ctx.arcTo(x + w, y + h, x + w - r, y + h, r)
+        ctx.lineTo(x + r, y + h)
+        ctx.arcTo(x, y + h, x, y + h - r, r)
+        ctx.lineTo(x, y + r)
+        ctx.arcTo(x, y, x + r, y, r)
+        ctx.closePath()
+      }
+      // Fond blanc (bordure externe)
       ctx.fillStyle = 'white'
-      ctx.fillRect(cx - r - pad, cy - r - pad, (r + pad) * 2, (r + pad) * 2)
-      // Cercle bleu
-      ctx.fillStyle = BRAND
-      ctx.beginPath()
-      ctx.arc(cx, cy, r, 0, Math.PI * 2)
+      rr(ctx, cx - LOGO_W/2 - iPad - oPad, cy - LOGO_H/2 - iPad - oPad,
+         LOGO_W + (iPad + oPad)*2, LOGO_H + (iPad + oPad)*2, 10)
       ctx.fill()
-      // Icône : rendue blanche via offscreen canvas (destination-in)
-      await new Promise<void>(resolve => {
-        const logo = new Image()
-        logo.onload = () => {
-          const tmp = document.createElement('canvas')
-          tmp.width = tmp.height = LOGO_SIZE * 2
-          const tc = tmp.getContext('2d')!
-          tc.fillStyle = 'white'
-          tc.fillRect(0, 0, tmp.width, tmp.height)
-          tc.globalCompositeOperation = 'destination-in'
-          tc.drawImage(logo, 0, 0, tmp.width, tmp.height)
-          ctx.drawImage(tmp, cx - r, cy - r, LOGO_SIZE, LOGO_SIZE)
-          resolve()
-        }
-        logo.onerror = () => resolve()
-        logo.src = `data:image/png;base64,${ICON_B64}`
-      })
+      // Rectangle bleu
+      ctx.fillStyle = BRAND
+      rr(ctx, cx - LOGO_W/2 - iPad, cy - LOGO_H/2 - iPad,
+         LOGO_W + iPad*2, LOGO_H + iPad*2, 7)
+      ctx.fill()
+      // Logo blanc dessus
+      const img = new Image()
+      img.src = `data:image/png;base64,${LOGO_B64}`
+      await img.decode()
+      ctx.drawImage(img, cx - LOGO_W/2, cy - LOGO_H/2, LOGO_W, LOGO_H)
     }, 50)
     return () => { cancelled = true; clearTimeout(timer) }
   }, [showModal, fullUrl])
