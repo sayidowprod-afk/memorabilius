@@ -70,11 +70,20 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
       rr(ctx, cx - LOGO_W/2 - iPad, cy - LOGO_H/2 - iPad,
          LOGO_W + iPad*2, LOGO_H + iPad*2, 7)
       ctx.fill()
-      // Logo blanc dessus
-      const img = new Image()
-      img.src = `data:image/png;base64,${LOGO_B64}`
-      await img.decode()
-      ctx.drawImage(img, cx - LOGO_W/2, cy - LOGO_H/2, LOGO_W, LOGO_H)
+      // Logo blanc dessus — URL same-origin évite les problèmes de base64
+      try {
+        const img = new Image()
+        img.src = '/memorabilius-logo-white.png'
+        await img.decode()
+        ctx.drawImage(img, cx - LOGO_W/2, cy - LOGO_H/2, LOGO_W, LOGO_H)
+      } catch {
+        // Fallback texte
+        ctx.fillStyle = 'white'
+        ctx.font = 'bold 10px Arial'
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        ctx.fillText('memorabilius', cx, cy)
+      }
     }, 50)
     return () => { cancelled = true; clearTimeout(timer) }
   }, [showModal, fullUrl])
