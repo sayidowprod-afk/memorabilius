@@ -12,8 +12,8 @@ interface Props {
 
 const BRAND = '#003DA6'
 const QR_SIZE = 220
-const LOGO_W = 110
-const LOGO_H = 24
+const LOGO_W = 100
+const LOGO_H = 22
 
 function rrect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
   ctx.beginPath()
@@ -24,96 +24,17 @@ function rrect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h
   ctx.arcTo(x, y, x + r, y, r); ctx.closePath()
 }
 
-// Ballon de basket (orange)
-function basketball(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number) {
-  ctx.fillStyle = '#E8621A'
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill()
-  ctx.save()
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip()
-  ctx.strokeStyle = 'rgba(0,0,0,0.55)'; ctx.lineWidth = r * 0.1; ctx.lineCap = 'round'
-  ctx.beginPath(); ctx.moveTo(cx - r, cy); ctx.lineTo(cx + r, cy); ctx.stroke()
-  ctx.beginPath(); ctx.moveTo(cx, cy - r); ctx.lineTo(cx, cy + r); ctx.stroke()
-  ctx.beginPath(); ctx.moveTo(cx - r * 0.28, cy - r)
-  ctx.bezierCurveTo(cx - r * 0.85, cy - r * 0.45, cx - r * 0.85, cy + r * 0.45, cx - r * 0.28, cy + r); ctx.stroke()
-  ctx.beginPath(); ctx.moveTo(cx + r * 0.28, cy - r)
-  ctx.bezierCurveTo(cx + r * 0.85, cy - r * 0.45, cx + r * 0.85, cy + r * 0.45, cx + r * 0.28, cy + r); ctx.stroke()
-  ctx.restore()
-}
-
-// Ballon de foot (noir + hexagones)
-function soccer(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number) {
+function drawFinder(ctx: CanvasRenderingContext2D, fx: number, fy: number, cell: number) {
+  const s = 7 * cell
+  const r1 = cell * 0.9   // outer corner radius
+  const r2 = cell * 0.6   // inner white gap radius
+  const r3 = cell * 0.55  // center dot radius
+  ctx.fillStyle = BRAND
+  rrect(ctx, fx, fy, s, s, r1); ctx.fill()
   ctx.fillStyle = 'white'
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill()
-  ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 0.5
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke()
-  // Pentagone central noir
-  ctx.fillStyle = '#1a1a1a'
-  ctx.beginPath()
-  for (let i = 0; i < 5; i++) {
-    const a = (i / 5) * Math.PI * 2 - Math.PI / 2
-    i === 0 ? ctx.moveTo(cx + Math.cos(a) * r * 0.38, cy + Math.sin(a) * r * 0.38)
-            : ctx.lineTo(cx + Math.cos(a) * r * 0.38, cy + Math.sin(a) * r * 0.38)
-  }
-  ctx.closePath(); ctx.fill()
-  // Petits pentagones autour
-  for (let k = 0; k < 5; k++) {
-    const a = (k / 5) * Math.PI * 2 - Math.PI / 2
-    const px = cx + Math.cos(a) * r * 0.72
-    const py = cy + Math.sin(a) * r * 0.72
-    ctx.beginPath()
-    for (let i = 0; i < 5; i++) {
-      const b = (i / 5) * Math.PI * 2 - Math.PI / 2
-      i === 0 ? ctx.moveTo(px + Math.cos(b) * r * 0.22, py + Math.sin(b) * r * 0.22)
-              : ctx.lineTo(px + Math.cos(b) * r * 0.22, py + Math.sin(b) * r * 0.22)
-    }
-    ctx.closePath(); ctx.fill()
-  }
-}
-
-// Ballon de foot US (brun + lacets)
-function football(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number) {
-  ctx.fillStyle = '#7B3F00'
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill()
-  ctx.save()
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip()
-  ctx.strokeStyle = 'white'; ctx.lineCap = 'round'
-  // Lacet horizontal
-  ctx.lineWidth = r * 0.14
-  ctx.beginPath(); ctx.moveTo(cx - r * 0.6, cy); ctx.lineTo(cx + r * 0.6, cy); ctx.stroke()
-  // Barres perpendiculaires
-  ctx.lineWidth = r * 0.1
-  for (const ox of [-0.3, 0, 0.3]) {
-    ctx.beginPath(); ctx.moveTo(cx + ox * r, cy - r * 0.25); ctx.lineTo(cx + ox * r, cy + r * 0.25); ctx.stroke()
-  }
-  ctx.restore()
-}
-
-// Balle de baseball (blanc + coutures rouges)
-function baseball(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number) {
-  ctx.fillStyle = '#f8f8f0'
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill()
-  ctx.strokeStyle = '#999'; ctx.lineWidth = 0.5
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke()
-  ctx.save()
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip()
-  ctx.strokeStyle = '#CC1111'; ctx.lineWidth = r * 0.1; ctx.lineCap = 'round'
-  ctx.beginPath()
-  ctx.moveTo(cx - r * 0.1, cy - r * 0.9)
-  ctx.bezierCurveTo(cx - r * 0.45, cy - r * 0.45, cx - r * 0.45, cy + r * 0.45, cx - r * 0.1, cy + r * 0.9)
-  ctx.stroke()
-  ctx.beginPath()
-  ctx.moveTo(cx + r * 0.1, cy - r * 0.9)
-  ctx.bezierCurveTo(cx + r * 0.45, cy - r * 0.45, cx + r * 0.45, cy + r * 0.45, cx + r * 0.1, cy + r * 0.9)
-  ctx.stroke()
-  // Petites barres des coutures
-  ctx.lineWidth = r * 0.07
-  for (const t of [-0.5, 0, 0.5]) {
-    const lx1 = cx - r * 0.1 + t * r * 0.05, ly = cy + t * r * 0.7
-    ctx.beginPath(); ctx.moveTo(lx1 - r * 0.12, ly); ctx.lineTo(lx1 + r * 0.12, ly); ctx.stroke()
-    const rx1 = cx + r * 0.1 - t * r * 0.05
-    ctx.beginPath(); ctx.moveTo(rx1 - r * 0.12, ly); ctx.lineTo(rx1 + r * 0.12, ly); ctx.stroke()
-  }
-  ctx.restore()
+  rrect(ctx, fx + cell, fy + cell, 5 * cell, 5 * cell, r2); ctx.fill()
+  ctx.fillStyle = BRAND
+  rrect(ctx, fx + 2 * cell, fy + 2 * cell, 3 * cell, 3 * cell, r3); ctx.fill()
 }
 
 export default function ShareButton({ url, title, compact, buttonStyle }: Props) {
@@ -134,64 +55,98 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
       const dpr = window.devicePixelRatio || 1
       const physSize = QR_SIZE * dpr
 
-      // ① Render QR at physical pixel size — finder patterns intact, retina-sharp
-      await QRCode.toCanvas(canvas, fullUrl, {
-        width: physSize, margin: 2,
-        color: { dark: BRAND, light: '#FFFFFF' },
-        errorCorrectionLevel: 'H',
-      })
-      // toCanvas sets canvas.width/height = physSize; fix CSS display size
+      canvas.width = physSize
+      canvas.height = physSize
       canvas.style.width = `${QR_SIZE}px`
       canvas.style.height = `${QR_SIZE}px`
-      if (cancelled) return
 
       const ctx = canvas.getContext('2d')
       if (!ctx) return
 
-      // All subsequent drawing in physical pixels (no ctx.scale needed)
-      const N = QRCode.create(fullUrl, { errorCorrectionLevel: 'H' }).modules.size
-      const cell = physSize / (N + 4)  // margin=2 → 4 extra modules
-      const q = 2 * cell               // quiet zone offset
-      const ballR = cell * 1.55        // covers the 3×3 center dot of each finder
+      // Compute module grid
+      const qr = QRCode.create(fullUrl, { errorCorrectionLevel: 'H' })
+      const N = qr.modules.size
+      const cell = physSize / (N + 4) // margin=2 → 4 extra modules
+      const q = 2 * cell              // quiet zone offset in px
 
-      // ② Small sports ball overlaid on the center 3×3 of each corner finder
-      //    Outer ring (1-module dark border) stays intact → scanner works
-      const ballsData = [
-        { cx: q + 3.5 * cell,          cy: q + 3.5 * cell,          draw: basketball },
-        { cx: physSize - q - 3.5*cell, cy: q + 3.5 * cell,          draw: soccer     },
-        { cx: q + 3.5 * cell,          cy: physSize - q - 3.5*cell, draw: football   },
-        { cx: physSize - q - 3.5*cell, cy: physSize - q - 3.5*cell, draw: baseball   },
-      ]
-      for (const b of ballsData) {
-        ctx.fillStyle = 'white'
-        ctx.beginPath(); ctx.arc(b.cx, b.cy, ballR + dpr, 0, Math.PI * 2); ctx.fill()
-        b.draw(ctx, b.cx, b.cy, ballR)
+      // White background
+      ctx.fillStyle = 'white'
+      ctx.fillRect(0, 0, physSize, physSize)
+
+      // Finder zone exclusion (finder 7×7 + 1-module separator = 8 wide)
+      const inFinder = (r: number, c: number) =>
+        (r < 8 && c < 8) ||
+        (r < 8 && c >= N - 8) ||
+        (r >= N - 8 && c < 8)
+
+      // Logo zone exclusion — keeps module area clear behind the logo
+      const lgW = (LOGO_W + 18) * dpr
+      const lgH = (LOGO_H + 18) * dpr
+      const lgX0 = physSize / 2 - lgW / 2
+      const lgY0 = physSize / 2 - lgH / 2
+      const inLogo = (r: number, c: number) => {
+        const px = q + (c + 0.5) * cell
+        const py = q + (r + 0.5) * cell
+        return px > lgX0 && px < lgX0 + lgW && py > lgY0 && py < lgY0 + lgH
       }
 
-      // ③ Logo Memorabilius central (physical pixel coordinates)
-      const pcx = physSize / 2, pcy = physSize / 2
-      const lgW = LOGO_W * dpr, lgH = LOGO_H * dpr
-      const lgPad = 6 * dpr, lgRad = 8 * dpr
-
-      ctx.fillStyle = 'white'
-      rrect(ctx, pcx - lgW/2 - lgPad, pcy - lgH/2 - lgPad, lgW + lgPad*2, lgH + lgPad*2, lgRad + lgPad)
-      ctx.fill()
+      // Draw data modules as circles
+      const dotR = cell * 0.43
       ctx.fillStyle = BRAND
-      rrect(ctx, pcx - lgW/2, pcy - lgH/2, lgW, lgH, lgRad)
+      for (let r = 0; r < N; r++) {
+        for (let c = 0; c < N; c++) {
+          if (inFinder(r, c) || inLogo(r, c)) continue
+          if (!qr.modules.get(r, c)) continue
+          const x = q + (c + 0.5) * cell
+          const y = q + (r + 0.5) * cell
+          ctx.beginPath()
+          ctx.arc(x, y, dotR, 0, Math.PI * 2)
+          ctx.fill()
+        }
+      }
+
+      if (cancelled) return
+
+      // Draw 3 styled finder patterns (rounded squares, proper structure)
+      drawFinder(ctx, q, q, cell)
+      drawFinder(ctx, q + (N - 7) * cell, q, cell)
+      drawFinder(ctx, q, q + (N - 7) * cell, cell)
+
+      // Logo — white halo → blue badge → PNG
+      const cx = physSize / 2, cy = physSize / 2
+      const bW = LOGO_W * dpr, bH = LOGO_H * dpr
+      const pad = 8 * dpr, bR = 7 * dpr
+
+      // White halo (blends into QR white background, hides any dots beneath)
+      ctx.fillStyle = 'white'
+      rrect(ctx, cx - bW / 2 - pad, cy - bH / 2 - pad, bW + pad * 2, bH + pad * 2, bR + pad)
       ctx.fill()
 
+      // Blue badge
+      ctx.fillStyle = BRAND
+      rrect(ctx, cx - bW / 2, cy - bH / 2, bW, bH, bR)
+      ctx.fill()
+
+      // Thin white ring around badge for visual separation
+      ctx.strokeStyle = 'white'
+      ctx.lineWidth = dpr * 1.5
+      rrect(ctx, cx - bW / 2 + dpr, cy - bH / 2 + dpr, bW - dpr * 2, bH - dpr * 2, bR - dpr)
+      ctx.stroke()
+
+      // Logo image
       try {
         const img = new Image()
         img.src = '/memorabilius-logo-qr.png'
         await img.decode()
         ctx.imageSmoothingEnabled = true
         ctx.imageSmoothingQuality = 'high'
-        ctx.drawImage(img, pcx - lgW/2, pcy - lgH/2, lgW, lgH)
+        ctx.drawImage(img, cx - bW / 2, cy - bH / 2, bW, bH)
       } catch {
         ctx.fillStyle = 'white'
-        ctx.font = `bold ${10 * dpr}px Arial, sans-serif`
-        ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-        ctx.fillText('MEMORABILIUS', pcx, pcy)
+        ctx.font = `bold ${9 * dpr}px Arial, sans-serif`
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        ctx.fillText('MEMORABILIUS', cx, cy)
       }
     }, 50)
     return () => { cancelled = true; clearTimeout(timer) }
