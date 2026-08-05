@@ -7,13 +7,14 @@ interface Props {
   url: string
   title: string
   compact?: boolean
+  buttonStyle?: React.CSSProperties
 }
 
 const BRAND = '#003DA6'
 const QR_SIZE = 220
 const LOGO_SIZE = 46
 
-export default function ShareButton({ url, title, compact }: Props) {
+export default function ShareButton({ url, title, compact, buttonStyle }: Props) {
   const [showModal, setShowModal] = useState(false)
   const [copied, setCopied] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -67,17 +68,11 @@ export default function ShareButton({ url, title, compact }: Props) {
     link.click()
   }
 
-  const share = async () => {
-    if (navigator.share) {
-      await navigator.share({ title, url: fullUrl })
-    } else {
-      setShowModal(true)
-    }
-  }
+  const share = () => setShowModal(true)
 
   return (
     <>
-      <button onClick={share} style={{
+      <button onClick={share} style={buttonStyle ?? {
         background: 'none', border: '1px solid #ddd', borderRadius: 8,
         padding: compact ? '10px 10px' : '6px 12px', cursor: 'pointer',
         fontSize: compact ? 16 : 13, fontWeight: 700,

@@ -10,6 +10,7 @@ import SameCardCollectors from '@/components/SameCardCollectors'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
 import CollectionMultiSelect from '@/components/CollectionMultiSelect'
 import BookletViewer from '@/components/BookletViewer'
+import ShareButton from '@/components/ShareButton'
 import { getFormat } from '@/lib/cardFormats'
 
 interface Card {
@@ -87,7 +88,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const idleRef = useRef<HTMLDivElement>(null)
   const rafRef = useRef<number>(0)
   const [showVideo, setShowVideo] = useState(false)
-  const [copied, setCopied] = useState(false)
+
   const [slabMode, setSlabMode] = useState(false)
   const [flip90, setFlip90] = useState(false)
   const flip90Ref = useRef(false)
@@ -134,18 +135,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
     return { company: 'GRADE', grade: g, label: 'CERTIFIED', color: colors.PSA }
   })()
 
-  const handleShare = () => {
-    if (!userId) return
-    // Vers la fiche publique indexable (SEO) plutôt que le lien profond ?card= interne à
-    // l'app : chaque partage (Discord, forums...) devient une porte d'entrée découvrable
-    // par les moteurs de recherche au lieu d'un lien qui ne veut rien dire hors contexte.
-    const slug = cardSlug(popup.n, popup.y, popup.br, popup.s)
-    const url = `${window.location.origin}/galerie/${userSlug || userId}/${slug}?src=${encodeURIComponent(popup.f)}`
-    navigator.clipboard.writeText(url).then(() => {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    })
-  }
+
 
   const applyTransform = useCallback(() => {
     if (cardRef.current) {
@@ -883,14 +873,16 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
               🎬 {lang === 'fr' ? 'Exporter en vidéo' : 'Export as video'}
             </button>
             {userId && (
-              <button onClick={handleShare} style={{
-                background: copied ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: copied ? 'white' : (dark ? '#eee' : '#333'),
-                border: 'none', borderRadius: 10, padding: '12px 14px',
-                fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
-                transition: '0.2s',
-              }}>
-                {copied ? '✓ Copié' : '🔗 Partager'}
-              </button>
+              <ShareButton
+                url={`/galerie/${userSlug || userId}/${cardSlug(popup.n, popup.y, popup.br, popup.s)}?src=${encodeURIComponent(popup.f)}`}
+                title={popup.n}
+                buttonStyle={{
+                  background: dark ? '#2a2a2a' : '#f0f0f0',
+                  color: dark ? '#eee' : '#333',
+                  border: 'none', borderRadius: 10, padding: '12px 14px',
+                  fontWeight: 800, cursor: 'pointer', fontSize: 14, whiteSpace: 'nowrap',
+                }}
+              />
             )}
           </div>
 
