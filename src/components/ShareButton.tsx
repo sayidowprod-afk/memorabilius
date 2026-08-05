@@ -17,130 +17,102 @@ const LOGO_H = 24
 
 function rrect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
   ctx.beginPath()
-  ctx.moveTo(x + r, y)
-  ctx.lineTo(x + w - r, y)
-  ctx.arcTo(x + w, y, x + w, y + r, r)
-  ctx.lineTo(x + w, y + h - r)
-  ctx.arcTo(x + w, y + h, x + w - r, y + h, r)
-  ctx.lineTo(x + r, y + h)
-  ctx.arcTo(x, y + h, x, y + h - r, r)
-  ctx.lineTo(x, y + r)
-  ctx.arcTo(x, y, x + r, y, r)
-  ctx.closePath()
+  ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y)
+  ctx.arcTo(x + w, y, x + w, y + r, r); ctx.lineTo(x + w, y + h - r)
+  ctx.arcTo(x + w, y + h, x + w - r, y + h, r); ctx.lineTo(x + r, y + h)
+  ctx.arcTo(x, y + h, x, y + h - r, r); ctx.lineTo(x, y + r)
+  ctx.arcTo(x, y, x + r, y, r); ctx.closePath()
 }
 
-// Ballon de basket — remplace le finder pattern TL
-function drawCornerBasketball(ctx: CanvasRenderingContext2D, x: number, y: number, s: number, cell: number) {
-  const r = s * 0.18
-  const cx = x + s / 2, cy = y + s / 2
-  ctx.fillStyle = 'white'
-  ctx.fillRect(x - cell * 0.5, y - cell * 0.5, s + cell, s + cell)
-  // Outer orange
+// Ballon de basket (orange)
+function basketball(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number) {
   ctx.fillStyle = '#E8621A'
-  rrect(ctx, x, y, s, s, r); ctx.fill()
-  // Inner white
-  ctx.fillStyle = 'white'
-  rrect(ctx, x + cell, y + cell, s - 2 * cell, s - 2 * cell, r * 0.5); ctx.fill()
-  // Center orange
-  ctx.fillStyle = '#E8621A'
-  rrect(ctx, x + 2 * cell, y + 2 * cell, 3 * cell, 3 * cell, cell * 0.4); ctx.fill()
-  // Seam lines
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill()
   ctx.save()
-  rrect(ctx, x, y, s, s, r); ctx.clip()
-  ctx.strokeStyle = 'rgba(0,0,0,0.5)'
-  ctx.lineWidth = cell * 0.22; ctx.lineCap = 'round'
-  ctx.beginPath(); ctx.moveTo(x, cy); ctx.lineTo(x + s, cy); ctx.stroke()
-  ctx.beginPath(); ctx.moveTo(cx - s * 0.22, y)
-  ctx.bezierCurveTo(cx - s * 0.52, cy - s * 0.32, cx - s * 0.52, cy + s * 0.32, cx - s * 0.22, y + s); ctx.stroke()
-  ctx.beginPath(); ctx.moveTo(cx + s * 0.22, y)
-  ctx.bezierCurveTo(cx + s * 0.52, cy - s * 0.32, cx + s * 0.52, cy + s * 0.32, cx + s * 0.22, y + s); ctx.stroke()
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip()
+  ctx.strokeStyle = 'rgba(0,0,0,0.55)'; ctx.lineWidth = r * 0.1; ctx.lineCap = 'round'
+  ctx.beginPath(); ctx.moveTo(cx - r, cy); ctx.lineTo(cx + r, cy); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(cx, cy - r); ctx.lineTo(cx, cy + r); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(cx - r * 0.28, cy - r)
+  ctx.bezierCurveTo(cx - r * 0.85, cy - r * 0.45, cx - r * 0.85, cy + r * 0.45, cx - r * 0.28, cy + r); ctx.stroke()
+  ctx.beginPath(); ctx.moveTo(cx + r * 0.28, cy - r)
+  ctx.bezierCurveTo(cx + r * 0.85, cy - r * 0.45, cx + r * 0.85, cy + r * 0.45, cx + r * 0.28, cy + r); ctx.stroke()
   ctx.restore()
 }
 
-// Ballon de foot — remplace le finder pattern TR
-function drawCornerSoccer(ctx: CanvasRenderingContext2D, x: number, y: number, s: number, cell: number) {
-  const r = s * 0.18
-  const cx = x + s / 2, cy = y + s / 2
+// Ballon de foot (noir + hexagones)
+function soccer(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number) {
   ctx.fillStyle = 'white'
-  ctx.fillRect(x - cell * 0.5, y - cell * 0.5, s + cell, s + cell)
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill()
+  ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 0.5
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke()
+  // Pentagone central noir
   ctx.fillStyle = '#1a1a1a'
-  rrect(ctx, x, y, s, s, r); ctx.fill()
-  ctx.fillStyle = 'white'
-  rrect(ctx, x + cell, y + cell, s - 2 * cell, s - 2 * cell, r * 0.5); ctx.fill()
-  ctx.fillStyle = '#1a1a1a'
-  rrect(ctx, x + 2 * cell, y + 2 * cell, 3 * cell, 3 * cell, cell * 0.4); ctx.fill()
-  // Hexagones sur la zone blanche
-  ctx.fillStyle = '#1a1a1a'
-  ctx.save()
-  rrect(ctx, x + cell, y + cell, s - 2 * cell, s - 2 * cell, r * 0.5); ctx.clip()
-  const hex = (hx: number, hy: number, hr: number) => {
+  ctx.beginPath()
+  for (let i = 0; i < 5; i++) {
+    const a = (i / 5) * Math.PI * 2 - Math.PI / 2
+    i === 0 ? ctx.moveTo(cx + Math.cos(a) * r * 0.38, cy + Math.sin(a) * r * 0.38)
+            : ctx.lineTo(cx + Math.cos(a) * r * 0.38, cy + Math.sin(a) * r * 0.38)
+  }
+  ctx.closePath(); ctx.fill()
+  // Petits pentagones autour
+  for (let k = 0; k < 5; k++) {
+    const a = (k / 5) * Math.PI * 2 - Math.PI / 2
+    const px = cx + Math.cos(a) * r * 0.72
+    const py = cy + Math.sin(a) * r * 0.72
     ctx.beginPath()
-    for (let i = 0; i < 6; i++) {
-      const a = (i / 6) * Math.PI * 2 - Math.PI / 6
-      i === 0 ? ctx.moveTo(hx + Math.cos(a) * hr, hy + Math.sin(a) * hr)
-              : ctx.lineTo(hx + Math.cos(a) * hr, hy + Math.sin(a) * hr)
+    for (let i = 0; i < 5; i++) {
+      const b = (i / 5) * Math.PI * 2 - Math.PI / 2
+      i === 0 ? ctx.moveTo(px + Math.cos(b) * r * 0.22, py + Math.sin(b) * r * 0.22)
+              : ctx.lineTo(px + Math.cos(b) * r * 0.22, py + Math.sin(b) * r * 0.22)
     }
     ctx.closePath(); ctx.fill()
   }
-  const hr = cell * 0.35
-  hex(cx - cell * 0.6, cy - cell * 0.5, hr)
-  hex(cx + cell * 0.6, cy - cell * 0.5, hr)
-  hex(cx, cy + cell * 0.6, hr)
-  ctx.restore()
 }
 
-// Ballon de foot US — remplace le finder pattern BL
-function drawCornerFootball(ctx: CanvasRenderingContext2D, x: number, y: number, s: number, cell: number) {
-  const r = s * 0.18
-  const cx = x + s / 2, cy = y + s / 2
-  ctx.fillStyle = 'white'
-  ctx.fillRect(x - cell * 0.5, y - cell * 0.5, s + cell, s + cell)
+// Ballon de foot US (brun + lacets)
+function football(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number) {
   ctx.fillStyle = '#7B3F00'
-  rrect(ctx, x, y, s, s, r); ctx.fill()
-  ctx.fillStyle = '#D2844A'
-  rrect(ctx, x + cell, y + cell, s - 2 * cell, s - 2 * cell, r * 0.5); ctx.fill()
-  ctx.fillStyle = '#7B3F00'
-  rrect(ctx, x + 2 * cell, y + 2 * cell, 3 * cell, 3 * cell, cell * 0.4); ctx.fill()
-  // Lacets blancs
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill()
   ctx.save()
-  rrect(ctx, x, y, s, s, r); ctx.clip()
-  ctx.strokeStyle = 'white'; ctx.lineWidth = cell * 0.22; ctx.lineCap = 'round'
-  ctx.beginPath(); ctx.moveTo(x, cy); ctx.lineTo(x + s, cy); ctx.stroke()
-  const nb = 3
-  for (let i = 1; i <= nb; i++) {
-    const lx = x + s * (i / (nb + 1))
-    ctx.beginPath(); ctx.moveTo(lx, cy - cell * 0.45); ctx.lineTo(lx, cy + cell * 0.45); ctx.stroke()
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip()
+  ctx.strokeStyle = 'white'; ctx.lineCap = 'round'
+  // Lacet horizontal
+  ctx.lineWidth = r * 0.14
+  ctx.beginPath(); ctx.moveTo(cx - r * 0.6, cy); ctx.lineTo(cx + r * 0.6, cy); ctx.stroke()
+  // Barres perpendiculaires
+  ctx.lineWidth = r * 0.1
+  for (const ox of [-0.3, 0, 0.3]) {
+    ctx.beginPath(); ctx.moveTo(cx + ox * r, cy - r * 0.25); ctx.lineTo(cx + ox * r, cy + r * 0.25); ctx.stroke()
   }
   ctx.restore()
 }
 
-// Balle de baseball — coin BR (décoratif)
-function drawCornerBaseball(ctx: CanvasRenderingContext2D, x: number, y: number, s: number, cell: number) {
-  const r = s * 0.18
-  const cx = x + s / 2, cy = y + s / 2
-  ctx.fillStyle = 'white'
-  ctx.fillRect(x - cell * 0.5, y - cell * 0.5, s + cell, s + cell)
-  // Outer bleu (sombre = détectable par scanner)
-  ctx.fillStyle = BRAND
-  rrect(ctx, x, y, s, s, r); ctx.fill()
-  // Inner blanc (la balle)
-  ctx.fillStyle = 'white'
-  rrect(ctx, x + cell, y + cell, s - 2 * cell, s - 2 * cell, r * 0.5); ctx.fill()
-  // Centre bleu
-  ctx.fillStyle = BRAND
-  rrect(ctx, x + 2 * cell, y + 2 * cell, 3 * cell, 3 * cell, cell * 0.4); ctx.fill()
-  // Coutures rouges sur la zone blanche
+// Balle de baseball (blanc + coutures rouges)
+function baseball(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number) {
+  ctx.fillStyle = '#f8f8f0'
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill()
+  ctx.strokeStyle = '#999'; ctx.lineWidth = 0.5
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke()
   ctx.save()
-  rrect(ctx, x + cell, y + cell, s - 2 * cell, s - 2 * cell, r * 0.5); ctx.clip()
-  ctx.strokeStyle = '#CC1111'; ctx.lineWidth = cell * 0.2; ctx.lineCap = 'round'
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip()
+  ctx.strokeStyle = '#CC1111'; ctx.lineWidth = r * 0.1; ctx.lineCap = 'round'
   ctx.beginPath()
-  ctx.moveTo(cx - cell * 0.15, cy - cell * 1.1)
-  ctx.bezierCurveTo(cx - cell * 0.6, cy - cell * 0.5, cx - cell * 0.6, cy + cell * 0.5, cx - cell * 0.15, cy + cell * 1.1)
+  ctx.moveTo(cx - r * 0.1, cy - r * 0.9)
+  ctx.bezierCurveTo(cx - r * 0.45, cy - r * 0.45, cx - r * 0.45, cy + r * 0.45, cx - r * 0.1, cy + r * 0.9)
   ctx.stroke()
   ctx.beginPath()
-  ctx.moveTo(cx + cell * 0.15, cy - cell * 1.1)
-  ctx.bezierCurveTo(cx + cell * 0.6, cy - cell * 0.5, cx + cell * 0.6, cy + cell * 0.5, cx + cell * 0.15, cy + cell * 1.1)
+  ctx.moveTo(cx + r * 0.1, cy - r * 0.9)
+  ctx.bezierCurveTo(cx + r * 0.45, cy - r * 0.45, cx + r * 0.45, cy + r * 0.45, cx + r * 0.1, cy + r * 0.9)
   ctx.stroke()
+  // Petites barres des coutures
+  ctx.lineWidth = r * 0.07
+  for (const t of [-0.5, 0, 0.5]) {
+    const lx1 = cx - r * 0.1 + t * r * 0.05, ly = cy + t * r * 0.7
+    ctx.beginPath(); ctx.moveTo(lx1 - r * 0.12, ly); ctx.lineTo(lx1 + r * 0.12, ly); ctx.stroke()
+    const rx1 = cx + r * 0.1 - t * r * 0.05
+    ctx.beginPath(); ctx.moveTo(rx1 - r * 0.12, ly); ctx.lineTo(rx1 + r * 0.12, ly); ctx.stroke()
+  }
   ctx.restore()
 }
 
@@ -160,85 +132,66 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
       if (!canvas || cancelled) return
 
       const dpr = window.devicePixelRatio || 1
-      canvas.width = QR_SIZE * dpr
-      canvas.height = QR_SIZE * dpr
+      const physSize = QR_SIZE * dpr
+
+      // ① Render QR at physical pixel size — finder patterns intact, retina-sharp
+      await QRCode.toCanvas(canvas, fullUrl, {
+        width: physSize, margin: 2,
+        color: { dark: BRAND, light: '#FFFFFF' },
+        errorCorrectionLevel: 'H',
+      })
+      // toCanvas sets canvas.width/height = physSize; fix CSS display size
       canvas.style.width = `${QR_SIZE}px`
       canvas.style.height = `${QR_SIZE}px`
+      if (cancelled) return
 
       const ctx = canvas.getContext('2d')
       if (!ctx) return
-      ctx.scale(dpr, dpr)
 
-      const qr = QRCode.create(fullUrl, { errorCorrectionLevel: 'H' })
-      const N = qr.modules.size
-      const quiet = 2
-      const cell = QR_SIZE / (N + quiet * 2)
-      const finderPx = 7 * cell  // taille d'un finder pattern en pixels
+      // All subsequent drawing in physical pixels (no ctx.scale needed)
+      const N = QRCode.create(fullUrl, { errorCorrectionLevel: 'H' }).modules.size
+      const cell = physSize / (N + 4)  // margin=2 → 4 extra modules
+      const q = 2 * cell               // quiet zone offset
+      const ballR = cell * 1.55        // covers the 3×3 center dot of each finder
 
-      // Fond blanc
-      ctx.fillStyle = 'white'
-      ctx.fillRect(0, 0, QR_SIZE, QR_SIZE)
-
-      // Coins des finder patterns à exclure du rendu des modules
-      const q = quiet * cell
-      const finderZones = [
-        { x0: 0, y0: 0, x1: q + finderPx + cell, y1: q + finderPx + cell },       // TL
-        { x0: QR_SIZE - q - finderPx - cell, y0: 0, x1: QR_SIZE, y1: q + finderPx + cell },  // TR
-        { x0: 0, y0: QR_SIZE - q - finderPx - cell, x1: q + finderPx + cell, y1: QR_SIZE },  // BL
-        { x0: QR_SIZE - q - finderPx - cell, y0: QR_SIZE - q - finderPx - cell, x1: QR_SIZE, y1: QR_SIZE }, // BR (baseball)
+      // ② Small sports ball overlaid on the center 3×3 of each corner finder
+      //    Outer ring (1-module dark border) stays intact → scanner works
+      const ballsData = [
+        { cx: q + 3.5 * cell,          cy: q + 3.5 * cell,          draw: basketball },
+        { cx: physSize - q - 3.5*cell, cy: q + 3.5 * cell,          draw: soccer     },
+        { cx: q + 3.5 * cell,          cy: physSize - q - 3.5*cell, draw: football   },
+        { cx: physSize - q - 3.5*cell, cy: physSize - q - 3.5*cell, draw: baseball   },
       ]
-
-      const inFinderZone = (px: number, py: number) =>
-        finderZones.some(z => px >= z.x0 && px <= z.x1 && py >= z.y0 && py <= z.y1)
-
-      // Modules ronds — sauf dans les coins
-      ctx.fillStyle = BRAND
-      for (let row = 0; row < N; row++) {
-        for (let col = 0; col < N; col++) {
-          if (!qr.modules.get(row, col)) continue
-          const x = (quiet + col + 0.5) * cell
-          const y = (quiet + row + 0.5) * cell
-          if (inFinderZone(x, y)) continue
-          ctx.beginPath()
-          ctx.arc(x, y, cell * 0.43, 0, Math.PI * 2)
-          ctx.fill()
-        }
+      for (const b of ballsData) {
+        ctx.fillStyle = 'white'
+        ctx.beginPath(); ctx.arc(b.cx, b.cy, ballR + dpr, 0, Math.PI * 2); ctx.fill()
+        b.draw(ctx, b.cx, b.cy, ballR)
       }
 
-      if (cancelled) return
-
-      // Ballons dans les coins
-      drawCornerBasketball(ctx, q, q, finderPx, cell)                                               // TL
-      drawCornerSoccer(ctx, QR_SIZE - q - finderPx, q, finderPx, cell)                             // TR
-      drawCornerFootball(ctx, q, QR_SIZE - q - finderPx, finderPx, cell)                           // BL
-      drawCornerBaseball(ctx, QR_SIZE - q - finderPx, QR_SIZE - q - finderPx, finderPx, cell)     // BR
-
-      // Logo Memorabilius central
-      const cx = QR_SIZE / 2
-      const cy = QR_SIZE / 2
-      const lgPad = 6, lgR = 8
+      // ③ Logo Memorabilius central (physical pixel coordinates)
+      const pcx = physSize / 2, pcy = physSize / 2
+      const lgW = LOGO_W * dpr, lgH = LOGO_H * dpr
+      const lgPad = 6 * dpr, lgRad = 8 * dpr
 
       ctx.fillStyle = 'white'
-      rrect(ctx, cx - LOGO_W / 2 - lgPad, cy - LOGO_H / 2 - lgPad, LOGO_W + lgPad * 2, LOGO_H + lgPad * 2, lgR + lgPad)
+      rrect(ctx, pcx - lgW/2 - lgPad, pcy - lgH/2 - lgPad, lgW + lgPad*2, lgH + lgPad*2, lgRad + lgPad)
       ctx.fill()
       ctx.fillStyle = BRAND
-      rrect(ctx, cx - LOGO_W / 2, cy - LOGO_H / 2, LOGO_W, LOGO_H, lgR)
+      rrect(ctx, pcx - lgW/2, pcy - lgH/2, lgW, lgH, lgRad)
       ctx.fill()
 
-      // Logo image (110×24 same-origin)
       try {
         const img = new Image()
         img.src = '/memorabilius-logo-qr.png'
         await img.decode()
         ctx.imageSmoothingEnabled = true
         ctx.imageSmoothingQuality = 'high'
-        ctx.drawImage(img, cx - LOGO_W / 2, cy - LOGO_H / 2, LOGO_W, LOGO_H)
+        ctx.drawImage(img, pcx - lgW/2, pcy - lgH/2, lgW, lgH)
       } catch {
         ctx.fillStyle = 'white'
-        ctx.font = 'bold 10px Arial, sans-serif'
-        ctx.textAlign = 'center'
-        ctx.textBaseline = 'middle'
-        ctx.fillText('MEMORABILIUS', cx, cy)
+        ctx.font = `bold ${10 * dpr}px Arial, sans-serif`
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
+        ctx.fillText('MEMORABILIUS', pcx, pcy)
       }
     }, 50)
     return () => { cancelled = true; clearTimeout(timer) }
@@ -246,8 +199,7 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
 
   const copy = async () => {
     await navigator.clipboard.writeText(fullUrl)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    setCopied(true); setTimeout(() => setCopied(false), 2000)
   }
 
   const downloadQR = () => {
