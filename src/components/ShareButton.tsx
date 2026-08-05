@@ -38,17 +38,25 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
       if (cancelled) return
       const ctx = canvas.getContext('2d')
       if (!ctx) return
-      const logo = new Image()
-      logo.onload = () => {
-        if (cancelled) return
-        const x = (QR_SIZE - LOGO_SIZE) / 2
-        const y = (QR_SIZE - LOGO_SIZE) / 2
-        const pad = 5
-        ctx.fillStyle = 'white'
-        ctx.fillRect(x - pad, y - pad, LOGO_SIZE + pad * 2, LOGO_SIZE + pad * 2)
-        ctx.drawImage(logo, x, y, LOGO_SIZE, LOGO_SIZE)
-      }
-      logo.src = '/memorabilius-logo-transparent.png'
+      // Dessin canvas direct — pas de chargement d'image (fiable partout)
+      const cx = QR_SIZE / 2
+      const cy = QR_SIZE / 2
+      const r = LOGO_SIZE / 2
+      const pad = 6
+      // Fond blanc carré
+      ctx.fillStyle = 'white'
+      ctx.fillRect(cx - r - pad, cy - r - pad, (r + pad) * 2, (r + pad) * 2)
+      // Cercle bleu Memorabilius
+      ctx.fillStyle = BRAND
+      ctx.beginPath()
+      ctx.arc(cx, cy, r, 0, Math.PI * 2)
+      ctx.fill()
+      // Lettre "M"
+      ctx.fillStyle = 'white'
+      ctx.font = `900 ${Math.round(r * 1.4)}px Arial, sans-serif`
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillText('M', cx, cy + 1)
     }, 50)
     return () => { cancelled = true; clearTimeout(timer) }
   }, [showModal, fullUrl])
