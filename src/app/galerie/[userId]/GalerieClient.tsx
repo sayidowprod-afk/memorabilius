@@ -511,7 +511,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     setFiltered(sorted)
     setPage(1)
     setDisplayed(sorted.slice(0, PAGE_SIZE))
-  }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
+  }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
