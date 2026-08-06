@@ -799,8 +799,17 @@ export default function SetlistPage() {
       )}
 
 
+      {/* Coming soon si aucune collection */}
+      {!loading && sets.length === 0 && (
+        <div style={{ textAlign: 'center', padding: '48px 20px', color: dark ? '#555' : '#bbb' }}>
+          <div style={{ fontSize: 40, marginBottom: 12 }}>🚧</div>
+          <div style={{ fontWeight: 800, fontSize: 18, color: dark ? '#666' : '#aaa', marginBottom: 6 }}>Coming soon</div>
+          <div style={{ fontSize: 14 }}>Les collections de cette catégorie arrivent bientôt.</div>
+        </div>
+      )}
+
       {/* Navigation décennie → saison */}
-      {!loading && (
+      {!loading && sets.length > 0 && (
         <div style={{ marginBottom: 32 }}>
           {/* Onglets décennie */}
           <div style={{ display: 'flex', gap: 8, marginBottom: 14, borderBottom: `2px solid ${dark ? '#333' : '#f0f0f0'}`, paddingBottom: 0 }}>
@@ -910,7 +919,8 @@ export default function SetlistPage() {
       {/* Grille des sets */}
       {loading ? (
         <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlist_loading')}</div>
-      ) : seasonSets.length === 0 ? (
+      ) : sets.length === 0 ? null
+      : seasonSets.length === 0 ? (
         <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>{t('setlist_no_collection')}</div>
       ) : displayedSets.length === 0 ? (
         <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>Aucun set ne correspond à cette recherche.</div>
