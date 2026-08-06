@@ -87,14 +87,24 @@ export async function POST(req: NextRequest) {
   const rateLimitErr = await checkAiRateLimit(user.id)
   if (rateLimitErr) return NextResponse.json({ error: rateLimitErr }, { status: 429 })
 
-  const apiKey = process.env.GEMINI_API_KEY
-  if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY manquante' }, { status: 500 })
-
   try {
     const { imageBase64: rawImage } = await req.json()
     if (!rawImage) return NextResponse.json({ error: 'image manquante' }, { status: 400 })
 
     const imageBase64 = await compressImage(rawImage)
+
+    // ── Modèle YOLO maison ──────────────────────────────────────
+    try {
+      const { detectCornersYolo } = await import('@/lib/yolo-corners')
+      const result = await detectCornersYolo(imageBase64)
+      if (result) return NextResponse.json(result)
+    } catch {
+      // fallback Gemini si ONNX échoue
+    }
+
+    // ── Fallback Gemini ──────────────────────────────────────────
+    const apiKey = process.env.GEMINI_API_KEY
+    if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY manquante' }, { status: 500 })
 
     const res = await callGeminiWithRetry(`${GEMINI_URL}?key=${apiKey}`, {
       contents: [{ parts: [
