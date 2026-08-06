@@ -164,7 +164,7 @@ export async function POST(req: NextRequest) {
 
     const res = await callGeminiWithRetry(`${GEMINI_URL}?key=${apiKey}`, {
       contents: [{ parts: [{ text: fullPrompt }, ...imageParts] }],
-      generationConfig: { temperature: 0, maxOutputTokens: 2048 },
+      generationConfig: { temperature: 0, maxOutputTokens: 512, thinkingConfig: { thinkingBudget: 0 } },
     })
 
     if (!res.ok) {
