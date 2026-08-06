@@ -907,11 +907,11 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem('lang') as Lang
-    if (saved === 'fr' || saved === 'en' || saved === 'de') setLangState(saved)
-    else {
-      const browser = navigator.language.startsWith('en') ? 'en' : navigator.language.startsWith('de') ? 'de' : 'fr'
-      setLangState(browser)
-    }
+    if (saved === 'fr' || saved === 'en' || saved === 'de') { setLangState(saved); return }
+    const geo = document.cookie.split(';').find(c => c.trim().startsWith('geo-lang='))?.split('=')?.[1]?.trim() as Lang | undefined
+    if (geo === 'fr' || geo === 'en' || geo === 'de') { setLangState(geo); return }
+    const browser: Lang = navigator.language.startsWith('en') ? 'en' : navigator.language.startsWith('de') ? 'de' : 'fr'
+    setLangState(browser)
   }, [])
 
   const setLang = (l: Lang) => {
