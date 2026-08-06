@@ -3,6 +3,16 @@ import { createClient } from '@supabase/supabase-js'
 
 export const maxDuration = 30
 
+// Rate limit: 30 req/min per IP — protège le quota eBay (5 000/jour) contre l'abus
+const RATE_MAP = new Map<string, { count: number; reset: number }>()
+function checkRate(ip: string): boolean {
+  const now = Date.now()
+  const e = RATE_MAP.get(ip)
+  if (!e || now > e.reset) { RATE_MAP.set(ip, { count: 1, reset: now + 60_000 }); return true }
+  if (e.count >= 30) return false
+  e.count++; return true
+}
+
 const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
 const GRADE_KEYWORDS = ['psa', 'bgs', 'sgc', 'cgc', 'beckett', 'graded', 'grade', 'gem', 'mint']
 
@@ -255,6 +265,9 @@ function median(prices: number[]): number {
 }
 
 export async function GET(req: NextRequest) {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+  if (!checkRate(ip)) return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
+
   const { searchParams } = req.nextUrl
   const name    = searchParams.get('name') || ''
   const set     = searchParams.get('set') || ''

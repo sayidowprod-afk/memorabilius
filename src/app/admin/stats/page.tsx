@@ -80,6 +80,12 @@ type Stats = {
   activation_delay_median: number | null
   donor_count: number
   top_users: TopUser[]
+  // 7 derniers jours
+  last_7_days?: {
+    users: DailyPoint[]
+    cards: DailyPoint[]
+    scans: DailyPoint[]
+  }
 }
 
 // ── Utilitaires ───────────────────────────────────────────────────────────
@@ -477,6 +483,69 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
   )
 }
 
+// ── Tableau 7 derniers jours ──────────────────────────────────────────────
+
+const DAY_LABELS = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
+
+function Last7DaysTable({ data }: {
+  data: { users: DailyPoint[]; cards: DailyPoint[]; scans: DailyPoint[] }
+}) {
+  const today = new Date().toISOString().slice(0, 10)
+  return (
+    <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflow: 'hidden' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr style={{ background: ACCENT }}>
+            {['Jour', '👤 Inscrits', '🃏 Cartes', '🔬 Scans'].map((h, i) => (
+              <th key={h} style={{
+                padding: '10px 16px', color: '#fff', fontSize: 12, fontWeight: 600,
+                textAlign: i === 0 ? 'left' : 'right',
+              }}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.users.map((u, i) => {
+            const card  = data.cards[i]
+            const scan  = data.scans[i]
+            const isToday = u.day === today
+            const d     = new Date(u.day + 'T12:00:00Z')
+            const label = `${DAY_LABELS[d.getUTCDay()]} ${u.day.slice(5)}`
+            return (
+              <tr key={u.day} style={{
+                background: isToday ? '#eff6ff' : i % 2 === 0 ? '#fff' : '#f8fafc',
+                borderBottom: '1px solid #f1f5f9',
+              }}>
+                <td style={{ padding: '9px 16px', fontSize: 13, fontWeight: isToday ? 700 : 400, color: isToday ? ACCENT : '#334155' }}>
+                  {label}{isToday ? ' · auj.' : ''}
+                </td>
+                {[u.count, card?.count ?? 0, scan?.count ?? 0].map((v, j) => (
+                  <td key={j} style={{ padding: '9px 16px', textAlign: 'right', fontWeight: 600, fontSize: 14, color: v > 0 ? [ACCENT, '#059669', '#8b5cf6'][j] : '#cbd5e1' }}>
+                    {v > 0 ? fmt(v) : '—'}
+                  </td>
+                ))}
+              </tr>
+            )
+          })}
+        </tbody>
+        <tfoot>
+          <tr style={{ background: '#f8fafc', borderTop: '2px solid #e2e8f0' }}>
+            <td style={{ padding: '9px 16px', fontSize: 12, fontWeight: 700, color: '#64748b' }}>Total 7j</td>
+            {[data.users, data.cards, data.scans].map((series, j) => {
+              const total = series.reduce((s, p) => s + p.count, 0)
+              return (
+                <td key={j} style={{ padding: '9px 16px', textAlign: 'right', fontWeight: 700, fontSize: 14, color: [ACCENT, '#059669', '#8b5cf6'][j] }}>
+                  {fmt(total)}
+                </td>
+              )
+            })}
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  )
+}
+
 // ── Carte KPI ─────────────────────────────────────────────────────────────
 
 function KpiCard({ label, value, sub }: { label: string; value: string | number; sub?: string }) {
@@ -701,6 +770,16 @@ export default function AdminStats() {
           <KpiCard label="Nouveaux inscrits auj."  value={stats.today_users} />
           <KpiCard label="Cartes ajoutées auj."    value={stats.today_cards} />
         </div>
+
+        {/* 7 derniers jours */}
+        {stats.last_7_days && (
+          <>
+            <SectionTitle>7 derniers jours</SectionTitle>
+            <div style={{ marginBottom: isMobile ? 20 : 32 }}>
+              <Last7DaysTable data={stats.last_7_days} />
+            </div>
+          </>
+        )}
 
         {/* Croissance cumulée */}
         <SectionTitle>Croissance cumulée</SectionTitle>
