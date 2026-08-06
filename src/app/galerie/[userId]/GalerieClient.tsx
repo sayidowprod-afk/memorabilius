@@ -1,6 +1,7 @@
 'use client'
 import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -161,6 +162,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [qrMode, setQrMode] = useState(false)
   const [qrSelected, setQrSelected] = useState<Map<string, { url: string; title: string; subtitle: string }>>(new Map())
   const [qrDownloading, setQrDownloading] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [activeTab, setActiveTab] = useState<'collection' | 'wishlist' | 'comments' | 'library' | 'likes'>(
     (searchParams.get('tab') as any) || 'collection'
   )
@@ -186,6 +188,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const { t, lang } = useLang()
   const { dark } = useTheme()
   const cardParam = searchParams.get('card')
+
+  useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
     const init = async () => {
@@ -1695,8 +1699,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           }
         `}</style>
         
-        {editMode && isOwner && selectedCards.size > 0 && (
-          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 200, display: 'flex', alignItems: 'center', gap: 10, background: '#003DA6', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(0,61,166,0.35)' }}>
+        {mounted && editMode && isOwner && selectedCards.size > 0 && createPortal(
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#003DA6', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(0,61,166,0.35)' }}>
             <span style={{ flex: '1 1 120px' }}>{selectedCards.size} carte{selectedCards.size > 1 ? 's' : ''} sélectionnée{selectedCards.size > 1 ? 's' : ''}</span>
             {/* Assigner collection tag en masse */}
             {showBulkNewTag ? (
@@ -1751,11 +1755,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             <button onClick={() => setSelectedCards(new Set())} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
               ✕ Désélectionner
             </button>
-          </div>
+          </div>,
+          document.body
         )}
 
-        {qrMode && (
-          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 200, display: 'flex', alignItems: 'center', gap: 10, background: '#7c3aed', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(124,58,237,0.35)' }}>
+        {mounted && qrMode && createPortal(
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#7c3aed', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(124,58,237,0.35)' }}>
             <span style={{ flex: '1 1 160px' }}>
               {qrSelected.size === 0
                 ? '▦ Clique sur des cartes pour les sélectionner'
@@ -1775,7 +1780,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
               ✕ Quitter
             </button>
-          </div>
+          </div>,
+          document.body
         )}
 
         <DndContext
