@@ -158,6 +158,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [privateCards, setPrivateCards] = useState<Set<string>>(new Set())
   const [cardValues, setCardValues] = useState<Map<string, number>>(new Map())
   const [editMode, setEditMode] = useState(false)
+  const [qrMode, setQrMode] = useState(false)
+  const [qrSelected, setQrSelected] = useState<Map<string, { url: string; title: string; subtitle: string }>>(new Map())
+  const [qrDownloading, setQrDownloading] = useState(false)
   const [activeTab, setActiveTab] = useState<'collection' | 'wishlist' | 'comments' | 'library' | 'likes'>(
     (searchParams.get('tab') as any) || 'collection'
   )
@@ -570,6 +573,108 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
   const getCardId = (c: Card) => c.id_manuelle || c.f
 
+  const toggleQrCard = (d: Card) => {
+    const cardId = getCardId(d)
+    setQrSelected(prev => {
+      const next = new Map(prev)
+      if (next.has(cardId)) {
+        next.delete(cardId)
+      } else {
+        next.set(cardId, {
+          url: d.id_manuelle ? `/s/${d.id_manuelle}` : `/galerie/${userId}?card=${encodeURIComponent(d.f)}`,
+          title: d.n,
+          subtitle: [d.y, d.br, d.s].filter(Boolean).join(' · '),
+        })
+      }
+      return next
+    })
+  }
+
+  const downloadQrCodes = async () => {
+    if (qrSelected.size === 0 || qrDownloading) return
+    setQrDownloading(true)
+    try {
+      const QRCode = (await import('qrcode')).default
+      const BRAND = '#003DA6'
+      const phys = 880
+      const lgW = 640, lgH = 144, lpad = 12, bR = 32
+
+      const logo = new Image()
+      logo.src = '/memorabilius-logo-qr-hd.png'
+      await logo.decode().catch(() => {})
+
+      function rrect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
+        ctx.beginPath()
+        ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y)
+        ctx.arcTo(x + w, y, x + w, y + r, r); ctx.lineTo(x + w, y + h - r)
+        ctx.arcTo(x + w, y + h, x + w - r, y + h, r); ctx.lineTo(x + r, y + h)
+        ctx.arcTo(x, y + h, x, y + h - r, r); ctx.lineTo(x, y + r)
+        ctx.arcTo(x, y, x + r, y, r); ctx.closePath()
+      }
+
+      const entries = [...qrSelected.entries()]
+      for (let i = 0; i < entries.length; i++) {
+        const [, { url, title, subtitle }] = entries[i]
+        const fullUrl = `https://www.memorabilius.fr${url.startsWith('/') ? url : '/' + url}`
+
+        // Génère le QR code
+        const qrCanvas = document.createElement('canvas')
+        await QRCode.toCanvas(qrCanvas, fullUrl, {
+          width: phys, margin: 2, errorCorrectionLevel: 'H' as const,
+          color: { dark: BRAND, light: '#ffffff' },
+        })
+
+        // Dessine le badge logo centré
+        const ctx = qrCanvas.getContext('2d')!
+        const cx = phys / 2, cy = phys / 2
+        ctx.fillStyle = 'white'
+        rrect(ctx, cx - lgW / 2 - lpad, cy - lgH / 2 - lpad, lgW + lpad * 2, lgH + lpad * 2, bR + lpad)
+        ctx.fill()
+        ctx.fillStyle = BRAND
+        rrect(ctx, cx - lgW / 2, cy - lgH / 2, lgW, lgH, bR)
+        ctx.fill()
+        if (logo.complete && logo.naturalWidth > 0) {
+          ctx.save()
+          rrect(ctx, cx - lgW / 2, cy - lgH / 2, lgW, lgH, bR)
+          ctx.clip()
+          ctx.drawImage(logo, cx - lgW / 2, cy - lgH / 2, lgW, lgH)
+          ctx.restore()
+        }
+
+        // Canvas composite QR + texte
+        const lines: { text: string; size: number; weight: string; color: string }[] = [
+          { text: title, size: 38, weight: '800', color: '#111111' },
+          ...(subtitle ? [{ text: subtitle, size: 28, weight: '600', color: '#555555' }] : []),
+        ]
+        const lineH = 52, topPad = 32, botPad = 40
+        const out = document.createElement('canvas')
+        out.width = phys
+        out.height = phys + topPad + lines.length * lineH + botPad
+        const octx = out.getContext('2d')!
+        octx.fillStyle = '#ffffff'; octx.fillRect(0, 0, out.width, out.height)
+        octx.drawImage(qrCanvas, 0, 0)
+        octx.textAlign = 'center'; octx.textBaseline = 'top'
+        let ty = phys + topPad
+        for (const l of lines) {
+          octx.font = `${l.weight} ${l.size}px -apple-system, BlinkMacSystemFont, sans-serif`
+          octx.fillStyle = l.color
+          octx.fillText(l.text, phys / 2, ty, phys - 40)
+          ty += lineH
+        }
+
+        const link = document.createElement('a')
+        link.download = `qr-${(title || 'carte').replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`
+        link.href = out.toDataURL('image/png')
+        link.click()
+
+        // Délai entre téléchargements pour éviter le blocage navigateur
+        if (i < entries.length - 1) await new Promise(r => setTimeout(r, 250))
+      }
+    } finally {
+      setQrDownloading(false)
+    }
+  }
+
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
     useSensor(TouchSensor, { activationConstraint: { delay: 200, tolerance: 5 } }),
@@ -814,6 +919,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           <button onClick={() => { setShowStats(s => !s); setActionMenuOpen(false) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
                             📊 {showStats ? 'Masquer les stats' : 'Voir les stats'}
+                          </button>
+                          <button onClick={() => { setQrMode(m => !m); setQrSelected(new Map()); setActionMenuOpen(false) }}
+                            style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
+                            ▦ {qrMode ? 'Quitter Multi-QR' : 'Multi-QR'}
                           </button>
                         </div>
                       </>
@@ -1643,6 +1752,30 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           </div>
         )}
 
+        {qrMode && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, background: '#7c3aed', color: 'white', borderRadius: 10, padding: '10px 14px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap' }}>
+            <span style={{ flex: '1 1 160px' }}>
+              {qrSelected.size === 0
+                ? '▦ Clique sur des cartes pour les sélectionner'
+                : `▦ ${qrSelected.size} carte${qrSelected.size > 1 ? 's' : ''} sélectionnée${qrSelected.size > 1 ? 's' : ''}`}
+            </span>
+            {qrSelected.size > 0 && (
+              <button onClick={() => setQrSelected(new Map())}
+                style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
+                Désélectionner tout
+              </button>
+            )}
+            <button onClick={downloadQrCodes} disabled={qrSelected.size === 0 || qrDownloading}
+              style={{ background: qrSelected.size > 0 && !qrDownloading ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.1)', border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 6, color: 'white', padding: '6px 14px', cursor: qrSelected.size > 0 && !qrDownloading ? 'pointer' : 'default', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}>
+              {qrDownloading ? '⏳ Génération...' : `⬇ Télécharger${qrSelected.size > 0 ? ` ${qrSelected.size} QR` : ''}`}
+            </button>
+            <button onClick={() => { setQrMode(false); setQrSelected(new Map()) }}
+              style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
+              ✕ Quitter
+            </button>
+          </div>
+        )}
+
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
@@ -1657,12 +1790,16 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               id={getCardId(d)}
               disabled={!editMode || !isOwner || sortBy !== 'default'}
               className="card-item"
-              onClick={() => editMode && isOwner ? toggleCardSelection(getCardId(d)) : (!editMode && setPopup(d))}
+              onClick={() => {
+                if (qrMode) { toggleQrCard(d); return }
+                if (editMode && isOwner) { toggleCardSelection(getCardId(d)); return }
+                if (!editMode) setPopup(d)
+              }}
               style={{
               borderRadius: 8, padding: 8,
-              background: selectedCards.has(getCardId(d)) ? '#e8f0fe' : 'white',
-              outline: selectedCards.has(getCardId(d)) ? '2px solid #003DA6' : 'none',
-              cursor: editMode && isOwner && sortBy === 'default' ? 'pointer' : editMode ? 'default' : 'pointer',
+              background: qrSelected.has(getCardId(d)) ? '#f5f3ff' : selectedCards.has(getCardId(d)) ? '#e8f0fe' : 'white',
+              outline: qrSelected.has(getCardId(d)) ? '2px solid #7c3aed' : selectedCards.has(getCardId(d)) ? '2px solid #003DA6' : 'none',
+              cursor: qrMode ? 'pointer' : (editMode && isOwner && sortBy === 'default' ? 'pointer' : editMode ? 'default' : 'pointer'),
               ...((privateCards.has(d.f) && isOwner)
                 ? { border: '2px solid #e74c3c' }
                 : coloredBorder((d.collection_tag && tabSettings.get(d.collection_tag)?.color) || accent)),
@@ -1685,6 +1822,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               {editMode && isOwner && selectedCards.has(getCardId(d)) && (
                 <div style={{ position: 'absolute', top: 6, left: 6, background: '#003DA6', color: 'white', fontSize: 13, width: 22, height: 22, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3, fontWeight: 900 }}>
                   ✓
+                </div>
+              )}
+              {qrMode && qrSelected.has(getCardId(d)) && (
+                <div style={{ position: 'absolute', top: 6, left: 6, background: '#7c3aed', color: 'white', fontSize: 11, width: 22, height: 22, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3, fontWeight: 900 }}>
+                  ▦
                 </div>
               )}
 
