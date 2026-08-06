@@ -71,10 +71,17 @@ function extractFirstJson(text: string): string | null {
 }
 
 async function callGeminiWithRetry(url: string, body: object): Promise<Response> {
-  for (let attempt = 0; attempt < 3; attempt++) {
-    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
-    if (res.status !== 503 || attempt === 2) return res
-    await new Promise(r => setTimeout(r, 1000 * (attempt + 1)))
+  const delays = [1000, 2000, 4000]
+  for (let attempt = 0; attempt <= delays.length; attempt++) {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(12000),
+    })
+    const retryable = res.status === 503 || res.status === 429
+    if (!retryable || attempt === delays.length) return res
+    await new Promise(r => setTimeout(r, delays[attempt]))
   }
   throw new Error('unreachable')
 }
