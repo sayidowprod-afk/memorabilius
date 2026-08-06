@@ -335,7 +335,7 @@ async function _fetchPlayer(slug: string) {
     supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName }),
     supabase
       .from('cartes_manuelles')
-      .select('id, nom, annee, rc, marque, collection, variation, image_recto, is_horizontal, disponible_vente, user_id, profiles(display_name, avatar_url, couleur_bordure)')
+      .select('id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, user_id, profiles(display_name, avatar_url, couleur_bordure)')
       .ilike('nom', `%${firstName}%`)
       .ilike('nom', `%${lastName}%`)
       .not('image_recto', 'is', null)
@@ -394,13 +394,14 @@ async function _fetchPlayer(slug: string) {
   // Le sport des sets sert de hint pour la recherche ESPN (guide vers le bon joueur),
   // mais c'est bio.sport (retourné par ESPN) qui gagne — sauf si ESPN ne peut pas détecter.
   const setsBasedSport = sets[0]?.sport || 'nba'
-  const bio = await fetchEspnPlayerBio(playerName, setsBasedSport)
-  const primarySport = bio?.sport ?? setsBasedSport
 
-  const [csvAll, headshot] = await Promise.all([
+  // bio + csvAll en parallèle — gagne ~1s vs bio séquentiel
+  const [bio, csvAll] = await Promise.all([
+    fetchEspnPlayerBio(playerName, setsBasedSport),
     fetchCsvCardsForProfiles(profilesRes.data || []),
-    fetchEspnHeadshot(playerName, primarySport),
   ])
+  const primarySport = bio?.sport ?? setsBasedSport
+  const headshot = await fetchEspnHeadshot(playerName, primarySport)
 
   const manuellesCards = matchedManu.map((m: any) => ({
     id: m.id,
@@ -411,6 +412,9 @@ async function _fetchPlayer(slug: string) {
     collection: m.collection,
     variation: m.variation || '',
     rc: m.rc || false,
+    auto: m.auto || false,
+    patch: m.patch || false,
+    num: m.num || '',
     is_horizontal: m.is_horizontal,
     user_id: m.user_id,
     display_name: m.profiles?.display_name,
@@ -430,8 +434,11 @@ async function _fetchPlayer(slug: string) {
       annee: c.year,
       marque: c.brand,
       collection: '',
-      variation: '',
-      rc: false,
+      variation: c.variant || '',
+      rc: c.rc || false,
+      auto: c.auto || false,
+      patch: c.patch || false,
+      num: c.num || '',
       is_horizontal: false,
       user_id: c.user_id,
       display_name: c.display_name,
