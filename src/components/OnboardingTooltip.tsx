@@ -50,19 +50,21 @@ export default function OnboardingTooltip() {
   const checked = useRef(false)
 
   useEffect(() => {
-    if (checked.current) return
-    checked.current = true
+    if (localStorage.getItem(STORAGE_KEY)) return
 
-    if (typeof window !== 'undefined' && localStorage.getItem(STORAGE_KEY)) return
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      if (!session?.user || checked.current) return
+      checked.current = true
+      subscription.unsubscribe()
 
-    supabase.auth.getUser().then(async ({ data }) => {
-      if (!data.user) return
       const { count } = await supabase
         .from('cartes_manuelles')
         .select('id', { count: 'exact', head: true })
-        .eq('user_id', data.user.id)
+        .eq('user_id', session.user.id)
       if ((count ?? 0) === 0) setVisible(true)
     })
+
+    return () => subscription.unsubscribe()
   }, [])
 
   function dismiss() {
