@@ -763,7 +763,7 @@ export default function SetlistPage() {
       )}
 
       {/* Sélecteur de sport */}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 8, marginBottom: 20 }}>
         {([ 'nba', 'nfl', 'baseball', 'hockey', 'soccer-international', 'racing', 'tennis', 'wrestling', 'mma', 'pokemon', 'mtg' ] as const).map(sp => {
           const accent = sp === 'nba' ? '#003DA6' : sp === 'nfl' ? '#1a5c1a' : sp === 'baseball' ? '#c0392b' : sp === 'hockey' ? '#1a3a5c' : sp === 'soccer-international' ? '#2d6a2d' : sp === 'racing' ? '#b85c00' : sp === 'tennis' ? '#5a8a00' : sp === 'wrestling' ? '#7a0000' : sp === 'mma' ? '#4a0050' : sp === 'pokemon' ? '#e6b800' : '#6b21a8'
           const label  = sp === 'nba' ? '🏀 NBA' : sp === 'nfl' ? '🏈 NFL' : sp === 'baseball' ? '⚾ Baseball' : sp === 'hockey' ? '🏒 Hockey' : sp === 'soccer-international' ? '⚽ Football' : sp === 'racing' ? '🏎️ Racing' : sp === 'tennis' ? '🎾 Tennis' : sp === 'wrestling' ? '🤼 Wrestling' : sp === 'mma' ? '🥊 MMA' : sp === 'pokemon' ? '🎴 Pokémon' : '🧙 MTG'
@@ -781,15 +781,15 @@ export default function SetlistPage() {
               setTotalSynced(null)
               setNewMatchCount(0)
             }} style={{
-              padding: '10px 22px', borderRadius: 12, border: '2px solid',
+              padding: '10px 8px', borderRadius: 10, border: '2px solid',
               borderColor: isActive ? accent : (dark ? '#444' : '#e0e0e0'),
               background: isActive ? accent : (dark ? '#2a2a2a' : 'white'),
               cursor: isActive ? 'default' : 'pointer',
               transition: 'all 0.15s',
-              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2,
-              minWidth: 80,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              width: '100%',
             }}>
-              <span style={{ fontSize: 15, fontWeight: 900, color: isActive ? 'white' : (dark ? '#eee' : '#111') }}>
+              <span style={{ fontSize: 14, fontWeight: 800, color: isActive ? 'white' : (dark ? '#eee' : '#111'), whiteSpace: 'nowrap' }}>
                 {label}
               </span>
             </button>
