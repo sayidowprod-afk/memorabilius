@@ -531,13 +531,49 @@ export default function SetlistPage() {
 
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 20px' }}>
-      <div style={{ marginBottom: 28, display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
-        <div>
-          <h1 style={{ fontWeight: 900, fontSize: 32, marginBottom: 4 }}>Setlist</h1>
-          <p style={{ color: '#888', fontSize: 15 }}>{loading ? '...' : `${sets.length} ${t('setlist_collections_available')}`}</p>
+      <div style={{ marginBottom: 16 }}>
+        <h1 style={{ fontWeight: 900, fontSize: 32, marginBottom: 4 }}>Setlist</h1>
+        <p style={{ color: '#888', fontSize: 15, marginBottom: 0 }}>{loading ? '...' : `${sets.length} ${t('setlist_collections_available')}`}</p>
+      </div>
+
+      <div style={{ marginBottom: 28, display: 'flex', alignItems: 'flex-start', gap: 16 }}>
+        {/* Sélecteur de sport */}
+        <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 8 }}>
+          {([ 'nba', 'nfl', 'baseball', 'hockey', 'soccer-international', 'racing', 'tennis', 'wrestling', 'mma', 'pokemon', 'mtg' ] as const).map(sp => {
+            const accent = sp === 'nba' ? '#003DA6' : sp === 'nfl' ? '#1a5c1a' : sp === 'baseball' ? '#c0392b' : sp === 'hockey' ? '#1a3a5c' : sp === 'soccer-international' ? '#2d6a2d' : sp === 'racing' ? '#b85c00' : sp === 'tennis' ? '#5a8a00' : sp === 'wrestling' ? '#7a0000' : sp === 'mma' ? '#4a0050' : sp === 'pokemon' ? '#e6b800' : '#6b21a8'
+            const label  = sp === 'nba' ? '🏀 NBA' : sp === 'nfl' ? '🏈 NFL' : sp === 'baseball' ? '⚾ Baseball' : sp === 'hockey' ? '🏒 Hockey' : sp === 'soccer-international' ? '⚽ Football' : sp === 'racing' ? '🏎️ Racing' : sp === 'tennis' ? '🎾 Tennis' : sp === 'wrestling' ? '🤼 Wrestling' : sp === 'mma' ? '🥊 MMA' : sp === 'pokemon' ? '🎴 Pokémon' : '🧙 MTG'
+            const isActive = activeSport === sp
+            return (
+              <button key={sp} onClick={() => {
+                if (isActive) return
+                setActiveSport(sp)
+                setActiveSeason(null)
+                setActiveDecade(null)
+                setSets([])
+                setLoading(true)
+                setSyncDone(false)
+                setUnmatchedCards([])
+                setTotalSynced(null)
+                setNewMatchCount(0)
+              }} style={{
+                padding: '10px 8px', borderRadius: 10, border: '2px solid',
+                borderColor: isActive ? accent : (dark ? '#444' : '#e0e0e0'),
+                background: isActive ? accent : (dark ? '#2a2a2a' : 'white'),
+                cursor: isActive ? 'default' : 'pointer',
+                transition: 'all 0.15s',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                width: '100%',
+              }}>
+                <span style={{ fontSize: 14, fontWeight: 800, color: isActive ? 'white' : (dark ? '#eee' : '#111'), whiteSpace: 'nowrap' }}>
+                  {label}
+                </span>
+              </button>
+            )
+          })}
         </div>
+
         {userId && (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 10 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 10, flexShrink: 0 }}>
             <button
               onClick={syncAll}
               disabled={syncing}
@@ -762,40 +798,6 @@ export default function SetlistPage() {
         </div>
       )}
 
-      {/* Sélecteur de sport */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 8, marginBottom: 20 }}>
-        {([ 'nba', 'nfl', 'baseball', 'hockey', 'soccer-international', 'racing', 'tennis', 'wrestling', 'mma', 'pokemon', 'mtg' ] as const).map(sp => {
-          const accent = sp === 'nba' ? '#003DA6' : sp === 'nfl' ? '#1a5c1a' : sp === 'baseball' ? '#c0392b' : sp === 'hockey' ? '#1a3a5c' : sp === 'soccer-international' ? '#2d6a2d' : sp === 'racing' ? '#b85c00' : sp === 'tennis' ? '#5a8a00' : sp === 'wrestling' ? '#7a0000' : sp === 'mma' ? '#4a0050' : sp === 'pokemon' ? '#e6b800' : '#6b21a8'
-          const label  = sp === 'nba' ? '🏀 NBA' : sp === 'nfl' ? '🏈 NFL' : sp === 'baseball' ? '⚾ Baseball' : sp === 'hockey' ? '🏒 Hockey' : sp === 'soccer-international' ? '⚽ Football' : sp === 'racing' ? '🏎️ Racing' : sp === 'tennis' ? '🎾 Tennis' : sp === 'wrestling' ? '🤼 Wrestling' : sp === 'mma' ? '🥊 MMA' : sp === 'pokemon' ? '🎴 Pokémon' : '🧙 MTG'
-          const isActive = activeSport === sp
-          return (
-            <button key={sp} onClick={() => {
-              if (isActive) return
-              setActiveSport(sp)
-              setActiveSeason(null)
-              setActiveDecade(null)
-              setSets([])
-              setLoading(true)
-              setSyncDone(false)
-              setUnmatchedCards([])
-              setTotalSynced(null)
-              setNewMatchCount(0)
-            }} style={{
-              padding: '10px 8px', borderRadius: 10, border: '2px solid',
-              borderColor: isActive ? accent : (dark ? '#444' : '#e0e0e0'),
-              background: isActive ? accent : (dark ? '#2a2a2a' : 'white'),
-              cursor: isActive ? 'default' : 'pointer',
-              transition: 'all 0.15s',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              width: '100%',
-            }}>
-              <span style={{ fontSize: 14, fontWeight: 800, color: isActive ? 'white' : (dark ? '#eee' : '#111'), whiteSpace: 'nowrap' }}>
-                {label}
-              </span>
-            </button>
-          )
-        })}
-      </div>
 
       {/* Navigation décennie → saison */}
       {!loading && (
