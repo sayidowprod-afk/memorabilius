@@ -10,6 +10,7 @@ import { supabase } from '@/lib/supabase'
 
 type Section = 'all' | 'cards' | 'players' | 'collectors'
 type SortKey = 'default' | 'y_desc' | 'y_asc' | 'name'
+type MyMode = 'all' | 'only' | 'exclude'
 
 const SPORT_EMOJI: Record<string, string> = {
   nba: '🏀', nfl: '🏈', nhl: '🏒', hockey: '🏒', baseball: '⚾', football: '⚽',
@@ -52,7 +53,7 @@ export default function Recherche() {
   const [sortCards, setSortCards] = useState<SortKey>('default')
   const [section, setSection] = useState<Section>('all')
   const [myId, setMyId] = useState<string | null>(null)
-  const [showMine, setShowMine] = useState(false)
+  const [myMode, setMyMode] = useState<MyMode>('all')
 
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
   const sentinelRef = useRef<HTMLDivElement>(null)
@@ -122,7 +123,8 @@ export default function Recherche() {
     (!fNum || c.num) &&
     (!fPatch || c.patch) &&
     (!fVente || c.disponible_vente) &&
-    (!showMine || c.collectorId === myId)
+    (myMode === 'all' ||
+      (myMode === 'only' ? c.collectorId === myId : c.collectorId !== myId))
   )
 
   if (sortCards === 'y_desc') filteredCards = [...filteredCards].sort((a, b) => (b.year || '').localeCompare(a.year || ''))
@@ -135,10 +137,10 @@ export default function Recherche() {
 
   const clearFilters = () => {
     setFYear(''); setFBrand(''); setFRc(false); setFAuto(false)
-    setFNum(false); setFPatch(false); setFVente(false); setShowMine(false)
+    setFNum(false); setFPatch(false); setFVente(false); setMyMode('all')
     setSortCards('default')
   }
-  const hasActiveFilter = fYear || fBrand || fRc || fAuto || fNum || fPatch || fVente || showMine || sortCards !== 'default'
+  const hasActiveFilter = fYear || fBrand || fRc || fAuto || fNum || fPatch || fVente || myMode !== 'all' || sortCards !== 'default'
 
   useEffect(() => {
     const el = sentinelRef.current
@@ -356,9 +358,14 @@ export default function Recherche() {
                 </span>
 
                 {myId && (
-                  <button onClick={() => setShowMine(v => !v)} style={chipStyle(showMine, '#555')}>
-                    👤 {lang === 'fr' ? 'Mes cartes' : 'My cards'}
-                  </button>
+                  <>
+                    <button onClick={() => setMyMode(m => m === 'only' ? 'all' : 'only')} style={chipStyle(myMode === 'only', '#003DA6')}>
+                      👤 {lang === 'fr' ? 'Mes cartes' : 'My cards'}
+                    </button>
+                    <button onClick={() => setMyMode(m => m === 'exclude' ? 'all' : 'exclude')} style={chipStyle(myMode === 'exclude', '#c0392b')}>
+                      ✕ {lang === 'fr' ? 'Exclure mes cartes' : 'Exclude mine'}
+                    </button>
+                  </>
                 )}
 
                 <select value={sortCards} onChange={e => setSortCards(e.target.value as SortKey)}
@@ -427,8 +434,9 @@ export default function Recherche() {
                   <Link key={i} href={`/galerie/${card.collectorId}?card=${encodeURIComponent(card.img)}`} style={{ textDecoration: 'none', display: 'block' }}>
                     <div className="card-item-search" style={{
                       background: surface, borderRadius: 12, overflow: 'hidden',
-                      border: `2px solid ${card.accent || accent}`,
+                      border: `2px solid ${card.collectorId === myId ? accent : (card.accent || accent)}`,
                       cursor: 'pointer', height: '100%',
+                      boxShadow: card.collectorId === myId ? `0 0 0 2px ${accent}44` : undefined,
                     }}>
                       {/* Image */}
                       <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', background: '#111' }}>

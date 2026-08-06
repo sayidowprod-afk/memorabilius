@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import { fetchEspnHeadshot, fetchEspnPlayerBio } from '@/lib/espnHeadshot'
 import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
+import CommunityCardsSection from './CommunityCardsSection'
 
 export const revalidate = 3600
 
@@ -835,59 +836,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
 
           {/* Cartes de la communauté */}
           {communityCards.length > 0 && (
-            <section style={{ marginBottom: 52 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
-                <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--jp-text)', margin: 0 }}>
-                  Dans les collections
-                </h2>
-                <span style={{ fontSize: 13, color: 'var(--jp-muted)', fontWeight: 600 }}>
-                  {communityCards.length} carte{communityCards.length > 1 ? 's' : ''} · {uniqueCollectors} collectionneur{uniqueCollectors > 1 ? 's' : ''}
-                </span>
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(148px, 1fr))', gap: 12 }}>
-                {communityCards.map((card: any) => (
-                  <Link key={card.id} href={card.source === 'manuel' ? card.cardUrl : `/galerie/${card.user_id}`} style={{ textDecoration: 'none' }}>
-                    <div className="jp-card-hover" style={{ borderRadius: 12, overflow: 'hidden', background: 'var(--jp-surface)', border: '1.5px solid var(--jp-border)', height: '100%' }}>
-                      <div style={{ aspectRatio: '2.5/3.5', overflow: 'hidden', position: 'relative', background: '#111' }}>
-                        <img
-                          src={card.img}
-                          alt={card.nom}
-                          style={card.is_horizontal ? {
-                            position: 'absolute', width: '140%', height: '71.43%',
-                            left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover',
-                          } : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                        />
-                        {card.rc && (
-                          <span style={{ position: 'absolute', top: 6, left: 6, fontSize: 9, fontWeight: 900, background: '#e67e22', color: 'white', padding: '2px 6px', borderRadius: 3, lineHeight: 1.4 }}>RC</span>
-                        )}
-                        {card.disponible_vente && (
-                          <span style={{ position: 'absolute', top: 6, right: 6, fontSize: 9, fontWeight: 900, background: '#2e7d32', color: 'white', padding: '2px 6px', borderRadius: 3, lineHeight: 1.4 }}>🏷️</span>
-                        )}
-                      </div>
-                      <div style={{ padding: '8px 10px 10px' }}>
-                        <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--jp-text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.nom}</div>
-                        <div style={{ fontSize: 10, color: 'var(--jp-muted)', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                          {[card.annee, card.marque].filter(Boolean).join(' · ')}
-                        </div>
-                        {card.variation && (
-                          <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--jp-accent)', marginTop: 3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', background: 'rgba(0,61,166,0.07)', borderRadius: 3, padding: '1px 5px', display: 'inline-block', maxWidth: '100%' }}>
-                            {card.variation}
-                          </div>
-                        )}
-                        <div style={{ fontSize: 10, color: 'var(--jp-muted)', marginTop: 5, display: 'flex', alignItems: 'center', gap: 4 }}>
-                          <img
-                            src={card.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(card.display_name || 'U')}&background=003DA6&color=fff&size=20`}
-                            style={{ width: 13, height: 13, borderRadius: '50%', flexShrink: 0 }}
-                            alt=""
-                          />
-                          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{card.display_name}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </section>
+            <CommunityCardsSection cards={communityCards as any} totalCollectors={uniqueCollectors} />
           )}
 
           {/* Sets groupés par année */}
