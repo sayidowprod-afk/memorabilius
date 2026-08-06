@@ -23,6 +23,7 @@
     "jszip": "^3.10.1",
     "next": "16.2.7",
     "node-fetch": "^2.7.0",
+    "onnxruntime-node": "^1.27.0",
     "onnxruntime-web": "^1.27.0",
     "papaparse": "^5.5.3",
     "puppeteer-core": "^25.1.0",
