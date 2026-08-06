@@ -542,10 +542,10 @@ function Last7DaysTable({ data }: {
             <tr style={{ background: '#f8fafc', borderTop: '2px solid #e2e8f0' }}>
               <td style={{ padding: '9px 16px', fontSize: 12, fontWeight: 700, color: '#64748b' }}>Total 7j</td>
               {COLS.map((c, j) => {
-                const total = c.series.reduce((s, p) => s + p.count, 0)
+                const total = c.series ? c.series.reduce((s, p) => s + p.count, 0) : -1
                 return (
                   <td key={j} style={{ padding: '9px 16px', textAlign: 'right', fontWeight: 700, fontSize: 14, color: c.color }}>
-                    {fmt(total)}
+                    {total < 0 ? <span style={{ fontSize: 11, color: '#94a3b8' }}>N/A</span> : fmt(total)}
                   </td>
                 )
               })}
