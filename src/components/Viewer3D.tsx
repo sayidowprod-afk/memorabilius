@@ -861,7 +861,7 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           {/* Boutons actions */}
           <div style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {isOwner && popup.id_manuelle && userId && (
-              <Link href={`/galerie/${userId}/editer/${popup.id_manuelle}`} onClick={onClose} style={{
+              <Link href={`/galerie/${userId}/editer/${popup.id_manuelle}`} style={{
                 background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#eee' : '#333',
                 border: 'none', borderRadius: 10, padding: '12px 14px',
                 fontWeight: 800, fontSize: 14, whiteSpace: 'nowrap', textDecoration: 'none',
