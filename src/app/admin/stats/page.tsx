@@ -82,9 +82,10 @@ type Stats = {
   top_users: TopUser[]
   // 7 derniers jours
   last_7_days?: {
-    users: DailyPoint[]
-    cards: DailyPoint[]
-    scans: DailyPoint[]
+    users:   DailyPoint[]
+    cards:   DailyPoint[]
+    signins: DailyPoint[]  // dernière connexion par jour (auth.listUsers)
+    active:  DailyPoint[]  // distinct users ayant fait une action
   }
 }
 
@@ -488,60 +489,70 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
 const DAY_LABELS = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
 
 function Last7DaysTable({ data }: {
-  data: { users: DailyPoint[]; cards: DailyPoint[]; scans: DailyPoint[] }
+  data: { users: DailyPoint[]; cards: DailyPoint[]; signins: DailyPoint[]; active: DailyPoint[] }
 }) {
   const today = new Date().toISOString().slice(0, 10)
+  const COLS = [
+    { label: '👤 Inscrits',     color: ACCENT,     series: data.users   },
+    { label: '🃏 Cartes',       color: '#059669',  series: data.cards   },
+    { label: '🔑 Connexions',   color: '#0ea5e9',  series: data.signins, note: 'dernière co. du jour' },
+    { label: '⚡ Actifs',       color: '#8b5cf6',  series: data.active,  note: 'ont ajouté/scanné' },
+  ]
   return (
-    <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflow: 'hidden' }}>
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-        <thead>
-          <tr style={{ background: ACCENT }}>
-            {['Jour', '👤 Inscrits', '🃏 Cartes', '🔬 Scans'].map((h, i) => (
-              <th key={h} style={{
-                padding: '10px 16px', color: '#fff', fontSize: 12, fontWeight: 600,
-                textAlign: i === 0 ? 'left' : 'right',
-              }}>{h}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.users.map((u, i) => {
-            const card  = data.cards[i]
-            const scan  = data.scans[i]
-            const isToday = u.day === today
-            const d     = new Date(u.day + 'T12:00:00Z')
-            const label = `${DAY_LABELS[d.getUTCDay()]} ${u.day.slice(5)}`
-            return (
-              <tr key={u.day} style={{
-                background: isToday ? '#eff6ff' : i % 2 === 0 ? '#fff' : '#f8fafc',
-                borderBottom: '1px solid #f1f5f9',
-              }}>
-                <td style={{ padding: '9px 16px', fontSize: 13, fontWeight: isToday ? 700 : 400, color: isToday ? ACCENT : '#334155' }}>
-                  {label}{isToday ? ' · auj.' : ''}
-                </td>
-                {[u.count, card?.count ?? 0, scan?.count ?? 0].map((v, j) => (
-                  <td key={j} style={{ padding: '9px 16px', textAlign: 'right', fontWeight: 600, fontSize: 14, color: v > 0 ? [ACCENT, '#059669', '#8b5cf6'][j] : '#cbd5e1' }}>
-                    {v > 0 ? fmt(v) : '—'}
-                  </td>
-                ))}
-              </tr>
-            )
-          })}
-        </tbody>
-        <tfoot>
-          <tr style={{ background: '#f8fafc', borderTop: '2px solid #e2e8f0' }}>
-            <td style={{ padding: '9px 16px', fontSize: 12, fontWeight: 700, color: '#64748b' }}>Total 7j</td>
-            {[data.users, data.cards, data.scans].map((series, j) => {
-              const total = series.reduce((s, p) => s + p.count, 0)
+    <div style={{ overflowX: 'auto' }}>
+      <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflow: 'hidden', minWidth: 560 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr style={{ background: ACCENT }}>
+              <th style={{ padding: '10px 16px', color: '#fff', fontSize: 12, fontWeight: 600, textAlign: 'left' }}>Jour</th>
+              {COLS.map(c => (
+                <th key={c.label} style={{ padding: '10px 16px', color: '#fff', fontSize: 12, fontWeight: 600, textAlign: 'right', whiteSpace: 'nowrap' }}>
+                  {c.label}
+                  {c.note && <div style={{ fontSize: 9, fontWeight: 400, opacity: 0.7, marginTop: 1 }}>{c.note}</div>}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.users.map((u, i) => {
+              const isToday = u.day === today
+              const d       = new Date(u.day + 'T12:00:00Z')
+              const label   = `${DAY_LABELS[d.getUTCDay()]} ${u.day.slice(5)}`
               return (
-                <td key={j} style={{ padding: '9px 16px', textAlign: 'right', fontWeight: 700, fontSize: 14, color: [ACCENT, '#059669', '#8b5cf6'][j] }}>
-                  {fmt(total)}
-                </td>
+                <tr key={u.day} style={{
+                  background: isToday ? '#eff6ff' : i % 2 === 0 ? '#fff' : '#f8fafc',
+                  borderBottom: '1px solid #f1f5f9',
+                }}>
+                  <td style={{ padding: '9px 16px', fontSize: 13, fontWeight: isToday ? 700 : 400, color: isToday ? ACCENT : '#334155' }}>
+                    {label}{isToday ? ' · auj.' : ''}
+                  </td>
+                  {COLS.map((c, j) => {
+                    const v = c.series[i]?.count ?? 0
+                    return (
+                      <td key={j} style={{ padding: '9px 16px', textAlign: 'right', fontWeight: 600, fontSize: 14, color: v > 0 ? c.color : '#cbd5e1' }}>
+                        {v > 0 ? fmt(v) : '—'}
+                      </td>
+                    )
+                  })}
+                </tr>
               )
             })}
-          </tr>
-        </tfoot>
-      </table>
+          </tbody>
+          <tfoot>
+            <tr style={{ background: '#f8fafc', borderTop: '2px solid #e2e8f0' }}>
+              <td style={{ padding: '9px 16px', fontSize: 12, fontWeight: 700, color: '#64748b' }}>Total 7j</td>
+              {COLS.map((c, j) => {
+                const total = c.series.reduce((s, p) => s + p.count, 0)
+                return (
+                  <td key={j} style={{ padding: '9px 16px', textAlign: 'right', fontWeight: 700, fontSize: 14, color: c.color }}>
+                    {fmt(total)}
+                  </td>
+                )
+              })}
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
   )
 }

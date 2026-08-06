@@ -23,6 +23,17 @@ function groupByDay(rows: Array<{ created_at: string }>): Record<string, number>
   return counts
 }
 
+function distinctByDay(rows: Array<{ user_id?: string | null; created_at: string }>): Record<string, number> {
+  const sets: Record<string, Set<string>> = {}
+  for (const r of rows) {
+    if (!r.user_id) continue
+    const day = r.created_at.slice(0, 10)
+    if (!sets[day]) sets[day] = new Set()
+    sets[day].add(r.user_id)
+  }
+  return Object.fromEntries(Object.entries(sets).map(([d, s]) => [d, s.size]))
+}
+
 function daily7(counts: Record<string, number>): Array<{ day: string; count: number }> {
   return Array.from({ length: 7 }, (_, i) => {
     const d = new Date()
@@ -30,6 +41,24 @@ function daily7(counts: Record<string, number>): Array<{ day: string; count: num
     const day = d.toISOString().slice(0, 10)
     return { day, count: counts[day] || 0 }
   })
+}
+
+// Pagine tous les users pour compter les dernières connexions par jour
+async function getSigninsByDay(d7Start: string): Promise<Record<string, number>> {
+  const signins: Record<string, number> = {}
+  let page = 1
+  while (true) {
+    const { data } = await admin.auth.admin.listUsers({ page, perPage: 100 })
+    if (!data?.users?.length) break
+    for (const u of data.users) {
+      if (!u.last_sign_in_at) continue
+      const day = u.last_sign_in_at.slice(0, 10)
+      if (day >= d7Start) signins[day] = (signins[day] || 0) + 1
+    }
+    if (!data.nextPage) break
+    page++
+  }
+  return signins
 }
 
 export async function GET(req: NextRequest) {
@@ -41,21 +70,29 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
-  const d7Start = new Date(Date.now() - 7 * 86400000).toISOString()
+  const d7Start = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
+  const d7StartTs = d7Start + 'T00:00:00.000Z'
 
-  const [rpcResult, usersWeek, cardsWeek, scansWeek] = await Promise.all([
+  // Requêtes DB parallèles + pagination auth en parallèle
+  const [rpcResult, usersWeek, cardsWeek, scansActivity, signinsByDay] = await Promise.all([
     admin.rpc('admin_stats'),
-    admin.from('profiles').select('created_at').gte('created_at', d7Start),
-    admin.from('cartes_manuelles').select('created_at').gte('created_at', d7Start),
-    admin.from('ai_scan_events').select('created_at').gte('created_at', d7Start),
+    admin.from('profiles').select('created_at').gte('created_at', d7StartTs),
+    admin.from('cartes_manuelles').select('user_id, created_at').gte('created_at', d7StartTs),
+    admin.from('ai_scan_events').select('user_id, created_at').gte('created_at', d7StartTs),
+    getSigninsByDay(d7Start),
   ])
 
   if (rpcResult.error) return NextResponse.json({ error: rpcResult.error.message }, { status: 500 })
 
+  const cardsData  = cardsWeek.data  || []
+  const scansData  = scansActivity.data || []
+
   const last_7_days = {
-    users: daily7(groupByDay(usersWeek.data || [])),
-    cards: daily7(groupByDay(cardsWeek.data || [])),
-    scans: daily7(groupByDay(scansWeek.data || [])),
+    users:   daily7(groupByDay(usersWeek.data || [])),
+    cards:   daily7(groupByDay(cardsData)),
+    signins: daily7(signinsByDay),
+    // Distinct users ayant fait une action (ajout carte ou scan)
+    active:  daily7(distinctByDay([...cardsData, ...scansData])),
   }
 
   return NextResponse.json({ ...rpcResult.data, last_7_days })
