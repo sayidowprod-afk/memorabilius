@@ -77,11 +77,15 @@ export async function detectCornersYOLO(
 
     const input  = new ort.Tensor('float32', tensorData, [1, 3, IMGSZ, IMGSZ])
     const result = await session.run({ [session.inputNames[0]]: input })
-    const raw    = result[session.outputNames[0]].data as Float32Array
+    const outTensor = result[session.outputNames[0]]
+    const raw    = outTensor.data as Float32Array
 
-    // Sortie YOLOv8-pose : [1, 17, 8400]
-    // canal 0-3 : cx,cy,w,h  |  canal 4 : conf  |  canaux 5-16 : 4 kpts × (x,y,v)
-    const N = 8400
+    // Sortie YOLOv8-pose : [1, channels, N] — N déduit dynamiquement
+    // canal 0-3 : cx,cy,w,h  |  canal 4 : conf  |  canaux 5+ : 4 kpts × (x,y,v)
+    const dims = outTensor.dims as number[]
+    const channels = dims[1]
+    const N = dims[2]
+    console.log(`[YOLO] outputDims=[${dims.join(',')}] channels=${channels} N=${N}`)
     let bestConf = confThresh
     let bestIdx  = -1
     let maxConfAny = 0
@@ -90,7 +94,7 @@ export async function detectCornersYOLO(
       if (conf > maxConfAny) maxConfAny = conf
       if (conf > bestConf) { bestConf = conf; bestIdx = i }
     }
-    console.log(`[YOLO] maxConf=${maxConfAny.toFixed(3)} bestConf=${bestConf.toFixed(3)} threshold=${confThresh} outputShape=[1,${raw.length / N},${N}]`)
+    console.log(`[YOLO] maxConf=${maxConfAny.toFixed(3)} bestConf=${bestConf.toFixed(3)} threshold=${confThresh}`)
     if (bestIdx < 0) return null
 
     // Extrait les 4 keypoints et convertit vers l'espace image originale
