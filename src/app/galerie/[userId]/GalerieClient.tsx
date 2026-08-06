@@ -112,6 +112,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [page, setPage] = useState(1)
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
   const [filterPrivate, setFilterPrivate] = useState(false)
+  const [filterVente, setFilterVente] = useState(searchParams.get('vente') === '1')
   const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc' | 'num_asc' | 'card_num_asc' | 'card_num_desc' | 'date_desc' | 'date_asc'>(searchParams.get('sort') as any || 'default')
   const [sortBy2, setSortBy2] = useState<'none' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'num_asc' | 'card_num_asc' | 'card_num_desc' | 'date_desc' | 'date_asc'>(searchParams.get('sort2') as any || 'none')
   const [searchInput, setSearchInput] = useState(searchParams.get('q') || '')
@@ -453,7 +454,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         (!activeFilters.auto || d.auto) &&
         (!activeFilters.patch || d.patch) &&
         (!activeFilters.num || d.num !== '') &&
-        (!filterPrivate || privateCards.has(d.f))
+        (!filterPrivate || privateCards.has(d.f)) &&
+        (!filterVente || d.disponible_vente)
       )
     })
 
@@ -507,7 +509,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     setFiltered(sorted)
     setPage(1)
     setDisplayed(sorted.slice(0, PAGE_SIZE))
-  }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
+  }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -534,10 +536,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     if (sortBy !== 'default') sp.set('sort', sortBy)
     if (sortBy2 !== 'none') sp.set('sort2', sortBy2)
     if (pinTeam) sp.set('pin', pinTeam)
+    if (filterVente) sp.set('vente', '1')
     if (popup?.f) sp.set('card', encodeURIComponent(popup.f))
     const str = sp.toString()
     router.replace(str ? `?${str}` : window.location.pathname, { scroll: false })
-  }, [loaded, search, fTeam, fBrand, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, popup])
+  }, [loaded, search, fTeam, fBrand, fYear, fCollectionTag, sortBy, sortBy2, pinTeam, filterVente, popup])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -741,6 +744,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   { val: filtered.filter(c => c.auto).length, label: 'Auto', color: '#2e7d32' },
                   { val: filtered.filter(c => c.num).length, label: 'Num', color: '#7b1fa2' },
                   { val: filtered.filter(c => c.patch).length, label: 'Patch', color: '#1976d2' },
+                  ...(cards.some(c => c.disponible_vente) ? [{ val: filtered.filter(c => c.disponible_vente).length, label: 'Trade', color: '#2e7d32' }] : []),
                 ].map(s => (
                   <div key={s.label} style={{ textAlign: 'center', minWidth: 45 }}>
                     <div style={{ fontSize: 22, fontWeight: 900, color: s.color || accent }}>{s.val}</div>
@@ -1034,7 +1038,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 <option value="">{t('gallery_all')}</option>{years.map(year => <option key={year}>{year}</option>)}
               </select></div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(5,1fr)' : 'repeat(4,1fr)', gap: 5, marginBottom: 8 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(6,1fr)' : 'repeat(5,1fr)', gap: 5, marginBottom: 8 }}>
             {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
               <button key={k} onClick={() => toggleFilter(k)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
@@ -1047,6 +1051,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
               }}>🔒 Privé</button>
             )}
+            <button onClick={() => setFilterVente(p => !p)} style={{
+              padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
+              background: filterVente ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterVente ? 'white' : (dark ? '#bbb' : '#333')
+            }}>🏷️ Vente</button>
           </div>
           <div>
             <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>
@@ -1804,7 +1812,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
                 <p style={{ fontWeight: 800, fontSize: 15, marginBottom: 8 }}>{lang === 'fr' ? 'Aucun résultat' : 'No results'}</p>
                 <p style={{ color: '#999', fontSize: 13, marginBottom: 16 }}>{lang === 'fr' ? 'Aucune carte ne correspond à ces filtres.' : 'No cards match these filters.'}</p>
-                <button onClick={() => { setSearchInput(''); setSearch(''); setFTeam(''); setFBrand(''); setFYear(''); setFCollectionTag(''); setPinTeam(''); setActiveFilters({ rc: false, auto: false, num: false, patch: false }) }} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 800, fontSize: 13, border: 'none', cursor: 'pointer' }}>
+                <button onClick={() => { setSearchInput(''); setSearch(''); setFTeam(''); setFBrand(''); setFYear(''); setFCollectionTag(''); setPinTeam(''); setActiveFilters({ rc: false, auto: false, num: false, patch: false }); setFilterVente(false) }} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 800, fontSize: 13, border: 'none', cursor: 'pointer' }}>
                   {lang === 'fr' ? 'Effacer les filtres' : 'Clear filters'}
                 </button>
               </div>

@@ -334,7 +334,7 @@ async function _fetchPlayer(slug: string) {
     supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName }),
     supabase
       .from('cartes_manuelles')
-      .select('id, nom, annee, rc, marque, collection, variation, image_recto, is_horizontal, user_id, profiles(display_name, avatar_url, couleur_bordure)')
+      .select('id, nom, annee, rc, marque, collection, variation, image_recto, is_horizontal, disponible_vente, user_id, profiles(display_name, avatar_url, couleur_bordure)')
       .ilike('nom', `%${firstName}%`)
       .ilike('nom', `%${lastName}%`)
       .not('image_recto', 'is', null)
@@ -415,6 +415,7 @@ async function _fetchPlayer(slug: string) {
     display_name: m.profiles?.display_name,
     avatar_url: m.profiles?.avatar_url,
     accent: m.profiles?.couleur_bordure || '#003DA6',
+    disponible_vente: m.disponible_vente || false,
     source: 'manuel' as const,
     cardUrl: cardPageUrl(m.user_id, { nom: m.nom, annee: m.annee, marque: m.marque, collection: m.collection, image_recto: m.image_recto }),
   }))
@@ -858,6 +859,9 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                         />
                         {card.rc && (
                           <span style={{ position: 'absolute', top: 6, left: 6, fontSize: 9, fontWeight: 900, background: '#e67e22', color: 'white', padding: '2px 6px', borderRadius: 3, lineHeight: 1.4 }}>RC</span>
+                        )}
+                        {card.disponible_vente && (
+                          <span style={{ position: 'absolute', top: 6, right: 6, fontSize: 9, fontWeight: 900, background: '#2e7d32', color: 'white', padding: '2px 6px', borderRadius: 3, lineHeight: 1.4 }}>🏷️</span>
                         )}
                       </div>
                       <div style={{ padding: '8px 10px 10px' }}>
