@@ -73,10 +73,8 @@ export async function GET(req: NextRequest) {
   const d7Start = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
   const d7StartTs = d7Start + 'T00:00:00.000Z'
 
-  // Requêtes DB parallèles + pagination auth en parallèle
-  const [rpcResult, usersWeek, cardsWeek, scansActivity, signinsByDay] = await Promise.all([
+  const [rpcResult, activityCards, activityScans, signinsByDay] = await Promise.all([
     admin.rpc('admin_stats'),
-    admin.from('profiles').select('created_at').gte('created_at', d7StartTs),
     admin.from('cartes_manuelles').select('user_id, created_at').gte('created_at', d7StartTs),
     admin.from('ai_scan_events').select('user_id, created_at').gte('created_at', d7StartTs),
     getSigninsByDay(d7Start),
@@ -84,16 +82,30 @@ export async function GET(req: NextRequest) {
 
   if (rpcResult.error) return NextResponse.json({ error: rpcResult.error.message }, { status: 500 })
 
-  const cardsData  = cardsWeek.data  || []
-  const scansData  = scansActivity.data || []
+  const rpcData = rpcResult.data as any
 
-  const last_7_days = {
-    users:   daily7(groupByDay(usersWeek.data || [])),
-    cards:   daily7(groupByDay(cardsData)),
-    signins: daily7(signinsByDay),
-    // Distinct users ayant fait une action (ajout carte ou scan)
-    active:  daily7(distinctByDay([...cardsData, ...scansData])),
+  // Extraire les 7 derniers jours depuis les séries du RPC (même source que les graphiques)
+  function last7FromSeries(series: Array<{ day: string; count: number }>): Array<{ day: string; count: number }> {
+    const map = new Map((series || []).map((p: { day: string; count: number }) => [p.day.slice(0, 10), p.count]))
+    return Array.from({ length: 7 }, (_, i) => {
+      const d = new Date()
+      d.setUTCDate(d.getUTCDate() - (6 - i))
+      const day = d.toISOString().slice(0, 10)
+      return { day, count: map.get(day) ?? 0 }
+    })
   }
 
-  return NextResponse.json({ ...rpcResult.data, last_7_days })
+  const allActivity = [
+    ...(activityCards.data || []),
+    ...(activityScans.data || []),
+  ]
+
+  const last_7_days = {
+    users:   last7FromSeries(rpcData.user_daily ?? []),
+    cards:   last7FromSeries(rpcData.card_daily ?? []),
+    signins: daily7(signinsByDay),
+    active:  daily7(distinctByDay(allActivity)),
+  }
+
+  return NextResponse.json({ ...rpcData, last_7_days })
 }
