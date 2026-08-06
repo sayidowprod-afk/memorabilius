@@ -1,18 +1,37 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
 import OAuthButtons from '@/components/OAuthButtons'
+
+type PseudoStatus = 'idle' | 'checking' | 'available' | 'taken'
 
 export default function Inscription() {
   const { t, lang } = useLang()
   const [form, setForm] = useState({ email: '', password: '', display_name: '' })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [pseudoStatus, setPseudoStatus] = useState<PseudoStatus>('idle')
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    const name = form.display_name.trim()
+    if (name.length < 2) { setPseudoStatus('idle'); return }
+    setPseudoStatus('checking')
+    if (debounceRef.current) clearTimeout(debounceRef.current)
+    debounceRef.current = setTimeout(async () => {
+      const { count } = await supabase
+        .from('profiles')
+        .select('id', { count: 'exact', head: true })
+        .ilike('display_name', name)
+      setPseudoStatus((count ?? 0) > 0 ? 'taken' : 'available')
+    }, 500)
+  }, [form.display_name])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (pseudoStatus === 'taken') return
     setLoading(true)
     setError('')
     const { error } = await supabase.auth.signUp({
@@ -24,6 +43,13 @@ export default function Inscription() {
     window.location.href = '/confirm?email=' + encodeURIComponent(form.email)
   }
 
+  const pseudoHint = {
+    idle: null,
+    checking: <span style={{ color: '#888', fontSize: 12 }}>…</span>,
+    available: <span style={{ color: '#2e7d32', fontSize: 12 }}>✓ {lang === 'fr' ? 'Disponible' : 'Available'}</span>,
+    taken: <span style={{ color: '#c62828', fontSize: 12 }}>✗ {lang === 'fr' ? 'Pseudo déjà pris' : 'Username already taken'}</span>,
+  }[pseudoStatus]
+
   return (
     <div style={{ maxWidth: 460, margin: '60px auto' }}>
       <div style={{ background: 'white', borderRadius: 16, padding: 40, boxShadow: '0 10px 40px rgba(0,0,0,0.08)' }}>
@@ -31,8 +57,17 @@ export default function Inscription() {
         <p style={{ color: '#666', marginBottom: 30, fontSize: 14 }}>{t('register_sub')}</p>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
-            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('register_pseudo')}</label>
-            <input type="text" required placeholder={lang === 'fr' ? 'Votre pseudo' : 'Your username'} value={form.display_name} onChange={e => setForm({ ...form, display_name: e.target.value })} />
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888' }}>{t('register_pseudo')}</label>
+              {pseudoHint}
+            </div>
+            <input
+              type="text" required
+              placeholder={lang === 'fr' ? 'Votre pseudo' : 'Your username'}
+              value={form.display_name}
+              onChange={e => setForm({ ...form, display_name: e.target.value })}
+              style={{ borderColor: pseudoStatus === 'taken' ? '#c62828' : pseudoStatus === 'available' ? '#2e7d32' : undefined }}
+            />
           </div>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{t('login_email')}</label>
@@ -43,7 +78,7 @@ export default function Inscription() {
             <input type="password" required placeholder={lang === 'fr' ? 'Min. 6 caractères' : 'Min. 6 characters'} value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} />
           </div>
           {error && <p style={{ color: '#e74c3c', fontSize: 13 }}>{error}</p>}
-          <button type="submit" className="btn-main btn-primary" style={{ marginTop: 8 }} disabled={loading}>
+          <button type="submit" className="btn-main btn-primary" style={{ marginTop: 8 }} disabled={loading || pseudoStatus === 'taken' || pseudoStatus === 'checking'}>
             {loading ? '...' : t('register_btn')}
           </button>
         </form>
