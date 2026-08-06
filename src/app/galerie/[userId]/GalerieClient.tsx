@@ -109,6 +109,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [profile, setProfile] = useState<any>(null)
   const [cards, setCards] = useState<Card[]>([])
   const [filtered, setFiltered] = useState<Card[]>([])
+  const [filteredStats, setFilteredStats] = useState({ rc: 0, auto: 0, num: 0, patch: 0 })
   const [displayed, setDisplayed] = useState<Card[]>([])
   const [page, setPage] = useState(1)
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
@@ -356,7 +357,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     try {
       let parsed: Card[] = []
       if (url) {
-        const r = await fetch(url + '&t=' + Date.now())
+        const r = await fetch(url + '&t=' + Math.floor(Date.now() / 300000))
         const t = await r.text()
         const rows = t.split(/\r?\n/).slice(4)
         parsed = rows.map(row => {
@@ -516,6 +517,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     })
 
     setFiltered(sorted)
+    setFilteredStats({
+      rc: sorted.filter(c => c.rc).length,
+      auto: sorted.filter(c => c.auto).length,
+      num: sorted.filter(c => c.num !== '').length,
+      patch: sorted.filter(c => c.patch).length,
+    })
     setPage(1)
     setDisplayed(sorted.slice(0, PAGE_SIZE))
   }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
@@ -854,10 +861,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               <div style={{ display: 'flex', gap: 16, justifyContent: 'flex-end', width: '100%' }}>
                 {[
                   { val: filtered.length, label: t('gallery_cards') },
-                  { val: filtered.filter(c => c.rc).length, label: 'RC', color: '#e67e22' },
-                  { val: filtered.filter(c => c.auto).length, label: 'Auto', color: '#2e7d32' },
-                  { val: filtered.filter(c => c.num).length, label: 'Num', color: '#7b1fa2' },
-                  { val: filtered.filter(c => c.patch).length, label: 'Patch', color: '#1976d2' },
+                  { val: filteredStats.rc, label: 'RC', color: '#e67e22' },
+                  { val: filteredStats.auto, label: 'Auto', color: '#2e7d32' },
+                  { val: filteredStats.num, label: 'Num', color: '#7b1fa2' },
+                  { val: filteredStats.patch, label: 'Patch', color: '#1976d2' },
                 ].map(s => (
                   <div key={s.label} style={{ textAlign: 'center', minWidth: 45 }}>
                     <div style={{ fontSize: 22, fontWeight: 900, color: s.color || accent }}>{s.val}</div>
