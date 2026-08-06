@@ -594,7 +594,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     if (qrSelected.size === 0 || qrDownloading) return
     setQrDownloading(true)
     try {
-      const QRCode = (await import('qrcode')).default
+      const [{ default: QRCode }, { default: JSZip }] = await Promise.all([
+        import('qrcode'),
+        import('jszip'),
+      ])
       const BRAND = '#003DA6'
       const phys = 880
       const lgW = 640, lgH = 144, lpad = 12, bR = 32
@@ -612,19 +615,16 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         ctx.arcTo(x, y, x + r, y, r); ctx.closePath()
       }
 
-      const entries = [...qrSelected.entries()]
-      for (let i = 0; i < entries.length; i++) {
-        const [, { url, title, subtitle }] = entries[i]
+      const zip = new JSZip()
+      for (const [, { url, title, subtitle }] of qrSelected.entries()) {
         const fullUrl = `https://www.memorabilius.fr${url.startsWith('/') ? url : '/' + url}`
 
-        // Génère le QR code
         const qrCanvas = document.createElement('canvas')
         await QRCode.toCanvas(qrCanvas, fullUrl, {
           width: phys, margin: 2, errorCorrectionLevel: 'H' as const,
           color: { dark: BRAND, light: '#ffffff' },
         })
 
-        // Dessine le badge logo centré
         const ctx = qrCanvas.getContext('2d')!
         const cx = phys / 2, cy = phys / 2
         ctx.fillStyle = 'white'
@@ -641,7 +641,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           ctx.restore()
         }
 
-        // Canvas composite QR + texte
         const lines: { text: string; size: number; weight: string; color: string }[] = [
           { text: title, size: 38, weight: '800', color: '#111111' },
           ...(subtitle ? [{ text: subtitle, size: 28, weight: '600', color: '#555555' }] : []),
@@ -662,14 +661,17 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           ty += lineH
         }
 
-        const link = document.createElement('a')
-        link.download = `qr-${(title || 'carte').replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`
-        link.href = out.toDataURL('image/png')
-        link.click()
-
-        // Délai entre téléchargements pour éviter le blocage navigateur
-        if (i < entries.length - 1) await new Promise(r => setTimeout(r, 250))
+        const blob = await new Promise<Blob>(resolve => out.toBlob(b => resolve(b!), 'image/png'))
+        const filename = `qr-${(title || 'carte').replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`
+        zip.file(filename, blob)
       }
+
+      const content = await zip.generateAsync({ type: 'blob' })
+      const link = document.createElement('a')
+      link.download = 'qr-codes.zip'
+      link.href = URL.createObjectURL(content)
+      link.click()
+      URL.revokeObjectURL(link.href)
     } finally {
       setQrDownloading(false)
     }
@@ -765,7 +767,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
   return (
     <>
-      <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px' }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
 
         {/* Header profil */}
         <div style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: '24px 30px', marginBottom: 20, boxShadow: '0 4px 20px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
@@ -1694,7 +1696,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         `}</style>
         
         {editMode && isOwner && selectedCards.size > 0 && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, background: '#003DA6', color: 'white', borderRadius: 10, padding: '8px 14px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap' }}>
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 200, display: 'flex', alignItems: 'center', gap: 10, background: '#003DA6', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(0,61,166,0.35)' }}>
             <span style={{ flex: '1 1 120px' }}>{selectedCards.size} carte{selectedCards.size > 1 ? 's' : ''} sélectionnée{selectedCards.size > 1 ? 's' : ''}</span>
             {/* Assigner collection tag en masse */}
             {showBulkNewTag ? (
@@ -1753,7 +1755,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         )}
 
         {qrMode && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, background: '#7c3aed', color: 'white', borderRadius: 10, padding: '10px 14px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap' }}>
+          <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 200, display: 'flex', alignItems: 'center', gap: 10, background: '#7c3aed', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(124,58,237,0.35)' }}>
             <span style={{ flex: '1 1 160px' }}>
               {qrSelected.size === 0
                 ? '▦ Clique sur des cartes pour les sélectionner'
