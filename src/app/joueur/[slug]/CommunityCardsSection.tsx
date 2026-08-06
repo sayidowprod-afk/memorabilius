@@ -15,6 +15,7 @@ type Card = {
   auto: boolean
   patch: boolean
   num: string
+  created_at?: string | null
   is_horizontal: boolean
   user_id: string
   display_name?: string
@@ -25,7 +26,29 @@ type Card = {
   cardUrl: string
 }
 
-type SortKey = 'default' | 'y_desc' | 'y_asc' | 'name'
+type SortKey = 'default' | 'y_desc' | 'y_asc' | 'name' | 'date_desc' | 'num_asc' | 'rare'
+
+function parseNumDenom(num: string): number {
+  if (!num) return Infinity
+  const m = num.match(/\/(\d+)/)
+  if (m) return parseInt(m[1])
+  const n = parseInt(num.replace(/\D/g, ''))
+  return isNaN(n) ? Infinity : n
+}
+
+function rareScore(c: Card): number {
+  // lower = rarer
+  if (parseNumDenom(c.num) === 1) return 0
+  if (c.auto && c.patch) return 1
+  if (c.auto && !!c.num) return 2
+  if (c.patch && !!c.num) return 3
+  if (c.auto) return 4
+  if (c.patch) return 5
+  if (c.rc && !!c.num) return 6
+  if (!!c.num) return 7
+  if (c.rc) return 8
+  return 9
+}
 type MyMode = 'all' | 'only' | 'exclude'
 
 export default function CommunityCardsSection({ cards, totalCollectors }: { cards: Card[]; totalCollectors: number }) {
@@ -61,6 +84,9 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
   if (sort === 'y_desc') filtered = [...filtered].sort((a, b) => (b.annee || '').localeCompare(a.annee || ''))
   else if (sort === 'y_asc') filtered = [...filtered].sort((a, b) => (a.annee || '').localeCompare(b.annee || ''))
   else if (sort === 'name') filtered = [...filtered].sort((a, b) => (a.nom || '').localeCompare(b.nom || ''))
+  else if (sort === 'date_desc') filtered = [...filtered].sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''))
+  else if (sort === 'num_asc') filtered = [...filtered].sort((a, b) => parseNumDenom(a.num) - parseNumDenom(b.num))
+  else if (sort === 'rare') filtered = [...filtered].sort((a, b) => rareScore(a) - rareScore(b) || parseNumDenom(a.num) - parseNumDenom(b.num))
 
   const hasVente = cards.some(c => c.disponible_vente)
   const hasNum = cards.some(c => !!c.num)
@@ -137,6 +163,9 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
             background: 'var(--jp-surface)', color: sort !== 'default' ? 'var(--jp-accent)' : 'var(--jp-muted)', cursor: 'pointer',
           }}>
           <option value="default">— Trier —</option>
+          <option value="date_desc">Ajout récent</option>
+          <option value="rare">Rareté</option>
+          <option value="num_asc">Numérotation</option>
           <option value="y_desc">Année ↓ (récent)</option>
           <option value="y_asc">Année ↑ (ancien)</option>
           <option value="name">Nom A→Z</option>

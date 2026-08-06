@@ -335,7 +335,7 @@ async function _fetchPlayer(slug: string) {
     supabase.rpc('get_player_sets', { p_first: firstName, p_last: lastName }),
     supabase
       .from('cartes_manuelles')
-      .select('id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, user_id, profiles(display_name, avatar_url, couleur_bordure)')
+      .select('id, nom, annee, rc, auto, num, patch, marque, collection, variation, image_recto, is_horizontal, disponible_vente, created_at, user_id, profiles(display_name, avatar_url, couleur_bordure)')
       .ilike('nom', `%${firstName}%`)
       .ilike('nom', `%${lastName}%`)
       .not('image_recto', 'is', null)
@@ -415,6 +415,7 @@ async function _fetchPlayer(slug: string) {
     auto: m.auto || false,
     patch: m.patch || false,
     num: m.num || '',
+    created_at: m.created_at || null,
     is_horizontal: m.is_horizontal,
     user_id: m.user_id,
     display_name: m.profiles?.display_name,
