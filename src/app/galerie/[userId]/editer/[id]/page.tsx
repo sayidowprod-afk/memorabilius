@@ -758,6 +758,14 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
                 </button>
               ))}
             </div>
+            {form.auto && (
+              <div style={{ marginTop: 12 }}>
+                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>
+                  {lang === 'fr' ? '✍️ Signé par' : '✍️ Signed by'}
+                </label>
+                <input value={form.cert_number} onChange={e => setForm({ ...form, cert_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : LeBron James' : 'Ex: LeBron James'} />
+              </div>
+            )}
           </div>
           )}
 
