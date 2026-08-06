@@ -1040,35 +1040,29 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 <option value="">{t('gallery_all')}</option>{years.map(year => <option key={year}>{year}</option>)}
               </select></div>
           </div>
-          {isOwner && (
-            <div style={{ marginBottom: 6 }}>
-              <button onClick={() => setFilterPrivate(p => !p)} style={{
-                padding: '6px 12px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
-                background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
-              }}>🔒 Privé</button>
-            </div>
-          )}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 5, marginBottom: 4 }}>
-            {(['rc', 'auto', 'num'] as const).map(k => (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 5, marginBottom: 4 }}>
+            {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
               <button key={k} onClick={() => toggleFilter(k)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
                 background: activeFilters[k] ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: activeFilters[k] ? 'white' : (dark ? '#bbb' : '#333')
               }}>{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
             ))}
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 5, marginBottom: 8 }}>
-            <button onClick={() => toggleFilter('patch')} style={{
-              padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
-              background: activeFilters['patch'] ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: activeFilters['patch'] ? 'white' : (dark ? '#bbb' : '#333')
-            }}>PATCH</button>
-            <button onClick={() => setFilterVente(p => !p)} style={{
-              padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
-              background: filterVente ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterVente ? 'white' : (dark ? '#bbb' : '#333')
-            }}>🏷️ Vente</button>
+          <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(3,1fr)' : 'repeat(2,1fr)', gap: 5, marginBottom: 8 }}>
             <button onClick={() => setFilterMemo(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterMemo ? '#7b1fa2' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterMemo ? 'white' : (dark ? '#bbb' : '#333')
             }}>🏆 Mémo</button>
+            <button onClick={() => setFilterVente(p => !p)} style={{
+              padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
+              background: filterVente ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterVente ? 'white' : (dark ? '#bbb' : '#333')
+            }}>🏷️ Vente</button>
+            {isOwner && (
+              <button onClick={() => setFilterPrivate(p => !p)} style={{
+                padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
+                background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
+              }}>🔒 Privé</button>
+            )}
           </div>
           <div>
             <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>
