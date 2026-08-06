@@ -327,14 +327,14 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
 
         {error && <div style={{ color: '#c00', fontSize: 13, fontWeight: 600 }}>{error}</div>}
 
-        <button onClick={submit} disabled={sending || targetSelected.size === 0 || mySelected.size === 0}
+        <button onClick={submit} disabled={sending || targetSelected.size === 0}
           style={{
-            background: (sending || targetSelected.size === 0 || mySelected.size === 0) ? '#ccc' : '#003DA6',
+            background: (sending || targetSelected.size === 0) ? '#ccc' : '#003DA6',
             color: '#fff', border: 'none', borderRadius: 50, padding: '13px 24px',
-            fontWeight: 800, fontSize: 15, cursor: (sending || targetSelected.size === 0 || mySelected.size === 0) ? 'default' : 'pointer',
+            fontWeight: 800, fontSize: 15, cursor: (sending || targetSelected.size === 0) ? 'default' : 'pointer',
           }}
         >
-          {sending ? 'Envoi…' : `Envoyer l'offre${targetSelected.size > 1 || mySelected.size > 1 ? ` (${targetSelected.size}↔${mySelected.size})` : ''}`}
+          {sending ? 'Envoi…' : `Envoyer l'offre (${targetSelected.size}↔${mySelected.size})`}
         </button>
       </div>
     </div>

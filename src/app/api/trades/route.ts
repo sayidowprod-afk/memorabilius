@@ -111,7 +111,7 @@ async function postHandler(req: NextRequest) {
     message?: string
   } = await req.json()
 
-  if (!receiverId || !offeredCards?.length || !requestedCards?.length)
+  if (!receiverId || !requestedCards?.length)
     return NextResponse.json({ error: 'Paramètres manquants' }, { status: 400 })
 
   if (receiverId === user.id)
