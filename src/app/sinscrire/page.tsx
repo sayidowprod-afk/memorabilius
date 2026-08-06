@@ -21,7 +21,7 @@ export default function Inscription() {
       options: { data: { display_name: form.display_name } }
     })
     if (error) { setError(error.message); setLoading(false); return }
-    window.location.href = '/confirm'
+    window.location.href = '/confirm?email=' + encodeURIComponent(form.email)
   }
 
   return (
