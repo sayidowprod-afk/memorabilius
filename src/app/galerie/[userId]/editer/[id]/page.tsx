@@ -618,6 +618,12 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Variation' : 'Variant'}</label>
               <input value={form.variation} onChange={e => setForm({ ...form, variation: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Silver Prizm' : 'Ex: Silver Prizm'} />
             </div>
+            {form.item_type === 'memorabilia' && (
+            <div>
+              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Patch</label>
+              <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Patch logo, Jersey relic…' : 'Ex: Logo patch, Jersey relic…'} />
+            </div>
+            )}
           </div>
 
           <div>
