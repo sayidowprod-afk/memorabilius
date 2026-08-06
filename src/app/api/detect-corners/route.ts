@@ -93,16 +93,6 @@ export async function POST(req: NextRequest) {
 
     const imageBase64 = await compressImage(rawImage)
 
-    // ── Modèle YOLO maison ──────────────────────────────────────
-    try {
-      const { detectCornersYolo } = await import('@/lib/yolo-corners')
-      const result = await detectCornersYolo(imageBase64)
-      if (result) return NextResponse.json({ ...result, source: 'yolo' })
-    } catch {
-      // fallback Gemini si ONNX échoue
-    }
-
-    // ── Fallback Gemini ──────────────────────────────────────────
     const apiKey = process.env.GEMINI_API_KEY
     if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY manquante' }, { status: 500 })
 
