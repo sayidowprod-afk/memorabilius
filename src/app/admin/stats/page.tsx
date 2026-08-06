@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 
 const ACCENT = '#003DA6'
@@ -624,6 +624,263 @@ function SectionTitle({ children }: { children: string }) {
   )
 }
 
+// ── Section Géographie ────────────────────────────────────────────────────
+
+const GEO_CONTINENTS: [number, number][][] = [
+  [[-168,72],[-130,70],[-60,73],[-52,47],[-66,43],[-82,28],[-90,18],[-109,23],[-118,34],[-126,49],[-153,60],[-168,72]],
+  [[-45,83],[-15,76],[-20,70],[-45,59],[-57,62],[-45,83]],
+  [[-82,11],[-60,8],[-52,4],[-36,-5],[-34,-18],[-50,-34],[-73,-53],[-70,-55],[-65,-55],[-60,-38],[-64,-27],[-65,-5],[-76,1],[-82,11]],
+  [[-9,36],[7,36],[13,35],[22,38],[28,42],[35,47],[27,50],[25,58],[28,71],[21,70],[10,63],[5,57],[0,51],[-3,48],[-8,38],[-9,36]],
+  [[-6,50],[-2,50],[2,52],[0,58],[-4,58],[-6,54],[-6,50]],
+  [[-16,37],[-2,37],[13,36],[25,36],[37,28],[42,22],[44,12],[52,12],[42,-2],[35,-20],[27,-35],[20,-35],[16,-28],[10,-5],[8,4],[0,5],[-18,14],[-16,37]],
+  [[26,72],[60,72],[103,72],[140,73],[148,44],[143,35],[136,34],[130,32],[120,22],[112,18],[102,2],[104,-1],[107,-6],[125,-8],[140,-9],[149,0],[155,25],[148,28],[140,38],[115,40],[88,38],[75,35],[70,27],[60,22],[55,12],[42,15],[36,15],[36,30],[26,42],[26,55],[26,72]],
+  [[130,32],[131,34],[136,36],[141,42],[141,44],[136,44],[130,38],[130,32]],
+  [[109,-2],[116,-2],[116,4],[110,7],[109,-2]],
+  [[114,-26],[120,-26],[130,-15],[137,-12],[140,-10],[142,-10],[148,-20],[152,-28],[154,-33],[150,-38],[145,-42],[140,-40],[135,-36],[128,-32],[120,-35],[114,-30],[114,-26]],
+  [[172,-34],[174,-38],[173,-44],[170,-46],[168,-44],[170,-40],[172,-34]],
+  [[43,-13],[50,-13],[50,-25],[44,-26],[43,-13]],
+  [[-24,63],[-13,63],[-13,66],[-20,66],[-24,66],[-24,63]],
+]
+
+// [lon, lat]
+const GEO_CENTROIDS: Record<string, [number, number]> = {
+  FR:[2.3,46.2],US:[-95.7,37.1],CA:[-106.3,56.1],GB:[-3.4,55.4],
+  DE:[10.5,51.2],BE:[4.5,50.5],CH:[8.2,46.8],NL:[5.3,52.1],
+  ES:[-3.7,40.4],IT:[12.6,41.9],PT:[-8.2,39.4],AU:[133.8,-25.3],
+  BR:[-51.9,-14.2],MX:[-102.5,23.6],JP:[138.3,36.2],KR:[127.8,35.9],
+  AR:[-63.6,-38.4],MA:[-7.1,31.8],SN:[-14.5,14.5],CI:[-5.5,7.5],
+  ZA:[22.9,-30.6],NG:[7.5,10.5],RU:[100.0,60.0],CN:[104.2,35.9],
+  IN:[78.9,20.6],SE:[15.0,62.0],NO:[8.5,60.5],DK:[9.5,56.3],
+  PL:[19.1,51.9],AT:[14.5,47.5],LU:[6.1,49.6],MC:[7.4,43.7],
+  DZ:[2.6,28.0],TN:[9.6,33.9],CM:[12.4,5.7],SG:[103.8,1.4],
+  HK:[114.1,22.4],AE:[54.0,24.0],IL:[34.9,31.0],TR:[35.2,39.0],
+  PK:[69.3,30.4],BD:[90.4,23.7],TH:[100.9,15.9],VN:[108.3,14.1],
+  MY:[108.0,4.2],ID:[113.9,-0.8],PH:[121.8,12.9],NZ:[174.9,-40.9],
+  GH:[-1.0,7.9],EG:[30.8,26.8],ET:[40.5,9.1],TZ:[34.9,-6.4],
+  UA:[31.2,48.4],CZ:[15.5,49.8],RO:[24.9,45.9],HU:[19.5,47.2],
+  FI:[26.0,64.0],SK:[19.7,48.7],HR:[15.2,45.1],BG:[25.5,42.7],
+  CL:[-71.5,-35.7],CO:[-74.1,4.6],PE:[-75.0,-9.2],VE:[-66.6,6.4],
+  LT:[24.0,56.0],LV:[24.6,56.9],EE:[25.0,58.6],RS:[21.0,44.0],
+  GR:[21.8,39.1],CY:[33.4,35.1],IE:[-8.2,53.1],
+  HT:[-72.7,18.9],RE:[55.5,-21.1],GP:[-61.5,16.2],MQ:[-61.0,14.6],
+  GF:[-53.1,3.9],NC:[166.0,-20.9],PF:[-149.5,-17.5],MU:[57.6,-20.3],
+  RW:[29.9,-1.9],CD:[24.0,-3.0],CG:[15.8,-0.2],GA:[11.6,-0.8],
+  GN:[-11.7,11.0],ML:[-2.0,17.6],BF:[-1.6,12.4],NE:[8.1,17.6],
+  TD:[18.7,15.5],KE:[37.9,0.0],MZ:[35.5,-18.7],AO:[17.9,-11.2],
+  MG:[46.9,-20.3],SD:[29.7,12.9],LY:[17.2,26.3],SA:[45.1,23.9],
+  YE:[48.5,15.5],IQ:[43.7,33.2],IR:[53.7,32.4],UZ:[63.0,41.4],
+  KZ:[66.9,48.0],MN:[103.8,46.9],TW:[120.9,23.7],VU:[167.0,-16.0],
+}
+
+const GEO_NAMES: Record<string, string> = {
+  FR:'France',US:'États-Unis',CA:'Canada',GB:'Royaume-Uni',
+  DE:'Allemagne',BE:'Belgique',CH:'Suisse',NL:'Pays-Bas',
+  ES:'Espagne',IT:'Italie',PT:'Portugal',AU:'Australie',
+  BR:'Brésil',MX:'Mexique',JP:'Japon',KR:'Corée du Sud',
+  AR:'Argentine',MA:'Maroc',SN:'Sénégal',CI:"Côte d'Ivoire",
+  ZA:'Afrique du Sud',NG:'Nigéria',RU:'Russie',CN:'Chine',
+  IN:'Inde',SE:'Suède',NO:'Norvège',DK:'Danemark',
+  PL:'Pologne',AT:'Autriche',LU:'Luxembourg',MC:'Monaco',
+  DZ:'Algérie',TN:'Tunisie',CM:'Cameroun',SG:'Singapour',
+  HK:'Hong Kong',AE:'Émirats arabes unis',IL:'Israël',TR:'Turquie',
+  PK:'Pakistan',BD:'Bangladesh',TH:'Thaïlande',VN:'Viêt Nam',
+  MY:'Malaisie',ID:'Indonésie',PH:'Philippines',NZ:'Nouvelle-Zélande',
+  GH:'Ghana',EG:'Égypte',ET:'Éthiopie',TZ:'Tanzanie',
+  UA:'Ukraine',CZ:'République tchèque',RO:'Roumanie',HU:'Hongrie',
+  FI:'Finlande',SK:'Slovaquie',HR:'Croatie',BG:'Bulgarie',
+  CL:'Chili',CO:'Colombie',PE:'Pérou',VE:'Venezuela',
+  LT:'Lituanie',LV:'Lettonie',EE:'Estonie',RS:'Serbie',
+  GR:'Grèce',CY:'Chypre',IE:'Irlande',
+  HT:'Haïti',RE:'Réunion',GP:'Guadeloupe',MQ:'Martinique',
+  GF:'Guyane française',NC:'Nouvelle-Calédonie',PF:'Polynésie française',
+  MU:'Maurice',RW:'Rwanda',CD:'RD Congo',CG:'Congo',
+  GA:'Gabon',GN:'Guinée',ML:'Mali',BF:'Burkina Faso',NE:'Niger',
+  TD:'Tchad',KE:'Kenya',MZ:'Mozambique',AO:'Angola',
+  MG:'Madagascar',SD:'Soudan',LY:'Libye',SA:'Arabie saoudite',
+  YE:'Yémen',IQ:'Irak',IR:'Iran',UZ:'Ouzbékistan',
+  KZ:'Kazakhstan',MN:'Mongolie',TW:'Taïwan',VU:'Vanuatu',
+}
+
+function geoFlag(code: string): string {
+  return [...code.toUpperCase()].map(c => String.fromCodePoint(c.charCodeAt(0) + 127397)).join('')
+}
+
+function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
+  const [geoCntrs, setGeoCntrs]           = useState<{ code: string; visitors: number }[]>([])
+  const [geoAvail, setGeoAvail]           = useState<boolean | null>(null)
+  const [geoDays, setGeoDays]             = useState(30)
+  const [geoLoad, setGeoLoad]             = useState(false)
+  const [geoHov, setGeoHov]               = useState<{ code: string; visitors: number } | null>(null)
+  const geoCanvas                          = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    setGeoLoad(true)
+    fetch(`/api/admin/geo?days=${geoDays}`, { headers: { Authorization: `Bearer ${token}` } })
+      .then(r => r.json())
+      .then(({ countries, available }) => { setGeoCntrs(countries ?? []); setGeoAvail(available) })
+      .catch(() => setGeoAvail(false))
+      .finally(() => setGeoLoad(false))
+  }, [token, geoDays])
+
+  useEffect(() => {
+    const cv = geoCanvas.current
+    if (!cv) return
+    const ctx = cv.getContext('2d')
+    if (!ctx) return
+    const W = cv.width, H = cv.height
+
+    const proj = (lon: number, lat: number): [number, number] =>
+      [(lon + 180) / 360 * W, (90 - lat) / 180 * H]
+
+    ctx.fillStyle = '#eef6fb'
+    ctx.fillRect(0, 0, W, H)
+
+    ctx.strokeStyle = '#cde4f0'; ctx.lineWidth = 0.4
+    for (let lon = -180; lon <= 180; lon += 30) {
+      const [x] = proj(lon, 0)
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke()
+    }
+    for (let lat = -60; lat <= 90; lat += 30) {
+      const [, y] = proj(0, lat)
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke()
+    }
+
+    for (const pts of GEO_CONTINENTS) {
+      ctx.beginPath()
+      const [x0, y0] = proj(pts[0][0], pts[0][1])
+      ctx.moveTo(x0, y0)
+      for (let i = 1; i < pts.length; i++) {
+        const [x, y] = proj(pts[i][0], pts[i][1])
+        ctx.lineTo(x, y)
+      }
+      ctx.closePath()
+      ctx.fillStyle = '#d4e8c0'; ctx.fill()
+      ctx.strokeStyle = '#b0cc96'; ctx.lineWidth = 0.8; ctx.stroke()
+    }
+
+    if (geoCntrs.length > 0) {
+      const maxV = Math.max(...geoCntrs.map(c => c.visitors), 1)
+      const sorted = [...geoCntrs].sort((a, b) => b.visitors - a.visitors)
+      for (const { code, visitors } of sorted) {
+        const c = GEO_CENTROIDS[code]
+        if (!c) continue
+        const [x, y] = proj(c[0], c[1])
+        const r = Math.max(4, Math.sqrt(visitors / maxV) * 26)
+        ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2)
+        ctx.fillStyle = 'rgba(0,61,166,0.40)'; ctx.fill()
+        ctx.strokeStyle = 'rgba(0,40,140,0.65)'; ctx.lineWidth = 1.5; ctx.stroke()
+      }
+    }
+  }, [geoCntrs])
+
+  function onGeoMove(e: React.MouseEvent<HTMLCanvasElement>) {
+    const cv = geoCanvas.current
+    if (!cv || !geoCntrs.length) { setGeoHov(null); return }
+    const rect = cv.getBoundingClientRect()
+    const mx = (e.clientX - rect.left) * (cv.width / rect.width)
+    const my = (e.clientY - rect.top)  * (cv.height / rect.height)
+    const W = cv.width, H = cv.height
+    const maxV = Math.max(...geoCntrs.map(c => c.visitors), 1)
+    let found: typeof geoCntrs[0] | null = null
+    for (const ctr of [...geoCntrs].sort((a, b) => a.visitors - b.visitors)) {
+      const c = GEO_CENTROIDS[ctr.code]
+      if (!c) continue
+      const x = (c[0] + 180) / 360 * W
+      const y = (90 - c[1]) / 180 * H
+      const r = Math.max(4, Math.sqrt(ctr.visitors / maxV) * 26)
+      if ((mx - x) ** 2 + (my - y) ** 2 <= r ** 2) found = ctr
+    }
+    setGeoHov(found)
+  }
+
+  const top10  = geoCntrs.slice(0, 10)
+  const topMax = top10.length ? Math.max(...top10.map(c => c.visitors)) : 1
+
+  return (
+    <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px' }}>
+      <div style={{ display: 'flex', gap: 4, marginBottom: 16 }}>
+        {[7, 30, 90].map(d => (
+          <button key={d} onClick={() => setGeoDays(d)} style={{
+            padding: '3px 10px', fontSize: 11, borderRadius: 6,
+            border: `1px solid ${geoDays === d ? ACCENT : '#e2e8f0'}`,
+            background: geoDays === d ? ACCENT : '#fff',
+            color: geoDays === d ? '#fff' : '#64748b',
+            cursor: 'pointer', fontWeight: geoDays === d ? 600 : 400, transition: 'all .15s',
+          }}>{d}j</button>
+        ))}
+        {geoLoad && <span style={{ fontSize: 11, color: '#94a3b8', marginLeft: 8, alignSelf: 'center' }}>Chargement…</span>}
+      </div>
+
+      {geoAvail === false && (
+        <div style={{ color: '#94a3b8', fontSize: 13, textAlign: 'center', padding: '48px 0' }}>
+          <div style={{ fontSize: 22, marginBottom: 10 }}>🌍</div>
+          Requiert{' '}
+          {['VERCEL_TOKEN', 'VERCEL_TEAM_SLUG', 'VERCEL_PROJECT_NAME'].map(v => (
+            <code key={v} style={{ background: '#f1f5f9', padding: '1px 6px', borderRadius: 4, marginInline: 3 }}>{v}</code>
+          ))}
+        </div>
+      )}
+
+      {geoAvail && !geoLoad && geoCntrs.length === 0 && (
+        <div style={{ color: '#94a3b8', fontSize: 13, textAlign: 'center', padding: '48px 0' }}>Aucune donnée pour cette période.</div>
+      )}
+
+      {geoAvail && geoCntrs.length > 0 && (
+        <>
+          <div style={{ position: 'relative', marginBottom: 20 }}>
+            <canvas ref={geoCanvas} width={800} height={360}
+              style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 8, cursor: 'crosshair' }}
+              onMouseMove={onGeoMove} onMouseLeave={() => setGeoHov(null)}
+            />
+            {geoHov && (
+              <div style={{
+                position: 'absolute', top: 10, left: 10, pointerEvents: 'none',
+                background: '#0f172a', color: '#fff', padding: '8px 14px',
+                borderRadius: 8, fontSize: 13, boxShadow: '0 4px 16px rgba(0,0,0,.3)',
+                display: 'flex', alignItems: 'center', gap: 8,
+              }}>
+                <span style={{ fontSize: 18 }}>{geoFlag(geoHov.code)}</span>
+                <span style={{ fontWeight: 600 }}>{GEO_NAMES[geoHov.code] ?? geoHov.code}</span>
+                <span style={{ color: '#93c5fd', marginLeft: 4, fontWeight: 700 }}>{fmt(geoHov.visitors)}</span>
+                <span style={{ color: '#64748b', fontSize: 11 }}>vues</span>
+              </div>
+            )}
+            <div style={{
+              position: 'absolute', bottom: 8, right: 8,
+              background: 'rgba(255,255,255,0.88)', borderRadius: 6, padding: '3px 10px',
+              fontSize: 10, color: '#64748b', display: 'flex', alignItems: 'center', gap: 6,
+            }}>
+              <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'rgba(0,61,166,0.4)', border: '1.5px solid rgba(0,40,140,0.65)', flexShrink: 0 }} />
+              Pages vues — taille proportionnelle au volume
+            </div>
+          </div>
+
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>
+            Top {top10.length} pays
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+            {top10.map(({ code, visitors }, i) => (
+              <div key={code} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <div style={{ fontSize: 16, lineHeight: 1, flexShrink: 0 }}>{geoFlag(code)}</div>
+                <div style={{ width: isMobile ? 90 : 130, fontSize: 12, color: '#334155', fontWeight: 500, flexShrink: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {GEO_NAMES[code] ?? code}
+                </div>
+                <div style={{ flex: 1, height: 6, borderRadius: 6, background: '#f1f5f9', minWidth: 40 }}>
+                  <div style={{ height: '100%', borderRadius: 6, background: ACCENT, width: `${(visitors / topMax) * 100}%`, opacity: Math.max(0.35, 1 - i * 0.07), transition: 'width .5s' }} />
+                </div>
+                <div style={{ width: 50, textAlign: 'right', fontSize: 13, fontWeight: 700, color: ACCENT, flexShrink: 0 }}>{fmt(visitors)}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: 12, fontSize: 11, color: '#94a3b8', textAlign: 'right' }}>
+            {fmt(geoCntrs.reduce((s, c) => s + c.visitors, 0))} vues · {geoCntrs.length} pays
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
+
 // ── Page principale ───────────────────────────────────────────────────────
 
 export default function AdminStats() {
@@ -632,6 +889,7 @@ export default function AdminStats() {
   const [error, setError]         = useState<string | null>(null)
   const [updatedAt, setUpdatedAt] = useState<Date | null>(null)
   const [isMobile, setIsMobile]   = useState(false)
+  const [sessionToken, setSessionToken] = useState<string | null>(null)
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640)
@@ -645,6 +903,7 @@ export default function AdminStats() {
     try {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session) { setError('Non connecté'); setLoading(false); return }
+      setSessionToken(session.access_token)
       const r = await fetch('/api/admin/stats', {
         headers: { Authorization: `Bearer ${session.access_token}` },
       })
@@ -791,6 +1050,12 @@ export default function AdminStats() {
             </div>
           </>
         )}
+
+        {/* Géographie */}
+        <SectionTitle>Géographie</SectionTitle>
+        <div style={{ marginBottom: isMobile ? 20 : 32 }}>
+          {sessionToken && <GeoSection token={sessionToken} isMobile={isMobile} />}
+        </div>
 
         {/* Croissance cumulée */}
         <SectionTitle>Croissance cumulée</SectionTitle>
