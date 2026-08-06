@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
     try {
       const { detectCornersYolo } = await import('@/lib/yolo-corners')
       const result = await detectCornersYolo(imageBase64)
-      if (result) return NextResponse.json(result)
+      if (result) return NextResponse.json({ ...result, source: 'yolo' })
     } catch {
       // fallback Gemini si ONNX échoue
     }
