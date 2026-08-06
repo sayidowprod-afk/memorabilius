@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  serverExternalPackages: ['web-push', 'onnxruntime-node'],
+  serverExternalPackages: ['web-push'],
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: '**' }
