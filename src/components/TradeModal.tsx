@@ -245,7 +245,6 @@ export default function TradeModal({ targetCard, targetUserId, targetUserName, o
 
   const submit = async () => {
     if (targetSelected.size === 0) { setError('Sélectionne au moins une carte à demander'); return }
-    if (mySelected.size === 0) { setError('Sélectionne au moins une carte à offrir'); return }
     setSending(true); setError('')
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) { setError('Session expirée'); setSending(false); return }
