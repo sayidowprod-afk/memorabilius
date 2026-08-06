@@ -82,10 +82,10 @@ type Stats = {
   top_users: TopUser[]
   // 7 derniers jours
   last_7_days?: {
-    users:   DailyPoint[]
-    cards:   DailyPoint[]
-    signins: DailyPoint[]  // dernière connexion par jour (auth.listUsers)
-    active:  DailyPoint[]  // distinct users ayant fait une action
+    users:     DailyPoint[]
+    cards:     DailyPoint[]
+    active:    DailyPoint[]   // distinct users ayant fait une action
+    pageviews: DailyPoint[] | null  // null = VERCEL_TOKEN non configuré
   }
 }
 
@@ -489,14 +489,14 @@ function DailyChart({ data, color }: { data: DailyPoint[]; color: string }) {
 const DAY_LABELS = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
 
 function Last7DaysTable({ data }: {
-  data: { users: DailyPoint[]; cards: DailyPoint[]; signins: DailyPoint[]; active: DailyPoint[] }
+  data: { users: DailyPoint[]; cards: DailyPoint[]; active: DailyPoint[]; pageviews: DailyPoint[] | null }
 }) {
   const today = new Date().toISOString().slice(0, 10)
   const COLS = [
-    { label: '👤 Inscrits',     color: ACCENT,     series: data.users   },
-    { label: '🃏 Cartes',       color: '#059669',  series: data.cards   },
-    { label: '🔑 Connexions',   color: '#0ea5e9',  series: data.signins, note: 'dernière co. du jour' },
-    { label: '⚡ Actifs',       color: '#8b5cf6',  series: data.active,  note: 'ont ajouté/scanné' },
+    { label: '👤 Inscrits',   color: ACCENT,    series: data.users,     note: '' },
+    { label: '🃏 Cartes',     color: '#059669', series: data.cards,     note: '' },
+    { label: '⚡ Actifs',     color: '#8b5cf6', series: data.active,    note: 'ont ajouté/scanné' },
+    { label: '👁 Pages vues', color: '#f59e0b', series: data.pageviews, note: data.pageviews ? '' : 'VERCEL_TOKEN requis' },
   ]
   return (
     <div style={{ overflowX: 'auto' }}>
@@ -527,10 +527,10 @@ function Last7DaysTable({ data }: {
                     {label}{isToday ? ' · auj.' : ''}
                   </td>
                   {COLS.map((c, j) => {
-                    const v = c.series[i]?.count ?? 0
+                    const v = c.series ? (c.series[i]?.count ?? 0) : -1
                     return (
                       <td key={j} style={{ padding: '9px 16px', textAlign: 'right', fontWeight: 600, fontSize: 14, color: v > 0 ? c.color : '#cbd5e1' }}>
-                        {v > 0 ? fmt(v) : '—'}
+                        {v < 0 ? <span style={{ fontSize: 11, color: '#94a3b8' }}>N/A</span> : v > 0 ? fmt(v) : '—'}
                       </td>
                     )
                   })}
