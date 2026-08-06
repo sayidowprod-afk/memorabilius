@@ -41,5 +41,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 ml/
+!ml/model/
+!ml/model/*.onnx
 runs/
 yolov8n-pose.pt
