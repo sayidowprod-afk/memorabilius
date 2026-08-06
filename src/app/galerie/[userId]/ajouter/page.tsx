@@ -388,7 +388,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       const resp = await fetch('/api/scan-card', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${scanSession?.access_token}` },
-        body: JSON.stringify({ ...body, ebayHints: ebayHintsRef.current }),
+        body: JSON.stringify({ ...body, ebayHints: ebayHintsRef.current, itemType: form.item_type }),
       })
       const card = await resp.json()
       if (!resp.ok || card.error) {
@@ -430,7 +430,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       const resp = await fetch('/api/scan-card', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${scanSession?.access_token}` },
-        body: JSON.stringify({ imageBase64: rectoBase64Ref.current, ebayHints: ebayHintsRef.current }),
+        body: JSON.stringify({ imageBase64: rectoBase64Ref.current, ebayHints: ebayHintsRef.current, itemType: form.item_type }),
       })
       const card = await resp.json()
       if (!resp.ok || card.error) { setScanError(card.error || `Erreur ${resp.status}`); return }

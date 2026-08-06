@@ -65,6 +65,25 @@ num ≠ card_number: num=tirage limité imprimé, card_number=numéro catalogue 
 Image: à l'envers→lire normalement | sleeve/toploader→lire à travers | slab→étiquette d'abord | plusieurs cartes→la plus centrale.
 SI VERSO: image 1=recto, image 2=verso. Verso AUTORITÉ: collection, variation, num, rc, auto, patch, année.`
 
+const PROMPT_MEMORABILIA = `Tu es un expert en mémorabilias sportifs. Réponds UNIQUEMENT avec un objet JSON valide, sans markdown.
+
+{
+  "nom": "Nom du joueur lisible sur l'objet (maillot, chaussure, etc.). Vide si absent.",
+  "equipe": "Équipe ou franchise (ex: Chicago Bulls, Dallas Cowboys). Vide si inconnu.",
+  "annee": "Année ou saison visible ou estimée (ex: 2023, 2023-24). Vide si inconnu.",
+  "marque": "Fabricant (ex: Nike, Adidas, Under Armour, Mitchell & Ness, Wilson). Vide si inconnu.",
+  "collection": "Gamme ou ligne si applicable (ex: Authentic, Throwback, Game Issued). Vide sinon.",
+  "variation": "Coloris ou version notable (ex: Alternate black, Road white, City edition). Vide si standard.",
+  "num": "Numérotation édition limitée imprimée (ex: 48/500). Vide sinon.",
+  "card_number": "",
+  "grade": "Raw",
+  "rc": false,
+  "auto": false,
+  "patch": false
+}
+
+Identifie le type d'objet (maillot, casque, ballon, chaussure, photo, etc.), le joueur (nom + numéro de dos), l'équipe, la marque fabricant et l'année/saison si visible.`
+
 function extractFirstJson(text: string): string | null {
   const start = text.indexOf('{')
   if (start === -1) return null
@@ -101,7 +120,7 @@ export async function POST(req: NextRequest) {
   if (rateLimitErr) return NextResponse.json({ error: rateLimitErr }, { status: 429 })
 
   try {
-    const { imageBase64: rawRecto, imageBase64Verso: rawVerso, ebayHints } = await req.json()
+    const { imageBase64: rawRecto, imageBase64Verso: rawVerso, ebayHints, itemType } = await req.json()
     if (!rawRecto) return NextResponse.json({ error: 'Image manquante' }, { status: 400 })
 
     const imageBase64 = await compressImage(rawRecto)
@@ -134,8 +153,8 @@ export async function POST(req: NextRequest) {
     const apiKey = process.env.GEMINI_API_KEY
     if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY non configurée' }, { status: 500 })
 
-    let fullPrompt = PROMPT
-    if (Array.isArray(ebayHints) && ebayHints.length > 0) {
+    let fullPrompt = itemType === 'memorabilia' ? PROMPT_MEMORABILIA : PROMPT
+    if (itemType !== 'memorabilia' && Array.isArray(ebayHints) && ebayHints.length > 0) {
       fullPrompt += `\n\n═══ TITRES EBAY — INDICES PRIORITAIRES ═══\nCes listings correspondent visuellement à cette carte exacte. RÈGLES OBLIGATOIRES :\n• Copie la variation VERBATIM depuis le titre (ex: titre contient "Silver Prizm" → variation="Silver Prizm", titre contient "Blue Hyper Prizm" → variation="Blue Hyper Prizm")\n• Copie l'année VERBATIM (ex: "2023-24 Panini" → annee="2023-24")\n• Si le titre mentionne "RC" ou "Rookie" → rc=true\n• Si le titre mentionne "Auto" ou "Autograph" → auto=true\n• Si le titre contient "/XX" ou "XX/XX" → num="/XX" ou "XX/XX"\n• Ces indices font AUTORITÉ sur tes déductions visuelles — utilise-les sauf contradiction flagrante avec l'image\n` +
         ebayHints.slice(0, 5).map((t: string, i: number) => `${i + 1}. "${t}"`).join('\n')
     }
