@@ -283,14 +283,23 @@ export default function SetlistPage() {
     }
     if (!galleryCards.length) { setSyncing(false); return }
 
-    // Charger les entry_ids déjà en base (toutes les cartes déjà placées, auto ou manuelles)
-    // → on ne les recrée pas, et on ne les supprime jamais lors d'une sync
-    const existingEntryIds = new Set<number>()
+    // Déduplication galerie : même joueur+année+collection+variation = même carte
+    const gallerySeen = new Set<string>()
+    galleryCards = galleryCards.filter(c => {
+      const key = `${norm(c.nom)}|${c.annee}|${norm(c.collection || c.collection_tag || '')}|${norm(c.variation || '')}`
+      if (gallerySeen.has(key)) return false
+      gallerySeen.add(key)
+      return true
+    })
+
+    // Charger uniquement les entrées MANUELLEMENT cochées (manually_checked = true)
+    // → on respecte les choix explicites de l'utilisateur, les auto-matches seront recalculés
+    const manualEntryIds = new Set<number>()
     for (let from = 0; ; from += 1000) {
       const { data: page } = await supabase.from('user_set_completion')
-        .select('entry_id').eq('user_id', userId).range(from, from + 999)
+        .select('entry_id').eq('user_id', userId).eq('manually_checked', true).range(from, from + 999)
       if (!page?.length) break
-      page.forEach((r: any) => existingEntryIds.add(r.entry_id))
+      page.forEach((r: any) => manualEntryIds.add(r.entry_id))
       if (page.length < 1000) break
     }
     setSyncProgress(10)
@@ -328,20 +337,30 @@ export default function SetlistPage() {
     setSyncProgress(75)
 
     // 5. Matching : UNE carte galerie → AU PLUS UNE entrée setlist (la plus précise)
-    // On itère par carte galerie, pas par entrée, pour garantir max 1 match par carte.
-    // Index inversé entry_id → set pour marquer les cartes dont l'entrée est déjà en base
-    const existingSetIds = new Set<number>()
-    for (const e of allEntries) { if (existingEntryIds.has(e.id)) existingSetIds.add(e.id) }
-
     const matchedGalleryIdx = new Set<number>()
     const newRows: { user_id: string; entry_id: number; manually_checked: boolean }[] = []
 
-    // Index des entrées par nom de joueur normalisé pour accès rapide
+    // Index des entrées par nom de joueur — UNIQUEMENT pour le sport actif
+    // (les entrées d'autres sports sont ignorées pour éviter les faux positifs)
     const entriesByPlayer = new Map<string, typeof allEntries>()
     for (const e of allEntries) {
+      if (!setsMap.has(e.set_id)) continue  // filtre sport : ignore les autres sports
       const key = norm(e.player_name)
       if (!entriesByPlayer.has(key)) entriesByPlayer.set(key, [])
       entriesByPlayer.get(key)!.push(e)
+    }
+
+    // Formats d'année acceptés pour une année de set Y
+    const yearOk = (cy: string, y: number) => {
+      if (!cy) return false
+      const ys = String(y)
+      return cy === ys
+        || cy === `${y}-${String(y+1).slice(2)}`    // "2024-25"
+        || cy === `${y-1}-${ys.slice(2)}`            // "2023-24" (saison précédente)
+        || cy === `${y}-${y+1}`                      // "2024-2025"
+        || cy === `${y-1}-${y}`                      // "2023-2024"
+        || cy === `${String(y).slice(2)}-${String(y+1).slice(2)}`  // "24-25" (format court)
+        || cy === `${String(y-1).slice(2)}-${ys.slice(2)}`         // "23-24" (format court prev)
     }
 
     for (let gi = 0; gi < galleryCards.length; gi++) {
@@ -352,8 +371,8 @@ export default function SetlistPage() {
       const playerEntries = entriesByPlayer.get(norm(card.nom)) || []
       if (!playerEntries.length) continue
 
-      // Si une entrée de ce joueur est déjà placée en DB → carte considérée comme matchée
-      if (playerEntries.some(e => existingEntryIds.has(e.id))) {
+      // Si une entrée de ce joueur a été MANUELLEMENT cochée → respecter ce choix
+      if (playerEntries.some(e => manualEntryIds.has(e.id))) {
         matchedGalleryIdx.add(gi)
         continue
       }
@@ -367,13 +386,9 @@ export default function SetlistPage() {
       for (const e of playerEntries) {
         const set = setsMap.get(e.set_id)
         if (!set?.year) continue
-        const y = set.year, ys = String(y), yn = `${y}-${String(y+1).slice(2)}`, yp = `${y-1}-${ys.slice(2)}`
 
         const cy = (card.annee || '').trim()
-        if (!cy) continue
-        // Formats acceptés : "2024", "2024-25", "2024-2025", "2023-24" (prev season)
-        const yn2 = `${y}-${y+1}`
-        if (cy !== ys && cy !== yn && cy !== yp && cy !== yn2 && cy !== `${y-1}-${y}`) continue
+        if (!yearOk(cy, set.year)) continue
 
         // La collection doit matcher le nom du set
         if (!uw.some(w => norm(set.name).includes(w))) continue
@@ -385,7 +400,6 @@ export default function SetlistPage() {
         }
 
         // Variation : base↔base = parfait ; carte a variation mais entrée n'en a pas = match faible
-        // (gap de scraping) ; entrée a variation mais carte n'en a pas = impossible
         const cv = (card.variation || '').trim(), ev = (e.variation || '').trim()
         let varScore = 0
         if (!cv && !ev) {
@@ -400,8 +414,6 @@ export default function SetlistPage() {
           varScore = 0
         }
 
-        // Score : mots extra dans le set + mots manquants + pénalité variation
-        // Bonus -1 si card_number correspond (renforce la correspondance exacte)
         const sn = norm(set.name)
         const extraWords = words(set.name).filter(w => !uw.includes(w) && w.length > 3).length
         const missedWords = uw.filter(w => w.length > 3 && !sn.includes(w)).length
@@ -412,25 +424,18 @@ export default function SetlistPage() {
 
       if (!candidates.length) continue
 
-      // Garder uniquement l'entrée du set le plus précis (le moins de mots extra)
       candidates.sort((a, b) => a.extraWords - b.extraWords)
       const best = candidates[0]
 
       matchedGalleryIdx.add(gi)
       if (!best.entryId) continue
-      if (existingEntryIds.has(best.entryId)) continue  // déjà placée, on ne touche pas
       newRows.push({ user_id: userId, entry_id: best.entryId, manually_checked: false })
     }
     setSyncProgress(88)
 
-    // 6. Cartes galerie NON placées : on construit pour chacune les setlists candidats
-    // (même joueur + même année), pour permettre un placement manuel via menu déroulant.
-    const yearMatchesSet = (cardYear: string, setYear: number | null) => {
-      if (!setYear) return false
-      const ys = String(setYear), yn = `${setYear}-${String(setYear+1).slice(2)}`, yp = `${setYear-1}-${ys.slice(2)}`
-      const cy = (cardYear || '').trim()
-      return cy === ys || cy === yn || cy === yp
-    }
+    // 6. Cartes galerie NON placées
+    const yearMatchesSet = (cardYear: string, setYear: number | null) =>
+      setYear ? yearOk((cardYear || '').trim(), setYear) : false
 
     const unmatched: UnmatchedCard[] = []
     for (let gi = 0; gi < galleryCards.length; gi++) {
@@ -440,7 +445,6 @@ export default function SetlistPage() {
       const coll = (card.collection || card.collection_tag || '').trim()
       const uw = collWords(coll)
 
-      // Une entrée par set (on garde celle dont la variation colle le mieux)
       const bySet = new Map<number, { entryId: number; varMatch: boolean }>()
       for (const e of playerEntries) {
         const set = setsMap.get(e.set_id)
@@ -449,7 +453,6 @@ export default function SetlistPage() {
         const cv = (card.variation || '').trim(), ev = (e.variation || '').trim()
         const varMatch = !cv ? !ev : !!ev && (norm(cv).includes(norm(ev)) || norm(ev).includes(norm(cv)) || words(cv).some(w => norm(ev).includes(w)))
         const prev = bySet.get(e.set_id)
-        // priorité : entrée dont la variation matche, sinon entrée de base (ev vide), sinon la première
         if (!prev || (varMatch && !prev.varMatch) || (!ev && !prev.varMatch)) {
           bySet.set(e.set_id, { entryId: e.id, varMatch })
         }
@@ -460,7 +463,6 @@ export default function SetlistPage() {
         return { setId, setName: set.name, setYear: set.year, entryId: v.entryId }
       })
 
-      // Tri : sets dont le nom contient un mot de la collection en premier, puis alphabétique
       candidates.sort((a, b) => {
         const am = uw.some(w => norm(a.setName).includes(w)) ? 0 : 1
         const bm = uw.some(w => norm(b.setName).includes(w)) ? 0 : 1
@@ -470,17 +472,27 @@ export default function SetlistPage() {
 
       unmatched.push({ ...card, candidates })
     }
-    // Filtrer les cartes déjà ignorées par l'utilisateur
     const dismissed = getDismissed()
     const filteredUnmatched = unmatched.filter(c => !dismissed.has(cardFingerprint(c)))
     setUnmatchedCards(filteredUnmatched)
     saveUnmatched(filteredUnmatched)
 
-    // 7. Sauvegarde des nouveaux matches
+    // 7. Nettoyage des anciens auto-matches pour ce sport (évite l'accumulation)
+    // On supprime tous les auto-matches (manually_checked=false) pour les entrées du sport actif
+    // afin de repartir d'un état propre et éviter que plusieurs syncs s'accumulent.
+    const currentSportEntryIds = allEntries.filter(e => setsMap.has(e.set_id)).map(e => e.id)
+    for (let i = 0; i < currentSportEntryIds.length; i += 500) {
+      await supabase.from('user_set_completion')
+        .delete()
+        .eq('user_id', userId)
+        .eq('manually_checked', false)
+        .in('entry_id', currentSportEntryIds.slice(i, i + 500))
+    }
+
+    // 8. Insertion des nouveaux matches
     for (let i = 0; i < newRows.length; i += 500)
       await supabase.from('user_set_completion').upsert(newRows.slice(i, i + 500), { onConflict: 'user_id,entry_id', ignoreDuplicates: true })
 
-    // Stocker le total de cartes galerie syncées (distinct du total user_set_completion)
     const syncedTotal = matchedGalleryIdx.size
     setTotalSynced(syncedTotal)
     if (userId) {
