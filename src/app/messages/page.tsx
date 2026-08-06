@@ -98,11 +98,13 @@ function MessagesContent() {
   useEffect(() => {
     if (!userId) return
     const channel = supabase
-      .channel(`messages-incoming:${userId}`)
+      .channel(`messages-user:${userId}`)
       .on('postgres_changes', {
         event: 'INSERT', schema: 'public', table: 'messages',
-        filter: `to_user_id=eq.${userId}`,
-      }, () => {
+      }, (payload: any) => {
+        const msg = payload.new
+        if (!msg) return
+        if (msg.to_user_id !== userId && msg.from_user_id !== userId) return
         loadConversations(userId)
         const conv = activeConvRef.current
         if (conv) loadMessages(userId, conv)
