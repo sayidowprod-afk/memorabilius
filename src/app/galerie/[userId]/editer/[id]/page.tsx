@@ -115,7 +115,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         storage_binder: data.storage_binder || '',
         storage_page: data.storage_page != null ? String(data.storage_page) : '',
         storage_slot: data.storage_slot || '',
-        item_type: data.item_type || 'card',
+        item_type: (data.item_type && data.item_type !== 'card') ? 'memorabilia' : 'card',
       })
       if (data.image_recto) setPreviewRecto(data.image_recto)
       if (data.image_verso) setPreviewVerso(data.image_verso)
@@ -568,25 +568,20 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', display: 'flex', flexDirection: 'column', gap: 18 }}>
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Type d\'objet' : 'Item type'}</label>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            <div style={{ display: 'flex', gap: 10 }}>
               {([
-                { id: 'card',   icon: '🃏', label: lang === 'fr' ? 'Carte' : 'Card' },
-                { id: 'jersey', icon: '👕', label: lang === 'fr' ? 'Maillot' : 'Jersey' },
-                { id: 'ball',   icon: '🏀', label: lang === 'fr' ? 'Ballon' : 'Ball' },
-                { id: 'shoe',   icon: '👟', label: lang === 'fr' ? 'Chaussure' : 'Shoe' },
-                { id: 'photo',  icon: '📸', label: lang === 'fr' ? 'Photo signée' : 'Signed photo' },
-                { id: 'other',  icon: '📦', label: lang === 'fr' ? 'Autre' : 'Other' },
+                { id: 'card',        icon: '🃏', label: lang === 'fr' ? 'Carte' : 'Card' },
+                { id: 'memorabilia', icon: '🏆', label: lang === 'fr' ? 'Mémorabilias' : 'Memorabilia' },
               ] as const).map(t => (
-                <button key={t.id} type="button" onClick={() => setForm(f => ({ ...f, item_type: t.id }))}
+                <button key={t.id} type="button" onClick={() => setForm(f => ({ ...f, item_type: t.id, grade: '' }))}
                   style={{
-                    padding: '8px 14px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 12, transition: '0.15s',
+                    padding: '12px 22px', borderRadius: 12, cursor: 'pointer', fontWeight: 800, fontSize: 14, transition: '0.15s',
                     border: form.item_type === t.id ? '2px solid #003DA6' : '2px solid #e0e0e0',
                     background: form.item_type === t.id ? '#003DA6' : 'white',
                     color: form.item_type === t.id ? 'white' : '#333',
-                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, minWidth: 64,
+                    display: 'flex', alignItems: 'center', gap: 7,
                   }}>
-                  <span style={{ fontSize: 18, lineHeight: 1 }}>{t.icon}</span>
-                  <span>{t.label}</span>
+                  <span style={{ fontSize: 20 }}>{t.icon}</span><span>{t.label}</span>
                 </button>
               ))}
             </div>
@@ -642,28 +637,51 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             )}
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
-            <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Grade</label>
-              <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Raw, PSA 10, BGS 9.5…' : 'Ex: Raw, PSA 10, BGS 9.5…'} />
-            </div>
-            {form.item_type === 'card' && (
-            <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'N° de carte' : 'Card #'}</label>
-              <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48, HTR-IFS, EC-1…' : 'Ex: 48, HTR-IFS, EC-1…'} />
-            </div>
-            )}
-            <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Numérotation (ex: 48/99)' : 'Numbering (ex: 48/99)'}</label>
-              <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48/99' : 'Ex: 48/99'} />
-            </div>
-          </div>
-
-          {form.grade.trim() && form.grade.trim().toLowerCase() !== 'raw' && (
-            <div>
-              <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'N° de certification' : 'Cert number'}</label>
-              <input value={form.cert_number} onChange={e => setForm({ ...form, cert_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 82659423 (au dos du slab)' : 'Ex: 82659423 (on the slab)'} />
-            </div>
+          {form.item_type !== 'memorabilia' ? (
+            <>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
+                <div>
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Grade</label>
+                  <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Raw, PSA 10, BGS 9.5…' : 'Ex: Raw, PSA 10, BGS 9.5…'} />
+                </div>
+                <div>
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'N° de carte' : 'Card #'}</label>
+                  <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48, HTR-IFS, EC-1…' : 'Ex: 48, HTR-IFS, EC-1…'} />
+                </div>
+                <div>
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Numérotation (ex: 48/99)' : 'Numbering (ex: 48/99)'}</label>
+                  <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48/99' : 'Ex: 48/99'} />
+                </div>
+              </div>
+              {form.grade.trim() && form.grade.trim().toLowerCase() !== 'raw' && (
+                <div>
+                  <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'N° de certification' : 'Cert number'}</label>
+                  <input value={form.cert_number} onChange={e => setForm({ ...form, cert_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 82659423 (au dos du slab)' : 'Ex: 82659423 (on the slab)'} />
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <div>
+                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 8 }}>{lang === 'fr' ? 'Taille' : 'Size'}</label>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
+                  {['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'].map(s => (
+                    <button key={s} type="button" onClick={() => setForm(f => ({ ...f, grade: f.grade === s ? '' : s }))}
+                      style={{ padding: '6px 12px', borderRadius: 8, cursor: 'pointer', fontWeight: 700, fontSize: 12, transition: '0.1s',
+                        border: form.grade === s ? '2px solid #003DA6' : '2px solid #e0e0e0',
+                        background: form.grade === s ? '#003DA6' : 'white', color: form.grade === s ? 'white' : '#555' }}>
+                      {s}
+                    </button>
+                  ))}
+                </div>
+                <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })}
+                  placeholder={lang === 'fr' ? 'Ex : L, 44, EU 42, 7½, 8×10po…' : 'Ex: L, 44, EU 42, 7½, 8×10in…'} />
+              </div>
+              <div>
+                <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Numérotation (édition limitée)' : 'Numbering (limited edition)'}</label>
+                <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48/500' : 'Ex: 48/500'} />
+              </div>
+            </>
           )}
 
           <div>
@@ -705,7 +723,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
           </div>
           )}
 
-          {form.item_type === 'card' && (
+          {form.item_type !== 'memorabilia' ? (
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Caractéristiques' : 'Features'}</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
@@ -718,6 +736,23 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               ].map(tag => (
                 <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })}
                   style={{ padding: '10px 20px', border: 'none', borderRadius: 20, cursor: 'pointer', fontWeight: 900, fontSize: 13, transition: '0.2s',
+                    background: (form as any)[tag.key] ? tag.activeBg : '#f0f0f0', color: (form as any)[tag.key] ? 'white' : '#333' }}>
+                  {tag.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          ) : (
+          <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Authenticité' : 'Authentication'}</label>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+              {[
+                { key: 'rc',    label: lang === 'fr' ? '📜 COA inclus' : '📜 COA included', activeBg: '#7b1fa2' },
+                { key: 'auto',  label: lang === 'fr' ? '✍️ Autographié' : '✍️ Autographed', activeBg: '#2e7d32' },
+                { key: 'patch', label: lang === 'fr' ? '🎽 Porté en match' : '🎽 Game-worn', activeBg: '#c0392b' },
+              ].map(tag => (
+                <button key={tag.key} type="button" onClick={() => setForm({ ...form, [tag.key]: !(form as any)[tag.key] })}
+                  style={{ padding: '10px 20px', border: 'none', borderRadius: 20, cursor: 'pointer', fontWeight: 800, fontSize: 13, transition: '0.2s',
                     background: (form as any)[tag.key] ? tag.activeBg : '#f0f0f0', color: (form as any)[tag.key] ? 'white' : '#333' }}>
                   {tag.label}
                 </button>
