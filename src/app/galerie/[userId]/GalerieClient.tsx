@@ -747,7 +747,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   { val: filtered.filter(c => c.auto).length, label: 'Auto', color: '#2e7d32' },
                   { val: filtered.filter(c => c.num).length, label: 'Num', color: '#7b1fa2' },
                   { val: filtered.filter(c => c.patch).length, label: 'Patch', color: '#1976d2' },
-                  ...(cards.some(c => c.disponible_vente) ? [{ val: filtered.filter(c => c.disponible_vente).length, label: 'Trade', color: '#2e7d32' }] : []),
                 ].map(s => (
                   <div key={s.label} style={{ textAlign: 'center', minWidth: 45 }}>
                     <div style={{ fontSize: 22, fontWeight: 900, color: s.color || accent }}>{s.val}</div>
@@ -1041,19 +1040,27 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 <option value="">{t('gallery_all')}</option>{years.map(year => <option key={year}>{year}</option>)}
               </select></div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(7,1fr)' : 'repeat(6,1fr)', gap: 5, marginBottom: 8 }}>
-            {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
+          {isOwner && (
+            <div style={{ marginBottom: 6 }}>
+              <button onClick={() => setFilterPrivate(p => !p)} style={{
+                padding: '6px 12px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
+                background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
+              }}>🔒 Privé</button>
+            </div>
+          )}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 5, marginBottom: 4 }}>
+            {(['rc', 'auto', 'num'] as const).map(k => (
               <button key={k} onClick={() => toggleFilter(k)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
                 background: activeFilters[k] ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: activeFilters[k] ? 'white' : (dark ? '#bbb' : '#333')
               }}>{k === 'num' ? '# NUM' : k.toUpperCase()}</button>
             ))}
-            {isOwner && (
-              <button onClick={() => setFilterPrivate(p => !p)} style={{
-                padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
-                background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
-              }}>🔒 Privé</button>
-            )}
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 5, marginBottom: 8 }}>
+            <button onClick={() => toggleFilter('patch')} style={{
+              padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
+              background: activeFilters['patch'] ? accent : (dark ? '#2a2a2a' : '#f0f0f0'), color: activeFilters['patch'] ? 'white' : (dark ? '#bbb' : '#333')
+            }}>PATCH</button>
             <button onClick={() => setFilterVente(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterVente ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterVente ? 'white' : (dark ? '#bbb' : '#333')

@@ -16,7 +16,7 @@ import { getFormat } from '@/lib/cardFormats'
 interface Card {
   f: string; b: string; n: string; t: string; y: string
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
-  auto: boolean; rc: boolean; patch: boolean; g: string
+  auto: boolean; rc: boolean; patch: boolean; g: string; item_type?: string
   isManuelle?: boolean; id_manuelle?: string; collection_tag?: string; collections?: string[]; beckett_designation?: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
@@ -99,8 +99,11 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
   const [closeHover, setCloseHover] = useState(false)
   const { lang } = useLang()
 
+  const isMemo = popup.item_type === 'memorabilia'
+
   // Parse grade: "PSA 9", "BGS 9.5", or just "9" / "10" → slab info
   const gradeInfo = (() => {
+    if (isMemo) return null
     const g = popup.g?.trim()
     if (!g || g.toLowerCase() === 'raw') return null
 
@@ -802,12 +805,23 @@ export default function Viewer3D({ popup, accent, onClose, onNext, onPrev, getTa
           )}
           {getTags(popup)}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, borderTop: `1px solid ${borderColor}`, marginTop: 10, paddingTop: 10 }}>
-            {[['Année', popup.y], ['Numérotation', popup.num || 'N/A'], ['Grade', popup.g], ['Collection', `${popup.br} ${popup.s}`]].map(([l, v]) => (
+            {[
+              ['Année', popup.y],
+              ['Numérotation', popup.num || 'N/A'],
+              [isMemo ? 'Taille' : 'Grade', isMemo ? (popup.g || '—') : popup.g],
+              ['Collection', `${popup.br} ${popup.s}`],
+            ].map(([l, v]) => (
               <div key={l}>
                 <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>{l}</label>
                 <span style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{v}</span>
               </div>
             ))}
+            {isMemo && popup.cert_number?.trim() && (
+              <div>
+                <label style={{ display: 'block', fontSize: 9, fontWeight: 800, color: metaColor, textTransform: 'uppercase' }}>✍️ Signé par</label>
+                <span style={{ fontSize: 12, fontWeight: 700, color: textColor }}>{popup.cert_number}</span>
+              </div>
+            )}
           </div>
 
           {/* Localisation physique */}
