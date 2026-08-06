@@ -97,7 +97,7 @@ interface Card {
   br: string; s: string; v: string; num: string; card_number?: string; cert_number?: string
   auto: boolean; rc: boolean; patch: boolean; printing_plate?: boolean; g: string
   booklet?: boolean; is_horizontal?: boolean; verso_is_horizontal?: boolean | null; format?: string; il?: string; ir?: string
-  isManuelle?: boolean; disponible_vente?: boolean; beckett_designation?: string
+  isManuelle?: boolean; disponible_vente?: boolean; beckett_designation?: string; item_type?: string
   storage_binder?: string; storage_page?: number | null; storage_slot?: string;
   created_at?: string; position?: number; collection_tag?: string; collections?: string[];
 }
@@ -113,6 +113,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
   const [filterPrivate, setFilterPrivate] = useState(false)
   const [filterVente, setFilterVente] = useState(searchParams.get('vente') === '1')
+  const [filterMemo, setFilterMemo] = useState(false)
   const [sortBy, setSortBy] = useState<'default' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'g' | 'valeur' | 'valeur_desc' | 'num_asc' | 'card_num_asc' | 'card_num_desc' | 'date_desc' | 'date_asc'>(searchParams.get('sort') as any || 'default')
   const [sortBy2, setSortBy2] = useState<'none' | 'n' | 'n_desc' | 't' | 'y' | 'y_desc' | 's' | 'v' | 'num_asc' | 'card_num_asc' | 'card_num_desc' | 'date_desc' | 'date_asc'>(searchParams.get('sort2') as any || 'none')
   const [searchInput, setSearchInput] = useState(searchParams.get('q') || '')
@@ -385,7 +386,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         booklet: m.booklet || false, is_horizontal: m.is_horizontal || false, verso_is_horizontal: m.verso_is_horizontal ?? null, format: m.format || (m.is_horizontal ? 'horizontal' : 'standard'),
         il: m.image_interieur_gauche || '', ir: m.image_interieur_droite || '',
         created_at: m.created_at || '', position: m.position ?? 9999,
-        collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false,
+        collection_tag: m.collection_tag || '', disponible_vente: m.disponible_vente || false, item_type: m.item_type || 'card',
         storage_binder: m.storage_binder || '', storage_page: m.storage_page ?? null, storage_slot: m.storage_slot || '',
       }))
 
@@ -455,7 +456,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         (!activeFilters.patch || d.patch) &&
         (!activeFilters.num || d.num !== '') &&
         (!filterPrivate || privateCards.has(d.f)) &&
-        (!filterVente || d.disponible_vente)
+        (!filterVente || d.disponible_vente) &&
+        (!filterMemo || (d.item_type && d.item_type !== 'card'))
       )
     })
 
@@ -641,6 +643,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     const bronze = d.num && !oon && !low && isBronzeNum(d.num)
     return (
       <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', minHeight: 18 }}>
+        {d.item_type && d.item_type !== 'card' && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>{{ jersey: '👕', ball: '🏀', shoe: '👟', photo: '📸', other: '📦' }[d.item_type] ?? '📦'} {d.item_type.toUpperCase()}</span>}
         {d.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
         {d.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
         {d.num && !oon && !low && !bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>{d.num}</span>}
@@ -1038,7 +1041,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 <option value="">{t('gallery_all')}</option>{years.map(year => <option key={year}>{year}</option>)}
               </select></div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(6,1fr)' : 'repeat(5,1fr)', gap: 5, marginBottom: 8 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isOwner ? 'repeat(7,1fr)' : 'repeat(6,1fr)', gap: 5, marginBottom: 8 }}>
             {(['rc', 'auto', 'num', 'patch'] as const).map(k => (
               <button key={k} onClick={() => toggleFilter(k)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
@@ -1055,6 +1058,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterVente ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterVente ? 'white' : (dark ? '#bbb' : '#333')
             }}>🏷️ Vente</button>
+            <button onClick={() => setFilterMemo(p => !p)} style={{
+              padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
+              background: filterMemo ? '#7b1fa2' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterMemo ? 'white' : (dark ? '#bbb' : '#333')
+            }}>👕 Mémo</button>
           </div>
           <div>
             <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>

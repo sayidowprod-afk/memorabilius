@@ -73,8 +73,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
     booklet: false, is_horizontal: false, format: 'standard',
     image_interieur_gauche: '', image_interieur_droite: '',
     verso_is_horizontal: null as boolean | null,
-    beckett_designation: '', // null = même orientation que le recto
+    beckett_designation: '',
     storage_binder: '', storage_page: '', storage_slot: '',
+    item_type: 'card',
   })
 
   const [scannerModal, setScannerModal] = useState<{ side: 'recto' | 'verso'; src: string } | null>(null)
@@ -114,6 +115,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
         storage_binder: data.storage_binder || '',
         storage_page: data.storage_page != null ? String(data.storage_page) : '',
         storage_slot: data.storage_slot || '',
+        item_type: data.item_type || 'card',
       })
       if (data.image_recto) setPreviewRecto(data.image_recto)
       if (data.image_verso) setPreviewVerso(data.image_verso)
@@ -401,6 +403,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
       image_recto: form.image_recto || null, image_verso: form.image_verso || null,
       collection_tag: form.collection_tag || null,
       disponible_vente: form.disponible_vente,
+      item_type: form.item_type || 'card',
       format: form.format || 'standard',
       booklet: form.booklet, is_horizontal: form.format === 'horizontal',
       verso_is_horizontal: form.verso_is_horizontal,
@@ -564,6 +567,32 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
 
         <div style={{ background: 'white', borderRadius: 16, padding: 30, boxShadow: '0 4px 20px rgba(0,0,0,0.08)', display: 'flex', flexDirection: 'column', gap: 18 }}>
           <div>
+            <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Type d\'objet' : 'Item type'}</label>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {([
+                { id: 'card',   icon: '🃏', label: lang === 'fr' ? 'Carte' : 'Card' },
+                { id: 'jersey', icon: '👕', label: lang === 'fr' ? 'Maillot' : 'Jersey' },
+                { id: 'ball',   icon: '🏀', label: lang === 'fr' ? 'Ballon' : 'Ball' },
+                { id: 'shoe',   icon: '👟', label: lang === 'fr' ? 'Chaussure' : 'Shoe' },
+                { id: 'photo',  icon: '📸', label: lang === 'fr' ? 'Photo signée' : 'Signed photo' },
+                { id: 'other',  icon: '📦', label: lang === 'fr' ? 'Autre' : 'Other' },
+              ] as const).map(t => (
+                <button key={t.id} type="button" onClick={() => setForm(f => ({ ...f, item_type: t.id }))}
+                  style={{
+                    padding: '8px 14px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 12, transition: '0.15s',
+                    border: form.item_type === t.id ? '2px solid #003DA6' : '2px solid #e0e0e0',
+                    background: form.item_type === t.id ? '#003DA6' : 'white',
+                    color: form.item_type === t.id ? 'white' : '#333',
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, minWidth: 64,
+                  }}>
+                  <span style={{ fontSize: 18, lineHeight: 1 }}>{t.icon}</span>
+                  <span>{t.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>
               {lang === 'fr' ? 'Nom du joueur *' : 'Player name *'}
             </label>
@@ -618,10 +647,12 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Grade</label>
               <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Raw, PSA 10, BGS 9.5…' : 'Ex: Raw, PSA 10, BGS 9.5…'} />
             </div>
+            {form.item_type === 'card' && (
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'N° de carte' : 'Card #'}</label>
               <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48, HTR-IFS, EC-1…' : 'Ex: 48, HTR-IFS, EC-1…'} />
             </div>
+            )}
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Numérotation (ex: 48/99)' : 'Numbering (ex: 48/99)'}</label>
               <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48/99' : 'Ex: 48/99'} />
@@ -653,6 +684,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
             </span>
           </label>
 
+          {form.item_type === 'card' && (
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -671,7 +703,9 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               ))}
             </div>
           </div>
+          )}
 
+          {form.item_type === 'card' && (
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Caractéristiques' : 'Features'}</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
@@ -690,6 +724,7 @@ export default function EditerCarte({ params }: { params: Promise<{ userId: stri
               ))}
             </div>
           </div>
+          )}
 
           {/* Localisation physique */}
           <div>

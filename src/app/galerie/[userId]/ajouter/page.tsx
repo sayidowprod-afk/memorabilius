@@ -186,6 +186,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
     is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false,
     image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
     verso_is_horizontal: null as boolean | null, // null = même orientation que le recto
+    item_type: 'card' as string,
   })
 
   type Side = 'recto' | 'verso' | 'il' | 'ir'
@@ -561,7 +562,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       grade: 'Raw', cert_number: '', num: '', card_number: '', rc: false, auto: false, patch: false, printing_plate: false, booklet: false,
       is_horizontal: false, format: 'standard', collection_tag: '', disponible_vente: false,
       image_recto: '', image_verso: '', image_interieur_gauche: '', image_interieur_droite: '',
-      verso_is_horizontal: null,
+      verso_is_horizontal: null, item_type: 'card',
     })
     setPreviewRecto(null); setPreviewVerso(null); setPreviewIL(null); setPreviewIR(null)
     setBinderPrompt(null); setShowBinderPicker(false)
@@ -583,6 +584,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       image_interieur_droite: form.image_interieur_droite || null,
       collection_tag: form.collection_tag || null,
       disponible_vente: form.disponible_vente,
+      item_type: form.item_type || 'card',
     }).select('id').single()
     if (error) { toast.error('Erreur : ' + error.message); setSaving(false); return }
     // Upload photos originales pour dataset coins YOLO — une par face scannée
@@ -668,9 +670,32 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
       <Link href={`/galerie/${userId}`} style={{ color: '#003DA6', fontWeight: 700, fontSize: 14, display: 'inline-block', marginBottom: 20 }}>
         ← {lang === 'fr' ? 'Retour à la galerie' : 'Back to gallery'}
       </Link>
-      <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 30 }}>
-        {lang === 'fr' ? '➕ Ajouter une carte' : '➕ Add a card'}
+      <h1 style={{ fontWeight: 900, fontSize: 28, marginBottom: 20 }}>
+        {lang === 'fr' ? '➕ Ajouter un objet' : '➕ Add an item'}
       </h1>
+
+      {/* Sélecteur de type */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 24 }}>
+        {([
+          { id: 'card',   icon: '🃏', label: lang === 'fr' ? 'Carte' : 'Card' },
+          { id: 'jersey', icon: '👕', label: lang === 'fr' ? 'Maillot' : 'Jersey' },
+          { id: 'ball',   icon: '🏀', label: lang === 'fr' ? 'Ballon' : 'Ball' },
+          { id: 'shoe',   icon: '👟', label: lang === 'fr' ? 'Chaussure' : 'Shoe' },
+          { id: 'photo',  icon: '📸', label: lang === 'fr' ? 'Photo signée' : 'Signed photo' },
+          { id: 'other',  icon: '📦', label: lang === 'fr' ? 'Autre' : 'Other' },
+        ] as const).map(t => (
+          <button key={t.id} type="button" onClick={() => setForm(f => ({ ...f, item_type: t.id }))}
+            style={{
+              padding: '10px 16px', borderRadius: 12, cursor: 'pointer', fontWeight: 700, fontSize: 13, transition: '0.15s',
+              border: form.item_type === t.id ? '2px solid #003DA6' : '2px solid #e0e0e0',
+              background: form.item_type === t.id ? '#003DA6' : 'white',
+              color: form.item_type === t.id ? 'white' : '#333',
+              display: 'flex', alignItems: 'center', gap: 6,
+            }}>
+            <span>{t.icon}</span><span>{t.label}</span>
+          </button>
+        ))}
+      </div>
 
       <form onSubmit={handleSubmit}>
         {/* Photos couvertures */}
@@ -812,10 +837,12 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>Grade</label>
               <input value={form.grade} onChange={e => setForm({ ...form, grade: e.target.value })} placeholder={lang === 'fr' ? 'Ex : Raw, PSA 10, BGS 9.5…' : 'Ex: Raw, PSA 10, BGS 9.5…'} />
             </div>
+            {form.item_type === 'card' && (
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'N° de carte' : 'Card #'}</label>
               <input value={form.card_number} onChange={e => setForm({ ...form, card_number: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48, HTR-IFS, EC-1…' : 'Ex: 48, HTR-IFS, EC-1…'} />
             </div>
+            )}
             <div>
               <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 6 }}>{lang === 'fr' ? 'Numérotation' : 'Numbering'}</label>
               <input value={form.num} onChange={e => setForm({ ...form, num: e.target.value })} placeholder={lang === 'fr' ? 'Ex : 48/99' : 'Ex: 48/99'} />
@@ -848,6 +875,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             </span>
           </label>
 
+          {form.item_type === 'card' && (
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>Format</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -879,7 +907,9 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
             </div>
             {form.booklet && <p style={{ fontSize: 12, color: '#888', margin: '8px 0 0' }}>{lang === 'fr' ? '4 photos requises (2 couvertures + 2 intérieurs)' : '4 photos required (2 covers + 2 interiors)'}</p>}
           </div>
+          )}
 
+          {form.item_type === 'card' && (
           <div>
             <label style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 10 }}>{lang === 'fr' ? 'Caractéristiques' : 'Features'}</label>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
@@ -899,6 +929,7 @@ export default function AjouterCarte({ params }: { params: Promise<{ userId: str
               ))}
             </div>
           </div>
+          )}
 
           <button type="submit" disabled={saving} className="btn-main btn-primary" style={{ marginTop: 8 }}>
             {saving ? '...' : (lang === 'fr' ? '✅ Ajouter à ma galerie' : '✅ Add to my gallery')}
