@@ -631,6 +631,13 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
         .jp-card-hover { transition: transform 0.15s, box-shadow 0.15s; }
         .jp-card-hover:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.14); }
         .jp-set-hover:hover { border-color: var(--jp-accent) !important; background: var(--jp-surface2) !important; }
+        .jp-hero-h1 { font-size: 42px; }
+        .jp-sets-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+        .jp-hero-overflow { overflow: hidden; }
+        @media (max-width: 600px) {
+          .jp-hero-h1 { font-size: 26px; }
+          .jp-sets-grid { grid-template-columns: 1fr; }
+        }
       `}</style>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
@@ -715,7 +722,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                   ))}
                 </div>
 
-                <h1 style={{ fontSize: 42, fontWeight: 900, margin: '0 0 10px', lineHeight: 1.05, letterSpacing: '-0.025em', textWrap: 'balance' as any }}>{playerName}</h1>
+                <h1 className="jp-hero-h1" style={{ fontWeight: 900, margin: '0 0 10px', lineHeight: 1.05, letterSpacing: '-0.025em', textWrap: 'balance' as any }}>{playerName}</h1>
 
                 {/* Bio: position · jersey · height · weight */}
                 {bio && (bio.position || bio.jersey || bio.height || bio.weight) && (
@@ -869,7 +876,7 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
                         <span>{year > 0 ? seasonLabelSingle(year, sport) : 'Année inconnue'}</span>
                         <span style={{ color: 'var(--jp-border)', fontSize: 10 }}>— {yearSets.length} set{yearSets.length > 1 ? 's' : ''}</span>
                       </div>
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 8 }}>
+                      <div className="jp-sets-grid" style={{ display: 'grid', gap: 8 }}>
                         {yearSets.map((set: any) => (
                           <Link key={set.id} href={set.id > 0 ? `/setlist/${set.id}` : `/setlist?q=${encodeURIComponent(set.name)}`} style={{ textDecoration: 'none' }}>
                             <div className="jp-set-hover" style={{ background: 'var(--jp-surface)', borderRadius: 10, padding: '12px 16px', border: '1.5px solid var(--jp-border)', transition: '0.15s', cursor: 'pointer' }}>

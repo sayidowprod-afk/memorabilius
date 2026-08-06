@@ -6,14 +6,14 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
 import OnlineIndicator from '@/components/OnlineIndicator'
-import GalerieExport from '@/components/GalerieExport'
-import CollectionStats from '@/components/CollectionStats'
-import PublicWishlist from '@/components/PublicWishlist'
-import GalerieComments from '@/components/GalerieComments'
 import CommentsModal from '@/components/CommentsModal'
-import TradeModal from '@/components/TradeModal'
-import LikedCards from '@/components/LikedCards'
-import BinderLibrary from '@/components/BinderLibrary'
+const GalerieExport = dynamic(() => import('@/components/GalerieExport'), { ssr: false })
+const CollectionStats = dynamic(() => import('@/components/CollectionStats'), { ssr: false })
+const PublicWishlist = dynamic(() => import('@/components/PublicWishlist'), { ssr: false })
+const GalerieComments = dynamic(() => import('@/components/GalerieComments'), { ssr: false })
+const TradeModal = dynamic(() => import('@/components/TradeModal'), { ssr: false })
+const LikedCards = dynamic(() => import('@/components/LikedCards'), { ssr: false })
+const BinderLibrary = dynamic(() => import('@/components/BinderLibrary'), { ssr: false })
 import {
   DndContext, closestCenter, PointerSensor, TouchSensor,
   useSensor, useSensors, type DragEndEvent

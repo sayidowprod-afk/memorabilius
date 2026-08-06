@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 
@@ -71,27 +71,29 @@ export default function CommunityCardsSection({ cards, totalCollectors }: { card
     setVisibleCount(48)
   }, [fRc, fAuto, fPatch, fNum, fVente, myMode, sort])
 
-  let filtered = cards.filter(c =>
-    (!fRc || c.rc) &&
-    (!fAuto || c.auto) &&
-    (!fPatch || c.patch) &&
-    (!fNum || !!c.num) &&
-    (!fVente || c.disponible_vente) &&
-    (myMode === 'all' ||
-      (myMode === 'only' ? c.user_id === myId : c.user_id !== myId))
-  )
+  const filtered = useMemo(() => {
+    let result = cards.filter(c =>
+      (!fRc || c.rc) &&
+      (!fAuto || c.auto) &&
+      (!fPatch || c.patch) &&
+      (!fNum || !!c.num) &&
+      (!fVente || c.disponible_vente) &&
+      (myMode === 'all' ||
+        (myMode === 'only' ? c.user_id === myId : c.user_id !== myId))
+    )
+    if (sort === 'y_desc') result = [...result].sort((a, b) => (b.annee || '').localeCompare(a.annee || ''))
+    else if (sort === 'y_asc') result = [...result].sort((a, b) => (a.annee || '').localeCompare(b.annee || ''))
+    else if (sort === 'name') result = [...result].sort((a, b) => (a.nom || '').localeCompare(b.nom || ''))
+    else if (sort === 'date_desc') result = [...result].sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''))
+    else if (sort === 'num_asc') result = [...result].sort((a, b) => parseNumDenom(a.num) - parseNumDenom(b.num))
+    else if (sort === 'rare') result = [...result].sort((a, b) => rareScore(a) - rareScore(b) || parseNumDenom(a.num) - parseNumDenom(b.num))
+    return result
+  }, [cards, fRc, fAuto, fPatch, fNum, fVente, myMode, myId, sort])
 
-  if (sort === 'y_desc') filtered = [...filtered].sort((a, b) => (b.annee || '').localeCompare(a.annee || ''))
-  else if (sort === 'y_asc') filtered = [...filtered].sort((a, b) => (a.annee || '').localeCompare(b.annee || ''))
-  else if (sort === 'name') filtered = [...filtered].sort((a, b) => (a.nom || '').localeCompare(b.nom || ''))
-  else if (sort === 'date_desc') filtered = [...filtered].sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''))
-  else if (sort === 'num_asc') filtered = [...filtered].sort((a, b) => parseNumDenom(a.num) - parseNumDenom(b.num))
-  else if (sort === 'rare') filtered = [...filtered].sort((a, b) => rareScore(a) - rareScore(b) || parseNumDenom(a.num) - parseNumDenom(b.num))
-
-  const hasVente = cards.some(c => c.disponible_vente)
-  const hasNum = cards.some(c => !!c.num)
-  const hasAuto = cards.some(c => c.auto)
-  const hasPatch = cards.some(c => c.patch)
+  const hasVente = useMemo(() => cards.some(c => c.disponible_vente), [cards])
+  const hasNum = useMemo(() => cards.some(c => !!c.num), [cards])
+  const hasAuto = useMemo(() => cards.some(c => c.auto), [cards])
+  const hasPatch = useMemo(() => cards.some(c => c.patch), [cards])
   const hasActive = fRc || fAuto || fPatch || fNum || fVente || myMode !== 'all' || sort !== 'default'
 
   useEffect(() => {

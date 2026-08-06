@@ -47,7 +47,6 @@ function seasonLabel(year: number, sport = 'nba') {
 export default function SetlistPage() {
   const { t } = useLang()
   const { dark } = useTheme()
-  const [isMobile, setIsMobile] = useState(false)
   const [sets, setSets] = useState<CardSet[]>([])
   const [loading, setLoading] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
@@ -71,13 +70,6 @@ export default function SetlistPage() {
   const [gotoPickerIdx, setGotoPickerIdx] = useState<number | null>(null)
   const [gotoSetId, setGotoSetId] = useState<string>('')
   const [gotoAllSets, setGotoAllSets] = useState(false)
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -550,15 +542,38 @@ export default function SetlistPage() {
     })
 
   return (
-    <div style={{ maxWidth: 1100, margin: '0 auto', padding: isMobile ? '20px 12px' : '32px 20px' }}>
+    <>
+    <style>{`
+      .sl-container { max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
+      .sl-h1 { font-size: 32px; font-weight: 900; margin-bottom: 4px; }
+      .sl-header-row { display: flex; flex-direction: row; align-items: flex-start; gap: 16px; margin-bottom: 28px; }
+      .sl-sport-grid { flex: 1; display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; width: 100%; }
+      .sl-sport-btn { padding: 10px 8px; }
+      .sl-sport-label { font-size: 14px; }
+      .sl-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; flex-shrink: 0; }
+      .sl-stats-box { min-width: 240px; }
+      .sl-sets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+      @media (max-width: 767px) {
+        .sl-container { padding: 20px 12px; }
+        .sl-h1 { font-size: 24px; }
+        .sl-header-row { flex-direction: column; }
+        .sl-sport-grid { grid-template-columns: repeat(3, 1fr); }
+        .sl-sport-btn { padding: 8px 4px; }
+        .sl-sport-label { font-size: 12px; }
+        .sl-actions { align-items: stretch; width: 100%; }
+        .sl-stats-box { min-width: unset; }
+        .sl-sets-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+      }
+    `}</style>
+    <div className="sl-container">
       <div style={{ marginBottom: 16 }}>
-        <h1 style={{ fontWeight: 900, fontSize: isMobile ? 24 : 32, marginBottom: 4 }}>Setlist</h1>
+        <h1 className="sl-h1">Setlist</h1>
         <p style={{ color: '#888', fontSize: 15, marginBottom: 0 }}>{loading ? '...' : `${sets.length} ${t('setlist_collections_available')}`}</p>
       </div>
 
-      <div style={{ marginBottom: 28, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'flex-start', gap: 16 }}>
+      <div className="sl-header-row">
         {/* Sélecteur de sport */}
-        <div style={{ flex: 1, display: 'grid', gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : 'repeat(6, 1fr)', gap: 8, width: '100%' }}>
+        <div className="sl-sport-grid">
           {([ 'nba', 'nfl', 'baseball', 'hockey', 'soccer-international', 'racing', 'tennis', 'wrestling', 'mma', 'pokemon', 'mtg' ] as const).map(sp => {
             const accent = sp === 'nba' ? '#003DA6' : sp === 'nfl' ? '#1a5c1a' : sp === 'baseball' ? '#c0392b' : sp === 'hockey' ? '#1a3a5c' : sp === 'soccer-international' ? '#2d6a2d' : sp === 'racing' ? '#b85c00' : sp === 'tennis' ? '#5a8a00' : sp === 'wrestling' ? '#7a0000' : sp === 'mma' ? '#4a0050' : sp === 'pokemon' ? '#e6b800' : '#6b21a8'
             const label  = sp === 'nba' ? '🏀 NBA' : sp === 'nfl' ? '🏈 NFL' : sp === 'baseball' ? '⚾ Baseball' : sp === 'hockey' ? '🏒 Hockey' : sp === 'soccer-international' ? '⚽ Football' : sp === 'racing' ? '🏎️ Racing' : sp === 'tennis' ? '🎾 Tennis' : sp === 'wrestling' ? '🤼 Wrestling' : sp === 'mma' ? '🥊 MMA' : sp === 'pokemon' ? '🎴 Pokémon' : '🧙 MTG'
@@ -575,8 +590,8 @@ export default function SetlistPage() {
                 setUnmatchedCards([])
                 setTotalSynced(null)
                 setNewMatchCount(0)
-              }} style={{
-                padding: isMobile ? '8px 4px' : '10px 8px', borderRadius: 10, border: '2px solid',
+              }} className="sl-sport-btn" style={{
+                borderRadius: 10, border: '2px solid',
                 borderColor: isActive ? accent : (dark ? '#444' : '#e0e0e0'),
                 background: isActive ? accent : (dark ? '#2a2a2a' : 'white'),
                 cursor: isActive ? 'default' : 'pointer',
@@ -584,7 +599,7 @@ export default function SetlistPage() {
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 width: '100%',
               }}>
-                <span style={{ fontSize: isMobile ? 12 : 14, fontWeight: 800, color: isActive ? 'white' : (dark ? '#eee' : '#111'), whiteSpace: 'nowrap' }}>
+                <span className="sl-sport-label" style={{ fontWeight: 800, color: isActive ? 'white' : (dark ? '#eee' : '#111'), whiteSpace: 'nowrap' }}>
                   {label}
                 </span>
               </button>
@@ -593,7 +608,7 @@ export default function SetlistPage() {
         </div>
 
         {userId && (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'stretch' : 'flex-end', gap: 10, flexShrink: 0, width: isMobile ? '100%' : undefined }}>
+          <div className="sl-actions">
             <button
               onClick={syncAll}
               disabled={syncing}
@@ -608,7 +623,7 @@ export default function SetlistPage() {
             )}
             {/* Stats toujours visibles dès que les sets sont chargés */}
             {!loading && (
-              <div style={{ background: dark ? '#1a2440' : '#f0f4ff', borderRadius: 12, padding: '12px 18px', fontSize: 14, display: 'flex', flexDirection: 'column', gap: 6, minWidth: isMobile ? undefined : 240 }}>
+              <div className="sl-stats-box" style={{ background: dark ? '#1a2440' : '#f0f4ff', borderRadius: 12, padding: '12px 18px', fontSize: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {syncDone && (
                   <div style={{ fontWeight: 800, color: '#2ecc71', marginBottom: 2 }}>
                     ✅ {newMatchCount} {t(newMatchCount !== 1 ? 'setlist_new_match_other' : 'setlist_new_match_one')}
@@ -945,7 +960,7 @@ export default function SetlistPage() {
       ) : displayedSets.length === 0 ? (
         <div style={{ textAlign: 'center', padding: 60, color: '#888' }}>Aucun set ne correspond à cette recherche.</div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, minmax(${isMobile ? '160px' : '260px'}, 1fr))`, gap: isMobile ? 8 : 12 }}>
+        <div className="sl-sets-grid">
           {displayedSets.map(set => (
             <Link key={set.id} href={`/setlist/${set.id}`} style={{ textDecoration: 'none' }}>
               <div
@@ -985,5 +1000,6 @@ export default function SetlistPage() {
         </div>
       )}
     </div>
+    </>
   )
 }

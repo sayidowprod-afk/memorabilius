@@ -73,6 +73,7 @@ export async function GET(req: NextRequest) {
   const { data: profiles } = await supabase
     .from('profiles')
     .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
+    .limit(500)
   if (!profiles) return NextResponse.json([])
 
   const results: any[] = []

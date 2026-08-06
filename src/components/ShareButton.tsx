@@ -6,6 +6,7 @@ import { useLang } from '@/lib/LangContext'
 interface Props {
   url: string
   title: string
+  subtitle?: string
   compact?: boolean
   buttonStyle?: React.CSSProperties
 }
@@ -26,7 +27,7 @@ function rrect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h
 }
 
 
-export default function ShareButton({ url, title, compact, buttonStyle }: Props) {
+export default function ShareButton({ url, title, subtitle, compact, buttonStyle }: Props) {
   const [showModal, setShowModal] = useState(false)
   const [copied, setCopied] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -97,9 +98,45 @@ export default function ShareButton({ url, title, compact, buttonStyle }: Props)
   const downloadQR = () => {
     const canvas = canvasRef.current
     if (!canvas) return
+
+    const phys = canvas.width  // 880 px
+    const lines: { text: string; size: number; weight: string; color: string }[] = []
+    if (title) lines.push({ text: title, size: 38, weight: '800', color: '#111111' })
+    if (subtitle) lines.push({ text: subtitle, size: 28, weight: '600', color: '#555555' })
+
+    if (lines.length === 0) {
+      const link = document.createElement('a')
+      link.download = 'memorabilius-qr.png'
+      link.href = canvas.toDataURL('image/png')
+      link.click()
+      return
+    }
+
+    const lineH = 52
+    const topPad = 32
+    const botPad = 40
+    const out = document.createElement('canvas')
+    out.width = phys
+    out.height = phys + topPad + lines.length * lineH + botPad
+    const ctx = out.getContext('2d')!
+
+    ctx.fillStyle = '#ffffff'
+    ctx.fillRect(0, 0, out.width, out.height)
+    ctx.drawImage(canvas, 0, 0)
+
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'top'
+    let y = phys + topPad
+    for (const l of lines) {
+      ctx.font = `${l.weight} ${l.size}px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`
+      ctx.fillStyle = l.color
+      ctx.fillText(l.text, phys / 2, y, phys - 40)
+      y += lineH
+    }
+
     const link = document.createElement('a')
     link.download = 'memorabilius-qr.png'
-    link.href = canvas.toDataURL('image/png')
+    link.href = out.toDataURL('image/png')
     link.click()
   }
 

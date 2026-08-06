@@ -354,6 +354,20 @@ export async function fetchEspnPlayerBio(name: string, sportHint?: string): Prom
   const league = LEAGUE_MAP[sport] || 'nba'
   const espnSport = SPORT_MAP[sport] || 'basketball'
 
+  // Fetch bio, statslog, and nba awards all in parallel — previously sequential
+  const [bioData, statsData, nbaAwardsData] = await Promise.all([
+    fetch(
+      `https://sports.core.api.espn.com/v2/sports/${espnSport}/leagues/${league}/athletes/${id}?lang=en&region=us`,
+      { signal: AbortSignal.timeout(3000), next: { revalidate: 86400 } } as RequestInit
+    ).then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch(
+      `https://sports.core.api.espn.com/v2/sports/${espnSport}/leagues/${league}/athletes/${id}/statisticslog?lang=en&region=us`,
+      { signal: AbortSignal.timeout(3000), next: { revalidate: 86400 } } as RequestInit
+    ).then(r => r.ok ? r.json() : null).catch(() => null),
+    sport === 'nba' ? fetchNbaPlayerAwards(name) : Promise.resolve([] as string[]),
+  ])
+
+  // Process bio
   let birthDate: string | null = null
   let birthPlace: string | null = null
   let position: string | null = null
@@ -365,111 +379,92 @@ export async function fetchEspnPlayerBio(name: string, sportHint?: string): Prom
   let currentTeamId: string | null = null
   let currentTeamLogo: string | null = null
   let honors: string[] = []
-  try {
-    const r = await fetch(
-      `https://sports.core.api.espn.com/v2/sports/${espnSport}/leagues/${league}/athletes/${id}?lang=en&region=us`,
-      { signal: AbortSignal.timeout(3000), next: { revalidate: 86400 } } as RequestInit
-    )
-    if (r.ok) {
-      const data = await r.json()
-      birthDate = data.dateOfBirth ? String(data.dateOfBirth).slice(0, 10) : null
-      const bp = data.birthPlace
-      birthPlace = bp ? [bp.city, bp.state || bp.country].filter(Boolean).join(', ') : null
-      position = data.position?.displayName || data.position?.abbreviation || null
-      height = data.displayHeight || null
-      weight = data.displayWeight || null
-      jersey = data.jersey || null
-      nationality = data.citizenship || null
-      age = data.age || null
-      // Honors/achievements (présents sur certaines fiches ESPN)
-      if (Array.isArray(data.honors)) {
-        for (const h of data.honors) {
-          if (typeof h === 'string') honors.push(h)
-          else if (h?.displayName) honors.push(h.displayName as string)
-          else if (h?.name) honors.push(h.name as string)
-        }
-      } else if (Array.isArray(data.awards)) {
-        for (const h of data.awards) {
-          if (typeof h === 'string') honors.push(h)
-          else if (h?.displayName) honors.push(h.displayName as string)
-          else if (h?.name) honors.push(h.name as string)
-        }
+  if (bioData) {
+    birthDate = bioData.dateOfBirth ? String(bioData.dateOfBirth).slice(0, 10) : null
+    const bp = bioData.birthPlace
+    birthPlace = bp ? [bp.city, bp.state || bp.country].filter(Boolean).join(', ') : null
+    position = bioData.position?.displayName || bioData.position?.abbreviation || null
+    height = bioData.displayHeight || null
+    weight = bioData.displayWeight || null
+    jersey = bioData.jersey || null
+    nationality = bioData.citizenship || null
+    age = bioData.age || null
+    if (Array.isArray(bioData.honors)) {
+      for (const h of bioData.honors) {
+        if (typeof h === 'string') honors.push(h)
+        else if (h?.displayName) honors.push(h.displayName as string)
+        else if (h?.name) honors.push(h.name as string)
       }
-      // Logo équipe actuelle
-      const teamRef: string | undefined = data.team?.$ref
-      if (teamRef) {
-        const m = /\/teams\/(\d+)/.exec(teamRef)
-        if (m) {
-          currentTeamId = m[1]
-          currentTeamLogo = `https://a.espncdn.com/i/teamlogos/${league}/500/${m[1]}.png`
-        }
+    } else if (Array.isArray(bioData.awards)) {
+      for (const h of bioData.awards) {
+        if (typeof h === 'string') honors.push(h)
+        else if (h?.displayName) honors.push(h.displayName as string)
+        else if (h?.name) honors.push(h.name as string)
       }
     }
-  } catch { /* ESPN unavailable */ }
+    const teamRef: string | undefined = bioData.team?.$ref
+    if (teamRef) {
+      const m = /\/teams\/(\d+)/.exec(teamRef)
+      if (m) {
+        currentTeamId = m[1]
+        currentTeamLogo = `https://a.espncdn.com/i/teamlogos/${league}/500/${m[1]}.png`
+      }
+    }
+  }
 
+  // Process statslog
   let teams: string[] = []
   let career: { year: number; teamName: string }[] = []
-  try {
-    const r = await fetch(
-      `https://sports.core.api.espn.com/v2/sports/${espnSport}/leagues/${league}/athletes/${id}/statisticslog?lang=en&region=us`,
-      { signal: AbortSignal.timeout(3000), next: { revalidate: 86400 } } as RequestInit
-    )
-    if (r.ok) {
-      const data = await r.json()
-      const teamIds = new Set<string>()
-      // { teamId → Set<year> }
-      const teamYears = new Map<string, Set<number>>()
-      for (const entry of data.entries ?? []) {
-        // L'année est dans entry.season.$ref (ex: ".../seasons/2026?...") pas dans .year
-        const seasonRef: string | undefined = entry.season?.$ref
-        const yearMatch = seasonRef ? /\/seasons\/(\d{4})/.exec(seasonRef) : null
-        const year: number | undefined =
-          entry.year ?? entry.seasonYear ?? entry.season?.year ??
-          (yearMatch ? parseInt(yearMatch[1]) : undefined)
-        for (const s of entry.statistics ?? []) {
-          // Seules les entrées de type "team" ont un $ref d'équipe
-          const ref: string | undefined = s?.team?.$ref
-          const m = ref ? /\/teams\/(\d+)/.exec(ref) : null
-          if (m) {
-            teamIds.add(m[1])
-            if (year) {
-              if (!teamYears.has(m[1])) teamYears.set(m[1], new Set())
-              teamYears.get(m[1])!.add(year)
-            }
+  if (statsData) {
+    const teamIds = new Set<string>()
+    const teamYears = new Map<string, Set<number>>()
+    for (const entry of statsData.entries ?? []) {
+      const seasonRef: string | undefined = entry.season?.$ref
+      const yearMatch = seasonRef ? /\/seasons\/(\d{4})/.exec(seasonRef) : null
+      const year: number | undefined =
+        entry.year ?? entry.seasonYear ?? entry.season?.year ??
+        (yearMatch ? parseInt(yearMatch[1]) : undefined)
+      for (const s of entry.statistics ?? []) {
+        const ref: string | undefined = s?.team?.$ref
+        const m = ref ? /\/teams\/(\d+)/.exec(ref) : null
+        if (m) {
+          teamIds.add(m[1])
+          if (year) {
+            if (!teamYears.has(m[1])) teamYears.set(m[1], new Set())
+            teamYears.get(m[1])!.add(year)
           }
         }
       }
-      const teamIdsArr = [...teamIds]
-      const names = await Promise.all(teamIdsArr.map(async tid => {
-        try {
-          const tr = await fetch(
-            `https://sports.core.api.espn.com/v2/sports/${espnSport}/leagues/${league}/teams/${tid}?lang=en&region=us`,
-            { signal: AbortSignal.timeout(2500), next: { revalidate: 86400 } } as RequestInit
-          )
-          if (!tr.ok) return null
-          const td = await tr.json()
-          return td.displayName as string | undefined
-        } catch { return null }
-      }))
-      teams = names.filter((n): n is string => !!n)
-
-      // Construire l'historique : une entrée par (année, équipe)
-      const careerEntries: { year: number; teamName: string }[] = []
-      for (let i = 0; i < teamIdsArr.length; i++) {
-        const name = names[i]
-        if (!name) continue
-        const years = teamYears.get(teamIdsArr[i])
-        if (years) {
-          for (const y of years) careerEntries.push({ year: y, teamName: name })
-        } else {
-          careerEntries.push({ year: 0, teamName: name })
-        }
-      }
-      career = careerEntries.sort((a, b) => a.year - b.year)
     }
-  } catch { /* ESPN unavailable */ }
+    const teamIdsArr = [...teamIds]
+    const names = await Promise.all(teamIdsArr.map(async tid => {
+      try {
+        const tr = await fetch(
+          `https://sports.core.api.espn.com/v2/sports/${espnSport}/leagues/${league}/teams/${tid}?lang=en&region=us`,
+          { signal: AbortSignal.timeout(2500), next: { revalidate: 86400 } } as RequestInit
+        )
+        if (!tr.ok) return null
+        const td = await tr.json()
+        return td.displayName as string | undefined
+      } catch { return null }
+    }))
+    teams = names.filter((n): n is string => !!n)
 
-  // Numéros de maillot historiques via NBA Stats roster (un appel par stint, en parallèle)
+    const careerEntries: { year: number; teamName: string }[] = []
+    for (let i = 0; i < teamIdsArr.length; i++) {
+      const nm = names[i]
+      if (!nm) continue
+      const years = teamYears.get(teamIdsArr[i])
+      if (years) {
+        for (const y of years) careerEntries.push({ year: y, teamName: nm })
+      } else {
+        careerEntries.push({ year: 0, teamName: nm })
+      }
+    }
+    career = careerEntries.sort((a, b) => a.year - b.year)
+  }
+
+  // Numéros de maillot historiques (en parallèle)
   const jerseyHistory: { teamName: string; startYear: number; jersey: string }[] = []
   if (career.length > 0) {
     const stints = buildStints(career)
@@ -483,11 +478,8 @@ export async function fetchEspnPlayerBio(name: string, sportHint?: string): Prom
     for (const r of results) { if (r) jerseyHistory.push(r) }
   }
 
-  // Pour NBA : NBA Stats playerawards est plus complet que l'API ESPN
-  if (sport === 'nba') {
-    const nbaAwards = await fetchNbaPlayerAwards(name)
-    if (nbaAwards.length > 0) honors = nbaAwards
-  }
+  // Récompenses NBA (déjà fetché en parallèle ci-dessus)
+  if (nbaAwardsData && nbaAwardsData.length > 0) honors = nbaAwardsData
 
   return { sport, birthDate, birthPlace, teams, position, height, weight, jersey, nationality, age, currentTeamId, currentTeamLogo, career, honors, jerseyHistory }
 }

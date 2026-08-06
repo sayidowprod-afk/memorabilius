@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useLang } from '@/lib/LangContext'
@@ -115,25 +115,31 @@ export default function Recherche() {
   const handleQuery = (q: string) => { setQuery(q); updateUrl(q) }
 
   // Client-side filter + sort
-  let filteredCards = cards.filter(c =>
-    (!fYear || c.year === fYear) &&
-    (!fBrand || c.brand === fBrand) &&
-    (!fRc || c.rc) &&
-    (!fAuto || c.auto) &&
-    (!fNum || c.num) &&
-    (!fPatch || c.patch) &&
-    (!fVente || c.disponible_vente) &&
-    (myMode === 'all' ||
-      (myMode === 'only' ? c.collectorId === myId : c.collectorId !== myId))
-  )
+  const filteredCards = useMemo(() => {
+    let result = cards.filter(c =>
+      (!fYear || c.year === fYear) &&
+      (!fBrand || c.brand === fBrand) &&
+      (!fRc || c.rc) &&
+      (!fAuto || c.auto) &&
+      (!fNum || c.num) &&
+      (!fPatch || c.patch) &&
+      (!fVente || c.disponible_vente) &&
+      (myMode === 'all' ||
+        (myMode === 'only' ? c.collectorId === myId : c.collectorId !== myId))
+    )
+    if (sortCards === 'y_desc') result = [...result].sort((a, b) => (b.year || '').localeCompare(a.year || ''))
+    else if (sortCards === 'y_asc') result = [...result].sort((a, b) => (a.year || '').localeCompare(b.year || ''))
+    else if (sortCards === 'name') result = [...result].sort((a, b) => (a.name || '').localeCompare(b.name || ''))
+    return result
+  }, [cards, fYear, fBrand, fRc, fAuto, fNum, fPatch, fVente, myMode, myId, sortCards])
 
-  if (sortCards === 'y_desc') filteredCards = [...filteredCards].sort((a, b) => (b.year || '').localeCompare(a.year || ''))
-  else if (sortCards === 'y_asc') filteredCards = [...filteredCards].sort((a, b) => (a.year || '').localeCompare(b.year || ''))
-  else if (sortCards === 'name') filteredCards = [...filteredCards].sort((a, b) => (a.name || '').localeCompare(b.name || ''))
-
-  const availableYears = [...new Set(cards.map((c: any) => c.year).filter(Boolean))].sort().reverse() as string[]
-  const availableBrands = [...new Set(cards.map((c: any) => c.brand).filter(Boolean))].sort() as string[]
-  const hasVente = cards.some(c => c.disponible_vente)
+  const availableYears = useMemo(() =>
+    ([...new Set(cards.map((c: any) => c.year).filter(Boolean))].sort().reverse() as string[]),
+    [cards])
+  const availableBrands = useMemo(() =>
+    ([...new Set(cards.map((c: any) => c.brand).filter(Boolean))].sort() as string[]),
+    [cards])
+  const hasVente = useMemo(() => cards.some(c => c.disponible_vente), [cards])
 
   const clearFilters = () => {
     setFYear(''); setFBrand(''); setFRc(false); setFAuto(false)
@@ -148,7 +154,7 @@ export default function Recherche() {
     const obs = new IntersectionObserver(e => { if (e[0].isIntersecting) setVisibleCount(c => c + 48) }, { threshold: 0.1 })
     obs.observe(el)
     return () => obs.disconnect()
-  }, [sentinelRef.current, filteredCards.length])
+  }, [filteredCards.length])
 
   // Tabs visibility
   const totalResults = cards.length + users.length + players.length + teams.length
@@ -182,6 +188,7 @@ export default function Recherche() {
         @media (max-width: 600px) {
           .search-filters-row { flex-wrap: wrap; }
           .search-sort-row { gap: 6px !important; }
+          .search-input { padding: 11px 44px 11px 44px !important; font-size: 15px !important; }
         }
       `}</style>
 
@@ -194,6 +201,7 @@ export default function Recherche() {
 
           <div style={{ maxWidth: 620, margin: '0 auto', position: 'relative' }}>
             <input
+              className="search-input"
               value={query}
               onChange={e => handleQuery(e.target.value)}
               placeholder={t('search_placeholder')}

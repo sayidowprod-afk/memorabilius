@@ -6,11 +6,12 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/lib/LangContext'
-import CardScanner from '@/components/CardScanner'
+import dynamic from 'next/dynamic'
 import CameraCapture from '@/components/CameraCapture'
 import CollectionTagSelect from '@/components/CollectionTagSelect'
 import { SELECTABLE_FORMATS, getFormat } from '@/lib/cardFormats'
-import BinderLibrary from '@/components/BinderLibrary'
+const CardScanner = dynamic(() => import('@/components/CardScanner'), { ssr: false })
+const BinderLibrary = dynamic(() => import('@/components/BinderLibrary'), { ssr: false })
 
 const CARD_RATIO = 2.5 / 3.5
 const ACCENT = '#003DA6'
