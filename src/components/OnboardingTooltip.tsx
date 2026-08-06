@@ -36,9 +36,9 @@ function makeSteps(userId: string) {
       icon: '👥',
       title: 'La communauté',
       desc: 'Découvrez les collections d\'autres passionnés, likez leurs cartes et proposez des échanges.',
-      href: '/communaute',
+      href: '/annuaire',
       cta: 'Explorer',
-      completesOn: '/communaute',
+      completesOn: '/annuaire',
     },
     {
       icon: '👤',
