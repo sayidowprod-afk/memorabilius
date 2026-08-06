@@ -4,6 +4,7 @@ import Navbar from '@/components/NavBar'
 import Footer from '@/components/Footer'
 import ChatBubble from '@/components/ChatBubble'
 import Toaster from '@/components/Toaster'
+import OnboardingTooltip from '@/components/OnboardingTooltip'
 import { ThemeProvider } from '@/lib/ThemeContext'
 import { LangProvider } from '@/lib/LangContext'
 import { Analytics } from '@vercel/analytics/react'
@@ -73,6 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
             <ChatBubble />
             <Toaster />
+            <OnboardingTooltip />
           </LangProvider>
         </ThemeProvider>
         <Analytics />
