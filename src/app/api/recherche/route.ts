@@ -87,7 +87,7 @@ export async function GET(req: NextRequest) {
   // Cartes manuelles — filtre SQL avec wildcards échappés
   const { data: manuelles } = await supabase
     .from('cartes_manuelles')
-    .select('*')
+    .select('id, nom, equipe, annee, marque, collection, variation, num, auto, rc, patch, image_recto, is_horizontal, disponible_vente, user_id')
     .or(`nom.ilike.%${safeQ}%,equipe.ilike.%${safeQ}%,variation.ilike.%${safeQ}%,marque.ilike.%${safeQ}%`)
     .limit(500)
 
@@ -101,6 +101,8 @@ export async function GET(req: NextRequest) {
       name: m.nom || '', team: m.equipe || '', year: m.annee || '',
       brand: m.marque || '', serie: m.collection || '', variant: m.variation || '',
       num: m.num || '', auto: m.auto || false, rc: m.rc || false, patch: m.patch || false,
+      is_horizontal: m.is_horizontal || false,
+      disponible_vente: m.disponible_vente || false,
       collector: p.display_name, collectorId: p.id,
       collectorAvatar: p.avatar_url, accent: p.couleur_bordure || '#003DA6',
     })
