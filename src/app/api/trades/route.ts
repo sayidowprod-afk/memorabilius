@@ -27,11 +27,17 @@ export async function GET(req: NextRequest) {
   const { data: { user } } = await supabaseAdmin.auth.getUser(token)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { data: trades } = await supabaseAdmin
+  const idsParam = req.nextUrl.searchParams.get('ids')
+  const filterIds = idsParam ? idsParam.split(',').map(s => s.trim()).filter(Boolean) : null
+
+  let tradesQuery = supabaseAdmin
     .from('trade_offers')
     .select('*')
     .or(`sender_id.eq.${user.id},receiver_id.eq.${user.id}`)
     .order('created_at', { ascending: false })
+  if (filterIds && filterIds.length > 0) tradesQuery = tradesQuery.in('id', filterIds)
+
+  const { data: trades } = await tradesQuery
 
   if (!trades?.length) return NextResponse.json({ trades: [] })
 

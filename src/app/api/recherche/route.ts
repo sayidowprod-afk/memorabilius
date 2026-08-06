@@ -52,6 +52,10 @@ async function getProfileCsvCards(profileId: string, csvUrl: string): Promise<an
 
 // Rate limiter : 20 req/min par IP
 const RATE_MAP = new Map<string, { count: number; reset: number }>()
+setInterval(() => {
+  const now = Date.now()
+  for (const [ip, e] of RATE_MAP) if (now > e.reset) RATE_MAP.delete(ip)
+}, 60 * 60 * 1000)
 function checkRate(ip: string): boolean {
   const now = Date.now()
   const e = RATE_MAP.get(ip)
@@ -232,5 +236,5 @@ export async function GET(req: NextRequest) {
     return aExact - bExact
   })
 
-  return NextResponse.json({ cards: results, users, players })
+  return NextResponse.json({ cards: results, users, players }, { headers: { 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' } })
 }

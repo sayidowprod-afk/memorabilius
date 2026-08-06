@@ -1,13 +1,13 @@
 'use client'
 import { toast } from '@/lib/toast'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
 import OnlineIndicator from '@/components/OnlineIndicator'
-import CommentsModal from '@/components/CommentsModal'
+const CommentsModal = dynamic(() => import('@/components/CommentsModal'), { ssr: false })
 const GalerieExport = dynamic(() => import('@/components/GalerieExport'), { ssr: false })
 const CollectionStats = dynamic(() => import('@/components/CollectionStats'), { ssr: false })
 const PublicWishlist = dynamic(() => import('@/components/PublicWishlist'), { ssr: false })
@@ -28,6 +28,38 @@ import { useTheme } from '@/lib/ThemeContext'
 import { getSpeciality, getTeamById } from '@/lib/sportsTeams'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
+
+// ── Helpers numériques (module scope pour éviter re-création à chaque render) ──
+const numValue = (num: string) => { const m = num.trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : null }
+const cardNumValue = (cn?: string) => { if (!cn) return null; const m = cn.trim().match(/(\d+)/); return m ? parseInt(m[1]) : null }
+const isOneOfOne = (num: string) => numValue(num) === 1
+const isLowNum = (num: string) => { const v = numValue(num); return v !== null && v >= 2 && v <= 10 }
+const isBronzeNum = (num: string) => { const v = numValue(num); return v !== null && v >= 11 && v <= 25 }
+
+// ── Palettes onglets (static) ────────────────────────────────────────────────
+const TAB_COLORS = [
+  '#E53935','#C62828','#AD1457','#880E4F',
+  '#F4511E','#E65100','#FF8F00','#F9A825',
+  '#FDD835','#C8A23A','#A57C00','#FFD700',
+  '#43A047','#2E7D32','#00796B','#006064',
+  '#039BE5','#0288D1','#0277BD','#01579B',
+  '#1565C0','#283593','#1A237E','#003DA6',
+  '#7B1FA2','#6A1B9A','#4A148C','#512DA8',
+  '#E91E63','#D81B60','#F06292','#F48FB1',
+  '#37474F','#455A64','#546E7A','#000000',
+]
+const TAB_GRADIENTS = [
+  { label: 'Sunset', value: 'linear-gradient(135deg,#f97316,#ec4899)' },
+  { label: 'Ocean', value: 'linear-gradient(135deg,#0ea5e9,#6366f1)' },
+  { label: 'Forest', value: 'linear-gradient(135deg,#16a34a,#0d9488)' },
+  { label: 'Galaxy', value: 'linear-gradient(135deg,#7c3aed,#db2777)' },
+  { label: 'Gold', value: 'linear-gradient(135deg,#f59e0b,#b45309)' },
+  { label: 'Ice', value: 'linear-gradient(135deg,#38bdf8,#818cf8)' },
+  { label: 'Lava', value: 'linear-gradient(135deg,#dc2626,#f97316)' },
+  { label: 'Midnight', value: 'linear-gradient(135deg,#1e3a5f,#7c3aed)' },
+  { label: 'Rose', value: 'linear-gradient(135deg,#f43f5e,#fb923c)' },
+  { label: 'Matrix', value: 'linear-gradient(135deg,#14532d,#22c55e)' },
+]
 
 function SortableCard({ id, disabled, children, className, style, onClick }: {
   id: string; disabled: boolean; children: React.ReactNode
@@ -195,8 +227,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   useEffect(() => {
     const init = async () => {
       try {
-        supabase.auth.getSession().then(({ data: { session } }) => setCurrentUser(session?.user?.id || null))
-
         let resolvedId = userId
         const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
         if (!uuidRegex.test(userId)) {
@@ -205,12 +235,14 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           else { setLoaded(true); return }
         }
 
-        // Tags CSV et profil sont indépendants → en parallèle (le profil a
-        // juste besoin de tagsMap une fois résolu, pas besoin d'attendre en série)
-        const [{ data: tagsData }, { data: profileData }] = await Promise.all([
+        // Session + tags + profil en parallèle — getSession mutualisé pour éviter un 2e appel plus bas
+        const [{ data: { session } }, { data: tagsData }, { data: profileData }] = await Promise.all([
+          supabase.auth.getSession(),
           supabase.from('carte_tags').select('card_key, collection_tag').eq('user_id', resolvedId),
           supabase.from('profiles').select('*').eq('id', resolvedId).single(),
         ])
+        const uid = session?.user?.id || null
+        setCurrentUser(uid)
         const tagsMap = new Map((tagsData || []).map((r: any) => [r.card_key, r.collection_tag]))
         setCsvTags(tagsMap)
 
@@ -225,19 +257,17 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         supabase.from('grail_cards').select('card_key, position').eq('user_id', resolvedId).order('position').then(({ data }) => {
           if (data) setGrailCards(data)
         })
-        // Charger les likes de la galerie + ceux de l'utilisateur connecté
-        supabase.auth.getSession().then(async ({ data: { session } }) => {
-          const uid = session?.user?.id || null
-          const { data: likesData } = await supabase.from('card_likes').select('card_key, liker_user_id').eq('gallery_user_id', resolvedId)
-          if (likesData) {
+        // Charger les likes — uid déjà connu, pas de 2e getSession
+        supabase.from('card_likes').select('card_key, liker_user_id').eq('gallery_user_id', resolvedId).limit(2000)
+          .then(({ data: likesData }) => {
+            if (!likesData) return
             const map = new Map<string, { count: number; liked: boolean }>()
             for (const l of likesData) {
               const prev = map.get(l.card_key) || { count: 0, liked: false }
               map.set(l.card_key, { count: prev.count + 1, liked: prev.liked || l.liker_user_id === uid })
             }
             setCardLikes(map)
-          }
-        })
+          })
         loadCommentCounts(resolvedId)
       } catch (e) {
         console.error('Gallery init error', e)
@@ -259,7 +289,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   }, [userId])
 
   const loadCommentCounts = async (galleryUserId: string) => {
-    const { data } = await supabase.from('galerie_comments').select('card_key').eq('galerie_user_id', galleryUserId).not('card_key', 'is', null)
+    const { data } = await supabase.from('galerie_comments').select('card_key').eq('galerie_user_id', galleryUserId).not('card_key', 'is', null).limit(2000)
     const map = new Map<string, number>()
     for (const row of data || []) map.set(row.card_key, (map.get(row.card_key) || 0) + 1)
     setCommentCounts(map)
@@ -376,13 +406,14 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         }).filter(Boolean) as Card[]
       }
 
-      let manuelles: any[] = []
-      for (let from = 0; ; from += 1000) {
-        const { data: batch } = await supabase.from('cartes_manuelles').select('*').eq('user_id', userId).range(from, from + 999)
-        if (!batch || batch.length === 0) break
-        manuelles.push(...batch)
-        if (batch.length < 1000) break
-      }
+      const { count: manuellesCount } = await supabase.from('cartes_manuelles').select('*', { count: 'exact', head: true }).eq('user_id', userId)
+      const pageCount = Math.ceil((manuellesCount || 0) / 1000) || 1
+      const manuelleBatches = await Promise.all(
+        Array.from({ length: pageCount }, (_, i) =>
+          supabase.from('cartes_manuelles').select('*').eq('user_id', userId).range(i * 1000, i * 1000 + 999).then(r => r.data || [])
+        )
+      )
+      const manuelles = manuelleBatches.flat()
       const cartesM: Card[] = (manuelles || []).map((m: any) => ({
         id_manuelle: m.id,
         f: m.image_recto || 'https://placehold.co/300x420?text=No+Image',
@@ -747,13 +778,19 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     }
   }
 
+  const grailSearchResults = useMemo(() => {
+    if (grailSearch.trim().length === 0) return []
+    const q = grailSearch.toLowerCase()
+    return cards.filter(c => {
+      if (grailCards.some(g => g.card_key === c.f)) return false
+      return c.n.toLowerCase().includes(q) || c.v.toLowerCase().includes(q) ||
+             c.s.toLowerCase().includes(q) || (c.t || '').toLowerCase().includes(q) ||
+             (c.br || '').toLowerCase().includes(q)
+    })
+  }, [grailSearch, cards, grailCards])
+
   const gridRef = useRef<HTMLDivElement>(null)
 
-  const numValue = (num: string) => { const m = num.trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : null }
-  const cardNumValue = (cn?: string) => { if (!cn) return null; const m = cn.trim().match(/(\d+)/); return m ? parseInt(m[1]) : null }
-  const isOneOfOne = (num: string) => { const v = numValue(num); return v === 1 }
-  const isLowNum = (num: string) => { const v = numValue(num); return v !== null && v >= 2 && v <= 10 }
-  const isBronzeNum = (num: string) => { const v = numValue(num); return v !== null && v >= 11 && v <= 25 }
 
   const getTags = (d: Card) => {
     const oon = d.num && isOneOfOne(d.num)
@@ -765,9 +802,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         {d.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
         {d.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
         {d.num && !oon && !low && !bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>{d.num}</span>}
-        {bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#6d3a00,#cd7f32,#f5cba7,#cd7f32,#6d3a00)', color: 'white', textShadow: '0 1px 2px rgba(0,0,0,0.6)', display: 'inline-block', animation: 'bro-anim 2.6s ease-in-out infinite', willChange: 'transform' }}>{d.num}</span>}
-        {oon && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', color: '#3d2800', textShadow: '0 1px 0 rgba(255,255,255,0.4)', display: 'inline-block', animation: 'oon-anim 1.8s ease-in-out infinite', willChange: 'transform' }}>{d.num}</span>}
-        {low && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#555,#c0c0c0,#fff,#c0c0c0,#555)', color: '#111', display: 'inline-block', animation: 'low-anim 2.2s ease-in-out infinite', willChange: 'transform' }}>{d.num}</span>}
+        {bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#6d3a00,#cd7f32,#f5cba7,#cd7f32,#6d3a00)', color: 'white', textShadow: '0 1px 2px rgba(0,0,0,0.6)', display: 'inline-block', animation: 'bro-anim 2.6s ease-in-out infinite' }}>{d.num}</span>}
+        {oon && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#b8860b,#ffd700,#fffacd,#ffd700,#b8860b)', color: '#3d2800', textShadow: '0 1px 0 rgba(255,255,255,0.4)', display: 'inline-block', animation: 'oon-anim 1.8s ease-in-out infinite' }}>{d.num}</span>}
+        {low && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: 'linear-gradient(135deg,#555,#c0c0c0,#fff,#c0c0c0,#555)', color: '#111', display: 'inline-block', animation: 'low-anim 2.2s ease-in-out infinite' }}>{d.num}</span>}
         {d.patch && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#1976d2', color: 'white' }}>PATCH</span>}
         {d.printing_plate && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#111827', color: 'white' }}>PLATE</span>}
       </div>
@@ -969,17 +1006,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           const grailMap = new Map(cards.map(c => [c.f, c]))
           const grailItems = grailCards.map(g => grailMap.get(g.card_key)).filter(Boolean) as Card[]
           const emptySlots = 5 - grailItems.length
-          const grailSearchResults = grailSearch.trim().length > 0
-            ? cards.filter(c => {
-                if (grailCards.some(g => g.card_key === c.f)) return false
-                const q = grailSearch.toLowerCase()
-                return c.n.toLowerCase().includes(q) ||
-                       c.v.toLowerCase().includes(q) ||
-                       c.s.toLowerCase().includes(q) ||
-                       (c.t || '').toLowerCase().includes(q) ||
-                       (c.br || '').toLowerCase().includes(q)
-              })
-            : []
 
           return (
             <div style={{ marginBottom: 24 }}>
@@ -1281,38 +1307,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             )}
           </div>
           {collectionTags.length > 0 && (() => {
-            const TAB_COLORS = [
-              // Rouges
-              '#E53935','#C62828','#AD1457','#880E4F',
-              // Oranges
-              '#F4511E','#E65100','#FF8F00','#F9A825',
-              // Jaunes / Ors
-              '#FDD835','#C8A23A','#A57C00','#FFD700',
-              // Verts
-              '#43A047','#2E7D32','#00796B','#006064',
-              // Bleus clairs
-              '#039BE5','#0288D1','#0277BD','#01579B',
-              // Bleus foncés / Marines
-              '#1565C0','#283593','#1A237E','#003DA6',
-              // Violets
-              '#7B1FA2','#6A1B9A','#4A148C','#512DA8',
-              // Roses
-              '#E91E63','#D81B60','#F06292','#F48FB1',
-              // Neutres
-              '#37474F','#455A64','#546E7A','#000000',
-            ]
-            const TAB_GRADIENTS = [
-              { label: 'Sunset', value: 'linear-gradient(135deg,#f97316,#ec4899)' },
-              { label: 'Ocean', value: 'linear-gradient(135deg,#0ea5e9,#6366f1)' },
-              { label: 'Forest', value: 'linear-gradient(135deg,#16a34a,#0d9488)' },
-              { label: 'Galaxy', value: 'linear-gradient(135deg,#7c3aed,#db2777)' },
-              { label: 'Gold', value: 'linear-gradient(135deg,#f59e0b,#b45309)' },
-              { label: 'Ice', value: 'linear-gradient(135deg,#38bdf8,#818cf8)' },
-              { label: 'Lava', value: 'linear-gradient(135deg,#dc2626,#f97316)' },
-              { label: 'Midnight', value: 'linear-gradient(135deg,#1e3a5f,#7c3aed)' },
-              { label: 'Rose', value: 'linear-gradient(135deg,#f43f5e,#fb923c)' },
-              { label: 'Matrix', value: 'linear-gradient(135deg,#14532d,#22c55e)' },
-            ]
             const resolveColor = (c: string) => isGradient(c) ? c.match(/#[0-9a-fA-F]{6}/)?.[0] || accent : c
             const byPos = (a: string, b: string) => {
               const pa = tabSettings.get(a)?.position ?? 999

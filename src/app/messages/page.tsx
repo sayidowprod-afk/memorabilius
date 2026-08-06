@@ -167,7 +167,7 @@ function MessagesContent() {
     if (offerIds.length > 0) {
       const { data: { session } } = await supabase.auth.getSession()
       if (session?.access_token) {
-        const res = await fetch('/api/trades', {
+        const res = await fetch(`/api/trades?ids=${offerIds.join(',')}`, {
           headers: { Authorization: `Bearer ${session.access_token}` },
         })
         if (res.ok) {

@@ -344,7 +344,8 @@ async function _fetchPlayer(slug: string) {
     supabase
       .from('profiles')
       .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
-      .not('lien_csv', 'is', null),
+      .not('lien_csv', 'is', null)
+      .limit(200),
   ])
 
   const matchedManu = (manuRes.data || []).filter((m: any) => normalizeName(m.nom || '').includes(normTarget))
