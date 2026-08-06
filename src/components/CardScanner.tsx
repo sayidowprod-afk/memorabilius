@@ -1027,25 +1027,25 @@ export default function CardScanner({ src, onResult, onFallback, onClose, frameR
         // Étape 1 : JS pur depuis le cadre overlay (gratuit, instantané)
         const jsCorners = detectCardFromFrame(img, frameRect)
         if (jsCorners) return { corners: jsCorners, geminiRaw: null }
-
-        // Étape 2 : Gemini si JS échoue
-        try {
-          return await Promise.race([
-            detectCard(img, { geminiOnly: true }),
-            new Promise<DetectResult>(r => setTimeout(() => r(EMPTY), 5000)),
-          ])
-        } catch {}
-      } else {
-        // Upload fichier : Gemini direct, timeout 9s (session 2s + fetch 6s + marge)
-        try {
-          return await Promise.race([
-            detectCard(img, { geminiOnly: true }),
-            new Promise<DetectResult>(r => setTimeout(() => r(EMPTY), 9000)),
-          ])
-        } catch {}
       }
 
-      return EMPTY
+      // Étape 2 : OpenCV
+      await yieldThread()
+      try {
+        const cv = await Promise.race([
+          loadOpenCV(),
+          new Promise<null>(r => setTimeout(() => r(null), 2000)),
+        ])
+        if (cv) {
+          await yieldThread()
+          const result = await detectCardOpenCV(img, cv)
+          await yieldThread()
+          if (result) return { corners: result, geminiRaw: null }
+        }
+      } catch { /* rien */ }
+
+      // Étape 3 : JS pur (dernier recours)
+      return { corners: detectCardPureJS(img), geminiRaw: null }
     }
 
     let detected: DetectResult = EMPTY

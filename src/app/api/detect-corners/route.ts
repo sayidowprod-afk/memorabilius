@@ -100,6 +100,29 @@ export async function POST(req: NextRequest) {
 
     const imageBase64 = await compressImage(rawImage)
 
+    const modalUrl = process.env.MODAL_CORNERS_URL
+    if (modalUrl) {
+      // ── Modèle maison YOLO via Modal ────────────────────────
+      const res = await fetch(modalUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ image: imageBase64 }),
+        signal: AbortSignal.timeout(15000),
+      })
+      if (!res.ok) {
+        const err = await res.text()
+        return NextResponse.json({ error: 'Modal error: ' + err }, { status: 500 })
+      }
+      const corners = await res.json()
+      if (corners.error) return NextResponse.json({ error: corners.error }, { status: 500 })
+      const { topLeft, topRight, bottomRight, bottomLeft, confidence } = corners
+      if (!topLeft || !topRight || !bottomRight || !bottomLeft) {
+        return NextResponse.json({ error: 'coins manquants' }, { status: 500 })
+      }
+      return NextResponse.json({ topLeft, topRight, bottomRight, bottomLeft, confidence: confidence ?? null })
+    }
+
+    // ── Fallback Gemini ──────────────────────────────────────
     const apiKey = process.env.GEMINI_API_KEY
     if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY manquante' }, { status: 500 })
 
