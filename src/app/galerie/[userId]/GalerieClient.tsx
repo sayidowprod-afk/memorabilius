@@ -2,6 +2,7 @@
 import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef, useMemo } from 'react'
 import { createPortal } from 'react-dom'
+import NextImage from 'next/image'
 import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -105,21 +106,23 @@ function renderCardImage(card: { f: string; n: string; format?: string; is_horiz
   const ratio = fmt.isSlab ? cardDisplayRatio(card.format, card.is_horizontal) : '2.5/3.5'
 
   if (fmt.isSlab) {
-    // Photo réelle du slab entier, affichée telle quelle aux proportions du boîtier
     return (
       <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative', background: '#111' }}>
-        <img src={card.f} alt={card.n} loading="lazy"
-          style={{ display: 'block', objectFit: 'cover', width: '100%', height: '100%' }} />
+        <NextImage src={card.f} alt={card.n} fill sizes="(max-width: 900px) 50vw, 20vw"
+          style={{ objectFit: 'cover' }} />
       </div>
     )
   }
 
   return (
     <div style={{ aspectRatio: ratio, overflow: 'hidden', position: 'relative' }}>
-      <img src={card.f} alt={card.n} loading="lazy"
-        style={horiz
-          ? { position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' }
-          : { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+      {horiz ? (
+        <img src={card.f} alt={card.n} loading="lazy"
+          style={{ position: 'absolute', width: '140%', height: '71.43%', left: '-20%', top: '14.286%', transform: 'rotate(90deg)', objectFit: 'cover', display: 'block' }} />
+      ) : (
+        <NextImage src={card.f} alt={card.n} fill sizes="(max-width: 900px) 50vw, 20vw"
+          style={{ objectFit: 'cover' }} />
+      )}
     </div>
   )
 }
@@ -140,8 +143,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const router = useRouter()
   const [profile, setProfile] = useState<any>(null)
   const [cards, setCards] = useState<Card[]>([])
-  const [filtered, setFiltered] = useState<Card[]>([])
-  const [filteredStats, setFilteredStats] = useState({ rc: 0, auto: 0, num: 0, patch: 0 })
   const [displayed, setDisplayed] = useState<Card[]>([])
   const [page, setPage] = useState(1)
   const [activeFilters, setActiveFilters] = useState({ rc: false, auto: false, num: false, patch: false })
@@ -475,8 +476,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     } catch (e) { console.error('CSV error', e); setLoaded(true) }
   }
 
-  useEffect(() => {
-    // Filtrer par une collection principale inclut ses sous-collections
+  const filtered = useMemo(() => {
     const matchCols = new Set<string>()
     if (fCollectionTag) {
       matchCols.add(fCollectionTag)
@@ -499,7 +499,6 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         (!filterMemo || (d.item_type && d.item_type !== 'card'))
       )
     })
-
     const cmp = (a: string, b: string) => a.localeCompare(b, undefined, { sensitivity: 'base' })
     const lastName = (n: string) => n.trim().split(' ').slice(-1)[0] || n
     const val = (d: Card) => cardValues.get(d.f) ?? -Infinity
@@ -535,7 +534,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         default:           return 0
       }
     }
-    const sorted = [...f].sort((a, b) => {
+    return [...f].sort((a, b) => {
       if (pinTeam) {
         const aPin = a.t === pinTeam
         const bPin = b.t === pinTeam
@@ -546,17 +545,16 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       if (primary !== 0 || sortBy2 === 'none') return primary
       return applySort(sortBy2, a, b)
     })
-
-    setFiltered(sorted)
-    setFilteredStats({
-      rc: sorted.filter(c => c.rc).length,
-      auto: sorted.filter(c => c.auto).length,
-      num: sorted.filter(c => c.num !== '').length,
-      patch: sorted.filter(c => c.patch).length,
-    })
-    setPage(1)
-    setDisplayed(sorted.slice(0, PAGE_SIZE))
   }, [cards, search, fTeam, fBrand, fYear, fCollectionTag, activeFilters, filterPrivate, filterVente, filterMemo, privateCards, isOwner, sortBy, sortBy2, pinTeam, cardValues, tabSettings])
+
+  const filteredStats = useMemo(() => ({
+    rc:   filtered.filter(c => c.rc).length,
+    auto: filtered.filter(c => c.auto).length,
+    num:  filtered.filter(c => c.num !== '').length,
+    patch: filtered.filter(c => c.patch).length,
+  }), [filtered])
+
+  useEffect(() => { setPage(1) }, [filtered])
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
