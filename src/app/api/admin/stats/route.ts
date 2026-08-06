@@ -55,7 +55,7 @@ async function getSigninsByDay(d7Start: string): Promise<Record<string, number>>
       const day = u.last_sign_in_at.slice(0, 10)
       if (day >= d7Start) signins[day] = (signins[day] || 0) + 1
     }
-    if (!data.nextPage) break
+    if (!(data as any).nextPage) break
     page++
   }
   return signins
