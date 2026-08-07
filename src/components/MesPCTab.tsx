@@ -178,10 +178,11 @@ function PlayerChecklist({ pc, userId, bg, bg2, border, text, muted, accent }: {
               })
               if (filter !== 'all' && visibleEntries.length === 0) return null
               return (
-                <div key={group.setId} style={{ background: bg2, borderRadius: 8, border: `1.5px solid ${border}`, overflow: 'hidden' }}>
-                  <div onClick={() => toggleSet(group.setId)} style={{
+                <div key={group.setId} style={{ background: bg2, borderRadius: 8, border: `1.5px solid ${border}`, overflow: 'hidden', flexShrink: 0 }}>
+                  <button onClick={() => toggleSet(group.setId)} style={{
                     width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    padding: '8px 12px', background: 'transparent', cursor: 'pointer', gap: 8,
+                    padding: '8px 12px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', gap: 8,
+                    color: text,
                   }}>
                     <div style={{ flex: 1, minWidth: 0, fontWeight: 700, fontSize: 12, color: text, lineHeight: 1.3 }}>
                       {group.setYear ? `${group.setYear} ` : ''}{group.setName}
@@ -199,7 +200,7 @@ function PlayerChecklist({ pc, userId, bg, bg2, border, text, muted, accent }: {
                       </Link>
                       <span style={{ color: muted, fontSize: 11 }}>{isOpen ? '▲' : '▼'}</span>
                     </div>
-                  </div>
+                  </button>
                   {isOpen && (
                     <div style={{ borderTop: `1px solid ${border}` }}>
                       {visibleEntries.map(entry => {

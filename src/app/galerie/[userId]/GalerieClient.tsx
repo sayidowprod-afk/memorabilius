@@ -49,6 +49,7 @@ const TAB_COLORS = [
   '#7B1FA2','#6A1B9A','#4A148C','#512DA8',
   '#E91E63','#D81B60','#F06292','#F48FB1',
   '#37474F','#455A64','#546E7A','#000000',
+  '#78909C','#90A4AE','#CFD8DC','#FFFFFF',
 ]
 const TAB_GRADIENTS = [
   { label: 'Sunset', value: 'linear-gradient(135deg,#f97316,#ec4899)' },
@@ -61,6 +62,146 @@ const TAB_GRADIENTS = [
   { label: 'Midnight', value: 'linear-gradient(135deg,#1e3a5f,#7c3aed)' },
   { label: 'Rose', value: 'linear-gradient(135deg,#f43f5e,#fb923c)' },
   { label: 'Matrix', value: 'linear-gradient(135deg,#14532d,#22c55e)' },
+  { label: 'Flame', value: 'linear-gradient(135deg,#ff6b00,#ffd700)' },
+  { label: 'Arctic', value: 'linear-gradient(135deg,#a8edea,#4facfe)' },
+  { label: 'Neon', value: 'linear-gradient(135deg,#00f2fe,#4facfe)' },
+  { label: 'Dusk', value: 'linear-gradient(135deg,#a18cd1,#fbc2eb)' },
+  { label: 'Chrome', value: 'linear-gradient(135deg,#868f96,#596164)' },
+  { label: 'Coral', value: 'linear-gradient(135deg,#ff9a9e,#fad0c4)' },
+  { label: 'Bronze', value: 'linear-gradient(135deg,#c97b4b,#f5d09c)' },
+  { label: 'Cobalt', value: 'linear-gradient(135deg,#003166,#0057b8)' },
+  { label: 'Jade', value: 'linear-gradient(135deg,#004d40,#1de9b6)' },
+  { label: 'Crimson', value: 'linear-gradient(135deg,#6d0f0f,#c0392b)' },
+]
+const TEAM_THEMES: { label: string; value: string; sport: string }[] = [
+  // NBA (30)
+  { label: 'Hawks', value: 'linear-gradient(135deg,#E03A3E,#C1D32F)', sport: 'NBA' },
+  { label: 'Celtics', value: 'linear-gradient(135deg,#007A33,#BA9653)', sport: 'NBA' },
+  { label: 'Nets', value: 'linear-gradient(135deg,#000000,#FFFFFF)', sport: 'NBA' },
+  { label: 'Hornets', value: 'linear-gradient(135deg,#1D1160,#00788C)', sport: 'NBA' },
+  { label: 'Bulls', value: 'linear-gradient(135deg,#CE1141,#000000)', sport: 'NBA' },
+  { label: 'Cavs', value: 'linear-gradient(135deg,#860038,#FDBB30)', sport: 'NBA' },
+  { label: 'Mavs', value: 'linear-gradient(135deg,#00538C,#002B5E)', sport: 'NBA' },
+  { label: 'Nuggets', value: 'linear-gradient(135deg,#0E2240,#FEC524)', sport: 'NBA' },
+  { label: 'Pistons', value: 'linear-gradient(135deg,#C8102E,#006BB6)', sport: 'NBA' },
+  { label: 'Warriors', value: 'linear-gradient(135deg,#1D428A,#FFC72C)', sport: 'NBA' },
+  { label: 'Rockets', value: 'linear-gradient(135deg,#CE1141,#000000)', sport: 'NBA' },
+  { label: 'Pacers', value: 'linear-gradient(135deg,#002D62,#FDBB30)', sport: 'NBA' },
+  { label: 'Clippers', value: 'linear-gradient(135deg,#C8102E,#1D428A)', sport: 'NBA' },
+  { label: 'Lakers', value: 'linear-gradient(135deg,#552583,#FDB927)', sport: 'NBA' },
+  { label: 'Grizzlies', value: 'linear-gradient(135deg,#5D76A9,#12173F)', sport: 'NBA' },
+  { label: 'Heat', value: 'linear-gradient(135deg,#98002E,#F9A01B)', sport: 'NBA' },
+  { label: 'Bucks', value: 'linear-gradient(135deg,#00471B,#EEE1C6)', sport: 'NBA' },
+  { label: 'Wolves', value: 'linear-gradient(135deg,#0C2340,#236192)', sport: 'NBA' },
+  { label: 'Pelicans', value: 'linear-gradient(135deg,#0C2340,#C8102E)', sport: 'NBA' },
+  { label: 'Knicks', value: 'linear-gradient(135deg,#006BB6,#F58426)', sport: 'NBA' },
+  { label: 'Thunder', value: 'linear-gradient(135deg,#007AC1,#EF3B24)', sport: 'NBA' },
+  { label: 'Magic', value: 'linear-gradient(135deg,#0077C0,#C4CED4)', sport: 'NBA' },
+  { label: '76ers', value: 'linear-gradient(135deg,#006BB6,#ED174C)', sport: 'NBA' },
+  { label: 'Suns', value: 'linear-gradient(135deg,#1D1160,#E56020)', sport: 'NBA' },
+  { label: 'Blazers', value: 'linear-gradient(135deg,#E03A3E,#000000)', sport: 'NBA' },
+  { label: 'Kings', value: 'linear-gradient(135deg,#5A2D81,#63727A)', sport: 'NBA' },
+  { label: 'Spurs', value: 'linear-gradient(135deg,#000000,#C4CED4)', sport: 'NBA' },
+  { label: 'Raptors', value: 'linear-gradient(135deg,#CE1141,#000000)', sport: 'NBA' },
+  { label: 'Jazz', value: 'linear-gradient(135deg,#002B5C,#00471B)', sport: 'NBA' },
+  { label: 'Wizards', value: 'linear-gradient(135deg,#002B5C,#E31837)', sport: 'NBA' },
+  // NHL (32)
+  { label: 'Ducks', value: 'linear-gradient(135deg,#B09967,#000000)', sport: 'NHL' },
+  { label: 'Coyotes', value: 'linear-gradient(135deg,#8C2633,#E2D6B5)', sport: 'NHL' },
+  { label: 'Bruins', value: 'linear-gradient(135deg,#000000,#FFB81C)', sport: 'NHL' },
+  { label: 'Sabres', value: 'linear-gradient(135deg,#003399,#FFBE00)', sport: 'NHL' },
+  { label: 'Flames', value: 'linear-gradient(135deg,#C8102E,#F1BE48)', sport: 'NHL' },
+  { label: 'Hurricanes', value: 'linear-gradient(135deg,#CC0000,#000000)', sport: 'NHL' },
+  { label: 'Blackhawks', value: 'linear-gradient(135deg,#CF0A2C,#000000)', sport: 'NHL' },
+  { label: 'Avalanche', value: 'linear-gradient(135deg,#6F263D,#236192)', sport: 'NHL' },
+  { label: 'Blue Jackets', value: 'linear-gradient(135deg,#002654,#CE1126)', sport: 'NHL' },
+  { label: 'Stars', value: 'linear-gradient(135deg,#006847,#8F8F8C)', sport: 'NHL' },
+  { label: 'Red Wings', value: 'linear-gradient(135deg,#CE1126,#FFFFFF)', sport: 'NHL' },
+  { label: 'Oilers', value: 'linear-gradient(135deg,#FF4C00,#003777)', sport: 'NHL' },
+  { label: 'Panthers', value: 'linear-gradient(135deg,#041E42,#C8102E)', sport: 'NHL' },
+  { label: 'Kings', value: 'linear-gradient(135deg,#111111,#A2AAAD)', sport: 'NHL' },
+  { label: 'Wild', value: 'linear-gradient(135deg,#154734,#A6192E)', sport: 'NHL' },
+  { label: 'Canadiens', value: 'linear-gradient(135deg,#AF1E2D,#192168)', sport: 'NHL' },
+  { label: 'Predators', value: 'linear-gradient(135deg,#FFB81C,#041E42)', sport: 'NHL' },
+  { label: 'Devils', value: 'linear-gradient(135deg,#CE1126,#000000)', sport: 'NHL' },
+  { label: 'Islanders', value: 'linear-gradient(135deg,#003087,#FC4C02)', sport: 'NHL' },
+  { label: 'Rangers', value: 'linear-gradient(135deg,#0038A8,#CE1126)', sport: 'NHL' },
+  { label: 'Senators', value: 'linear-gradient(135deg,#C52032,#C69214)', sport: 'NHL' },
+  { label: 'Flyers', value: 'linear-gradient(135deg,#F74902,#000000)', sport: 'NHL' },
+  { label: 'Penguins', value: 'linear-gradient(135deg,#000000,#FCB514)', sport: 'NHL' },
+  { label: 'Sharks', value: 'linear-gradient(135deg,#006D75,#EA7200)', sport: 'NHL' },
+  { label: 'Kraken', value: 'linear-gradient(135deg,#001628,#99D9D9)', sport: 'NHL' },
+  { label: 'Blues', value: 'linear-gradient(135deg,#002F87,#FCB514)', sport: 'NHL' },
+  { label: 'Lightning', value: 'linear-gradient(135deg,#002868,#FFFFFF)', sport: 'NHL' },
+  { label: 'Maple Leafs', value: 'linear-gradient(135deg,#003E7E,#FFFFFF)', sport: 'NHL' },
+  { label: 'Canucks', value: 'linear-gradient(135deg,#00205B,#00843D)', sport: 'NHL' },
+  { label: 'Golden Kts', value: 'linear-gradient(135deg,#B4975A,#333F42)', sport: 'NHL' },
+  { label: 'Capitals', value: 'linear-gradient(135deg,#041E42,#C8102E)', sport: 'NHL' },
+  { label: 'Jets', value: 'linear-gradient(135deg,#041E42,#004C97)', sport: 'NHL' },
+  // MLB (30)
+  { label: 'D-backs', value: 'linear-gradient(135deg,#A71930,#E3D4AD)', sport: 'MLB' },
+  { label: 'Braves', value: 'linear-gradient(135deg,#13274F,#CE1141)', sport: 'MLB' },
+  { label: 'Orioles', value: 'linear-gradient(135deg,#DF4601,#000000)', sport: 'MLB' },
+  { label: 'Red Sox', value: 'linear-gradient(135deg,#BD3039,#0C2340)', sport: 'MLB' },
+  { label: 'Cubs', value: 'linear-gradient(135deg,#0E3386,#CC3433)', sport: 'MLB' },
+  { label: 'White Sox', value: 'linear-gradient(135deg,#27251F,#C4CED3)', sport: 'MLB' },
+  { label: 'Reds', value: 'linear-gradient(135deg,#C6011F,#000000)', sport: 'MLB' },
+  { label: 'Guardians', value: 'linear-gradient(135deg,#00385D,#E50022)', sport: 'MLB' },
+  { label: 'Rockies', value: 'linear-gradient(135deg,#333366,#C4CED4)', sport: 'MLB' },
+  { label: 'Tigers', value: 'linear-gradient(135deg,#0C2340,#FA4616)', sport: 'MLB' },
+  { label: 'Astros', value: 'linear-gradient(135deg,#002D62,#EB6E1F)', sport: 'MLB' },
+  { label: 'Royals', value: 'linear-gradient(135deg,#004687,#BD9B60)', sport: 'MLB' },
+  { label: 'Angels', value: 'linear-gradient(135deg,#BA0021,#003263)', sport: 'MLB' },
+  { label: 'Dodgers', value: 'linear-gradient(135deg,#005A9C,#EF3E42)', sport: 'MLB' },
+  { label: 'Marlins', value: 'linear-gradient(135deg,#00A3E0,#FF6600)', sport: 'MLB' },
+  { label: 'Brewers', value: 'linear-gradient(135deg,#0A2351,#B6922E)', sport: 'MLB' },
+  { label: 'Twins', value: 'linear-gradient(135deg,#002B5C,#D31145)', sport: 'MLB' },
+  { label: 'Mets', value: 'linear-gradient(135deg,#002D72,#FF5910)', sport: 'MLB' },
+  { label: 'Yankees', value: 'linear-gradient(135deg,#003087,#E4002C)', sport: 'MLB' },
+  { label: "A's", value: 'linear-gradient(135deg,#003831,#EFB21E)', sport: 'MLB' },
+  { label: 'Phillies', value: 'linear-gradient(135deg,#E81828,#002D72)', sport: 'MLB' },
+  { label: 'Pirates', value: 'linear-gradient(135deg,#27251F,#FDB827)', sport: 'MLB' },
+  { label: 'Padres', value: 'linear-gradient(135deg,#2F241D,#FFC425)', sport: 'MLB' },
+  { label: 'Giants SF', value: 'linear-gradient(135deg,#FD5A1E,#27251F)', sport: 'MLB' },
+  { label: 'Mariners', value: 'linear-gradient(135deg,#0C2C56,#005C5C)', sport: 'MLB' },
+  { label: 'Cardinals', value: 'linear-gradient(135deg,#C41E3A,#0C2340)', sport: 'MLB' },
+  { label: 'Rays', value: 'linear-gradient(135deg,#092C5C,#8FBCE6)', sport: 'MLB' },
+  { label: 'Rangers', value: 'linear-gradient(135deg,#003278,#C0111F)', sport: 'MLB' },
+  { label: 'Blue Jays', value: 'linear-gradient(135deg,#134A8E,#E8291C)', sport: 'MLB' },
+  { label: 'Nationals', value: 'linear-gradient(135deg,#AB0003,#14225A)', sport: 'MLB' },
+  // NFL (32)
+  { label: 'Cardinals', value: 'linear-gradient(135deg,#97233F,#000000)', sport: 'NFL' },
+  { label: 'Falcons', value: 'linear-gradient(135deg,#A71930,#000000)', sport: 'NFL' },
+  { label: 'Ravens', value: 'linear-gradient(135deg,#241773,#000000)', sport: 'NFL' },
+  { label: 'Bills', value: 'linear-gradient(135deg,#00338D,#C60C30)', sport: 'NFL' },
+  { label: 'Panthers', value: 'linear-gradient(135deg,#0085CA,#101820)', sport: 'NFL' },
+  { label: 'Bears', value: 'linear-gradient(135deg,#0B162A,#C83803)', sport: 'NFL' },
+  { label: 'Bengals', value: 'linear-gradient(135deg,#FB4F14,#000000)', sport: 'NFL' },
+  { label: 'Browns', value: 'linear-gradient(135deg,#311D00,#FF3C00)', sport: 'NFL' },
+  { label: 'Cowboys', value: 'linear-gradient(135deg,#003594,#869397)', sport: 'NFL' },
+  { label: 'Broncos', value: 'linear-gradient(135deg,#FB4F14,#002244)', sport: 'NFL' },
+  { label: 'Lions', value: 'linear-gradient(135deg,#0076B6,#B0B7BC)', sport: 'NFL' },
+  { label: 'Packers', value: 'linear-gradient(135deg,#203731,#FFB612)', sport: 'NFL' },
+  { label: 'Texans', value: 'linear-gradient(135deg,#03202F,#A71930)', sport: 'NFL' },
+  { label: 'Colts', value: 'linear-gradient(135deg,#002C5F,#A2AAAD)', sport: 'NFL' },
+  { label: 'Jaguars', value: 'linear-gradient(135deg,#101820,#D7A22A)', sport: 'NFL' },
+  { label: 'Chiefs', value: 'linear-gradient(135deg,#E31837,#FFB81C)', sport: 'NFL' },
+  { label: 'Raiders', value: 'linear-gradient(135deg,#000000,#A5ACAF)', sport: 'NFL' },
+  { label: 'Chargers', value: 'linear-gradient(135deg,#0080C6,#FFC20E)', sport: 'NFL' },
+  { label: 'Rams', value: 'linear-gradient(135deg,#003594,#FFA300)', sport: 'NFL' },
+  { label: 'Dolphins', value: 'linear-gradient(135deg,#008E97,#FC4C02)', sport: 'NFL' },
+  { label: 'Vikings', value: 'linear-gradient(135deg,#4F2683,#FFC62F)', sport: 'NFL' },
+  { label: 'Patriots', value: 'linear-gradient(135deg,#002244,#C60C30)', sport: 'NFL' },
+  { label: 'Saints', value: 'linear-gradient(135deg,#101820,#D3BC8D)', sport: 'NFL' },
+  { label: 'Giants NY', value: 'linear-gradient(135deg,#0B2265,#A71930)', sport: 'NFL' },
+  { label: 'Jets', value: 'linear-gradient(135deg,#125740,#000000)', sport: 'NFL' },
+  { label: 'Eagles', value: 'linear-gradient(135deg,#004C54,#A5ACAF)', sport: 'NFL' },
+  { label: 'Steelers', value: 'linear-gradient(135deg,#101820,#FFB612)', sport: 'NFL' },
+  { label: '49ers', value: 'linear-gradient(135deg,#AA0000,#B3995D)', sport: 'NFL' },
+  { label: 'Seahawks', value: 'linear-gradient(135deg,#002244,#69BE28)', sport: 'NFL' },
+  { label: 'Buccaneers', value: 'linear-gradient(135deg,#D50A0A,#FF7900)', sport: 'NFL' },
+  { label: 'Titans', value: 'linear-gradient(135deg,#0C2340,#4B92DB)', sport: 'NFL' },
+  { label: 'Commanders', value: 'linear-gradient(135deg,#5A1414,#FFB612)', sport: 'NFL' },
 ]
 
 function SortableCard({ id, disabled, children, className, style, onClick }: {
@@ -168,6 +309,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [draggedTag, setDraggedTag] = useState<string | null>(null)
   const dragLastOverRef = useRef<string | null>(null)
   const [colorPickerTag, setColorPickerTag] = useState<string | null>(null)
+  const [teamThemeSport, setTeamThemeSport] = useState<'NBA' | 'NHL' | 'MLB' | 'NFL'>('NBA')
   const [cardLikes, setCardLikes] = useState<Map<string, { count: number; liked: boolean }>>(new Map())
   const [commentCard, setCommentCard] = useState<Card | null>(null)
   const [commentCounts, setCommentCounts] = useState<Map<string, number>>(new Map())
@@ -817,6 +959,230 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
   const accent = profile?.couleur_bordure || '#003DA6'
 
+  const resolveColor = (c: string) => isGradient(c) ? c.match(/#[0-9a-fA-F]{6}/)?.[0] || accent : c
+  const byPos = (a: string, b: string) => {
+    const pa = tabSettings.get(a)?.position ?? 999
+    const pb = tabSettings.get(b)?.position ?? 999
+    return pa !== pb ? pa - pb : a.localeCompare(b)
+  }
+  const parentOf = (t: string) => tabSettings.get(t)?.parent || null
+  const isSub = (t: string) => { const p = parentOf(t); return !!p && collectionTags.includes(p) }
+  const principals = collectionTags.filter(t => !isSub(t)).sort(byPos)
+  const getChildren = (tag: string) => collectionTags.filter(t => parentOf(t) === tag).sort(byPos)
+  const getDescendants = (tag: string): string[] => { const ch = getChildren(tag); return [...ch, ...ch.flatMap(c => getDescendants(c))] }
+  const saveTabSetting = async (tag: string, patch: { color?: string; position?: number; parent?: string | null }) => {
+    const cur = tabSettings.get(tag) || { color: accent, position: 0 }
+    const next = { ...cur, ...patch }
+    setTabSettings(prev => new Map(prev).set(tag, next))
+    await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag, color: next.color, position: next.position, parent: next.parent ?? null }, { onConflict: 'user_id,tag' })
+  }
+  const handleDragOver = (e: React.DragEvent, overTag: string) => {
+    e.preventDefault()
+    if (!draggedTag || draggedTag === overTag) return
+    if (dragLastOverRef.current === overTag) return
+    dragLastOverRef.current = overTag
+    const order = principals.map(t => t)
+    const fromIdx = order.indexOf(draggedTag)
+    const toIdx = order.indexOf(overTag)
+    if (fromIdx === -1 || toIdx === -1) return
+    order.splice(fromIdx, 1)
+    order.splice(toIdx, 0, draggedTag)
+    const newMap = new Map(tabSettings)
+    order.forEach((tag, i) => {
+      newMap.set(tag, { ...(newMap.get(tag) || { color: accent }), position: i })
+    })
+    setTabSettings(newMap)
+  }
+  const handleDragEnd = async () => {
+    dragLastOverRef.current = null
+    if (!draggedTag) return
+    const allUpdates = principals.map((tag, i) => ({
+      user_id: userId, tag,
+      color: tabSettings.get(tag)?.color || accent,
+      position: tabSettings.get(tag)?.position ?? i,
+    }))
+    await supabase.from('collection_tab_settings').upsert(allUpdates, { onConflict: 'user_id,tag' })
+    setDraggedTag(null)
+  }
+  const renderTagPill = (tag: string, depth: number): React.ReactNode => {
+    const settings = tabSettings.get(tag)
+    const tabColor = settings?.color || accent
+    const children = getChildren(tag)
+    const hasChildren = children.length > 0
+    const isActive = fCollectionTag === tag
+    const isChildActive = children.includes(fCollectionTag)
+    const highlighted = isActive || isChildActive
+    const isDragging = draggedTag === tag
+    const forbidden = new Set([tag, ...getDescendants(tag)])
+    const candidates = collectionTags.filter(t => !forbidden.has(t))
+    return (
+      <div key={tag}>
+        <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              setFCollectionTag(isActive ? '' : tag)
+              setColorPickerTag(null)
+            }}
+            draggable={isOwner}
+            onDragStart={() => { dragLastOverRef.current = null; setDraggedTag(tag) }}
+            onDragOver={(e) => handleDragOver(e, tag)}
+            onDragEnd={handleDragEnd}
+            style={{
+              padding: depth > 0 ? '4px 9px' : '5px 10px', borderRadius: 20,
+              cursor: isOwner && depth === 0 ? 'grab' : 'pointer',
+              fontSize: depth > 0 ? 10 : 11, fontWeight: 700, transition: '0.15s',
+              opacity: isDragging ? 0.4 : 1,
+              background: highlighted ? tabColor : (dark ? '#2a2a2a' : '#f0f0f0'),
+              color: highlighted ? 'white' : (dark ? '#ccc' : '#555'),
+              border: `2px solid ${highlighted ? tabColor : resolveColor(tabColor) + '55'}`,
+              display: 'inline-flex', alignItems: 'center', gap: 5,
+            }}
+          >
+            {!highlighted && <span style={{ width: 8, height: 8, borderRadius: '50%', background: tabColor, flexShrink: 0 }} />}
+            {tag}
+            {hasChildren && depth === 0 && (
+              <span style={{ fontSize: 9, opacity: 0.8, marginLeft: 1 }}>{isChildActive ? '▾' : '▸'}</span>
+            )}
+            {isOwner && (
+              <span
+                onClick={(e) => { e.stopPropagation(); setColorPickerTag(colorPickerTag === tag ? null : tag); setRenameValue(tag); setDeleteTagConfirm(null) }}
+                title="Modifier cette collection"
+                style={{
+                  width: 16, height: 16, borderRadius: '50%', flexShrink: 0,
+                  background: highlighted ? 'rgba(255,255,255,0.3)' : tabColor,
+                  color: 'white', fontSize: 9, fontWeight: 900,
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  cursor: 'pointer', lineHeight: 1, transition: 'background 0.15s',
+                  marginLeft: 2,
+                }}
+              >✎</span>
+            )}
+          </button>
+          {colorPickerTag === tag && (
+            <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', top: '110%', left: 0, background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 10, boxShadow: dark ? '0 8px 30px rgba(0,0,0,0.5)' : '0 8px 30px rgba(0,0,0,0.18)', border: dark ? '1px solid #333' : 'none', zIndex: 100, width: 220 }}>
+              <input
+                value={renameValue}
+                onChange={e => setRenameValue(e.target.value)}
+                onKeyDown={async e => {
+                  if (e.key === 'Escape') { setColorPickerTag(null); return }
+                  if (e.key !== 'Enter') return
+                  const newName = renameValue.trim()
+                  if (!newName || newName === tag) { setColorPickerTag(null); return }
+                  await Promise.all([
+                    supabase.from('card_collections').update({ collection: newName }).eq('user_id', userId).eq('collection', tag),
+                    supabase.from('cartes_manuelles').update({ collection_tag: newName }).eq('user_id', userId).eq('collection_tag', tag),
+                    supabase.from('carte_tags').update({ collection_tag: newName }).eq('user_id', userId).eq('collection_tag', tag),
+                  ])
+                  const cur = tabSettings.get(tag)
+                  await supabase.from('collection_tab_settings').delete().eq('user_id', userId).eq('tag', tag)
+                  if (cur) await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag: newName, color: cur.color, position: cur.position, parent: cur.parent ?? null }, { onConflict: 'user_id,tag' })
+                  await supabase.from('collection_tab_settings').update({ parent: newName }).eq('user_id', userId).eq('parent', tag)
+                  setTabSettings(prev => {
+                    const m = new Map(prev)
+                    if (cur) m.set(newName, cur); m.delete(tag)
+                    for (const [k, v] of m) if (v.parent === tag) m.set(k, { ...v, parent: newName })
+                    return m
+                  })
+                  setCollectionTags(prev => [...new Set(prev.map(t => t === tag ? newName : t))].sort())
+                  setCards(prev => prev.map(c => {
+                    if (!(c.collections || []).includes(tag)) return c
+                    const cols = [...new Set((c.collections || []).map(t => t === tag ? newName : t))]
+                    return { ...c, collections: cols, collection_tag: cols[0] || '' }
+                  }))
+                  if (fCollectionTag === tag) setFCollectionTag(newName)
+                  setColorPickerTag(null)
+                }}
+                style={{ width: '100%', marginBottom: 8, padding: '5px 10px', borderRadius: 8, border: `2.5px solid ${isGradient(tabColor) ? 'transparent' : tabColor}`, fontSize: 11, fontWeight: 700, color: dark ? '#eee' : '#333', textAlign: 'center', outline: 'none', boxSizing: 'border-box', fontFamily: 'Inter, sans-serif', background: dark ? '#2a2a2a' : 'white' }}
+              />
+              <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
+                {TAB_COLORS.map(c => (
+                  <button key={c} onClick={() => { saveTabSetting(tag, { color: c }); setColorPickerTag(null) }}
+                    style={{ width: 20, height: 20, borderRadius: '50%', background: c, border: tabColor === c ? '2.5px solid #111' : '2px solid transparent', cursor: 'pointer', padding: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }} />
+                ))}
+              </div>
+              <div style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#aaa', marginBottom: 5 }}>Dégradés</div>
+              <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
+                {TAB_GRADIENTS.map(g => (
+                  <button key={g.value} onClick={() => { saveTabSetting(tag, { color: g.value }); setColorPickerTag(null) }}
+                    title={g.label}
+                    style={{ width: 36, height: 20, borderRadius: 4, background: g.value, border: tabColor === g.value ? '2.5px solid #111' : '2px solid transparent', cursor: 'pointer', padding: 0 }} />
+                ))}
+              </div>
+              <div style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#aaa', marginBottom: 5 }}>Thèmes équipe</div>
+              <div style={{ display: 'flex', gap: 3, marginBottom: 6 }}>
+                {(['NBA', 'NHL', 'MLB', 'NFL'] as const).map(s => (
+                  <button key={s} onClick={() => setTeamThemeSport(s)} style={{
+                    fontSize: 8, fontWeight: 800, padding: '2px 6px', borderRadius: 4,
+                    background: teamThemeSport === s ? '#003DA6' : (dark ? '#333' : '#eee'),
+                    color: teamThemeSport === s ? 'white' : (dark ? '#aaa' : '#555'),
+                    border: 'none', cursor: 'pointer',
+                  }}>{s}</button>
+                ))}
+              </div>
+              <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
+                {TEAM_THEMES.filter(t => t.sport === teamThemeSport).map(t => (
+                  <button key={t.label} onClick={() => { saveTabSetting(tag, { color: t.value }); setColorPickerTag(null) }}
+                    title={t.label}
+                    style={{ width: 44, height: 20, borderRadius: 4, background: t.value, border: tabColor === t.value ? '2.5px solid #111' : '2px solid transparent', cursor: 'pointer', padding: 0, position: 'relative', overflow: 'hidden' }}>
+                    <span style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6, fontWeight: 900, color: 'rgba(255,255,255,0.9)', textShadow: '0 1px 2px rgba(0,0,0,0.6)', letterSpacing: 0 }}>{t.label}</span>
+                  </button>
+                ))}
+              </div>
+              <div style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#aaa', marginBottom: 5 }}>Collection parente</div>
+              <select
+                value={parentOf(tag) || ''}
+                onChange={e => saveTabSetting(tag, { parent: e.target.value || null })}
+                style={{ width: '100%', marginBottom: 8, padding: '5px 8px', borderRadius: 8, border: dark ? '1.5px solid #444' : '1.5px solid #ddd', fontSize: 11, fontWeight: 700, color: dark ? '#eee' : '#333', background: dark ? '#2a2a2a' : 'white', outline: 'none', boxSizing: 'border-box' }}
+              >
+                <option value="">— Aucune (principale) —</option>
+                {candidates.map(p => (
+                  <option key={p} value={p}>↳ dans « {p} »</option>
+                ))}
+              </select>
+              {deleteTagConfirm === tag ? (
+                <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: 8 }}>
+                  <p style={{ fontSize: 10, color: '#e53935', fontWeight: 700, margin: '0 0 6px' }}>Supprimer "{tag}" ? Les cartes ne seront pas supprimées.</p>
+                  <div style={{ display: 'flex', gap: 6 }}>
+                    <button onClick={async () => {
+                      await supabase.from('card_collections').delete().eq('user_id', userId).eq('collection', tag)
+                      await supabase.from('cartes_manuelles').update({ collection_tag: null }).eq('user_id', userId).eq('collection_tag', tag)
+                      await supabase.from('carte_tags').update({ collection_tag: null }).eq('user_id', userId).eq('collection_tag', tag)
+                      await supabase.from('collection_tab_settings').delete().eq('user_id', userId).eq('tag', tag)
+                      setTabSettings(prev => { const m = new Map(prev); m.delete(tag); return m })
+                      setCollectionTags(prev => prev.filter(t => t !== tag))
+                      setCards(prev => prev.map(c => {
+                        if (!(c.collections || []).includes(tag)) return c
+                        const cols = (c.collections || []).filter(t => t !== tag)
+                        return { ...c, collections: cols, collection_tag: cols[0] || '' }
+                      }))
+                      if (fCollectionTag === tag) setFCollectionTag('')
+                      setColorPickerTag(null); setDeleteTagConfirm(null)
+                    }} style={{ flex: 1, background: '#e53935', color: 'white', border: 'none', borderRadius: 6, padding: '5px 0', fontSize: 10, fontWeight: 800, cursor: 'pointer' }}>
+                      Confirmer
+                    </button>
+                    <button onClick={() => setDeleteTagConfirm(null)} style={{ flex: 1, background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ccc' : '#555', border: 'none', borderRadius: 6, padding: '5px 0', fontSize: 10, fontWeight: 700, cursor: 'pointer' }}>
+                      Annuler
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button onClick={() => setDeleteTagConfirm(tag)} style={{ width: '100%', border: 'none', background: 'none', color: '#e53935', fontSize: 10, fontWeight: 700, cursor: 'pointer', paddingTop: 6, borderTop: '1px solid #f5f5f5', textAlign: 'left' }}>
+                  🗑 Supprimer cette collection
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
+  const activeParent = fCollectionTag
+    ? principals.find(p => p === fCollectionTag || getChildren(p).includes(fCollectionTag))
+    : null
+  const activeChildren = activeParent ? getChildren(activeParent) : []
+  const activeParentColor = activeParent ? resolveColor(tabSettings.get(activeParent)?.color || accent) : accent
+
   return (
     <>
       <div style={{ maxWidth: 1400, margin: '0 auto', fontFamily: 'Inter, sans-serif', padding: '0 10px', paddingBottom: (editMode && isOwner && selectedCards.size > 0) || qrMode ? 80 : 0 }}>
@@ -1328,262 +1694,43 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               </button>
             )}
           </div>
-          {collectionTags.length > 0 && (() => {
-            const resolveColor = (c: string) => isGradient(c) ? c.match(/#[0-9a-fA-F]{6}/)?.[0] || accent : c
-            const byPos = (a: string, b: string) => {
-              const pa = tabSettings.get(a)?.position ?? 999
-              const pb = tabSettings.get(b)?.position ?? 999
-              return pa !== pb ? pa - pb : a.localeCompare(b)
-            }
-            const parentOf = (t: string) => tabSettings.get(t)?.parent || null
-            const isSub = (t: string) => { const p = parentOf(t); return !!p && collectionTags.includes(p) }
-            const principals = collectionTags.filter(t => !isSub(t)).sort(byPos)
-            const getChildren = (tag: string) => collectionTags.filter(t => parentOf(t) === tag).sort(byPos)
-            const getDescendants = (tag: string): string[] => { const ch = getChildren(tag); return [...ch, ...ch.flatMap(c => getDescendants(c))] }
-            const saveTabSetting = async (tag: string, patch: { color?: string; position?: number; parent?: string | null }) => {
-              const cur = tabSettings.get(tag) || { color: accent, position: 0 }
-              const next = { ...cur, ...patch }
-              setTabSettings(prev => new Map(prev).set(tag, next))
-              await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag, color: next.color, position: next.position, parent: next.parent ?? null }, { onConflict: 'user_id,tag' })
-            }
-            const handleDragOver = (e: React.DragEvent, overTag: string) => {
-              e.preventDefault()
-              if (!draggedTag || draggedTag === overTag) return
-              if (dragLastOverRef.current === overTag) return
-              dragLastOverRef.current = overTag
-              const order = principals.map(t => t)
-              const fromIdx = order.indexOf(draggedTag)
-              const toIdx = order.indexOf(overTag)
-              if (fromIdx === -1 || toIdx === -1) return
-              order.splice(fromIdx, 1)
-              order.splice(toIdx, 0, draggedTag)
-              const newMap = new Map(tabSettings)
-              order.forEach((tag, i) => {
-                newMap.set(tag, { ...(newMap.get(tag) || { color: accent }), position: i })
-              })
-              setTabSettings(newMap)
-            }
-            const handleDragEnd = async () => {
-              dragLastOverRef.current = null
-              if (!draggedTag) return
-              const allUpdates = principals.map((tag, i) => ({
-                user_id: userId, tag,
-                color: tabSettings.get(tag)?.color || accent,
-                position: tabSettings.get(tag)?.position ?? i,
-              }))
-              await supabase.from('collection_tab_settings').upsert(allUpdates, { onConflict: 'user_id,tag' })
-              setDraggedTag(null)
-            }
-
-            const renderTagPill = (tag: string, depth: number): React.ReactNode => {
-              const settings = tabSettings.get(tag)
-              const tabColor = settings?.color || accent
-              const children = getChildren(tag)
-              const hasChildren = children.length > 0
-              const isActive = fCollectionTag === tag
-              const isChildActive = children.includes(fCollectionTag)
-              const highlighted = isActive || isChildActive
-              const isDragging = draggedTag === tag
-              return (
-                <div key={tag}>
-                  <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', gap: 3 }}>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        // Si un enfant est actif, cliquer sur le parent revient à "Tout" dans ce parent
-                        // Si le parent lui-même est actif, on déselectionne
-                        setFCollectionTag(isActive ? '' : tag)
-                        setColorPickerTag(null)
-                      }}
-                      draggable={isOwner}
-                      onDragStart={() => { dragLastOverRef.current = null; setDraggedTag(tag) }}
-                      onDragOver={(e) => handleDragOver(e, tag)}
-                      onDragEnd={handleDragEnd}
-                      style={{
-                        padding: depth > 0 ? '4px 9px' : '5px 10px', borderRadius: 20,
-                        cursor: isOwner && depth === 0 ? 'grab' : 'pointer',
-                        fontSize: depth > 0 ? 10 : 11, fontWeight: 700, transition: '0.15s',
-                        opacity: isDragging ? 0.4 : 1,
-                        background: highlighted ? tabColor : (dark ? '#2a2a2a' : '#f0f0f0'),
-                        color: highlighted ? 'white' : (dark ? '#ccc' : '#555'),
-                        border: `2px solid ${highlighted ? tabColor : resolveColor(tabColor) + '55'}`,
-                        display: 'inline-flex', alignItems: 'center', gap: 5,
-                      }}
-                    >
-                      {!highlighted && <span style={{ width: 8, height: 8, borderRadius: '50%', background: tabColor, flexShrink: 0 }} />}
-                      {tag}
-                      {hasChildren && depth === 0 && (
-                        <span style={{ fontSize: 9, opacity: 0.8, marginLeft: 1 }}>{isChildActive ? '▾' : '▸'}</span>
-                      )}
-                      {isOwner && (
-                        <span
-                          onClick={(e) => { e.stopPropagation(); setColorPickerTag(colorPickerTag === tag ? null : tag); setRenameValue(tag); setDeleteTagConfirm(null) }}
-                          title="Modifier cette collection"
-                          style={{
-                            width: 16, height: 16, borderRadius: '50%', flexShrink: 0,
-                            background: highlighted ? 'rgba(255,255,255,0.3)' : tabColor,
-                            color: 'white', fontSize: 9, fontWeight: 900,
-                            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                            cursor: 'pointer', lineHeight: 1, transition: 'background 0.15s',
-                            marginLeft: 2,
-                          }}
-                        >✎</span>
-                      )}
-                    </button>
-                    {colorPickerTag === tag && (
-                      <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', top: '110%', left: 0, background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 10, boxShadow: dark ? '0 8px 30px rgba(0,0,0,0.5)' : '0 8px 30px rgba(0,0,0,0.18)', border: dark ? '1px solid #333' : 'none', zIndex: 100, width: 220 }}>
-                        <input
-                          value={renameValue}
-                          onChange={e => setRenameValue(e.target.value)}
-                          onKeyDown={async e => {
-                            if (e.key === 'Escape') { setColorPickerTag(null); return }
-                            if (e.key !== 'Enter') return
-                            const newName = renameValue.trim()
-                            if (!newName || newName === tag) { setColorPickerTag(null); return }
-                            await Promise.all([
-                              supabase.from('card_collections').update({ collection: newName }).eq('user_id', userId).eq('collection', tag),
-                              supabase.from('cartes_manuelles').update({ collection_tag: newName }).eq('user_id', userId).eq('collection_tag', tag),
-                              supabase.from('carte_tags').update({ collection_tag: newName }).eq('user_id', userId).eq('collection_tag', tag),
-                            ])
-                            const cur = tabSettings.get(tag)
-                            await supabase.from('collection_tab_settings').delete().eq('user_id', userId).eq('tag', tag)
-                            if (cur) await supabase.from('collection_tab_settings').upsert({ user_id: userId, tag: newName, color: cur.color, position: cur.position, parent: cur.parent ?? null }, { onConflict: 'user_id,tag' })
-                            await supabase.from('collection_tab_settings').update({ parent: newName }).eq('user_id', userId).eq('parent', tag)
-                            setTabSettings(prev => {
-                              const m = new Map(prev)
-                              if (cur) m.set(newName, cur); m.delete(tag)
-                              for (const [k, v] of m) if (v.parent === tag) m.set(k, { ...v, parent: newName })
-                              return m
-                            })
-                            setCollectionTags(prev => [...new Set(prev.map(t => t === tag ? newName : t))].sort())
-                            setCards(prev => prev.map(c => {
-                              if (!(c.collections || []).includes(tag)) return c
-                              const cols = [...new Set((c.collections || []).map(t => t === tag ? newName : t))]
-                              return { ...c, collections: cols, collection_tag: cols[0] || '' }
-                            }))
-                            if (fCollectionTag === tag) setFCollectionTag(newName)
-                            setColorPickerTag(null)
-                          }}
-                          style={{ width: '100%', marginBottom: 8, padding: '5px 10px', borderRadius: 8, border: `2.5px solid ${isGradient(tabColor) ? 'transparent' : tabColor}`, fontSize: 11, fontWeight: 700, color: dark ? '#eee' : '#333', textAlign: 'center', outline: 'none', boxSizing: 'border-box', fontFamily: 'Inter, sans-serif', background: dark ? '#2a2a2a' : 'white' }}
-                        />
-                        <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
-                          {TAB_COLORS.map(c => (
-                            <button key={c} onClick={() => { saveTabSetting(tag, { color: c }); setColorPickerTag(null) }}
-                              style={{ width: 20, height: 20, borderRadius: '50%', background: c, border: tabColor === c ? '2.5px solid #111' : '2px solid transparent', cursor: 'pointer', padding: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }} />
-                          ))}
-                        </div>
-                        <div style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#aaa', marginBottom: 5 }}>Dégradés</div>
-                        <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
-                          {TAB_GRADIENTS.map(g => (
-                            <button key={g.value} onClick={() => { saveTabSetting(tag, { color: g.value }); setColorPickerTag(null) }}
-                              title={g.label}
-                              style={{ width: 36, height: 20, borderRadius: 4, background: g.value, border: tabColor === g.value ? '2.5px solid #111' : '2px solid transparent', cursor: 'pointer', padding: 0 }} />
-                          ))}
-                        </div>
-                        {(() => {
-                          const forbidden = new Set([tag, ...getDescendants(tag)])
-                          const candidates = collectionTags.filter(t => !forbidden.has(t))
-                          return (
-                            <>
-                              <div style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#aaa', marginBottom: 5 }}>Collection parente</div>
-                              <select
-                                value={parentOf(tag) || ''}
-                                onChange={e => saveTabSetting(tag, { parent: e.target.value || null })}
-                                style={{ width: '100%', marginBottom: 8, padding: '5px 8px', borderRadius: 8, border: dark ? '1.5px solid #444' : '1.5px solid #ddd', fontSize: 11, fontWeight: 700, color: dark ? '#eee' : '#333', background: dark ? '#2a2a2a' : 'white', outline: 'none', boxSizing: 'border-box' }}
-                              >
-                                <option value="">— Aucune (principale) —</option>
-                                {candidates.map(p => (
-                                  <option key={p} value={p}>↳ dans « {p} »</option>
-                                ))}
-                              </select>
-                            </>
-                          )
-                        })()}
-                        {deleteTagConfirm === tag ? (
-                          <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: 8 }}>
-                            <p style={{ fontSize: 10, color: '#e53935', fontWeight: 700, margin: '0 0 6px' }}>Supprimer "{tag}" ? Les cartes ne seront pas supprimées.</p>
-                            <div style={{ display: 'flex', gap: 6 }}>
-                              <button onClick={async () => {
-                                await supabase.from('card_collections').delete().eq('user_id', userId).eq('collection', tag)
-                                await supabase.from('cartes_manuelles').update({ collection_tag: null }).eq('user_id', userId).eq('collection_tag', tag)
-                                await supabase.from('carte_tags').update({ collection_tag: null }).eq('user_id', userId).eq('collection_tag', tag)
-                                await supabase.from('collection_tab_settings').delete().eq('user_id', userId).eq('tag', tag)
-                                setTabSettings(prev => { const m = new Map(prev); m.delete(tag); return m })
-                                setCollectionTags(prev => prev.filter(t => t !== tag))
-                                setCards(prev => prev.map(c => {
-                                  if (!(c.collections || []).includes(tag)) return c
-                                  const cols = (c.collections || []).filter(t => t !== tag)
-                                  return { ...c, collections: cols, collection_tag: cols[0] || '' }
-                                }))
-                                if (fCollectionTag === tag) setFCollectionTag('')
-                                setColorPickerTag(null); setDeleteTagConfirm(null)
-                              }} style={{ flex: 1, background: '#e53935', color: 'white', border: 'none', borderRadius: 6, padding: '5px 0', fontSize: 10, fontWeight: 800, cursor: 'pointer' }}>
-                                Confirmer
-                              </button>
-                              <button onClick={() => setDeleteTagConfirm(null)} style={{ flex: 1, background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ccc' : '#555', border: 'none', borderRadius: 6, padding: '5px 0', fontSize: 10, fontWeight: 700, cursor: 'pointer' }}>
-                                Annuler
-                              </button>
-                            </div>
-                          </div>
-                        ) : (
-                          <button onClick={() => setDeleteTagConfirm(tag)} style={{ width: '100%', border: 'none', background: 'none', color: '#e53935', fontSize: 10, fontWeight: 700, cursor: 'pointer', paddingTop: 6, borderTop: '1px solid #f5f5f5', textAlign: 'left' }}>
-                            🗑 Supprimer cette collection
-                          </button>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )
-            }
-
-            // Trouver quel parent est actif (directement ou via un enfant actif)
-            const activeParent = fCollectionTag
-              ? principals.find(p => p === fCollectionTag || getChildren(p).includes(fCollectionTag))
-              : null
-            const activeChildren = activeParent ? getChildren(activeParent) : []
-            const activeParentColor = activeParent ? resolveColor(tabSettings.get(activeParent)?.color || accent) : accent
-
-            return (
-              <div style={{ marginTop: 8 }} onClick={() => colorPickerTag && setColorPickerTag(null)}>
-                <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 5 }}>
-                  {lang === 'fr' ? 'Ma collection' : 'My collection'}
-                  {isOwner && <span style={{ fontSize: 8, color: '#bbb', marginLeft: 6, fontWeight: 600 }}>
-                    {lang === 'fr' ? '· glisser pour réordonner' : '· drag to reorder'}
-                  </span>}
-                </label>
-                {/* Ligne principale : Tout + parents */}
-                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
-                  <button onClick={() => setFCollectionTag('')} style={{
-                    padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer',
-                    fontSize: 11, fontWeight: 700,
-                    background: !fCollectionTag ? accent : (dark ? '#2a2a2a' : '#f0f0f0'),
-                    color: !fCollectionTag ? 'white' : (dark ? '#ccc' : '#555'),
-                  }}>
+          {collectionTags.length > 0 && (
+            <div style={{ marginTop: 8 }} onClick={() => colorPickerTag && setColorPickerTag(null)}>
+              <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 5 }}>
+                {lang === 'fr' ? 'Ma collection' : 'My collection'}
+                {isOwner && <span style={{ fontSize: 8, color: '#bbb', marginLeft: 6, fontWeight: 600 }}>
+                  {lang === 'fr' ? '· glisser pour réordonner' : '· drag to reorder'}
+                </span>}
+              </label>
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+                <button onClick={() => setFCollectionTag('')} style={{
+                  padding: '5px 12px', border: 'none', borderRadius: 20, cursor: 'pointer',
+                  fontSize: 11, fontWeight: 700,
+                  background: !fCollectionTag ? accent : (dark ? '#2a2a2a' : '#f0f0f0'),
+                  color: !fCollectionTag ? 'white' : (dark ? '#ccc' : '#555'),
+                }}>
+                  {lang === 'fr' ? 'Tout' : 'All'}
+                </button>
+                {principals.map(tag => renderTagPill(tag, 0))}
+              </div>
+              {activeChildren.length > 0 && (
+                <div style={{ marginTop: 6, paddingLeft: 10, borderLeft: `3px solid ${activeParentColor}`, display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+                  <button
+                    onClick={() => setFCollectionTag(activeParent!)}
+                    style={{
+                      padding: '3px 9px', border: 'none', borderRadius: 20, cursor: 'pointer',
+                      fontSize: 10, fontWeight: 700,
+                      background: fCollectionTag === activeParent ? activeParentColor : (dark ? '#2a2a2a' : '#f0f0f0'),
+                      color: fCollectionTag === activeParent ? 'white' : (dark ? '#ccc' : '#555'),
+                    }}
+                  >
                     {lang === 'fr' ? 'Tout' : 'All'}
                   </button>
-                  {principals.map(tag => renderTagPill(tag, 0))}
+                  {activeChildren.map(child => renderTagPill(child, 1))}
                 </div>
-                {/* Sous-ligne : enfants du parent actif */}
-                {activeChildren.length > 0 && (
-                  <div style={{ marginTop: 6, paddingLeft: 10, borderLeft: `3px solid ${activeParentColor}`, display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
-                    <button
-                      onClick={() => setFCollectionTag(activeParent!)}
-                      style={{
-                        padding: '3px 9px', border: 'none', borderRadius: 20, cursor: 'pointer',
-                        fontSize: 10, fontWeight: 700,
-                        background: fCollectionTag === activeParent ? activeParentColor : (dark ? '#2a2a2a' : '#f0f0f0'),
-                        color: fCollectionTag === activeParent ? 'white' : (dark ? '#ccc' : '#555'),
-                      }}
-                    >
-                      {lang === 'fr' ? 'Tout' : 'All'}
-                    </button>
-                    {activeChildren.map(child => renderTagPill(child, 1))}
-                  </div>
-                )}
-              </div>
-            )
-          })()}
+              )}
+            </div>
+          )}
         </div>
 
         {!loaded && (
