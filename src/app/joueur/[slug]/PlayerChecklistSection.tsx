@@ -51,22 +51,42 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
   const loadData = useCallback(async () => {
     setLoading(true)
     try {
-      // Fetch all entries for this player across all sets (paginated)
-      const allEntries: EntryWithSet[] = []
+      // 1. Fetch all raw entries for this player (paginated, no join)
+      const rawEntries: { id: number; set_id: number; card_number: string | null; variation: string | null; is_rc: boolean }[] = []
       const PAGE = 1000
       for (let from = 0; ; from += PAGE) {
         const { data } = await supabase
           .from('card_set_entries')
-          .select('id, set_id, card_number, variation, is_rc, card_sets(id, name, year, brand, sport)')
+          .select('id, set_id, card_number, variation, is_rc')
           .ilike('player_name', `${firstName}%`)
           .ilike('player_name', `%${lastName}%`)
           .order('set_id')
           .order('card_number')
           .range(from, from + PAGE - 1)
         if (!data || data.length === 0) break
-        allEntries.push(...(data as any[]))
+        rawEntries.push(...data)
         if (data.length < PAGE) break
       }
+
+      // 2. Fetch set metadata for the unique set IDs found
+      const uniqueSetIds = [...new Set(rawEntries.map(e => e.set_id))]
+      const setsById = new Map<number, { id: number; name: string; year: number | null; brand: string | null; sport: string }>()
+      if (uniqueSetIds.length > 0) {
+        const CHUNK = 200
+        for (let i = 0; i < uniqueSetIds.length; i += CHUNK) {
+          const { data: setsData } = await supabase
+            .from('card_sets')
+            .select('id, name, year, brand, sport')
+            .in('id', uniqueSetIds.slice(i, i + CHUNK))
+          if (setsData) for (const s of setsData) setsById.set(s.id, s)
+        }
+      }
+
+      // 3. Combine
+      const allEntries: EntryWithSet[] = rawEntries.map(e => ({
+        ...e,
+        card_sets: setsById.get(e.set_id) ?? null,
+      }))
       setEntries(allEntries)
 
       // Open the first set by default
