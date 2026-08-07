@@ -44,7 +44,35 @@ function last7FromSeries(series: Array<{ day: string; count: number }>): Array<{
   })
 }
 
-// Pages vues depuis Vercel Analytics API
+// Résout VERCEL_TEAM_SLUG → teamId et VERCEL_PROJECT_NAME → projectId
+async function resolveVercelIds(token: string, teamSlug: string, projectName: string) {
+  let teamId = teamSlug
+  let projectId = projectName
+  try {
+    const r = await fetch(`https://api.vercel.com/v2/teams?slug=${encodeURIComponent(teamSlug)}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      signal: AbortSignal.timeout(5000),
+    })
+    if (r.ok) {
+      const j = await r.json()
+      const id = j.teams?.[0]?.id ?? j.id
+      if (id) teamId = id
+    }
+  } catch { /* keep slug */ }
+  try {
+    const r = await fetch(`https://api.vercel.com/v9/projects/${encodeURIComponent(projectName)}?teamId=${encodeURIComponent(teamId)}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      signal: AbortSignal.timeout(5000),
+    })
+    if (r.ok) {
+      const j = await r.json()
+      if (j.id) projectId = j.id
+    }
+  } catch { /* keep name */ }
+  return { teamId, projectId }
+}
+
+// Pages vues depuis Vercel Analytics API (public API v1)
 // Nécessite VERCEL_TOKEN + VERCEL_TEAM_SLUG + VERCEL_PROJECT_NAME en env vars
 async function getVercelPageviews(d7Start: string): Promise<Record<string, number> | null> {
   const token   = process.env.VERCEL_TOKEN
@@ -53,15 +81,19 @@ async function getVercelPageviews(d7Start: string): Promise<Record<string, numbe
   if (!token || !team || !project) return null
 
   try {
+    const { teamId, projectId } = await resolveVercelIds(token, team, project)
     const from = new Date(d7Start + 'T00:00:00.000Z').getTime()
     const to   = Date.now()
-    const url  = `https://vercel.com/api/web/analytics/timeseries?teamId=${team}&projectId=${project}&from=${from}&to=${to}&granularity=1d&event=pageview`
+    const url  = `https://api.vercel.com/v1/web-analytics/timeseries?teamId=${encodeURIComponent(teamId)}&projectId=${encodeURIComponent(projectId)}&from=${from}&to=${to}&granularity=day&event=pageview`
 
     const res = await fetch(url, {
       headers: { Authorization: `Bearer ${token}` },
-      signal: AbortSignal.timeout(5000),
+      signal: AbortSignal.timeout(8000),
     })
-    if (!res.ok) return null
+    if (!res.ok) {
+      console.error('[stats] Vercel timeseries error', res.status, await res.text().catch(() => ''))
+      return null
+    }
 
     const json = await res.json()
     const result: Record<string, number> = {}
@@ -70,7 +102,8 @@ async function getVercelPageviews(d7Start: string): Promise<Record<string, numbe
       if (day) result[day] = (result[day] || 0) + (point.total ?? 0)
     }
     return result
-  } catch {
+  } catch (e) {
+    console.error('[stats] getVercelPageviews error', e)
     return null
   }
 }

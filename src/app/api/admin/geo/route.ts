@@ -49,7 +49,7 @@ async function fetchVercelCountries(days: number): Promise<{ code: string; visit
   try {
     const from = new Date(Date.now() - days * 86400000).getTime()
     const to   = Date.now()
-    const url  = `https://vercel.com/api/web/analytics/breakdown?teamId=${teamId}&projectId=${projectId}&from=${from}&to=${to}&event=pageview&groupBy=country&limit=100`
+    const url  = `https://api.vercel.com/v1/web-analytics/breakdown?teamId=${encodeURIComponent(teamId)}&projectId=${encodeURIComponent(projectId)}&from=${from}&to=${to}&event=pageview&groupBy=country&limit=100`
 
     const res = await fetch(url, {
       headers: { Authorization: `Bearer ${token}` },
