@@ -19,15 +19,19 @@ interface FeaturedGallery {
 }
 
 async function fetchPepites(): Promise<Card[]> {
-  const [{ data: manuelles }, { data: profiles }] = await Promise.all([
-    supabase
-      .from('cartes_manuelles')
-      .select('image_recto, nom, variation, annee, marque, rc, auto, patch, num, user_id, is_horizontal')
-      .not('image_recto', 'is', null)
-      .order('created_at', { ascending: false })
-      .limit(200),
-    supabase.from('profiles').select('id, display_name'),
-  ])
+  const { data: manuelles } = await supabase
+    .from('cartes_manuelles')
+    .select('image_recto, nom, variation, annee, marque, rc, auto, patch, num, user_id, is_horizontal')
+    .not('image_recto', 'is', null)
+    .order('created_at', { ascending: false })
+    .limit(200)
+
+  if (!manuelles?.length) return []
+
+  // Scope profiles to only the user_ids present in the 200 cards — évite de charger tous les profils
+  const userIds = [...new Set(manuelles.map(m => m.user_id))]
+  const { data: profiles } = await supabase
+    .from('profiles').select('id, display_name').in('id', userIds)
 
   const profileMap = new Map((profiles || []).map(p => [p.id, p.display_name]))
 
@@ -122,34 +126,14 @@ async function fetchPodium() {
     }
   } catch {}
 
-  // Source 2 : cartes_manuelles pour les users absents de monthly_additions
-  // (cards ajoutées avant le déploiement du système temps-réel, ou sans synchro)
-  // On pagine par 1000 pour éviter la troncature sur les grosses collections
-  let manualPage = 0
-  const manualCounts = new Map<string, { displayName: string; avatarUrl: string | null; count: number }>()
-  while (true) {
-    const { data: manual } = await supabase
-      .from('cartes_manuelles')
-      .select('user_id, profiles(display_name, avatar_url)')
-      .gte('created_at', startOfMonth)
-      .range(manualPage * 1000, manualPage * 1000 + 999)
-    if (!manual || manual.length === 0) break
-    for (const row of manual as any[]) {
-      if (!row.profiles?.display_name) continue
-      const e = manualCounts.get(row.user_id)
-      if (!e) manualCounts.set(row.user_id, { displayName: row.profiles.display_name, avatarUrl: row.profiles.avatar_url || null, count: 1 })
-      else e.count++
-    }
-    if (manual.length < 1000) break
-    manualPage++
-  }
-
-  // Fusionner : monthly_additions est prioritaire (inclut CSV + manuelles syncées).
-  // Pour les users non encore dans monthly_additions ce mois, utiliser cartes_manuelles.
-  for (const [uid, v] of manualCounts) {
-    const existing = counts.get(uid)
-    if (!existing) counts.set(uid, v)
-    else if (v.count > existing.count) existing.count = v.count
+  // Source 2 : cartes_manuelles agrégées côté DB en une seule requête (remplace la boucle while paginée)
+  const { data: fallback } = await supabase
+    .rpc('get_monthly_card_counts', { p_start: startOfMonth })
+  for (const row of (fallback || []) as any[]) {
+    if (!row.display_name) continue
+    const existing = counts.get(row.user_id)
+    if (!existing) counts.set(row.user_id, { displayName: row.display_name, avatarUrl: row.avatar_url || null, count: Number(row.count) })
+    else if (Number(row.count) > existing.count) existing.count = Number(row.count)
   }
 
   return [...counts.entries()]
