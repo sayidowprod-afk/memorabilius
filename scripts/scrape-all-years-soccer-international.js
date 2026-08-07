@@ -192,10 +192,8 @@ async function fetchTeamCards(page, sid, teamId, teamName) {
 }
 
 function importYear(jsonFile) {
-  const result = spawnSync('powershell', [
-    '-NoProfile', '-NonInteractive', '-Command',
-    `Start-Process -Wait -NoNewWindow -FilePath node -ArgumentList '${IMPORT_SCRIPT}','${jsonFile}'`
-  ], { stdio: 'inherit' })
+  console.log()
+  const result = spawnSync('node', [IMPORT_SCRIPT, jsonFile], { stdio: 'inherit' })
   return result.status === 0
 }
 

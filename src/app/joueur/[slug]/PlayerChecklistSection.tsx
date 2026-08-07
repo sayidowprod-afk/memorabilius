@@ -30,8 +30,7 @@ type Filter = 'all' | 'owned' | 'missing'
 
 export default function PlayerChecklistSection({ playerName }: { playerName: string }) {
   const [userId, setUserId] = useState<string | null | undefined>(undefined)
-  const [expanded, setExpanded] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [entries, setEntries] = useState<EntryWithSet[]>([])
   const [completions, setCompletions] = useState<Map<number, CompletionRow>>(new Map())
   const [saving, setSaving] = useState<number | null>(null)
@@ -48,53 +47,21 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
     })
   }, [])
 
-  const loadData = useCallback(async () => {
+  const loadData = useCallback(async (uid: string | null) => {
     setLoading(true)
     try {
-      // 1. Fetch all raw entries for this player (paginated, no join)
-      const rawEntries: { id: number; set_id: number; card_number: string | null; variation: string | null; is_rc: boolean }[] = []
-      const PAGE = 1000
-      for (let from = 0; ; from += PAGE) {
-        const { data } = await supabase
-          .from('card_set_entries')
-          .select('id, set_id, card_number, variation, is_rc')
-          .ilike('player_name', `${firstName}%`)
-          .ilike('player_name', `%${lastName}%`)
-          .order('set_id')
-          .order('card_number')
-          .range(from, from + PAGE - 1)
-        if (!data || data.length === 0) break
-        rawEntries.push(...data)
-        if (data.length < PAGE) break
-      }
-
-      // 2. Fetch set metadata for the unique set IDs found
-      const uniqueSetIds = [...new Set(rawEntries.map(e => e.set_id))]
-      const setsById = new Map<number, { id: number; name: string; year: number | null; brand: string | null; sport: string }>()
-      if (uniqueSetIds.length > 0) {
-        const CHUNK = 200
-        for (let i = 0; i < uniqueSetIds.length; i += CHUNK) {
-          const { data: setsData } = await supabase
-            .from('card_sets')
-            .select('id, name, year, brand, sport')
-            .in('id', uniqueSetIds.slice(i, i + CHUNK))
-          if (setsData) for (const s of setsData) setsById.set(s.id, s)
-        }
-      }
-
-      // 3. Combine
-      const allEntries: EntryWithSet[] = rawEntries.map(e => ({
-        ...e,
-        card_sets: setsById.get(e.set_id) ?? null,
-      }))
+      // API route uses service role to bypass RLS on card_set_entries
+      const res = await fetch(`/api/player-checklist?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}`)
+      if (!res.ok) throw new Error('fetch failed')
+      const { entries: allEntries } = await res.json() as { entries: EntryWithSet[] }
       setEntries(allEntries)
 
-      // Open the first set by default
+      // Open first set by default
       const firstSetId = allEntries[0]?.set_id
       if (firstSetId) setOpenSets(new Set([firstSetId]))
 
-      // Fetch completions for logged-in user
-      if (userId && allEntries.length > 0) {
+      // Fetch owned cards for logged-in user
+      if (uid && allEntries.length > 0) {
         const entryIds = allEntries.map(e => e.id)
         const CHUNK = 500
         const allCompletions: { id: string; entry_id: number; manually_checked: boolean }[] = []
@@ -102,7 +69,7 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
           const { data: chunk } = await supabase
             .from('user_set_completion')
             .select('id, entry_id, manually_checked')
-            .eq('user_id', userId)
+            .eq('user_id', uid)
             .in('entry_id', entryIds.slice(i, i + CHUNK))
           if (chunk) allCompletions.push(...chunk)
         }
@@ -110,15 +77,18 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
         for (const c of allCompletions) map.set(c.entry_id, { id: c.id, manually_checked: c.manually_checked })
         setCompletions(map)
       }
+    } catch {
+      // silently fail — section will show empty state
     } finally {
       setLoading(false)
     }
-  }, [userId, firstName, lastName])
+  }, [firstName, lastName])
 
-  function handleExpand() {
-    setExpanded(true)
-    if (entries.length === 0) loadData()
-  }
+  // Auto-load once auth state is known
+  useEffect(() => {
+    if (userId === undefined) return
+    loadData(userId)
+  }, [userId, loadData])
 
   async function toggleEntry(entryId: number) {
     if (!userId) return
@@ -168,42 +138,25 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
   const totalOwned = completions.size
   const totalCards = entries.length
 
-  // Section hidden until expanded
-  if (userId === undefined) return null // still loading auth
+  if (userId === undefined) return null
 
   return (
     <section style={{ marginTop: 48 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
         <div>
           <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--jp-text)', margin: 0 }}>
-            Checklist
+            Checklist TCDB
           </h2>
-          {expanded && totalCards > 0 && (
+          {!loading && totalCards > 0 && (
             <p style={{ fontSize: 13, color: 'var(--jp-muted)', margin: '4px 0 0', fontWeight: 600 }}>
-              {totalOwned} / {totalCards} carte{totalCards > 1 ? 's' : ''} dans ta collection
+              {userId
+                ? `${totalOwned} / ${totalCards} carte${totalCards > 1 ? 's' : ''} dans ta collection`
+                : `${totalCards} carte${totalCards > 1 ? 's' : ''} répertoriées`}
             </p>
           )}
         </div>
 
-        {!expanded && (
-          <button
-            onClick={handleExpand}
-            style={{
-              background: 'var(--jp-accent)',
-              color: 'white',
-              border: 'none',
-              borderRadius: 8,
-              padding: '8px 18px',
-              fontSize: 13,
-              fontWeight: 800,
-              cursor: 'pointer',
-            }}
-          >
-            Afficher la checklist
-          </button>
-        )}
-
-        {expanded && !loading && totalCards > 0 && (
+        {!loading && totalCards > 0 && (
           <div style={{ display: 'flex', gap: 4 }}>
             {(['all', 'owned', 'missing'] as Filter[]).map(f => (
               <button
@@ -227,32 +180,28 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
         )}
       </div>
 
-      {!expanded && !userId && (
-        <div style={{ textAlign: 'center', padding: '24px 16px', background: 'var(--jp-surface)', borderRadius: 12, border: '1.5px solid var(--jp-border)' }}>
-          <p style={{ color: 'var(--jp-muted)', fontSize: 14, margin: '0 0 12px' }}>
-            Connecte-toi pour suivre ta collection carte par carte.
-          </p>
-          <Link href="/connexion" style={{ color: 'var(--jp-accent)', fontWeight: 800, fontSize: 14, textDecoration: 'none' }}>
-            Se connecter →
-          </Link>
-        </div>
-      )}
-
-      {expanded && loading && (
+      {loading && (
         <div style={{ textAlign: 'center', padding: 40, color: 'var(--jp-muted)', fontSize: 14 }}>
           Chargement de la checklist…
         </div>
       )}
 
-      {expanded && !loading && totalCards === 0 && (
+      {!loading && totalCards === 0 && (
         <div style={{ textAlign: 'center', padding: 32, color: 'var(--jp-muted)', fontSize: 14, background: 'var(--jp-surface)', borderRadius: 12, border: '1.5px solid var(--jp-border)' }}>
           Aucune entrée TCDB trouvée pour ce joueur.
         </div>
       )}
 
-      {expanded && !loading && totalCards > 0 && (
+      {!loading && !userId && totalCards > 0 && (
+        <div style={{ marginBottom: 12, padding: '10px 16px', background: 'var(--jp-surface)', borderRadius: 10, border: '1.5px solid var(--jp-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ color: 'var(--jp-muted)', fontSize: 13 }}>Connecte-toi pour cocher tes cartes.</span>
+          <Link href="/connexion" style={{ color: 'var(--jp-accent)', fontWeight: 800, fontSize: 13, textDecoration: 'none' }}>Se connecter →</Link>
+        </div>
+      )}
+
+      {!loading && totalCards > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {/* Progress bar */}
+          {/* Progress bar (only if logged in) */}
           {userId && (
             <div style={{ marginBottom: 12 }}>
               <div style={{ height: 6, background: 'var(--jp-border)', borderRadius: 3, overflow: 'hidden' }}>
@@ -271,7 +220,6 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
             const ownedInSet = group.entries.filter(e => completions.has(e.id)).length
             const isOpen = openSets.has(group.setId)
 
-            // Apply filter at set level to know if we should show it
             const visibleEntries = group.entries.filter(e => {
               const owned = completions.has(e.id)
               if (filter === 'owned') return owned
@@ -282,21 +230,9 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
 
             return (
               <div key={group.setId} style={{ background: 'var(--jp-surface)', borderRadius: 10, border: '1.5px solid var(--jp-border)', overflow: 'hidden' }}>
-                {/* Set header */}
                 <button
                   onClick={() => toggleSet(group.setId)}
-                  style={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    padding: '12px 16px',
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    textAlign: 'left',
-                    gap: 8,
-                  }}
+                  style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', gap: 8 }}
                 >
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontWeight: 800, fontSize: 13, color: 'var(--jp-text)', lineHeight: 1.3 }}>
@@ -309,12 +245,10 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
                     {userId && (
                       <span style={{
-                        fontSize: 11,
-                        fontWeight: 800,
+                        fontSize: 11, fontWeight: 800,
                         color: ownedInSet === group.entries.length ? '#27ae60' : 'var(--jp-muted)',
                         background: ownedInSet === group.entries.length ? 'rgba(39,174,96,0.12)' : 'var(--jp-surface2)',
-                        padding: '3px 9px',
-                        borderRadius: 12,
+                        padding: '3px 9px', borderRadius: 12,
                       }}>
                         {ownedInSet}/{group.entries.length}
                       </span>
@@ -330,7 +264,6 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
                   </div>
                 </button>
 
-                {/* Entries list */}
                 {isOpen && (
                   <div style={{ borderTop: '1px solid var(--jp-border)' }}>
                     {visibleEntries.map(entry => {
@@ -341,54 +274,32 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
                           key={entry.id}
                           onClick={() => userId && toggleEntry(entry.id)}
                           style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: 10,
-                            padding: '8px 16px',
-                            borderBottom: '1px solid var(--jp-border)',
+                            display: 'flex', alignItems: 'center', gap: 10,
+                            padding: '8px 16px', borderBottom: '1px solid var(--jp-border)',
                             cursor: userId ? 'pointer' : 'default',
                             background: owned ? 'rgba(39,174,96,0.06)' : 'transparent',
                             transition: 'background 0.1s',
                           }}
                         >
-                          {/* Checkbox */}
                           {userId && (
                             <div style={{
-                              width: 18,
-                              height: 18,
-                              borderRadius: 4,
+                              width: 18, height: 18, borderRadius: 4, flexShrink: 0,
                               border: owned ? '2px solid #27ae60' : '2px solid var(--jp-border)',
                               background: owned ? '#27ae60' : 'transparent',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              flexShrink: 0,
-                              transition: 'all 0.1s',
-                              opacity: isSaving ? 0.5 : 1,
+                              display: 'flex', alignItems: 'center', justifyContent: 'center',
+                              transition: 'all 0.1s', opacity: isSaving ? 0.5 : 1,
                             }}>
                               {owned && <span style={{ color: 'white', fontSize: 11, lineHeight: 1 }}>✓</span>}
                             </div>
                           )}
-
-                          {/* Card number */}
                           {entry.card_number && (
-                            <span style={{
-                              fontSize: 11,
-                              fontWeight: 800,
-                              color: 'var(--jp-muted)',
-                              minWidth: 36,
-                              fontVariantNumeric: 'tabular-nums',
-                            }}>
+                            <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--jp-muted)', minWidth: 36, fontVariantNumeric: 'tabular-nums' }}>
                               #{entry.card_number}
                             </span>
                           )}
-
-                          {/* Variation */}
                           <span style={{ fontSize: 13, color: owned ? 'var(--jp-text)' : 'var(--jp-text2)', flex: 1, fontWeight: owned ? 700 : 400 }}>
                             {entry.variation || 'Base'}
                           </span>
-
-                          {/* Badges */}
                           {entry.is_rc && (
                             <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 800, flexShrink: 0 }}>RC</span>
                           )}

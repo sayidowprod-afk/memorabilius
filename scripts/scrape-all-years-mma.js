@@ -132,7 +132,7 @@ async function fetchTeamCards(page, sid, teamId, teamName) {
 }
 
 function importYear(jsonFile) {
-  return spawnSync('powershell',['-NoProfile','-NonInteractive','-Command',`Start-Process -Wait -NoNewWindow -FilePath node -ArgumentList '${IMPORT_SCRIPT}','${jsonFile}'`],{stdio:'inherit'}).status === 0
+  return spawnSync('node', [IMPORT_SCRIPT, jsonFile], { stdio: 'inherit' }).status === 0
 }
 
 async function scrapeSet(page, set, cp) {
