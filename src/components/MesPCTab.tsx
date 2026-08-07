@@ -29,20 +29,16 @@ const TYPE_LABEL: Record<PCType, string> = { player: 'Joueur', team: 'Équipe', 
 const TYPE_COLOR: Record<PCType, string> = { player: '#3b82f6', team: '#10b981', collection: '#f59e0b' }
 
 function getBestCard(pool: Card[]): Card | undefined {
-  if (!pool.length) return undefined
+  const withImg = pool.filter(c => c.f)
+  if (!withImg.length) return pool[0]
   const score = (c: Card) => {
     let s = 0
-    if (c.f) s += 5
-    if (c.auto) s += 100
-    if (c.patch) s += 50
-    if (c.rc) s += 20
+    if (c.auto) s += 100000
     const n = c.num ? parseInt(c.num) : null
-    if (n && n <= 1) s += 200
-    else if (n && n <= 5) s += 80
-    else if (n && n <= 25) s += 40
+    if (n && n > 0) s += 10000 - Math.min(n, 9999)
     return s
   }
-  return [...pool].sort((a, b) => score(b) - score(a))[0]
+  return [...withImg].sort((a, b) => score(b) - score(a))[0]
 }
 
 // ── Inline checklist — explicit colors, no CSS vars ───────────────────────────
@@ -182,10 +178,10 @@ function PlayerChecklist({ pc, userId, bg, bg2, border, text, muted, accent }: {
               })
               if (filter !== 'all' && visibleEntries.length === 0) return null
               return (
-                <div key={group.setId} style={{ background: bg, borderRadius: 8, border: `1.5px solid ${border}`, overflow: 'hidden' }}>
-                  <button onClick={() => toggleSet(group.setId)} style={{
+                <div key={group.setId} style={{ background: bg2, borderRadius: 8, border: `1.5px solid ${border}`, overflow: 'hidden' }}>
+                  <div onClick={() => toggleSet(group.setId)} style={{
                     width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    padding: '8px 12px', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left', gap: 8,
+                    padding: '8px 12px', background: 'transparent', cursor: 'pointer', gap: 8,
                   }}>
                     <div style={{ flex: 1, minWidth: 0, fontWeight: 700, fontSize: 12, color: text, lineHeight: 1.3 }}>
                       {group.setYear ? `${group.setYear} ` : ''}{group.setName}
@@ -195,7 +191,7 @@ function PlayerChecklist({ pc, userId, bg, bg2, border, text, muted, accent }: {
                       <span style={{
                         fontSize: 11, fontWeight: 800, padding: '2px 8px', borderRadius: 10,
                         color: ownedInSet === group.entries.length ? '#27ae60' : muted,
-                        background: ownedInSet === group.entries.length ? 'rgba(39,174,96,0.12)' : bg2,
+                        background: ownedInSet === group.entries.length ? 'rgba(39,174,96,0.12)' : bg,
                       }}>{ownedInSet}/{group.entries.length}</span>
                       <Link href={`/setlist/${group.setId}`} onClick={e => e.stopPropagation()}
                         style={{ fontSize: 11, color: accent, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
@@ -203,7 +199,7 @@ function PlayerChecklist({ pc, userId, bg, bg2, border, text, muted, accent }: {
                       </Link>
                       <span style={{ color: muted, fontSize: 11 }}>{isOpen ? '▲' : '▼'}</span>
                     </div>
-                  </button>
+                  </div>
                   {isOpen && (
                     <div style={{ borderTop: `1px solid ${border}` }}>
                       {visibleEntries.map(entry => {
@@ -541,11 +537,6 @@ export default function MesPCTab({ cards, userId, accent, dark, isOwner, initial
                 statLine = String(count); sub = yearStr || 'Collection'
               }
 
-              const badges: string[] = []
-              if (bestCard?.auto) badges.push('AUTO')
-              if (bestCard?.rc) badges.push('RC')
-              if (bestCard?.num) badges.push(`/${bestCard.num}`)
-
               return (
                 <div
                   key={pc.id}
@@ -584,13 +575,6 @@ export default function MesPCTab({ cards, userId, accent, dark, isOwner, initial
                       position: 'absolute', bottom: 6, left: 8, background: badgeColor, color: 'white',
                       fontSize: 9, fontWeight: 800, padding: '2px 7px', borderRadius: 10, textTransform: 'uppercase', letterSpacing: '0.04em',
                     }}>{TYPE_LABEL[pc.type]}</span>
-                    {badges.length > 0 && (
-                      <div style={{ position: 'absolute', bottom: 6, right: 8, display: 'flex', gap: 3 }}>
-                        {badges.map(b => (
-                          <span key={b} style={{ fontSize: 8, background: 'rgba(0,0,0,0.7)', color: 'white', padding: '2px 5px', borderRadius: 6, fontWeight: 800 }}>{b}</span>
-                        ))}
-                      </div>
-                    )}
                   </div>
                   <div style={{ padding: '10px 12px 12px', display: 'flex', flexDirection: 'column', gap: 7, flex: 1 }}>
                     <div style={{ fontSize: 13, fontWeight: 800, color: text, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
@@ -608,11 +592,6 @@ export default function MesPCTab({ cards, userId, accent, dark, isOwner, initial
                     {pc.type === 'player' && s?.loading && (
                       <div style={{ height: 4, background: border, borderRadius: 2, overflow: 'hidden' }}>
                         <div style={{ height: '100%', width: '35%', background: `${accent}44`, borderRadius: 2 }} />
-                      </div>
-                    )}
-                    {bestCard && (
-                      <div style={{ fontSize: 10, color: muted, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', lineHeight: 1.3 }}>
-                        {bestCard.y && `${bestCard.y} `}{bestCard.s}{bestCard.v ? ` · ${bestCard.v}` : ''}
                       </div>
                     )}
                     <button onClick={() => setSelected(pc)} style={{
