@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { toast } from '@/lib/toast'
 import { useEffect, useState, useRef, useMemo } from 'react'
 import { createPortal } from 'react-dom'
@@ -31,14 +31,14 @@ import { getSpeciality, getTeamById } from '@/lib/sportsTeams'
 import { cardDisplayRatio, isHorizontalFormat, getFormat } from '@/lib/cardFormats'
 import TeamBadge from '@/components/TeamBadge'
 
-// â”€â”€ Helpers numÃ©riques (module scope pour Ã©viter re-crÃ©ation Ã  chaque render) â”€â”€
+// ── Helpers numériques (module scope pour éviter re-création à chaque render) ──
 const numValue = (num: string) => { const m = num.trim().match(/\/(\d+)$/); return m ? parseInt(m[1]) : null }
 const cardNumValue = (cn?: string) => { if (!cn) return null; const m = cn.trim().match(/(\d+)/); return m ? parseInt(m[1]) : null }
 const isOneOfOne = (num: string) => numValue(num) === 1
 const isLowNum = (num: string) => { const v = numValue(num); return v !== null && v >= 2 && v <= 10 }
 const isBronzeNum = (num: string) => { const v = numValue(num); return v !== null && v >= 11 && v <= 25 }
 
-// â”€â”€ Palettes onglets (static) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Palettes onglets (static) ────────────────────────────────────────────────
 const TAB_COLORS = [
   '#E53935','#C62828','#AD1457','#880E4F',
   '#F4511E','#E65100','#FF8F00','#F9A825',
@@ -87,7 +87,7 @@ function SortableCard({ id, disabled, children, className, style, onClick }: {
             userSelect: 'none',
           }}
         >
-          â ¿
+          ⠿
         </div>
       )}
       {children}
@@ -100,10 +100,10 @@ const PAGE_SIZE = 48
 function renderCardImage(card: { f: string; n: string; format?: string; is_horizontal?: boolean }) {
   const fmt = getFormat(card.format)
   const horiz = isHorizontalFormat(card.format, card.is_horizontal)
-  // La grille utilise des emplacements uniformÃ©ment portrait (2.5/3.5) pour
-  // garder l'alignement des colonnes ; les cartes horizontales sont pivotÃ©es
-  // Ã  l'intÃ©rieur plutÃ´t que d'Ã©largir leur emplacement (sinon incohÃ©rent
-  // avec la rotation ci-dessous, qui est calculÃ©e pour un cadre portrait fixe)
+  // La grille utilise des emplacements uniformément portrait (2.5/3.5) pour
+  // garder l'alignement des colonnes ; les cartes horizontales sont pivotées
+  // à l'intérieur plutôt que d'élargir leur emplacement (sinon incohérent
+  // avec la rotation ci-dessous, qui est calculée pour un cadre portrait fixe)
   const ratio = fmt.isSlab ? cardDisplayRatio(card.format, card.is_horizontal) : '2.5/3.5'
 
   if (fmt.isSlab) {
@@ -176,7 +176,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [deleteGrailConfirm, setDeleteGrailConfirm] = useState<string | null>(null)
   const [renameValue, setRenameValue] = useState('')
   const isGradient = (c: string) => c.startsWith('linear-gradient')
-  // Retourne les styles de bordure corrects pour couleur unie ou dÃ©gradÃ©
+  // Retourne les styles de bordure corrects pour couleur unie ou dégradé
   const coloredBorder = (color: string, width = 2): React.CSSProperties => {
     if (!color) return { border: `${width}px solid ${accent}` }
     if (isGradient(color)) return {
@@ -242,7 +242,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           else { setLoaded(true); return }
         }
 
-        // Session + tags + profil en parallÃ¨le â€” getSession mutualisÃ© pour Ã©viter un 2e appel plus bas
+        // Session + tags + profil en parallèle — getSession mutualisé pour éviter un 2e appel plus bas
         const [{ data: { session } }, { data: tagsData }, { data: profileData }] = await Promise.all([
           supabase.auth.getSession(),
           supabase.from('carte_tags').select('card_key, collection_tag').eq('user_id', resolvedId),
@@ -264,7 +264,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         supabase.from('grail_cards').select('card_key, position').eq('user_id', resolvedId).order('position').then(({ data }) => {
           if (data) setGrailCards(data)
         })
-        // Charger les likes â€” uid dÃ©jÃ  connu, pas de 2e getSession
+        // Charger les likes — uid déjà connu, pas de 2e getSession
         supabase.from('card_likes').select('card_key, liker_user_id').eq('gallery_user_id', resolvedId).limit(2000)
           .then(({ data: likesData }) => {
             if (!likesData) return
@@ -313,12 +313,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     }
   }
 
-  // Nouvelle fonction pour supprimer dÃ©finitivement une carte ajoutÃ©e Ã  la main
+  // Nouvelle fonction pour supprimer définitivement une carte ajoutée à la main
   const handleDeleteCard = async (idManuelle: string, cardKey: string) => {
     if (!currentUser || currentUser !== userId) return
 
     try {
-      // 1. Mise Ã  jour classement mensuel + stats_total (avant suppression pour lire created_at)
+      // 1. Mise à jour classement mensuel + stats_total (avant suppression pour lire created_at)
       const { data: { session } } = await supabase.auth.getSession()
       fetch('/api/card-added', {
         method: 'DELETE',
@@ -330,10 +330,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       const { error } = await supabase.from('cartes_manuelles').delete().eq('id', idManuelle).eq('user_id', userId)
       if (error) throw error
 
-      // 3. Nettoyage de sa visibilitÃ© si elle Ã©tait en mode privÃ©
+      // 3. Nettoyage de sa visibilité si elle était en mode privé
       await supabase.from('cartes_privees').delete().eq('user_id', userId).eq('card_key', cardKey)
       
-      // 3. Mise Ã  jour de l'Ã©tat local pour faire disparaÃ®tre l'Ã©lÃ©ment instantanÃ©ment
+      // 3. Mise à jour de l'état local pour faire disparaître l'élément instantanément
       setCards(prev => prev.filter(c => c.id_manuelle !== idManuelle))
       setPrivateCards(prev => { const s = new Set(prev); s.delete(cardKey); return s })
     } catch (e: any) {
@@ -341,7 +341,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     }
   }
 
-  // Ajoute les cartes sÃ©lectionnÃ©es Ã  une collection (appartenance multiple)
+  // Ajoute les cartes sélectionnées à une collection (appartenance multiple)
   const addSelectedToCollection = async (tag: string) => {
     if (!currentUser || !tag) return
     const rows: { user_id: string; card_key: string; collection: string }[] = []
@@ -360,7 +360,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     if (!collectionTags.includes(tag)) setCollectionTags(prev => [...prev, tag].sort())
   }
 
-  // Retire les cartes sÃ©lectionnÃ©es de TOUTES leurs collections
+  // Retire les cartes sélectionnées de TOUTES leurs collections
   const removeSelectedFromAllCollections = async () => {
     if (!currentUser) return
     const keys: string[] = []
@@ -370,7 +370,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     }
     if (keys.length === 0) return
     await supabase.from('card_collections').delete().eq('user_id', currentUser).in('card_key', keys)
-    // Nettoie aussi l'ancien champ (cartes manuelles + carte_tags) pour Ã©viter la rÃ©-union au reload
+    // Nettoie aussi l'ancien champ (cartes manuelles + carte_tags) pour éviter la ré-union au reload
     for (const id of selectedCards) {
       const card = cards.find(c => (c.isManuelle ? c.id_manuelle : c.f) === id)
       if (!card) continue
@@ -385,7 +385,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
   const startBulkEdit = () => {
     const manualIds = [...selectedCards].filter(id => cards.some(c => c.id_manuelle === id))
-    if (!manualIds.length) { toast.error('Aucune carte modifiable sÃ©lectionnÃ©e (cartes CSV non supportÃ©es)'); return }
+    if (!manualIds.length) { toast.error('Aucune carte modifiable sélectionnée (cartes CSV non supportées)'); return }
     const queue = manualIds.join(',')
     router.push(`/galerie/${userId}/editer/${manualIds[0]}?queue=${queue}&qidx=0`)
   }
@@ -436,7 +436,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         storage_binder: m.storage_binder || '', storage_page: m.storage_page ?? null, storage_slot: m.storage_slot || '',
       }))
 
-      // Appartenance multi-collections (table card_collections) â†’ Map<card_key, string[]>
+      // Appartenance multi-collections (table card_collections) → Map<card_key, string[]>
       const { data: ccData } = await supabase.from('card_collections').select('card_key, collection').eq('user_id', userId)
       const ccMap = new Map<string, string[]>()
       for (const r of ccData || []) {
@@ -444,7 +444,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         arr.push(r.collection); ccMap.set(r.card_key, arr)
       }
       // Attache collections[] (union card_collections + ancien collection_tag) et
-      // fixe collection_tag = 1re collection (utilisÃ© pour la couleur de bordure)
+      // fixe collection_tag = 1re collection (utilisé pour la couleur de bordure)
       const attachCollections = (card: Card) => {
         const legacy = card.collection_tag ? [card.collection_tag] : []
         const cols = [...new Set([...(ccMap.get(card.f) || []), ...legacy])]
@@ -454,11 +454,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       parsed.forEach(attachCollections)
       cartesM.forEach(attachCollections)
 
-      // Trier les cartes manuelles par position sauvegardÃ©e (fallback sans gallery_order)
+      // Trier les cartes manuelles par position sauvegardée (fallback sans gallery_order)
       cartesM.sort((a, b) => (a.position ?? 9999) - (b.position ?? 9999))
       const allCards = [...parsed, ...cartesM]
 
-      // Appliquer l'ordre personnalisÃ© global si dÃ©fini
+      // Appliquer l'ordre personnalisé global si défini
       if (galleryOrder.length > 0) {
         const orderMap = new Map(galleryOrder.map((key, idx) => [key, idx]))
         allCards.sort((a, b) => {
@@ -629,7 +629,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         next.set(cardId, {
           url: d.id_manuelle ? `/s/${d.id_manuelle}` : `/galerie/${userId}?card=${encodeURIComponent(d.f)}`,
           title: d.n,
-          subtitle: [d.y, d.br, d.s].filter(Boolean).join(' Â· '),
+          subtitle: [d.y, d.br, d.s].filter(Boolean).join(' · '),
         })
       }
       return next
@@ -762,7 +762,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     const isMulti = selectedCards.has(movedId) && selectedCards.size > 1
 
     if (isMulti) {
-      // Retire toutes les cartes sÃ©lectionnÃ©es puis les rÃ©insÃ¨re aprÃ¨s la cible
+      // Retire toutes les cartes sélectionnées puis les réinsère après la cible
       const sel = new Set(selectedCards)
       const selList = cards.filter(c => sel.has(getCardId(c)))
       const rest = cards.filter(c => !sel.has(getCardId(c)))
@@ -802,7 +802,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
     const bronze = d.num && !oon && !low && isBronzeNum(d.num)
     return (
       <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', minHeight: 18 }}>
-        {d.item_type && d.item_type !== 'card' && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>ðŸ† MÃ‰MO</span>}
+        {d.item_type && d.item_type !== 'card' && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>🏆 MÉMO</span>}
         {d.rc && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#e67e22', color: 'white' }}>RC</span>}
         {d.auto && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#2e7d32', color: 'white' }}>AUTO</span>}
         {d.num && !oon && !low && !bronze && <span style={{ fontSize: 9, fontWeight: 900, padding: '3px 6px', borderRadius: 4, background: '#7b1fa2', color: 'white' }}>{d.num}</span>}
@@ -835,10 +835,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 <h1 className={profile?.is_donor ? 'holo-name' : ''} style={{ fontSize: 24, fontWeight: 900, margin: 0, color: profile?.is_donor ? undefined : undefined }}>{profile?.display_name || 'Collectionneur'}</h1>
                 <OnlineIndicator lastSeen={profile?.last_seen} size={12} />
                 {monthlyBadges.length > 0 && (
-                  <span className="sticker-badge" data-label={`Collectionneur du mois : ${monthlyBadges.join(', ')}`} style={{ fontSize: 26 }}>ðŸ†</span>
+                  <span className="sticker-badge" data-label={`Collectionneur du mois : ${monthlyBadges.join(', ')}`} style={{ fontSize: 26 }}>🏆</span>
                 )}
                 {profile?.is_donor && (
-                  <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 26 }}>â˜•</span>
+                  <span className="sticker-holo" data-label="Donateur Ko-fi" style={{ fontSize: 26 }}>☕</span>
                 )}
 
                 {(() => {
@@ -856,7 +856,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                     })}
                     {spec.map((s, i) => (
                       <span key={i} className="sticker-badge" data-label={s.label.replace(/^\S+\s*/, '')} style={{ fontSize: 26 }}>
-                        {s.label.match(/^\S+/)?.[0] ?? 'â­'}
+                        {s.label.match(/^\S+/)?.[0] ?? '⭐'}
                       </span>
                     ))}
                   </>)
@@ -871,18 +871,18 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 {profile?.instagram && (
                   <a href={`https://instagram.com/${profile.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
                     style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 700, color: '#E1306C', textDecoration: 'none', background: '#fce4ec', padding: '4px 10px', borderRadius: 20 }}>
-                    <span>ðŸ“¸</span> {profile.instagram.startsWith('@') ? profile.instagram : `@${profile.instagram}`}
+                    <span>📸</span> {profile.instagram.startsWith('@') ? profile.instagram : `@${profile.instagram}`}
                   </a>
                 )}
                 {profile?.twitter && (
                   <a href={`https://x.com/${profile.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer"
                     style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 700, color: dark ? '#e0e0e0' : '#121212', textDecoration: 'none', background: dark ? '#1a1a1a' : '#f0f0f0', border: dark ? '1px solid #333' : 'none', padding: '4px 10px', borderRadius: 20 }}>
-                    <span>ð•</span> {profile.twitter.startsWith('@') ? profile.twitter : `@${profile.twitter}`}
+                    <span>𝕏</span> {profile.twitter.startsWith('@') ? profile.twitter : `@${profile.twitter}`}
                   </a>
                 )}
                 {profile?.discord && (
                   <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 700, color: '#5865F2', background: '#eef0ff', padding: '4px 10px', borderRadius: 20 }}>
-                    <span>ðŸŽ®</span> {profile.discord}
+                    <span>🎮</span> {profile.discord}
                   </span>
                 )}
                 {currentUser && currentUser !== userId && (
@@ -916,25 +916,25 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
               <div className="galerie-actions" style={{ display: 'flex', gap: 8, width: '100%', justifyContent: 'flex-end', alignItems: 'center' }}>
 
-                {/* Bouton TerminÃ© â€” visible uniquement en mode Ã©dition */}
+                {/* Bouton Terminé — visible uniquement en mode édition */}
                 {isOwner && editMode && (
                   <button
                     onClick={() => { setEditMode(false); setSelectedCards(new Set()) }}
                     className="btn-ajouter"
                     style={{ background: '#e74c3c', color: '#fff', border: 'none', borderRadius: 10, padding: '12px 28px', fontWeight: 800, fontSize: 15, cursor: 'pointer', textAlign: 'center', whiteSpace: 'nowrap' }}
                   >
-                    âœ“ TerminÃ©
+                    ✓ Terminé
                   </button>
                 )}
 
-                {/* Bouton "..." â€” actions secondaires */}
+                {/* Bouton "..." — actions secondaires */}
                 {!editMode && (
                   <div className="btn-menu" style={{ position: 'relative' }}>
                     <button
                       onClick={() => setActionMenuOpen(v => !v)}
                       style={{ background: dark ? '#2a2a2a' : '#f0f0f0', color: dark ? '#ddd' : '#333', border: 'none', borderRadius: 8, padding: '10px 14px', fontWeight: 700, fontSize: 15, cursor: 'pointer', lineHeight: 1 }}
                     >
-                      Â·Â·Â·
+                      ···
                     </button>
                     {actionMenuOpen && (
                       <>
@@ -953,11 +953,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                             if (navigator.share) navigator.share({ title: `Galerie de ${profile?.display_name || 'Collectionneur'}`, url })
                             else navigator.clipboard.writeText(url).then(() => { setShareCopied(true); setTimeout(() => setShareCopied(false), 2000) })
                           }} style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
-                            {shareCopied ? 'âœ“ Lien copiÃ©' : 'â†— Partager'}
+                            {shareCopied ? '✓ Lien copié' : '↗ Partager'}
                           </button>
                           <button onClick={() => { setActionMenuOpen(false); router.push(`/galerie/${userId}/expo`) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
-                            âŠž Mode expo
+                            ⊞ Mode expo
                           </button>
                           <div style={{ padding: '0 4px' }}>
                             <GalerieExport
@@ -972,11 +972,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           </div>
                           <button onClick={() => { setShowStats(s => !s); setActionMenuOpen(false) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
-                            ðŸ“Š {showStats ? 'Masquer les stats' : 'Voir les stats'}
+                            📊 {showStats ? 'Masquer les stats' : 'Voir les stats'}
                           </button>
                           <button onClick={() => { setQrMode(m => !m); setQrSelected(new Map()); setActionMenuOpen(false) }}
                             style={{ background: 'none', border: 'none', borderRadius: 8, padding: '9px 14px', fontWeight: 700, fontSize: 13, cursor: 'pointer', textAlign: 'left', color: dark ? '#ddd' : '#333', width: '100%' }}>
-                            â–¦ {qrMode ? 'Quitter Multi-QR' : 'Multi-QR'}
+                            ▦ {qrMode ? 'Quitter Multi-QR' : 'Multi-QR'}
                           </button>
                         </div>
                       </>
@@ -1014,9 +1014,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           return (
             <div style={{ marginBottom: 24 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-                <span style={{ fontSize: 18 }}>ðŸ’Ž</span>
+                <span style={{ fontSize: 18 }}>💎</span>
                 <span style={{ fontWeight: 900, fontSize: 15, color: '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
-                <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600 }}>â€” {lang === 'fr' ? 'Les piÃ¨ces maÃ®tresses' : 'The crown jewels'}</span>
+                <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600 }}>— {lang === 'fr' ? 'Les pièces maîtresses' : 'The crown jewels'}</span>
               </div>
 
               <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 8 }}>
@@ -1036,8 +1036,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       {isOwner && (
                         deleteGrailConfirm === card.f ? (
                           <div style={{ position: 'absolute', top: 4, right: 4, zIndex: 3, display: 'flex', gap: 2 }}>
-                            <button onClick={async e => { e.stopPropagation(); await supabase.from('grail_cards').delete().eq('user_id', userId).eq('card_key', card.f); setGrailCards(prev => prev.filter(g => g.card_key !== card.f)); setDeleteGrailConfirm(null) }} style={{ background: '#e74c3c', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>âœ“</button>
-                            <button onClick={e => { e.stopPropagation(); setDeleteGrailConfirm(null) }} style={{ background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>âœ•</button>
+                            <button onClick={async e => { e.stopPropagation(); await supabase.from('grail_cards').delete().eq('user_id', userId).eq('card_key', card.f); setGrailCards(prev => prev.filter(g => g.card_key !== card.f)); setDeleteGrailConfirm(null) }} style={{ background: '#e74c3c', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>✓</button>
+                            <button onClick={e => { e.stopPropagation(); setDeleteGrailConfirm(null) }} style={{ background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: 4, width: 18, height: 18, color: 'white', fontSize: 9, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900 }}>✕</button>
                           </div>
                         ) : (
                           <button onClick={e => { e.stopPropagation(); setDeleteGrailConfirm(card.f) }} style={{
@@ -1045,7 +1045,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                             background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%',
                             width: 20, height: 20, color: 'white', fontSize: 10, cursor: 'pointer',
                             display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900,
-                          }}>âœ•</button>
+                          }}>✕</button>
                         )
                       )}
                       {renderCardImage(card)}
@@ -1092,24 +1092,24 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   onClick={() => setGrailPickerOpen(false)}>
                   <div onClick={e => e.stopPropagation()} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, width: '100%', maxWidth: 480, maxHeight: '80vh', display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>ðŸ’Ž {lang === 'fr' ? 'Choisir une carte' : 'Choose a card'}</h3>
-                      <button onClick={() => setGrailPickerOpen(false)} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>âœ•</button>
+                      <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>💎 {lang === 'fr' ? 'Choisir une carte' : 'Choose a card'}</h3>
+                      <button onClick={() => setGrailPickerOpen(false)} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>✕</button>
                     </div>
                     <input
                       autoFocus
                       value={grailSearch}
                       onChange={e => setGrailSearch(e.target.value)}
-                      placeholder={lang === 'fr' ? 'Rechercher dans ma collectionâ€¦' : 'Search my collectionâ€¦'}
+                      placeholder={lang === 'fr' ? 'Rechercher dans ma collection…' : 'Search my collection…'}
                       style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', fontSize: 14, outline: 'none' }}
                     />
                     <div style={{ overflowY: 'auto', flex: 1 }}>
                       {grailSearch.trim().length === 0 ? (
                         <p style={{ color: '#bbb', textAlign: 'center', marginTop: 24, fontSize: 13 }}>
-                          {lang === 'fr' ? 'Tapez le nom d\'un joueur, set ou variationâ€¦' : 'Type a player name, set or variationâ€¦'}
+                          {lang === 'fr' ? 'Tapez le nom d\'un joueur, set ou variation…' : 'Type a player name, set or variation…'}
                         </p>
                       ) : grailSearchResults.length === 0 ? (
                         <p style={{ color: '#bbb', textAlign: 'center', marginTop: 24, fontSize: 13 }}>
-                          {lang === 'fr' ? 'Aucun rÃ©sultat' : 'No results'}
+                          {lang === 'fr' ? 'Aucun résultat' : 'No results'}
                         </p>
                       ) : (
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
@@ -1144,10 +1144,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           )
         })()}
 
-        {/* Onglets â€” scrollable sur mobile */}
+        {/* Onglets Collection / Wishlist / Commentaires / Bibliothèque — scrollable sur mobile */}
         <div style={{ display: 'flex', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {(['collection', 'library', 'objectifs', 'comments', ...(isOwner ? ['likes'] as const : [])] as const).map(tab => (
-            <button key={tab} onClick={() => setActiveTab(tab)} style={{
+            <button key={tab} onClick={() => setActiveTab(tab as any)} style={{
               padding: '8px 16px', border: 'none', borderRadius: 8, cursor: 'pointer',
               fontWeight: 800, fontSize: 13, whiteSpace: 'nowrap', flexShrink: 0,
               background: activeTab === tab ? (dark ? '#121212' : 'white') : 'transparent',
@@ -1155,14 +1155,13 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               boxShadow: activeTab === tab ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
               transition: '0.15s',
             }}>
-              {tab === 'collection' ? 'ðŸƒ Collection' : tab === 'library' ? 'ðŸ“” Classeurs' : tab === 'objectifs' ? 'ðŸŽ¯ Objectifs' : tab === 'comments' ? 'ðŸ’¬ Commentaires' : 'â¤ï¸ AimÃ©es'}
+              {tab === 'collection' ? '🃏 Collection' : tab === 'library' ? '📔 Classeurs' : tab === 'objectifs' ? '🎯 Objectifs' : tab === 'comments' ? '💬 Commentaires' : '❤️ Aimées'}
             </button>
           ))}
         </div>
 
         {activeTab === 'objectifs' && (
           <div>
-            {/* Sous-onglets PCs / Wishlist */}
             <div style={{ display: 'flex', gap: 4, marginBottom: 16 }}>
               {(['pc', 'wishlist'] as const).map(sub => (
                 <button key={sub} onClick={() => setObjectifsSubTab(sub)} style={{
@@ -1172,7 +1171,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   color: objectifsSubTab === sub ? 'white' : (dark ? '#888' : '#666'),
                   transition: '0.15s',
                 }}>
-                  {sub === 'pc' ? 'â­ PCs' : 'ðŸŽ¯ Wishlist'}
+                  {sub === 'pc' ? '⭐ PCs' : '🎯 Wishlist'}
                 </button>
               ))}
             </div>
@@ -1184,7 +1183,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         {activeTab === 'likes' && isOwner && <LikedCards userId={userId} />}
         {activeTab === 'library' && <BinderLibrary userId={userId} isOwner={isOwner} accent={accent} initialBinderId={initialBinderId}
           onOpenCard={(img) => {
-            // Retrouve la carte complÃ¨te de la collection par son image, pour ouvrir
+            // Retrouve la carte complète de la collection par son image, pour ouvrir
             // le vrai Viewer3D de la galerie (toutes les infos + tags), pas une version minimale
             const match = cards.find(c => c.f === img || c.b === img)
             if (match) { setPopup(match); return true }
@@ -1223,16 +1222,16 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             <button onClick={() => setFilterMemo(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterMemo ? '#7b1fa2' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterMemo ? 'white' : (dark ? '#bbb' : '#333')
-            }}>ðŸ† MÃ©mo</button>
+            }}>🏆 Mémo</button>
             <button onClick={() => setFilterVente(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterVente ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterVente ? 'white' : (dark ? '#bbb' : '#333')
-            }}>ðŸ·ï¸ Vente</button>
+            }}>🏷️ Vente</button>
             {isOwner && (
               <button onClick={() => setFilterPrivate(p => !p)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
                 background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
-              }}>ðŸ”’ PrivÃ©</button>
+              }}>🔒 Privé</button>
             )}
           </div>
           <div>
@@ -1241,35 +1240,35 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             </label>
             <select value={sortBy} onChange={e => { setSortBy(e.target.value as typeof sortBy); if (e.target.value === 'default') setSortBy2('none') }}
               style={{ background: sortBy !== 'default' ? (dark ? '#1a2240' : '#f0f4ff') : undefined, borderColor: sortBy !== 'default' ? '#003DA6' : undefined, color: sortBy !== 'default' ? (dark ? '#7aabf7' : '#003DA6') : undefined, fontWeight: sortBy !== 'default' ? 700 : undefined }}>
-              <option value="default">{lang === 'fr' ? 'â€” Ordre par dÃ©faut â€”' : 'â€” Default order â€”'}</option>
+              <option value="default">{lang === 'fr' ? '— Ordre par défaut —' : '— Default order —'}</option>
               <optgroup label={lang === 'fr' ? 'Joueur' : 'Player'}>
-                <option value="n">{lang === 'fr' ? 'Joueur A â†’ Z' : 'Player A â†’ Z'}</option>
-                <option value="n_desc">{lang === 'fr' ? 'Joueur Z â†’ A' : 'Player Z â†’ A'}</option>
+                <option value="n">{lang === 'fr' ? 'Joueur A → Z' : 'Player A → Z'}</option>
+                <option value="n_desc">{lang === 'fr' ? 'Joueur Z → A' : 'Player Z → A'}</option>
               </optgroup>
-              <optgroup label={lang === 'fr' ? 'AnnÃ©e' : 'Year'}>
-                <option value="y">{lang === 'fr' ? 'AnnÃ©e croissante' : 'Year asc'}</option>
-                <option value="y_desc">{lang === 'fr' ? 'AnnÃ©e dÃ©croissante' : 'Year desc'}</option>
+              <optgroup label={lang === 'fr' ? 'Année' : 'Year'}>
+                <option value="y">{lang === 'fr' ? 'Année croissante' : 'Year asc'}</option>
+                <option value="y_desc">{lang === 'fr' ? 'Année décroissante' : 'Year desc'}</option>
               </optgroup>
-              <optgroup label={lang === 'fr' ? 'Ã‰quipe' : 'Team'}>
-                <option value="t">{lang === 'fr' ? 'Ã‰quipe A â†’ Z' : 'Team A â†’ Z'}</option>
+              <optgroup label={lang === 'fr' ? 'Équipe' : 'Team'}>
+                <option value="t">{lang === 'fr' ? 'Équipe A → Z' : 'Team A → Z'}</option>
               </optgroup>
               <optgroup label={lang === 'fr' ? 'Collection' : 'Brand'}>
-                <option value="s">{lang === 'fr' ? 'Collection A â†’ Z' : 'Brand A â†’ Z'}</option>
+                <option value="s">{lang === 'fr' ? 'Collection A → Z' : 'Brand A → Z'}</option>
               </optgroup>
-              <optgroup label={lang === 'fr' ? 'NumÃ©rotation' : 'Numbering'}>
-                <option value="num_asc">{lang === 'fr' ? 'NumÃ©rotation basse â†’ haute' : 'Numbering low â†’ high'}</option>
+              <optgroup label={lang === 'fr' ? 'Numérotation' : 'Numbering'}>
+                <option value="num_asc">{lang === 'fr' ? 'Numérotation basse → haute' : 'Numbering low → high'}</option>
               </optgroup>
               <optgroup label={lang === 'fr' ? '# Carte' : 'Card #'}>
-                <option value="card_num_asc">{lang === 'fr' ? '# Carte croissant' : 'Card # low â†’ high'}</option>
-                <option value="card_num_desc">{lang === 'fr' ? '# Carte dÃ©croissant' : 'Card # high â†’ low'}</option>
+                <option value="card_num_asc">{lang === 'fr' ? '# Carte croissant' : 'Card # low → high'}</option>
+                <option value="card_num_desc">{lang === 'fr' ? '# Carte décroissant' : 'Card # high → low'}</option>
               </optgroup>
               <optgroup label={lang === 'fr' ? 'Date d\'ajout' : 'Date added'}>
-                <option value="date_desc">{lang === 'fr' ? 'Plus rÃ©cent en 1er' : 'Newest first'}</option>
+                <option value="date_desc">{lang === 'fr' ? 'Plus récent en 1er' : 'Newest first'}</option>
                 <option value="date_asc">{lang === 'fr' ? 'Plus ancien en 1er' : 'Oldest first'}</option>
               </optgroup>
               {cardValues.size > 0 && <>
-                <option value="valeur">{lang === 'fr' ? 'Valeur â†“ (plus cher en 1er)' : 'Value â†“ (highest first)'}</option>
-                <option value="valeur_desc">{lang === 'fr' ? 'Valeur â†‘ (moins cher en 1er)' : 'Value â†‘ (lowest first)'}</option>
+                <option value="valeur">{lang === 'fr' ? 'Valeur ↓ (plus cher en 1er)' : 'Value ↓ (highest first)'}</option>
+                <option value="valeur_desc">{lang === 'fr' ? 'Valeur ↑ (moins cher en 1er)' : 'Value ↑ (lowest first)'}</option>
               </>}
             </select>
             {sortBy !== 'default' && (
@@ -1279,30 +1278,30 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 </label>
                 <select value={sortBy2} onChange={e => setSortBy2(e.target.value as typeof sortBy2)}
                   style={{ background: sortBy2 !== 'none' ? (dark ? '#1a2240' : '#f0f4ff') : undefined, borderColor: sortBy2 !== 'none' ? '#003DA6' : undefined, color: sortBy2 !== 'none' ? (dark ? '#7aabf7' : '#003DA6') : undefined, fontWeight: sortBy2 !== 'none' ? 700 : undefined }}>
-                  <option value="none">{lang === 'fr' ? 'â€” Aucun tri secondaire â€”' : 'â€” No secondary sort â€”'}</option>
+                  <option value="none">{lang === 'fr' ? '— Aucun tri secondaire —' : '— No secondary sort —'}</option>
                   <optgroup label={lang === 'fr' ? 'Joueur' : 'Player'}>
-                    <option value="n">{lang === 'fr' ? 'Joueur A â†’ Z' : 'Player A â†’ Z'}</option>
-                    <option value="n_desc">{lang === 'fr' ? 'Joueur Z â†’ A' : 'Player Z â†’ A'}</option>
+                    <option value="n">{lang === 'fr' ? 'Joueur A → Z' : 'Player A → Z'}</option>
+                    <option value="n_desc">{lang === 'fr' ? 'Joueur Z → A' : 'Player Z → A'}</option>
                   </optgroup>
-                  <optgroup label={lang === 'fr' ? 'AnnÃ©e' : 'Year'}>
-                    <option value="y">{lang === 'fr' ? 'AnnÃ©e croissante' : 'Year asc'}</option>
-                    <option value="y_desc">{lang === 'fr' ? 'AnnÃ©e dÃ©croissante' : 'Year desc'}</option>
+                  <optgroup label={lang === 'fr' ? 'Année' : 'Year'}>
+                    <option value="y">{lang === 'fr' ? 'Année croissante' : 'Year asc'}</option>
+                    <option value="y_desc">{lang === 'fr' ? 'Année décroissante' : 'Year desc'}</option>
                   </optgroup>
-                  <optgroup label={lang === 'fr' ? 'Ã‰quipe' : 'Team'}>
-                    <option value="t">{lang === 'fr' ? 'Ã‰quipe A â†’ Z' : 'Team A â†’ Z'}</option>
+                  <optgroup label={lang === 'fr' ? 'Équipe' : 'Team'}>
+                    <option value="t">{lang === 'fr' ? 'Équipe A → Z' : 'Team A → Z'}</option>
                   </optgroup>
                   <optgroup label={lang === 'fr' ? 'Collection' : 'Brand'}>
-                    <option value="s">{lang === 'fr' ? 'Collection A â†’ Z' : 'Brand A â†’ Z'}</option>
+                    <option value="s">{lang === 'fr' ? 'Collection A → Z' : 'Brand A → Z'}</option>
                   </optgroup>
-                  <optgroup label={lang === 'fr' ? 'NumÃ©rotation' : 'Numbering'}>
-                    <option value="num_asc">{lang === 'fr' ? 'NumÃ©rotation basse â†’ haute' : 'Numbering low â†’ high'}</option>
+                  <optgroup label={lang === 'fr' ? 'Numérotation' : 'Numbering'}>
+                    <option value="num_asc">{lang === 'fr' ? 'Numérotation basse → haute' : 'Numbering low → high'}</option>
                   </optgroup>
                   <optgroup label={lang === 'fr' ? '# Carte' : 'Card #'}>
-                    <option value="card_num_asc">{lang === 'fr' ? '# Carte croissant' : 'Card # low â†’ high'}</option>
-                    <option value="card_num_desc">{lang === 'fr' ? '# Carte dÃ©croissant' : 'Card # high â†’ low'}</option>
+                    <option value="card_num_asc">{lang === 'fr' ? '# Carte croissant' : 'Card # low → high'}</option>
+                    <option value="card_num_desc">{lang === 'fr' ? '# Carte décroissant' : 'Card # high → low'}</option>
                   </optgroup>
                   <optgroup label={lang === 'fr' ? 'Date d\'ajout' : 'Date added'}>
-                    <option value="date_desc">{lang === 'fr' ? 'Plus rÃ©cent en 1er' : 'Newest first'}</option>
+                    <option value="date_desc">{lang === 'fr' ? 'Plus récent en 1er' : 'Newest first'}</option>
                     <option value="date_asc">{lang === 'fr' ? 'Plus ancien en 1er' : 'Oldest first'}</option>
                   </optgroup>
                 </select>
@@ -1311,11 +1310,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             {teams.length > 0 && (
               <div style={{ marginTop: 8 }}>
                 <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>
-                  {lang === 'fr' ? 'â­ Ã‰quipe en tÃªte' : 'â­ Team first'}
+                  {lang === 'fr' ? '⭐ Équipe en tête' : '⭐ Team first'}
                 </label>
                 <select value={pinTeam} onChange={e => setPinTeam(e.target.value)}
                   style={{ background: pinTeam ? (dark ? '#1a2240' : '#f0f4ff') : undefined, borderColor: pinTeam ? '#003DA6' : undefined, color: pinTeam ? (dark ? '#7aabf7' : '#003DA6') : undefined, fontWeight: pinTeam ? 700 : undefined }}>
-                  <option value="">{lang === 'fr' ? 'â€” Aucune â€”' : 'â€” None â€”'}</option>
+                  <option value="">{lang === 'fr' ? '— Aucune —' : '— None —'}</option>
                   {teams.map(team => <option key={team} value={team}>{team}</option>)}
                 </select>
               </div>
@@ -1325,7 +1324,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 marginTop: 4, width: '100%', padding: '5px 8px', fontSize: 10, fontWeight: 800,
                 background: '#003DA6', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer',
               }}>
-                ðŸ’¾ Fixer cet ordre (activer le drag)
+                💾 Fixer cet ordre (activer le drag)
               </button>
             )}
           </div>
@@ -1391,8 +1390,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
-                        // Si un enfant est actif, cliquer sur le parent revient Ã  "Tout" dans ce parent
-                        // Si le parent lui-mÃªme est actif, on dÃ©selectionne
+                        // Si un enfant est actif, cliquer sur le parent revient à "Tout" dans ce parent
+                        // Si le parent lui-même est actif, on déselectionne
                         setFCollectionTag(isActive ? '' : tag)
                         setColorPickerTag(null)
                       }}
@@ -1414,7 +1413,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       {!highlighted && <span style={{ width: 8, height: 8, borderRadius: '50%', background: tabColor, flexShrink: 0 }} />}
                       {tag}
                       {hasChildren && depth === 0 && (
-                        <span style={{ fontSize: 9, opacity: 0.8, marginLeft: 1 }}>{isChildActive ? 'â–¾' : 'â–¸'}</span>
+                        <span style={{ fontSize: 9, opacity: 0.8, marginLeft: 1 }}>{isChildActive ? '▾' : '▸'}</span>
                       )}
                       {isOwner && (
                         <span
@@ -1428,7 +1427,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                             cursor: 'pointer', lineHeight: 1, transition: 'background 0.15s',
                             marginLeft: 2,
                           }}
-                        >âœŽ</span>
+                        >✎</span>
                       )}
                     </button>
                     {colorPickerTag === tag && (
@@ -1473,7 +1472,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                               style={{ width: 20, height: 20, borderRadius: '50%', background: c, border: tabColor === c ? '2.5px solid #111' : '2px solid transparent', cursor: 'pointer', padding: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }} />
                           ))}
                         </div>
-                        <div style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#aaa', marginBottom: 5 }}>DÃ©gradÃ©s</div>
+                        <div style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#aaa', marginBottom: 5 }}>Dégradés</div>
                         <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
                           {TAB_GRADIENTS.map(g => (
                             <button key={g.value} onClick={() => { saveTabSetting(tag, { color: g.value }); setColorPickerTag(null) }}
@@ -1492,9 +1491,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                                 onChange={e => saveTabSetting(tag, { parent: e.target.value || null })}
                                 style={{ width: '100%', marginBottom: 8, padding: '5px 8px', borderRadius: 8, border: dark ? '1.5px solid #444' : '1.5px solid #ddd', fontSize: 11, fontWeight: 700, color: dark ? '#eee' : '#333', background: dark ? '#2a2a2a' : 'white', outline: 'none', boxSizing: 'border-box' }}
                               >
-                                <option value="">â€” Aucune (principale) â€”</option>
+                                <option value="">— Aucune (principale) —</option>
                                 {candidates.map(p => (
-                                  <option key={p} value={p}>â†³ dans Â« {p} Â»</option>
+                                  <option key={p} value={p}>↳ dans « {p} »</option>
                                 ))}
                               </select>
                             </>
@@ -1502,7 +1501,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                         })()}
                         {deleteTagConfirm === tag ? (
                           <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: 8 }}>
-                            <p style={{ fontSize: 10, color: '#e53935', fontWeight: 700, margin: '0 0 6px' }}>Supprimer "{tag}" ? Les cartes ne seront pas supprimÃ©es.</p>
+                            <p style={{ fontSize: 10, color: '#e53935', fontWeight: 700, margin: '0 0 6px' }}>Supprimer "{tag}" ? Les cartes ne seront pas supprimées.</p>
                             <div style={{ display: 'flex', gap: 6 }}>
                               <button onClick={async () => {
                                 await supabase.from('card_collections').delete().eq('user_id', userId).eq('collection', tag)
@@ -1528,7 +1527,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           </div>
                         ) : (
                           <button onClick={() => setDeleteTagConfirm(tag)} style={{ width: '100%', border: 'none', background: 'none', color: '#e53935', fontSize: 10, fontWeight: 700, cursor: 'pointer', paddingTop: 6, borderTop: '1px solid #f5f5f5', textAlign: 'left' }}>
-                            ðŸ—‘ Supprimer cette collection
+                            🗑 Supprimer cette collection
                           </button>
                         )}
                       </div>
@@ -1550,7 +1549,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 5 }}>
                   {lang === 'fr' ? 'Ma collection' : 'My collection'}
                   {isOwner && <span style={{ fontSize: 8, color: '#bbb', marginLeft: 6, fontWeight: 600 }}>
-                    {lang === 'fr' ? 'Â· glisser pour rÃ©ordonner' : 'Â· drag to reorder'}
+                    {lang === 'fr' ? '· glisser pour réordonner' : '· drag to reorder'}
                   </span>}
                 </label>
                 {/* Ligne principale : Tout + parents */}
@@ -1732,7 +1731,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         
         {mounted && editMode && isOwner && selectedCards.size > 0 && createPortal(
           <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#003DA6', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(0,61,166,0.35)' }}>
-            <span style={{ flex: '1 1 120px' }}>{selectedCards.size} carte{selectedCards.size > 1 ? 's' : ''} sÃ©lectionnÃ©e{selectedCards.size > 1 ? 's' : ''}</span>
+            <span style={{ flex: '1 1 120px' }}>{selectedCards.size} carte{selectedCards.size > 1 ? 's' : ''} sélectionnée{selectedCards.size > 1 ? 's' : ''}</span>
             {/* Assigner collection tag en masse */}
             {showBulkNewTag ? (
               <>
@@ -1748,14 +1747,14 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   await addSelectedToCollection(tag)
                   setBulkNewTag(''); setShowBulkNewTag(false)
                 }}
-                placeholder="Nom de la collectionâ€¦ (EntrÃ©e)"
+                placeholder="Nom de la collection… (Entrée)"
                 style={{ background: 'white', border: 'none', borderRadius: 6, color: '#111', padding: '5px 10px', fontSize: 12, fontWeight: 700, flexShrink: 0, width: 180, outline: 'none' }}
               />
               <button
                 onMouseDown={e => e.preventDefault()}
                 onClick={() => { setShowBulkNewTag(false); setBulkNewTag('') }}
                 style={{ background: 'rgba(255,255,255,0.25)', border: 'none', borderRadius: 4, color: 'white', padding: '4px 8px', fontSize: 11, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}
-              >âœ•</button>
+              >✕</button>
               </>
             ) : (
               <select
@@ -1769,9 +1768,9 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 }}
                 style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', borderRadius: 6, color: 'white', padding: '4px 8px', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}
               >
-                <option value="" style={{ color: '#333' }}>ðŸ· Ajouter Ã  une collectionâ€¦</option>
-                <option value="__new__" style={{ color: '#003DA6', fontWeight: 900 }}>âœš CrÃ©er une nouvelleâ€¦</option>
-                <option value="__none__" style={{ color: '#333' }}>â€” Retirer de toutes â€”</option>
+                <option value="" style={{ color: '#333' }}>🏷 Ajouter à une collection…</option>
+                <option value="__new__" style={{ color: '#003DA6', fontWeight: 900 }}>✚ Créer une nouvelle…</option>
+                <option value="__none__" style={{ color: '#333' }}>— Retirer de toutes —</option>
                 {collectionTags.map(tag => (
                   <option key={tag} value={tag} style={{ color: '#333' }}>{tag}</option>
                 ))}
@@ -1781,10 +1780,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               onClick={startBulkEdit}
               style={{ background: 'rgba(255,255,255,0.2)', border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 6, color: 'white', padding: '4px 12px', cursor: 'pointer', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}
             >
-              âœï¸ Modifier en groupe
+              ✏️ Modifier en groupe
             </button>
             <button onClick={() => setSelectedCards(new Set())} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
-              âœ• DÃ©sÃ©lectionner
+              ✕ Désélectionner
             </button>
           </div>,
           document.body
@@ -1794,22 +1793,22 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999, display: 'flex', alignItems: 'center', gap: 10, background: '#7c3aed', color: 'white', borderRadius: '12px 12px 0 0', padding: '12px 24px', fontSize: 13, fontWeight: 700, flexWrap: 'wrap', boxShadow: '0 -4px 24px rgba(124,58,237,0.35)' }}>
             <span style={{ flex: '1 1 160px' }}>
               {qrSelected.size === 0
-                ? 'â–¦ Clique sur des cartes pour les sÃ©lectionner'
-                : `â–¦ ${qrSelected.size} carte${qrSelected.size > 1 ? 's' : ''} sÃ©lectionnÃ©e${qrSelected.size > 1 ? 's' : ''}`}
+                ? '▦ Clique sur des cartes pour les sélectionner'
+                : `▦ ${qrSelected.size} carte${qrSelected.size > 1 ? 's' : ''} sélectionnée${qrSelected.size > 1 ? 's' : ''}`}
             </span>
             {qrSelected.size > 0 && (
               <button onClick={() => setQrSelected(new Map())}
                 style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
-                DÃ©sÃ©lectionner tout
+                Désélectionner tout
               </button>
             )}
             <button onClick={downloadQrCodes} disabled={qrSelected.size === 0 || qrDownloading}
               style={{ background: qrSelected.size > 0 && !qrDownloading ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.1)', border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 6, color: 'white', padding: '6px 14px', cursor: qrSelected.size > 0 && !qrDownloading ? 'pointer' : 'default', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}>
-              {qrDownloading ? 'â³ GÃ©nÃ©ration...' : `â¬‡ TÃ©lÃ©charger${qrSelected.size > 0 ? ` ${qrSelected.size} QR` : ''}`}
+              {qrDownloading ? '⏳ Génération...' : `⬇ Télécharger${qrSelected.size > 0 ? ` ${qrSelected.size} QR` : ''}`}
             </button>
             <button onClick={() => { setQrMode(false); setQrSelected(new Map()) }}
               style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: 6, color: 'white', padding: '4px 10px', cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>
-              âœ• Quitter
+              ✕ Quitter
             </button>
           </div>,
           document.body
@@ -1854,22 +1853,22 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 </div>
               )}
               {d.disponible_vente && (
-                <div title={lang === 'fr' ? 'Disponible Ã  la vente / trade' : 'Available for sale / trade'} style={{ position: 'absolute', top: 6, right: 6, background: '#2e7d32', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2, letterSpacing: 0.3 }}>
-                  ðŸ·ï¸ {lang === 'fr' ? 'Vente/Trade' : 'For Sale'}
+                <div title={lang === 'fr' ? 'Disponible à la vente / trade' : 'Available for sale / trade'} style={{ position: 'absolute', top: 6, right: 6, background: '#2e7d32', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2, letterSpacing: 0.3 }}>
+                  🏷️ {lang === 'fr' ? 'Vente/Trade' : 'For Sale'}
                 </div>
               )}
               {editMode && isOwner && selectedCards.has(getCardId(d)) && (
                 <div style={{ position: 'absolute', top: 6, left: 6, background: '#003DA6', color: 'white', fontSize: 13, width: 22, height: 22, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3, fontWeight: 900 }}>
-                  âœ“
+                  ✓
                 </div>
               )}
               {qrMode && qrSelected.has(getCardId(d)) && (
                 <div style={{ position: 'absolute', top: 6, left: 6, background: '#7c3aed', color: 'white', fontSize: 11, width: 22, height: 22, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3, fontWeight: 900 }}>
-                  â–¦
+                  ▦
                 </div>
               )}
 
-              {/* Actions du mode Ã©dition (ConfidentialitÃ© + Suppression) */}
+              {/* Actions du mode édition (Confidentialité + Suppression) */}
               {editMode && isOwner && (
                 <div style={{ position: 'absolute', top: 4, left: 0, right: 0, zIndex: 2, display: 'flex', flexDirection: 'column', gap: 4, padding: '0 4px' }}>
                   <div style={{ display: 'flex', gap: 4 }}>
@@ -1885,19 +1884,19 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                         background: '#f59e0b', color: 'white', border: 'none', borderRadius: 6,
                         padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
                       }} title={lang === 'fr' ? 'Modifier la carte' : 'Edit card'}>
-                        âœï¸
+                        ✏️
                       </button>
                       {deleteCardConfirm === d.id_manuelle ? (
                         <>
-                          <button onClick={e => { e.stopPropagation(); handleDeleteCard(d.id_manuelle!, d.f); setDeleteCardConfirm(null) }} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '4px 5px', fontSize: 9, fontWeight: 900, cursor: 'pointer' }}>âœ“</button>
-                          <button onClick={e => { e.stopPropagation(); setDeleteCardConfirm(null) }} style={{ background: '#555', color: 'white', border: 'none', borderRadius: 6, padding: '4px 5px', fontSize: 9, fontWeight: 900, cursor: 'pointer' }}>âœ•</button>
+                          <button onClick={e => { e.stopPropagation(); handleDeleteCard(d.id_manuelle!, d.f); setDeleteCardConfirm(null) }} style={{ background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6, padding: '4px 5px', fontSize: 9, fontWeight: 900, cursor: 'pointer' }}>✓</button>
+                          <button onClick={e => { e.stopPropagation(); setDeleteCardConfirm(null) }} style={{ background: '#555', color: 'white', border: 'none', borderRadius: 6, padding: '4px 5px', fontSize: 9, fontWeight: 900, cursor: 'pointer' }}>✕</button>
                         </>
                       ) : (
                         <button onClick={e => { e.stopPropagation(); setDeleteCardConfirm(d.id_manuelle!) }} style={{
                           background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6,
                           padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
                         }} title={lang === 'fr' ? 'Supprimer la carte' : 'Delete card'}>
-                          ðŸ—‘ï¸
+                          🗑️
                         </button>
                       )}
                     </>)}
@@ -1925,7 +1924,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       title="Commenter"
                       style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, padding: '2px 4px', flexShrink: 0 }}
                     >
-                      <span style={{ fontSize: 16, lineHeight: 1 }}>ðŸ’¬</span>
+                      <span style={{ fontSize: 16, lineHeight: 1 }}>💬</span>
                       {(commentCounts.get(d.f) || 0) > 0 && <span style={{ fontSize: 9, fontWeight: 800, color: '#bbb' }}>{commentCounts.get(d.f)}</span>}
                     </button>
                     <button
@@ -1942,14 +1941,14 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                           await supabase.from('card_likes').delete().eq('card_key', d.f).eq('gallery_user_id', userId).eq('liker_user_id', currentUser)
                         } else {
                           await supabase.from('card_likes').upsert({ card_key: d.f, gallery_user_id: userId, liker_user_id: currentUser }, { onConflict: 'card_key,gallery_user_id,liker_user_id' })
-                          // Notifier le propriÃ©taire de la carte (pas soi-mÃªme)
+                          // Notifier le propriétaire de la carte (pas soi-même)
                           if (currentUser !== userId) {
                             const { data: liker } = await supabase.from('profiles').select('display_name').eq('id', currentUser).single()
                             const likerName = liker?.display_name || 'Quelqu\'un'
                             await supabase.from('notifications').insert({
                               user_id: userId,
                               type: 'like',
-                              message: `${likerName} a aimÃ© votre carte`,
+                              message: `${likerName} a aimé votre carte`,
                               lien: `/galerie/${userId}?card=${encodeURIComponent(d.f)}`,
                               lu: false,
                             })
@@ -1972,7 +1971,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       }}
                     >
                       <span style={{ fontSize: 16, lineHeight: 1, transition: '0.15s', transform: likeInfo.liked ? 'scale(1.2)' : 'scale(1)' }}>
-                        {likeInfo.liked ? 'â¤ï¸' : 'ðŸ¤'}
+                        {likeInfo.liked ? '❤️' : '🤍'}
                       </span>
                       {likeInfo.count > 0 && <span style={{ fontSize: 9, fontWeight: 800, color: likeInfo.liked ? '#e53935' : '#bbb' }}>{likeInfo.count}</span>}
                     </button>
@@ -1998,26 +1997,26 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               <p style={{ color: '#bbb', fontSize: 12 }}>{filtered.length} {t('gallery_total')}</p>
             ) : cards.length > 0 && filtered.length === 0 ? (
               <div style={{ padding: '60px 20px', textAlign: 'center' }}>
-                <div style={{ fontSize: 40, marginBottom: 12 }}>ðŸ”</div>
-                <p style={{ fontWeight: 800, fontSize: 15, marginBottom: 8 }}>{lang === 'fr' ? 'Aucun rÃ©sultat' : 'No results'}</p>
-                <p style={{ color: '#999', fontSize: 13, marginBottom: 16 }}>{lang === 'fr' ? 'Aucune carte ne correspond Ã  ces filtres.' : 'No cards match these filters.'}</p>
+                <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
+                <p style={{ fontWeight: 800, fontSize: 15, marginBottom: 8 }}>{lang === 'fr' ? 'Aucun résultat' : 'No results'}</p>
+                <p style={{ color: '#999', fontSize: 13, marginBottom: 16 }}>{lang === 'fr' ? 'Aucune carte ne correspond à ces filtres.' : 'No cards match these filters.'}</p>
                 <button onClick={() => { setSearchInput(''); setSearch(''); setFTeam(''); setFBrand(''); setFYear(''); setFCollectionTag(''); setPinTeam(''); setActiveFilters({ rc: false, auto: false, num: false, patch: false }); setFilterVente(false) }} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 800, fontSize: 13, border: 'none', cursor: 'pointer' }}>
                   {lang === 'fr' ? 'Effacer les filtres' : 'Clear filters'}
                 </button>
               </div>
             ) : cards.length === 0 ? (
               <div style={{ padding: '60px 20px', textAlign: 'center' }}>
-                <div style={{ fontSize: 48, marginBottom: 16 }}>ðŸƒ</div>
+                <div style={{ fontSize: 48, marginBottom: 16 }}>🃏</div>
                 {isOwner ? (
                   <>
                     <p style={{ fontWeight: 800, fontSize: 16, marginBottom: 8 }}>Ta galerie est vide</p>
-                    <p style={{ color: '#999', fontSize: 13, marginBottom: 20 }}>Ajoute ta premiÃ¨re carte ou connecte ton Google Sheets depuis le profil.</p>
+                    <p style={{ color: '#999', fontSize: 13, marginBottom: 20 }}>Ajoute ta première carte ou connecte ton Google Sheets depuis le profil.</p>
                     <Link href={`/galerie/${userId}/ajouter`} style={{ background: '#003DA6', color: 'white', padding: '12px 24px', borderRadius: 50, fontWeight: 800, fontSize: 14, textDecoration: 'none', display: 'inline-block' }}>+ Ajouter une carte</Link>
                   </>
                 ) : (
                   <>
                     <p style={{ fontWeight: 800, fontSize: 16, marginBottom: 8 }}>Galerie vide</p>
-                    <p style={{ color: '#999', fontSize: 13 }}>Ce collectionneur n'a pas encore ajoutÃ© de cartes.</p>
+                    <p style={{ color: '#999', fontSize: 13 }}>Ce collectionneur n'a pas encore ajouté de cartes.</p>
                   </>
                 )}
               </div>
@@ -2035,7 +2034,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           cardKey={commentCard.f}
           accent={accent}
           isOwner={isOwner}
-          emptyLabel="Soyez le premier Ã  commenter cette carte"
+          emptyLabel="Soyez le premier à commenter cette carte"
         />
       )}
 
@@ -2080,7 +2079,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           initialAddState={addedCards.has(popup.f) ? 'added' : 'idle'}
           allCollectionTags={collectionTags}
           onCollectionsChange={(card, next) => {
-            // Les Ã©critures DB sont faites par CollectionMultiSelect ; on met Ã  jour l'Ã©tat local
+            // Les écritures DB sont faites par CollectionMultiSelect ; on met à jour l'état local
             const cols = [...new Set(next)]
             setCards(prev => prev.map(c => c.f === card.f ? { ...c, collections: cols, collection_tag: cols[0] || '' } : c))
             setPopup(prev => prev ? { ...prev, collections: cols, collection_tag: cols[0] || '' } : null)
@@ -2101,7 +2100,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             transition: 'opacity 0.2s',
           }}
           aria-label="Retour en haut"
-        >â†‘</button>
+        >↑</button>
       )}
 
       {tradeCard && tradeCard.id_manuelle && (
@@ -2125,7 +2124,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           onClick={() => setTradeSent(false)}
           style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#003DA6', color: '#fff', borderRadius: 50, padding: '12px 24px', fontWeight: 700, fontSize: 14, zIndex: 9999, cursor: 'pointer', boxShadow: '0 4px 20px rgba(0,0,61,0.3)' }}
         >
-          ðŸ”„ Offre d&apos;Ã©change envoyÃ©e !
+          🔄 Offre d&apos;échange envoyée !
         </div>
       )}
 
@@ -2140,8 +2139,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
         }}>
           <span style={{ flex: 1, fontSize: 14, fontWeight: 600, color: dark ? '#e8eeff' : '#0a2a6b', lineHeight: 1.4 }}>
             {lang === 'fr'
-              ? "âœ¦ CrÃ©e ta galerie gratuitement â€” l'IA identifie tes cartes en 1 photo."
-              : "âœ¦ Create your free gallery â€” AI identifies your cards in 1 photo."}
+              ? "✦ Crée ta galerie gratuitement — l'IA identifie tes cartes en 1 photo."
+              : "✦ Create your free gallery — AI identifies your cards in 1 photo."}
           </span>
           <Link
             href="/sinscrire"
@@ -2151,7 +2150,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0,
             }}
           >
-            {lang === 'fr' ? 'Commencer â†’' : 'Get started â†’'}
+            {lang === 'fr' ? 'Commencer →' : 'Get started →'}
           </Link>
           <button
             onClick={() => setShowConversionBanner(false)}
@@ -2161,7 +2160,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               fontSize: 22, padding: '0 4px', flexShrink: 0, lineHeight: 1,
             }}
             aria-label={lang === 'fr' ? 'Fermer' : 'Close'}
-          >Ã—</button>
+          >×</button>
         </div>
       )}
     </>
