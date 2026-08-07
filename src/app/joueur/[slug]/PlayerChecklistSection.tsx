@@ -176,11 +176,11 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
         <div>
           <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--jp-text)', margin: 0 }}>
-            Ma checklist
+            Checklist
           </h2>
           {expanded && totalCards > 0 && (
             <p style={{ fontSize: 13, color: 'var(--jp-muted)', margin: '4px 0 0', fontWeight: 600 }}>
-              {totalOwned} / {totalCards} carte{totalCards > 1 ? 's' : ''} possédée{totalOwned > 1 ? 's' : ''}
+              {totalOwned} / {totalCards} carte{totalCards > 1 ? 's' : ''} dans ta collection
             </p>
           )}
         </div>
@@ -199,7 +199,7 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
               cursor: 'pointer',
             }}
           >
-            Voir ma checklist
+            Afficher la checklist
           </button>
         )}
 
