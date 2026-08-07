@@ -328,9 +328,10 @@ export default function MesPCTab({ cards, userId, accent, dark, isOwner, initial
   }, [sourceNames, addSearch])
 
   function getPool(pc: PCEntry) {
-    return pc.type === 'player' ? cards.filter(c => c.n?.trim() === pc.name)
-      : pc.type === 'team' ? cards.filter(c => c.t?.trim() === pc.name)
-      : cards.filter(c => c.s?.trim() === pc.name)
+    const name = pc.name.toLowerCase()
+    return pc.type === 'player' ? cards.filter(c => c.n?.trim().toLowerCase() === name)
+      : pc.type === 'team' ? cards.filter(c => c.t?.trim().toLowerCase() === name)
+      : cards.filter(c => c.s?.trim().toLowerCase() === name)
   }
 
   function getTeamCollStats(pc: PCEntry) {

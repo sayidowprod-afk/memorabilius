@@ -559,7 +559,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
       const pageCount = Math.ceil((manuellesCount || 0) / 1000) || 1
       const manuelleBatches = await Promise.all(
         Array.from({ length: pageCount }, (_, i) =>
-          supabase.from('cartes_manuelles').select('*').eq('user_id', userId).range(i * 1000, i * 1000 + 999).then(r => r.data || [])
+          supabase.from('cartes_manuelles').select('*').eq('user_id', userId).order('created_at', { ascending: true }).range(i * 1000, i * 1000 + 999).then(r => r.data || [])
         )
       )
       const manuelles = manuelleBatches.flat()
@@ -1358,7 +1358,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                     fontWeight: 800, fontSize: 15, cursor: 'pointer',
                     textDecoration: 'none', display: 'inline-block', textAlign: 'center', whiteSpace: 'nowrap',
                   }}>
-                    + {lang === 'fr' ? 'Ajouter' : 'Add'}
+                    + {t('gallery_add')}
                   </Link>
                 )}
               </div>
@@ -1382,7 +1382,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                 <span style={{ fontSize: 18 }}>💎</span>
                 <span style={{ fontWeight: 900, fontSize: 15, color: '#121212', letterSpacing: 0.5 }}>Grail Wall</span>
-                <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600 }}>— {lang === 'fr' ? 'Les pièces maîtresses' : 'The crown jewels'}</span>
+                <span style={{ fontSize: 11, color: '#bbb', fontWeight: 600 }}>— {t('gallery_jewels')}</span>
               </div>
 
               <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 8 }}>
@@ -1439,7 +1439,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   >
                     <span style={{ fontSize: 28, opacity: 0.3 }}>+</span>
                     <span style={{ fontSize: 10, color: '#bbb', fontWeight: 700, textAlign: 'center', lineHeight: 1.3, padding: '0 8px' }}>
-                      {lang === 'fr' ? 'Ajouter une carte' : 'Add a card'}
+                      {t('gallery_add_card')}
                     </span>
                   </div>
                 ))}
@@ -1458,24 +1458,24 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   onClick={() => setGrailPickerOpen(false)}>
                   <div onClick={e => e.stopPropagation()} style={{ background: dark ? '#1e1e1e' : 'white', borderRadius: 16, padding: 20, width: '100%', maxWidth: 480, maxHeight: '80vh', display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>💎 {lang === 'fr' ? 'Choisir une carte' : 'Choose a card'}</h3>
+                      <h3 style={{ margin: 0, fontWeight: 900, fontSize: 16 }}>💎 {t('gallery_choose_card')}</h3>
                       <button onClick={() => setGrailPickerOpen(false)} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', color: '#999' }}>✕</button>
                     </div>
                     <input
                       autoFocus
                       value={grailSearch}
                       onChange={e => setGrailSearch(e.target.value)}
-                      placeholder={lang === 'fr' ? 'Rechercher dans ma collection…' : 'Search my collection…'}
+                      placeholder={t('gallery_search_collection')}
                       style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #ddd', fontSize: 14, outline: 'none' }}
                     />
                     <div style={{ overflowY: 'auto', flex: 1 }}>
                       {grailSearch.trim().length === 0 ? (
                         <p style={{ color: '#bbb', textAlign: 'center', marginTop: 24, fontSize: 13 }}>
-                          {lang === 'fr' ? 'Tapez le nom d\'un joueur, set ou variation…' : 'Type a player name, set or variation…'}
+                          {t('gallery_type_hint')}
                         </p>
                       ) : grailSearchResults.length === 0 ? (
                         <p style={{ color: '#bbb', textAlign: 'center', marginTop: 24, fontSize: 13 }}>
-                          {lang === 'fr' ? 'Aucun résultat' : 'No results'}
+                          {t('gallery_no_results')}
                         </p>
                       ) : (
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
@@ -1521,7 +1521,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               boxShadow: activeTab === tab ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
               transition: '0.15s',
             }}>
-              {tab === 'collection' ? '🃏 Collection' : tab === 'library' ? (lang === 'fr' ? '📔 Classeurs' : '📔 Binders') : tab === 'objectifs' ? (lang === 'fr' ? '🎯 Objectifs' : '🎯 Goals') : tab === 'comments' ? (lang === 'fr' ? '💬 Commentaires' : '💬 Comments') : (lang === 'fr' ? '❤️ Aimées' : '❤️ Liked')}
+              {tab === 'collection' ? '🃏 Collection' : tab === 'library' ? t('gallery_tab_library') : tab === 'objectifs' ? t('gallery_tab_objectifs') : tab === 'comments' ? t('gallery_tab_comments') : t('gallery_tab_liked')}
             </button>
           ))}
         </div>
@@ -1588,87 +1588,87 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             <button onClick={() => setFilterMemo(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterMemo ? '#7b1fa2' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterMemo ? 'white' : (dark ? '#bbb' : '#333')
-            }}>🏆 {lang === 'fr' ? 'Mémo' : 'Memo'}</button>
+            }}>🏆 {t('gallery_filter_memo')}</button>
             <button onClick={() => setFilterVente(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterVente ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterVente ? 'white' : (dark ? '#bbb' : '#333')
-            }}>🏷️ {lang === 'fr' ? 'Vente' : 'Sale'}</button>
+            }}>🏷️ {t('gallery_filter_sale')}</button>
             {isOwner && (
               <button onClick={() => setFilterPrivate(p => !p)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
                 background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
-              }}>🔒 {lang === 'fr' ? 'Privé' : 'Private'}</button>
+              }}>🔒 {t('gallery_filter_private')}</button>
             )}
           </div>
           <div>
             <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>
-              {lang === 'fr' ? 'Trier par' : 'Sort by'}
+              {t('gallery_sort_by')}
             </label>
             <select value={sortBy} onChange={e => { setSortBy(e.target.value as typeof sortBy); if (e.target.value === 'default') setSortBy2('none') }}
               style={{ background: sortBy !== 'default' ? (dark ? '#1a2240' : '#f0f4ff') : undefined, borderColor: sortBy !== 'default' ? '#003DA6' : undefined, color: sortBy !== 'default' ? (dark ? '#7aabf7' : '#003DA6') : undefined, fontWeight: sortBy !== 'default' ? 700 : undefined }}>
-              <option value="default">{lang === 'fr' ? '— Ordre par défaut —' : '— Default order —'}</option>
-              <optgroup label={lang === 'fr' ? 'Joueur' : 'Player'}>
-                <option value="n">{lang === 'fr' ? 'Joueur A → Z' : 'Player A → Z'}</option>
-                <option value="n_desc">{lang === 'fr' ? 'Joueur Z → A' : 'Player Z → A'}</option>
+              <option value="default">{t('gallery_sort_default')}</option>
+              <optgroup label={t('gallery_sort_player_group')}>
+                <option value="n">{t('gallery_sort_player_az')}</option>
+                <option value="n_desc">{t('gallery_sort_player_za')}</option>
               </optgroup>
-              <optgroup label={lang === 'fr' ? 'Année' : 'Year'}>
-                <option value="y">{lang === 'fr' ? 'Année croissante' : 'Year asc'}</option>
-                <option value="y_desc">{lang === 'fr' ? 'Année décroissante' : 'Year desc'}</option>
+              <optgroup label={t('gallery_sort_year_group')}>
+                <option value="y">{t('gallery_sort_year_asc')}</option>
+                <option value="y_desc">{t('gallery_sort_year_desc')}</option>
               </optgroup>
-              <optgroup label={lang === 'fr' ? 'Équipe' : 'Team'}>
-                <option value="t">{lang === 'fr' ? 'Équipe A → Z' : 'Team A → Z'}</option>
+              <optgroup label={t('gallery_sort_team_group')}>
+                <option value="t">{t('gallery_sort_team_az')}</option>
               </optgroup>
-              <optgroup label={lang === 'fr' ? 'Collection' : 'Brand'}>
-                <option value="s">{lang === 'fr' ? 'Collection A → Z' : 'Brand A → Z'}</option>
+              <optgroup label={t('gallery_sort_brand_group')}>
+                <option value="s">{t('gallery_sort_brand_az')}</option>
               </optgroup>
-              <optgroup label={lang === 'fr' ? 'Numérotation' : 'Numbering'}>
-                <option value="num_asc">{lang === 'fr' ? 'Numérotation basse → haute' : 'Numbering low → high'}</option>
+              <optgroup label={t('gallery_sort_num_group')}>
+                <option value="num_asc">{t('gallery_sort_num_asc')}</option>
               </optgroup>
-              <optgroup label={lang === 'fr' ? '# Carte' : 'Card #'}>
-                <option value="card_num_asc">{lang === 'fr' ? '# Carte croissant' : 'Card # low → high'}</option>
-                <option value="card_num_desc">{lang === 'fr' ? '# Carte décroissant' : 'Card # high → low'}</option>
+              <optgroup label={t('gallery_sort_cardnum_group')}>
+                <option value="card_num_asc">{t('gallery_sort_cardnum_asc')}</option>
+                <option value="card_num_desc">{t('gallery_sort_cardnum_desc')}</option>
               </optgroup>
-              <optgroup label={lang === 'fr' ? 'Date d\'ajout' : 'Date added'}>
-                <option value="date_desc">{lang === 'fr' ? 'Plus récent en 1er' : 'Newest first'}</option>
-                <option value="date_asc">{lang === 'fr' ? 'Plus ancien en 1er' : 'Oldest first'}</option>
+              <optgroup label={t('gallery_sort_date_group')}>
+                <option value="date_desc">{t('gallery_sort_newest')}</option>
+                <option value="date_asc">{t('gallery_sort_oldest')}</option>
               </optgroup>
               {cardValues.size > 0 && <>
-                <option value="valeur">{lang === 'fr' ? 'Valeur ↓ (plus cher en 1er)' : 'Value ↓ (highest first)'}</option>
-                <option value="valeur_desc">{lang === 'fr' ? 'Valeur ↑ (moins cher en 1er)' : 'Value ↑ (lowest first)'}</option>
+                <option value="valeur">{t('gallery_sort_value_desc')}</option>
+                <option value="valeur_desc">{t('gallery_sort_value_asc')}</option>
               </>}
             </select>
             {sortBy !== 'default' && (
               <div style={{ marginTop: 8 }}>
                 <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>
-                  {lang === 'fr' ? 'Puis par' : 'Then by'}
+                  {t('gallery_then_by')}
                 </label>
                 <select value={sortBy2} onChange={e => setSortBy2(e.target.value as typeof sortBy2)}
                   style={{ background: sortBy2 !== 'none' ? (dark ? '#1a2240' : '#f0f4ff') : undefined, borderColor: sortBy2 !== 'none' ? '#003DA6' : undefined, color: sortBy2 !== 'none' ? (dark ? '#7aabf7' : '#003DA6') : undefined, fontWeight: sortBy2 !== 'none' ? 700 : undefined }}>
-                  <option value="none">{lang === 'fr' ? '— Aucun tri secondaire —' : '— No secondary sort —'}</option>
-                  <optgroup label={lang === 'fr' ? 'Joueur' : 'Player'}>
-                    <option value="n">{lang === 'fr' ? 'Joueur A → Z' : 'Player A → Z'}</option>
-                    <option value="n_desc">{lang === 'fr' ? 'Joueur Z → A' : 'Player Z → A'}</option>
+                  <option value="none">{t('gallery_sort_none')}</option>
+                  <optgroup label={t('gallery_sort_player_group')}>
+                    <option value="n">{t('gallery_sort_player_az')}</option>
+                    <option value="n_desc">{t('gallery_sort_player_za')}</option>
                   </optgroup>
-                  <optgroup label={lang === 'fr' ? 'Année' : 'Year'}>
-                    <option value="y">{lang === 'fr' ? 'Année croissante' : 'Year asc'}</option>
-                    <option value="y_desc">{lang === 'fr' ? 'Année décroissante' : 'Year desc'}</option>
+                  <optgroup label={t('gallery_sort_year_group')}>
+                    <option value="y">{t('gallery_sort_year_asc')}</option>
+                    <option value="y_desc">{t('gallery_sort_year_desc')}</option>
                   </optgroup>
-                  <optgroup label={lang === 'fr' ? 'Équipe' : 'Team'}>
-                    <option value="t">{lang === 'fr' ? 'Équipe A → Z' : 'Team A → Z'}</option>
+                  <optgroup label={t('gallery_sort_team_group')}>
+                    <option value="t">{t('gallery_sort_team_az')}</option>
                   </optgroup>
-                  <optgroup label={lang === 'fr' ? 'Collection' : 'Brand'}>
-                    <option value="s">{lang === 'fr' ? 'Collection A → Z' : 'Brand A → Z'}</option>
+                  <optgroup label={t('gallery_sort_brand_group')}>
+                    <option value="s">{t('gallery_sort_brand_az')}</option>
                   </optgroup>
-                  <optgroup label={lang === 'fr' ? 'Numérotation' : 'Numbering'}>
-                    <option value="num_asc">{lang === 'fr' ? 'Numérotation basse → haute' : 'Numbering low → high'}</option>
+                  <optgroup label={t('gallery_sort_num_group')}>
+                    <option value="num_asc">{t('gallery_sort_num_asc')}</option>
                   </optgroup>
-                  <optgroup label={lang === 'fr' ? '# Carte' : 'Card #'}>
-                    <option value="card_num_asc">{lang === 'fr' ? '# Carte croissant' : 'Card # low → high'}</option>
-                    <option value="card_num_desc">{lang === 'fr' ? '# Carte décroissant' : 'Card # high → low'}</option>
+                  <optgroup label={t('gallery_sort_cardnum_group')}>
+                    <option value="card_num_asc">{t('gallery_sort_cardnum_asc')}</option>
+                    <option value="card_num_desc">{t('gallery_sort_cardnum_desc')}</option>
                   </optgroup>
-                  <optgroup label={lang === 'fr' ? 'Date d\'ajout' : 'Date added'}>
-                    <option value="date_desc">{lang === 'fr' ? 'Plus récent en 1er' : 'Newest first'}</option>
-                    <option value="date_asc">{lang === 'fr' ? 'Plus ancien en 1er' : 'Oldest first'}</option>
+                  <optgroup label={t('gallery_sort_date_group')}>
+                    <option value="date_desc">{t('gallery_sort_newest')}</option>
+                    <option value="date_asc">{t('gallery_sort_oldest')}</option>
                   </optgroup>
                 </select>
               </div>
@@ -1676,11 +1676,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             {teams.length > 0 && (
               <div style={{ marginTop: 8 }}>
                 <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 3 }}>
-                  {lang === 'fr' ? '⭐ Équipe en tête' : '⭐ Team first'}
+                  {t('gallery_team_first')}
                 </label>
                 <select value={pinTeam} onChange={e => setPinTeam(e.target.value)}
                   style={{ background: pinTeam ? (dark ? '#1a2240' : '#f0f4ff') : undefined, borderColor: pinTeam ? '#003DA6' : undefined, color: pinTeam ? (dark ? '#7aabf7' : '#003DA6') : undefined, fontWeight: pinTeam ? 700 : undefined }}>
-                  <option value="">{lang === 'fr' ? '— Aucune —' : '— None —'}</option>
+                  <option value="">{t('gallery_no_team')}</option>
                   {teams.map(team => <option key={team} value={team}>{team}</option>)}
                 </select>
               </div>
@@ -1690,16 +1690,16 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 marginTop: 4, width: '100%', padding: '5px 8px', fontSize: 10, fontWeight: 800,
                 background: '#003DA6', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer',
               }}>
-                {lang === 'fr' ? '💾 Fixer cet ordre (activer le drag)' : '💾 Fix order (enable drag)'}
+                {t('gallery_fix_order')}
               </button>
             )}
           </div>
           {collectionTags.length > 0 && (
             <div style={{ marginTop: 8 }} onClick={() => colorPickerTag && setColorPickerTag(null)}>
               <label style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', color: '#888', display: 'block', marginBottom: 5 }}>
-                {lang === 'fr' ? 'Ma collection' : 'My collection'}
+                {t('gallery_my_collection')}
                 {isOwner && <span style={{ fontSize: 8, color: '#bbb', marginLeft: 6, fontWeight: 600 }}>
-                  {lang === 'fr' ? '· glisser pour réordonner' : '· drag to reorder'}
+                  {t('gallery_drag_reorder')}
                 </span>}
               </label>
               <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -1709,7 +1709,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                   background: !fCollectionTag ? accent : (dark ? '#2a2a2a' : '#f0f0f0'),
                   color: !fCollectionTag ? 'white' : (dark ? '#ccc' : '#555'),
                 }}>
-                  {lang === 'fr' ? 'Tout' : 'All'}
+                  {t('gallery_all')}
                 </button>
                 {principals.map(tag => renderTagPill(tag, 0))}
               </div>
@@ -1724,7 +1724,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       color: fCollectionTag === activeParent ? 'white' : (dark ? '#ccc' : '#555'),
                     }}
                   >
-                    {lang === 'fr' ? 'Tout' : 'All'}
+                    {t('gallery_all')}
                   </button>
                   {activeChildren.map(child => renderTagPill(child, 1))}
                 </div>
@@ -2000,8 +2000,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 </div>
               )}
               {d.disponible_vente && (
-                <div title={lang === 'fr' ? 'Disponible à la vente / trade' : 'Available for sale / trade'} style={{ position: 'absolute', top: 6, right: 6, background: '#2e7d32', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2, letterSpacing: 0.3 }}>
-                  🏷️ {lang === 'fr' ? 'Vente/Trade' : 'For Sale'}
+                <div title={t('gallery_for_sale_title')} style={{ position: 'absolute', top: 6, right: 6, background: '#2e7d32', color: 'white', fontSize: 9, fontWeight: 900, padding: '2px 6px', borderRadius: 4, zIndex: 2, letterSpacing: 0.3 }}>
+                  🏷️ {t('gallery_for_sale_label')}
                 </div>
               )}
               {editMode && isOwner && selectedCards.has(getCardId(d)) && (
@@ -2030,7 +2030,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                       <button onClick={e => { e.stopPropagation(); router.push(`/galerie/${userId}/editer/${d.id_manuelle}`) }} style={{
                         background: '#f59e0b', color: 'white', border: 'none', borderRadius: 6,
                         padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
-                      }} title={lang === 'fr' ? 'Modifier la carte' : 'Edit card'}>
+                      }} title={t('gallery_edit_card')}>
                         ✏️
                       </button>
                       {deleteCardConfirm === d.id_manuelle ? (
@@ -2042,7 +2042,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                         <button onClick={e => { e.stopPropagation(); setDeleteCardConfirm(d.id_manuelle!) }} style={{
                           background: '#e74c3c', color: 'white', border: 'none', borderRadius: 6,
                           padding: '4px 6px', fontSize: 10, fontWeight: 900, cursor: 'pointer',
-                        }} title={lang === 'fr' ? 'Supprimer la carte' : 'Delete card'}>
+                        }} title={t('gallery_delete_card')}>
                           🗑️
                         </button>
                       )}
@@ -2145,10 +2145,10 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             ) : cards.length > 0 && filtered.length === 0 ? (
               <div style={{ padding: '60px 20px', textAlign: 'center' }}>
                 <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
-                <p style={{ fontWeight: 800, fontSize: 15, marginBottom: 8 }}>{lang === 'fr' ? 'Aucun résultat' : 'No results'}</p>
-                <p style={{ color: '#999', fontSize: 13, marginBottom: 16 }}>{lang === 'fr' ? 'Aucune carte ne correspond à ces filtres.' : 'No cards match these filters.'}</p>
+                <p style={{ fontWeight: 800, fontSize: 15, marginBottom: 8 }}>{t('gallery_no_match_title')}</p>
+                <p style={{ color: '#999', fontSize: 13, marginBottom: 16 }}>{t('gallery_no_match_sub')}</p>
                 <button onClick={() => { setSearchInput(''); setSearch(''); setFTeam(''); setFBrand(''); setFYear(''); setFCollectionTag(''); setPinTeam(''); setActiveFilters({ rc: false, auto: false, num: false, patch: false }); setFilterVente(false) }} style={{ background: '#003DA6', color: 'white', padding: '10px 20px', borderRadius: 50, fontWeight: 800, fontSize: 13, border: 'none', cursor: 'pointer' }}>
-                  {lang === 'fr' ? 'Effacer les filtres' : 'Clear filters'}
+                  {t('gallery_clear_filters')}
                 </button>
               </div>
             ) : cards.length === 0 ? (
@@ -2287,6 +2287,8 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
           <span style={{ flex: 1, fontSize: 14, fontWeight: 600, color: dark ? '#e8eeff' : '#0a2a6b', lineHeight: 1.4 }}>
             {lang === 'fr'
               ? "✦ Crée ta galerie gratuitement — l'IA identifie tes cartes en 1 photo."
+              : lang === 'de'
+              ? "✦ Erstelle deine Galerie kostenlos — die KI erkennt deine Karten in 1 Foto."
               : "✦ Create your free gallery — AI identifies your cards in 1 photo."}
           </span>
           <Link
@@ -2297,7 +2299,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0,
             }}
           >
-            {lang === 'fr' ? 'Commencer →' : 'Get started →'}
+            {t('gallery_get_started')}
           </Link>
           <button
             onClick={() => setShowConversionBanner(false)}
@@ -2306,7 +2308,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               color: dark ? 'rgba(255,255,255,0.4)' : '#aab0c0',
               fontSize: 22, padding: '0 4px', flexShrink: 0, lineHeight: 1,
             }}
-            aria-label={lang === 'fr' ? 'Fermer' : 'Close'}
+            aria-label={t('gallery_close')}
           >×</button>
         </div>
       )}
