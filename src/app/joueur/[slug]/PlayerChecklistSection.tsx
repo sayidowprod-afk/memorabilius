@@ -176,7 +176,7 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
 
       {!loading && totalCards === 0 && (
         <div style={{ textAlign: 'center', padding: 32, color: 'var(--jp-muted)', fontSize: 14, background: 'var(--jp-surface)', borderRadius: 12, border: '1.5px solid var(--jp-border)' }}>
-          Aucune entrée TCDB trouvée pour ce joueur.
+          Aucune carte répertoriée pour ce joueur.
         </div>
       )}
 

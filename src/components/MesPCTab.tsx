@@ -1,22 +1,23 @@
 'use client'
-import { useState, useMemo, useCallback } from 'react'
-import Link from 'next/link'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
+import PlayerChecklistSection from '@/app/joueur/[slug]/PlayerChecklistSection'
 
 interface Card { n: string }
 
-interface EntryWithSet {
-  id: number
-  set_id: number
-  card_number: string | null
-  variation: string | null
-  is_rc: boolean
-  card_sets: { id: number; name: string; year: number | null; brand: string | null; sport: string } | null
+interface PCEntry {
+  id: string
+  name: string
+  firstName: string
+  lastName: string
+  addedAt: number
 }
 
-interface CompletionRow { id: string; manually_checked: boolean }
-
-type Filter = 'all' | 'owned' | 'missing'
+interface PCStats {
+  total: number
+  owned: number
+  loading: boolean
+}
 
 export default function MesPCTab({ cards, userId, accent, dark }: {
   cards: Card[]
@@ -24,21 +25,89 @@ export default function MesPCTab({ cards, userId, accent, dark }: {
   accent: string
   dark: boolean
 }) {
-  const [search, setSearch] = useState('')
-  const [selected, setSelected] = useState<string | null>(null)
-  const [entries, setEntries] = useState<EntryWithSet[]>([])
-  const [completions, setCompletions] = useState<Map<number, CompletionRow>>(new Map())
-  const [loading, setLoading] = useState(false)
-  const [saving, setSaving] = useState<number | null>(null)
-  const [openSets, setOpenSets] = useState<Set<number>>(new Set())
-  const [filter, setFilter] = useState<Filter>('all')
+  const storageKey = `memorabilius_pcs_${userId}`
+  const [pcs, setPCs] = useState<PCEntry[]>([])
+  const [stats, setStats] = useState<Map<string, PCStats>>(new Map())
+  const [selected, setSelected] = useState<PCEntry | null>(null)
+  const [showAdd, setShowAdd] = useState(false)
+  const [addSearch, setAddSearch] = useState('')
   const [showSuggestions, setShowSuggestions] = useState(false)
+  const blurTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const surface = dark ? '#1a1a2e' : '#ffffff'
-  const surface2 = dark ? '#252540' : '#f8f9fc'
+  const bg   = dark ? '#1a1a2e' : '#ffffff'
+  const bg2  = dark ? '#252540' : '#f8f9fc'
   const border = dark ? '#2a2a4a' : '#e8eaf0'
   const text = dark ? '#f0f2f8' : '#111111'
   const muted = dark ? '#666e88' : '#888888'
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(storageKey)
+      if (stored) setPCs(JSON.parse(stored))
+    } catch {}
+  }, [storageKey])
+
+  function savePCs(next: PCEntry[]) {
+    setPCs(next)
+    try { localStorage.setItem(storageKey, JSON.stringify(next)) } catch {}
+  }
+
+  const fetchStatsForPC = useCallback(async (pc: PCEntry) => {
+    setStats(prev => new Map(prev).set(pc.id, { total: 0, owned: 0, loading: true }))
+    try {
+      const res = await fetch(
+        `/api/player-checklist?firstName=${encodeURIComponent(pc.firstName)}&lastName=${encodeURIComponent(pc.lastName)}`
+      )
+      if (!res.ok) throw new Error()
+      const { entries } = await res.json() as { entries: { id: number }[] }
+      const total = entries.length
+      let owned = 0
+      if (total > 0) {
+        const ids = entries.map(e => e.id)
+        const CHUNK = 500
+        for (let i = 0; i < ids.length; i += CHUNK) {
+          const { data } = await supabase
+            .from('user_set_completion')
+            .select('id')
+            .eq('user_id', userId)
+            .in('entry_id', ids.slice(i, i + CHUNK))
+          owned += data?.length ?? 0
+        }
+      }
+      setStats(prev => new Map(prev).set(pc.id, { total, owned, loading: false }))
+    } catch {
+      setStats(prev => new Map(prev).set(pc.id, { total: 0, owned: 0, loading: false }))
+    }
+  }, [userId])
+
+  useEffect(() => {
+    for (const pc of pcs) {
+      if (!stats.has(pc.id)) fetchStatsForPC(pc)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pcs])
+
+  function addPC(name: string) {
+    const trimmed = name.trim()
+    if (!trimmed) return
+    if (pcs.some(p => p.name.toLowerCase() === trimmed.toLowerCase())) {
+      setShowAdd(false); setAddSearch(''); return
+    }
+    const parts = trimmed.split(' ')
+    const firstName = parts[0]
+    const lastName = parts[parts.length - 1]
+    const entry: PCEntry = { id: `${firstName}_${lastName}_${Date.now()}`, name: trimmed, firstName, lastName, addedAt: Date.now() }
+    const next = [...pcs, entry]
+    savePCs(next)
+    fetchStatsForPC(entry)
+    setShowAdd(false)
+    setAddSearch('')
+  }
+
+  function removePC(id: string) {
+    savePCs(pcs.filter(p => p.id !== id))
+    setStats(prev => { const n = new Map(prev); n.delete(id); return n })
+  }
 
   const playerNames = useMemo(() => {
     const names = new Set<string>()
@@ -47,238 +116,278 @@ export default function MesPCTab({ cards, userId, accent, dark }: {
   }, [cards])
 
   const suggestions = useMemo(() => {
-    if (!search) return playerNames.slice(0, 12)
-    const q = search.toLowerCase()
-    return playerNames.filter(n => n.toLowerCase().includes(q)).slice(0, 12)
-  }, [playerNames, search])
+    if (!addSearch) return playerNames.slice(0, 14)
+    const q = addSearch.toLowerCase()
+    return playerNames.filter(n => n.toLowerCase().includes(q)).slice(0, 14)
+  }, [playerNames, addSearch])
 
-  const loadChecklist = useCallback(async (name: string) => {
-    setLoading(true)
-    setEntries([])
-    setCompletions(new Map())
-    setOpenSets(new Set())
-    const parts = name.trim().split(' ')
-    const firstName = parts[0]
-    const lastName = parts[parts.length - 1]
-    try {
-      const res = await fetch(`/api/player-checklist?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}`)
-      if (!res.ok) throw new Error('fetch failed')
-      const { entries: allEntries } = await res.json() as { entries: EntryWithSet[] }
-      setEntries(allEntries)
-      if (allEntries[0]?.set_id) setOpenSets(new Set([allEntries[0].set_id]))
-      if (allEntries.length > 0) {
-        const ids = allEntries.map(e => e.id)
-        const CHUNK = 500
-        const all: { id: string; entry_id: number; manually_checked: boolean }[] = []
-        for (let i = 0; i < ids.length; i += CHUNK) {
-          const { data } = await supabase.from('user_set_completion')
-            .select('id, entry_id, manually_checked').eq('user_id', userId).in('entry_id', ids.slice(i, i + CHUNK))
-          if (data) all.push(...data)
-        }
-        const map = new Map<number, CompletionRow>()
-        for (const c of all) map.set(c.entry_id, { id: c.id, manually_checked: c.manually_checked })
-        setCompletions(map)
-      }
-    } catch { } finally { setLoading(false) }
-  }, [userId])
-
-  async function toggleEntry(entryId: number) {
-    const existing = completions.get(entryId)
-    setSaving(entryId)
-    try {
-      if (existing) {
-        await supabase.from('user_set_completion').delete().eq('id', existing.id)
-        setCompletions(prev => { const n = new Map(prev); n.delete(entryId); return n })
-      } else {
-        const { data } = await supabase.from('user_set_completion')
-          .upsert({ user_id: userId, entry_id: entryId, manually_checked: true }, { onConflict: 'user_id,entry_id' })
-          .select('id, manually_checked').single()
-        if (data) setCompletions(prev => new Map(prev).set(entryId, { id: data.id, manually_checked: data.manually_checked }))
-      }
-    } finally { setSaving(null) }
+  // ── Detail view ──────────────────────────────────────────────────────────────
+  if (selected) {
+    return (
+      <div style={{ padding: '12px 0' }}>
+        <button
+          onClick={() => setSelected(null)}
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            padding: '7px 14px', borderRadius: 8,
+            background: bg2, border: `1.5px solid ${border}`,
+            color: muted, fontSize: 13, fontWeight: 700, cursor: 'pointer',
+            marginBottom: 4,
+          }}
+        >
+          ← Retour aux PC
+        </button>
+        <PlayerChecklistSection playerName={selected.name} />
+      </div>
+    )
   }
 
-  function toggleSet(setId: number) {
-    setOpenSets(prev => { const n = new Set(prev); if (n.has(setId)) n.delete(setId); else n.add(setId); return n })
-  }
-
-  const setGroups = useMemo(() => {
-    const groups: { setId: number; setName: string; setYear: number | null; setBrand: string | null; entries: EntryWithSet[] }[] = []
-    const seen = new Map<number, typeof groups[0]>()
-    for (const e of entries) {
-      const cs = e.card_sets; if (!cs) continue
-      if (!seen.has(e.set_id)) {
-        const g = { setId: e.set_id, setName: cs.name, setYear: cs.year, setBrand: cs.brand, entries: [] as EntryWithSet[] }
-        seen.set(e.set_id, g); groups.push(g)
-      }
-      seen.get(e.set_id)!.entries.push(e)
-    }
-    return groups.sort((a, b) => (b.setYear || 0) - (a.setYear || 0))
-  }, [entries])
-
-  const totalOwned = completions.size
-  const totalCards = entries.length
-
-  function selectPlayer(name: string) {
-    setSelected(name)
-    setSearch(name)
-    setShowSuggestions(false)
-    loadChecklist(name)
-  }
-
+  // ── Grid view ─────────────────────────────────────────────────────────────────
   return (
-    <div style={{ padding: '20px 0' }}>
+    <div style={{ padding: '16px 0' }}>
+
       {/* Header */}
-      <div style={{ marginBottom: 20 }}>
-        <h2 style={{ fontSize: 18, fontWeight: 900, color: text, margin: '0 0 4px' }}>Mes PC</h2>
-        <p style={{ fontSize: 13, color: muted, margin: 0 }}>Suis ta complétion TCDB pour un joueur de ta collection</p>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+        <div>
+          <h2 style={{ fontSize: 18, fontWeight: 900, color: text, margin: '0 0 2px' }}>Mes PC</h2>
+          <p style={{ fontSize: 12, color: muted, margin: 0 }}>
+            {pcs.length === 0
+              ? 'Ajoute les joueurs que tu collectionnes'
+              : `${pcs.length} joueur${pcs.length > 1 ? 's' : ''} suivi${pcs.length > 1 ? 's' : ''}`}
+          </p>
+        </div>
+        <button
+          onClick={() => { setShowAdd(!showAdd); setAddSearch('') }}
+          style={{
+            padding: '9px 16px',
+            background: showAdd ? bg2 : accent,
+            color: showAdd ? muted : 'white',
+            border: `1.5px solid ${showAdd ? border : accent}`,
+            borderRadius: 10, cursor: 'pointer', fontWeight: 800, fontSize: 13,
+            transition: 'all 0.15s',
+          }}
+        >
+          {showAdd ? '✕ Annuler' : '+ Ajouter'}
+        </button>
       </div>
 
-      {/* Player picker */}
-      <div style={{ marginBottom: 20, position: 'relative' }}>
-        <div style={{ display: 'flex', gap: 8 }}>
+      {/* Add form */}
+      {showAdd && (
+        <div style={{
+          marginBottom: 20, background: bg2, borderRadius: 12,
+          padding: '14px 16px', border: `1.5px solid ${border}`,
+          position: 'relative',
+        }}>
+          <p style={{ fontSize: 11, fontWeight: 800, color: muted, margin: '0 0 8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            Nom du joueur
+          </p>
           <input
-            value={search}
-            onChange={e => { setSearch(e.target.value); setShowSuggestions(true); if (selected) setSelected(null) }}
+            autoFocus
+            value={addSearch}
+            onChange={e => { setAddSearch(e.target.value); setShowSuggestions(true) }}
             onFocus={() => setShowSuggestions(true)}
-            placeholder="Nom du joueur..."
+            onBlur={() => { blurTimer.current = setTimeout(() => setShowSuggestions(false), 150) }}
+            onKeyDown={e => {
+              if (e.key === 'Enter' && addSearch.trim()) addPC(addSearch)
+              if (e.key === 'Escape') { setShowAdd(false); setAddSearch('') }
+            }}
+            placeholder="Ex: Joel Embiid, Luka Doncic…"
             style={{
-              flex: 1, padding: '10px 14px', borderRadius: 10,
-              border: `2px solid ${selected ? accent : border}`,
-              fontSize: 14, fontWeight: 600, outline: 'none',
-              background: surface, color: text,
-              boxSizing: 'border-box',
+              width: '100%', padding: '10px 14px', borderRadius: 8,
+              border: `2px solid ${accent}`, fontSize: 14, fontWeight: 600,
+              background: bg, color: text, outline: 'none', boxSizing: 'border-box',
             }}
           />
-          {(search || selected) && (
-            <button
-              onClick={() => { setSelected(null); setSearch(''); setEntries([]); setCompletions(new Map()); setShowSuggestions(false) }}
-              style={{ padding: '0 14px', borderRadius: 10, border: `1.5px solid ${border}`, background: surface2, color: muted, cursor: 'pointer', fontSize: 18, fontWeight: 400, lineHeight: 1 }}
-            >×</button>
-          )}
-        </div>
-
-        {/* Suggestions dropdown */}
-        {showSuggestions && !selected && suggestions.length > 0 && (
-          <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: surface, border: `1.5px solid ${border}`, borderRadius: 10, boxShadow: '0 8px 24px rgba(0,0,0,0.12)', zIndex: 50, marginTop: 4, maxHeight: 280, overflowY: 'auto' }}>
-            {suggestions.map(name => (
-              <button
-                key={name}
-                onClick={() => selectPlayer(name)}
-                style={{ display: 'block', width: '100%', padding: '10px 14px', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: text, borderBottom: `1px solid ${border}` }}
-              >
-                {name}
-              </button>
-            ))}
-            {/* Allow searching outside of collection */}
-            {search && !playerNames.some(n => n.toLowerCase() === search.toLowerCase()) && (
-              <button
-                onClick={() => selectPlayer(search.trim())}
-                style={{ display: 'block', width: '100%', padding: '10px 14px', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: accent, borderBottom: `1px solid ${border}` }}
-              >
-                Rechercher « {search.trim()} »
-              </button>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Checklist */}
-      {loading && (
-        <div style={{ textAlign: 'center', padding: 40, color: muted, fontSize: 14 }}>Chargement…</div>
-      )}
-
-      {!loading && selected && totalCards === 0 && (
-        <div style={{ textAlign: 'center', padding: 32, color: muted, fontSize: 14, background: surface, borderRadius: 12, border: `1.5px solid ${border}` }}>
-          Aucune entrée TCDB trouvée pour ce joueur.
-        </div>
-      )}
-
-      {!loading && totalCards > 0 && (
-        <>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10, flexWrap: 'wrap', gap: 8 }}>
-            <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: muted }}>
-              {totalOwned} / {totalCards} carte{totalCards > 1 ? 's' : ''} cochée{totalOwned > 1 ? 's' : ''}
-            </p>
-            <div style={{ display: 'flex', gap: 4 }}>
-              {(['all', 'owned', 'missing'] as Filter[]).map(f => (
-                <button key={f} onClick={() => setFilter(f)} style={{
-                  background: filter === f ? accent : surface2,
-                  color: filter === f ? 'white' : muted,
-                  border: `1.5px solid ${filter === f ? accent : border}`,
-                  borderRadius: 6, padding: '4px 11px', fontSize: 11, fontWeight: 700, cursor: 'pointer',
-                }}>
-                  {f === 'all' ? 'Tout' : f === 'owned' ? 'Possédé' : 'Manquant'}
+          {showSuggestions && (suggestions.length > 0 || addSearch.trim()) && (
+            <div style={{
+              position: 'absolute', top: 'calc(100% - 4px)', left: 16, right: 16,
+              background: bg, border: `1.5px solid ${border}`, borderRadius: 10,
+              boxShadow: '0 8px 28px rgba(0,0,0,0.14)', zIndex: 60,
+              maxHeight: 260, overflowY: 'auto',
+            }}>
+              {suggestions.map(name => (
+                <button
+                  key={name}
+                  onMouseDown={e => { e.preventDefault(); if (blurTimer.current) clearTimeout(blurTimer.current) }}
+                  onClick={() => addPC(name)}
+                  style={{
+                    display: 'block', width: '100%', padding: '10px 14px',
+                    textAlign: 'left', background: 'none', border: 'none',
+                    borderBottom: `1px solid ${border}`,
+                    cursor: 'pointer', fontSize: 13, fontWeight: 700, color: text,
+                  }}
+                >
+                  {name}
                 </button>
               ))}
+              {addSearch.trim() && !playerNames.some(n => n.toLowerCase() === addSearch.toLowerCase()) && (
+                <button
+                  onMouseDown={e => { e.preventDefault(); if (blurTimer.current) clearTimeout(blurTimer.current) }}
+                  onClick={() => addPC(addSearch.trim())}
+                  style={{
+                    display: 'block', width: '100%', padding: '10px 14px',
+                    textAlign: 'left', background: 'none', border: 'none',
+                    cursor: 'pointer', fontSize: 13, fontWeight: 700, color: accent,
+                  }}
+                >
+                  Ajouter « {addSearch.trim()} »
+                </button>
+              )}
             </div>
-          </div>
-
-          {/* Progress bar */}
-          <div style={{ height: 6, background: border, borderRadius: 3, marginBottom: 14, overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: `${(totalOwned / totalCards) * 100}%`, background: accent, borderRadius: 3, transition: 'width 0.3s' }} />
-          </div>
-
-          {setGroups.length > 8 && (
-            <p style={{ fontSize: 11, color: muted, margin: '0 0 8px' }}>{setGroups.length} sets · cliquer pour développer</p>
           )}
-
-          <div style={{ maxHeight: 560, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 4, paddingRight: 4 }}>
-            {setGroups.map(group => {
-              const ownedInSet = group.entries.filter(e => completions.has(e.id)).length
-              const isOpen = openSets.has(group.setId)
-              const visibleEntries = group.entries.filter(e => {
-                const owned = completions.has(e.id)
-                if (filter === 'owned') return owned
-                if (filter === 'missing') return !owned
-                return true
-              })
-              if (filter !== 'all' && visibleEntries.length === 0) return null
-              return (
-                <div key={group.setId} style={{ background: surface, borderRadius: 8, border: `1.5px solid ${border}`, overflow: 'hidden' }}>
-                  <button onClick={() => toggleSet(group.setId)} style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 12px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', gap: 8 }}>
-                    <div style={{ flex: 1, fontSize: 12, fontWeight: 700, color: text }}>
-                      {group.setYear ? `${group.setYear} ` : ''}{group.setName}
-                      {group.setBrand && <span style={{ fontSize: 10, color: accent, fontWeight: 700, marginLeft: 6 }}>{group.setBrand}</span>}
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-                      <span style={{ fontSize: 11, fontWeight: 800, color: ownedInSet === group.entries.length ? '#27ae60' : muted, background: ownedInSet === group.entries.length ? 'rgba(39,174,96,0.12)' : surface2, padding: '2px 8px', borderRadius: 10 }}>
-                        {ownedInSet}/{group.entries.length}
-                      </span>
-                      <Link href={`/setlist/${group.setId}`} onClick={e => e.stopPropagation()} style={{ fontSize: 11, color: accent, fontWeight: 700, textDecoration: 'none' }}>Voir →</Link>
-                      <span style={{ color: muted, fontSize: 12 }}>{isOpen ? '▲' : '▼'}</span>
-                    </div>
-                  </button>
-                  {isOpen && (
-                    <div style={{ borderTop: `1px solid ${border}` }}>
-                      {visibleEntries.map(entry => {
-                        const owned = completions.has(entry.id)
-                        const isSaving = saving === entry.id
-                        return (
-                          <div key={entry.id} onClick={() => toggleEntry(entry.id)} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '5px 12px', borderBottom: `1px solid ${border}`, cursor: 'pointer', background: owned ? 'rgba(39,174,96,0.06)' : 'transparent' }}>
-                            <div style={{ width: 16, height: 16, borderRadius: 4, flexShrink: 0, border: owned ? '2px solid #27ae60' : `2px solid ${border}`, background: owned ? '#27ae60' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: isSaving ? 0.5 : 1 }}>
-                              {owned && <span style={{ color: 'white', fontSize: 10, lineHeight: 1 }}>✓</span>}
-                            </div>
-                            {entry.card_number && <span style={{ fontSize: 11, fontWeight: 800, color: muted, minWidth: 32, fontVariantNumeric: 'tabular-nums' }}>#{entry.card_number}</span>}
-                            <span style={{ fontSize: 12, color: owned ? text : muted, flex: 1, fontWeight: owned ? 700 : 400 }}>{entry.variation || 'Base'}</span>
-                            {entry.is_rc && <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 800 }}>RC</span>}
-                          </div>
-                        )
-                      })}
-                    </div>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        </>
+        </div>
       )}
 
-      {!selected && (
-        <div style={{ textAlign: 'center', padding: '40px 20px', color: muted }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>🎯</div>
-          <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 6 }}>Suis tes PC</div>
-          <div style={{ fontSize: 13 }}>Choisis un joueur pour voir tous ses sets TCDB et cocher les cartes que tu possèdes.</div>
+      {/* Empty state */}
+      {pcs.length === 0 && !showAdd && (
+        <div style={{
+          textAlign: 'center', padding: '52px 24px',
+          background: bg2, borderRadius: 16, border: `2px dashed ${border}`,
+        }}>
+          <div style={{ fontSize: 42, marginBottom: 12 }}>⭐</div>
+          <div style={{ fontSize: 15, fontWeight: 800, color: text, marginBottom: 6 }}>
+            Aucun PC suivi
+          </div>
+          <div style={{ fontSize: 13, color: muted, marginBottom: 20 }}>
+            Ajoute un joueur pour suivre toutes ses cartes
+          </div>
+          <button
+            onClick={() => setShowAdd(true)}
+            style={{
+              padding: '10px 22px', background: accent, color: 'white',
+              border: 'none', borderRadius: 10, cursor: 'pointer',
+              fontWeight: 800, fontSize: 13,
+            }}
+          >
+            + Ajouter un joueur
+          </button>
+        </div>
+      )}
+
+      {/* PC Tiles grid */}
+      {pcs.length > 0 && (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))',
+          gap: 14,
+        }}>
+          {pcs.map(pc => {
+            const s = stats.get(pc.id) ?? { total: 0, owned: 0, loading: true }
+            const pct = s.total > 0 ? (s.owned / s.total) * 100 : 0
+            const initials = pc.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+            const done = !s.loading && s.total > 0 && s.owned === s.total
+
+            return (
+              <div
+                key={pc.id}
+                style={{
+                  background: bg,
+                  border: `1.5px solid ${border}`,
+                  borderRadius: 14,
+                  padding: '16px 14px 14px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 10,
+                  position: 'relative',
+                  boxShadow: dark ? 'none' : '0 1px 6px rgba(0,0,0,0.05)',
+                }}
+              >
+                {/* Remove button */}
+                <button
+                  onClick={() => removePC(pc.id)}
+                  title="Retirer ce PC"
+                  style={{
+                    position: 'absolute', top: 8, right: 8,
+                    width: 22, height: 22, borderRadius: '50%',
+                    background: bg2, border: `1px solid ${border}`,
+                    cursor: 'pointer', color: muted, fontSize: 13, lineHeight: 1,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    padding: 0,
+                  }}
+                >×</button>
+
+                {/* Avatar + Name */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingRight: 20 }}>
+                  <div style={{
+                    width: 40, height: 40, borderRadius: '50%', flexShrink: 0,
+                    background: done ? '#27ae60' : accent,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: 'white', fontWeight: 900, fontSize: 14,
+                    transition: 'background 0.3s',
+                  }}>
+                    {done ? '✓' : initials}
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{
+                      fontSize: 13, fontWeight: 800, color: text,
+                      whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                    }}>
+                      {pc.name}
+                    </div>
+                    <div style={{ fontSize: 10, color: muted, marginTop: 1, fontWeight: 600 }}>
+                      Joueur
+                    </div>
+                  </div>
+                </div>
+
+                {/* Stats */}
+                {s.loading ? (
+                  <div style={{ fontSize: 11, color: muted, fontStyle: 'italic', paddingBottom: 2 }}>
+                    Calcul en cours…
+                  </div>
+                ) : s.total === 0 ? (
+                  <div style={{ fontSize: 11, color: muted, paddingBottom: 2 }}>
+                    Aucune carte répertoriée
+                  </div>
+                ) : (
+                  <>
+                    {/* Progress bar */}
+                    <div>
+                      <div style={{ height: 5, background: border, borderRadius: 3, overflow: 'hidden', marginBottom: 5 }}>
+                        <div style={{
+                          height: '100%',
+                          width: `${pct}%`,
+                          background: done ? '#27ae60' : accent,
+                          borderRadius: 3,
+                          transition: 'width 0.6s ease',
+                        }} />
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <span style={{ fontSize: 12, fontWeight: 800, color: text }}>
+                          {s.owned} <span style={{ fontWeight: 400, color: muted }}>/ {s.total}</span>
+                        </span>
+                        <span style={{
+                          fontSize: 11, fontWeight: 800,
+                          color: done ? '#27ae60' : muted,
+                        }}>
+                          {Math.round(pct)}%
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* CTA */}
+                    <button
+                      onClick={() => setSelected(pc)}
+                      style={{
+                        width: '100%', padding: '8px 0',
+                        background: 'transparent',
+                        color: accent,
+                        border: `1.5px solid ${accent}`,
+                        borderRadius: 8, cursor: 'pointer',
+                        fontWeight: 800, fontSize: 12,
+                        transition: 'background 0.12s',
+                        marginTop: 2,
+                      }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = `${accent}18` }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'transparent' }}
+                    >
+                      Voir la checklist →
+                    </button>
+                  </>
+                )}
+              </div>
+            )
+          })}
         </div>
       )}
     </div>
