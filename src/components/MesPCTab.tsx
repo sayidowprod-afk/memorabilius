@@ -329,9 +329,13 @@ export default function MesPCTab({ cards, userId, accent, dark, isOwner, initial
 
   function getPool(pc: PCEntry) {
     const name = pc.name.toLowerCase()
-    return pc.type === 'player' ? cards.filter(c => c.n?.trim().toLowerCase() === name)
-      : pc.type === 'team' ? cards.filter(c => c.t?.trim().toLowerCase() === name)
-      : cards.filter(c => c.s?.trim().toLowerCase() === name)
+    if (pc.type === 'player') return cards.filter(c => c.n?.trim().toLowerCase() === name)
+    if (pc.type === 'collection') return cards.filter(c => c.s?.trim().toLowerCase() === name)
+    // Équipe : cartes directement taguées + toutes les cartes des joueurs qui ont AU MOINS
+    // une carte avec cette équipe (couvre les sets sans champ équipe renseigné)
+    const directMatch = (c: Card) => c.t?.trim().toLowerCase() === name
+    const teamPlayers = new Set(cards.filter(directMatch).map(c => c.n?.trim().toLowerCase()).filter(Boolean))
+    return cards.filter(c => directMatch(c) || (c.n && teamPlayers.has(c.n.trim().toLowerCase())))
   }
 
   function getTeamCollStats(pc: PCEntry) {
