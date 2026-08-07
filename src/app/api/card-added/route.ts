@@ -48,21 +48,18 @@ export async function DELETE(req: NextRequest) {
     if (!userId || !cardId) return NextResponse.json({ error: 'Missing params' }, { status: 400 })
     if (!(await verifyOwner(req, userId))) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
-    // Vérifier si la carte a été ajoutée ce mois-ci
     const month = new Date().toISOString().slice(0, 7)
     const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString()
 
-    const { data: card } = await supabase
-      .from('cartes_manuelles').select('created_at')
-      .eq('id', cardId).eq('user_id', userId).single()
+    // Fetch card info + monthly count in parallel (independent queries)
+    const [{ data: card }, { data: ma }] = await Promise.all([
+      supabase.from('cartes_manuelles').select('created_at')
+        .eq('id', cardId).eq('user_id', userId).single(),
+      supabase.from('monthly_additions').select('count')
+        .eq('user_id', userId).eq('month', month).maybeSingle(),
+    ])
 
-    const addedThisMonth = card?.created_at && card.created_at >= startOfMonth
-
-    if (addedThisMonth) {
-      const { data: ma } = await supabase
-        .from('monthly_additions').select('count')
-        .eq('user_id', userId).eq('month', month).maybeSingle()
-
+    if (card?.created_at && card.created_at >= startOfMonth) {
       const newCount = Math.max(0, (ma?.count || 0) - 1)
       await supabase.from('monthly_additions').upsert(
         { user_id: userId, month, count: newCount },

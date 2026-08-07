@@ -26,14 +26,19 @@ export async function GET(req: NextRequest) {
   // Pour la numérotation : garde seulement le tirage (/99), ignore le numéro individuel (23/99 → 99)
   const normNum = (s: string) => { const m = s.match(/\/(\d+)/); return m ? m[1] : normalize(s) }
 
-  // Cartes manuelles + cartes privées (pour filtrage)
-  const [{ data: manuelles }, { data: privees }] = await Promise.all([
-    supabase.from('cartes_manuelles')
-      .select('user_id, nom, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
-      .neq('user_id', excludeUserId || '00000000-0000-0000-0000-000000000000')
-      .limit(1000),
-    supabase.from('cartes_privees').select('user_id, card_key').limit(2000),
-  ])
+  // Cartes manuelles — filtrées côté DB par nom pour réduire les candidats
+  const safeQ = name.replace(/%/g, '\\%').replace(/_/g, '\\_')
+  const { data: manuelles } = await supabase.from('cartes_manuelles')
+    .select('user_id, nom, image_recto, annee, marque, collection, variation, num, rc, auto, patch')
+    .ilike('nom', `%${safeQ}%`)
+    .neq('user_id', excludeUserId || '00000000-0000-0000-0000-000000000000')
+    .limit(500)
+
+  // Cartes privées scoped aux user_ids des cartes candidates — évite le scan de 2000 lignes
+  const candidateUserIds = [...new Set((manuelles || []).map((m: any) => m.user_id))]
+  const { data: privees } = candidateUserIds.length > 0
+    ? await supabase.from('cartes_privees').select('user_id, card_key').in('user_id', candidateUserIds)
+    : { data: null }
   const privateSet = new Set((privees || []).map((p: any) => `${p.user_id}::${p.card_key}`))
 
   const matchIds = new Set<string>()

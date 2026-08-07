@@ -74,27 +74,29 @@ export async function GET(req: NextRequest) {
   // Échappe les wildcards SQL pour éviter un match total (% → \%, _ → \_)
   const safeQ = query.replace(/%/g, '\\%').replace(/_/g, '\\_')
 
-  const { data: profiles } = await supabase
-    .from('profiles')
-    .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
-    .limit(500)
+  // Profils + manuelles en parallèle
+  const [{ data: profiles }, { data: manuelles }] = await Promise.all([
+    supabase.from('profiles')
+      .select('id, display_name, avatar_url, lien_csv, couleur_bordure')
+      .limit(500),
+    supabase.from('cartes_manuelles')
+      .select('id, nom, equipe, annee, marque, collection, variation, num, auto, rc, patch, image_recto, is_horizontal, disponible_vente, user_id')
+      .or(`nom.ilike.%${safeQ}%,equipe.ilike.%${safeQ}%,variation.ilike.%${safeQ}%,marque.ilike.%${safeQ}%`)
+      .limit(500),
+  ])
   if (!profiles) return NextResponse.json([])
 
   const results: any[] = []
 
-  const { data: privees } = await supabase
-    .from('cartes_privees')
-    .select('user_id, card_key')
-    .limit(5000)
+  // Cartes privées scoped aux user_ids pertinents — évite le scan de 5000 lignes
+  const manuellesUserIds = new Set((manuelles || []).map(m => m.user_id))
+  const csvUserIds = new Set(profiles.filter(p => p.lien_csv).map(p => p.id))
+  const relevantUserIds = [...new Set([...manuellesUserIds, ...csvUserIds])]
+  const { data: privees } = relevantUserIds.length > 0
+    ? await supabase.from('cartes_privees').select('user_id, card_key').in('user_id', relevantUserIds)
+    : { data: null }
   const privateSet = new Set((privees || []).map(p => `${p.user_id}::${p.card_key}`))
   const isPrivate = (userId: string, cardKey: string) => privateSet.has(`${userId}::${cardKey}`)
-
-  // Cartes manuelles — filtre SQL avec wildcards échappés
-  const { data: manuelles } = await supabase
-    .from('cartes_manuelles')
-    .select('id, nom, equipe, annee, marque, collection, variation, num, auto, rc, patch, image_recto, is_horizontal, disponible_vente, user_id')
-    .or(`nom.ilike.%${safeQ}%,equipe.ilike.%${safeQ}%,variation.ilike.%${safeQ}%,marque.ilike.%${safeQ}%`)
-    .limit(500)
 
   const profileMap = new Map(profiles.map(p => [p.id, p]))
 
@@ -127,10 +129,13 @@ export async function GET(req: NextRequest) {
     })
   }))
 
-  // Collectionneurs
-  const users = profiles
-    .filter(p => p.display_name?.toLowerCase().includes(query))
-    .map(p => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url, accent: p.couleur_bordure || '#003DA6' }))
+  // Collectionneurs — filtre côté DB au lieu de scanner les 500 profils en JS
+  const { data: matchingProfiles } = await supabase
+    .from('profiles')
+    .select('id, display_name, avatar_url, couleur_bordure')
+    .ilike('display_name', `%${safeQ}%`)
+    .limit(10)
+  const users = (matchingProfiles || []).map(p => ({ id: p.id, display_name: p.display_name, avatar_url: p.avatar_url, accent: p.couleur_bordure || '#003DA6' }))
 
   // ── Joueurs ────────────────────────────────────────────────────────────────
   // Normalise un nom pour comparaison insensible aux accents/ponctuation

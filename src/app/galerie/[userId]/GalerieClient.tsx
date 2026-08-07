@@ -1521,7 +1521,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               boxShadow: activeTab === tab ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
               transition: '0.15s',
             }}>
-              {tab === 'collection' ? '🃏 Collection' : tab === 'library' ? '📔 Classeurs' : tab === 'objectifs' ? '🎯 Objectifs' : tab === 'comments' ? '💬 Commentaires' : '❤️ Aimées'}
+              {tab === 'collection' ? '🃏 Collection' : tab === 'library' ? (lang === 'fr' ? '📔 Classeurs' : '📔 Binders') : tab === 'objectifs' ? (lang === 'fr' ? '🎯 Objectifs' : '🎯 Goals') : tab === 'comments' ? (lang === 'fr' ? '💬 Commentaires' : '💬 Comments') : (lang === 'fr' ? '❤️ Aimées' : '❤️ Liked')}
             </button>
           ))}
         </div>
@@ -1588,16 +1588,16 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
             <button onClick={() => setFilterMemo(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterMemo ? '#7b1fa2' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterMemo ? 'white' : (dark ? '#bbb' : '#333')
-            }}>🏆 Mémo</button>
+            }}>🏆 {lang === 'fr' ? 'Mémo' : 'Memo'}</button>
             <button onClick={() => setFilterVente(p => !p)} style={{
               padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
               background: filterVente ? '#2e7d32' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterVente ? 'white' : (dark ? '#bbb' : '#333')
-            }}>🏷️ Vente</button>
+            }}>🏷️ {lang === 'fr' ? 'Vente' : 'Sale'}</button>
             {isOwner && (
               <button onClick={() => setFilterPrivate(p => !p)} style={{
                 padding: '8px 2px', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 9, fontWeight: 800, textTransform: 'uppercase',
                 background: filterPrivate ? '#555' : (dark ? '#2a2a2a' : '#f0f0f0'), color: filterPrivate ? 'white' : (dark ? '#bbb' : '#333')
-              }}>🔒 Privé</button>
+              }}>🔒 {lang === 'fr' ? 'Privé' : 'Private'}</button>
             )}
           </div>
           <div>
@@ -1690,7 +1690,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                 marginTop: 4, width: '100%', padding: '5px 8px', fontSize: 10, fontWeight: 800,
                 background: '#003DA6', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer',
               }}>
-                💾 Fixer cet ordre (activer le drag)
+                {lang === 'fr' ? '💾 Fixer cet ordre (activer le drag)' : '💾 Fix order (enable drag)'}
               </button>
             )}
           </div>

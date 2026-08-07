@@ -9,6 +9,11 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+// Module-level CSV cache — survives across requests in the same Node.js process (same as recherche)
+const CSV_TTL = 10 * 60 * 1000 // 10 min
+interface CsvCacheEntry { text: string; expiry: number }
+const csvCache = new Map<string, CsvCacheEntry>()
+
 // Only allow Google Sheets CSV exports — blocks SSRF to internal metadata endpoints
 function isAllowedCsvUrl(url: string): boolean {
   try {
@@ -67,7 +72,15 @@ export async function GET(
 
     const privateKeys = new Set(privateData?.map((d) => d.card_key) || [])
 
-    const t = await fetchCsvCapped(profile.lien_csv, { cache: 'no-store' })
+    const cacheKey = `${userId}::${profile.lien_csv}`
+    const cached = csvCache.get(cacheKey)
+    let t: string | null
+    if (cached && cached.expiry > Date.now()) {
+      t = cached.text
+    } else {
+      t = await fetchCsvCapped(profile.lien_csv, { cache: 'no-store' })
+      if (t) csvCache.set(cacheKey, { text: t, expiry: Date.now() + CSV_TTL })
+    }
     if (!t) return NextResponse.json({ cards: [] })
 
     const rows = t.split(/\r?\n/).slice(4)
