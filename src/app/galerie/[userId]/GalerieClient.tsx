@@ -16,6 +16,7 @@ const GalerieComments = dynamic(() => import('@/components/GalerieComments'), { 
 const TradeModal = dynamic(() => import('@/components/TradeModal'), { ssr: false })
 const LikedCards = dynamic(() => import('@/components/LikedCards'), { ssr: false })
 const BinderLibrary = dynamic(() => import('@/components/BinderLibrary'), { ssr: false })
+const MesPCTab = dynamic(() => import('@/components/MesPCTab'), { ssr: false })
 import {
   DndContext, closestCenter, PointerSensor, TouchSensor,
   useSensor, useSensors, type DragEndEvent
@@ -197,7 +198,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
   const [qrSelected, setQrSelected] = useState<Map<string, { url: string; title: string; subtitle: string }>>(new Map())
   const [qrDownloading, setQrDownloading] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const [activeTab, setActiveTab] = useState<'collection' | 'wishlist' | 'comments' | 'library' | 'likes'>(
+  const [activeTab, setActiveTab] = useState<'collection' | 'wishlist' | 'comments' | 'library' | 'likes' | 'pc'>(
     (searchParams.get('tab') as any) || 'collection'
   )
   const initialBinderId = searchParams.get('binder') ? parseInt(searchParams.get('binder')!, 10) : null
@@ -1140,7 +1141,7 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
 
         {/* Onglets Collection / Wishlist / Commentaires / Bibliothèque — scrollable sur mobile */}
         <div style={{ display: 'flex', gap: 4, marginBottom: 16, background: dark ? '#2a2a2a' : '#f0f0f0', borderRadius: 10, padding: 4, maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-          {(['collection', 'wishlist', 'library', 'comments', ...(isOwner ? ['likes'] as const : [])] as const).map(tab => (
+          {(['collection', 'library', ...(isOwner ? ['pc'] as const : []), 'wishlist', 'comments', ...(isOwner ? ['likes'] as const : [])] as const).map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)} style={{
               padding: '8px 16px', border: 'none', borderRadius: 8, cursor: 'pointer',
               fontWeight: 800, fontSize: 13, whiteSpace: 'nowrap', flexShrink: 0,
@@ -1149,11 +1150,12 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
               boxShadow: activeTab === tab ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
               transition: '0.15s',
             }}>
-              {tab === 'collection' ? '🃏 Collection' : tab === 'wishlist' ? '🎯 Wishlist' : tab === 'comments' ? '💬 Commentaires' : tab === 'likes' ? '❤️ Aimées' : '📔 Ma bibliothèque'}
+              {tab === 'collection' ? '🃏 Collection' : tab === 'library' ? '📔 Classeurs' : tab === 'pc' ? '⭐ Mes PC' : tab === 'wishlist' ? '🎯 Wishlist' : tab === 'comments' ? '💬 Commentaires' : '❤️ Aimées'}
             </button>
           ))}
         </div>
 
+        {activeTab === 'pc' && isOwner && <MesPCTab cards={cards} userId={userId} accent={accent} dark={dark} />}
         {activeTab === 'wishlist' && <PublicWishlist userId={userId} accent={accent} isOwner={isOwner} />}
         {activeTab === 'comments' && <GalerieComments galerieUserId={userId} accent={accent} isOwner={isOwner} />}
         {activeTab === 'likes' && isOwner && <LikedCards userId={userId} />}
@@ -1395,9 +1397,11 @@ export default function GalerieClient({ userId, initialCardUrl }: { userId: stri
                     {isOwner && (
                       <button
                         onClick={(e) => { e.stopPropagation(); setColorPickerTag(colorPickerTag === tag ? null : tag); setRenameValue(tag); setDeleteTagConfirm(null) }}
-                        title="Couleur"
-                        style={{ position: 'absolute', top: -6, right: -6, width: 16, height: 16, borderRadius: '50%', background: tabColor, border: `2px solid ${dark ? '#121212' : 'white'}`, cursor: 'pointer', padding: 0, boxShadow: '0 1px 3px rgba(0,0,0,0.3)', zIndex: 1 }}
-                      />
+                        title="Modifier cette collection"
+                        style={{ fontSize: 11, fontWeight: 700, color: dark ? '#aaa' : '#666', background: dark ? '#333' : '#e8e8e8', border: 'none', borderRadius: 10, padding: '3px 7px', cursor: 'pointer', lineHeight: 1, flexShrink: 0, transition: 'background 0.15s' }}
+                      >
+                        ✎
+                      </button>
                     )}
                     {colorPickerTag === tag && (
                       <div onClick={e => e.stopPropagation()} style={{ position: 'absolute', top: '110%', left: 0, background: dark ? '#1e1e1e' : 'white', borderRadius: 12, padding: 10, boxShadow: dark ? '0 8px 30px rgba(0,0,0,0.5)' : '0 8px 30px rgba(0,0,0,0.18)', border: dark ? '1px solid #333' : 'none', zIndex: 100, width: 220 }}>

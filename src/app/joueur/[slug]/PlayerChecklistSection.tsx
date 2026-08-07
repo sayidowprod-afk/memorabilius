@@ -50,17 +50,12 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
   const loadData = useCallback(async (uid: string | null) => {
     setLoading(true)
     try {
-      // API route uses service role to bypass RLS on card_set_entries
       const res = await fetch(`/api/player-checklist?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}`)
       if (!res.ok) throw new Error('fetch failed')
       const { entries: allEntries } = await res.json() as { entries: EntryWithSet[] }
       setEntries(allEntries)
-
-      // Open first set by default
       const firstSetId = allEntries[0]?.set_id
       if (firstSetId) setOpenSets(new Set([firstSetId]))
-
-      // Fetch owned cards for logged-in user
       if (uid && allEntries.length > 0) {
         const entryIds = allEntries.map(e => e.id)
         const CHUNK = 500
@@ -78,13 +73,12 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
         setCompletions(map)
       }
     } catch {
-      // silently fail — section will show empty state
+      // silently fail
     } finally {
       setLoading(false)
     }
   }, [firstName, lastName])
 
-  // Auto-load once auth state is known
   useEffect(() => {
     if (userId === undefined) return
     loadData(userId)
@@ -120,7 +114,6 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
     })
   }
 
-  // Group entries by set, sorted by year desc
   const setGroups: SetGroup[] = []
   const seenSets = new Map<number, SetGroup>()
   for (const entry of entries) {
@@ -145,7 +138,7 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
         <div>
           <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--jp-text)', margin: 0 }}>
-            Checklist TCDB
+            Checklist
           </h2>
           {!loading && totalCards > 0 && (
             <p style={{ fontSize: 13, color: 'var(--jp-muted)', margin: '4px 0 0', fontWeight: 600 }}>
@@ -155,7 +148,6 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
             </p>
           )}
         </div>
-
         {!loading && totalCards > 0 && (
           <div style={{ display: 'flex', gap: 4 }}>
             {(['all', 'owned', 'missing'] as Filter[]).map(f => (
@@ -166,11 +158,7 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
                   background: filter === f ? 'var(--jp-accent)' : 'var(--jp-surface)',
                   color: filter === f ? 'white' : 'var(--jp-text2)',
                   border: '1.5px solid ' + (filter === f ? 'var(--jp-accent)' : 'var(--jp-border)'),
-                  borderRadius: 6,
-                  padding: '5px 12px',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  cursor: 'pointer',
+                  borderRadius: 6, padding: '5px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
                 }}
               >
                 {f === 'all' ? 'Tout' : f === 'owned' ? 'Possédé' : 'Manquant'}
@@ -200,14 +188,13 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
       )}
 
       {!loading && totalCards > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {/* Progress bar (only if logged in) */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
           {userId && (
-            <div style={{ marginBottom: 12 }}>
+            <div style={{ marginBottom: 8 }}>
               <div style={{ height: 6, background: 'var(--jp-border)', borderRadius: 3, overflow: 'hidden' }}>
                 <div style={{
                   height: '100%',
-                  width: `${totalCards > 0 ? (totalOwned / totalCards) * 100 : 0}%`,
+                  width: `${(totalOwned / totalCards) * 100}%`,
                   background: 'var(--jp-accent)',
                   borderRadius: 3,
                   transition: 'width 0.3s',
@@ -215,107 +202,107 @@ export default function PlayerChecklistSection({ playerName }: { playerName: str
               </div>
             </div>
           )}
-
-          {setGroups.map(group => {
-            const ownedInSet = group.entries.filter(e => completions.has(e.id)).length
-            const isOpen = openSets.has(group.setId)
-
-            const visibleEntries = group.entries.filter(e => {
-              const owned = completions.has(e.id)
-              if (filter === 'owned') return owned
-              if (filter === 'missing') return !owned
-              return true
-            })
-            if (filter !== 'all' && visibleEntries.length === 0) return null
-
-            return (
-              <div key={group.setId} style={{ background: 'var(--jp-surface)', borderRadius: 10, border: '1.5px solid var(--jp-border)', overflow: 'hidden' }}>
-                <button
-                  onClick={() => toggleSet(group.setId)}
-                  style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', gap: 8 }}
-                >
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontWeight: 800, fontSize: 13, color: 'var(--jp-text)', lineHeight: 1.3 }}>
+          {setGroups.length > 8 && (
+            <p style={{ fontSize: 11, color: 'var(--jp-muted)', margin: '0 0 4px' }}>
+              {setGroups.length} sets · cliquer pour développer
+            </p>
+          )}
+          <div style={{ maxHeight: 520, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 4, paddingRight: 4 }}>
+            {setGroups.map(group => {
+              const ownedInSet = group.entries.filter(e => completions.has(e.id)).length
+              const isOpen = openSets.has(group.setId)
+              const visibleEntries = group.entries.filter(e => {
+                const owned = completions.has(e.id)
+                if (filter === 'owned') return owned
+                if (filter === 'missing') return !owned
+                return true
+              })
+              if (filter !== 'all' && visibleEntries.length === 0) return null
+              return (
+                <div key={group.setId} style={{ background: 'var(--jp-surface)', borderRadius: 8, border: '1.5px solid var(--jp-border)', overflow: 'hidden' }}>
+                  <button
+                    onClick={() => toggleSet(group.setId)}
+                    style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 12px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', gap: 8 }}
+                  >
+                    <div style={{ flex: 1, minWidth: 0, fontWeight: 700, fontSize: 12, color: 'var(--jp-text)', lineHeight: 1.3 }}>
                       {group.setYear ? `${group.setYear} ` : ''}{group.setName}
+                      {group.setBrand && (
+                        <span style={{ fontSize: 10, color: 'var(--jp-accent)', fontWeight: 700, marginLeft: 6 }}>{group.setBrand}</span>
+                      )}
                     </div>
-                    {group.setBrand && (
-                      <div style={{ fontSize: 10, color: 'var(--jp-accent)', fontWeight: 700, marginTop: 2 }}>{group.setBrand}</div>
-                    )}
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-                    {userId && (
-                      <span style={{
-                        fontSize: 11, fontWeight: 800,
-                        color: ownedInSet === group.entries.length ? '#27ae60' : 'var(--jp-muted)',
-                        background: ownedInSet === group.entries.length ? 'rgba(39,174,96,0.12)' : 'var(--jp-surface2)',
-                        padding: '3px 9px', borderRadius: 12,
-                      }}>
-                        {ownedInSet}/{group.entries.length}
-                      </span>
-                    )}
-                    <Link
-                      href={`/setlist/${group.setId}`}
-                      onClick={e => e.stopPropagation()}
-                      style={{ fontSize: 11, color: 'var(--jp-accent)', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}
-                    >
-                      Voir set →
-                    </Link>
-                    <span style={{ color: 'var(--jp-muted)', fontSize: 14 }}>{isOpen ? '▲' : '▼'}</span>
-                  </div>
-                </button>
-
-                {isOpen && (
-                  <div style={{ borderTop: '1px solid var(--jp-border)' }}>
-                    {visibleEntries.map(entry => {
-                      const owned = completions.has(entry.id)
-                      const isSaving = saving === entry.id
-                      return (
-                        <div
-                          key={entry.id}
-                          onClick={() => userId && toggleEntry(entry.id)}
-                          style={{
-                            display: 'flex', alignItems: 'center', gap: 10,
-                            padding: '8px 16px', borderBottom: '1px solid var(--jp-border)',
-                            cursor: userId ? 'pointer' : 'default',
-                            background: owned ? 'rgba(39,174,96,0.06)' : 'transparent',
-                            transition: 'background 0.1s',
-                          }}
-                        >
-                          {userId && (
-                            <div style={{
-                              width: 18, height: 18, borderRadius: 4, flexShrink: 0,
-                              border: owned ? '2px solid #27ae60' : '2px solid var(--jp-border)',
-                              background: owned ? '#27ae60' : 'transparent',
-                              display: 'flex', alignItems: 'center', justifyContent: 'center',
-                              transition: 'all 0.1s', opacity: isSaving ? 0.5 : 1,
-                            }}>
-                              {owned && <span style={{ color: 'white', fontSize: 11, lineHeight: 1 }}>✓</span>}
-                            </div>
-                          )}
-                          {entry.card_number && (
-                            <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--jp-muted)', minWidth: 36, fontVariantNumeric: 'tabular-nums' }}>
-                              #{entry.card_number}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+                      {userId && (
+                        <span style={{
+                          fontSize: 11, fontWeight: 800,
+                          color: ownedInSet === group.entries.length ? '#27ae60' : 'var(--jp-muted)',
+                          background: ownedInSet === group.entries.length ? 'rgba(39,174,96,0.12)' : 'var(--jp-surface2)',
+                          padding: '2px 8px', borderRadius: 10,
+                        }}>
+                          {ownedInSet}/{group.entries.length}
+                        </span>
+                      )}
+                      <Link
+                        href={`/setlist/${group.setId}`}
+                        onClick={e => e.stopPropagation()}
+                        style={{ fontSize: 11, color: 'var(--jp-accent)', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}
+                      >
+                        Voir →
+                      </Link>
+                      <span style={{ color: 'var(--jp-muted)', fontSize: 12 }}>{isOpen ? '▲' : '▼'}</span>
+                    </div>
+                  </button>
+                  {isOpen && (
+                    <div style={{ borderTop: '1px solid var(--jp-border)' }}>
+                      {visibleEntries.map(entry => {
+                        const owned = completions.has(entry.id)
+                        const isSaving = saving === entry.id
+                        return (
+                          <div
+                            key={entry.id}
+                            onClick={() => userId && toggleEntry(entry.id)}
+                            style={{
+                              display: 'flex', alignItems: 'center', gap: 8,
+                              padding: '5px 12px', borderBottom: '1px solid var(--jp-border)',
+                              cursor: userId ? 'pointer' : 'default',
+                              background: owned ? 'rgba(39,174,96,0.06)' : 'transparent',
+                            }}
+                          >
+                            {userId && (
+                              <div style={{
+                                width: 16, height: 16, borderRadius: 4, flexShrink: 0,
+                                border: owned ? '2px solid #27ae60' : '2px solid var(--jp-border)',
+                                background: owned ? '#27ae60' : 'transparent',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                opacity: isSaving ? 0.5 : 1,
+                              }}>
+                                {owned && <span style={{ color: 'white', fontSize: 10, lineHeight: 1 }}>✓</span>}
+                              </div>
+                            )}
+                            {entry.card_number && (
+                              <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--jp-muted)', minWidth: 32, fontVariantNumeric: 'tabular-nums' }}>
+                                #{entry.card_number}
+                              </span>
+                            )}
+                            <span style={{ fontSize: 12, color: owned ? 'var(--jp-text)' : 'var(--jp-text2)', flex: 1, fontWeight: owned ? 700 : 400 }}>
+                              {entry.variation || 'Base'}
                             </span>
-                          )}
-                          <span style={{ fontSize: 13, color: owned ? 'var(--jp-text)' : 'var(--jp-text2)', flex: 1, fontWeight: owned ? 700 : 400 }}>
-                            {entry.variation || 'Base'}
-                          </span>
-                          {entry.is_rc && (
-                            <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 800, flexShrink: 0 }}>RC</span>
-                          )}
+                            {entry.is_rc && (
+                              <span style={{ fontSize: 9, background: '#e67e22', color: 'white', padding: '2px 5px', borderRadius: 3, fontWeight: 800, flexShrink: 0 }}>RC</span>
+                            )}
+                          </div>
+                        )
+                      })}
+                      {visibleEntries.length === 0 && (
+                        <div style={{ padding: '10px 14px', color: 'var(--jp-muted)', fontSize: 12, textAlign: 'center' }}>
+                          Aucune carte {filter === 'owned' ? 'possédée' : 'manquante'} dans ce set.
                         </div>
-                      )
-                    })}
-                    {visibleEntries.length === 0 && (
-                      <div style={{ padding: '12px 16px', color: 'var(--jp-muted)', fontSize: 13, textAlign: 'center' }}>
-                        Aucune carte {filter === 'owned' ? 'possédée' : 'manquante'} dans ce set.
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            )
-          })}
+                      )}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
         </div>
       )}
     </section>

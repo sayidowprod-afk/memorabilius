@@ -856,6 +856,9 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
             <CommunityCardsSection cards={communityCards as any} totalCollectors={uniqueCollectors} />
           )}
 
+          {/* Checklist personnelle */}
+          <PlayerChecklistSection playerName={playerName} />
+
           {/* Sets groupés par année */}
           {sets.length > 0 && (
             <section>
@@ -911,9 +914,6 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
               </div>
             </section>
           )}
-
-          {/* Checklist personnelle */}
-          <PlayerChecklistSection playerName={playerName} />
 
         </div>
       </div>
