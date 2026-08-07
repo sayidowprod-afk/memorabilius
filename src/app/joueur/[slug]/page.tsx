@@ -5,6 +5,7 @@ import { fetchCsvCardsForProfiles } from '@/lib/csvCards'
 import { fetchEspnHeadshot, fetchEspnPlayerBio } from '@/lib/espnHeadshot'
 import { normalizeName, cardPageUrl } from '@/lib/playerSlug'
 import CommunityCardsSection from './CommunityCardsSection'
+import PlayerChecklistSection from './PlayerChecklistSection'
 
 export const revalidate = 3600
 
@@ -910,6 +911,9 @@ export default async function JoueurPage({ params }: { params: Promise<{ slug: s
               </div>
             </section>
           )}
+
+          {/* Checklist personnelle */}
+          <PlayerChecklistSection playerName={playerName} />
 
         </div>
       </div>

@@ -318,7 +318,8 @@ async function main() {
       executablePath: findChrome(),
       headless: false,
       defaultViewport: null,
-      args: ['--no-sandbox', '--window-size=1280,900'],
+      userDataDir: path.join(process.env.LOCALAPPDATA || 'C:\\Users\\killi\\AppData\\Local', 'scrape-profile-tcdb'),
+      args: ['--no-sandbox', '--window-size=1280,900', '--disable-blink-features=AutomationControlled'],
     })
     const page = await browser.newPage()
     await waitCF(page, TCDB)
