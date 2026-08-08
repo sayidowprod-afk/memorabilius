@@ -23,7 +23,12 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
-  const { data, error } = await admin.rpc('get_users_country_breakdown')
+  const daysParam = req.nextUrl.searchParams.get('days')
+  const pDays = daysParam ? parseInt(daysParam, 10) : null
+
+  const { data, error } = await admin.rpc('get_users_country_breakdown', {
+    ...(pDays ? { p_days: pDays } : {}),
+  })
   if (error) console.error('[geo] get_users_country_breakdown error', error)
 
   const countries = ((data ?? []) as { country: string; count: number }[])
