@@ -692,55 +692,52 @@ function geoFlag(code: string): string {
   return [...code.toUpperCase()].map(c => String.fromCodePoint(c.charCodeAt(0) + 127397)).join('')
 }
 
+type GeoUser = { user_id: string; email: string; display_name: string; created_at: string; last_sign_in_at: string | null }
+
 function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
   const [geoCntrs, setGeoCntrs] = useState<{ code: string; visitors: number }[]>([])
-  const [geoAvail, setGeoAvail] = useState<boolean | null>(null)
-  const [geoDays, setGeoDays]   = useState(30)
   const [geoLoad, setGeoLoad]   = useState(false)
   const [geoHov, setGeoHov]     = useState<{ code: string; visitors: number } | null>(null)
+  // drilldown
+  const [expanded, setExpanded]         = useState<string | null>(null)
+  const [userList, setUserList]         = useState<GeoUser[]>([])
+  const [userLoad, setUserLoad]         = useState(false)
 
   useEffect(() => {
     setGeoLoad(true)
-    fetch(`/api/admin/geo?days=${geoDays}`, { headers: { Authorization: `Bearer ${token}` } })
+    fetch('/api/admin/geo', { headers: { Authorization: `Bearer ${token}` } })
       .then(r => r.json())
-      .then(({ countries, available }) => { setGeoCntrs(countries ?? []); setGeoAvail(available) })
-      .catch(() => setGeoAvail(false))
+      .then(({ countries }) => setGeoCntrs(countries ?? []))
+      .catch(() => {})
       .finally(() => setGeoLoad(false))
-  }, [token, geoDays])
+  }, [token])
+
+  function toggleCountry(code: string) {
+    if (expanded === code) { setExpanded(null); return }
+    setExpanded(code)
+    setUserList([])
+    setUserLoad(true)
+    fetch(`/api/admin/users-geo?country=${code}`, { headers: { Authorization: `Bearer ${token}` } })
+      .then(r => r.json())
+      .then(({ users }) => setUserList(users ?? []))
+      .catch(() => {})
+      .finally(() => setUserLoad(false))
+  }
 
   const top10  = geoCntrs.slice(0, 10)
   const topMax = top10.length ? Math.max(...top10.map(c => c.visitors)) : 1
 
   return (
     <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px' }}>
-      <div style={{ display: 'flex', gap: 4, marginBottom: 16 }}>
-        {[7, 30, 90].map(d => (
-          <button key={d} onClick={() => setGeoDays(d)} style={{
-            padding: '3px 10px', fontSize: 11, borderRadius: 6,
-            border: `1px solid ${geoDays === d ? ACCENT : '#e2e8f0'}`,
-            background: geoDays === d ? ACCENT : '#fff',
-            color: geoDays === d ? '#fff' : '#64748b',
-            cursor: 'pointer', fontWeight: geoDays === d ? 600 : 400, transition: 'all .15s',
-          }}>{d}j</button>
-        ))}
-        {geoLoad && <span style={{ fontSize: 11, color: '#94a3b8', marginLeft: 8, alignSelf: 'center' }}>Chargement…</span>}
-      </div>
+      {geoLoad && <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 12 }}>Chargement…</div>}
 
-      {geoAvail === false && (
+      {!geoLoad && geoCntrs.length === 0 && (
         <div style={{ color: '#94a3b8', fontSize: 13, textAlign: 'center', padding: '48px 0' }}>
-          <div style={{ fontSize: 22, marginBottom: 10 }}>🌍</div>
-          Requiert{' '}
-          {['VERCEL_TOKEN', 'VERCEL_TEAM_SLUG', 'VERCEL_PROJECT_NAME'].map(v => (
-            <code key={v} style={{ background: '#f1f5f9', padding: '1px 6px', borderRadius: 4, marginInline: 3 }}>{v}</code>
-          ))}
+          Aucune donnée — les comptes seront localisés à mesure des connexions.
         </div>
       )}
 
-      {geoAvail && !geoLoad && geoCntrs.length === 0 && (
-        <div style={{ color: '#94a3b8', fontSize: 13, textAlign: 'center', padding: '48px 0' }}>Aucune donnée pour cette période.</div>
-      )}
-
-      {geoAvail && geoCntrs.length > 0 && (
+      {geoCntrs.length > 0 && (
         <>
           <div style={{ position: 'relative', marginBottom: 20, borderRadius: 8, overflow: 'hidden' }}>
             <GeoMap geoCntrs={geoCntrs} centroids={GEO_CENTROIDS} onHover={setGeoHov} />
@@ -754,7 +751,7 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
                 <span style={{ fontSize: 18 }}>{geoFlag(geoHov.code)}</span>
                 <span style={{ fontWeight: 600 }}>{GEO_NAMES[geoHov.code] ?? geoHov.code}</span>
                 <span style={{ color: '#93c5fd', marginLeft: 4, fontWeight: 700 }}>{fmt(geoHov.visitors)}</span>
-                <span style={{ color: '#64748b', fontSize: 11 }}>vues</span>
+                <span style={{ color: '#64748b', fontSize: 11 }}>comptes</span>
               </div>
             )}
             <div style={{
@@ -763,29 +760,68 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
               fontSize: 10, color: '#64748b', display: 'flex', alignItems: 'center', gap: 6,
             }}>
               <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'rgba(0,61,166,0.4)', border: '1.5px solid rgba(0,40,140,0.65)', flexShrink: 0 }} />
-              Pages vues — taille proportionnelle au volume
+              Comptes utilisateurs — taille proportionnelle au volume
             </div>
           </div>
 
           <div style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>
-            Top {top10.length} pays
+            Top {top10.length} pays · cliquer pour voir les comptes
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             {top10.map(({ code, visitors }, i) => (
-              <div key={code} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <div style={{ fontSize: 16, lineHeight: 1, flexShrink: 0 }}>{geoFlag(code)}</div>
-                <div style={{ width: isMobile ? 90 : 130, fontSize: 12, color: '#334155', fontWeight: 500, flexShrink: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {GEO_NAMES[code] ?? code}
-                </div>
-                <div style={{ flex: 1, height: 6, borderRadius: 6, background: '#f1f5f9', minWidth: 40 }}>
-                  <div style={{ height: '100%', borderRadius: 6, background: ACCENT, width: `${(visitors / topMax) * 100}%`, opacity: Math.max(0.35, 1 - i * 0.07), transition: 'width .5s' }} />
-                </div>
-                <div style={{ width: 50, textAlign: 'right', fontSize: 13, fontWeight: 700, color: ACCENT, flexShrink: 0 }}>{fmt(visitors)}</div>
+              <div key={code}>
+                <button
+                  onClick={() => toggleCountry(code)}
+                  style={{
+                    width: '100%', display: 'flex', alignItems: 'center', gap: 10,
+                    background: expanded === code ? '#eff6ff' : 'transparent',
+                    border: 'none', borderRadius: 8, padding: '7px 8px', cursor: 'pointer',
+                    transition: 'background .15s',
+                  }}
+                >
+                  <div style={{ fontSize: 16, lineHeight: 1, flexShrink: 0 }}>{geoFlag(code)}</div>
+                  <div style={{ width: isMobile ? 90 : 130, fontSize: 12, color: '#334155', fontWeight: 500, flexShrink: 0, textAlign: 'left', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {GEO_NAMES[code] ?? code}
+                  </div>
+                  <div style={{ flex: 1, height: 6, borderRadius: 6, background: '#f1f5f9', minWidth: 40 }}>
+                    <div style={{ height: '100%', borderRadius: 6, background: ACCENT, width: `${(visitors / topMax) * 100}%`, opacity: Math.max(0.35, 1 - i * 0.07) }} />
+                  </div>
+                  <div style={{ width: 50, textAlign: 'right', fontSize: 13, fontWeight: 700, color: ACCENT, flexShrink: 0 }}>{fmt(visitors)}</div>
+                  <div style={{ fontSize: 10, color: '#94a3b8', flexShrink: 0 }}>{expanded === code ? '▲' : '▼'}</div>
+                </button>
+
+                {expanded === code && (
+                  <div style={{ margin: '4px 8px 8px 36px', border: '1px solid #e2e8f0', borderRadius: 8, overflow: 'hidden' }}>
+                    {userLoad && (
+                      <div style={{ padding: '12px 16px', fontSize: 12, color: '#94a3b8' }}>Chargement…</div>
+                    )}
+                    {!userLoad && userList.length === 0 && (
+                      <div style={{ padding: '12px 16px', fontSize: 12, color: '#94a3b8' }}>Aucun compte trouvé.</div>
+                    )}
+                    {!userLoad && userList.map(u => (
+                      <div key={u.user_id} style={{
+                        display: 'flex', alignItems: 'center', gap: 12,
+                        padding: '8px 14px', borderBottom: '1px solid #f1f5f9',
+                        fontSize: 12,
+                      }}>
+                        <div style={{ fontWeight: 600, color: '#334155', minWidth: 120, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          {u.display_name}
+                        </div>
+                        <div style={{ color: '#64748b', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          {u.email}
+                        </div>
+                        <div style={{ color: '#94a3b8', fontSize: 11, flexShrink: 0 }}>
+                          {u.last_sign_in_at ? new Date(u.last_sign_in_at).toLocaleDateString('fr-FR') : '—'}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
           <div style={{ marginTop: 12, fontSize: 11, color: '#94a3b8', textAlign: 'right' }}>
-            {fmt(geoCntrs.reduce((s, c) => s + c.visitors, 0))} vues · {geoCntrs.length} pays
+            {fmt(geoCntrs.reduce((s, c) => s + c.visitors, 0))} comptes localisés · {geoCntrs.length} pays
           </div>
         </>
       )}

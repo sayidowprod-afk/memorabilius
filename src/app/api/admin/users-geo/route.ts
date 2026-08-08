@@ -23,11 +23,18 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
-  const { data, error } = await admin.rpc('get_users_country_breakdown')
-  if (error) console.error('[geo] get_users_country_breakdown error', error)
+  const country = req.nextUrl.searchParams.get('country')
+  if (!country || country.length !== 2) {
+    return NextResponse.json({ error: 'country param required (2 chars)' }, { status: 400 })
+  }
 
-  const countries = ((data ?? []) as { country: string; count: number }[])
-    .map(r => ({ code: r.country, visitors: Number(r.count) }))
+  const { data, error } = await admin.rpc('get_users_by_country', {
+    p_country: country.toUpperCase(),
+  })
+  if (error) {
+    console.error('[users-geo] error', error)
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
 
-  return NextResponse.json({ countries, available: true })
+  return NextResponse.json({ users: data ?? [] })
 }
