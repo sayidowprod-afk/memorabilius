@@ -51,7 +51,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
   const [checkingAll, setCheckingAll] = useState<string | null>(null)
   const [openVariations, setOpenVariations] = useState<Set<string>>(new Set(['Base']))
   const [totalOwned, setTotalOwned] = useState(0)
-  const [entryToCard, setEntryToCard] = useState<Map<number, string>>(new Map())
+  const [communityImages, setCommunityImages] = useState<Map<number, string>>(new Map())
   const [filterRc, setFilterRc] = useState(false)
   const [mySetCards, setMySetCards] = useState<{ id: string; image: string; nom: string; variation: string }[]>([])
   const [previewCard, setPreviewCard] = useState<{ image: string; nom: string; variation: string } | null>(null)
@@ -118,7 +118,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
       }
       playerToImgRef.current = pToImg
 
-      // Un seul appel API pour completions + auto-matching (images exclues du payload)
+      // Un seul appel API pour completions + auto-matching (images en map compacte, pas dans galleryCards)
       const { data: { session } } = await supabase.auth.getSession()
       if (session?.access_token) {
         try {
@@ -130,8 +130,14 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
               setYear: setData.year,
               setBrand: setData.brand,
               setName: setData.name,
-              // image_recto exclu intentionnellement — reste côté client dans playerToImgRef
               galleryCards: galleryCards.map(({ image_recto: _img, id: _id, ...rest }) => rest),
+              // Map compacte nom→URL pour stocker dans entry_images (communauté)
+              playerImages: Object.fromEntries(
+                galleryCards
+                  .filter(c => c.image_recto)
+                  .map(c => [normStr(c.nom), c.image_recto])
+                  .filter((e): e is [string, string] => Boolean(e[1]))
+              ),
             }),
           })
           if (res.ok) {
@@ -220,19 +226,17 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
 
     const ownedCount = entries.filter(e => e.owned).length
 
-    // Construire entryToCard pour cette variation depuis le ref local (pas de payload images au serveur)
-    const pToImg = playerToImgRef.current
-    if (pToImg.size > 0) {
-      setEntryToCard(prev => {
-        const next = new Map(prev)
-        for (const e of entries) {
-          if (e.owned) {
-            const img = pToImg.get(normStr(e.player_name))
-            if (img) next.set(e.id, img)
-          }
-        }
-        return next
-      })
+    // Charger les images communauté (entry_images) pour toutes les entrées de cette variation
+    const entryIds = finalData.map((e: any) => e.id)
+    if (entryIds.length > 0) {
+      const { data: imgRows } = await supabase.rpc('get_entry_images', { p_entry_ids: entryIds })
+      if (imgRows) {
+        setCommunityImages(prev => {
+          const next = new Map(prev)
+          for (const row of imgRows) next.set(row.entry_id, row.image_url)
+          return next
+        })
+      }
     }
 
     setVariations(prev => prev.map(v =>
@@ -517,22 +521,24 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
                     <div style={{ padding: '20px', textAlign: 'center', color: '#aaa', fontSize: 13 }}>Chargement...</div>
                   ) : (
                     <>
-                      <div style={{ display: 'grid', gridTemplateColumns: '52px 32px 1fr 140px 36px', padding: '8px 18px', background: dark ? '#252525' : '#fafafa', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#bbb', letterSpacing: '0.5px' }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: '52px 44px 1fr 140px 36px', padding: '8px 18px', background: dark ? '#252525' : '#fafafa', fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#bbb', letterSpacing: '0.5px' }}>
                         <span>#</span><span></span><span>Joueur</span><span>Équipe</span><span></span>
                       </div>
                       {displayEntries.length === 0 ? (
                         <div style={{ padding: '20px', textAlign: 'center', color: '#ccc', fontSize: 13 }}>Aucune carte</div>
                       ) : displayEntries.map(entry => {
-                        const cardImg = entryToCard.get(entry.id)
+                        const communityImg = communityImages.get(entry.id)
                         return (
                         <div key={entry.id}
-                          style={{ display: 'grid', gridTemplateColumns: '52px 32px 1fr 140px 36px', padding: '6px 18px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, background: entry.owned ? (dark ? '#0d2e1a' : '#f5fff7') : (dark ? '#1e1e1e' : 'white'), alignItems: 'center', minHeight: 44 }}>
+                          style={{ display: 'grid', gridTemplateColumns: '52px 44px 1fr 140px 36px', padding: '6px 18px', borderTop: `1px solid ${dark ? '#2a2a2a' : '#f5f5f5'}`, background: entry.owned ? (dark ? '#0d2e1a' : '#f5fff7') : (dark ? '#1e1e1e' : 'white'), alignItems: 'center', minHeight: 50 }}>
                           <span style={{ fontSize: 12, color: '#bbb', fontWeight: 700 }}>{entry.card_number || '—'}</span>
-                          <div style={{ width: 24, height: 34, flexShrink: 0 }}>
-                            {cardImg ? (
-                              <img src={cardImg} alt="" onClick={ev => { ev.stopPropagation(); setPreviewCard({ image: cardImg, nom: entry.player_name, variation: entry.variation || '' }) }}
-                                style={{ width: 24, height: 34, objectFit: 'cover', borderRadius: 3, display: 'block', boxShadow: '0 1px 4px rgba(0,0,0,0.18)', cursor: 'zoom-in' }} />
-                            ) : null}
+                          <div style={{ width: 36, height: 50, flexShrink: 0 }}>
+                            {communityImg ? (
+                              <img src={communityImg} alt="" onClick={ev => { ev.stopPropagation(); setPreviewCard({ image: communityImg, nom: entry.player_name, variation: entry.variation || '' }) }}
+                                style={{ width: 36, height: 50, objectFit: 'cover', borderRadius: 3, display: 'block', boxShadow: '0 1px 4px rgba(0,0,0,0.18)', cursor: 'zoom-in' }} />
+                            ) : (
+                              <div title="Carte pas encore sur le site" style={{ width: 36, height: 50, background: dark ? '#2a2a2a' : '#f0f0f0', border: `1px dashed ${dark ? '#444' : '#d8d8d8'}`, borderRadius: 3 }} />
+                            )}
                           </div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 6, overflow: 'hidden' }}>
                             <Link href={`/joueur/${playerSlug(entry.player_name)}`} style={{ fontSize: 14, fontWeight: entry.owned ? 700 : 400, color: entry.owned ? (dark ? '#eee' : '#111') : (dark ? '#999' : '#444'), overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textDecoration: 'none' }} onClick={e => e.stopPropagation()}>{entry.player_name}</Link>

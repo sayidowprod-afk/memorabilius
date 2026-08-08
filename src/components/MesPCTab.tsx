@@ -288,8 +288,12 @@ export default function MesPCTab({ cards, userId, accent, dark, isOwner, initial
   const fetchPlayerStats = useCallback(async (pc: PCEntry) => {
     setPStats(prev => new Map(prev).set(pc.id, { total: 0, owned: 0, loading: true }))
     try {
+      // Fallback: extraire depuis pc.name si firstName/lastName absent (ancien PC sans ces champs)
+      const parts = pc.name.trim().split(' ')
+      const firstName = pc.firstName || parts[0] || ''
+      const lastName  = pc.lastName  || parts[parts.length - 1] || ''
       const res = await fetch(
-        `/api/player-checklist?firstName=${encodeURIComponent(pc.firstName || '')}&lastName=${encodeURIComponent(pc.lastName || '')}`
+        `/api/player-checklist?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}`
       )
       if (!res.ok) throw new Error()
       const { entries } = await res.json() as { entries: { id: number }[] }
