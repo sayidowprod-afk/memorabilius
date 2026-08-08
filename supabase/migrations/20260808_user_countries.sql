@@ -10,8 +10,9 @@ CREATE TABLE IF NOT EXISTS public.user_countries (
 ALTER TABLE public.user_countries ENABLE ROW LEVEL SECURITY;
 
 -- RPC : distribution des comptes par pays (pour la carte admin)
--- p_days NULL = toujours, sinon filtre sur updated_at (dernière connexion)
-CREATE OR REPLACE FUNCTION get_users_country_breakdown(p_days int DEFAULT NULL)
+-- p_minutes NULL = toujours, sinon filtre sur updated_at (dernière activité)
+-- Exemples : 15 = en direct, 10080 = 7j, 43200 = 30j
+CREATE OR REPLACE FUNCTION get_users_country_breakdown(p_minutes int DEFAULT NULL)
 RETURNS TABLE(country text, count bigint)
 LANGUAGE sql
 SECURITY DEFINER
@@ -19,7 +20,7 @@ AS $$
   SELECT country::text, count(*) AS count
   FROM public.user_countries
   WHERE country != 'XX'
-    AND (p_days IS NULL OR updated_at >= now() - (p_days || ' days')::interval)
+    AND (p_minutes IS NULL OR updated_at >= now() - (p_minutes || ' minutes')::interval)
   GROUP BY country
   ORDER BY count DESC;
 $$;

@@ -23,11 +23,11 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
-  const daysParam = req.nextUrl.searchParams.get('days')
-  const pDays = daysParam ? parseInt(daysParam, 10) : null
+  const minutesParam = req.nextUrl.searchParams.get('minutes')
+  const pMinutes = minutesParam ? parseInt(minutesParam, 10) : null
 
   const { data, error } = await admin.rpc('get_users_country_breakdown', {
-    ...(pDays ? { p_days: pDays } : {}),
+    ...(pMinutes ? { p_minutes: pMinutes } : {}),
   })
   if (error) console.error('[geo] get_users_country_breakdown error', error)
 

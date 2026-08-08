@@ -694,12 +694,18 @@ function geoFlag(code: string): string {
 
 type GeoUser = { user_id: string; email: string; display_name: string; created_at: string; last_sign_in_at: string | null }
 
-type GeoPeriod = '7' | '30' | 'all'
-const GEO_PERIODS: { key: GeoPeriod; label: string }[] = [
-  { key: '7',   label: '7 derniers jours' },
-  { key: '30',  label: '30 derniers jours' },
-  { key: 'all', label: 'Toujours' },
+type GeoPeriod = 'live' | '7' | '30' | 'all'
+const GEO_PERIODS: { key: GeoPeriod; label: string; dot?: boolean }[] = [
+  { key: 'live', label: 'En direct', dot: true },
+  { key: '7',    label: '7 derniers jours' },
+  { key: '30',   label: '30 derniers jours' },
+  { key: 'all',  label: 'Toujours' },
 ]
+const GEO_MINUTES: Partial<Record<GeoPeriod, number>> = {
+  live: 15,
+  '7':  7  * 24 * 60,
+  '30': 30 * 24 * 60,
+}
 
 function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
   const [period, setPeriod]     = useState<GeoPeriod>('all')
@@ -711,12 +717,23 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
   const [userList, setUserList]         = useState<GeoUser[]>([])
   const [userLoad, setUserLoad]         = useState(false)
 
+  // Auto-refresh toutes les 30s en mode "En direct"
+  useEffect(() => {
+    if (period !== 'live') return
+    const iv = setInterval(() => {
+      fetch(`/api/admin/geo?minutes=15`, { headers: { Authorization: `Bearer ${token}` } })
+        .then(r => r.json())
+        .then(({ countries }) => setGeoCntrs(countries ?? []))
+        .catch(() => {})
+    }, 30000)
+    return () => clearInterval(iv)
+  }, [period, token])
+
   useEffect(() => {
     setGeoLoad(true)
     setExpanded(null)
-    const url = period === 'all'
-      ? '/api/admin/geo'
-      : `/api/admin/geo?days=${period}`
+    const minutes = GEO_MINUTES[period]
+    const url = minutes ? `/api/admin/geo?minutes=${minutes}` : '/api/admin/geo'
     fetch(url, { headers: { Authorization: `Bearer ${token}` } })
       .then(r => r.json())
       .then(({ countries }) => setGeoCntrs(countries ?? []))
@@ -743,17 +760,29 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
     <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: isMobile ? 16 : '20px 24px' }}>
       {/* Filtres période */}
       <div style={{ display: 'flex', gap: 6, marginBottom: 16, flexWrap: 'wrap' }}>
-        {GEO_PERIODS.map(p => (
-          <button key={p.key} onClick={() => setPeriod(p.key)} style={{
-            padding: '4px 12px', fontSize: 12, borderRadius: 6, cursor: 'pointer',
-            border: `1px solid ${period === p.key ? ACCENT : '#e2e8f0'}`,
-            background: period === p.key ? ACCENT : '#fff',
-            color: period === p.key ? '#fff' : '#64748b',
-            fontWeight: period === p.key ? 600 : 400, transition: 'all .15s',
-          }}>
-            {p.label}
-          </button>
-        ))}
+        {GEO_PERIODS.map(p => {
+          const isLive = p.key === 'live'
+          const active = period === p.key
+          return (
+            <button key={p.key} onClick={() => setPeriod(p.key)} style={{
+              padding: '4px 12px', fontSize: 12, borderRadius: 6, cursor: 'pointer',
+              border: `1px solid ${active ? (isLive ? '#22c55e' : ACCENT) : '#e2e8f0'}`,
+              background: active ? (isLive ? '#22c55e' : ACCENT) : '#fff',
+              color: active ? '#fff' : '#64748b',
+              fontWeight: active ? 600 : 400, transition: 'all .15s',
+              display: 'flex', alignItems: 'center', gap: 6,
+            }}>
+              {isLive && (
+                <span style={{
+                  display: 'inline-block', width: 7, height: 7, borderRadius: '50%',
+                  background: active ? '#fff' : '#22c55e',
+                  animation: active ? 'livePulse 2s ease-in-out infinite' : 'none',
+                }} />
+              )}
+              {p.label}
+            </button>
+          )
+        })}
       </div>
 
       {geoLoad && <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 12 }}>Chargement…</div>}
@@ -849,8 +878,9 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
           </div>
           <div style={{ marginTop: 12, fontSize: 11, color: '#94a3b8', textAlign: 'right' }}>
             {fmt(geoCntrs.reduce((s, c) => s + c.visitors, 0))} comptes
-            {period === '7' ? ' actifs 7j' : period === '30' ? ' actifs 30j' : ' localisés'}
+            {period === 'live' ? ' actifs maintenant (15 min)' : period === '7' ? ' actifs 7j' : period === '30' ? ' actifs 30j' : ' localisés'}
             {' · '}{geoCntrs.length} pays
+            {period === 'live' && <span style={{ marginLeft: 8, color: '#22c55e' }}>↻ 30s</span>}
           </div>
         </>
       )}
