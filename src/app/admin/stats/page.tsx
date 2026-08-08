@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, type CSSProperties } from 'react'
 import { supabase } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
 
@@ -829,6 +829,117 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
   )
 }
 
+// ── Historique mensuel ────────────────────────────────────────────────────
+
+type Snapshot = { day: string; total_users: number; total_cards: number; active_users: number; total_scans: number }
+
+const MONTHS_FR = ['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.']
+function fmtMonth(ym: string): string {
+  const [y, m] = ym.split('-')
+  return `${MONTHS_FR[parseInt(m, 10) - 1]} ${y}`
+}
+
+function DeltaCell({ cur, prev }: { cur: number; prev: number | undefined }) {
+  if (prev == null) return <span style={{ color: '#94a3b8', fontSize: 11 }}>—</span>
+  const diff = cur - prev
+  const pct  = prev > 0 ? ((diff / prev) * 100).toFixed(0) : null
+  if (diff === 0) return <span style={{ color: '#94a3b8', fontSize: 11 }}>—</span>
+  const color = diff > 0 ? '#059669' : '#ef4444'
+  return (
+    <span style={{ fontSize: 11, color, fontWeight: 500 }}>
+      {diff > 0 ? '+' : ''}{fmt(diff)}{pct ? ` (${diff > 0 ? '+' : ''}${pct}%)` : ''}
+    </span>
+  )
+}
+
+function HistorySection({ token, isMobile }: { token: string; isMobile: boolean }) {
+  const [snapshots, setSnapshots] = useState<Snapshot[]>([])
+  const [loading, setLoading]     = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    fetch('/api/admin/history', { headers: { Authorization: `Bearer ${token}` } })
+      .then(r => r.json())
+      .then(({ snapshots: s }) => setSnapshots(s ?? []))
+      .catch(() => {})
+      .finally(() => setLoading(false))
+  }, [token])
+
+  // Prend le dernier snapshot (le plus récent) de chaque mois — les données viennent en DESC
+  const byMonth: Record<string, Snapshot> = {}
+  for (const s of snapshots) {
+    const month = s.day.slice(0, 7)
+    if (!byMonth[month]) byMonth[month] = s
+  }
+  const months = Object.entries(byMonth).sort((a, b) => b[0].localeCompare(a[0]))
+
+  if (loading) return (
+    <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 20, color: '#94a3b8', fontSize: 13 }}>
+      Chargement…
+    </div>
+  )
+
+  if (months.length === 0) return (
+    <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 20, color: '#94a3b8', fontSize: 13 }}>
+      Pas encore de données — recharger cette page demain pour voir l'historique.
+    </div>
+  )
+
+  const colStyle = (right = false): CSSProperties => ({
+    padding: isMobile ? '9px 10px' : '10px 16px',
+    textAlign: right ? 'right' : 'left',
+    fontSize: 12,
+    whiteSpace: 'nowrap',
+  })
+
+  return (
+    <div style={{ overflowX: 'auto' }}>
+      <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflow: 'hidden', minWidth: 560 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr style={{ background: ACCENT }}>
+              <th style={{ ...colStyle(), color: '#fff', fontWeight: 600 }}>Mois</th>
+              <th style={{ ...colStyle(true), color: '#fff', fontWeight: 600 }}>Inscrits</th>
+              <th style={{ ...colStyle(true), color: '#d1d5db', fontWeight: 500, fontSize: 11 }}>évol.</th>
+              <th style={{ ...colStyle(true), color: '#fff', fontWeight: 600 }}>Cartes</th>
+              <th style={{ ...colStyle(true), color: '#d1d5db', fontWeight: 500, fontSize: 11 }}>évol.</th>
+              <th style={{ ...colStyle(true), color: '#fff', fontWeight: 600 }}>Actifs/mois</th>
+              <th style={{ ...colStyle(true), color: '#fff', fontWeight: 600 }}>Scans</th>
+            </tr>
+          </thead>
+          <tbody>
+            {months.map(([ym, snap], i) => {
+              const prev   = months[i + 1]?.[1]
+              const isLast = i === months.length - 1
+              return (
+                <tr key={ym} style={{
+                  background: i % 2 === 0 ? '#fff' : '#f8fafc',
+                  borderBottom: isLast ? 'none' : '1px solid #f1f5f9',
+                }}>
+                  <td style={{ ...colStyle(), fontWeight: 600, color: '#334155' }}>{fmtMonth(ym)}</td>
+                  <td style={{ ...colStyle(true), fontWeight: 700, color: ACCENT }}>{fmt(snap.total_users)}</td>
+                  <td style={{ ...colStyle(true) }}>
+                    <DeltaCell cur={snap.total_users} prev={prev?.total_users} />
+                  </td>
+                  <td style={{ ...colStyle(true), fontWeight: 700, color: '#059669' }}>{fmt(snap.total_cards)}</td>
+                  <td style={{ ...colStyle(true) }}>
+                    <DeltaCell cur={snap.total_cards} prev={prev?.total_cards} />
+                  </td>
+                  <td style={{ ...colStyle(true), fontWeight: 600, color: '#8b5cf6' }}>{fmt(snap.active_users)}</td>
+                  <td style={{ ...colStyle(true), fontWeight: 600, color: '#64748b' }}>{fmt(snap.total_scans)}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+        <div style={{ padding: '8px 16px', fontSize: 10, color: '#94a3b8', borderTop: '1px solid #f1f5f9' }}>
+          Snapshot quotidien · valeur du dernier jour enregistré par mois
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ── Page principale ───────────────────────────────────────────────────────
 
 export default function AdminStats() {
@@ -998,6 +1109,12 @@ export default function AdminStats() {
             </div>
           </>
         )}
+
+        {/* Historique mensuel */}
+        <SectionTitle>Historique mensuel</SectionTitle>
+        <div style={{ marginBottom: isMobile ? 20 : 32 }}>
+          {sessionToken && <HistorySection token={sessionToken} isMobile={isMobile} />}
+        </div>
 
         {/* Géographie */}
         <SectionTitle>Géographie</SectionTitle>

@@ -140,5 +140,15 @@ export async function GET(req: NextRequest) {
     pageviews: daily7(pageviewsByDay),
   }
 
+  // Snapshot quotidien — enregistré chaque fois qu'un admin charge les stats
+  const today = new Date().toISOString().slice(0, 10)
+  void admin.from('stats_snapshots').upsert({
+    day: today,
+    total_users:  rpcData.total_users        ?? 0,
+    total_cards:  rpcData.total_cards        ?? 0,
+    active_users: rpcData.active_users_month ?? 0,
+    total_scans:  rpcData.total_scans        ?? 0,
+  }, { onConflict: 'day' })
+
   return NextResponse.json({ ...rpcData, last_7_days })
 }
