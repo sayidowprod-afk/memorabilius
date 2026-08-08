@@ -34,23 +34,6 @@ function last7FromSeries(series: Array<{ day: string; count: number }>): Array<{
   })
 }
 
-// Connexions par jour : pagine tous les users et regroupe par last_sign_in_at
-async function getSigninsByDay(d7Start: string): Promise<Record<string, number>> {
-  const signins: Record<string, number> = {}
-  let page = 1
-  while (true) {
-    const { data } = await admin.auth.admin.listUsers({ page, perPage: 1000 })
-    if (!data?.users?.length) break
-    for (const u of data.users) {
-      if (!u.last_sign_in_at) continue
-      const day = u.last_sign_in_at.slice(0, 10)
-      if (day >= d7Start) signins[day] = (signins[day] || 0) + 1
-    }
-    if (data.users.length < 1000) break
-    page++
-  }
-  return signins
-}
 
 // Résout VERCEL_TEAM_SLUG → teamId et VERCEL_PROJECT_NAME → projectId
 async function resolveVercelIds(token: string, teamSlug: string, projectName: string) {
@@ -125,18 +108,21 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
-  const d7Start   = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
-  const d7StartTs = d7Start + 'T00:00:00.000Z'
+  const d7Start = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
 
-  const [rpcResult, signinsByDay, pageviewsByDay] = await Promise.all([
+  const [rpcResult, signinsResult, pageviewsByDay] = await Promise.all([
     admin.rpc('admin_stats'),
-    getSigninsByDay(d7Start),
+    admin.rpc('get_signins_by_day'),
     getVercelPageviews(d7Start),
   ])
 
   if (rpcResult.error) return NextResponse.json({ error: rpcResult.error.message }, { status: 500 })
 
   const rpcData = rpcResult.data as any
+
+  const signinsByDay: Record<string, number> = Object.fromEntries(
+    ((signinsResult.data ?? []) as { day: string; count: number }[]).map(r => [r.day, r.count])
+  )
 
   const last_7_days = {
     users:     last7FromSeries(rpcData.user_daily ?? []),
