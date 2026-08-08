@@ -331,11 +331,12 @@ export default function MesPCTab({ cards, userId, accent, dark, isOwner, initial
     const name = pc.name.toLowerCase()
     if (pc.type === 'player') return cards.filter(c => c.n?.trim().toLowerCase() === name)
     if (pc.type === 'collection') return cards.filter(c => c.s?.trim().toLowerCase() === name)
-    // Équipe : cartes directement taguées + toutes les cartes des joueurs qui ont AU MOINS
-    // une carte avec cette équipe (couvre les sets sans champ équipe renseigné)
+    // Équipe : cartes directement taguées avec cette équipe + cartes SANS champ équipe
+    // pour des joueurs connus de cette équipe (couvre les vieux sets sans team renseigné).
+    // Ne jamais inclure une carte taguée avec une AUTRE équipe même si le joueur est connu.
     const directMatch = (c: Card) => c.t?.trim().toLowerCase() === name
     const teamPlayers = new Set(cards.filter(directMatch).map(c => c.n?.trim().toLowerCase()).filter(Boolean))
-    return cards.filter(c => directMatch(c) || (c.n && teamPlayers.has(c.n.trim().toLowerCase())))
+    return cards.filter(c => directMatch(c) || (!c.t?.trim() && c.n && teamPlayers.has(c.n.trim().toLowerCase())))
   }
 
   function getTeamCollStats(pc: PCEntry) {

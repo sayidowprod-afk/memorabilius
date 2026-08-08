@@ -76,189 +76,81 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
       counts.set(v, Number(row.cnt))
     }
 
-    // Récupérer les completions de l'user pour ce set (juste entry_id)
     let completedEntryIds = new Set<number>()
     let completionDetails = new Map<number, { id: string; manually_checked: boolean }>()
-    let galleryCards: { id?: string; nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string; image_recto?: string | null }[] = []
 
     if (userId) {
-      // Charger tous les entry_ids du set (pagination pour dépasser max_rows=1000)
-      const allEntries: { id: number; player_name: string; variation: string | null }[] = []
-      const PAGE = 1000
-      for (let from = 0; ; from += PAGE) {
-        const { data: page } = await supabase
-          .from('card_set_entries')
-          .select('id, player_name, variation')
-          .eq('set_id', setId)
-          .range(from, from + PAGE - 1)
-        if (!page || page.length === 0) break
-        allEntries.push(...page)
-        if (page.length < PAGE) break
-      }
+      // Charger les cartes galerie (Supabase + CSV) pour le matching
+      type GalleryCard = { id?: string; nom: string; annee: string; marque: string; collection: string; collection_tag: string; variation: string; image_recto?: string | null }
+      const { data: gc } = await supabase
+        .from('cartes_manuelles')
+        .select('id, nom, annee, marque, collection, collection_tag, variation, image_recto')
+        .eq('user_id', userId)
+      let galleryCards: GalleryCard[] = gc || []
 
-      if (allEntries) {
-        const entryIds = allEntries.map(e => e.id)
-
-        // Charger les completions en chunks (évite 400 si trop d'entry_ids)
-        const allCompletions: { id: string; entry_id: number; manually_checked: boolean }[] = []
-        const CHUNK = 500
-        for (let i = 0; i < entryIds.length; i += CHUNK) {
-          const { data: chunk } = await supabase
-            .from('user_set_completion')
-            .select('id, entry_id, manually_checked')
-            .eq('user_id', userId)
-            .in('entry_id', entryIds.slice(i, i + CHUNK))
-          if (chunk) allCompletions.push(...chunk)
-        }
-
-        if (allCompletions.length) {
-          for (const c of allCompletions) {
-            completedEntryIds.add(c.entry_id)
-            completionDetails.set(c.entry_id, { id: c.id, manually_checked: c.manually_checked })
-          }
-        }
-
-        // Auto-match galerie (cartes_manuelles + CSV si présent)
-        const { data: gc } = await supabase
-          .from('cartes_manuelles')
-          .select('id, nom, annee, marque, collection, collection_tag, variation, image_recto')
-          .eq('user_id', userId)
-        galleryCards = gc || []
-
-        // Ajouter les cartes CSV si l'utilisateur en a un
-        const { data: profileData } = await supabase
-          .from('profiles')
-          .select('lien_csv')
-          .eq('id', userId)
-          .single()
-        if (profileData?.lien_csv) {
-          try {
-            const r = await fetch(profileData.lien_csv + '&t=' + Date.now())
-            const text = await r.text()
-            const rows = text.split(/\r?\n/).slice(4)
-            const csvCards = rows
-              .map(row => {
-                const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
-                if (!c[0] || !c[0].includes('http')) return null
-                return {
-                  nom: c[2]?.trim() || '',
-                  annee: c[4]?.trim() || '',
-                  marque: c[5]?.trim() || '',
-                  collection: c[6]?.trim() || '',
-                  collection_tag: '',
-                  variation: c[7]?.trim() || '',
-                }
-              })
-              .filter(Boolean) as typeof galleryCards
-            galleryCards = [...galleryCards, ...csvCards]
-          } catch { /* CSV indisponible, on ignore */ }
-        }
-
-        const autoMatchedIds: number[] = []
-        const norm = (s: string) => s?.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]/g, '') || ''
-        const words = (s: string) => s?.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 2) || []
-        const BRAND_PARENT: Record<string, string> = {
-          hoops: 'panini', prizm: 'panini', select: 'panini', donruss: 'panini',
-          optic: 'panini', mosaic: 'panini', chronicles: 'panini', contenders: 'panini',
-          spectra: 'panini', noir: 'panini', obsidian: 'panini', immaculate: 'panini',
-          revolution: 'panini', eminence: 'panini', illusions: 'panini', nbahoops: 'panini',
-          flawless: 'panini', titanium: 'panini', nationaltreasures: 'panini',
-          flux: 'panini', origins: 'panini', courtkings: 'panini', certified: 'panini',
-          flagship: 'topps', finest: 'topps', bowman: 'topps', chrome: 'topps',
-          heritage: 'topps', stadium: 'topps', update: 'topps',
-        }
-        const normBrand = (b: string) => { const n = norm(b).replace('america', '').replace('sports', ''); return BRAND_PARENT[n] ?? n }
-
-        if (galleryCards.length && setData.year) {
-          const y = setData.year!
-          const yearStr = String(y)
-          const yearNext = `${y}-${String(y+1).slice(2)}`   // "2023-24"
-          const yearPrev = `${y-1}-${yearStr.slice(2)}`      // "2022-23"
-          const yearNextFull = String(y + 1)                  // "2024" (saison 2023-24 parfois saisie comme 2024)
-          const yearFull2 = `${y}-${y+1}`                    // "2023-2024"
-
-          for (const e of allEntries) {
-            if (completedEntryIds.has(e.id)) continue
-
-            const matchedCard = (galleryCards as any[]).find(card => {
-              // 1. Joueur (normalisé, diacritiques supprimées)
-              if (norm(card.nom) !== norm(e.player_name)) return false
-
-              // 2. Année — formats acceptés : "2023", "2023-24", "2022-23", "2024", "2023-2024"
-              const cardYear = (card.annee || '').trim()
-              if (cardYear && cardYear !== yearStr && cardYear !== yearNext && cardYear !== yearPrev && cardYear !== yearNextFull && cardYear !== yearFull2) return false
-
-              // 3. Marque (avec résolution sous-marques Panini/Topps)
-              if (setData.brand && card.marque) {
-                const nb = normBrand(card.marque), ns = normBrand(setData.brand)
-                if (!nb.includes(ns) && !ns.includes(nb)) return false
-              }
-
-              // 4. Collection (au moins 1 mot clé commun — ignoré si vide)
-              const collToTest = card.collection || card.collection_tag || ''
-              if (collToTest) {
-                const userWords = words(collToTest)
-                const setNorm = norm(setData.name)
-                if (userWords.length > 0 && !userWords.some(w => setNorm.includes(w))) return false
-              }
-
-              // 5. Variation : base↔base stricte, parallèle fuzzy
-              const cardVar = (card.variation || '').trim()
-              const entryVar = (e.variation || '').trim()
-              if (!cardVar) return !entryVar
-              if (!entryVar) return false
-              const nc = norm(cardVar), ne = norm(entryVar)
-              return nc.includes(ne) || ne.includes(nc) || words(cardVar).some(w => ne.includes(w))
+      // CSV optionnel
+      const { data: profileData } = await supabase.from('profiles').select('lien_csv').eq('id', userId).single()
+      if (profileData?.lien_csv) {
+        try {
+          const r = await fetch(profileData.lien_csv + '&t=' + Date.now())
+          const text = await r.text()
+          galleryCards = [
+            ...galleryCards,
+            ...text.split(/\r?\n/).slice(4).flatMap(row => {
+              const c = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+              if (!c[0] || !c[0].includes('http')) return []
+              return [{ nom: c[2]?.trim() || '', annee: c[4]?.trim() || '', marque: c[5]?.trim() || '', collection: c[6]?.trim() || '', collection_tag: '', variation: c[7]?.trim() || '' }]
             })
-
-            if (matchedCard) {
-              completedEntryIds.add(e.id)
-              autoMatchedIds.push(e.id)
-            }
-          }
-
-          // Persister les auto-matchs en base (sans écraser les coches manuelles)
-          if (autoMatchedIds.length > 0) {
-            const rows = autoMatchedIds.map(eid => ({
-              user_id: userId,
-              entry_id: eid,
-              manually_checked: false,
-            }))
-            await supabase.from('user_set_completion').upsert(rows, { onConflict: 'user_id,entry_id', ignoreDuplicates: true })
-          }
-
-          // Map entry → première image galerie par joueur (vignettes dans les lignes)
-          const playerToImg = new Map<string, string>()
-          for (const card of galleryCards) {
-            if (card.image_recto && !playerToImg.has(norm(card.nom))) {
-              playerToImg.set(norm(card.nom), card.image_recto)
-            }
-          }
-          const cardMap = new Map<number, string>()
-          for (const e of allEntries) {
-            if (completedEntryIds.has(e.id)) {
-              const img = playerToImg.get(norm(e.player_name))
-              if (img) cardMap.set(e.id, img)
-            }
-          }
-          setEntryToCard(cardMap)
-
-          // Section "Mes cartes" — toutes les cartes galerie dont le joueur est dans ce set
-          const ownedPlayers = new Set<string>()
-          for (const e of allEntries) {
-            if (completedEntryIds.has(e.id)) ownedPlayers.add(norm(e.player_name))
-          }
-          const myCards: { id: string; image: string; nom: string; variation: string }[] = []
-          for (const card of galleryCards) {
-            if (!card.image_recto) continue
-            if (!ownedPlayers.has(norm(card.nom))) continue
-            myCards.push({ id: card.id || '', image: card.image_recto, nom: card.nom, variation: card.variation || '' })
-          }
-          setMySetCards(myCards)
-        }
-
-        setTotalOwned(completedEntryIds.size)
+          ]
+        } catch { /* CSV indisponible */ }
       }
+
+      // Un seul appel API pour completions + auto-matching (remplace ~60 requêtes Supabase)
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session?.access_token) {
+        try {
+          const res = await fetch('/api/set-sync', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.access_token}` },
+            body: JSON.stringify({
+              setId: parseInt(setId),
+              setYear: setData.year,
+              setBrand: setData.brand,
+              setName: setData.name,
+              galleryCards,
+            }),
+          })
+          if (res.ok) {
+            const {
+              completedEntryIds: ids,
+              completionDetails: dets,
+              entryToCard: etc,
+              ownedPlayerNorms,
+              autoMatchedCount,
+            } = await res.json()
+
+            completedEntryIds = new Set<number>(ids)
+            for (const [k, v] of Object.entries(dets as Record<string, { id: string; manually_checked: boolean }>)) {
+              completionDetails.set(parseInt(k), v)
+            }
+
+            setEntryToCard(new Map(Object.entries(etc as Record<string, string>).map(([k, v]) => [parseInt(k), v])))
+
+            // Section "Mes cartes" depuis les norms retournés par le serveur
+            const normSet = new Set<string>(ownedPlayerNorms as string[])
+            const norm = (s: string) => s?.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]/g, '') || ''
+            setMySetCards(
+              galleryCards
+                .filter(c => c.image_recto && normSet.has(norm(c.nom)))
+                .map(c => ({ id: c.id || '', image: c.image_recto!, nom: c.nom, variation: c.variation || '' }))
+            )
+
+            if (autoMatchedCount > 0) console.log(`[setlist] ${autoMatchedCount} cartes auto-matchées`)
+          }
+        } catch { /* si set-sync échoue, on continue sans completions */ }
+      }
+
+      setTotalOwned(completedEntryIds.size)
     }
 
     // Construire les variations meta (sans les cartes)
@@ -266,7 +158,7 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
     const varMetas: VariationMeta[] = varNames.map(name => ({
       name,
       count: counts.get(name) || 0,
-      owned: 0, // sera calculé au chargement
+      owned: 0,
       loaded: false,
       entries: [],
     }))
