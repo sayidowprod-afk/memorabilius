@@ -226,10 +226,10 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
 
     const ownedCount = entries.filter(e => e.owned).length
 
-    // Charger les images communauté (entry_images) pour toutes les entrées de cette variation
+    // Charger les images communauté depuis cartes_manuelles (n'importe quel utilisateur)
     const entryIds = finalData.map((e: any) => e.id)
     if (entryIds.length > 0) {
-      const { data: imgRows } = await supabase.rpc('get_entry_images', { p_entry_ids: entryIds })
+      const { data: imgRows } = await supabase.rpc('get_player_images_for_entries', { p_entry_ids: entryIds })
       if (imgRows) {
         setCommunityImages(prev => {
           const next = new Map(prev)
