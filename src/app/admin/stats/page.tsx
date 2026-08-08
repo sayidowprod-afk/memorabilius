@@ -1,6 +1,9 @@
 'use client'
-import { useEffect, useState, useCallback, useRef } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
+import dynamic from 'next/dynamic'
+
+const GeoMap = dynamic(() => import('@/components/admin/GeoMap'), { ssr: false })
 
 const ACCENT = '#003DA6'
 const W_SVG  = 800
@@ -626,22 +629,6 @@ function SectionTitle({ children }: { children: string }) {
 
 // ── Section Géographie ────────────────────────────────────────────────────
 
-const GEO_CONTINENTS: [number, number][][] = [
-  [[-168,72],[-130,70],[-60,73],[-52,47],[-66,43],[-82,28],[-90,18],[-109,23],[-118,34],[-126,49],[-153,60],[-168,72]],
-  [[-45,83],[-15,76],[-20,70],[-45,59],[-57,62],[-45,83]],
-  [[-82,11],[-60,8],[-52,4],[-36,-5],[-34,-18],[-50,-34],[-73,-53],[-70,-55],[-65,-55],[-60,-38],[-64,-27],[-65,-5],[-76,1],[-82,11]],
-  [[-9,36],[7,36],[13,35],[22,38],[28,42],[35,47],[27,50],[25,58],[28,71],[21,70],[10,63],[5,57],[0,51],[-3,48],[-8,38],[-9,36]],
-  [[-6,50],[-2,50],[2,52],[0,58],[-4,58],[-6,54],[-6,50]],
-  [[-16,37],[-2,37],[13,36],[25,36],[37,28],[42,22],[44,12],[52,12],[42,-2],[35,-20],[27,-35],[20,-35],[16,-28],[10,-5],[8,4],[0,5],[-18,14],[-16,37]],
-  [[26,72],[60,72],[103,72],[140,73],[148,44],[143,35],[136,34],[130,32],[120,22],[112,18],[102,2],[104,-1],[107,-6],[125,-8],[140,-9],[149,0],[155,25],[148,28],[140,38],[115,40],[88,38],[75,35],[70,27],[60,22],[55,12],[42,15],[36,15],[36,30],[26,42],[26,55],[26,72]],
-  [[130,32],[131,34],[136,36],[141,42],[141,44],[136,44],[130,38],[130,32]],
-  [[109,-2],[116,-2],[116,4],[110,7],[109,-2]],
-  [[114,-26],[120,-26],[130,-15],[137,-12],[140,-10],[142,-10],[148,-20],[152,-28],[154,-33],[150,-38],[145,-42],[140,-40],[135,-36],[128,-32],[120,-35],[114,-30],[114,-26]],
-  [[172,-34],[174,-38],[173,-44],[170,-46],[168,-44],[170,-40],[172,-34]],
-  [[43,-13],[50,-13],[50,-25],[44,-26],[43,-13]],
-  [[-24,63],[-13,63],[-13,66],[-20,66],[-24,66],[-24,63]],
-]
-
 // [lon, lat]
 const GEO_CENTROIDS: Record<string, [number, number]> = {
   FR:[2.3,46.2],US:[-95.7,37.1],CA:[-106.3,56.1],GB:[-3.4,55.4],
@@ -706,12 +693,11 @@ function geoFlag(code: string): string {
 }
 
 function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
-  const [geoCntrs, setGeoCntrs]           = useState<{ code: string; visitors: number }[]>([])
-  const [geoAvail, setGeoAvail]           = useState<boolean | null>(null)
-  const [geoDays, setGeoDays]             = useState(30)
-  const [geoLoad, setGeoLoad]             = useState(false)
-  const [geoHov, setGeoHov]               = useState<{ code: string; visitors: number } | null>(null)
-  const geoCanvas                          = useRef<HTMLCanvasElement>(null)
+  const [geoCntrs, setGeoCntrs] = useState<{ code: string; visitors: number }[]>([])
+  const [geoAvail, setGeoAvail] = useState<boolean | null>(null)
+  const [geoDays, setGeoDays]   = useState(30)
+  const [geoLoad, setGeoLoad]   = useState(false)
+  const [geoHov, setGeoHov]     = useState<{ code: string; visitors: number } | null>(null)
 
   useEffect(() => {
     setGeoLoad(true)
@@ -721,77 +707,6 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
       .catch(() => setGeoAvail(false))
       .finally(() => setGeoLoad(false))
   }, [token, geoDays])
-
-  useEffect(() => {
-    const cv = geoCanvas.current
-    if (!cv) return
-    const ctx = cv.getContext('2d')
-    if (!ctx) return
-    const W = cv.width, H = cv.height
-
-    const proj = (lon: number, lat: number): [number, number] =>
-      [(lon + 180) / 360 * W, (90 - lat) / 180 * H]
-
-    ctx.fillStyle = '#eef6fb'
-    ctx.fillRect(0, 0, W, H)
-
-    ctx.strokeStyle = '#cde4f0'; ctx.lineWidth = 0.4
-    for (let lon = -180; lon <= 180; lon += 30) {
-      const [x] = proj(lon, 0)
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke()
-    }
-    for (let lat = -60; lat <= 90; lat += 30) {
-      const [, y] = proj(0, lat)
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke()
-    }
-
-    for (const pts of GEO_CONTINENTS) {
-      ctx.beginPath()
-      const [x0, y0] = proj(pts[0][0], pts[0][1])
-      ctx.moveTo(x0, y0)
-      for (let i = 1; i < pts.length; i++) {
-        const [x, y] = proj(pts[i][0], pts[i][1])
-        ctx.lineTo(x, y)
-      }
-      ctx.closePath()
-      ctx.fillStyle = '#d4e8c0'; ctx.fill()
-      ctx.strokeStyle = '#b0cc96'; ctx.lineWidth = 0.8; ctx.stroke()
-    }
-
-    if (geoCntrs.length > 0) {
-      const maxV = Math.max(...geoCntrs.map(c => c.visitors), 1)
-      const sorted = [...geoCntrs].sort((a, b) => b.visitors - a.visitors)
-      for (const { code, visitors } of sorted) {
-        const c = GEO_CENTROIDS[code]
-        if (!c) continue
-        const [x, y] = proj(c[0], c[1])
-        const r = Math.max(4, Math.sqrt(visitors / maxV) * 26)
-        ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(0,61,166,0.40)'; ctx.fill()
-        ctx.strokeStyle = 'rgba(0,40,140,0.65)'; ctx.lineWidth = 1.5; ctx.stroke()
-      }
-    }
-  }, [geoCntrs])
-
-  function onGeoMove(e: React.MouseEvent<HTMLCanvasElement>) {
-    const cv = geoCanvas.current
-    if (!cv || !geoCntrs.length) { setGeoHov(null); return }
-    const rect = cv.getBoundingClientRect()
-    const mx = (e.clientX - rect.left) * (cv.width / rect.width)
-    const my = (e.clientY - rect.top)  * (cv.height / rect.height)
-    const W = cv.width, H = cv.height
-    const maxV = Math.max(...geoCntrs.map(c => c.visitors), 1)
-    let found: typeof geoCntrs[0] | null = null
-    for (const ctr of [...geoCntrs].sort((a, b) => a.visitors - b.visitors)) {
-      const c = GEO_CENTROIDS[ctr.code]
-      if (!c) continue
-      const x = (c[0] + 180) / 360 * W
-      const y = (90 - c[1]) / 180 * H
-      const r = Math.max(4, Math.sqrt(ctr.visitors / maxV) * 26)
-      if ((mx - x) ** 2 + (my - y) ** 2 <= r ** 2) found = ctr
-    }
-    setGeoHov(found)
-  }
 
   const top10  = geoCntrs.slice(0, 10)
   const topMax = top10.length ? Math.max(...top10.map(c => c.visitors)) : 1
@@ -827,11 +742,8 @@ function GeoSection({ token, isMobile }: { token: string; isMobile: boolean }) {
 
       {geoAvail && geoCntrs.length > 0 && (
         <>
-          <div style={{ position: 'relative', marginBottom: 20 }}>
-            <canvas ref={geoCanvas} width={800} height={360}
-              style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 8, cursor: 'crosshair' }}
-              onMouseMove={onGeoMove} onMouseLeave={() => setGeoHov(null)}
-            />
+          <div style={{ position: 'relative', marginBottom: 20, borderRadius: 8, overflow: 'hidden' }}>
+            <GeoMap geoCntrs={geoCntrs} centroids={GEO_CENTROIDS} onHover={setGeoHov} />
             {geoHov && (
               <div style={{
                 position: 'absolute', top: 10, left: 10, pointerEvents: 'none',
