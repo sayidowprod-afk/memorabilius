@@ -226,17 +226,31 @@ export default function SetDetailPage({ params }: { params: Promise<{ setId: str
 
     const ownedCount = entries.filter(e => e.owned).length
 
-    // Charger les images communauté depuis cartes_manuelles (n'importe quel utilisateur)
+    // Charger les images communauté via API JS (matching strict : année + variation + collection)
     const entryIds = finalData.map((e: any) => e.id)
-    if (entryIds.length > 0) {
-      const { data: imgRows } = await supabase.rpc('get_player_images_for_entries', { p_entry_ids: entryIds })
-      if (imgRows) {
-        setCommunityImages(prev => {
-          const next = new Map(prev)
-          for (const row of imgRows) next.set(row.entry_id, row.image_url)
-          return next
+    if (entryIds.length > 0 && setInfo) {
+      fetch('/api/setlist-images', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          setId: parseInt(setId),
+          setYear: setInfo.year,
+          setBrand: setInfo.brand,
+          setName: setInfo.name,
+          entryIds,
+        }),
+      })
+        .then(r => r.ok ? r.json() : [])
+        .then((imgRows: { entry_id: number; image_url: string }[]) => {
+          if (imgRows.length > 0) {
+            setCommunityImages(prev => {
+              const next = new Map(prev)
+              for (const row of imgRows) next.set(row.entry_id, row.image_url)
+              return next
+            })
+          }
         })
-      }
+        .catch(() => {})
     }
 
     setVariations(prev => prev.map(v =>
